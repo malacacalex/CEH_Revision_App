@@ -127,15 +127,16 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 - [x] **M2**: M0 Foundations, 60-q diagnostic, reference sheets 1, 3–5 (2 deferred), glossary,
   review export, `.claude/commands`.
 - [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
-  in-app content-pack update. First release tag v0.3.0 waits for the owner's go.
+  in-app content-pack update. Released as v0.3.0.
 - [ ] **M4**: build M1–M20 (`/build-module N`), full volumes.
 - [ ] **M5**: analytics, half/full mocks from the 500-q mock pool.
 
 ## Release status
 
-App 0.3.0 (not yet tagged) · content 0.2.0 · Pages live. Unsigned builds; macOS ad-hoc signed.
-Android release key: not set up (secrets `ANDROID_KEYSTORE_BASE64`, `_PASSWORD`, `ANDROID_KEY_ALIAS`,
-`ANDROID_KEY_PASSWORD`); until then CI ships `…android-debug.apk`, which cannot update in place.
+**v0.3.0 released 2026-09-23** (content 0.2.0): Windows exe/msi, macOS universal dmg (ad-hoc signed),
+Linux AppImage/deb, Android apk/aab signed with the release key. Nothing else is code-signed.
+Android key: PKCS12 made with OpenSSL, kept by the owner outside the repo (`C:\Users\malac\ShieldUp-keys`),
+passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-place APK updates.
 
 ## Session log
 
