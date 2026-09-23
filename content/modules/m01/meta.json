@@ -3,7 +3,7 @@
   "title": "Introduction to Ethical Hacking",
   "domain": "D1",
   "effortUnits": 1,
-  "status": "sample",
+  "status": "built",
   "sections": [
     "Information Security Overview",
     "Hacking Concepts and Hacker Classes",
@@ -14,23 +14,39 @@
   ],
   "objectives": [
     {
-      "text": "Explain the CIA triad and related properties (authenticity, non-repudiation)",
+      "text": "Explain the five elements of information security and name the attack that breaks each one",
       "section": "Information Security Overview"
     },
     {
-      "text": "Classify attackers by hacker class and motive",
+      "text": "Classify an attack as passive, active, close-in, insider or distribution from a short scenario",
+      "section": "Information Security Overview"
+    },
+    {
+      "text": "Identify the hacker class and motive behind an attack, including APTs and insiders",
       "section": "Hacking Concepts and Hacker Classes"
     },
     {
-      "text": "Put the 5 hacking phases and the 7 Cyber Kill Chain stages in order",
+      "text": "State what makes a test ethical (authorization, scope, rules of engagement, NDA, report) and pick the right assessment type",
+      "section": "Ethical Hacking Concepts"
+    },
+    {
+      "text": "Describe how AI tools help an ethical hacker and the limits on using them with client data",
+      "section": "Ethical Hacking Concepts"
+    },
+    {
+      "text": "Put the five hacking phases, the CEH framework and the 7 Cyber Kill Chain stages in order, and map activity to them",
       "section": "Hacking Methodologies and Frameworks"
     },
     {
-      "text": "Classify security controls by type and function",
+      "text": "Use MITRE ATT&CK, the Diamond Model and threat intelligence vocabulary (TTPs, IoCs, intelligence types)",
+      "section": "Hacking Methodologies and Frameworks"
+    },
+    {
+      "text": "Classify controls by type and function, choose a risk response and order the incident response phases",
       "section": "Information Security Controls"
     },
     {
-      "text": "Match a regulation or standard to the data it protects",
+      "text": "Match a scenario to the law or standard that applies (PCI DSS, HIPAA, SOX, GDPR, DPA, FISMA, GLBA, DMCA, ISO 27001)",
       "section": "Information Security Laws and Standards"
     }
   ],
@@ -38,53 +54,77 @@
     {
       "section": "Information Security Overview",
       "priority": "SKIM",
-      "minutes": 25,
-      "why": "Definitions and classifications are tested; skim the long examples."
+      "minutes": 20,
+      "why": "Know the five elements and the attack classes; the examples repeat what the notes cover."
     },
     {
       "section": "Hacking Concepts and Hacker Classes",
       "priority": "SKIM",
-      "minutes": 25,
-      "why": "Definitions and classifications are tested; skim the long examples."
+      "minutes": 15,
+      "why": "Learn the class names and the one trait that defines each; skip the history."
     },
     {
       "section": "Ethical Hacking Concepts",
-      "priority": "SKIM",
-      "minutes": 25,
-      "why": "Definitions and classifications are tested; skim the long examples."
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Scope, authorization, test types and the new AI material are frequent scenario questions."
     },
     {
       "section": "Hacking Methodologies and Frameworks",
       "priority": "MUST",
-      "minutes": 25,
-      "why": "Definitions and classifications are tested; skim the long examples."
+      "minutes": 40,
+      "why": "Phase and kill chain order, ATT&CK tactic vs technique and threat intelligence types are tested all through the exam."
     },
     {
       "section": "Information Security Controls",
       "priority": "MUST",
-      "minutes": 25,
-      "why": "Definitions and classifications are tested; skim the long examples."
+      "minutes": 30,
+      "why": "Control functions, risk responses and the incident response order appear in many questions."
     },
     {
       "section": "Information Security Laws and Standards",
       "priority": "MUST",
-      "minutes": 35,
-      "why": "Many regulation-matching questions; learn the table, not the history."
+      "minutes": 30,
+      "why": "Regulation-matching questions: learn the quick-match table, not the legal history."
     }
   ],
   "labs": [
     {
-      "name": "Map a real intrusion report to the Cyber Kill Chain and MITRE ATT&CK",
+      "name": "Map a published intrusion report to the Cyber Kill Chain and MITRE ATT&CK",
       "source": "free",
       "where": "https://attack.mitre.org/",
-      "skill": "Using frameworks to describe attacker behavior",
+      "skill": "Turning a narrative into kill chain stages and ATT&CK tactics and techniques",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Color an ATT&CK Navigator layer for one threat group",
+      "source": "free",
+      "where": "https://mitre-attack.github.io/attack-navigator/",
+      "skill": "Reading the ATT&CK matrix and comparing a group's techniques with your own detections",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Draft rules of engagement and a scope for a mock penetration test",
+      "source": "free",
+      "where": "https://www.ncsc.gov.uk/guidance/penetration-testing",
+      "skill": "Authorization, scope, time windows, contacts and forbidden actions before any testing",
+      "minutes": 40,
+      "verify": true
+    },
+    {
+      "name": "Threat model a small web app with OWASP Threat Dragon",
+      "source": "free",
+      "where": "https://owasp.org/www-project-threat-dragon/",
+      "skill": "Drawing data flows and listing threats per component at design time",
       "minutes": 45,
       "verify": true
     }
   ],
   "feynmanPrompts": [
-    "Explain to a non-technical friend why an ethical hacker needs written permission.",
-    "Walk through the 5 hacking phases with one concrete example for each.",
-    "Explain the difference between a tactic, a technique and a procedure."
+    "Explain to a non-technical friend why an ethical hacker needs written permission, and what else must be agreed before the first test.",
+    "Walk through the five hacking phases with one concrete example each, then say which Cyber Kill Chain stage each example matches.",
+    "Explain the difference between a tactic, a technique and an indicator of compromise, and why defenders prefer detecting TTPs."
   ]
 }

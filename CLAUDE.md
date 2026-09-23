@@ -114,7 +114,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | Module | Status | Notes |
 |---|---|---|
 | M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
-| M1 Intro to Ethical Hacking | sample | 8 cards, 3 pretest, 12 practice |
+| M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
 | M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice |
 | M2, M4–M20 | stub | built one by one in M4 (`/build-module N`) |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
@@ -146,3 +146,5 @@ passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-pl
   Content 0.2.0. Sheet 2 deferred by the owner (`research/deferred.md`).
 - 2026-09-23 — M3: platform layer, content/app update checks, Tauri + Capacitor projects, release
   pipeline, docs. App 0.3.0. CSP verified in Chrome against the built app.
+- 2026-09-23 — M4 started: M1 built (research/m01.md, content 0.3.0). Quiz stems are plain text:
+  keep command output on one line with backticks. Mermaid state labels need `state "Label" as X`.

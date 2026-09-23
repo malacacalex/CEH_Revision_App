@@ -7,8 +7,13 @@
     "kind": "term",
     "front": "CIA triad",
     "back": "**Confidentiality** (only authorized people can read the data), **Integrity** (the data is not altered without authorization), **Availability** (systems and data are accessible when needed).",
-    "tags": ["cia-triad", "sample"],
-    "sources": ["https://csrc.nist.gov/glossary/term/confidentiality", "https://csrc.nist.gov/glossary/term/availability"],
+    "tags": [
+      "cia-triad"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/confidentiality",
+      "https://csrc.nist.gov/glossary/term/availability"
+    ],
     "verify": false,
     "rev": 1
   },
@@ -20,8 +25,13 @@
     "kind": "list",
     "front": "EC-Council's 5 phases of hacking (in order)",
     "back": "1. Reconnaissance\n2. Scanning\n3. Gaining Access\n4. Maintaining Access\n5. Clearing Tracks\n\n*Hook: \"Real Spies Get Money Covertly\".*",
-    "tags": ["hacking-phases", "ec-council-specific", "sample"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "tags": [
+      "hacking-phases",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
     "verify": true,
     "rev": 1
   },
@@ -33,7 +43,9 @@
     "kind": "list",
     "front": "Lockheed Martin Cyber Kill Chain: the 7 stages",
     "back": "1. Reconnaissance\n2. Weaponization\n3. Delivery\n4. Exploitation\n5. Installation\n6. Command and Control (C2)\n7. Actions on Objectives",
-    "tags": ["cyber-kill-chain", "sample"],
+    "tags": [
+      "cyber-kill-chain"
+    ],
     "sources": [
       "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html",
       "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf"
@@ -49,8 +61,13 @@
     "kind": "term",
     "front": "Hacktivist",
     "back": "An attacker driven by a political or social agenda. Typical methods: website defacement, DDoS, and leaking an organization's data.",
-    "tags": ["hacker-classes", "sample"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "tags": [
+      "hacker-classes"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/hacker",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
     "verify": true,
     "rev": 1
   },
@@ -62,8 +79,13 @@
     "kind": "term",
     "front": "Diamond Model: the 4 core features",
     "back": "**Adversary**, **Capability**, **Infrastructure**, **Victim**: an adversary uses a capability over infrastructure against a victim.",
-    "tags": ["diamond-model", "sample"],
-    "sources": ["https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf", "https://apps.dtic.mil/sti/citations/ADA586960"],
+    "tags": [
+      "diamond-model"
+    ],
+    "sources": [
+      "https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf",
+      "https://apps.dtic.mil/sti/citations/ADA586960"
+    ],
     "verify": false,
     "rev": 1
   },
@@ -75,8 +97,14 @@
     "kind": "term",
     "front": "TTPs",
     "back": "**Tactics** (the adversary's goal, the *why*), **Techniques** (how the goal is achieved), **Procedures** (the specific real-world implementation). They describe adversary *behavior*, which is harder for attackers to change than IoCs such as hashes or IP addresses.",
-    "tags": ["ttp", "mitre-attack", "sample"],
-    "sources": ["https://attack.mitre.org/resources/", "https://csrc.nist.gov/glossary/term/tactics_techniques_and_procedures"],
+    "tags": [
+      "ttp",
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/resources/",
+      "https://csrc.nist.gov/glossary/term/tactics_techniques_and_procedures"
+    ],
     "verify": false,
     "rev": 1
   },
@@ -88,8 +116,13 @@
     "kind": "term",
     "front": "Defense-in-depth",
     "back": "Layering several independent security controls (physical, technical, administrative) so that if one layer fails, the others still protect the asset.",
-    "tags": ["security-controls", "sample"],
-    "sources": ["https://csrc.nist.gov/glossary/term/defense_in_depth", "https://www.cisa.gov/sites/default/files/recommended_practices/NCCIC_ICS-CERT_Defense_in_Depth_2016_S508C.pdf"],
+    "tags": [
+      "security-controls"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/defense_in_depth",
+      "https://www.cisa.gov/sites/default/files/recommended_practices/NCCIC_ICS-CERT_Defense_in_Depth_2016_S508C.pdf"
+    ],
     "verify": false,
     "rev": 1
   },
@@ -101,8 +134,707 @@
     "kind": "list",
     "front": "Match each regulation to what it protects: PCI DSS, HIPAA, SOX, GLBA",
     "back": "- **PCI DSS**: payment cardholder data\n- **HIPAA**: U.S. health information (ePHI)\n- **SOX**: financial reporting of U.S. public companies\n- **GLBA**: consumers' financial data held by financial institutions",
-    "tags": ["laws-standards", "sample"],
-    "sources": ["https://www.pcisecuritystandards.org/standards/pci-dss/", "https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act"],
+    "tags": [
+      "laws-standards"
+    ],
+    "sources": [
+      "https://www.pcisecuritystandards.org/standards/pci-dss/",
+      "https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0009",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Authenticity vs non-repudiation",
+    "back": "**Authenticity**: the data or user really is who or what it claims to be.\n**Non-repudiation**: the author cannot later deny the action.\n\nA digital signature gives both. A shared symmetric key cannot give non-repudiation, because both sides hold the same key.",
+    "tags": [
+      "authenticity",
+      "non-repudiation"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/authenticity",
+      "https://csrc.nist.gov/glossary/term/non_repudiation",
+      "https://csrc.nist.gov/glossary/term/digital_signature"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0010",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "list",
+    "front": "EC-Council's five classes of attack",
+    "back": "1. **Passive**: watch, change nothing (sniffing, traffic analysis)\n2. **Active**: change or disrupt (DoS, hijacking)\n3. **Close-in**: physically near (shoulder surfing, dumpster diving)\n4. **Insider**: trusted access misused\n5. **Distribution**: tampering before delivery (supply chain)",
+    "tags": [
+      "attack-classes",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/passive_attack",
+      "https://csrc.nist.gov/glossary/term/active_attack",
+      "https://attack.mitre.org/techniques/T1195/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0011",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "countermeasure",
+    "front": "Passive vs active attacks: how do you defend?",
+    "back": "Passive attacks change nothing, so they are hard to **detect**: **prevent** them, mainly with encryption.\nActive attacks change data or service, so they can be **detected** (IDS, integrity checks) as well as prevented.",
+    "tags": [
+      "attack-classes",
+      "encryption"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/passive_attack",
+      "https://csrc.nist.gov/glossary/term/active_attack",
+      "https://csrc.nist.gov/glossary/term/traffic_analysis"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0012",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Information assurance (IA)",
+    "back": "Measures that protect information and systems by ensuring availability, integrity, authentication, confidentiality and non-repudiation, including the ability to restore them after an incident (protect, detect, react).",
+    "tags": [
+      "information-assurance"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/information_assurance",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0013",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Zero-day attack",
+    "back": "An attack that exploits a vulnerability the vendor and defenders do not know about yet, so no patch exists. Defenses: defense in depth, behavior-based detection, least privilege, fast patching once a fix appears.",
+    "tags": [
+      "zero-day"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/zero_day_attack",
+      "https://www.cve.org/About/Overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0014",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Attack, in EC-Council's formula",
+    "back": "**Attack = motive (goal) + method + vulnerability.**\nThe attacker needs a reason, a technique, and a weakness to apply it to. Remove the weakness and the method fails.",
+    "tags": [
+      "attack-definition",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/glossary/term/attack"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0015",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "kind": "list",
+    "front": "White, black and gray hats",
+    "back": "- **White hat**: authorized, defensive work\n- **Black hat**: malicious, unauthorized\n- **Gray hat**: sometimes helps, sometimes harms; acts **without permission** (for example, tests a site uninvited, then reports the flaw)\n\nHook: white works with a contract, black breaks for profit, gray goes without asking.",
+    "tags": [
+      "hacker-classes"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/hacker",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0016",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Script kiddie",
+    "back": "An unskilled attacker who runs tools and scripts written by others without understanding how they work. Noisy and opportunistic; relies on known exploits.",
+    "tags": [
+      "hacker-classes"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/hacker",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0017",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Advanced persistent threat (APT)",
+    "back": "A skilled, well-funded adversary (often state-sponsored) that uses several attack vectors and **stays hidden in the network for a long time**, usually to steal data. Key word: *persistent*. It is a campaign, not a one-off.",
+    "tags": [
+      "apt"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/advanced_persistent_threat",
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/advanced-persistent-threats"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0018",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Suicide hacker",
+    "back": "An attacker who aims to disrupt critical systems for a cause and does not care about being caught, jailed or punished.",
+    "tags": [
+      "hacker-classes",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/glossary/term/hacker"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0019",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Hacktivist vs cyber terrorist vs state-sponsored",
+    "back": "- **Hacktivist**: publicity for a political or social cause (defacement, DDoS, leaks)\n- **Cyber terrorist**: ideology; wants fear or large-scale disruption\n- **State-sponsored**: works for a government: espionage, sabotage, pre-positioning",
+    "tags": [
+      "hacker-classes"
+    ],
+    "sources": [
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors",
+      "https://attack.mitre.org/groups/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0020",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Rules of engagement (ROE)",
+    "back": "Detailed guidelines and constraints for a security test, agreed **before** it starts: targets, allowed and forbidden techniques, time windows, contacts, handling of sensitive data. They give the testers authority for the defined activities.",
+    "tags": [
+      "rules-of-engagement",
+      "authorization"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/rules_of_engagement",
+      "https://csrc.nist.gov/pubs/sp/800/115/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0021",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Black, white and gray box testing",
+    "back": "- **Black box**: no prior knowledge; simulates an outsider; slowest\n- **White box**: full knowledge (diagrams, source code, credentials); most thorough per hour\n- **Gray box**: partial knowledge, such as a normal user account",
+    "tags": [
+      "pentest-types"
+    ],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/2-Introduction/README.md",
+      "https://csrc.nist.gov/pubs/sp/800/115/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0022",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Vulnerability assessment vs penetration test vs red team",
+    "back": "- **Vulnerability assessment**: find and rank weaknesses, no exploitation\n- **Penetration test**: exploit them within scope to show real impact\n- **Red team**: emulate a real adversary against the defenders (blue team), often covertly and over weeks",
+    "tags": [
+      "assessment-types"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/vulnerability_assessment",
+      "https://csrc.nist.gov/glossary/term/red_team",
+      "https://www.ncsc.gov.uk/guidance/penetration-testing"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0023",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "list",
+    "front": "NIST SP 800-115: the four phases of a penetration test",
+    "back": "1. Planning\n2. Discovery\n3. Attack\n4. Reporting\n\nDiscovery and attack loop: each new foothold leads to more discovery.",
+    "tags": [
+      "pentest-phases",
+      "nist"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/115/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0024",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Announced vs unannounced testing",
+    "back": "**Announced** (overt): IT staff know about the test; cooperative and efficient.\n**Unannounced** (covert): only a few managers know; it also measures whether staff detect and respond.",
+    "tags": [
+      "pentest-types"
+    ],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf",
+      "https://www.ncsc.gov.uk/guidance/penetration-testing"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0025",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Vulnerability disclosure policy vs bug bounty",
+    "back": "**VDP**: tells outside researchers what they may test and how to report, and promises not to pursue good-faith reports.\n**Bug bounty**: a VDP plus payment for valid findings.",
+    "tags": [
+      "disclosure",
+      "bug-bounty"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/bug_bounty",
+      "https://www.cisa.gov/news-events/directives/bod-20-01-develop-and-publish-vulnerability-disclosure-policy"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0026",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Using AI during an ethical hack: 3 rules",
+    "back": "1. **Verify** every output: models invent commands, flags and CVEs\n2. **Protect client data**: no findings in public AI services unless the contract allows it\n3. **AI apps are targets too**: prompt injection, data leakage (OWASP Top 10 for LLM Applications)",
+    "tags": [
+      "ai",
+      "v13-new"
+    ],
+    "sources": [
+      "https://genai.owasp.org/llm-top-10/",
+      "https://www.nist.gov/itl/ai-risk-management-framework",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0027",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "kind": "tool",
+    "front": "ShellGPT and PentestGPT",
+    "back": "- **ShellGPT**: command-line assistant that turns plain-English requests into shell commands\n- **PentestGPT**: LLM assistant that suggests the next step of a penetration test from the results you give it\n\nBoth need a human to check each step and stay inside scope.",
+    "tags": [
+      "ai",
+      "v13-new",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/TheR1D/shell_gpt",
+      "https://github.com/GreyDGL/PentestGPT",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0028",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "list",
+    "front": "CEH ethical hacking framework",
+    "back": "1. Footprinting and reconnaissance\n2. Scanning\n3. Enumeration\n4. Vulnerability analysis\n5. System hacking: gaining access → escalating privileges → maintaining access → clearing logs",
+    "tags": [
+      "ceh-framework",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0029",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Cyber Kill Chain: the defender's six courses of action",
+    "back": "**Detect, deny, disrupt, degrade, deceive, destroy**, applied at each kill chain stage (for example, deny Delivery with mail filtering, disrupt C2 with egress filtering).",
+    "tags": [
+      "cyber-kill-chain",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf",
+      "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0030",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Indicator of compromise (IoC) vs TTP",
+    "back": "**IoC**: an artifact that shows an intrusion happened or is under way (file hash, IP address, domain, registry key).\n**TTP**: the adversary's behavior.\n\nIoCs are cheap for attackers to change; TTPs are not.",
+    "tags": [
+      "ioc",
+      "ttp"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/indicator",
+      "https://csrc.nist.gov/glossary/term/tactics_techniques_and_procedures",
+      "https://csrc.nist.gov/pubs/sp/800/150/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0031",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Four types of threat intelligence",
+    "back": "- **Strategic**: high-level trends and risk for executives\n- **Operational**: specific campaigns and upcoming attacks\n- **Tactical**: attacker TTPs for defenders\n- **Technical**: raw IoCs fed to tools",
+    "tags": [
+      "threat-intelligence"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/threat_intelligence",
+      "https://csrc.nist.gov/pubs/sp/800/150/final"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0032",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Threat intelligence lifecycle",
+    "back": "Planning and direction → collection → processing → analysis and production → dissemination, then feedback into the next round.",
+    "tags": [
+      "threat-intelligence"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/threat_intelligence",
+      "https://csrc.nist.gov/pubs/sp/800/150/final"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0033",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "countermeasure",
+    "front": "Clearing tracks: what defenders can still see",
+    "back": "- Clearing a Windows event log (ATT&CK T1070.001) writes Security event **1102** \"The audit log was cleared\"\n- Deleted shell history (T1070.003) leaves gaps in activity\n- Forward logs to a SIEM so local deletion does not erase the copy",
+    "tags": [
+      "clearing-tracks",
+      "logging"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1070/001/",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+      "https://attack.mitre.org/techniques/T1070/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0034",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Security controls by function",
+    "back": "- **Preventive**: stop it (firewall, lock)\n- **Detective**: notice it (IDS, log review)\n- **Corrective**: fix it (patch, reimage)\n- **Deterrent**: discourage it (warning banner)\n- **Recovery**: restore (backups, DR site)\n- **Compensating**: substitute when the normal control is not possible",
+    "tags": [
+      "security-controls"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/security_control",
+      "https://csrc.nist.gov/glossary/term/compensating_security_control",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0035",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Four risk responses",
+    "back": "- **Mitigate**: add controls\n- **Transfer/share**: insurance, outsourcing\n- **Avoid**: stop the risky activity\n- **Accept**: document it and live with it",
+    "tags": [
+      "risk-management"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/39/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0036",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "list",
+    "front": "NIST CSF 2.0: the six functions",
+    "back": "**Govern**, Identify, Protect, Detect, Respond, Recover.\n\nGovern is new in 2.0 and sits at the center: strategy, roles, policy, supply-chain risk.",
+    "tags": [
+      "nist-csf"
+    ],
+    "sources": [
+      "https://www.nist.gov/cyberframework",
+      "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0037",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "list",
+    "front": "NIST SP 800-61 Rev. 2: incident response lifecycle",
+    "back": "1. Preparation\n2. Detection and analysis\n3. Containment, eradication and recovery\n4. Post-incident activity (lessons learned)\n\nRev. 3 (2025) maps incident response onto the CSF 2.0 functions.",
+    "tags": [
+      "incident-response"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+      "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0038",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Zero trust",
+    "back": "No implicit trust from network location or ownership: every access request is authenticated, authorized and checked, per session, as close to the resource as possible.",
+    "tags": [
+      "zero-trust"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "https://csrc.nist.gov/glossary/term/zero_trust"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0039",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "list",
+    "front": "NIST risk management process (SP 800-39)",
+    "back": "**Frame** (context, assumptions) → **assess** → **respond** → **monitor**, repeated continuously.",
+    "tags": [
+      "risk-management"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/39/final",
+      "https://csrc.nist.gov/glossary/term/risk_management"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0040",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "term",
+    "front": "GDPR: the numbers",
+    "back": "- Breach notice to the supervisory authority: within **72 hours** where feasible (Art. 33)\n- Fines: up to **€20 million or 4%** of worldwide annual turnover, whichever is higher (Art. 83)\n- Scope: personal data of people in the EU, wherever the organization is based",
+    "tags": [
+      "gdpr"
+    ],
+    "sources": [
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://ico.org.uk/for-organisations/report-a-breach/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0041",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "term",
+    "front": "ISO/IEC 27001 vs 27002",
+    "back": "**27001**: requirements for an information security management system (ISMS); organizations are **certified** against it. 2022 edition, Annex A: 93 controls in 4 themes.\n**27002**: guidance on implementing those controls; not certifiable.",
+    "tags": [
+      "iso-27001"
+    ],
+    "sources": [
+      "https://www.iso.org/standard/27001",
+      "https://www.iso.org/standard/75652.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0042",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "term",
+    "front": "FISMA",
+    "back": "US law requiring federal agencies (and contractors running federal systems) to run information security programs based on NIST standards: FIPS 199, FIPS 200, SP 800-53, the Risk Management Framework (SP 800-37).",
+    "tags": [
+      "fisma"
+    ],
+    "sources": [
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/federal-information-security-modernization-act",
+      "https://csrc.nist.gov/pubs/sp/800/37/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0043",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "term",
+    "front": "DMCA",
+    "back": "US copyright law (1998). **§1201** bans circumventing copy protection, with limited exemptions, some for good-faith security research. **§512** gives service providers a notice-and-takedown safe harbor.",
+    "tags": [
+      "dmca"
+    ],
+    "sources": [
+      "https://www.copyright.gov/dmca/",
+      "https://www.law.cornell.edu/uscode/text/17/1201",
+      "https://www.copyright.gov/1201/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0044",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "term",
+    "front": "CFAA and the Computer Misuse Act",
+    "back": "Anti-hacking laws: the **CFAA** (US, 18 U.S.C. §1030) and the **Computer Misuse Act 1990** (UK) make unauthorized access a crime. Written permission is what separates a penetration test from an offense.",
+    "tags": [
+      "cfaa",
+      "authorization"
+    ],
+    "sources": [
+      "https://www.law.cornell.edu/uscode/text/18/1030",
+      "https://www.legislation.gov.uk/ukpga/1990/18/contents"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0045",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "list",
+    "front": "HIPAA's three main rules",
+    "back": "- **Privacy Rule**: use and disclosure of PHI\n- **Security Rule**: administrative, physical and technical safeguards for ePHI\n- **Breach Notification Rule**: tell individuals (within 60 days), HHS and, for large breaches, the media",
+    "tags": [
+      "hipaa"
+    ],
+    "sources": [
+      "https://www.hhs.gov/hipaa/for-professionals/security/index.html",
+      "https://www.hhs.gov/hipaa/for-professionals/privacy/index.html",
+      "https://www.hhs.gov/hipaa/for-professionals/breach-notification/index.html"
+    ],
     "verify": false,
     "rev": 1
   }

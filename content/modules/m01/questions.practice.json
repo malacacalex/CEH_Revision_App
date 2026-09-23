@@ -17,7 +17,7 @@
       "Correct: proof of origin that cannot be denied is non-repudiation.",
       "Confidentiality keeps content secret; signatures do not encrypt the message."
     ],
-    "tags": ["non-repudiation", "digital-signature", "sample"],
+    "tags": ["non-repudiation", "digital-signature"],
     "sources": ["https://csrc.nist.gov/glossary/term/non_repudiation", "https://csrc.nist.gov/glossary/term/digital_signature"],
     "verify": false,
     "rev": 1
@@ -40,7 +40,7 @@
       "Close-in attacks need physical proximity to the target's systems or people.",
       "Passive attacks only monitor (for example sniffing) and do not change anything."
     ],
-    "tags": ["attack-classification", "supply-chain", "ec-council-specific", "sample"],
+    "tags": ["attack-classification", "supply-chain", "ec-council-specific"],
     "sources": ["https://attack.mitre.org/techniques/T1195/", "https://csrc.nist.gov/glossary/term/supply_chain_attack"],
     "verify": false,
     "rev": 1
@@ -54,16 +54,16 @@
     "type": "recall",
     "difficulty": 1,
     "stem": "Which term describes an unskilled attacker who runs tools and scripts written by others without understanding how they work?",
-    "options": ["White hat", "Script kiddie", "Gray hat", "Cyber terrorist"],
-    "answer": 1,
+    "options": ["Script kiddie", "White hat", "Gray hat", "Cyber terrorist"],
+    "answer": 0,
     "explanation": "Script kiddies rely on ready-made tools and exploits and do not understand the underlying techniques. The class is defined by skill level, not by motive.",
     "optionNotes": [
-      "White hats are authorized security professionals.",
       "Correct: low skill and borrowed tools define a script kiddie.",
+      "White hats are authorized security professionals.",
       "Gray hats may be highly skilled; they sit between white and black hats in terms of authorization.",
       "Cyber terrorists are defined by an ideological motive to cause fear or large-scale disruption."
     ],
-    "tags": ["hacker-classes", "sample"],
+    "tags": ["hacker-classes"],
     "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
     "rev": 1
@@ -91,7 +91,7 @@
       "An NDA normally binds the tester, not every employee, and it does not grant permission to test.",
       "Correct: signed, scoped authorization always comes first."
     ],
-    "tags": ["authorization", "rules-of-engagement", "sample"],
+    "tags": ["authorization", "rules-of-engagement"],
     "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": false,
     "rev": 1
@@ -105,16 +105,16 @@
     "type": "recall",
     "difficulty": 2,
     "stem": "In the Lockheed Martin Cyber Kill Chain, which stage comes immediately after Delivery?",
-    "options": ["Weaponization", "Installation", "Exploitation", "Command and Control"],
-    "answer": 2,
+    "options": ["Exploitation", "Installation", "Weaponization", "Command and Control"],
+    "answer": 0,
     "explanation": "The seven stages are Reconnaissance, Weaponization, Delivery, Exploitation, Installation, Command and Control, and Actions on Objectives. Once the payload has been delivered, it must exploit a weakness before anything can be installed.",
     "optionNotes": [
-      "Weaponization (building the payload) happens before delivery.",
-      "Installation follows exploitation, not delivery.",
       "Correct: Delivery → Exploitation.",
+      "Installation follows exploitation, not delivery.",
+      "Weaponization (building the payload) happens before delivery.",
       "Command and Control comes after installation."
     ],
-    "tags": ["cyber-kill-chain", "sample"],
+    "tags": ["cyber-kill-chain"],
     "sources": [
       "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html",
       "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf"
@@ -132,20 +132,20 @@
     "difficulty": 2,
     "stem": "The Diamond Model of Intrusion Analysis links four core features of every intrusion event. Which set is correct?",
     "options": [
-      "Adversary, capability, infrastructure, victim",
       "Threat, vulnerability, asset, impact",
+      "Adversary, capability, infrastructure, victim",
       "Reconnaissance, weaponization, delivery, exploitation",
       "People, process, technology, data"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "In the Diamond Model, an adversary uses a capability over some infrastructure against a victim. Analysts pivot from one vertex to the others to find related activity.",
     "optionNotes": [
-      "Correct: these are the four vertices of the diamond.",
       "These are risk-analysis terms, not Diamond Model features.",
+      "Correct: these are the four vertices of the diamond.",
       "These are the first four stages of the Cyber Kill Chain.",
       "This is a general people/process/technology view, not the Diamond Model."
     ],
-    "tags": ["diamond-model", "sample"],
+    "tags": ["diamond-model"],
     "sources": ["https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf", "https://apps.dtic.mil/sti/citations/ADA586960"],
     "verify": false,
     "rev": 1
@@ -173,7 +173,7 @@
       "Vulnerability identifiers are CVEs, which are outside ATT&CK's tactic model.",
       "Correct: a tactic is the adversary's objective."
     ],
-    "tags": ["mitre-attack", "ttp", "sample"],
+    "tags": ["mitre-attack", "ttp"],
     "sources": ["https://attack.mitre.org/tactics/enterprise/", "https://attack.mitre.org/resources/"],
     "verify": false,
     "rev": 1
@@ -196,7 +196,7 @@
       "Correct: guards and badge readers protect physical access.",
       "A compensating control is an alternative used when a primary control is not feasible; that is a role, not an implementation type."
     ],
-    "tags": ["security-controls", "sample"],
+    "tags": ["security-controls"],
     "sources": ["https://csrc.nist.gov/glossary/term/physical_security", "https://csrc.nist.gov/glossary/term/security_control"],
     "verify": false,
     "rev": 1
@@ -210,16 +210,16 @@
     "type": "recall",
     "difficulty": 1,
     "stem": "An intrusion detection system raises an alert when suspicious traffic is seen but does not block it. What is the function of this control?",
-    "options": ["Preventive", "Detective", "Corrective", "Deterrent"],
-    "answer": 1,
+    "options": ["Preventive", "Corrective", "Detective", "Deterrent"],
+    "answer": 2,
     "explanation": "Detective controls identify and record events during or after they happen. Because the IDS alerts without blocking, it detects but does not prevent.",
     "optionNotes": [
       "Preventive controls stop the event (an IPS in blocking mode would be preventive).",
-      "Correct: alerting on an event is detection.",
       "Corrective controls restore systems after an incident, such as backups or patching.",
+      "Correct: alerting on an event is detection.",
       "Deterrent controls discourage attempts, such as warning banners."
     ],
-    "tags": ["security-controls", "ids", "sample"],
+    "tags": ["security-controls", "ids"],
     "sources": ["https://csrc.nist.gov/glossary/term/intrusion_detection_system", "https://csrc.nist.gov/glossary/term/security_control"],
     "verify": false,
     "rev": 1
@@ -242,7 +242,7 @@
       "FISMA applies to U.S. federal agencies' information systems.",
       "Correct: cardholder data means PCI DSS."
     ],
-    "tags": ["pci-dss", "laws-standards", "sample"],
+    "tags": ["pci-dss", "laws-standards"],
     "sources": ["https://www.pcisecuritystandards.org/standards/pci-dss/", "https://www.pcisecuritystandards.org/about_us/"],
     "verify": false,
     "rev": 1
@@ -265,7 +265,7 @@
       "HIPAA protects health information.",
       "DMCA deals with copyright and anti-circumvention."
     ],
-    "tags": ["sox", "laws-standards", "sample"],
+    "tags": ["sox", "laws-standards"],
     "sources": ["https://www.govinfo.gov/content/pkg/PLAW-107publ204/pdf/PLAW-107publ204.pdf", "https://www.sec.gov/spotlight/sarbanes-oxley.htm"],
     "verify": false,
     "rev": 1
@@ -279,17 +279,1132 @@
     "type": "scenario",
     "difficulty": 1,
     "stem": "The IT team of a U.S. hospital must protect patients' electronic health records against unauthorized access. Which regulation PRIMARILY applies?",
-    "options": ["FERPA", "GDPR", "PCI DSS", "HIPAA"],
-    "answer": 3,
+    "options": ["FERPA", "HIPAA", "PCI DSS", "GDPR"],
+    "answer": 1,
     "explanation": "HIPAA's Security Rule requires safeguards for electronic protected health information (ePHI) held by covered entities such as hospitals.",
     "optionNotes": [
       "FERPA protects student education records.",
-      "GDPR is EU law; this is a U.S. hospital protecting health records.",
+      "Correct: ePHI means HIPAA.",
       "PCI DSS covers payment card data, not health records.",
-      "Correct: ePHI means HIPAA."
+      "GDPR is EU law; this is a U.S. hospital protecting health records."
     ],
-    "tags": ["hipaa", "laws-standards", "sample"],
-    "sources": ["https://www.hhs.gov/hipaa/for-professionals/security/index.html", "https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html"],
+    "tags": ["hipaa", "laws-standards"],
+    "sources": [
+      "https://www.hhs.gov/hipaa/for-professionals/security/index.html",
+      "https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0023",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Ransomware encrypts a hospital's file servers, and staff cannot open patient records until the systems are restored. Which element of information security is MOST directly affected?",
+    "options": ["Availability", "Confidentiality", "Non-repudiation", "Authenticity"],
+    "answer": 0,
+    "explanation": "Encryption by ransomware denies access, so availability is the first property broken.",
+    "optionNotes": [
+      "Correct: the data exists but cannot be used when needed.",
+      "Confidentiality is also hit only if data is stolen; the scenario describes lost access.",
+      "Non-repudiation is about denying actions, not access.",
+      "Authenticity is about data or users being genuine."
+    ],
+    "tags": ["cia-triad", "ransomware"],
+    "sources": ["https://csrc.nist.gov/glossary/term/availability", "https://www.cisa.gov/stopransomware"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0024",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which definition BEST matches information assurance?",
+    "options": [
+      "A formal audit that certifies a company against a security standard",
+      "The use of encryption to keep data secret in transit and at rest",
+      "Measures that keep information available, intact, authentic, confidential and non-repudiable, including restoring systems",
+      "An insurance policy that covers losses from security incidents"
+    ],
+    "answer": 2,
+    "explanation": "Information assurance is broader than confidentiality: it includes availability, integrity, authentication, non-repudiation and restoration.",
+    "optionNotes": [
+      "Certification audits are one assurance activity, not the definition.",
+      "Encryption serves confidentiality only.",
+      "Correct: IA covers all five properties plus the ability to restore (protect, detect, react).",
+      "Insurance is a risk transfer measure."
+    ],
+    "tags": ["information-assurance"],
+    "sources": ["https://csrc.nist.gov/glossary/term/information_assurance", "https://csrc.nist.gov/pubs/sp/800/12/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0025",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's classification of attacks, which class covers shoulder surfing and dumpster diving?",
+    "options": ["Insider attacks", "Passive attacks", "Distribution attacks", "Close-in attacks"],
+    "answer": 3,
+    "explanation": "Close-in attacks need physical proximity: watching a screen or keyboard, digging through discarded documents.",
+    "optionNotes": [
+      "Insider attacks come from trusted people with access.",
+      "Passive attacks monitor transmissions, typically over a network.",
+      "Distribution attacks tamper with products before delivery.",
+      "Correct: the attacker must be physically near the target or its trash."
+    ],
+    "tags": ["attack-classes", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/social_engineering"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0026",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An e-mail shows the CFO's name as sender, but the headers show it came from an unrelated server that only copied the display name. Which property of the message is in doubt?",
+    "options": ["Availability", "Authenticity", "Confidentiality", "Integrity"],
+    "answer": 1,
+    "explanation": "Spoofed senders attack authenticity. Signed e-mail and sender checks (SPF, DKIM, DMARC) help verify it.",
+    "optionNotes": [
+      "The message was delivered and readable.",
+      "Correct: the message does not really come from who it claims.",
+      "Nothing was disclosed.",
+      "Integrity is about changes to genuine data; here the whole message is forged."
+    ],
+    "tags": ["authenticity", "spoofing"],
+    "sources": ["https://csrc.nist.gov/glossary/term/authenticity", "https://csrc.nist.gov/glossary/term/digital_signature"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0027",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Which mechanism provides non-repudiation for an electronic contract?",
+    "options": [
+      "A message authentication code with a shared secret key",
+      "A digital signature made with the signer's private key",
+      "TLS encryption of the connection",
+      "A SHA-256 hash of the document"
+    ],
+    "answer": 1,
+    "explanation": "Non-repudiation needs a secret that only one party holds, which asymmetric signatures provide and shared-key MACs do not.",
+    "optionNotes": [
+      "Both parties hold the MAC key, so either could have produced it.",
+      "Correct: only the signer holds the private key, so the signer cannot deny signing.",
+      "TLS protects the channel, not proof of who agreed.",
+      "A bare hash shows integrity but anyone can compute it."
+    ],
+    "tags": ["non-repudiation", "digital-signature"],
+    "sources": ["https://csrc.nist.gov/glossary/term/non_repudiation", "https://csrc.nist.gov/glossary/term/digital_signature"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0028",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is a zero-day attack?",
+    "options": [
+      "An attack that takes less than one day from delivery to impact",
+      "An attack launched on the same day that a patch is released",
+      "An attack that deletes all data on the first day of an incident",
+      "An attack on a vulnerability that the vendor and defenders do not yet know about"
+    ],
+    "answer": 3,
+    "explanation": "A zero-day exploits a flaw unknown to the vendor, so no patch exists yet.",
+    "optionNotes": [
+      "Speed does not define a zero-day.",
+      "Attacks after a patch is out target known (n-day) vulnerabilities.",
+      "Data destruction is an impact, not the definition.",
+      "Correct: defenders have had zero days to fix it."
+    ],
+    "tags": ["zero-day"],
+    "sources": ["https://csrc.nist.gov/glossary/term/zero_day_attack", "https://www.cve.org/About/Overview"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0029",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker group stays inside a defense contractor's network for 18 months, moving slowly and quietly while copying engineering files. Which term BEST describes this threat?",
+    "options": ["Advanced persistent threat", "Script kiddie", "Hacktivist", "Suicide hacker"],
+    "answer": 0,
+    "explanation": "Long-term hidden access for data theft is the defining pattern of an APT.",
+    "optionNotes": [
+      "Correct: skilled, well-resourced, long-term and stealthy.",
+      "Script kiddies are unskilled and noisy.",
+      "Hacktivists seek publicity for a cause.",
+      "Suicide hackers do not care about stealth or being caught."
+    ],
+    "tags": ["apt"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/advanced_persistent_threat",
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/advanced-persistent-threats"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0030",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A disgruntled database administrator copies the customer list to a USB drive before resigning. Which threat is this?",
+    "options": ["Close-in attack by an outsider", "Distribution attack", "Insider threat", "Script kiddie attack"],
+    "answer": 2,
+    "explanation": "Insiders abuse legitimate access, so least privilege, monitoring and offboarding controls matter.",
+    "optionNotes": [
+      "The attacker is an employee, not an outsider.",
+      "Nothing was tampered with before delivery.",
+      "Correct: a trusted person misused authorized access.",
+      "No borrowed tools are involved."
+    ],
+    "tags": ["insider-threat"],
+    "sources": ["https://csrc.nist.gov/glossary/term/insider_threat", "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0031",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which attacker class is described as willing to attack critical infrastructure for a cause without caring about being caught or jailed?",
+    "options": ["White hat", "Gray hat", "Script kiddie", "Suicide hacker"],
+    "answer": 3,
+    "explanation": "EC-Council's suicide hacker is defined by accepting consequences, not by skill.",
+    "optionNotes": [
+      "White hats work with permission.",
+      "Gray hats act without permission but usually avoid harm.",
+      "Script kiddies are defined by low skill, not by motive.",
+      "Correct: indifference to punishment defines this class."
+    ],
+    "tags": ["hacker-classes", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/hacker"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0032",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team working for a foreign government plants malware in a power company's control network so it can disrupt it during a future conflict. Which class of attacker is this?",
+    "options": ["Cyber terrorists", "State-sponsored hackers", "Hacktivists", "An organized crime group"],
+    "answer": 1,
+    "explanation": "The sponsor decides the class: a government-directed operation is state-sponsored, even when the target is infrastructure.",
+    "optionNotes": [
+      "Cyber terrorists act for an ideology to spread fear, not for a state.",
+      "Correct: they act on behalf of a government.",
+      "Hacktivists want publicity for a cause.",
+      "Organized crime wants money."
+    ],
+    "tags": ["hacker-classes", "nation-state"],
+    "sources": ["https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors", "https://attack.mitre.org/groups/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0033",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A criminal group rents its ransomware to affiliates and splits the ransom payments with them. What is the group's PRIMARY motive?",
+    "options": ["Espionage for a government", "Political protest", "Financial gain", "Curiosity and reputation"],
+    "answer": 2,
+    "explanation": "Ransomware-as-a-service is organized crime: the motive is money.",
+    "optionNotes": [
+      "Nothing links it to a state.",
+      "No cause or message is involved.",
+      "Correct: the whole model is built around payments.",
+      "A paid affiliate scheme is a business, not curiosity."
+    ],
+    "tags": ["hacker-classes", "ransomware"],
+    "sources": ["https://www.cisa.gov/stopransomware", "https://attack.mitre.org/groups/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0034",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A teenager downloads a ready-made DDoS tool from a forum and points it at a game server without understanding how it works. Which class fits BEST?",
+    "options": ["Script kiddie", "Hacktivist", "Gray hat", "State-sponsored hacker"],
+    "answer": 0,
+    "explanation": "The defining trait of a script kiddie is using tools they did not write and do not understand.",
+    "optionNotes": [
+      "Correct: other people's tools, little understanding.",
+      "No political or social cause is given.",
+      "Gray hats have skill and often report findings.",
+      "Nothing links the teenager to a government."
+    ],
+    "tags": ["hacker-classes"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0035",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which statement BEST separates a white hat from a gray hat?",
+    "options": [
+      "A white hat works only on internal networks; a gray hat only on the internet",
+      "A white hat never uses attack tools; a gray hat does",
+      "A white hat has the owner's permission before testing; a gray hat may test without it",
+      "A white hat reports findings; a gray hat never reports them"
+    ],
+    "answer": 2,
+    "explanation": "Skills and tools are the same across the hats. Authorization is what differs.",
+    "optionNotes": [
+      "Location has nothing to do with the class.",
+      "Both use the same attack tools.",
+      "Correct: permission is the dividing line.",
+      "Gray hats often do report what they find."
+    ],
+    "tags": ["hacker-classes"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0036",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "During an authorized external test, a tester finds that an in-scope VPN server also reaches a partner company's network that is not in the contract. What should the tester do FIRST?",
+    "options": [
+      "Stop at the scope boundary and ask the client in writing before going further",
+      "Test the partner network quickly, since it is reachable from an in-scope host",
+      "Report the issue directly to the partner company",
+      "Leave the partner network out of the final report"
+    ],
+    "answer": 0,
+    "explanation": "When testers meet systems outside scope, they pause and let the client change the scope or not.",
+    "optionNotes": [
+      "Correct: out-of-scope systems need new written permission.",
+      "Reachability is not authorization; this could be a crime.",
+      "The client owns the relationship and must decide how to inform the partner.",
+      "The exposure is a finding the client needs to know about."
+    ],
+    "tags": ["scope", "rules-of-engagement"],
+    "sources": ["https://www.ncsc.gov.uk/guidance/penetration-testing", "https://csrc.nist.gov/glossary/term/rules_of_engagement"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0037",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which assessment finds and ranks weaknesses WITHOUT trying to exploit them?",
+    "options": ["Penetration test", "Vulnerability assessment", "Red team exercise", "Bug bounty program"],
+    "answer": 1,
+    "explanation": "The line between a vulnerability assessment and a penetration test is exploitation.",
+    "optionNotes": [
+      "A penetration test tries to exploit within scope.",
+      "Correct: it identifies and prioritizes, with no exploitation.",
+      "A red team emulates a real adversary, exploitation included.",
+      "Bug bounty researchers usually demonstrate exploitability."
+    ],
+    "tags": ["assessment-types"],
+    "sources": ["https://csrc.nist.gov/glossary/term/vulnerability_assessment", "https://www.ncsc.gov.uk/guidance/penetration-testing"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0038",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A bank wants to know whether its security operations center would notice a realistic, stealthy attack carried out over several weeks. Which engagement fits BEST?",
+    "options": ["Announced penetration test", "Vulnerability scan", "White-box code review", "Red team exercise"],
+    "answer": 3,
+    "explanation": "Red teams test people and processes as well as technology; the blue team's detection is the target.",
+    "optionNotes": [
+      "If the SOC is told in advance, detection is not really tested.",
+      "A scan lists weaknesses and tests no detection.",
+      "A code review checks software, not the SOC.",
+      "Correct: it emulates an adversary against the defenders over time."
+    ],
+    "tags": ["assessment-types", "red-team"],
+    "sources": ["https://csrc.nist.gov/glossary/term/red_team", "https://csrc.nist.gov/glossary/term/blue_team"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0039",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What are the four phases of a penetration test in NIST SP 800-115, in order?",
+    "options": [
+      "Discovery, planning, reporting, attack",
+      "Reconnaissance, scanning, exploitation, clearing tracks",
+      "Preparation, detection, containment, recovery",
+      "Planning, discovery, attack, reporting"
+    ],
+    "answer": 3,
+    "explanation": "NIST SP 800-115: planning → discovery → attack → reporting, with discovery and attack repeating.",
+    "optionNotes": [
+      "Right names, wrong order.",
+      "This mixes EC-Council's hacking phases; clearing tracks is not part of a test report.",
+      "These are incident response phases.",
+      "Correct."
+    ],
+    "tags": ["pentest-phases", "nist"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0040",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A tester wants a command-line assistant that turns plain-English requests into shell commands, and reviews each suggestion before running it. Which tool fits?",
+    "options": ["Maltego", "Wireshark", "ShellGPT", "John the Ripper"],
+    "answer": 2,
+    "explanation": "ShellGPT is one of the AI helpers covered in v13. The tester still checks every command before running it.",
+    "optionNotes": [
+      "Maltego maps relationships for OSINT.",
+      "Wireshark captures and analyzes packets.",
+      "Correct: an LLM helper for the terminal.",
+      "John the Ripper cracks password hashes."
+    ],
+    "tags": ["ai", "v13-new", "tools"],
+    "sources": ["https://github.com/TheR1D/shell_gpt", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0041",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester uses a public AI chatbot to help write the report and pastes in the client's internal IP addresses, usernames and unpatched hosts. What is the MAIN problem?",
+    "options": [
+      "The chatbot will automatically exploit the listed hosts",
+      "Confidential client data leaves the agreed boundaries and may breach the NDA",
+      "Reports written with AI help are illegal under the CFAA",
+      "The client's firewall will block the IP addresses"
+    ],
+    "answer": 1,
+    "explanation": "Sensitive information disclosure is a known LLM risk. Client data only goes where the contract allows.",
+    "optionNotes": [
+      "Chatbots do not attack hosts they are told about.",
+      "Correct: the data now sits with a third party the client never approved.",
+      "No law bans AI help with writing.",
+      "Firewalls are unrelated to what is pasted into a chatbot."
+    ],
+    "tags": ["ai", "v13-new", "nda"],
+    "sources": ["https://genai.owasp.org/llm-top-10/", "https://csrc.nist.gov/glossary/term/non_disclosure_agreement"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0042",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A client wants the MOST thorough test of a custom web application in a short time and will share source code, architecture diagrams and test accounts. Which approach fits BEST?",
+    "options": ["White-box testing", "Black-box testing", "Gray-box testing", "Unannounced external testing"],
+    "answer": 0,
+    "explanation": "The more the tester knows, the more ground a short engagement covers.",
+    "optionNotes": [
+      "Correct: full knowledge gives the deepest coverage per hour.",
+      "Black box spends time rediscovering what the client could just share.",
+      "Gray box means only partial knowledge, such as an account.",
+      "Covert testing measures detection, not code coverage."
+    ],
+    "tags": ["pentest-types"],
+    "sources": ["https://github.com/OWASP/wstg/blob/master/document/2-Introduction/README.md", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0043",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "The contract allows testing of 10.0.5.0/24 from 18:00 to 06:00. At 07:30 the tester notices an exploit still running against an in-scope server. What is the BEST action?",
+    "options": [
+      "Let it finish, since the server is in scope",
+      "Stop it and tell the client contact, because it is outside the agreed window",
+      "Pause it and restart it at 18:00 without mentioning it",
+      "Delete the tool's logs so the client's staff are not alarmed"
+    ],
+    "answer": 1,
+    "explanation": "Rules of engagement cover when as well as what. Out-of-window activity is unauthorized and must be reported.",
+    "optionNotes": [
+      "Scope includes time; being in the address range is not enough.",
+      "Correct: the time window is part of the authorization, and the client must know.",
+      "Hiding a deviation breaks trust and the rules of engagement.",
+      "Tampering with logs is what attackers do, not testers."
+    ],
+    "tags": ["rules-of-engagement", "scope"],
+    "sources": ["https://csrc.nist.gov/glossary/term/rules_of_engagement", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0044",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A tester wants a free public standard that describes a penetration test from pre-engagement interactions to reporting, to structure a proposal. Which resource fits?",
+    "options": ["PTES (Penetration Testing Execution Standard)", "OWASP Top 10", "CVSS", "ISO/IEC 27002"],
+    "answer": 0,
+    "explanation": "PTES has seven sections: pre-engagement interactions, intelligence gathering, threat modeling, vulnerability analysis, exploitation, post exploitation, reporting.",
+    "optionNotes": [
+      "Correct: its sections run from pre-engagement to reporting.",
+      "OWASP Top 10 ranks web application risks.",
+      "CVSS scores vulnerability severity.",
+      "ISO/IEC 27002 gives guidance on security controls."
+    ],
+    "tags": ["pentest-methodology"],
+    "sources": ["http://www.pentest-standard.org/index.php/Main_Page", "https://github.com/OWASP/wstg/blob/master/document/2-Introduction/README.md"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0045",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A file server's Security log shows event ID 1102, \"The audit log was cleared\", by account svc-backup at 03:12. Which phase of hacking does this MOST likely show?",
+    "options": ["Gaining access", "Scanning", "Clearing tracks", "Reconnaissance"],
+    "answer": 2,
+    "explanation": "Windows writes event 1102 when the Security log is cleared, which is the typical clearing-tracks step (ATT&CK T1070.001).",
+    "optionNotes": [
+      "Gaining access comes before hiding the evidence.",
+      "Scanning probes hosts and ports; it does not touch logs.",
+      "Correct: someone wiped the log to hide activity.",
+      "Reconnaissance happens before any access to the server."
+    ],
+    "tags": ["clearing-tracks", "logging"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+      "https://attack.mitre.org/techniques/T1070/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0046",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "An EDR alert shows `net user helpdesk_2 /add` followed by `net localgroup administrators helpdesk_2 /add` on a compromised workstation. Which phase is the attacker MOST likely in?",
+    "options": ["Clearing tracks", "Reconnaissance", "Scanning", "Maintaining access"],
+    "answer": 3,
+    "explanation": "Creating a local account for later use maps to ATT&CK T1136.001 under Persistence, EC-Council's maintaining access phase.",
+    "optionNotes": [
+      "Clearing tracks hides activity; this creates something new.",
+      "Reconnaissance gathers information before any access.",
+      "Scanning looks for hosts and services from outside.",
+      "Correct: a new admin account is a way back in (persistence)."
+    ],
+    "tags": ["maintaining-access", "persistence"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1136/001/",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/net-user"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0047",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "An attacker's Linux session ends with `history -c && rm ~/.bash_history`. Which MITRE ATT&CK tactic does this belong to?",
+    "options": ["Discovery", "Persistence", "Defense Evasion", "Exfiltration"],
+    "answer": 2,
+    "explanation": "Indicator removal techniques, including clearing command history, sit under the Defense Evasion tactic.",
+    "optionNotes": [
+      "Discovery learns about the system.",
+      "Persistence keeps access; this removes evidence.",
+      "Correct: removing command history hides what was done (T1070.003).",
+      "Exfiltration moves data out."
+    ],
+    "tags": ["clearing-tracks", "mitre-attack"],
+    "sources": ["https://attack.mitre.org/techniques/T1070/003/", "https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0048",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "A firewall log shows one external address sending TCP SYN packets to ports 21, 22, 23, 25, 80, 110 and 443 on every host of a /24 range within two minutes. Which phase does this show?",
+    "options": ["Gaining access", "Maintaining access", "Clearing tracks", "Scanning"],
+    "answer": 3,
+    "explanation": "Probing many ports across a range is service discovery (ATT&CK T1046, T1595): the scanning phase.",
+    "optionNotes": [
+      "No exploitation is visible, only probing.",
+      "Maintaining access needs a foothold first.",
+      "Clearing tracks hides activity on hosts already compromised.",
+      "Correct: many ports on many hosts, looking for what answers."
+    ],
+    "tags": ["scanning"],
+    "sources": ["https://attack.mitre.org/techniques/T1046/", "https://attack.mitre.org/techniques/T1595/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0049",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "A tester's notes contain WHOIS output for the client domain `acme-client.example`: registrar, name servers and creation date, taken from a public WHOIS service. What kind of activity is this?",
+    "options": ["Active reconnaissance", "Passive reconnaissance", "Scanning", "Enumeration"],
+    "answer": 1,
+    "explanation": "WHOIS data comes from registries and registrars, not from the target, so gathering it is passive.",
+    "optionNotes": [
+      "Active reconnaissance interacts with the target.",
+      "Correct: public records, no contact with the client's systems.",
+      "Scanning sends probes to the target's hosts.",
+      "Enumeration pulls details from services through active connections."
+    ],
+    "tags": ["reconnaissance", "whois"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc3912", "https://lookup.icann.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0050",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An analyst wants to map a threat group's known behavior onto a public matrix of adversary tactics and techniques, and color the techniques already covered by detections. Which resource fits BEST?",
+    "options": ["MITRE ATT&CK Navigator", "Lockheed Martin Cyber Kill Chain", "CVSS calculator", "OWASP Threat Dragon"],
+    "answer": 0,
+    "explanation": "ATT&CK Navigator is the web tool for annotating ATT&CK matrices, for example to show detection coverage.",
+    "optionNotes": [
+      "Correct: it layers and colors the ATT&CK matrix.",
+      "The kill chain has 7 stages but no technique matrix.",
+      "CVSS scores individual vulnerabilities.",
+      "Threat Dragon draws threat models for system designs."
+    ],
+    "tags": ["mitre-attack", "tools"],
+    "sources": ["https://mitre-attack.github.io/attack-navigator/", "https://attack.mitre.org/resources/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0051",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An analyst starts from one command-and-control IP address and looks for other victims and the likely adversary linked to it. Which model describes this pivoting BEST?",
+    "options": ["Diamond Model of Intrusion Analysis", "Cyber Kill Chain", "NIST Cybersecurity Framework", "CIA triad"],
+    "answer": 0,
+    "explanation": "In the Diamond Model, the C2 address is infrastructure; analysts pivot from it to other victims and to the adversary.",
+    "optionNotes": [
+      "Correct: pivoting between adversary, capability, infrastructure and victim is its core idea.",
+      "The kill chain orders stages; it does not link features of an event.",
+      "The CSF organizes security programs.",
+      "The CIA triad names security properties."
+    ],
+    "tags": ["diamond-model"],
+    "sources": ["https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf", "https://apps.dtic.mil/sti/citations/ADA586960"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0052",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A tester has confirmed an unpatched service and now uses a framework of ready-made exploit modules and payloads to get a shell. Which tool and phase match?",
+    "options": ["Wireshark, reconnaissance", "Nmap, scanning", "Metasploit, gaining access", "Maltego, maintaining access"],
+    "answer": 2,
+    "explanation": "Exploitation frameworks such as Metasploit belong to the gaining access phase.",
+    "optionNotes": [
+      "Wireshark captures traffic.",
+      "Nmap discovers hosts and services; it does not deliver payloads.",
+      "Correct: Metasploit exploits the flaw, which is gaining access.",
+      "Maltego is an OSINT mapping tool."
+    ],
+    "tags": ["gaining-access", "tools"],
+    "sources": ["https://docs.rapid7.com/metasploit/", "https://attack.mitre.org/techniques/T1190/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0053",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In the Cyber Kill Chain, at which stage is an exploit paired with a payload into a deliverable file, before any contact with the victim?",
+    "options": ["Reconnaissance", "Delivery", "Installation", "Weaponization"],
+    "answer": 3,
+    "explanation": "Weaponization happens entirely on the attacker's side, which is why defenders learn about it mainly through threat intelligence.",
+    "optionNotes": [
+      "Reconnaissance selects and researches the target.",
+      "Delivery sends the weapon to the victim.",
+      "Installation happens on the victim's system after exploitation.",
+      "Correct: the weapon is built on the attacker's side."
+    ],
+    "tags": ["cyber-kill-chain"],
+    "sources": [
+      "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf",
+      "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0054",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's CEH ethical hacking framework, which step comes directly between scanning and vulnerability analysis?",
+    "options": ["Footprinting", "Enumeration", "System hacking", "Clearing logs"],
+    "answer": 1,
+    "explanation": "Framework order: footprinting and reconnaissance → scanning → enumeration → vulnerability analysis → system hacking.",
+    "optionNotes": [
+      "Footprinting comes first.",
+      "Correct: enumeration pulls users, shares and services after hosts are found.",
+      "System hacking follows vulnerability analysis.",
+      "Clearing logs is the last part of system hacking."
+    ],
+    "tags": ["ceh-framework", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0055",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why are TTP-based detections more valuable over time than IoC-based detections?",
+    "options": [
+      "IoCs only apply to Linux systems",
+      "TTPs are published by vendors, while IoCs are kept secret",
+      "Attackers can change hashes and IP addresses cheaply, but changing behavior is costly",
+      "PCI DSS requires TTP-based detection"
+    ],
+    "answer": 2,
+    "explanation": "An adversary can recompile malware or rent a new server in minutes; retooling how they operate takes much longer.",
+    "optionNotes": [
+      "IoCs exist for every platform.",
+      "Both are widely shared.",
+      "Correct: behavior is the hardest thing for an adversary to change.",
+      "PCI DSS sets no such rule."
+    ],
+    "tags": ["ttp", "ioc"],
+    "sources": ["https://csrc.nist.gov/glossary/term/indicator", "https://csrc.nist.gov/pubs/sp/800/150/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0056",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool collects logs from firewalls, servers and endpoints in one place and correlates them to raise alerts?",
+    "options": ["Password manager", "Web application firewall", "Vulnerability scanner", "SIEM"],
+    "answer": 3,
+    "explanation": "A SIEM centralizes and correlates logs; central copies also survive an attacker clearing local logs.",
+    "optionNotes": [
+      "A password manager stores credentials.",
+      "A WAF filters HTTP traffic to web apps.",
+      "A scanner finds weaknesses; it does not correlate logs.",
+      "Correct: security information and event management."
+    ],
+    "tags": ["siem", "logging"],
+    "sources": ["https://csrc.nist.gov/glossary/term/security_information_and_event_management", "https://csrc.nist.gov/pubs/sp/800/92/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0057",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Early in the design of a new web application, the team wants to draw data flows and list threats against each component. Which tool is built for this?",
+    "options": ["OWASP Threat Dragon", "Metasploit", "Nessus", "Wireshark"],
+    "answer": 0,
+    "explanation": "Threat modeling happens at design time, before anything runs; tools like Threat Dragon or the Microsoft Threat Modeling Tool support it.",
+    "optionNotes": [
+      "Correct: an open-source threat modeling tool.",
+      "Metasploit exploits running systems.",
+      "Nessus scans running systems for vulnerabilities.",
+      "Wireshark captures network traffic."
+    ],
+    "tags": ["threat-modeling", "tools"],
+    "sources": [
+      "https://owasp.org/www-project-threat-dragon/",
+      "https://owasp.org/www-community/Threat_Modeling",
+      "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0058",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A legacy medical device cannot be patched, so the hospital places it on an isolated network segment and monitors its traffic closely. What kind of control is this?",
+    "options": ["Deterrent control", "Compensating control", "Corrective control", "Recovery control"],
+    "answer": 1,
+    "explanation": "A compensating control replaces a control that cannot be applied, with protection that is as close as possible.",
+    "optionNotes": [
+      "Deterrents discourage attackers, for example with banners.",
+      "Correct: it gives comparable protection when the normal control (patching) is not possible.",
+      "Corrective controls fix damage after an event.",
+      "Recovery controls restore systems."
+    ],
+    "tags": ["security-controls"],
+    "sources": ["https://csrc.nist.gov/glossary/term/compensating_security_control", "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0059",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A login banner warns that unauthorized use is prohibited and will be prosecuted. What is the banner's function?",
+    "options": ["Deterrent", "Detective", "Corrective", "Recovery"],
+    "answer": 0,
+    "explanation": "Warning banners deter. They also help legal action by showing users were warned.",
+    "optionNotes": [
+      "Correct: it discourages misuse.",
+      "It does not notice or record anything.",
+      "It does not fix anything.",
+      "It does not restore anything."
+    ],
+    "tags": ["security-controls"],
+    "sources": ["https://csrc.nist.gov/glossary/term/security_control", "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0060",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which function was added in NIST CSF 2.0 to cover cybersecurity strategy, roles, policy and supply-chain risk oversight?",
+    "options": ["Identify", "Govern", "Protect", "Recover"],
+    "answer": 1,
+    "explanation": "CSF 2.0 functions: Govern, Identify, Protect, Detect, Respond, Recover.",
+    "optionNotes": [
+      "Identify existed in 1.1 (assets, risk assessment).",
+      "Correct: new in 2.0, at the center of the other five.",
+      "Protect existed in 1.1 (safeguards).",
+      "Recover existed in 1.1 (restoration)."
+    ],
+    "tags": ["nist-csf"],
+    "sources": ["https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf", "https://www.nist.gov/cyberframework"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0061",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Malware is found on three workstations. The team disconnects them from the network while it investigates, before wiping anything. Which incident response phase is this?",
+    "options": ["Post-incident activity", "Preparation", "Detection and analysis", "Containment, eradication and recovery"],
+    "answer": 3,
+    "explanation": "Contain first, then eradicate and recover. Isolation limits spread and keeps evidence.",
+    "optionNotes": [
+      "Post-incident activity is the review afterwards.",
+      "Preparation happens before an incident.",
+      "Detection found the malware; isolating it is the next phase.",
+      "Correct: isolating hosts is containment."
+    ],
+    "tags": ["incident-response"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/61/r2/final", "https://csrc.nist.gov/glossary/term/incident"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0062",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement describes zero trust MOST accurately?",
+    "options": [
+      "Once a device connects through the VPN, it can reach every internal system",
+      "Users inside the corporate network are trusted, outsiders are not",
+      "No user or device is trusted because of its network location; each request is verified",
+      "Trust is reviewed once a year during the access recertification"
+    ],
+    "answer": 2,
+    "explanation": "NIST SP 800-207: no implicit trust based on location or asset ownership.",
+    "optionNotes": [
+      "Broad access after a VPN login is what zero trust removes.",
+      "This is the perimeter model zero trust replaces.",
+      "Correct: verification per request, not per network zone.",
+      "Zero trust checks continuously, not yearly."
+    ],
+    "tags": ["zero-trust"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/207/final", "https://csrc.nist.gov/glossary/term/zero_trust"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0063",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A US mortgage lender must protect customers' non-public financial information and keep a written information security program. Which law applies MOST directly?",
+    "options": ["FISMA", "HIPAA", "GLBA", "DMCA"],
+    "answer": 2,
+    "explanation": "GLBA applies to financial institutions; the Safeguards Rule requires the written program.",
+    "optionNotes": [
+      "FISMA covers federal agencies.",
+      "HIPAA covers health information.",
+      "Correct: GLBA and the FTC Safeguards Rule cover financial institutions.",
+      "DMCA covers copyright."
+    ],
+    "tags": ["glba"],
+    "sources": [
+      "https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act",
+      "https://www.ftc.gov/legal-library/browse/rules/safeguards-rule"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0064",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A US federal agency must categorize its systems with FIPS 199 and apply NIST SP 800-53 controls. Which law requires this?",
+    "options": ["SOX", "FISMA", "GLBA", "PCI DSS"],
+    "answer": 1,
+    "explanation": "FISMA requires agency security programs built on NIST standards and guidelines.",
+    "optionNotes": [
+      "SOX covers public companies' financial reporting.",
+      "Correct: FISMA ties federal agencies to NIST standards.",
+      "GLBA covers financial institutions.",
+      "PCI DSS is an industry standard for card data."
+    ],
+    "tags": ["fisma"],
+    "sources": [
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/federal-information-security-modernization-act",
+      "https://csrc.nist.gov/pubs/sp/800/37/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0065",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A developer publishes a tool that removes the copy protection from purchased e-books. Which US law MOST directly addresses bypassing such protection?",
+    "options": ["DMCA", "CFAA", "GLBA", "HIPAA"],
+    "answer": 0,
+    "explanation": "DMCA §1201 targets circumvention of copy protection and tools built for it.",
+    "optionNotes": [
+      "Correct: §1201 bans circumventing technological protection measures.",
+      "The CFAA is about unauthorized access to computers.",
+      "GLBA covers financial institutions.",
+      "HIPAA covers health information."
+    ],
+    "tags": ["dmca"],
+    "sources": ["https://www.law.cornell.edu/uscode/text/17/1201", "https://www.copyright.gov/dmca/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0066",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Against which standard can an organization be formally certified for its information security management system?",
+    "options": ["NIST CSF 2.0", "ISO/IEC 27002", "NIST SP 800-115", "ISO/IEC 27001"],
+    "answer": 3,
+    "explanation": "ISO/IEC 27001 certifies; ISO/IEC 27002 guides implementation.",
+    "optionNotes": [
+      "The CSF is a voluntary framework without certification.",
+      "27002 is guidance on controls and is not certifiable.",
+      "SP 800-115 is a testing guide.",
+      "Correct: it states ISMS requirements that auditors certify."
+    ],
+    "tags": ["iso-27001"],
+    "sources": ["https://www.iso.org/standard/27001", "https://www.iso.org/standard/75652.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0067",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A US-based online store with no office in Europe sells to customers in Germany and stores their personal data. A breach exposes that data. Which statement is correct?",
+    "options": [
+      "The SEC must be notified under SOX within 72 hours",
+      "The GDPR does not apply because the company is not based in the EU",
+      "Only PCI DSS applies because the store is in the US",
+      "The GDPR applies, so the supervisory authority must be notified within 72 hours where feasible"
+    ],
+    "answer": 3,
+    "explanation": "GDPR Art. 3 covers non-EU organizations that offer goods or services to people in the EU; Art. 33 sets the 72-hour notice.",
+    "optionNotes": [
+      "SOX is about financial reporting of public companies.",
+      "The GDPR follows the data subjects, not the company's location.",
+      "PCI DSS covers card data only and does not replace the GDPR.",
+      "Correct: offering goods to people in the EU brings the store under the GDPR."
+    ],
+    "tags": ["gdpr"],
+    "sources": ["https://eur-lex.europa.eu/eli/reg/2016/679/oj", "https://ico.org.uk/for-organisations/report-a-breach/"],
     "verify": false,
     "rev": 1
   }

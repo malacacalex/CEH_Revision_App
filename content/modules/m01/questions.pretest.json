@@ -8,16 +8,16 @@
     "type": "scenario",
     "difficulty": 1,
     "stem": "An attacker changes the amounts in a bank's transaction records without authorization. Which element of the CIA triad is MOST directly violated?",
-    "options": ["Confidentiality", "Integrity", "Availability", "Non-repudiation"],
-    "answer": 1,
+    "options": ["Confidentiality", "Availability", "Integrity", "Non-repudiation"],
+    "answer": 2,
     "explanation": "Integrity means data is accurate and has not been altered by unauthorized parties. Modifying records is the textbook integrity violation, even if nobody read secret data and the system stayed online.",
     "optionNotes": [
       "Confidentiality is about unauthorized disclosure (reading), not modification.",
-      "Correct: unauthorized modification breaks integrity.",
       "Availability is about systems and data being accessible when needed.",
+      "Correct: unauthorized modification breaks integrity.",
       "Non-repudiation is a related security property, but it is not part of the CIA triad."
     ],
-    "tags": ["cia-triad", "sample"],
+    "tags": ["cia-triad"],
     "sources": ["https://csrc.nist.gov/glossary/term/integrity", "https://csrc.nist.gov/glossary/term/confidentiality"],
     "verify": false,
     "rev": 1
@@ -31,16 +31,16 @@
     "type": "ec-council-term",
     "difficulty": 1,
     "stem": "In EC-Council's five phases of hacking, which phase comes directly after scanning?",
-    "options": ["Reconnaissance", "Maintaining access", "Gaining access", "Clearing tracks"],
-    "answer": 2,
+    "options": ["Reconnaissance", "Gaining access", "Maintaining access", "Clearing tracks"],
+    "answer": 1,
     "explanation": "EC-Council orders the phases as Reconnaissance, Scanning, Gaining Access, Maintaining Access, Clearing Tracks. Once scanning has revealed live hosts, open ports and vulnerabilities, the attacker uses them to gain access.",
     "optionNotes": [
       "Reconnaissance is phase 1 and comes before scanning.",
-      "Maintaining access (phase 4) needs access to have been gained first.",
       "Correct: gaining access is phase 3.",
+      "Maintaining access (phase 4) needs access to have been gained first.",
       "Clearing tracks is the last phase (phase 5)."
     ],
-    "tags": ["hacking-phases", "ec-council-specific", "sample"],
+    "tags": ["hacking-phases", "ec-council-specific"],
     "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
     "rev": 1
@@ -63,9 +63,173 @@
       "State-sponsored hackers work for a government, usually covertly, rather than protesting against one.",
       "Gray hats act without authorization but usually without a political agenda, for example reporting flaws they found."
     ],
-    "tags": ["hacker-classes", "sample"],
+    "tags": ["hacker-classes"],
     "sources": ["https://attack.mitre.org/groups/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0016",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "While shopping online, a developer notices a flaw in the store's checkout, probes it further without asking the owner, then e-mails the store about it. Which hacker class BEST fits this person?",
+    "options": ["Script kiddie", "White hat", "Black hat", "Gray hat"],
+    "answer": 3,
+    "explanation": "Permission decides the class. Probing a system without the owner's consent is unauthorized even when the finding is reported afterwards, which is the classic gray hat pattern.",
+    "optionNotes": [
+      "A script kiddie runs other people's tools with little skill; nothing here says so.",
+      "A white hat tests only with the owner's permission.",
+      "A black hat would exploit the flaw for gain, not report it.",
+      "Correct: helpful intent, but the testing had no permission."
+    ],
+    "tags": ["hacker-classes"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0017",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which document sets the targets, allowed techniques and time windows of a penetration test before it starts?",
+    "options": ["Rules of engagement", "Service-level agreement", "Incident response plan", "Acceptable use policy"],
+    "answer": 0,
+    "explanation": "The rules of engagement are agreed before testing and give the team authority for the listed activities only.",
+    "optionNotes": [
+      "Correct: the ROE define what the testers may do, where and when.",
+      "An SLA defines service performance, not test limits.",
+      "An incident response plan covers handling real incidents.",
+      "An acceptable use policy tells employees how to use company systems."
+    ],
+    "tags": ["rules-of-engagement"],
+    "sources": ["https://csrc.nist.gov/glossary/term/rules_of_engagement", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0018",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker watches the volume and timing of encrypted traffic between two company offices to guess when a merger is being negotiated, without changing any packets. Which type of attack is this?",
+    "options": ["Active attack", "Passive attack", "Insider attack", "Distribution attack"],
+    "answer": 1,
+    "explanation": "Traffic analysis is a passive attack: it learns from patterns even when the content is encrypted, and it leaves no trace to detect.",
+    "optionNotes": [
+      "An active attack changes data or disrupts service.",
+      "Correct: traffic analysis only observes; nothing is modified.",
+      "Nothing says the attacker is a trusted employee.",
+      "A distribution attack tampers with products before delivery."
+    ],
+    "tags": ["attack-classes"],
+    "sources": ["https://csrc.nist.gov/glossary/term/traffic_analysis", "https://csrc.nist.gov/glossary/term/passive_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0019",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the Cyber Kill Chain, which stage comes right after Exploitation?",
+    "options": ["Actions on objectives", "Delivery", "Command and control", "Installation"],
+    "answer": 3,
+    "explanation": "Order: reconnaissance, weaponization, delivery, exploitation, installation, command and control, actions on objectives.",
+    "optionNotes": [
+      "Actions on objectives is the last stage.",
+      "Delivery comes before Exploitation.",
+      "C2 follows Installation.",
+      "Correct: after the exploit runs, the attacker installs persistent malware."
+    ],
+    "tags": ["cyber-kill-chain"],
+    "sources": [
+      "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html",
+      "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0020",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A company buys a cyber insurance policy to cover losses from a possible ransomware attack. Which risk response is this?",
+    "options": ["Risk avoidance", "Risk mitigation", "Risk transfer", "Risk acceptance"],
+    "answer": 2,
+    "explanation": "Insurance transfers (shares) the financial consequence of a risk; it does not make the attack less likely.",
+    "optionNotes": [
+      "Avoidance would stop the risky activity altogether.",
+      "Mitigation would add controls that lower likelihood or impact.",
+      "Correct: the financial impact is shifted to the insurer.",
+      "Acceptance would keep the risk with no action."
+    ],
+    "tags": ["risk-management"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/30/r1/final", "https://csrc.nist.gov/pubs/sp/800/39/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0021",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A French company sells online to customers across the EU and stores their names and delivery addresses. Which regulation governs how it handles this data?",
+    "options": ["SOX", "HIPAA", "GDPR", "FISMA"],
+    "answer": 2,
+    "explanation": "Names and addresses are personal data, and the data subjects are in the EU, so the GDPR applies.",
+    "optionNotes": [
+      "SOX covers US public companies' financial reporting.",
+      "HIPAA covers US health information.",
+      "Correct: GDPR covers personal data of people in the EU.",
+      "FISMA covers US federal agency systems."
+    ],
+    "tags": ["gdpr"],
+    "sources": ["https://eur-lex.europa.eu/eli/reg/2016/679/oj", "https://ico.org.uk/for-organisations/report-a-breach/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0022",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In the NIST SP 800-61 Rev. 2 incident response lifecycle, which phase comes directly before post-incident activity?",
+    "options": ["Lessons learned", "Detection and analysis", "Preparation", "Containment, eradication and recovery"],
+    "answer": 3,
+    "explanation": "Lifecycle: preparation → detection and analysis → containment, eradication and recovery → post-incident activity.",
+    "optionNotes": [
+      "Lessons learned is part of post-incident activity, not the phase before it.",
+      "Detection and analysis comes before containment.",
+      "Preparation is the first phase.",
+      "Correct: after the incident is contained, removed and recovered from, the team reviews it."
+    ],
+    "tags": ["incident-response"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/61/r2/final", "https://csrc.nist.gov/pubs/sp/800/61/r3/final"],
+    "verify": false,
     "rev": 1
   }
 ]
