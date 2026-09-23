@@ -1,0 +1,18 @@
+{
+  "module": 14,
+  "title": "Hacking Web Applications",
+  "domain": "D5",
+  "effortUnits": 2,
+  "status": "stub",
+  "sections": [
+    "Web Application Concepts",
+    "Web Application Threats",
+    "Web Application Hacking Methodology",
+    "Web API and Webhooks",
+    "Web Application Security"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

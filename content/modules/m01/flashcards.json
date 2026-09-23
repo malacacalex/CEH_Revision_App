@@ -1,0 +1,109 @@
+[
+  {
+    "id": "m01-c-0001",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "kind": "term",
+    "front": "CIA triad",
+    "back": "**Confidentiality** (only authorized people can read the data), **Integrity** (the data is not altered without authorization), **Availability** (systems and data are accessible when needed).",
+    "tags": ["cia-triad", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/confidentiality", "https://csrc.nist.gov/glossary/term/availability"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0002",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "list",
+    "front": "EC-Council's 5 phases of hacking (in order)",
+    "back": "1. Reconnaissance\n2. Scanning\n3. Gaining Access\n4. Maintaining Access\n5. Clearing Tracks\n\n*Hook: \"Real Spies Get Money Covertly\".*",
+    "tags": ["hacking-phases", "ec-council-specific", "sample"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0003",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Lockheed Martin Cyber Kill Chain: the 7 stages",
+    "back": "1. Reconnaissance\n2. Weaponization\n3. Delivery\n4. Exploitation\n5. Installation\n6. Command and Control (C2)\n7. Actions on Objectives",
+    "tags": ["cyber-kill-chain", "sample"],
+    "sources": [
+      "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html",
+      "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0004",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Hacktivist",
+    "back": "An attacker driven by a political or social agenda. Typical methods: website defacement, DDoS, and leaking an organization's data.",
+    "tags": ["hacker-classes", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hacktivism", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0005",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Diamond Model: the 4 core features",
+    "back": "**Adversary**, **Capability**, **Infrastructure**, **Victim**: an adversary uses a capability over infrastructure against a victim.",
+    "tags": ["diamond-model", "sample"],
+    "sources": ["https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf", "https://apps.dtic.mil/sti/citations/ADA586960"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0006",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "kind": "term",
+    "front": "TTPs",
+    "back": "**Tactics** (the adversary's goal, the *why*), **Techniques** (how the goal is achieved), **Procedures** (the specific real-world implementation). They describe adversary *behavior*, which is harder for attackers to change than IoCs such as hashes or IP addresses.",
+    "tags": ["ttp", "mitre-attack", "sample"],
+    "sources": ["https://attack.mitre.org/resources/", "https://csrc.nist.gov/glossary/term/tactics_techniques_and_procedures"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0007",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "kind": "term",
+    "front": "Defense-in-depth",
+    "back": "Layering several independent security controls (physical, technical, administrative) so that if one layer fails, the others still protect the asset.",
+    "tags": ["security-controls", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/defense_in_depth", "https://www.cisa.gov/sites/default/files/recommended_practices/NCCIC_ICS-CERT_Defense_in_Depth_2016_S508C.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-c-0008",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "kind": "list",
+    "front": "Match each regulation to what it protects: PCI DSS, HIPAA, SOX, GLBA",
+    "back": "- **PCI DSS**: payment cardholder data\n- **HIPAA**: U.S. health information (ePHI)\n- **SOX**: financial reporting of U.S. public companies\n- **GLBA**: consumers' financial data held by financial institutions",
+    "tags": ["laws-standards", "sample"],
+    "sources": ["https://www.pcisecuritystandards.org/standards/pci-dss/", "https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act"],
+    "verify": false,
+    "rev": 1
+  }
+]

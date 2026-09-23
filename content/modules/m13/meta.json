@@ -1,0 +1,17 @@
+{
+  "module": 13,
+  "title": "Hacking Web Servers",
+  "domain": "D5",
+  "effortUnits": 1,
+  "status": "stub",
+  "sections": [
+    "Web Server Concepts",
+    "Web Server Attacks",
+    "Web Server Attack Methodology",
+    "Web Server Attack Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

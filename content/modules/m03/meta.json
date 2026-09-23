@@ -1,0 +1,108 @@
+{
+  "module": 3,
+  "title": "Scanning Networks",
+  "domain": "D2",
+  "effortUnits": 2,
+  "status": "sample",
+  "sections": [
+    "Network Scanning Concepts",
+    "Host Discovery",
+    "Port and Service Discovery",
+    "OS Discovery",
+    "Scanning Beyond IDS and Firewall",
+    "Network Scanning Countermeasures"
+  ],
+  "objectives": [
+    {
+      "text": "Describe the TCP handshake and how each scan type uses it",
+      "section": "Network Scanning Concepts"
+    },
+    {
+      "text": "Choose a host discovery method for a given network situation",
+      "section": "Host Discovery"
+    },
+    {
+      "text": "Interpret open/closed/filtered responses for each Nmap scan type",
+      "section": "Port and Service Discovery"
+    },
+    {
+      "text": "Identify an OS from TTL and window-size clues and from Nmap -O",
+      "section": "OS Discovery"
+    },
+    {
+      "text": "Pick the right evasion technique (fragmentation, decoys, idle scan, timing)",
+      "section": "Scanning Beyond IDS and Firewall"
+    },
+    {
+      "text": "Pair each scanning technique with its countermeasure",
+      "section": "Network Scanning Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Network Scanning Concepts",
+      "priority": "SKIM",
+      "minutes": 30,
+      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+    },
+    {
+      "section": "Host Discovery",
+      "priority": "SKIM",
+      "minutes": 30,
+      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+    },
+    {
+      "section": "Port and Service Discovery",
+      "priority": "MUST",
+      "minutes": 60,
+      "why": "Scan types and flag responses are the single most tested topic of the module."
+    },
+    {
+      "section": "OS Discovery",
+      "priority": "SKIM",
+      "minutes": 30,
+      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+    },
+    {
+      "section": "Scanning Beyond IDS and Firewall",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+    },
+    {
+      "section": "Network Scanning Countermeasures",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Nmap: host discovery and scan types",
+      "source": "iLabs",
+      "skill": "Running and reading SYN/connect/UDP/Xmas scans",
+      "minutes": 60
+    },
+    {
+      "name": "TryHackMe: Nmap room",
+      "source": "free",
+      "where": "https://tryhackme.com/room/furthernmap",
+      "skill": "Running and reading SYN/connect/UDP/Xmas scans",
+      "minutes": 90,
+      "verify": true
+    },
+    {
+      "name": "Local lab: scan Metasploitable 2 from Kali, capture it in Wireshark",
+      "source": "free",
+      "where": "https://docs.rapid7.com/metasploit/metasploitable-2/",
+      "skill": "Seeing each scan flag exchange on the wire",
+      "minutes": 60,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain why a SYN scan is called half-open and why it is stealthier than a connect scan.",
+    "Explain how an idle scan learns a port state without ever sending your IP.",
+    "Explain why NULL/FIN/Xmas scans return open|filtered instead of open."
+  ]
+}

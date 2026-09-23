@@ -1,0 +1,201 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-chestnut: var(--chestnut);
+  --color-chestnut-soft: var(--chestnut-soft);
+  --color-on-chestnut: var(--on-chestnut);
+  --color-olive: var(--olive);
+  --color-olive-soft: var(--olive-soft);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-soft: var(--burgundy-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+}
+
+:root {
+  --paper: #f6f0e6;
+  --surface: #fffaf2;
+  --surface-2: #efe5d4;
+  --ink: #2d2219;
+  --muted: #66584a;
+  --line: #d9c9b1;
+  --chestnut: #8a4b2a;
+  --chestnut-soft: #f1dfd0;
+  --on-chestnut: #fffaf2;
+  --olive: #56622a;
+  --olive-soft: #e5e8cf;
+  --burgundy: #7d2638;
+  --burgundy-soft: #f3d9dc;
+  --amber: #8a5a0e;
+  --amber-soft: #f6e6c4;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #1b1714;
+  --surface: #24201b;
+  --surface-2: #2f2922;
+  --ink: #efe6d8;
+  --muted: #b5a690;
+  --line: #463d32;
+  --chestnut: #dc9a70;
+  --chestnut-soft: #3f2a1d;
+  --on-chestnut: #1b1714;
+  --olive: #b4c078;
+  --olive-soft: #2f3320;
+  --burgundy: #e8909d;
+  --burgundy-soft: #43222a;
+  --amber: #e6b25a;
+  --amber-soft: #3f311a;
+  color-scheme: dark;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+:focus-visible {
+  outline: 3px solid var(--chestnut);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Long-form reading: notes, explanations, flashcard backs. */
+.prose-notes {
+  font-family: var(--font-serif);
+  font-size: 1.075rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.prose-notes h2 {
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: var(--chestnut);
+}
+.prose-notes h2:first-child {
+  margin-top: 0;
+}
+.prose-notes h3 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 650;
+  margin: 1.5rem 0 0.5rem;
+}
+.prose-notes p,
+.prose-notes ul,
+.prose-notes ol,
+.prose-notes blockquote {
+  margin: 0 0 1rem;
+}
+.prose-notes > :last-child {
+  margin-bottom: 0;
+}
+.prose-notes ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+.prose-notes ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+.prose-notes li {
+  margin: 0.2rem 0;
+}
+.prose-notes strong {
+  font-weight: 700;
+}
+.prose-notes code {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--surface-2);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.prose-notes pre {
+  background: var(--surface-2);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+.prose-notes pre code {
+  background: none;
+  padding: 0;
+}
+.prose-notes blockquote {
+  border-left: 4px solid var(--amber);
+  background: var(--amber-soft);
+  padding: 0.6rem 1rem;
+  border-radius: 0 8px 8px 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+.prose-notes blockquote p:last-child {
+  margin: 0;
+}
+.prose-notes .table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+.prose-notes table {
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  min-width: 100%;
+}
+.prose-notes th,
+.prose-notes td {
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-notes th {
+  background: var(--surface-2);
+  font-weight: 650;
+}
+.prose-notes a {
+  color: var(--chestnut);
+  text-decoration: underline;
+}
+.prose-notes .mermaid-diagram {
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  text-align: center;
+}
+.prose-notes .mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media print {
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "module": 19,
+  "title": "Cloud Computing",
+  "domain": "D8",
+  "effortUnits": 1.25,
+  "status": "stub",
+  "sections": [
+    "Cloud Computing Concepts",
+    "Cloud Computing Threats",
+    "Cloud Hacking",
+    "AWS Hacking",
+    "Microsoft Azure Hacking",
+    "Google Cloud Hacking",
+    "Container Hacking",
+    "Cloud Security"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

@@ -1,0 +1,16 @@
+{
+  "module": 10,
+  "title": "Denial-of-Service",
+  "domain": "D4",
+  "effortUnits": 0.75,
+  "status": "stub",
+  "sections": [
+    "DoS/DDoS Concepts",
+    "DoS/DDoS Attack Techniques",
+    "DoS/DDoS Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

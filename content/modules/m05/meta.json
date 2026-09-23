@@ -1,0 +1,16 @@
+{
+  "module": 5,
+  "title": "Vulnerability Analysis",
+  "domain": "D3",
+  "effortUnits": 1,
+  "status": "stub",
+  "sections": [
+    "Vulnerability Assessment Concepts",
+    "Vulnerability Assessment Tools",
+    "Vulnerability Assessment Reports"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

@@ -1,0 +1,17 @@
+{
+  "module": 8,
+  "title": "Sniffing",
+  "domain": "D4",
+  "effortUnits": 1.25,
+  "status": "stub",
+  "sections": [
+    "Sniffing Concepts",
+    "Sniffing Techniques",
+    "Sniffing Tools",
+    "Sniffing Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

@@ -1,0 +1,17 @@
+{
+  "module": 0,
+  "title": "Foundations",
+  "domain": "D0",
+  "effortUnits": 1.5,
+  "status": "stub",
+  "sections": [
+    "Networking Essentials",
+    "Operating System Essentials",
+    "Security Basics",
+    "Lab Setup"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

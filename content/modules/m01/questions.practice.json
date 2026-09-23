@@ -1,0 +1,296 @@
+[
+  {
+    "id": "m01-q-0004",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which security property ensures that the sender of a digitally signed message cannot later deny having sent it?",
+    "options": ["Authenticity", "Integrity", "Non-repudiation", "Confidentiality"],
+    "answer": 2,
+    "explanation": "Non-repudiation gives proof of origin that the sender cannot credibly deny. Digital signatures provide it because only the holder of the private key could have produced the signature.",
+    "optionNotes": [
+      "Authenticity confirms who is communicating, but on its own it does not stop a later denial.",
+      "Integrity proves the message was not altered, not who sent it.",
+      "Correct: proof of origin that cannot be denied is non-repudiation.",
+      "Confidentiality keeps content secret; signatures do not encrypt the message."
+    ],
+    "tags": ["non-repudiation", "digital-signature", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/non_repudiation", "https://csrc.nist.gov/glossary/term/digital_signature"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0005",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker tampers with network switches while they are in transit from the vendor, before they are installed at the target company. In EC-Council's classification of attacks, which type is this?",
+    "options": ["Insider attack", "Distribution attack", "Close-in attack", "Passive attack"],
+    "answer": 1,
+    "explanation": "A distribution attack tampers with hardware or software before it reaches the victim, for example at the factory or in transit. Today this is usually called a supply-chain attack.",
+    "optionNotes": [
+      "Insider attacks come from trusted people inside the organization.",
+      "Correct: tampering before delivery is a distribution (supply-chain) attack.",
+      "Close-in attacks need physical proximity to the target's systems or people.",
+      "Passive attacks only monitor (for example sniffing) and do not change anything."
+    ],
+    "tags": ["attack-classification", "supply-chain", "ec-council-specific", "sample"],
+    "sources": ["https://attack.mitre.org/techniques/T1195/", "https://csrc.nist.gov/glossary/term/supply_chain_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0006",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which term describes an unskilled attacker who runs tools and scripts written by others without understanding how they work?",
+    "options": ["White hat", "Script kiddie", "Gray hat", "Cyber terrorist"],
+    "answer": 1,
+    "explanation": "Script kiddies rely on ready-made tools and exploits and do not understand the underlying techniques. The class is defined by skill level, not by motive.",
+    "optionNotes": [
+      "White hats are authorized security professionals.",
+      "Correct: low skill and borrowed tools define a script kiddie.",
+      "Gray hats may be highly skilled; they sit between white and black hats in terms of authorization.",
+      "Cyber terrorists are defined by an ideological motive to cause fear or large-scale disruption."
+    ],
+    "tags": ["hacker-classes", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/script_kiddie", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0007",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A consultant is hired to test a client's external network. What MUST the consultant have before sending the first packet?",
+    "options": [
+      "A copy of the target's application source code",
+      "Administrator credentials for every in-scope system",
+      "A non-disclosure agreement signed by every client employee",
+      "Signed written permission that defines the scope and rules of engagement"
+    ],
+    "answer": 3,
+    "explanation": "Written authorization is what separates ethical hacking from a crime. It sets what may be tested, when and how, and it protects both the tester and the client.",
+    "optionNotes": [
+      "Source code is only needed for white-box code reviews, and never replaces authorization.",
+      "Credentials are optional (credentialed vs. uncredentialed testing).",
+      "An NDA normally binds the tester, not every employee, and it does not grant permission to test.",
+      "Correct: signed, scoped authorization always comes first."
+    ],
+    "tags": ["authorization", "rules-of-engagement", "sample"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0008",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In the Lockheed Martin Cyber Kill Chain, which stage comes immediately after Delivery?",
+    "options": ["Weaponization", "Installation", "Exploitation", "Command and Control"],
+    "answer": 2,
+    "explanation": "The seven stages are Reconnaissance, Weaponization, Delivery, Exploitation, Installation, Command and Control, and Actions on Objectives. Once the payload has been delivered, it must exploit a weakness before anything can be installed.",
+    "optionNotes": [
+      "Weaponization (building the payload) happens before delivery.",
+      "Installation follows exploitation, not delivery.",
+      "Correct: Delivery → Exploitation.",
+      "Command and Control comes after installation."
+    ],
+    "tags": ["cyber-kill-chain", "sample"],
+    "sources": [
+      "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html",
+      "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0009",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "The Diamond Model of Intrusion Analysis links four core features of every intrusion event. Which set is correct?",
+    "options": [
+      "Adversary, capability, infrastructure, victim",
+      "Threat, vulnerability, asset, impact",
+      "Reconnaissance, weaponization, delivery, exploitation",
+      "People, process, technology, data"
+    ],
+    "answer": 0,
+    "explanation": "In the Diamond Model, an adversary uses a capability over some infrastructure against a victim. Analysts pivot from one vertex to the others to find related activity.",
+    "optionNotes": [
+      "Correct: these are the four vertices of the diamond.",
+      "These are risk-analysis terms, not Diamond Model features.",
+      "These are the first four stages of the Cyber Kill Chain.",
+      "This is a general people/process/technology view, not the Diamond Model."
+    ],
+    "tags": ["diamond-model", "sample"],
+    "sources": ["https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf", "https://apps.dtic.mil/sti/citations/ADA586960"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0010",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In the MITRE ATT&CK framework, what does a tactic represent?",
+    "options": [
+      "A specific piece of software used by an adversary",
+      "A single indicator of compromise, such as a file hash",
+      "A publicly disclosed vulnerability identifier",
+      "The adversary's tactical goal: the reason for performing an action"
+    ],
+    "answer": 3,
+    "explanation": "Tactics are the 'why' (for example Initial Access or Persistence). Techniques are the 'how', and procedures are specific real-world implementations. That is where the acronym TTPs comes from.",
+    "optionNotes": [
+      "Software (tools and malware) is its own object type in ATT&CK.",
+      "IoCs are artifacts of an attack, not ATT&CK tactics.",
+      "Vulnerability identifiers are CVEs, which are outside ATT&CK's tactic model.",
+      "Correct: a tactic is the adversary's objective."
+    ],
+    "tags": ["mitre-attack", "ttp", "sample"],
+    "sources": ["https://attack.mitre.org/tactics/enterprise/", "https://attack.mitre.org/resources/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0011",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A company installs badge readers and security guards at the entrance of its data center. By implementation type, which category of security control is this?",
+    "options": ["Administrative control", "Technical control", "Physical control", "Compensating control"],
+    "answer": 2,
+    "explanation": "Physical controls restrict or monitor physical access to facilities and hardware, for example locks, guards, badge readers and CCTV.",
+    "optionNotes": [
+      "Administrative controls are policies, procedures and training.",
+      "Technical (logical) controls are enforced by software or hardware logic, such as firewalls or ACLs.",
+      "Correct: guards and badge readers protect physical access.",
+      "A compensating control is an alternative used when a primary control is not feasible; that is a role, not an implementation type."
+    ],
+    "tags": ["security-controls", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/physical_security", "https://csrc.nist.gov/glossary/term/security_control"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0012",
+    "module": 1,
+    "section": "Information Security Controls",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "An intrusion detection system raises an alert when suspicious traffic is seen but does not block it. What is the function of this control?",
+    "options": ["Preventive", "Detective", "Corrective", "Deterrent"],
+    "answer": 1,
+    "explanation": "Detective controls identify and record events during or after they happen. Because the IDS alerts without blocking, it detects but does not prevent.",
+    "optionNotes": [
+      "Preventive controls stop the event (an IPS in blocking mode would be preventive).",
+      "Correct: alerting on an event is detection.",
+      "Corrective controls restore systems after an incident, such as backups or patching.",
+      "Deterrent controls discourage attempts, such as warning banners."
+    ],
+    "tags": ["security-controls", "ids", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/intrusion_detection_system", "https://csrc.nist.gov/glossary/term/security_control"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0013",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An online retailer stores and processes customers' credit card numbers. Which standard MUST it comply with?",
+    "options": ["HIPAA", "SOX", "FISMA", "PCI DSS"],
+    "answer": 3,
+    "explanation": "PCI DSS applies to every entity that stores, processes or transmits payment cardholder data. It is set by the PCI Security Standards Council, which was founded by the major card brands.",
+    "optionNotes": [
+      "HIPAA protects U.S. health information.",
+      "SOX covers financial reporting by U.S. public companies.",
+      "FISMA applies to U.S. federal agencies' information systems.",
+      "Correct: cardholder data means PCI DSS."
+    ],
+    "tags": ["pci-dss", "laws-standards", "sample"],
+    "sources": ["https://www.pcisecuritystandards.org/standards/pci-dss/", "https://www.pcisecuritystandards.org/about_us/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0014",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which U.S. law requires publicly traded companies to keep accurate financial records and maintain internal controls over financial reporting?",
+    "options": ["SOX", "GLBA", "HIPAA", "DMCA"],
+    "answer": 0,
+    "explanation": "The Sarbanes-Oxley Act (2002) was passed after corporate accounting scandals. Section 404 requires management to assess internal controls over financial reporting.",
+    "optionNotes": [
+      "Correct: public-company financial reporting falls under SOX.",
+      "GLBA protects consumers' financial information held by financial institutions.",
+      "HIPAA protects health information.",
+      "DMCA deals with copyright and anti-circumvention."
+    ],
+    "tags": ["sox", "laws-standards", "sample"],
+    "sources": ["https://www.congress.gov/bill/107th-congress/house-bill/3763", "https://www.sec.gov/spotlight/sarbanes-oxley.htm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0015",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "The IT team of a U.S. hospital must protect patients' electronic health records against unauthorized access. Which regulation PRIMARILY applies?",
+    "options": ["FERPA", "GDPR", "PCI DSS", "HIPAA"],
+    "answer": 3,
+    "explanation": "HIPAA's Security Rule requires safeguards for electronic protected health information (ePHI) held by covered entities such as hospitals.",
+    "optionNotes": [
+      "FERPA protects student education records.",
+      "GDPR is EU law; this is a U.S. hospital protecting health records.",
+      "PCI DSS covers payment card data, not health records.",
+      "Correct: ePHI means HIPAA."
+    ],
+    "tags": ["hipaa", "laws-standards", "sample"],
+    "sources": ["https://www.hhs.gov/hipaa/for-professionals/security/index.html", "https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html"],
+    "verify": false,
+    "rev": 1
+  }
+]

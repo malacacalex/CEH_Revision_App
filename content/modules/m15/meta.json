@@ -1,0 +1,18 @@
+{
+  "module": 15,
+  "title": "SQL Injection",
+  "domain": "D5",
+  "effortUnits": 1.5,
+  "status": "stub",
+  "sections": [
+    "SQL Injection Concepts",
+    "Types of SQL Injection",
+    "SQL Injection Methodology",
+    "Evasion Techniques",
+    "SQL Injection Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

@@ -1,0 +1,20 @@
+{
+  "module": 4,
+  "title": "Enumeration",
+  "domain": "D2",
+  "effortUnits": 1,
+  "status": "stub",
+  "sections": [
+    "Enumeration Concepts",
+    "NetBIOS Enumeration",
+    "SNMP and LDAP Enumeration",
+    "NTP and NFS Enumeration",
+    "SMTP and DNS Enumeration",
+    "Other Enumeration Techniques",
+    "Enumeration Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

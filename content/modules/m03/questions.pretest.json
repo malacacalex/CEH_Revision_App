@@ -1,0 +1,71 @@
+[
+  {
+    "id": "m03-q-0001",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Nmap option performs a TCP SYN (half-open) scan?",
+    "options": ["-sT", "-sS", "-sU", "-sA"],
+    "answer": 1,
+    "explanation": "-sS sends a SYN and, if the port answers SYN/ACK, resets the connection instead of completing it. It is Nmap's default scan when run with raw-packet privileges.",
+    "optionNotes": [
+      "-sT is the TCP connect scan, which completes the full handshake.",
+      "Correct: -sS is the SYN (stealth, half-open) scan.",
+      "-sU is the UDP scan.",
+      "-sA is the ACK scan, used to map firewall rules."
+    ],
+    "tags": ["nmap", "syn-scan", "sample"],
+    "sources": ["https://nmap.org/book/man-port-scanning-techniques.html", "https://nmap.org/book/synscan.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0002",
+    "module": 3,
+    "section": "Network Scanning Concepts",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In a TCP three-way handshake, what does a server send back when a client sends a SYN to an open port?",
+    "options": ["SYN/ACK", "RST", "ACK", "FIN/ACK"],
+    "answer": 0,
+    "explanation": "The handshake is SYN → SYN/ACK → ACK. An open (listening) port answers a SYN with SYN/ACK; a closed port answers with RST.",
+    "optionNotes": [
+      "Correct: an open port answers SYN/ACK.",
+      "RST is the answer of a closed port.",
+      "A bare ACK is the client's third step, not the server's reply.",
+      "FIN/ACK is used to close a connection."
+    ],
+    "tags": ["tcp-handshake", "tcp-flags", "sample"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9293", "https://nmap.org/book/synscan.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0003",
+    "module": 3,
+    "section": "Host Discovery",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester is on the same Ethernet segment as the targets and wants the fastest, most reliable host discovery, one that local firewalls blocking ICMP cannot defeat. Which Nmap option fits BEST?",
+    "options": ["-sL", "-PE", "-PR", "-PS443"],
+    "answer": 2,
+    "explanation": "-PR (ARP ping) asks for each IP's MAC address with ARP. Hosts must answer ARP to communicate at all on a LAN, so filtering ICMP does not hide them. Nmap uses ARP by default on local Ethernet networks.",
+    "optionNotes": [
+      "-sL only lists targets (with reverse DNS); it sends no probes to the hosts.",
+      "-PE uses ICMP echo, which is often blocked by host firewalls.",
+      "Correct: ARP ping is the most reliable method on a local segment.",
+      "-PS443 sends TCP SYN probes; it works but can be filtered and is slower than ARP on a LAN."
+    ],
+    "tags": ["nmap", "host-discovery", "arp", "sample"],
+    "sources": ["https://nmap.org/book/man-host-discovery.html", "https://nmap.org/book/host-discovery-techniques.html"],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "module": 20,
+  "title": "Cryptography",
+  "domain": "D9",
+  "effortUnits": 1.25,
+  "status": "stub",
+  "sections": [
+    "Cryptography Concepts and Encryption Algorithms",
+    "Applications of Cryptography",
+    "Cryptanalysis Methods and Cryptography Attacks",
+    "Cryptography Attack Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

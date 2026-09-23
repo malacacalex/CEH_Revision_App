@@ -1,0 +1,18 @@
+{
+  "module": 16,
+  "title": "Hacking Wireless Networks",
+  "domain": "D6",
+  "effortUnits": 1.25,
+  "status": "stub",
+  "sections": [
+    "Wireless Concepts",
+    "Wireless Encryption",
+    "Wireless Threats",
+    "Wireless Hacking Methodology",
+    "Wireless Attack Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

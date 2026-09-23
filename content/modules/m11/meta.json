@@ -1,0 +1,17 @@
+{
+  "module": 11,
+  "title": "Session Hijacking",
+  "domain": "D4",
+  "effortUnits": 0.75,
+  "status": "stub",
+  "sections": [
+    "Session Hijacking Concepts",
+    "Application-Level Session Hijacking",
+    "Network-Level Session Hijacking",
+    "Session Hijacking Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

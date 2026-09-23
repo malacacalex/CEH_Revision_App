@@ -1,0 +1,25 @@
+{
+  "note": "Domain weights are approximate (public sources differ slightly); verify against EC-Council's CEH v13 Exam Blueprint v5. Hours are planner assumptions, tune freely.",
+  "domains": [
+    { "id": "D0", "name": "Foundations (not examined)", "weight": 0, "modules": [0] },
+    { "id": "D1", "name": "Information Security & Ethical Hacking Overview", "weight": 0.06, "modules": [1] },
+    { "id": "D2", "name": "Reconnaissance Techniques", "weight": 0.21, "modules": [2, 3, 4] },
+    { "id": "D3", "name": "System Hacking Phases & Attack Techniques", "weight": 0.17, "modules": [5, 6, 7] },
+    { "id": "D4", "name": "Network & Perimeter Hacking", "weight": 0.14, "modules": [8, 9, 10, 11, 12] },
+    { "id": "D5", "name": "Web Application Hacking", "weight": 0.16, "modules": [13, 14, 15] },
+    { "id": "D6", "name": "Wireless Network Hacking", "weight": 0.06, "modules": [16] },
+    { "id": "D7", "name": "Mobile Platform, IoT & OT Hacking", "weight": 0.08, "modules": [17, 18] },
+    { "id": "D8", "name": "Cloud Computing", "weight": 0.06, "modules": [19] },
+    { "id": "D9", "name": "Cryptography", "weight": 0.06, "modules": [20] }
+  ],
+  "hoursPerUnit": { "beginner": 4.5, "intermediate": 3.5 },
+  "phase0Hours": 2,
+  "phase2Hours": { "normal": 10, "compressed": 4 },
+  "mockHours": 5,
+  "mocks": { "target": 4, "minimum": 3 },
+  "fullMock": { "questions": 125, "minutes": 240 },
+  "halfMock": { "questions": 63, "minutes": 120 },
+  "mockPoolSize": 500,
+  "moduleQuizSize": 20,
+  "moduleQuizPass": 0.8
+}

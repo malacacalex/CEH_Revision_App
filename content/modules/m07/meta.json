@@ -1,0 +1,18 @@
+{
+  "module": 7,
+  "title": "Malware Threats",
+  "domain": "D3",
+  "effortUnits": 1.5,
+  "status": "stub",
+  "sections": [
+    "Malware and APT Concepts",
+    "Fileless Malware Concepts",
+    "AI-based Malware Concepts",
+    "Malware Analysis",
+    "Malware Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

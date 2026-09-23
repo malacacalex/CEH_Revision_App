@@ -1,0 +1,18 @@
+{
+  "module": 17,
+  "title": "Hacking Mobile Platforms",
+  "domain": "D7",
+  "effortUnits": 1,
+  "status": "stub",
+  "sections": [
+    "Mobile Platform Attack Vectors",
+    "Hacking Android OS",
+    "Hacking iOS",
+    "Mobile Device Management",
+    "Mobile Security Guidelines and Tools"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

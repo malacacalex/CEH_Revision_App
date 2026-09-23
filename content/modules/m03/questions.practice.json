@@ -1,0 +1,296 @@
+[
+  {
+    "id": "m03-q-0004",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which TCP flags does an Nmap Xmas scan (-sX) set?",
+    "options": ["SYN, ACK and RST", "FIN, PSH and URG", "FIN only", "No flags at all"],
+    "answer": 1,
+    "explanation": "The Xmas scan 'lights up' the packet like a Christmas tree with FIN, PSH and URG. The FIN scan (-sF) sets only FIN and the NULL scan (-sN) sets none.",
+    "optionNotes": [
+      "SYN+ACK+RST is not a combination used by any standard Nmap scan.",
+      "Correct: FIN, PSH and URG.",
+      "FIN only is the FIN scan (-sF).",
+      "No flags is the NULL scan (-sN)."
+    ],
+    "tags": ["nmap", "xmas-scan", "tcp-flags", "sample"],
+    "sources": ["https://nmap.org/book/man-port-scanning-techniques.html", "https://nmap.org/book/scan-methods-null-fin-xmas-scan.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0005",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "During a SYN scan, the target answers the probe to port 23 with a RST/ACK packet. How does Nmap classify port 23?",
+    "options": ["open", "closed", "filtered", "open|filtered"],
+    "answer": 1,
+    "explanation": "A RST in reply to a SYN means the host is reachable but nothing listens on that port, so the port is closed. Open ports reply SYN/ACK; filtered ports give no reply or an ICMP unreachable error.",
+    "optionNotes": [
+      "Open would require a SYN/ACK reply.",
+      "Correct: a RST means closed.",
+      "Filtered means no response (after retransmissions) or an ICMP unreachable error.",
+      "open|filtered is a result of UDP, FIN, NULL and Xmas scans, not SYN scans."
+    ],
+    "tags": ["nmap", "syn-scan", "port-states", "sample"],
+    "sources": ["https://nmap.org/book/synscan.html", "https://nmap.org/book/man-port-scanning-basics.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0006",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A tester runs a NULL scan (-sN) against a Linux server. Port 80 sends no response at all. What state does Nmap report for port 80?",
+    "options": ["open", "closed", "open|filtered", "unfiltered"],
+    "answer": 2,
+    "explanation": "With NULL, FIN and Xmas scans, a closed port replies RST (as RFC 793/9293 requires), but both an open port and a filtering firewall stay silent. Nmap cannot tell those two apart, so it reports open|filtered.",
+    "optionNotes": [
+      "Nmap cannot say 'open' because a firewall silently dropping the probe looks the same.",
+      "Closed ports answer RST, and there was no answer here.",
+      "Correct: silence gives open|filtered.",
+      "Unfiltered is an ACK-scan result."
+    ],
+    "tags": ["nmap", "null-scan", "port-states", "sample"],
+    "sources": ["https://nmap.org/book/scan-methods-null-fin-xmas-scan.html", "https://www.rfc-editor.org/rfc/rfc9293"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0007",
+    "module": 3,
+    "section": "Scanning Beyond IDS and Firewall",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A tester wants to port-scan a target without sending a single packet from their own IP address. They find an idle host whose IP ID values increase predictably and use it as an intermediary. Which technique is this?",
+    "options": ["Decoy scan (-D)", "Idle scan (-sI)", "FTP bounce scan (-b)", "Fragmented scan (-f)"],
+    "answer": 1,
+    "explanation": "The idle scan spoofs probes from the 'zombie' host and infers each port's state from how much the zombie's IP ID counter increases. The target only ever sees the zombie's address.",
+    "optionNotes": [
+      "Decoys add fake sources, but the real scanner's packets are still sent.",
+      "Correct: a zombie host with a predictable IP ID is the idle scan.",
+      "FTP bounce abuses an FTP server's PORT command, not IP ID values.",
+      "Fragmentation splits packets to evade filters; the source address remains the tester's."
+    ],
+    "tags": ["nmap", "idle-scan", "evasion", "sample"],
+    "sources": ["https://nmap.org/book/idlescan.html", "https://nmap.org/book/man-port-scanning-techniques.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0008",
+    "module": 3,
+    "section": "Scanning Beyond IDS and Firewall",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the MAIN purpose of an Nmap ACK scan (-sA)?",
+    "options": [
+      "To find which ports are open on the target",
+      "To identify the target's operating system",
+      "To discover live hosts using ICMP",
+      "To map firewall rules: which ports are filtered and whether the firewall is stateful"
+    ],
+    "answer": 3,
+    "explanation": "An unsolicited ACK gets a RST from both open and closed ports, so the ACK scan cannot tell open from closed. It reports ports as unfiltered (RST received) or filtered (no reply or ICMP error), which reveals the firewall's rules.",
+    "optionNotes": [
+      "The ACK scan never reports 'open'.",
+      "OS detection is -O.",
+      "Host discovery is done with ping options such as -PE or -sn.",
+      "Correct: it maps firewall filtering."
+    ],
+    "tags": ["nmap", "ack-scan", "firewall", "sample"],
+    "sources": ["https://nmap.org/book/scan-methods-ack-scan.html", "https://nmap.org/book/man-port-scanning-techniques.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0009",
+    "module": 3,
+    "section": "OS Discovery",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "During passive OS fingerprinting, an analyst notes that packets from a host start with a TTL of 128. Which operating system family is MOST likely?",
+    "options": ["Windows", "Linux", "Cisco IOS", "Solaris"],
+    "answer": 0,
+    "explanation": "Default initial TTLs are commonly 128 for Windows, 64 for Linux/Unix-like systems, and 255 for Cisco IOS and Solaris. The observed TTL is the initial value minus the number of hops, so round up to the nearest default.",
+    "optionNotes": [
+      "Correct: 128 is the classic Windows default.",
+      "Linux usually starts at 64.",
+      "Cisco IOS usually starts at 255.",
+      "Solaris usually starts at 255."
+    ],
+    "tags": ["os-fingerprinting", "ttl", "ec-council-specific", "sample"],
+    "sources": [
+      "https://www.netresec.com/?page=Blog&month=2011-11&post=Passive-OS-Fingerprinting",
+      "https://nmap.org/book/osdetect-methods.html"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0010",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Nmap sends a UDP probe to port 161 and receives an ICMP port unreachable error (type 3, code 3). How is port 161 classified?",
+    "options": ["open", "open|filtered", "filtered", "closed"],
+    "answer": 3,
+    "explanation": "In a UDP scan, ICMP port unreachable (type 3, code 3) means closed. Other ICMP unreachable codes mean filtered, a UDP reply means open, and silence means open|filtered.",
+    "optionNotes": [
+      "Open requires a UDP response from the service.",
+      "open|filtered is reported when there is no response at all.",
+      "Filtered comes from other ICMP unreachable codes (0, 1, 2, 9, 10, 13).",
+      "Correct: type 3 code 3 means closed."
+    ],
+    "tags": ["nmap", "udp-scan", "icmp", "sample"],
+    "sources": ["https://nmap.org/book/scan-methods-udp-scan.html", "https://www.rfc-editor.org/rfc/rfc792"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0011",
+    "module": 3,
+    "section": "Scanning Beyond IDS and Firewall",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Nmap timing template is the SLOWEST, designed to evade intrusion detection systems?",
+    "options": ["-T5 (insane)", "-T3 (normal)", "-T1 (sneaky)", "-T0 (paranoid)"],
+    "answer": 3,
+    "explanation": "The templates go from -T0 paranoid (slowest) to -T5 insane (fastest). T0 waits 5 minutes between probes, which makes the scan very hard for IDS thresholds to notice.",
+    "optionNotes": [
+      "-T5 is the fastest and noisiest.",
+      "-T3 is the default.",
+      "-T1 is also used for IDS evasion, but it is faster than T0 (15 s between probes).",
+      "Correct: -T0 is the slowest."
+    ],
+    "tags": ["nmap", "timing", "evasion", "sample"],
+    "sources": ["https://nmap.org/book/man-performance.html", "https://nmap.org/book/performance-timing-templates.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0012",
+    "module": 3,
+    "section": "Host Discovery",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which hping3 command sends TCP SYN packets to port 80 of a target?",
+    "options": ["hping3 -S -p 80 <target>", "hping3 -1 <target>", "hping3 -2 -p 80 <target>", "hping3 -F -p 80 <target>"],
+    "answer": 0,
+    "explanation": "In hping3, -S sets the SYN flag and -p sets the destination port. TCP is the default mode, while -1 switches to ICMP and -2 to UDP.",
+    "optionNotes": [
+      "Correct: -S (SYN) with -p 80.",
+      "-1 is ICMP mode (echo request by default).",
+      "-2 is UDP mode.",
+      "-F sets the FIN flag, not SYN."
+    ],
+    "tags": ["hping3", "sample"],
+    "sources": ["https://linux.die.net/man/8/hping3", "https://www.kali.org/tools/hping3/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0013",
+    "module": 3,
+    "section": "Network Scanning Countermeasures",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker connects to a company's web and mail servers and reads the service names and exact version numbers they announce. Which countermeasure MOST directly addresses this?",
+    "options": [
+      "Configure services to hide or falsify their version banners",
+      "Block inbound ICMP echo requests at the perimeter",
+      "Enable IP ID randomization on all hosts",
+      "Drop fragmented packets at the firewall"
+    ],
+    "answer": 0,
+    "explanation": "This is banner grabbing. The direct defense is to disable, trim or change the banners so they stop advertising software and versions (security through obscurity, but it slows attackers down), and to keep services patched.",
+    "optionNotes": [
+      "Correct: removing or changing banners defeats banner grabbing.",
+      "Blocking ICMP hinders ping sweeps, not banners returned by open services.",
+      "IP ID randomization defeats idle scans, not banner grabbing.",
+      "Dropping fragments counters fragmentation evasion."
+    ],
+    "tags": ["banner-grabbing", "countermeasures", "sample"],
+    "sources": ["https://nmap.org/book/man-version-detection.html", "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0014",
+    "module": 3,
+    "section": "Network Scanning Concepts",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "How does a TCP connect scan (-sT) differ from a SYN scan (-sS)?",
+    "options": [
+      "It sends a FIN instead of a SYN",
+      "It uses UDP instead of TCP",
+      "It completes the full three-way handshake through the operating system's connect() call",
+      "It never receives replies from open ports"
+    ],
+    "answer": 2,
+    "explanation": "-sT asks the OS to open a real connection, so open ports complete the handshake and are more likely to be logged by the target. It needs no raw-packet privileges, which is why Nmap falls back to it for unprivileged users.",
+    "optionNotes": [
+      "Sending a FIN is the FIN scan (-sF).",
+      "UDP scanning is -sU.",
+      "Correct: a full handshake through connect().",
+      "Open ports reply SYN/ACK in both scans."
+    ],
+    "tags": ["nmap", "connect-scan", "syn-scan", "sample"],
+    "sources": ["https://nmap.org/book/scan-methods-connect-scan.html", "https://nmap.org/book/man-port-scanning-techniques.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0015",
+    "module": 3,
+    "section": "Scanning Beyond IDS and Firewall",
+    "domain": "D2",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester runs 'nmap -D RND:10 <target>'. The IDS logs show scans coming from eleven different source addresses. Which evasion technique was used?",
+    "options": ["Source routing", "Packet fragmentation", "IP address decoy", "Source port manipulation"],
+    "answer": 2,
+    "explanation": "-D mixes the real scan with spoofed probes from decoy addresses (RND:10 means 10 random decoys), so defenders cannot easily tell which source is the real scanner.",
+    "optionNotes": [
+      "Source routing sets the path packets take (the --ip-options option), not their source addresses.",
+      "Fragmentation is -f / --mtu.",
+      "Correct: -D uses decoys.",
+      "Source port manipulation is -g / --source-port."
+    ],
+    "tags": ["nmap", "decoy", "evasion", "sample"],
+    "sources": ["https://nmap.org/book/man-bypass-firewalls-ids.html", "https://nmap.org/book/subvert-ids.html"],
+    "verify": false,
+    "rev": 1
+  }
+]

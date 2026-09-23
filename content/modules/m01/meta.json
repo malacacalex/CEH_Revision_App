@@ -1,0 +1,90 @@
+{
+  "module": 1,
+  "title": "Introduction to Ethical Hacking",
+  "domain": "D1",
+  "effortUnits": 1,
+  "status": "sample",
+  "sections": [
+    "Information Security Overview",
+    "Hacking Concepts and Hacker Classes",
+    "Ethical Hacking Concepts",
+    "Hacking Methodologies and Frameworks",
+    "Information Security Controls",
+    "Information Security Laws and Standards"
+  ],
+  "objectives": [
+    {
+      "text": "Explain the CIA triad and related properties (authenticity, non-repudiation)",
+      "section": "Information Security Overview"
+    },
+    {
+      "text": "Classify attackers by hacker class and motive",
+      "section": "Hacking Concepts and Hacker Classes"
+    },
+    {
+      "text": "Put the 5 hacking phases and the 7 Cyber Kill Chain stages in order",
+      "section": "Hacking Methodologies and Frameworks"
+    },
+    {
+      "text": "Classify security controls by type and function",
+      "section": "Information Security Controls"
+    },
+    {
+      "text": "Match a regulation or standard to the data it protects",
+      "section": "Information Security Laws and Standards"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Information Security Overview",
+      "priority": "SKIM",
+      "minutes": 25,
+      "why": "Definitions and classifications are tested; skim the long examples."
+    },
+    {
+      "section": "Hacking Concepts and Hacker Classes",
+      "priority": "SKIM",
+      "minutes": 25,
+      "why": "Definitions and classifications are tested; skim the long examples."
+    },
+    {
+      "section": "Ethical Hacking Concepts",
+      "priority": "SKIM",
+      "minutes": 25,
+      "why": "Definitions and classifications are tested; skim the long examples."
+    },
+    {
+      "section": "Hacking Methodologies and Frameworks",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Definitions and classifications are tested; skim the long examples."
+    },
+    {
+      "section": "Information Security Controls",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Definitions and classifications are tested; skim the long examples."
+    },
+    {
+      "section": "Information Security Laws and Standards",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Many regulation-matching questions; learn the table, not the history."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Map a real intrusion report to the Cyber Kill Chain and MITRE ATT&CK",
+      "source": "free",
+      "where": "https://attack.mitre.org/",
+      "skill": "Using frameworks to describe attacker behavior",
+      "minutes": 45,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a non-technical friend why an ethical hacker needs written permission.",
+    "Walk through the 5 hacking phases with one concrete example for each.",
+    "Explain the difference between a tactic, a technique and a procedure."
+  ]
+}

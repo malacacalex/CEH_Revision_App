@@ -1,0 +1,18 @@
+{
+  "module": 9,
+  "title": "Social Engineering",
+  "domain": "D4",
+  "effortUnits": 0.75,
+  "status": "stub",
+  "sections": [
+    "Social Engineering Concepts",
+    "Human-based Techniques",
+    "Computer-based Techniques",
+    "Mobile-based Techniques",
+    "Social Engineering Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

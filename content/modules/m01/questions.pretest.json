@@ -1,0 +1,71 @@
+[
+  {
+    "id": "m01-q-0001",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An attacker changes the amounts in a bank's transaction records without authorization. Which element of the CIA triad is MOST directly violated?",
+    "options": ["Confidentiality", "Integrity", "Availability", "Non-repudiation"],
+    "answer": 1,
+    "explanation": "Integrity means data is accurate and has not been altered by unauthorized parties. Modifying records is the textbook integrity violation, even if nobody read secret data and the system stayed online.",
+    "optionNotes": [
+      "Confidentiality is about unauthorized disclosure (reading), not modification.",
+      "Correct: unauthorized modification breaks integrity.",
+      "Availability is about systems and data being accessible when needed.",
+      "Non-repudiation is a related security property, but it is not part of the CIA triad."
+    ],
+    "tags": ["cia-triad", "sample"],
+    "sources": ["https://csrc.nist.gov/glossary/term/integrity", "https://csrc.nist.gov/glossary/term/confidentiality"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0002",
+    "module": 1,
+    "section": "Hacking Methodologies and Frameworks",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's five phases of hacking, which phase comes directly after scanning?",
+    "options": ["Reconnaissance", "Maintaining access", "Gaining access", "Clearing tracks"],
+    "answer": 2,
+    "explanation": "EC-Council orders the phases as Reconnaissance, Scanning, Gaining Access, Maintaining Access, Clearing Tracks. Once scanning has revealed live hosts, open ports and vulnerabilities, the attacker uses them to gain access.",
+    "optionNotes": [
+      "Reconnaissance is phase 1 and comes before scanning.",
+      "Maintaining access (phase 4) needs access to have been gained first.",
+      "Correct: gaining access is phase 3.",
+      "Clearing tracks is the last phase (phase 5)."
+    ],
+    "tags": ["hacking-phases", "ec-council-specific", "sample"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-0003",
+    "module": 1,
+    "section": "Hacking Concepts and Hacker Classes",
+    "domain": "D1",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A group defaces a government website to protest a new law and replaces the home page with a political message. Which hacker class BEST describes this group?",
+    "options": ["Hacktivists", "Script kiddies", "State-sponsored hackers", "Gray hats"],
+    "answer": 0,
+    "explanation": "Hacktivists attack to promote a political or social agenda, and website defacement is one of their classic methods. The motive (protest) is the key clue.",
+    "optionNotes": [
+      "Correct: a political motive plus defacement points to hacktivism.",
+      "Script kiddies are defined by low skill and reused tools, not by a political motive.",
+      "State-sponsored hackers work for a government, usually covertly, rather than protesting against one.",
+      "Gray hats act without authorization but usually without a political agenda, for example reporting flaws they found."
+    ],
+    "tags": ["hacker-classes", "sample"],
+    "sources": ["https://attack.mitre.org/groups/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  }
+]

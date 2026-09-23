@@ -1,0 +1,17 @@
+{
+  "module": 6,
+  "title": "System Hacking",
+  "domain": "D3",
+  "effortUnits": 2,
+  "status": "stub",
+  "sections": [
+    "Gaining Access",
+    "Escalating Privileges",
+    "Maintaining Access",
+    "Clearing Logs"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

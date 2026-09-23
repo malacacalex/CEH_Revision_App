@@ -1,0 +1,19 @@
+{
+  "module": 18,
+  "title": "IoT and OT Hacking",
+  "domain": "D7",
+  "effortUnits": 1,
+  "status": "stub",
+  "sections": [
+    "IoT Concepts and Attacks",
+    "IoT Hacking Methodology",
+    "IoT Attack Countermeasures",
+    "OT Concepts and Attacks",
+    "OT Hacking Methodology",
+    "OT Attack Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}

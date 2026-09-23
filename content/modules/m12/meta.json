@@ -1,0 +1,19 @@
+{
+  "module": 12,
+  "title": "Evading IDS, Firewalls, and Honeypots",
+  "domain": "D4",
+  "effortUnits": 1.25,
+  "status": "stub",
+  "sections": [
+    "IDS, IPS, and Firewall Concepts",
+    "IDS, IPS, and Firewall Solutions",
+    "Evading IDS/Firewalls",
+    "Evading NAC and Endpoint Security",
+    "Honeypot Concepts and Detecting Honeypots",
+    "IDS/Firewall Evasion Countermeasures"
+  ],
+  "objectives": [],
+  "readingMap": [],
+  "labs": [],
+  "feynmanPrompts": []
+}
