@@ -1,9 +1,11 @@
 import { useRef, useState } from 'react';
-import { APP_NAME, APP_VERSION, DISCLAIMER, REPO_URL } from '../../config.ts';
-import { content } from '../../content/bundle.ts';
+import { APP_NAME, APP_VERSION, DISCLAIMER, INSTALL_URL, PAGES_URL, RELEASES_URL, REPO_URL } from '../../config.ts';
+import { bundledContent, content } from '../../content/bundle.ts';
+import { checkAppUpdate, checkContentUpdate } from '../../content/updates.ts';
 import { deleteProfile, exportProgress, importProgress, saveProfile, setActiveProfileId } from '../../db/repo.ts';
 import { toISODate } from '../../domain/dates.ts';
 import { buildReview } from '../../domain/review.ts';
+import { isNative, platform, saveTextFile } from '../../platform.ts';
 import { useProfile, useProfiles } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, PageHeader } from '../../ui/kit.tsx';
 import { ProfileForm } from '../onboarding/ProfileForm.tsx';
@@ -31,16 +33,9 @@ function applyTheme(t: Theme) {
   document.documentElement.classList.toggle('dark', dark);
 }
 
-function download(filename: string, text: string) {
-  const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.append(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
+type UpdateState =
+  | { phase: 'idle' | 'checking' }
+  | { phase: 'done'; content: string; contentTone: 'good' | 'bad'; reload: boolean; app?: { version: string; url: string } };
 
 export function SettingsPage() {
   const profile = useProfile();
@@ -48,12 +43,22 @@ export function SettingsPage() {
   const [theme, setTheme] = useState<Theme>(readTheme);
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [message, setMessage] = useState<{ tone: 'good' | 'bad'; text: string } | null>(null);
+  const [update, setUpdate] = useState<UpdateState>({ phase: 'idle' });
   const fileInput = useRef<HTMLInputElement>(null);
+
+  async function save(filename: string, text: string): Promise<boolean> {
+    try {
+      return await saveTextFile(filename, text);
+    } catch (e) {
+      setMessage({ tone: 'bad', text: `Could not save the file: ${e instanceof Error ? e.message : String(e)}` });
+      return false;
+    }
+  }
 
   async function doExport(all: boolean) {
     const data = await exportProgress(APP_VERSION, content.bundle.version.version, all ? undefined : [profile.id]);
     const who = all ? 'all-profiles' : profile.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'profile';
-    download(`shieldup-${who}-${toISODate(new Date())}.json`, JSON.stringify(data, null, 1));
+    if (!(await save(`shieldup-${who}-${toISODate(new Date())}.json`, JSON.stringify(data, null, 1)))) return;
     setMessage({ tone: 'good', text: `Exported ${data.profiles.length} profile${data.profiles.length > 1 ? 's' : ''}.` });
   }
 
@@ -80,8 +85,28 @@ export function SettingsPage() {
     } catch {
       // Clipboard blocked (permissions, insecure context): the file download below still works.
     }
-    download(`shieldup-review-${toISODate(new Date())}.json`, text);
-    setMessage({ tone: 'good', text: copied ? 'Review JSON copied to the clipboard and downloaded.' : 'Review JSON downloaded.' });
+    const saved = await save(`shieldup-review-${toISODate(new Date())}.json`, text);
+    if (saved || copied) {
+      setMessage({ tone: 'good', text: copied && saved ? 'Review JSON copied to the clipboard and saved.' : copied ? 'Review JSON copied to the clipboard.' : 'Review JSON saved.' });
+    }
+  }
+
+  async function doCheckUpdates() {
+    setUpdate({ phase: 'checking' });
+    const [c, a] = await Promise.all([checkContentUpdate(), isNative() ? checkAppUpdate() : Promise.resolve(null)]);
+    const text =
+      c.status === 'updated'
+        ? `Content ${c.version} downloaded. Restart the app to use it.`
+        : c.status === 'current'
+          ? `Your content (${c.version}) is up to date.`
+          : c.message;
+    setUpdate({
+      phase: 'done',
+      content: a?.status === 'error' ? `${text} App: ${a.message}` : text,
+      contentTone: c.status === 'error' ? 'bad' : 'good',
+      reload: c.status === 'updated',
+      ...(a?.status === 'available' && { app: { version: a.version, url: a.url } }),
+    });
   }
 
   async function doImport(file: File) {
@@ -231,16 +256,54 @@ export function SettingsPage() {
           <h2 className="mb-2 text-lg font-bold">About {APP_NAME}</h2>
           <p className="text-sm">
             App {APP_VERSION} · content {content.bundle.version.version} ({content.bundle.version.date})
+            {content.bundle !== bundledContent && ' · downloaded update'}
           </p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <Button variant="secondary" disabled={update.phase === 'checking'} onClick={() => void doCheckUpdates()}>
+              {update.phase === 'checking' ? 'Checking…' : 'Check for updates'}
+            </Button>
+            {update.phase === 'done' && update.reload && <Button onClick={() => window.location.reload()}>Restart now</Button>}
+          </div>
+          {update.phase === 'done' && (
+            <div role="status" className="mt-2 space-y-1 text-sm">
+              <p className={update.contentTone === 'good' ? 'text-olive' : 'text-burgundy'}>{update.content}</p>
+              {update.app && (
+                <p>
+                  App {update.app.version} is available.{' '}
+                  <a href={update.app.url} target="_blank" rel="noreferrer" className="font-semibold text-chestnut underline">
+                    Download it
+                  </a>
+                </p>
+              )}
+            </div>
+          )}
           <p className="mt-2 text-sm">{DISCLAIMER}</p>
           <p className="mt-2 text-sm">
-            Privacy: no account, no server, no analytics. Nothing leaves your device unless you export it or open a link.
+            Privacy: no account, no server, no analytics. Nothing leaves your device unless you export it or open a link. “Check for updates” only downloads files; it sends nothing about you.
           </p>
           <p className="mt-2 text-sm">
             Code under MIT, study content under CC BY-NC-SA 4.0.{' '}
             <a href={REPO_URL} target="_blank" rel="noreferrer" className="font-semibold text-chestnut underline">
               Source code and issue tracker
             </a>
+          </p>
+          <p className="mt-2 text-sm">
+            {platform() === 'web' ? 'Also available as a desktop app (Windows, macOS, Linux) and an Android app: ' : 'Other versions: '}
+            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="font-semibold text-chestnut underline">
+              downloads
+            </a>
+            {' · '}
+            <a href={INSTALL_URL} target="_blank" rel="noreferrer" className="font-semibold text-chestnut underline">
+              install guide
+            </a>
+            {isNative() && (
+              <>
+                {' · '}
+                <a href={PAGES_URL} target="_blank" rel="noreferrer" className="font-semibold text-chestnut underline">
+                  web version
+                </a>
+              </>
+            )}
           </p>
         </Card>
       </div>

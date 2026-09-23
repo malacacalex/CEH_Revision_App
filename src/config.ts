@@ -12,3 +12,9 @@ export const DISCLAIMER =
 export const ETHICS_NOTICE =
   'Only run these labs on platforms built for practice or on machines and networks you own or are explicitly authorized to test. ' +
   'Scanning or attacking systems without permission is illegal in most countries.';
+
+/** The public website; installed apps fetch content updates from it. */
+export const PAGES_URL = 'https://malacacalex.github.io/CEH_Revision_App/';
+export const REPO_API_URL = 'https://api.github.com/repos/malacacalex/CEH_Revision_App';
+export const RELEASES_URL = `${REPO_URL}/releases/latest`;
+export const INSTALL_URL = `${REPO_URL}/blob/main/INSTALL.md`;

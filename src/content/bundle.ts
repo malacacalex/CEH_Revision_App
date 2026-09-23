@@ -46,4 +46,15 @@ if (!bundle) {
   throw new Error(`Bundled content is invalid:\n${issues.map((i) => `${i.file}: ${i.message}`).join('\n')}`);
 }
 
-export const content: ContentIndex = indexContent(bundle);
+/** The content shipped inside this build. */
+export const bundledContent: ContentBundle = bundle;
+
+/**
+ * The content in use: the bundled one, or a newer downloaded content pack swapped in at startup
+ * (see updates.ts). Read it at call time (`content.x`), never copy it into a module-level constant.
+ */
+export let content: ContentIndex = indexContent(bundle);
+
+export function setActiveContent(b: ContentBundle): void {
+  content = indexContent(b);
+}

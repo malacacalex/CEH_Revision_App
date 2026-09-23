@@ -8,13 +8,7 @@
     <meta name="theme-color" content="#8a4b2a" />
     <meta name="description" content="ShieldUp — unofficial, local-first study app for the CEH v13 exam. Not affiliated with or endorsed by EC-Council." />
     <title>ShieldUp</title>
-    <script>
-      // Apply the saved theme before first paint (avoids a light flash in dark mode).
-      try {
-        var t = localStorage.getItem('shieldup-theme');
-        if (t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
-      } catch (e) {}
-    </script>
+    <script src="./theme.js"></script>
   </head>
   <body>
     <div id="root"></div>

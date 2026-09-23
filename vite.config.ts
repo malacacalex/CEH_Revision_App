@@ -17,6 +17,8 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      // Registered from main.tsx, and only on the web (not inside Tauri or Capacitor).
+      injectRegister: false,
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         name: 'ShieldUp — unofficial CEH v13 study app',

@@ -26,7 +26,13 @@ npm run e2e                # Playwright smoke (locally: PW_CHANNEL=chrome; Chrom
 npm run build              # content-pack → tsc → vite build (dist/, relative base ./)
 npm run content:validate -- --warnings
 npm run content:stats      # per-module volumes vs targets, answer balance, domain coverage
+npm run android:sync       # copy dist/ into android/ (after npm run build)
+npx tsx scripts/gen-icons.ts   # PWA + Android icons from public/favicon.svg; then npx tauri icon public/icon-1024.png -o src-tauri/icons
 ```
+
+No Rust or Android SDK on this machine: native builds run only in CI (`release.yml`, dry run on pushes that
+touch `src-tauri/`, `android/` or the workflow). Check a CSP change by serving `dist/` with the header from
+`tauri.conf.json` (Playwright `page.route`), as done in M3.
 
 Shell pitfalls on this machine: always add `< /dev/null` and `timeout` to Bash commands (a stray `cat >`
 hung 3 min); write multi-file content with the Write tool, not one big heredoc.
@@ -61,7 +67,11 @@ src/db/                          Dexie schema (db.ts) + all writes (repo.ts)
 src/state/                       ProfileContext (live queries) + snapshot.ts (derived plan/gates/readiness)
 src/features/                    onboarding, dashboard, planner, modules, flashcards, quiz, mistakes, reference, settings
                                  (Settings → "Export for Claude review" = src/domain/review.ts, used by /weekly-review)
-scripts/                         content-validate / -stats / -pack / -balance, gen-icons
+src/platform.ts                  web / tauri / android: external links, saving files (Save-as dialog, share sheet)
+src/content/updates.ts           user-triggered content-pack + GitHub release checks; stored pack loaded before render
+src-tauri/                       Tauri v2 desktop shell: CSP, opener + dialog plugins, `save_text_file` command
+android/                         Capacitor 8 project (committed); version + signing read from package.json / env
+scripts/                         content-validate / -stats / -pack / -balance, gen-icons, release-notes.mjs
 tests/unit, tests/e2e
 ```
 
@@ -116,9 +126,16 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   mistake log), dashboard, planner v1, export/import, PWA + Pages CI, sample content.
 - [x] **M2**: M0 Foundations, 60-q diagnostic, reference sheets 1, 3–5 (2 deferred), glossary,
   review export, `.claude/commands`.
-- [ ] **M3**: Tauri + Capacitor packaging, CI release, INSTALL.md, in-app content-pack update.
+- [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
+  in-app content-pack update. First release tag v0.3.0 waits for the owner's go.
 - [ ] **M4**: build M1–M20 (`/build-module N`), full volumes.
 - [ ] **M5**: analytics, half/full mocks from the 500-q mock pool.
+
+## Release status
+
+App 0.3.0 (not yet tagged) · content 0.2.0 · Pages live. Unsigned builds; macOS ad-hoc signed.
+Android release key: not set up (secrets `ANDROID_KEYSTORE_BASE64`, `_PASSWORD`, `ANDROID_KEY_ALIAS`,
+`ANDROID_KEY_PASSWORD`); until then CI ships `…android-debug.apk`, which cannot update in place.
 
 ## Session log
 
@@ -126,3 +143,5 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   Pages needs Settings → Pages → Source: GitHub Actions (once).
 - 2026-09-23 — M2: M0 built, diagnostic, Reference page (sheets + glossary), review export, commands.
   Content 0.2.0. Sheet 2 deferred by the owner (`research/deferred.md`).
+- 2026-09-23 — M3: platform layer, content/app update checks, Tauri + Capacitor projects, release
+  pipeline, docs. App 0.3.0. CSP verified in Chrome against the built app.

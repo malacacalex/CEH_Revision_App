@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ShieldUp",
+  "version": "../package.json",
+  "identifier": "io.github.malacacalex.shieldup",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "ShieldUp",
+        "width": 1200,
+        "height": 820,
+        "minWidth": 360,
+        "minHeight": 560
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost https://malacacalex.github.io https://api.github.com; object-src 'none'; base-uri 'self'",
+      "devCsp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis",
+      "msi",
+      "app",
+      "dmg",
+      "deb",
+      "appimage"
+    ],
+    "category": "Education",
+    "shortDescription": "Unofficial, local-first study app for the CEH v13 exam",
+    "longDescription": "ShieldUp is an independent, unofficial study aid for the CEH v13 (312-50) exam: study planner, spaced-repetition flashcards, practice quizzes and reference sheets. It is not affiliated with, sponsored by or endorsed by EC-Council. All progress stays on your device.",
+    "publisher": "malacacalex",
+    "copyright": "Code MIT, content CC BY-NC-SA 4.0",
+    "license": "MIT",
+    "homepage": "https://github.com/malacacalex/CEH_Revision_App",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    },
+    "macOS": {
+      "signingIdentity": "-",
+      "minimumSystemVersion": "11.0"
+    }
+  }
+}
