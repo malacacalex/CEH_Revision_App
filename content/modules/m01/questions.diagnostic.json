@@ -1,0 +1,76 @@
+[
+  {
+    "id": "m01-q-9001",
+    "module": 1,
+    "section": "Information Security Overview",
+    "domain": "D1",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these is a passive attack?",
+    "options": [
+      "Eavesdropping on unencrypted network traffic",
+      "Modifying records in a database",
+      "Flooding a web server with requests",
+      "Replaying a captured login message"
+    ],
+    "answer": 0,
+    "explanation": "Passive attacks observe without altering systems or data; active attacks change or disrupt them.",
+    "optionNotes": [
+      "Correct: it only observes; nothing is changed.",
+      "Changing data is an active attack on integrity.",
+      "A flood is an active attack on availability.",
+      "Replaying injects traffic, so it is active."
+    ],
+    "tags": ["attack-classes", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/glossary/term/passive_attack", "https://csrc.nist.gov/glossary/term/active_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-9002",
+    "module": 1,
+    "section": "Ethical Hacking Concepts",
+    "domain": "D1",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A penetration tester receives no network diagrams, credentials or source code before the test starts. Which test type is this?",
+    "options": ["Code review", "White-box testing", "Gray-box testing", "Black-box testing"],
+    "answer": 3,
+    "explanation": "The box colour describes how much the tester knows in advance.",
+    "optionNotes": [
+      "A code review needs the source code.",
+      "White-box gives full knowledge (diagrams, code, credentials).",
+      "Gray-box gives partial knowledge, such as a user account.",
+      "Correct: no prior knowledge, like an outside attacker."
+    ],
+    "tags": ["pentest-types", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://github.com/OWASP/wstg/blob/master/document/2-Introduction/README.md"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m01-q-9003",
+    "module": 1,
+    "section": "Information Security Laws and Standards",
+    "domain": "D1",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Under the GDPR, how quickly must a controller normally notify the supervisory authority of a personal data breach?",
+    "options": ["Within 30 days", "Within 24 hours of the breach", "Within 72 hours of becoming aware of it", "Only if the press reports it"],
+    "answer": 2,
+    "explanation": "Article 33 requires notification without undue delay and, where feasible, within 72 hours, unless the breach is unlikely to create a risk to people.",
+    "optionNotes": [
+      "Far too late for the authority notification.",
+      "24 hours is not the GDPR deadline.",
+      "Correct: Article 33.",
+      "Notification does not depend on publicity."
+    ],
+    "tags": ["gdpr", "laws", "diagnostic"],
+    "sources": ["https://eur-lex.europa.eu/eli/reg/2016/679/oj", "https://ico.org.uk/for-organisations/report-a-breach/"],
+    "verify": false,
+    "rev": 1
+  }
+]

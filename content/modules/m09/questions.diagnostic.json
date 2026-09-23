@@ -1,0 +1,72 @@
+[
+  {
+    "id": "m09-q-9001",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Someone without a badge walks into a secured office right behind an employee who holds the door open. What is this?",
+    "options": ["Shoulder surfing", "Tailgating (piggybacking)", "Dumpster diving", "Vishing"],
+    "answer": 1,
+    "explanation": "Mantraps (access vestibules), turnstiles and training against holding doors reduce tailgating.",
+    "optionNotes": [
+      "Shoulder surfing is watching someone type or read.",
+      "Correct.",
+      "Dumpster diving is searching discarded material.",
+      "Vishing is phishing by phone."
+    ],
+    "tags": ["social-engineering", "physical", "diagnostic"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/social_engineering",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-9002",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A phishing email names one employee, mentions their manager and a real project found on their public profile. What is this?",
+    "options": ["Spam", "Mass phishing", "Pharming", "Spear phishing"],
+    "answer": 3,
+    "explanation": "Spear phishing uses reconnaissance to make the message believable.",
+    "optionNotes": [
+      "Spam is unsolicited bulk mail, not necessarily malicious.",
+      "Mass phishing is generic and untargeted.",
+      "Pharming redirects users through DNS or hosts-file poisoning.",
+      "Correct: targeted and personalized."
+    ],
+    "tags": ["phishing", "diagnostic"],
+    "sources": ["https://attack.mitre.org/techniques/T1566/", "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-9003",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is smishing?",
+    "options": ["Malware hidden in a QR code sticker", "Phishing by voice call", "Phishing sent by SMS text message", "Stealing a SIM card"],
+    "answer": 2,
+    "explanation": "Smishing messages usually push a link or a callback number with a sense of urgency.",
+    "optionNotes": ["That is sometimes called quishing.", "That is vishing.", "Correct.", "SIM theft or SIM swapping is a different attack."],
+    "tags": ["phishing", "mobile", "diagnostic"],
+    "sources": [
+      "https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

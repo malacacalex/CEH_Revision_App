@@ -1,0 +1,71 @@
+[
+  {
+    "id": "m16-q-9001",
+    "module": 16,
+    "section": "Wireless Encryption",
+    "domain": "D6",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why is WEP considered broken?",
+    "options": [
+      "It requires a RADIUS server",
+      "It uses AES with too long a key",
+      "It uses RC4 with a short 24-bit IV that repeats, so keys can be recovered from captured traffic",
+      "It only works on 5 GHz"
+    ],
+    "answer": 2,
+    "explanation": "Replace WEP with WPA2 or, better, WPA3.",
+    "optionNotes": ["That is WPA-Enterprise.", "WEP never used AES.", "Correct.", "Unrelated to the band."],
+    "tags": ["wep", "wireless-crypto", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/97/final", "https://csrc.nist.gov/pubs/sp/800/48/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m16-q-9002",
+    "module": 16,
+    "section": "Wireless Encryption",
+    "domain": "D6",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does WPA3-Personal use instead of the WPA2 pre-shared key handshake?",
+    "options": ["Open authentication", "WEP keys", "TKIP", "SAE (Simultaneous Authentication of Equals)"],
+    "answer": 3,
+    "explanation": "SAE is based on the Dragonfly key exchange and gives forward secrecy.",
+    "optionNotes": [
+      "No authentication at all.",
+      "WEP is obsolete.",
+      "TKIP is the old WPA1 cipher.",
+      "Correct: resists offline dictionary attacks on a captured handshake."
+    ],
+    "tags": ["wpa3", "diagnostic"],
+    "sources": ["https://www.wi-fi.org/discover-wi-fi/security", "https://www.rfc-editor.org/rfc/rfc7664"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m16-q-9003",
+    "module": 16,
+    "section": "Wireless Threats",
+    "domain": "D6",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An attacker sets up an access point with the same SSID as the café's Wi-Fi to lure customers. What is this?",
+    "options": ["An evil twin", "War driving", "Bluejacking", "A MAC flood"],
+    "answer": 0,
+    "explanation": "Users should prefer known, protected networks and a VPN; enterprises use WPA-Enterprise with server certificate validation and wireless IDS.",
+    "optionNotes": [
+      "Correct.",
+      "War driving is searching for networks while moving.",
+      "Bluejacking sends unsolicited Bluetooth messages.",
+      "MAC flooding targets switch tables."
+    ],
+    "tags": ["evil-twin", "rogue-ap", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/153/final", "https://csrc.nist.gov/pubs/sp/800/48/r1/final"],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "m17-q-9001",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A banking app saves the user's session token in plain text in shared storage. Which OWASP Mobile Top 10 risk is this?",
+    "options": ["Insecure data storage", "Insecure communication", "Code tampering", "Insufficient input validation"],
+    "answer": 0,
+    "explanation": "Use the platform keystore (Android Keystore, iOS Keychain) for secrets.",
+    "optionNotes": [
+      "Correct: sensitive data at rest without protection.",
+      "That is about data in transit.",
+      "That is about modified app binaries.",
+      "That is about unvalidated input."
+    ],
+    "tags": ["mobile", "owasp-mobile", "diagnostic"],
+    "sources": ["https://owasp.org/www-project-mobile-top-10/", "https://csrc.nist.gov/pubs/sp/800/163/r1/final"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-9002",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is sideloading on Android?",
+    "options": [
+      "Charging a phone from a laptop",
+      "Installing an app package (APK) from outside the official app store",
+      "Rooting the device",
+      "Backing up apps to the cloud"
+    ],
+    "answer": 1,
+    "explanation": "Sideloaded apps skip store vetting, a common malware path. MDM policies can block unknown sources.",
+    "optionNotes": ["Unrelated.", "Correct.", "Rooting gains root access; it is a different step.", "Unrelated."],
+    "tags": ["android", "sideloading", "diagnostic"],
+    "sources": ["https://developer.android.com/distribute/marketing-tools/alternative-distribution", "https://csrc.nist.gov/pubs/sp/800/163/r1/final"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-9003",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which solution lets a company enforce passcodes and remotely wipe a lost corporate phone?",
+    "options": ["A mobile browser", "A VPN client", "Mobile device management (MDM)", "Bluetooth pairing"],
+    "answer": 2,
+    "explanation": "MDM enforces policies: passcode, encryption, app control, remote lock and wipe.",
+    "optionNotes": ["Not a management tool.", "A VPN protects traffic; it does not manage devices.", "Correct.", "Unrelated."],
+    "tags": ["mdm", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/124/r2/final", "https://csrc.nist.gov/glossary/term/mobile_device_management"],
+    "verify": false,
+    "rev": 1
+  }
+]

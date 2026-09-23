@@ -1,0 +1,61 @@
+[
+  {
+    "id": "m20-q-9001",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these is a symmetric block cipher?",
+    "options": ["AES", "RSA", "SHA-256", "ECDSA"],
+    "answer": 0,
+    "explanation": "AES (FIPS 197) uses one shared key and 128-bit blocks.",
+    "optionNotes": ["Correct.", "RSA is asymmetric.", "SHA-256 is a hash function.", "ECDSA is an asymmetric signature scheme."],
+    "tags": ["aes", "symmetric", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/197/final", "https://csrc.nist.gov/pubs/sp/800/175/b/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-9002",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does a certificate authority's signature on an X.509 certificate vouch for?",
+    "options": [
+      "That the website has no vulnerabilities",
+      "That the public key in the certificate belongs to the named subject",
+      "That the private key is stored in the certificate",
+      "That the traffic will be compressed"
+    ],
+    "answer": 1,
+    "explanation": "PKI binds identities to public keys; browsers trust a chain up to a root CA.",
+    "optionNotes": ["A certificate says nothing about vulnerabilities.", "Correct.", "Certificates never contain the private key.", "Unrelated."],
+    "tags": ["pki", "certificates", "diagnostic"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5280", "https://csrc.nist.gov/glossary/term/certificate_authority"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-9003",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "A birthday attack is most relevant to which property of a hash function?",
+    "options": ["Speed of RSA signing", "Key length of a symmetric cipher", "Collision resistance", "Randomness of TCP sequence numbers"],
+    "answer": 2,
+    "explanation": "An n-bit hash offers about n/2 bits of collision resistance, one reason MD5 and SHA-1 were retired.",
+    "optionNotes": ["Unrelated.", "Not about hashes.", "Correct: collisions appear after about 2^(n/2) tries.", "Unrelated."],
+    "tags": ["hashing", "birthday-attack", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/glossary/term/collision", "https://csrc.nist.gov/pubs/sp/800/107/r1/final"],
+    "verify": false,
+    "rev": 1
+  }
+]

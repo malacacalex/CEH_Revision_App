@@ -1,0 +1,686 @@
+[
+  {
+    "term": "AAA",
+    "definition": "Authentication, authorization and accounting: proving identity, deciding what it may do, and recording what it did.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "aaa"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc2865",
+      "https://www.rfc-editor.org/rfc/rfc8907"
+    ],
+    "verify": false
+  },
+  {
+    "term": "APIPA",
+    "definition": "Automatic Private IP Addressing: a Windows host self-assigns an address in 169.254.0.0/16 when no DHCP server answers.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc3927",
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters"
+    ],
+    "verify": false
+  },
+  {
+    "term": "ARP",
+    "definition": "Address Resolution Protocol. Maps an IPv4 address to a MAC address on the local link; replies are not authenticated.",
+    "modules": [
+      0,
+      8
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc826",
+      "https://attack.mitre.org/techniques/T1557/002/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Asset",
+    "definition": "Anything of value to an organization: data, systems, people, reputation.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/asset",
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Availability",
+    "definition": "Timely and reliable access to information and systems for authorized users.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "cia"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/availability",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "CIDR",
+    "definition": "Classless Inter-Domain Routing: writing a network as address/prefix length, e.g. 192.168.1.0/24.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4632",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Compensating control",
+    "definition": "An alternative control used when the normally required control cannot be implemented, giving comparable protection.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "controls"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Confidentiality",
+    "definition": "Preventing unauthorized disclosure of information.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "cia"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/confidentiality",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Cyber Kill Chain",
+    "definition": "Lockheed Martin's seven-stage model of an intrusion: reconnaissance, weaponization, delivery, exploitation, installation, command and control, actions on objectives.",
+    "modules": [
+      1
+    ],
+    "tags": [
+      "frameworks"
+    ],
+    "sources": [
+      "https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf",
+      "https://attack.mitre.org/tactics/enterprise/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Defense in depth",
+    "definition": "Layering independent security controls so that one failure does not expose the asset.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "principles"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/defense_in_depth",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "DHCP",
+    "definition": "Dynamic Host Configuration Protocol. Leases IP settings to clients in four steps (Discover, Offer, Request, Acknowledge) over UDP 67/68.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc2131",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Diamond Model",
+    "definition": "Intrusion-analysis model linking four features of every event: adversary, capability, infrastructure and victim.",
+    "modules": [
+      1
+    ],
+    "tags": [
+      "frameworks"
+    ],
+    "sources": [
+      "https://apps.dtic.mil/sti/citations/ADA586960",
+      "https://csrc.nist.gov/pubs/sp/800/150/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "DNS",
+    "definition": "Domain Name System. Resolves names to records (A, AAAA, MX, NS, PTR…) over UDP and TCP port 53.",
+    "modules": [
+      0,
+      2
+    ],
+    "tags": [
+      "networking",
+      "dns"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc1034",
+      "https://www.rfc-editor.org/rfc/rfc1035"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Exploit",
+    "definition": "Code or a technique that takes advantage of a vulnerability.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+      "https://www.cve.org/About/Overview"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Hypervisor",
+    "definition": "Software that runs virtual machines. Type 1 runs on the hardware; type 2 runs on a host operating system.",
+    "modules": [
+      0,
+      19
+    ],
+    "tags": [
+      "virtualization"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/125/final",
+      "https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor"
+    ],
+    "verify": false
+  },
+  {
+    "term": "ICMP",
+    "definition": "Internet Control Message Protocol: error and diagnostic messages for IP, such as echo request/reply and destination unreachable.",
+    "modules": [
+      0,
+      3
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc792",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Indicator of compromise (IoC)",
+    "definition": "An artifact showing that an intrusion happened, such as a file hash, IP address, domain or registry key.",
+    "modules": [
+      1,
+      7
+    ],
+    "tags": [
+      "threat-intel"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/150/final",
+      "https://attack.mitre.org/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Integrity",
+    "definition": "Guarding against unauthorized modification or destruction of information.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "cia"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/integrity",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Least privilege",
+    "definition": "Giving each user or process only the access it needs for its task.",
+    "modules": [
+      0,
+      1,
+      6
+    ],
+    "tags": [
+      "principles"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/least_privilege",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "MAC address",
+    "definition": "48-bit hardware address of a network interface. The first 24 bits (OUI) identify the vendor.",
+    "modules": [
+      0,
+      8
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://standards.ieee.org/products-programs/regauth/",
+      "https://www.rfc-editor.org/rfc/rfc7042"
+    ],
+    "verify": false
+  },
+  {
+    "term": "MFA",
+    "definition": "Multi-factor authentication: combining factors of different types (something you know, have or are).",
+    "modules": [
+      0,
+      6
+    ],
+    "tags": [
+      "authentication"
+    ],
+    "sources": [
+      "https://pages.nist.gov/800-63-3/sp800-63b.html",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "MITRE ATT&CK",
+    "definition": "Knowledge base of adversary tactics (goals) and techniques (methods) observed in real intrusions.",
+    "modules": [
+      1
+    ],
+    "tags": [
+      "frameworks"
+    ],
+    "sources": [
+      "https://attack.mitre.org/",
+      "https://attack.mitre.org/tactics/enterprise/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Non-repudiation",
+    "definition": "Assurance that a sender cannot deny having sent a message; provided by digital signatures.",
+    "modules": [
+      0,
+      1,
+      20
+    ],
+    "tags": [
+      "cia",
+      "crypto"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/non_repudiation",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "NTDS.dit",
+    "definition": "The Active Directory database on domain controllers; it holds domain account password hashes.",
+    "modules": [
+      0,
+      6
+    ],
+    "tags": [
+      "windows"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1003/003/",
+      "https://attack.mitre.org/techniques/T1003/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "OSI model",
+    "definition": "Seven-layer reference model: physical, data link, network, transport, session, presentation, application.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false
+  },
+  {
+    "term": "PCI DSS",
+    "definition": "Payment Card Industry Data Security Standard: 12 requirements for any organization handling payment card data.",
+    "modules": [
+      1
+    ],
+    "tags": [
+      "standards"
+    ],
+    "sources": [
+      "https://www.pcisecuritystandards.org/standards/pci-dss/",
+      "https://www.pcisecuritystandards.org/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Port",
+    "definition": "16-bit number (0–65535) that identifies a service endpoint for TCP or UDP on a host.",
+    "modules": [
+      0,
+      3
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6335",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Risk",
+    "definition": "The potential for loss when a threat exploits a vulnerability, usually expressed as likelihood × impact.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/39/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "SAM",
+    "definition": "Security Account Manager: the Windows registry hive that stores local account password hashes.",
+    "modules": [
+      0,
+      6
+    ],
+    "tags": [
+      "windows"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1003/002/",
+      "https://attack.mitre.org/techniques/T1003/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Separation of duties",
+    "definition": "Splitting a sensitive task so that no single person can complete it alone.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "principles"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/separation_of_duty",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Snapshot",
+    "definition": "Saved state of a virtual machine that can be restored later. It is not a backup.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "virtualization"
+    ],
+    "sources": [
+      "https://www.virtualbox.org/manual/topics/Introduction.html",
+      "https://csrc.nist.gov/pubs/sp/800/125/final"
+    ],
+    "verify": true
+  },
+  {
+    "term": "Sticky bit",
+    "definition": "Linux permission bit (1000) that, on a shared directory such as /tmp, lets only a file's owner delete or rename it.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "linux"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man7/inode.7.html",
+      "https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Subnet mask",
+    "definition": "32-bit value that separates the network part of an IPv4 address from the host part, e.g. 255.255.255.0 = /24.",
+    "modules": [
+      0
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4632",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false
+  },
+  {
+    "term": "SUID",
+    "definition": "Linux permission bit (4000) that makes a program run with its owner's privileges.",
+    "modules": [
+      0,
+      6
+    ],
+    "tags": [
+      "linux"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man7/inode.7.html",
+      "https://man7.org/linux/man-pages/man1/chmod.1.html"
+    ],
+    "verify": false
+  },
+  {
+    "term": "TCP",
+    "definition": "Transmission Control Protocol: connection-oriented, reliable transport with a three-way handshake.",
+    "modules": [
+      0,
+      3
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Threat",
+    "definition": "Any circumstance or actor that could exploit a vulnerability and harm an asset.",
+    "modules": [
+      0,
+      1
+    ],
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/threat",
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "TLS",
+    "definition": "Transport Layer Security: authenticates the server and encrypts traffic. HTTPS is HTTP inside TLS.",
+    "modules": [
+      0,
+      20
+    ],
+    "tags": [
+      "crypto",
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc8446",
+      "https://www.cloudflare.com/learning/ssl/what-is-https/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "TTL",
+    "definition": "Time to live: an IP header field decremented at each router hop. Default values hint at the OS (Linux 64, Windows 128).",
+    "modules": [
+      0,
+      3
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc791",
+      "https://docs.kernel.org/networking/ip-sysctl.html"
+    ],
+    "verify": true
+  },
+  {
+    "term": "TTPs",
+    "definition": "Tactics, techniques and procedures: how an adversary operates. Harder to change than IoCs.",
+    "modules": [
+      1
+    ],
+    "tags": [
+      "threat-intel"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/150/final",
+      "https://attack.mitre.org/"
+    ],
+    "verify": false
+  },
+  {
+    "term": "UDP",
+    "definition": "User Datagram Protocol: connectionless, best-effort transport with an 8-byte header.",
+    "modules": [
+      0,
+      3
+    ],
+    "tags": [
+      "networking"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc768",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Vulnerability",
+    "definition": "A weakness in a system, procedure or control that a threat could exploit.",
+    "modules": [
+      0,
+      1,
+      5
+    ],
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/vulnerability",
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Zero-day",
+    "definition": "A vulnerability that is exploited or disclosed before a fix is available.",
+    "modules": [
+      0,
+      1,
+      5
+    ],
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/zero_day_attack",
+      "https://www.cve.org/About/Overview"
+    ],
+    "verify": false
+  },
+  {
+    "term": "Zone transfer (AXFR)",
+    "definition": "Copying a whole DNS zone from a primary to a secondary server over TCP 53. It leaks the zone if allowed to anyone.",
+    "modules": [
+      0,
+      2,
+      4
+    ],
+    "tags": [
+      "dns"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5936",
+      "https://www.rfc-editor.org/rfc/rfc7766"
+    ],
+    "verify": false
+  }
+]

@@ -3,15 +3,89 @@
   "title": "Foundations",
   "domain": "D0",
   "effortUnits": 1.5,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Networking Essentials",
     "Operating System Essentials",
     "Security Basics",
     "Lab Setup"
   ],
-  "objectives": [],
+  "objectives": [
+    {
+      "text": "Place common protocols on the OSI and TCP/IP layers",
+      "section": "Networking Essentials"
+    },
+    {
+      "text": "Describe the TCP handshake and the job of each TCP flag, and contrast TCP with UDP",
+      "section": "Networking Essentials"
+    },
+    {
+      "text": "Recall the common service ports and compute subnet sizes and ranges",
+      "section": "Networking Essentials"
+    },
+    {
+      "text": "Explain what DNS, DHCP, ARP and HTTP do and why each can be abused",
+      "section": "Networking Essentials"
+    },
+    {
+      "text": "Read and set Linux permissions, including SUID, SGID and the sticky bit",
+      "section": "Operating System Essentials"
+    },
+    {
+      "text": "Use core Linux and Windows commands to list users, privileges, processes and listening ports",
+      "section": "Operating System Essentials"
+    },
+    {
+      "text": "Apply CIA, AAA and risk vocabulary to short scenarios",
+      "section": "Security Basics"
+    },
+    {
+      "text": "Classify security controls by type and by function",
+      "section": "Security Basics"
+    },
+    {
+      "text": "Build an isolated lab with Kali and a vulnerable VM, and state the legal limits of practice",
+      "section": "Lab Setup"
+    }
+  ],
   "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "labs": [
+    {
+      "name": "Home lab: Kali + Metasploitable 2 on a host-only network",
+      "source": "free",
+      "where": "https://docs.rapid7.com/metasploit/metasploitable-2/",
+      "skill": "Building an isolated lab, taking snapshots, a first ping and nmap from Kali",
+      "minutes": 90,
+      "verify": true
+    },
+    {
+      "name": "OverTheWire Bandit, levels 0–10",
+      "source": "free",
+      "where": "https://overthewire.org/wargames/bandit/",
+      "skill": "Linux command line: files, permissions, find, grep, SSH",
+      "minutes": 120,
+      "verify": true
+    },
+    {
+      "name": "TryHackMe Pre Security path (free rooms)",
+      "source": "free",
+      "where": "https://tryhackme.com/path/outline/presecurity",
+      "skill": "Networking basics, how the web works, Linux and Windows fundamentals",
+      "minutes": 180,
+      "verify": true
+    },
+    {
+      "name": "Wireshark: capture a TCP handshake and a DNS lookup",
+      "source": "free",
+      "where": "https://www.wireshark.org/docs/wsug_html_chunked/",
+      "skill": "Seeing SYN, SYN/ACK, ACK and a UDP DNS query on the wire",
+      "minutes": 45,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain what happens, packet by packet, when your browser opens https://example.org: DNS, the TCP handshake, then TLS and HTTP.",
+    "Explain why a root-owned SUID program is dangerous, and how you would find such programs.",
+    "Explain the difference between authentication and authorization with an example from your own life, then say which control types apply."
+  ]
 }

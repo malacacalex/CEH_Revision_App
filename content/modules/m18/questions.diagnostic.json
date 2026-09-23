@@ -1,0 +1,74 @@
+[
+  {
+    "id": "m18-q-9001",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which weakness let the Mirai botnet take over hundreds of thousands of IoT devices in 2016?",
+    "options": ["Weak Wi-Fi passwords on phones", "A flaw in TLS 1.3", "Unpatched Windows desktops", "Default or hard-coded Telnet/SSH credentials"],
+    "answer": 3,
+    "explanation": "Change default passwords, disable Telnet, and segment IoT devices.",
+    "optionNotes": ["Mirai logged into devices directly.", "Mirai did not attack TLS.", "Mirai targeted Linux-based IoT devices.", "Correct."],
+    "tags": ["iot", "botnet", "default-credentials", "diagnostic"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://owasp.org/www-project-internet-of-things/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-9002",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In most industrial control systems, which security goal usually comes first?",
+    "options": [
+      "Confidentiality of engineering data",
+      "Availability and safety of the physical process",
+      "Anonymity of operators",
+      "Speed of software updates"
+    ],
+    "answer": 1,
+    "explanation": "IT often ranks confidentiality first; OT ranks availability and safety first.",
+    "optionNotes": [
+      "Important, but a stopped process or an unsafe plant costs more.",
+      "Correct.",
+      "Not an OT priority.",
+      "OT patching is slow and planned around uptime."
+    ],
+    "tags": ["ot", "ics", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/82/r3/final", "https://www.cisa.gov/topics/industrial-control-systems"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-9003",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why is Modbus/TCP (port 502) risky when reachable from untrusted networks?",
+    "options": [
+      "It encrypts data with a broken cipher",
+      "It uses too much bandwidth",
+      "It only works over Wi-Fi",
+      "The classic protocol has no authentication or encryption, so anyone who can reach it can send commands"
+    ],
+    "answer": 3,
+    "explanation": "Segment OT networks (Purdue model zones) and allow only known hosts to reach controllers.",
+    "optionNotes": ["Classic Modbus has no encryption at all.", "Bandwidth is not the concern.", "It runs over Ethernet/TCP (and serial).", "Correct."],
+    "tags": ["modbus", "ot", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/82/r3/final", "https://www.cisa.gov/topics/industrial-control-systems"],
+    "verify": false,
+    "rev": 1
+  }
+]

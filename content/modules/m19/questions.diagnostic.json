@@ -1,0 +1,72 @@
+[
+  {
+    "id": "m19-q-9001",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which cloud service model lets a customer deploy its own code while the provider manages the OS and runtime?",
+    "options": ["SaaS", "IaaS", "PaaS", "On-premises"],
+    "answer": 2,
+    "explanation": "NIST SP 800-145 defines SaaS, PaaS and IaaS.",
+    "optionNotes": ["In SaaS the customer only uses the application.", "In IaaS the customer manages the OS.", "Correct.", "Not a cloud service model."],
+    "tags": ["cloud-models", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/145/final", "https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-9002",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company runs virtual machines on IaaS. Who is responsible for patching the guest operating system?",
+    "options": ["The customer", "The cloud provider", "Nobody: IaaS patches itself", "The hardware vendor"],
+    "answer": 0,
+    "explanation": "The provider handles security of the cloud; the customer handles security in the cloud (OS, apps, data, identities).",
+    "optionNotes": [
+      "Correct: the shared responsibility model.",
+      "The provider secures the physical hosts and hypervisor.",
+      "No automatic guest patching is implied.",
+      "Not involved."
+    ],
+    "tags": ["shared-responsibility", "diagnostic"],
+    "sources": [
+      "https://aws.amazon.com/compliance/shared-responsibility-model/",
+      "https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-9003",
+    "module": 19,
+    "section": "Cloud Computing Threats",
+    "domain": "D8",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Customer files leak from a storage bucket anyone on the internet can read. What is the root cause?",
+    "options": ["Weak Wi-Fi encryption", "A flaw in the provider's hypervisor", "A DDoS attack", "A misconfigured access policy"],
+    "answer": 3,
+    "explanation": "Use account-wide public-access blocks and review bucket policies regularly.",
+    "optionNotes": [
+      "Unrelated.",
+      "Nothing points to the provider.",
+      "DDoS affects availability, not disclosure.",
+      "Correct: the most common cloud data exposure."
+    ],
+    "tags": ["misconfiguration", "storage", "diagnostic"],
+    "sources": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+      "https://cloudsecurityalliance.org/research/topics/top-threats"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

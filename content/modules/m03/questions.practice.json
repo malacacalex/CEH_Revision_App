@@ -210,7 +210,7 @@
       "-F sets the FIN flag, not SYN."
     ],
     "tags": ["hping3", "sample"],
-    "sources": ["https://linux.die.net/man/8/hping3", "https://www.kali.org/tools/hping3/"],
+    "sources": ["https://www.kali.org/tools/hping3/", "https://www.kali.org/tools/hping3/"],
     "verify": false,
     "rev": 1
   },
@@ -238,7 +238,7 @@
       "Dropping fragments counters fragmentation evasion."
     ],
     "tags": ["banner-grabbing", "countermeasures", "sample"],
-    "sources": ["https://nmap.org/book/man-version-detection.html", "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server"],
+    "sources": ["https://nmap.org/book/man-version-detection.html", "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md"],
     "verify": false,
     "rev": 1
   },

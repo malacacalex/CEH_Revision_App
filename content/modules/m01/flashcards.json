@@ -50,7 +50,7 @@
     "front": "Hacktivist",
     "back": "An attacker driven by a political or social agenda. Typical methods: website defacement, DDoS, and leaking an organization's data.",
     "tags": ["hacker-classes", "sample"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacktivism", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
     "rev": 1
   },

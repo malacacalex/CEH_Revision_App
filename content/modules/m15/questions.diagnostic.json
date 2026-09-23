@@ -1,0 +1,87 @@
+[
+  {
+    "id": "m15-q-9001",
+    "module": 15,
+    "section": "SQL Injection Concepts",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is UNION-based SQL injection?",
+    "options": [
+      "An in-band technique that appends a second SELECT so its results appear in the page",
+      "An attack that deletes the database with DROP TABLE",
+      "A technique that infers data only from response delays",
+      "Injection through HTTP headers only"
+    ],
+    "answer": 0,
+    "explanation": "In-band SQLi (UNION-based or error-based) returns data in the same channel as the request.",
+    "optionNotes": [
+      "Correct.",
+      "That is one possible payload, not the technique.",
+      "That is time-based blind SQLi.",
+      "Headers are one entry point among many."
+    ],
+    "tags": ["sqli", "union", "diagnostic"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/SQL_Injection",
+      "https://portswigger.net/web-security/sql-injection/union-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m15-q-9002",
+    "module": 15,
+    "section": "Types of SQL Injection",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "An application shows no data and no errors, but responses differ depending on whether an injected condition is true. What type of SQLi is this?",
+    "options": ["Error-based SQL injection", "Blind (boolean-based) SQL injection", "UNION-based SQL injection", "Stored XSS"],
+    "answer": 1,
+    "explanation": "Blind SQLi infers data bit by bit from true/false differences or time delays.",
+    "optionNotes": [
+      "Error-based needs database errors in the response.",
+      "Correct.",
+      "UNION-based needs query results in the page.",
+      "XSS is a different class of flaw."
+    ],
+    "tags": ["sqli", "blind", "diagnostic"],
+    "sources": ["https://owasp.org/www-community/attacks/Blind_SQL_Injection", "https://owasp.org/www-community/attacks/SQL_Injection"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m15-q-9003",
+    "module": 15,
+    "section": "SQL Injection Countermeasures",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the primary defense against SQL injection?",
+    "options": [
+      "Hiding database error messages",
+      "Parameterized queries (prepared statements)",
+      "A web application firewall alone",
+      "Encrypting the database files"
+    ],
+    "answer": 1,
+    "explanation": "Keep code and data separate; add least-privilege database accounts and allow-list validation.",
+    "optionNotes": [
+      "Helpful, but blind SQLi still works.",
+      "Correct: the input is never parsed as SQL code.",
+      "A useful extra layer, but it can be bypassed.",
+      "Encryption at rest does not stop injection."
+    ],
+    "tags": ["sqli", "countermeasures", "diagnostic"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/89.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

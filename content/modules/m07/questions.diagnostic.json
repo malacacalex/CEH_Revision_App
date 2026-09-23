@@ -1,0 +1,76 @@
+[
+  {
+    "id": "m07-q-9001",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which type of malware spreads across a network by itself, without a user running it?",
+    "options": ["Adware", "Virus", "Trojan", "Worm"],
+    "answer": 3,
+    "explanation": "Worms copy themselves from system to system, often by exploiting a network service.",
+    "optionNotes": [
+      "Adware shows ads; it does not self-propagate.",
+      "A virus needs a host file and usually a user action to spread.",
+      "A Trojan relies on the user installing something that looks legitimate.",
+      "Correct."
+    ],
+    "tags": ["malware-types", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/glossary/term/worm", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-9002",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What characterizes fileless malware?",
+    "options": [
+      "It runs mostly in memory and abuses built-in tools such as PowerShell or WMI",
+      "It is always delivered on a USB drive",
+      "It only infects files without extensions",
+      "It cannot run on Windows"
+    ],
+    "answer": 0,
+    "explanation": "Fileless techniques evade file-based antivirus. Defenders rely on behavior monitoring, script logging and EDR.",
+    "optionNotes": [
+      "Correct: it leaves few artifacts on disk.",
+      "The delivery method varies.",
+      "Not a meaningful description.",
+      "Most documented cases target Windows."
+    ],
+    "tags": ["fileless", "malware", "diagnostic"],
+    "sources": ["https://attack.mitre.org/techniques/T1059/001/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-9003",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Running a suspicious sample in an isolated sandbox and watching what it does is which kind of analysis?",
+    "options": ["Hash analysis", "Static analysis", "Code signing", "Dynamic analysis"],
+    "answer": 3,
+    "explanation": "Static first (hashes, strings, headers), then dynamic in an isolated lab.",
+    "optionNotes": [
+      "Hashing identifies a sample but shows no behavior.",
+      "Static analysis examines the file without running it.",
+      "Code signing proves the publisher; it is not analysis.",
+      "Correct: the sample is executed."
+    ],
+    "tags": ["malware-analysis", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://csrc.nist.gov/pubs/sp/800/86/final"],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "m05-q-9001",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In CVSS, which qualitative rating matches a base score of 9.0 to 10.0?",
+    "options": ["Severe", "High", "Medium", "Critical"],
+    "answer": 3,
+    "explanation": "CVSS ratings: None 0.0, Low 0.1–3.9, Medium 4.0–6.9, High 7.0–8.9, Critical 9.0–10.0.",
+    "optionNotes": ["Not a CVSS rating.", "High is 7.0–8.9.", "Medium is 4.0–6.9.", "Correct."],
+    "tags": ["cvss", "diagnostic"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://nvd.nist.gov/vuln-metrics/cvss"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-9002",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Why does a credentialed (authenticated) vulnerability scan usually find more than an unauthenticated one?",
+    "options": [
+      "It sends packets faster",
+      "It can log in and read installed software versions, patches and settings directly",
+      "It is allowed to exploit every finding",
+      "It scans more IP addresses"
+    ],
+    "answer": 1,
+    "explanation": "With credentials the scanner checks the host from inside instead of guessing from network banners.",
+    "optionNotes": ["Speed is not the difference.", "Correct.", "A vulnerability scan does not exploit findings.", "The scope is the same."],
+    "tags": ["vulnerability-scanning", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/pubs/sp/800/40/r4/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-9003",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A scanner reports a vulnerability that is not actually present on the host. What is this called?",
+    "options": ["A false positive", "A false negative", "A true positive", "A zero-day"],
+    "answer": 0,
+    "explanation": "Validate findings before reporting them, and record the false positives you rule out.",
+    "optionNotes": [
+      "Correct.",
+      "A false negative is a real vulnerability that was missed.",
+      "A true positive is a real, correctly reported finding.",
+      "A zero-day is a flaw with no patch yet."
+    ],
+    "tags": ["reporting", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/glossary/term/false_positive", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  }
+]

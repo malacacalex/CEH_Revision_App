@@ -4,7 +4,11 @@ import { z } from 'zod';
 export const DomainIdSchema = z.enum(['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']);
 export type DomainId = z.infer<typeof DomainIdSchema>;
 
-export const PoolSchema = z.enum(['diagnostic', 'pretest', 'practice', 'mock']);
+/**
+ * diagnostic = Phase 0 map of weak zones (3 per module, M1–M20); skipcheck = M0's 20-question check that lets
+ * intermediate users skip Foundations; mock = held-out pool, never used in practice modes.
+ */
+export const PoolSchema = z.enum(['diagnostic', 'skipcheck', 'pretest', 'practice', 'mock']);
 export type Pool = z.infer<typeof PoolSchema>;
 
 export const QuestionTypeSchema = z.enum(['recall', 'scenario', 'tool', 'command-output', 'ec-council-term']);
@@ -94,6 +98,19 @@ export const GlossaryEntrySchema = z.strictObject({
 });
 export type GlossaryEntry = z.infer<typeof GlossaryEntrySchema>;
 
+/** A global reference sheet (§7.4): content/reference/NN-slug.md with a small front matter block. */
+export const ReferenceSheetSchema = z.strictObject({
+  id: z.string().regex(/^ref-\d{2}$/, 'id must look like ref-01'),
+  title: nonEmpty,
+  order: z.number().int().positive(),
+  modules: z.array(z.number().int().min(0).max(20)),
+  rev: z.number().int().min(1),
+  verify: z.boolean(),
+  sources: z.array(url).min(1),
+  body: nonEmpty,
+});
+export type ReferenceSheet = z.infer<typeof ReferenceSheetSchema>;
+
 export const BlueprintSchema = z.strictObject({
   note: z.string(),
   domains: z.array(
@@ -136,6 +153,7 @@ export const ContentBundleSchema = z.strictObject({
     }),
   ),
   glossary: z.array(GlossaryEntrySchema),
+  references: z.array(ReferenceSheetSchema),
 });
 export type ContentBundle = z.infer<typeof ContentBundleSchema>;
 export type ModuleContent = ContentBundle['modules'][number];

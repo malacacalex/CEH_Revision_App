@@ -1,0 +1,77 @@
+[
+  {
+    "id": "m14-q-9001",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A script submitted in a forum post is saved in the database and runs in every visitor's browser. Which XSS type is this?",
+    "options": ["DOM-based XSS only", "Reflected XSS", "Stored (persistent) XSS", "Blind SQL injection"],
+    "answer": 2,
+    "explanation": "Encode output for its context and use a Content Security Policy as defense in depth.",
+    "optionNotes": [
+      "DOM XSS happens in client-side code; this one is stored on the server.",
+      "Reflected XSS bounces off a single request, such as a crafted link.",
+      "Correct: the payload is stored and served to everyone.",
+      "SQL injection targets the database query, not browsers."
+    ],
+    "tags": ["xss", "diagnostic"],
+    "sources": ["https://owasp.org/www-community/attacks/xss/", "https://cwe.mitre.org/data/definitions/79.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-9002",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Changing `/api/orders/1001` to `/api/orders/1002` returns another customer's order. What is the flaw?",
+    "options": ["Weak TLS configuration", "Excessive rate limiting", "Cross-site request forgery", "Broken object level authorization (BOLA / IDOR)"],
+    "answer": 3,
+    "explanation": "The API must check that the caller owns or may access each object ID. BOLA is #1 in the OWASP API Security Top 10 (2023).",
+    "optionNotes": [
+      "TLS protects transport, not authorization.",
+      "Rate limiting is not the issue.",
+      "CSRF abuses a victim's browser session.",
+      "Correct: no ownership check on the object."
+    ],
+    "tags": ["api", "idor", "diagnostic"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+      "https://cwe.mitre.org/data/definitions/639.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-9003",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which defense stops cross-site request forgery (CSRF)?",
+    "options": [
+      "Input length limits",
+      "Hashing passwords with bcrypt",
+      "A secret anti-CSRF token checked on every state-changing request, plus SameSite cookies",
+      "Hiding the login form"
+    ],
+    "answer": 2,
+    "explanation": "CSRF works because browsers attach cookies automatically; an unpredictable token proves the request came from your own page.",
+    "optionNotes": ["Does not stop forged requests.", "Good practice, but unrelated to CSRF.", "Correct.", "Not a control."],
+    "tags": ["csrf", "diagnostic"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/352.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

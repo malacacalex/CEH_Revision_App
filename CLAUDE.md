@@ -51,13 +51,17 @@ Vite 8 + React 19 + TS **pinned ~6.0.3** (typescript-eslint needs < 6.1) · reac
 content/config/blueprint.json    domain weights, hours per unit, mock sizes, quiz pass mark
 content/content-version.json     bump on every content change
 content/modules/mXX/             meta.json, notes.md, flashcards.json, questions.<pool>.json
+content/reference/NN-slug.md     reference sheets (front matter + `##` sections), content/glossary.json
+research/                        mXX.md fact/source tables; deferred.md = content set aside (see below)
+.claude/commands/                /build-module /teach /weekly-review /mock-debrief /fact-check /triage-reports /release
 src/schemas/                     zod: content.ts (content), progress.ts (DB + export format)
 src/content/                     assemble.ts (shared by app + scripts), validate.ts, bundle.ts (glob import)
 src/domain/                      pure logic: dates, fsrs/scheduler, planner, quiz (assemble/score), readiness, gates
 src/db/                          Dexie schema (db.ts) + all writes (repo.ts)
 src/state/                       ProfileContext (live queries) + snapshot.ts (derived plan/gates/readiness)
-src/features/                    onboarding, dashboard, planner, modules, flashcards, quiz, mistakes, settings
-scripts/                         content-validate / -stats / -pack, gen-icons
+src/features/                    onboarding, dashboard, planner, modules, flashcards, quiz, mistakes, reference, settings
+                                 (Settings → "Export for Claude review" = src/domain/review.ts, used by /weekly-review)
+scripts/                         content-validate / -stats / -pack / -balance, gen-icons
 tests/unit, tests/e2e
 ```
 
@@ -66,7 +70,15 @@ tests/unit, tests/e2e
 - IDs: `mXX-c-NNNN` (cards), `mXX-q-NNNN` (questions), unique, never reused or renumbered.
   Progress is keyed by ID, so edits keep progress; bump `rev` when meaning changes.
 - The file decides the pool: `questions.pretest.json` (10/module), `questions.practice.json`,
-  `questions.mock.json` (held out: never shown in practice), `questions.diagnostic.json`.
+  `questions.mock.json` (held out: never shown in practice), `questions.diagnostic.json` (3 per module
+  M1–M20, IDs `mXX-q-9001..9003`, balanced as one group), `questions.skipcheck.json` (20, M0 only).
+- Write generated items with the correct answer at index 0, then `npm run content:balance -- <module>`
+  (deterministic, idempotent).
+- Reference sheets: front matter `id: ref-NN` (= `order`), title, modules, rev, verify, sources.
+  Glossary entries: term, definition, modules, tags, sources, verify.
+- **Deferred content:** anything that cannot be written (blocked, no reliable source, set aside by the
+  owner) goes as one row in `research/deferred.md`, never worked around; carry on with the rest.
+  Currently: reference sheet 2 (Nmap / hping3).
 - Every item: `module`, `domain`, `section` (must be one of meta.sections), `sources[]`, `verify`, `rev`.
 - Questions: 4 distinct options, `optionNotes` explain each option, `answer` 0–3 balanced (20–30% each),
   "all/none of the above" ≤ 2%, no near-duplicate stems (Jaccard < 0.8).
@@ -91,16 +103,19 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 
 | Module | Status | Notes |
 |---|---|---|
-| M0 Foundations | stub | M2 milestone |
+| M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
 | M1 Intro to Ethical Hacking | sample | 8 cards, 3 pretest, 12 practice |
 | M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice |
 | M2, M4–M20 | stub | built one by one in M4 (`/build-module N`) |
+| Diagnostic | done | 60 questions, 3 per module M1–M20 |
+| Reference | 4 / 18 | sheets 1, 3, 4 (verify), 5; sheet 2 deferred · glossary 43 terms |
 
 ## Milestones
 
 - [x] **M1 MVP**: scaffold, schemas, Dexie profiles, onboarding, FSRS cards, quiz engine (modes, confidence,
   mistake log), dashboard, planner v1, export/import, PWA + Pages CI, sample content.
-- [ ] **M2**: M0 Foundations, 60-q diagnostic, reference sheets 1–5, `.claude/commands`.
+- [x] **M2**: M0 Foundations, 60-q diagnostic, reference sheets 1, 3–5 (2 deferred), glossary,
+  review export, `.claude/commands`.
 - [ ] **M3**: Tauri + Capacitor packaging, CI release, INSTALL.md, in-app content-pack update.
 - [ ] **M4**: build M1–M20 (`/build-module N`), full volumes.
 - [ ] **M5**: analytics, half/full mocks from the 500-q mock pool.
@@ -109,3 +124,5 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 
 - 2026-09-23 — M1 MVP built and pushed; 35 unit tests + Playwright smoke (desktop + mobile) green.
   Pages needs Settings → Pages → Source: GitHub Actions (once).
+- 2026-09-23 — M2: M0 built, diagnostic, Reference page (sheets + glossary), review export, commands.
+  Content 0.2.0. Sheet 2 deferred by the owner (`research/deferred.md`).

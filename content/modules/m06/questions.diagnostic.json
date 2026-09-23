@@ -1,0 +1,81 @@
+[
+  {
+    "id": "m06-q-9001",
+    "module": 6,
+    "section": "Gaining Access",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which defense makes precomputed rainbow tables useless against stored password hashes?",
+    "options": [
+      "Using MD5 instead of SHA-1",
+      "Storing hashes in a hidden file",
+      "A unique random salt for every password",
+      "Forcing a password change every week"
+    ],
+    "answer": 2,
+    "explanation": "Salts make identical passwords hash differently. Combine them with a slow algorithm (Argon2id, scrypt, bcrypt, PBKDF2).",
+    "optionNotes": [
+      "MD5 is weaker, not stronger.",
+      "Hiding the file does not change the hashes.",
+      "Correct: each salt would need its own table.",
+      "Frequent changes do not stop precomputation."
+    ],
+    "tags": ["passwords", "hashing", "diagnostic"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html", "https://pages.nist.gov/800-63-3/sp800-63b.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-9002",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A standard user gains administrator rights on the same machine. What kind of privilege escalation is this?",
+    "options": ["Horizontal", "Vertical", "Lateral movement", "Persistence"],
+    "answer": 1,
+    "explanation": "Vertical escalation raises the privilege level; horizontal escalation stays at the same level.",
+    "optionNotes": [
+      "Horizontal is taking over another account at the same level.",
+      "Correct: moving up to higher privileges.",
+      "Lateral movement means moving to other hosts.",
+      "Persistence means keeping access over time."
+    ],
+    "tags": ["privilege-escalation", "diagnostic"],
+    "sources": ["https://attack.mitre.org/tactics/TA0004/", "https://csrc.nist.gov/glossary/term/least_privilege"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-9003",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "What best protects log evidence if an attacker gains admin rights on a server?",
+    "options": [
+      "Rotating logs every hour on the same server",
+      "Making the local log files larger",
+      "Forwarding logs in real time to a separate, access-restricted log server or SIEM",
+      "Disabling logging to save disk space"
+    ],
+    "answer": 2,
+    "explanation": "Centralized logging preserves evidence and makes log clearing itself detectable.",
+    "optionNotes": [
+      "Rotation on the same host is still under the attacker's control.",
+      "Size does not stop deletion.",
+      "Correct: the attacker cannot erase copies they cannot reach.",
+      "That removes the evidence entirely."
+    ],
+    "tags": ["logging", "countermeasures", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/92/final", "https://attack.mitre.org/techniques/T1070/"],
+    "verify": false,
+    "rev": 1
+  }
+]

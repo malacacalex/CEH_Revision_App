@@ -16,7 +16,7 @@ export function readRawContent(dir = CONTENT_DIR): RawContentFiles {
   const files: RawContentFiles = {};
   for (const full of walk(dir)) {
     const rel = relative(dir, full).replaceAll('\\', '/');
-    if (rel.startsWith('reference/')) continue;
+    if (rel === 'tutor-misses.json') continue;
     const text = readFileSync(full, 'utf8');
     if (rel.endsWith('.json')) {
       try {

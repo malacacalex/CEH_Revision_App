@@ -1,0 +1,81 @@
+[
+  {
+    "id": "m02-q-9001",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Which activity is passive footprinting?",
+    "options": [
+      "Pinging every address in the target's IP range",
+      "Reading the target's job postings to learn which technologies it uses",
+      "Calling the help desk while pretending to be an employee",
+      "Running a port scan against the target's mail server"
+    ],
+    "answer": 1,
+    "explanation": "Passive footprinting gathers public information without interacting with the target's systems or people.",
+    "optionNotes": [
+      "Sends packets to the target: active.",
+      "Correct: public information, no contact with the target's systems.",
+      "Direct interaction with staff: active (social engineering).",
+      "Sends packets to the target: active."
+    ],
+    "tags": ["footprinting", "osint", "diagnostic"],
+    "sources": ["https://attack.mitre.org/tactics/TA0043/", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-9002",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What can a WHOIS or RDAP lookup on a domain typically reveal?",
+    "options": [
+      "The internal IP plan of the organization",
+      "The domain's open ports and running services",
+      "Password hashes of the domain's users",
+      "The registrar, registration and expiry dates, and the domain's name servers"
+    ],
+    "answer": 3,
+    "explanation": "Registration data lists the registrar, dates, name servers and, unless redacted for privacy, registrant contacts.",
+    "optionNotes": ["Registration data does not include internal networks.", "That needs scanning.", "Never published in registration data.", "Correct."],
+    "tags": ["whois", "diagnostic"],
+    "sources": ["https://www.icann.org/rdap", "https://www.rfc-editor.org/rfc/rfc3912"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-9003",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A DNS server answers a full zone transfer (AXFR) request from any address on the internet. Why is this a problem?",
+    "options": [
+      "It hands anyone the complete list of hostnames and addresses in the zone",
+      "It lets anyone change the zone's records",
+      "It exposes the server's root password",
+      "It disables DNSSEC for the zone"
+    ],
+    "answer": 0,
+    "explanation": "Restrict zone transfers to the secondary name servers (by IP and ideally with TSIG).",
+    "optionNotes": [
+      "Correct: a ready-made map of the network.",
+      "AXFR is read-only; changes need dynamic updates.",
+      "DNS does not carry passwords.",
+      "AXFR does not turn DNSSEC off."
+    ],
+    "tags": ["dns", "zone-transfer", "diagnostic"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5936", "https://www.rfc-editor.org/rfc/rfc1035"],
+    "verify": false,
+    "rev": 1
+  }
+]

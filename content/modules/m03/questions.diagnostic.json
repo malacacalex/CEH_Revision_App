@@ -1,0 +1,71 @@
+[
+  {
+    "id": "m03-q-9001",
+    "module": 3,
+    "section": "Host Discovery",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "What does the Nmap option -sn do?",
+    "options": [
+      "A TCP SYN scan of every port",
+      "Host discovery only, with no port scan afterwards",
+      "A scan with no host discovery first",
+      "Service version detection"
+    ],
+    "answer": 1,
+    "explanation": "-sn stops after finding which hosts are up.",
+    "optionNotes": ["That is -sS.", "Correct: often called a ping sweep.", "That is -Pn.", "That is -sV."],
+    "tags": ["nmap", "host-discovery", "diagnostic"],
+    "sources": ["https://nmap.org/book/man-host-discovery.html", "https://nmap.org/book/man-briefoptions.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-9002",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Nmap option probes open ports to identify the service and its version?",
+    "options": ["-sn", "-O", "-sV", "-F"],
+    "answer": 2,
+    "explanation": "Version detection sends probes and matches the answers against Nmap's service database.",
+    "optionNotes": ["-sn is host discovery only.", "-O detects the operating system.", "Correct.", "-F scans fewer ports (fast mode)."],
+    "tags": ["nmap", "version-detection", "diagnostic"],
+    "sources": ["https://nmap.org/book/man-version-detection.html", "https://nmap.org/book/vscan.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-9003",
+    "module": 3,
+    "section": "Network Scanning Countermeasures",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Which measure most reduces what a port scan can learn about a server?",
+    "options": [
+      "Changing the server's hostname",
+      "Disabling unused services and applying a default-deny firewall policy",
+      "Moving the web service from port 80 to port 8080",
+      "Increasing the server's TTL"
+    ],
+    "answer": 1,
+    "explanation": "Minimize the attack surface first, then filter the rest, and monitor for scans with an IDS.",
+    "optionNotes": [
+      "The hostname does not hide ports.",
+      "Correct: fewer listening ports and filtered probes.",
+      "Non-standard ports are still found by a full scan.",
+      "TTL does not hide services."
+    ],
+    "tags": ["countermeasures", "hardening", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://csrc.nist.gov/pubs/sp/800/123/final"],
+    "verify": false,
+    "rev": 1
+  }
+]

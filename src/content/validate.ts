@@ -8,6 +8,9 @@ export interface ValidationReport {
 const AOTA_NOTA = /\b(all|none) of the above\b/i;
 const NEAR_DUPLICATE_THRESHOLD = 0.8;
 
+export const DIAGNOSTIC_PER_MODULE = 3;
+export const SKIPCHECK_SIZE = 20;
+
 export function tokenize(text: string): Set<string> {
   return new Set(
     text
@@ -30,18 +33,31 @@ export function noteSections(notes: string): Set<string> {
   return new Set([...notes.matchAll(/^##\s+(.+?)\s*$/gm)].map((m) => m[1]!.trim()));
 }
 
-/**
- * Content rules from the spec (§6.5). Structural rules always fail the build.
- * Volume/coverage/balance rules only fail for modules marked "built"; for "sample"/"stub" modules they are warnings.
- */
-/** Per-module volume floors (spec §6): ~35 cards and ~50 practice questions per effort unit, 10% tolerance. */
-export function volumeTargets(effortUnits: number): { minCards: number; minPractice: number } {
+/** Per-module volume floors (spec §7.1): ~35 cards and ~50 practice questions per effort unit, 10% tolerance. */
+export function volumeTargets(effortUnits: number, module?: number): { minCards: number; minPractice: number } {
+  // M0 Foundations has its own size in §7.5: ~40 cards and ~60 questions.
+  if (module === 0) return { minCards: 36, minPractice: 54 };
   return {
     minCards: Math.max(25, Math.round(35 * effortUnits * 0.9)),
     minPractice: Math.max(35, Math.round(50 * effortUnits * 0.9)),
   };
 }
 
+/** Every answer letter must sit within 20–30% of a set of questions (§6.5). */
+export function balanceIssues(questions: Question[]): string[] {
+  if (questions.length === 0) return [];
+  const counts = [0, 0, 0, 0];
+  for (const q of questions) counts[q.answer]!++;
+  return counts.flatMap((c, i) => {
+    const share = c / questions.length;
+    return share < 0.2 || share > 0.3 ? [`answer ${'ABCD'[i]} is ${(share * 100).toFixed(0)}%`] : [];
+  });
+}
+
+/**
+ * Content rules from the spec (§6.5). Structural rules always fail the build.
+ * Volume/coverage/balance rules only fail for modules marked "built"; for "sample"/"stub" modules they are warnings.
+ */
 export function validateContent(bundle: ContentBundle): ValidationReport {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -88,6 +104,9 @@ export function validateContent(bundle: ContentBundle): ValidationReport {
       const normalized = q.options.map((o) => o.trim().toLowerCase());
       if (new Set(normalized).size !== 4) errors.push(`${tag}: ${q.id} has duplicate options`);
       if (!q.optionNotes.every((n) => n.trim().length > 0)) errors.push(`${tag}: ${q.id} is missing option notes`);
+      // Pool placement: the diagnostic maps exam modules M1–M20; the skip-check belongs to M0 only.
+      if (q.pool === 'diagnostic' && meta.module === 0) errors.push(`${tag}: ${q.id} diagnostic questions belong to M1–M20`);
+      if (q.pool === 'skipcheck' && meta.module !== 0) errors.push(`${tag}: ${q.id} skip-check questions belong to M0`);
       allQuestions.push(q);
     }
 
@@ -107,7 +126,7 @@ export function validateContent(bundle: ContentBundle): ValidationReport {
     }
 
     // Volumes (§7.1).
-    const { minCards, minPractice } = volumeTargets(meta.effortUnits);
+    const { minCards, minPractice } = volumeTargets(meta.effortUnits, meta.module);
     const pretest = questions.filter((q) => q.pool === 'pretest').length;
     const practice = questions.filter((q) => q.pool === 'practice').length;
     if (flashcards.length < minCards) soft(`${flashcards.length} flashcards (target ≥ ${minCards})`);
@@ -116,20 +135,39 @@ export function validateContent(bundle: ContentBundle): ValidationReport {
     if (meta.objectives.length < 5) soft(`${meta.objectives.length} objectives (expected 5–10)`);
     if (meta.feynmanPrompts.length !== 3) soft(`${meta.feynmanPrompts.length} Feynman prompts (expected 3)`);
 
-    // Answer-position balance: each letter within 25% ± 5% (practice + mock, where volume makes it meaningful).
+    // Answer-position balance (practice + mock, where volume makes it meaningful).
     const balanced = questions.filter((q) => q.pool === 'practice' || q.pool === 'mock');
-    if (balanced.length >= 20) {
-      const counts = [0, 0, 0, 0];
-      for (const q of balanced) counts[q.answer]!++;
-      counts.forEach((c, i) => {
-        const share = c / balanced.length;
-        if (share < 0.2 || share > 0.3)
-          soft(`answer ${'ABCD'[i]} is ${(share * 100).toFixed(0)}% of practice+mock answers (must be 20–30%)`);
-      });
+    if (balanced.length >= 20) for (const b of balanceIssues(balanced)) soft(`${b} of practice+mock answers (must be 20–30%)`);
+
+    if (meta.module === 0) {
+      const check = questions.filter((q) => q.pool === 'skipcheck');
+      if (check.length !== SKIPCHECK_SIZE) soft(`${check.length} skip-check questions (expected ${SKIPCHECK_SIZE})`);
+      else for (const b of balanceIssues(check)) soft(`${b} of skip-check answers (must be 20–30%)`);
     }
 
     const unverified = [...flashcards, ...questions].filter((i) => i.verify).length;
     if (unverified > 0) warnings.push(`${tag}: ${unverified} item(s) flagged verify:true`);
+  }
+
+  // Diagnostic (§5.1): once it exists, exactly 3 questions for every exam module, balanced answers.
+  const diagnostic = allQuestions.filter((q) => q.pool === 'diagnostic');
+  if (diagnostic.length > 0) {
+    for (let m = 1; m <= 20; m++) {
+      const n = diagnostic.filter((q) => q.module === m).length;
+      if (n !== DIAGNOSTIC_PER_MODULE) errors.push(`diagnostic: M${m} has ${n} questions (expected ${DIAGNOSTIC_PER_MODULE})`);
+    }
+    for (const b of balanceIssues(diagnostic)) errors.push(`diagnostic: ${b} of answers (must be 20–30%)`);
+  }
+
+  // Reference sheets (§7.4): unique ids matching their order, and at least one "## " section.
+  const refIds = new Set<string>();
+  for (const r of bundle.references) {
+    if (refIds.has(r.id)) errors.push(`reference: duplicate id ${r.id}`);
+    refIds.add(r.id);
+    const expected = `ref-${String(r.order).padStart(2, '0')}`;
+    if (r.id !== expected) errors.push(`reference: ${r.id} should be ${expected} (id matches its order)`);
+    if (noteSections(r.body).size === 0) errors.push(`reference: ${r.id} has no "## " sections`);
+    if (r.verify) warnings.push(`reference: ${r.id} flagged verify:true`);
   }
 
   // Near-duplicate stems across the whole bank (also catches mock items copied from practice).

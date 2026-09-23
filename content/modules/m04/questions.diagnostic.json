@@ -1,0 +1,79 @@
+[
+  {
+    "id": "m04-q-9001",
+    "module": 4,
+    "section": "Enumeration Concepts",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "How does enumeration differ from scanning?",
+    "options": [
+      "Enumeration makes active connections to extract details such as usernames, shares and service settings",
+      "Enumeration is always passive and uses only public data",
+      "Enumeration only finds live hosts",
+      "Enumeration happens after the attacker has covered their tracks"
+    ],
+    "answer": 0,
+    "explanation": "Scanning finds live hosts and open ports; enumeration queries those services for details.",
+    "optionNotes": [
+      "Correct.",
+      "That describes passive footprinting.",
+      "That is host discovery, part of scanning.",
+      "Enumeration comes early, right after scanning."
+    ],
+    "tags": ["enumeration", "diagnostic"],
+    "sources": ["https://attack.mitre.org/tactics/TA0007/", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m04-q-9002",
+    "module": 4,
+    "section": "NetBIOS Enumeration",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which port does the NetBIOS name service use?",
+    "options": ["UDP 161", "TCP 139", "TCP 445", "UDP 137"],
+    "answer": 3,
+    "explanation": "NetBIOS: 137/udp name, 138/udp datagram, 139/tcp session.",
+    "optionNotes": ["UDP 161 is SNMP.", "TCP 139 is the NetBIOS session service.", "TCP 445 is SMB directly over TCP.", "Correct."],
+    "tags": ["netbios", "ports", "diagnostic"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m04-q-9003",
+    "module": 4,
+    "section": "SNMP and LDAP Enumeration",
+    "domain": "D2",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An SNMP v1/v2c agent still accepts the community string \"public\". What is the best fix?",
+    "options": [
+      "Rename the device's hostname",
+      "Change the agent to listen on TCP instead of UDP",
+      "Move to SNMPv3 with authentication and encryption, or disable SNMP if it is not needed",
+      "Allow the string only on weekends"
+    ],
+    "answer": 2,
+    "explanation": "SNMPv1/v2c community strings travel in cleartext and are often left at their defaults.",
+    "optionNotes": [
+      "The hostname has nothing to do with SNMP access.",
+      "The transport does not fix a guessable secret.",
+      "Correct: v3 adds real user authentication and privacy.",
+      "Not a real control."
+    ],
+    "tags": ["snmp", "countermeasures", "diagnostic"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc3414", "https://www.rfc-editor.org/rfc/rfc3411"],
+    "verify": false,
+    "rev": 1
+  }
+]

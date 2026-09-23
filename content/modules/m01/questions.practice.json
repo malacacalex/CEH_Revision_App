@@ -64,7 +64,7 @@
       "Cyber terrorists are defined by an ideological motive to cause fear or large-scale disruption."
     ],
     "tags": ["hacker-classes", "sample"],
-    "sources": ["https://csrc.nist.gov/glossary/term/script_kiddie", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
     "rev": 1
   },
@@ -266,7 +266,7 @@
       "DMCA deals with copyright and anti-circumvention."
     ],
     "tags": ["sox", "laws-standards", "sample"],
-    "sources": ["https://www.congress.gov/bill/107th-congress/house-bill/3763", "https://www.sec.gov/spotlight/sarbanes-oxley.htm"],
+    "sources": ["https://www.govinfo.gov/content/pkg/PLAW-107publ204/pdf/PLAW-107publ204.pdf", "https://www.sec.gov/spotlight/sarbanes-oxley.htm"],
     "verify": false,
     "rev": 1
   },

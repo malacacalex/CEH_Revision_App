@@ -74,6 +74,17 @@ export function ModulePage() {
 
       {tab === 'overview' && (
         <div className="space-y-4">
+          {n === 0 && profile.level === 'intermediate' && m.questions.some((q) => q.pool === 'skipcheck') && (
+            <Card className="border-olive/50 bg-olive-soft">
+              <h2 className="mb-1 text-lg font-bold">Already know the basics?</h2>
+              <p className="mb-3 text-sm">
+                {profile.foundationsSkipped
+                  ? 'You passed the skip-check, so M0 is out of your plan. The notes stay here as a refresher.'
+                  : 'Score 80% or more on the 20-question skip-check and M0 leaves your plan.'}
+              </p>
+              {!profile.foundationsSkipped && <ButtonLink to="/quiz/run?mode=skipcheck">Take the skip-check (20 q)</ButtonLink>}
+            </Card>
+          )}
           <Card>
             <h2 className="mb-2 text-lg font-bold">Module gate</h2>
             <ul className="space-y-1.5">

@@ -17,6 +17,7 @@
     "content:validate": "tsx scripts/content-validate.ts",
     "content:stats": "tsx scripts/content-stats.ts",
     "content:pack": "tsx scripts/content-pack.ts",
+    "content:balance": "tsx scripts/content-balance.ts",
     "check": "npm run lint && npm run typecheck && npm test && npm run content:validate"
   },
   "engines": {

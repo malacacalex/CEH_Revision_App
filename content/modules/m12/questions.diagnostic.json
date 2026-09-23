@@ -1,0 +1,76 @@
+[
+  {
+    "id": "m12-q-9001",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which detection method can spot a previously unknown attack because traffic deviates from a normal baseline?",
+    "options": ["Signature-based detection", "Anomaly-based detection", "Port forwarding", "Stateless packet filtering"],
+    "answer": 1,
+    "explanation": "Anomaly detection finds new attacks but produces more false positives; signatures are precise but miss unknown attacks.",
+    "optionNotes": [
+      "Signatures only match known patterns.",
+      "Correct.",
+      "Port forwarding is not a detection method.",
+      "Packet filtering enforces rules; it does not detect anomalies."
+    ],
+    "tags": ["ids", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final", "https://csrc.nist.gov/glossary/term/intrusion_detection_system"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-9002",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which firewall type tracks connections so it can automatically allow return traffic for sessions started from inside?",
+    "options": ["Hub", "Stateless packet filter", "Stateful inspection firewall", "Proxy auto-config file"],
+    "answer": 2,
+    "explanation": "Stateful firewalls keep a state table of active connections.",
+    "optionNotes": [
+      "A hub is not a firewall.",
+      "Judges each packet alone, with no connection table.",
+      "Correct.",
+      "A PAC file only tells browsers which proxy to use."
+    ],
+    "tags": ["firewall", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://csrc.nist.gov/glossary/term/stateful_inspection"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-9003",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why do alerts from a honeypot have few false positives?",
+    "options": [
+      "It has no legitimate use, so almost any interaction with it is suspicious",
+      "It blocks all attacks automatically",
+      "It is placed on every workstation",
+      "It only logs encrypted traffic"
+    ],
+    "answer": 0,
+    "explanation": "Honeypots are decoys: legitimate users have no reason to reach them.",
+    "optionNotes": [
+      "Correct.",
+      "A honeypot observes and deceives; it does not block.",
+      "Honeypots are dedicated decoy systems.",
+      "It logs everything that touches it."
+    ],
+    "tags": ["honeypot", "diagnostic"],
+    "sources": ["https://csrc.nist.gov/glossary/term/honeypot", "https://d3fend.mitre.org/technique/d3f:DecoyEnvironment/"],
+    "verify": false,
+    "rev": 1
+  }
+]

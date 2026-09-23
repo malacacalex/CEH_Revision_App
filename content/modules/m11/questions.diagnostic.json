@@ -1,0 +1,77 @@
+[
+  {
+    "id": "m11-q-9001",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker gets a victim to log in with a session ID the attacker already knows, then reuses that ID. Which fix stops this?",
+    "options": [
+      "Store the session ID in the URL",
+      "Make session IDs shorter",
+      "Issue a new session ID when the user authenticates",
+      "Disable HTTPS on the login page"
+    ],
+    "answer": 2,
+    "explanation": "Session fixation works when the pre-login session ID survives authentication.",
+    "optionNotes": [
+      "IDs in URLs leak through logs and referrers.",
+      "Shorter IDs are easier to guess.",
+      "Correct: this stops session fixation.",
+      "That makes things worse."
+    ],
+    "tags": ["session-fixation", "diagnostic"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_fixation",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-9002",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "To inject data into an existing TCP session without seeing its traffic, what must an attacker predict?",
+    "options": ["The HTTP User-Agent string", "The server's MAC address", "The TLS certificate's serial number", "The TCP sequence numbers"],
+    "answer": 3,
+    "explanation": "Randomized initial sequence numbers (RFC 6528) make blind injection very hard.",
+    "optionNotes": ["An application header, not a TCP value.", "Irrelevant to accepting a TCP segment.", "Irrelevant to TCP acceptance.", "Correct."],
+    "tags": ["tcp-hijacking", "diagnostic"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6528", "https://www.rfc-editor.org/rfc/rfc9293"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-9003",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which cookie attribute stops page JavaScript from reading a session cookie?",
+    "options": ["Max-Age", "Secure", "Domain", "HttpOnly"],
+    "answer": 3,
+    "explanation": "Use HttpOnly, Secure and SameSite together on session cookies.",
+    "optionNotes": [
+      "Max-Age sets its lifetime.",
+      "Secure sends the cookie over HTTPS only.",
+      "Domain sets which hosts receive the cookie.",
+      "Correct: this limits the damage of XSS cookie theft."
+    ],
+    "tags": ["cookies", "diagnostic"],
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

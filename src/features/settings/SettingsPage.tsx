@@ -3,6 +3,7 @@ import { APP_NAME, APP_VERSION, DISCLAIMER, REPO_URL } from '../../config.ts';
 import { content } from '../../content/bundle.ts';
 import { deleteProfile, exportProgress, importProgress, saveProfile, setActiveProfileId } from '../../db/repo.ts';
 import { toISODate } from '../../domain/dates.ts';
+import { buildReview } from '../../domain/review.ts';
 import { useProfile, useProfiles } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, PageHeader } from '../../ui/kit.tsx';
 import { ProfileForm } from '../onboarding/ProfileForm.tsx';
@@ -56,6 +57,33 @@ export function SettingsPage() {
     setMessage({ tone: 'good', text: `Exported ${data.profiles.length} profile${data.profiles.length > 1 ? 's' : ''}.` });
   }
 
+  async function doReview() {
+    const data = await exportProgress(APP_VERSION, content.bundle.version.version, [profile.id]);
+    const review = buildReview({
+      profile,
+      questions: content.questions,
+      blueprint: content.bundle.blueprint,
+      attempts: data.attempts,
+      cardReviews: data.cardReviews,
+      sessions: data.quizSessions,
+      mistakes: data.mistakes,
+      progress: data.moduleProgress,
+      appVersion: APP_VERSION,
+      contentVersion: content.bundle.version.version,
+      now: new Date(),
+    });
+    const text = JSON.stringify(review);
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      copied = true;
+    } catch {
+      // Clipboard blocked (permissions, insecure context): the file download below still works.
+    }
+    download(`shieldup-review-${toISODate(new Date())}.json`, text);
+    setMessage({ tone: 'good', text: copied ? 'Review JSON copied to the clipboard and downloaded.' : 'Review JSON downloaded.' });
+  }
+
   async function doImport(file: File) {
     try {
       const json: unknown = JSON.parse(await file.text());
@@ -88,18 +116,25 @@ export function SettingsPage() {
             </p>
           )}
           {profile.level === 'intermediate' && (
-            <label className="mt-4 flex items-start gap-2 border-t border-line pt-4">
-              <input
-                type="checkbox"
-                checked={profile.foundationsSkipped}
-                onChange={(e) => void saveProfile({ ...profile, foundationsSkipped: e.target.checked })}
-                className="mt-1 accent-(--chestnut)"
-              />
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-4">
               <span>
-                <span className="font-semibold">Skip M0 Foundations</span>
-                <span className="block text-sm text-muted">Only if you already know networking, operating systems and security basics well.</span>
+                <span className="font-semibold">M0 Foundations</span>
+                <span className="block text-sm text-muted">
+                  {profile.foundationsSkipped ? 'Skipped: you passed the skip-check.' : 'In your plan. Pass the 20-question skip-check (≥ 80%) to skip it.'}
+                </span>
               </span>
-            </label>
+              {profile.foundationsSkipped ? (
+                <Button variant="secondary" onClick={() => void saveProfile({ ...profile, foundationsSkipped: false })}>
+                  Put M0 back in my plan
+                </Button>
+              ) : (
+                content.questions.some((q) => q.pool === 'skipcheck') && (
+                  <ButtonLink to="/quiz/run?mode=skipcheck" variant="secondary">
+                    Take the skip-check
+                  </ButtonLink>
+                )
+              )}
+            </div>
           )}
         </Card>
 
@@ -137,7 +172,7 @@ export function SettingsPage() {
         <Card>
           <h2 className="mb-1 text-lg font-bold">Backup</h2>
           <p className="mb-3 text-sm text-muted">
-            Your progress lives only in this browser or app. Export a file regularly, and import it to move to another device.
+            Your progress lives only in this browser or app. Export a file regularly, and import it to move to another device. “Export for Claude review” makes a short summary (adherence, weak tags, calibration, recent mistakes, Feynman notes) to paste into an AI tutor.
           </p>
           <div className="flex flex-wrap gap-2">
             <Button onClick={() => void doExport(false)}>Export this profile</Button>
@@ -148,6 +183,9 @@ export function SettingsPage() {
             )}
             <Button variant="secondary" onClick={() => fileInput.current?.click()}>
               Import a file
+            </Button>
+            <Button variant="secondary" onClick={() => void doReview()} title="Compact summary to paste into /weekly-review or any AI tutor">
+              Export for Claude review
             </Button>
             <input
               ref={fileInput}

@@ -1,0 +1,789 @@
+[
+  {
+    "id": "m00-c-0001",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "The 7 OSI layers, bottom to top",
+    "back": "1 **Physical** · 2 **Data link** · 3 **Network** · 4 **Transport** · 5 **Session** · 6 **Presentation** · 7 **Application**\n\nMnemonic (1→7): *Please Do Not Throw Sausage Pizza Away*.",
+    "tags": [
+      "osi"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0002",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "TCP/IP model layers and how they map to OSI",
+    "back": "- **Application** = OSI 5–7 (HTTP, DNS, SSH)\n- **Transport** = OSI 4 (TCP, UDP)\n- **Internet** = OSI 3 (IP, ICMP)\n- **Link** = OSI 1–2 (Ethernet, ARP, Wi-Fi)",
+    "tags": [
+      "osi",
+      "tcp-ip-model"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc1122",
+      "https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0003",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "diagram",
+    "front": "TCP three-way handshake",
+    "back": "Client **SYN** (seq=x) → server **SYN/ACK** (seq=y, ack=x+1) → client **ACK** (ack=y+1).\n\nA closed port answers the SYN with **RST/ACK**.",
+    "tags": [
+      "tcp",
+      "handshake"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0004",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "The six classic TCP flags",
+    "back": "- **SYN**: open a connection\n- **ACK**: acknowledge data\n- **FIN**: close gracefully\n- **RST**: abort immediately\n- **PSH**: push data to the application now\n- **URG**: urgent pointer is valid\n\n(ECE and CWR carry congestion signals.)",
+    "tags": [
+      "tcp",
+      "tcp-flags"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://www.rfc-editor.org/rfc/rfc3168"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0005",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "TCP vs UDP",
+    "back": "**TCP**: connection-oriented (handshake), reliable (ACKs, retransmission, ordering), 20–60-byte header. Web, mail, SSH.\n\n**UDP**: connectionless, best effort, 8-byte header. DNS queries, DHCP, SNMP, NTP, streaming.",
+    "tags": [
+      "tcp",
+      "udp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc768",
+      "https://www.rfc-editor.org/rfc/rfc9293"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0006",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Port ranges",
+    "back": "- **0–1023**: well-known (system) ports\n- **1024–49151**: registered (user) ports\n- **49152–65535**: dynamic/private (client side)",
+    "tags": [
+      "ports"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6335",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0007",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "port",
+    "front": "20 / 21, 22, 23, 25",
+    "back": "**FTP** data 20 / control 21 · **SSH** 22 · **Telnet** 23 (cleartext) · **SMTP** 25",
+    "tags": [
+      "ports"
+    ],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0008",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "port",
+    "front": "53",
+    "back": "**DNS**: UDP 53 for normal queries; **TCP 53** for zone transfers (AXFR) and large responses.",
+    "tags": [
+      "ports",
+      "dns"
+    ],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://www.rfc-editor.org/rfc/rfc7766"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0009",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "port",
+    "front": "445 and 137–139",
+    "back": "**445/tcp**: SMB directly over TCP.\n\n**137** (UDP, NetBIOS name) · **138** (UDP, datagram) · **139** (TCP, NetBIOS session: SMB over NetBIOS, the older transport).",
+    "tags": [
+      "ports",
+      "smb",
+      "netbios"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0010",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "port",
+    "front": "161 / 162 and 3389",
+    "back": "**SNMP** 161/udp (agent queries), 162/udp (traps) · **RDP** 3389/tcp",
+    "tags": [
+      "ports",
+      "snmp",
+      "rdp"
+    ],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0011",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "IPv4 private and special ranges",
+    "back": "- Private (RFC 1918): **10.0.0.0/8**, **172.16.0.0/12**, **192.168.0.0/16**\n- Loopback: **127.0.0.0/8**\n- Link-local / APIPA: **169.254.0.0/16** (no DHCP server reached)",
+    "tags": [
+      "ipv4",
+      "addressing"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc1918",
+      "https://www.rfc-editor.org/rfc/rfc6890"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0012",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Hosts in a subnet",
+    "back": "Addresses = 2^(32 − prefix). Usable hosts = 2^(32 − prefix) − 2 (network + broadcast).\n\n/24 → 254 · /26 → 62 · /27 → 30 · /29 → 6 · /30 → 2",
+    "tags": [
+      "subnetting",
+      "ipv4"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4632",
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0013",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "Key DNS record types",
+    "back": "- **A / AAAA**: IPv4 / IPv6 address\n- **MX**: mail server\n- **NS**: name servers\n- **CNAME**: alias\n- **PTR**: reverse (IP → name)\n- **TXT**: SPF, DKIM, verification\n- **SOA**: zone authority and serial",
+    "tags": [
+      "dns"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc1035",
+      "https://www.cloudflare.com/learning/dns/what-is-dns/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0014",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "DHCP: the DORA exchange",
+    "back": "**D**iscover (client broadcast) → **O**ffer (server) → **R**equest (client) → **A**cknowledge (server).\n\nServer UDP **67**, client UDP **68**. Nothing authenticates the server, so rogue DHCP is possible.",
+    "tags": [
+      "dhcp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc2131",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0015",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "ARP",
+    "back": "Maps an **IPv4 address to a MAC address** on the local link. Replies are cached and never authenticated, so a host accepts replies it never asked for. This is the root of ARP spoofing.",
+    "tags": [
+      "arp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc826",
+      "https://attack.mitre.org/techniques/T1557/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0016",
+    "module": 0,
+    "section": "Networking Essentials",
+    "domain": "D0",
+    "kind": "list",
+    "front": "HTTP status code classes",
+    "back": "- **1xx** informational\n- **2xx** success (200 OK)\n- **3xx** redirect (301, 302)\n- **4xx** client error (401 unauthenticated, 403 forbidden, 404 not found)\n- **5xx** server error (500, 503)",
+    "tags": [
+      "http"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9110",
+      "https://www.cloudflare.com/learning/ssl/what-is-https/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0017",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "command",
+    "front": "chmod 750 file",
+    "back": "user **rwx** (7) · group **r-x** (5) · others **---** (0).\n\nr = 4, w = 2, x = 1.",
+    "tags": [
+      "linux",
+      "permissions"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man1/chmod.1.html",
+      "https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0018",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "SUID bit",
+    "back": "Octal **4000**, shown as `s` in the user execute slot (`-rwsr-xr-x`). The program runs with the **file owner's** privileges. Root-owned SUID binaries are a classic privilege-escalation path.\n\nFind them: `find / -perm -4000 -type f 2>/dev/null`",
+    "tags": [
+      "linux",
+      "permissions",
+      "suid"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man7/inode.7.html",
+      "https://man7.org/linux/man-pages/man1/find.1.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0019",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "SGID and sticky bit",
+    "back": "**SGID (2000)**: runs with the group's privileges; on a directory, new files inherit its group.\n\n**Sticky (1000, `t`)**: in a shared directory such as `/tmp`, only a file's owner can delete or rename it.",
+    "tags": [
+      "linux",
+      "permissions"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man7/inode.7.html",
+      "https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0020",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "/etc/passwd vs /etc/shadow",
+    "back": "**/etc/passwd**: accounts (user, UID, GID, home, shell); readable by everyone.\n\n**/etc/shadow**: password hashes and ageing; readable by **root only**. UID 0 = root.",
+    "tags": [
+      "linux",
+      "accounts"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man5/passwd.5.html",
+      "https://man7.org/linux/man-pages/man5/shadow.5.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0021",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "command",
+    "front": "ss -tulpn",
+    "back": "Lists **t**cp and **u**dp **l**istening sockets with **p**rocess names, **n**umeric (no name resolution). Modern replacement for `netstat -tulpn`.",
+    "tags": [
+      "linux",
+      "networking-cli"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man8/ss.8.html",
+      "https://man7.org/linux/man-pages/man8/ip.8.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0022",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "command",
+    "front": "netstat -ano (Windows)",
+    "back": "**-a** all connections and listening ports · **-n** numeric · **-o** owning **PID** (match it with `tasklist`).",
+    "tags": [
+      "windows",
+      "networking-cli"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0023",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "command",
+    "front": "whoami /priv",
+    "back": "Lists the current Windows user's **privileges** (e.g. SeImpersonatePrivilege, SeDebugPrivilege), a first step when looking for privilege escalation. `whoami /groups` lists group memberships.",
+    "tags": [
+      "windows",
+      "privileges"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0024",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "SAM and NTDS.dit",
+    "back": "**SAM**: registry hive holding **local** account NT hashes (`%SystemRoot%\\System32\\config\\SAM`).\n\n**NTDS.dit**: Active Directory database on **domain controllers**, holding domain account hashes.",
+    "tags": [
+      "windows",
+      "credentials"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1003/002/",
+      "https://attack.mitre.org/techniques/T1003/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0025",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Windows event IDs 4624 and 4625",
+    "back": "**4624**: an account logged on successfully. **4625**: an account failed to log on. Both are in the **Security** log.",
+    "tags": [
+      "windows",
+      "logging"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0026",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "LocalSystem (SYSTEM) account",
+    "back": "Built-in service account with **more rights than Administrator** on the local machine. It is the usual target of local privilege escalation on Windows.",
+    "tags": [
+      "windows",
+      "privileges"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/services/localsystem-account",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0027",
+    "module": 0,
+    "section": "Operating System Essentials",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Default TTL as an OS clue",
+    "back": "Typical defaults: **Linux 64**, **Windows 128**, many network devices **255**. A reply with TTL 125 suggests Windows, 3 hops away. Defaults can be changed: a hint, not proof.",
+    "tags": [
+      "os-fingerprinting",
+      "ttl"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters",
+      "https://docs.kernel.org/networking/ip-sysctl.html"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0028",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "CIA triad",
+    "back": "- **Confidentiality**: no unauthorized disclosure (encryption, access control)\n- **Integrity**: no unauthorized change (hashes, signatures)\n- **Availability**: reliable, timely access (redundancy, backups)",
+    "tags": [
+      "cia"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/confidentiality",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0029",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Non-repudiation",
+    "back": "A sender cannot deny having sent a message or performed an action. Provided by **digital signatures** (asymmetric keys). Symmetric keys cannot provide it, because both parties hold the same key.",
+    "tags": [
+      "cia",
+      "non-repudiation"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/non_repudiation",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0030",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "AAA",
+    "back": "- **Authentication**: prove who you are\n- **Authorization**: what you may do\n- **Accounting**: record what you did\n\nProtocols: **RADIUS** (UDP, encrypts only the password) and **TACACS+** (TCP 49, encrypts the whole body).",
+    "tags": [
+      "aaa"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc2865",
+      "https://www.rfc-editor.org/rfc/rfc8907"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0031",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "Authentication factor types",
+    "back": "- Something you **know** (password, PIN)\n- Something you **have** (token, phone)\n- Something you **are** (fingerprint, face)\n\nMFA = two or more **different** types. Password + PIN is still one type.",
+    "tags": [
+      "authentication",
+      "mfa"
+    ],
+    "sources": [
+      "https://pages.nist.gov/800-63-3/sp800-63b.html",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0032",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Threat, vulnerability, risk",
+    "back": "A **threat** exploits a **vulnerability** in an **asset**, causing an **impact**.\n\n**Risk = likelihood × impact.**",
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/39/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0033",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "Four risk responses",
+    "back": "- **Mitigate**: add controls\n- **Transfer / share**: insurance, outsourcing\n- **Avoid**: stop the activity\n- **Accept**: document and live with it",
+    "tags": [
+      "risk"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/39/final",
+      "https://csrc.nist.gov/pubs/sp/800/30/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0034",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "Controls by function",
+    "back": "- **Preventive**: firewall, IPS, locks\n- **Detective**: IDS, logs, CCTV review\n- **Corrective**: patching, restoring a config\n- **Deterrent**: warning banners, visible cameras\n- **Recovery**: backups, DR site\n- **Compensating**: an alternative when the normal control is not feasible",
+    "tags": [
+      "controls"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0035",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "Controls by type",
+    "back": "- **Administrative**: policies, training, background checks\n- **Technical (logical)**: firewalls, encryption, access control lists\n- **Physical**: fences, badges, guards",
+    "tags": [
+      "controls"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/12/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0036",
+    "module": 0,
+    "section": "Security Basics",
+    "domain": "D0",
+    "kind": "list",
+    "front": "Three design principles",
+    "back": "- **Least privilege**: only the access a job needs\n- **Defense in depth**: layered, independent controls\n- **Separation of duties**: no one person completes a sensitive task alone",
+    "tags": [
+      "principles"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/least_privilege",
+      "https://csrc.nist.gov/glossary/term/defense_in_depth",
+      "https://csrc.nist.gov/glossary/term/separation_of_duty"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0037",
+    "module": 0,
+    "section": "Lab Setup",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Type 1 vs type 2 hypervisor",
+    "back": "**Type 1 (bare metal)**: runs on the hardware (ESXi, Hyper-V, Proxmox/KVM).\n\n**Type 2 (hosted)**: runs on a host OS (VirtualBox, VMware Workstation).",
+    "tags": [
+      "virtualization"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/125/final",
+      "https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0038",
+    "module": 0,
+    "section": "Lab Setup",
+    "domain": "D0",
+    "kind": "list",
+    "front": "VirtualBox network modes for a lab",
+    "back": "- **NAT**: VM reaches out, nothing reaches in\n- **Bridged**: VM sits on your real LAN (never for vulnerable VMs)\n- **Host-only**: VMs + host, no LAN (**attack lab**)\n- **Internal**: VMs only, fully isolated",
+    "tags": [
+      "virtualization",
+      "lab"
+    ],
+    "sources": [
+      "https://www.virtualbox.org/manual/topics/networkingdetails.html",
+      "https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0039",
+    "module": 0,
+    "section": "Lab Setup",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Snapshot",
+    "back": "Saved state of a VM that you can roll back to after breaking it. It is **not a backup**: it lives on the same disk as the VM.",
+    "tags": [
+      "virtualization",
+      "lab"
+    ],
+    "sources": [
+      "https://www.virtualbox.org/manual/topics/Introduction.html",
+      "https://csrc.nist.gov/pubs/sp/800/125/final"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0040",
+    "module": 0,
+    "section": "Lab Setup",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Kali Linux defaults",
+    "back": "Debian-based penetration-testing distribution with official VM images. Since 2020.1 the default user is **kali / kali** (not root). Change the password on first boot.",
+    "tags": [
+      "kali",
+      "lab"
+    ],
+    "sources": [
+      "https://www.kali.org/docs/introduction/default-credentials/",
+      "https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0041",
+    "module": 0,
+    "section": "Lab Setup",
+    "domain": "D0",
+    "kind": "term",
+    "front": "Metasploitable 2",
+    "back": "Intentionally vulnerable Linux VM from Rapid7 for practice. Put it on **host-only or internal** networking only, never bridged or internet-facing.",
+    "tags": [
+      "lab",
+      "metasploitable"
+    ],
+    "sources": [
+      "https://docs.rapid7.com/metasploit/metasploitable-2/",
+      "https://www.virtualbox.org/manual/topics/networkingdetails.html"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m00-c-0042",
+    "module": 0,
+    "section": "Lab Setup",
+    "domain": "D0",
+    "kind": "term",
+    "front": "The legal line",
+    "back": "Test only systems you **own** or have **written permission** to test. Unauthorized access is a crime: **CFAA** (18 U.S.C. § 1030) in the US, **Computer Misuse Act 1990** in the UK.",
+    "tags": [
+      "ethics",
+      "law"
+    ],
+    "sources": [
+      "https://www.law.cornell.edu/uscode/text/18/1030",
+      "https://www.legislation.gov.uk/ukpga/1990/18/contents"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

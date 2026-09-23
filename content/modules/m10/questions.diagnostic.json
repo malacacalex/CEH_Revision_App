@@ -1,0 +1,82 @@
+[
+  {
+    "id": "m10-q-9001",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What makes an attack a distributed denial of service (DDoS) rather than a DoS?",
+    "options": [
+      "The traffic comes from many sources at once, often a botnet",
+      "It targets DNS servers only",
+      "It always uses encrypted traffic",
+      "It lasts longer than one hour"
+    ],
+    "answer": 0,
+    "explanation": "Many sources make DDoS harder to block by filtering single addresses.",
+    "optionNotes": ["Correct.", "Any service can be targeted.", "Encryption is not the defining feature.", "Duration is not the defining feature."],
+    "tags": ["ddos", "diagnostic"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/understanding-denial-service-attacks",
+      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-9002",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In a DNS amplification attack, why does the victim receive so much traffic?",
+    "options": [
+      "Small spoofed queries make open resolvers send much larger responses to the victim's address",
+      "The victim's own DNS server loops forever",
+      "The attacker sends very large queries straight to the victim",
+      "DNSSEC doubles every packet"
+    ],
+    "answer": 0,
+    "explanation": "Spoofed source address + UDP + big responses = reflection and amplification. Countermeasures: close open resolvers, rate-limit responses, filter spoofed traffic (BCP 38).",
+    "optionNotes": [
+      "Correct: reflection plus amplification.",
+      "Not how the attack works.",
+      "The traffic is reflected, not sent directly.",
+      "DNSSEC can make responses larger but does not create the attack."
+    ],
+    "tags": ["amplification", "dns", "diagnostic"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks",
+      "https://www.cloudflare.com/learning/ddos/dns-amplification-ddos-attack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-9003",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which technique lets a server answer SYN packets without storing state for every half-open connection?",
+    "options": ["Increasing the TCP window size", "SYN cookies", "Disabling ICMP", "Using UDP instead of TCP"],
+    "answer": 1,
+    "explanation": "SYN cookies keep the backlog from filling up during a SYN flood.",
+    "optionNotes": [
+      "The window size does not affect the backlog.",
+      "Correct: state is encoded in the SYN/ACK sequence number.",
+      "ICMP is unrelated to the SYN backlog.",
+      "Not a fix for a TCP service."
+    ],
+    "tags": ["syn-flood", "countermeasures", "diagnostic"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc4987", "https://www.cloudflare.com/learning/ddos/syn-flood-ddos-attack/"],
+    "verify": false,
+    "rev": 1
+  }
+]

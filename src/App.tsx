@@ -9,6 +9,7 @@ import { ModulePage } from './features/modules/ModulePage.tsx';
 import { CardsPage } from './features/flashcards/CardsPage.tsx';
 import { QuizHome } from './features/quiz/QuizHome.tsx';
 import { QuizRun } from './features/quiz/QuizRun.tsx';
+import { ReferencePage } from './features/reference/ReferencePage.tsx';
 import { MistakesPage } from './features/mistakes/MistakesPage.tsx';
 import { SettingsPage } from './features/settings/SettingsPage.tsx';
 
@@ -34,6 +35,7 @@ export function App() {
               <Route path="cards" element={<CardsPage />} />
               <Route path="quiz" element={<QuizHome />} />
               <Route path="quiz/run" element={<QuizRun />} />
+              <Route path="reference" element={<ReferencePage />} />
               <Route path="mistakes" element={<MistakesPage />} />
               <Route path="settings" element={<SettingsPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

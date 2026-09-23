@@ -6,12 +6,55 @@ import {
   GlossaryEntrySchema,
   ModuleMetaSchema,
   QuestionSchema,
+  ReferenceSheetSchema,
   type ContentBundle,
   type Pool,
 } from '../schemas/content.ts';
 import { z } from 'zod';
 
-export const QUESTION_POOLS: Pool[] = ['diagnostic', 'pretest', 'practice', 'mock'];
+export const QUESTION_POOLS: Pool[] = ['diagnostic', 'skipcheck', 'pretest', 'practice', 'mock'];
+
+const FRONT_MATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
+const LINE_BREAK = /\r?\n/;
+const QUOTED = /^(['"])(.*)\1$/;
+
+/**
+ * Minimal front matter reader for reference sheets: `key: value`, `key: [1, 2]` and `key:` + `  - item` lists.
+ * Values are numbers, booleans or plain strings. Returns null when the file has no front matter block.
+ */
+export function parseFrontMatter(text: string): { data: Record<string, unknown>; body: string } | null {
+  const m = FRONT_MATTER.exec(text);
+  if (!m) return null;
+  const scalar = (v: string): unknown => {
+    const t = v.trim();
+    if (t === 'true' || t === 'false') return t === 'true';
+    if (/^-?\d+(\.\d+)?$/.test(t)) return Number(t);
+    return t.replace(QUOTED, '$2');
+  };
+  const data: Record<string, unknown> = {};
+  let listKey: string | null = null;
+  for (const line of m[1]!.split(LINE_BREAK)) {
+    if (!line.trim()) continue;
+    const item = /^\s+-\s+(.*)$/.exec(line);
+    if (item && listKey) {
+      (data[listKey] as unknown[]).push(scalar(item[1]!));
+      continue;
+    }
+    const kv = /^([A-Za-z]\w*):\s*(.*)$/.exec(line);
+    if (!kv) continue;
+    const [, key, value] = kv as unknown as [string, string, string];
+    listKey = null;
+    if (value === '') {
+      data[key] = [];
+      listKey = key;
+    } else if (value.startsWith('[') && value.endsWith(']')) {
+      data[key] = value.slice(1, -1).split(',').map((x) => x.trim()).filter(Boolean).map(scalar);
+    } else {
+      data[key] = scalar(value);
+    }
+  }
+  return { data, body: m[2]!.trim() };
+}
 
 /** Raw files keyed by their path relative to /content, e.g. "modules/m03/meta.json". */
 export type RawContentFiles = Record<string, unknown>;
@@ -46,6 +89,19 @@ export function assembleContent(files: RawContentFiles): { bundle: ContentBundle
   const blueprint = parse('config/blueprint.json', BlueprintSchema);
   const glossary = files['glossary.json'] === undefined ? [] : (parse('glossary.json', z.array(GlossaryEntrySchema)) ?? []);
 
+  const references: ContentBundle['references'] = [];
+  for (const file of Object.keys(files).filter((f) => /^reference\/[^/]+\.md$/.test(f)).sort()) {
+    const raw = files[file];
+    const fm = typeof raw === 'string' ? parseFrontMatter(raw) : null;
+    if (!fm) {
+      issues.push({ file, message: 'missing front matter (--- id/title/order/modules/rev/verify/sources ---)' });
+      continue;
+    }
+    const res = ReferenceSheetSchema.safeParse({ ...fm.data, body: fm.body });
+    if (!res.success) for (const i of res.error.issues) issues.push({ file, message: `${i.path.join('.') || '(root)'}: ${i.message}` });
+    else references.push(res.data);
+  }
+
   const moduleDirs = [...new Set(Object.keys(files).map((f) => /^modules\/(m\d{2})\//.exec(f)?.[1]).filter(Boolean))].sort() as string[];
 
   const modules: ContentBundle['modules'] = [];
@@ -77,7 +133,8 @@ export function assembleContent(files: RawContentFiles): { bundle: ContentBundle
 
   if (!version || !blueprint || issues.length > 0) return { bundle: null, issues };
 
-  const bundle = { format: 'shieldup-content' as const, version, blueprint, modules, glossary };
+  references.sort((a, b) => a.order - b.order);
+  const bundle = { format: 'shieldup-content' as const, version, blueprint, modules, glossary, references };
   const final = ContentBundleSchema.safeParse(bundle);
   if (!final.success) {
     for (const i of final.error.issues) issues.push({ file: '(bundle)', message: `${i.path.join('.')}: ${i.message}` });

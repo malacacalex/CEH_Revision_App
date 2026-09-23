@@ -1,7 +1,7 @@
 import type { Blueprint, DomainId, Question } from '../../schemas/content.ts';
 import type { Confidence } from '../fsrs/scheduler.ts';
 
-export type QuizMode = 'pretest' | 'module' | 'domain' | 'mixed' | 'weak' | 'confident-wrong' | 'review' | 'diagnostic';
+export type QuizMode = 'pretest' | 'module' | 'domain' | 'mixed' | 'weak' | 'confident-wrong' | 'review' | 'diagnostic' | 'skipcheck';
 
 export const QUIZ_MODES: Record<QuizMode, { title: string; blurb: string; size: number }> = {
   pretest: { title: 'Pre-test', blurb: '10 questions before you study a module. Low scores are expected: this primes your attention.', size: 10 },
@@ -12,6 +12,7 @@ export const QUIZ_MODES: Record<QuizMode, { title: string; blurb: string; size: 
   'confident-wrong': { title: 'Confidently wrong', blurb: 'Questions you were sure about and got wrong. Fix these first.', size: 20 },
   review: { title: 'Due question reviews', blurb: 'Missed questions scheduled by spaced repetition.', size: 30 },
   diagnostic: { title: 'Diagnostic', blurb: '3 questions per module to map your weak zones.', size: 60 },
+  skipcheck: { title: 'Foundations skip-check', blurb: '20 questions on networking, OS and security basics. Score ≥ 80% to skip M0.', size: 20 },
 };
 
 export interface AttemptLite {
@@ -102,6 +103,12 @@ export function assembleQuiz(input: AssembleInput): Question[] {
         rng,
       ).slice(0, size);
 
+    case 'skipcheck':
+      return shuffle(
+        bank.filter((q) => q.pool === 'skipcheck'),
+        rng,
+      ).slice(0, size);
+
     case 'diagnostic': {
       // Up to 3 per module, spread evenly.
       const byModule = new Map<number, Question[]>();
@@ -158,7 +165,7 @@ export function assembleQuiz(input: AssembleInput): Question[] {
     }
 
     case 'weak': {
-      const scope = bank.filter((q) => q.pool !== 'diagnostic' && (studied.size === 0 || studied.has(q.module)));
+      const scope = bank.filter((q) => q.pool !== 'diagnostic' && q.pool !== 'skipcheck' && (studied.size === 0 || studied.has(q.module)));
       const missed = scope.filter((q) => last.get(q.id)?.correct === false);
       const sectionStats = new Map<string, { n: number; ok: number }>();
       for (const q of scope) {

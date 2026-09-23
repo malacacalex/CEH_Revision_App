@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('onboarding → dashboard → pre-test → mistake log → flashcard → export', async ({ page }) => {
+test('onboarding → dashboard → pre-test → mistake log → flashcard → reference → export', async ({ page }) => {
   await page.goto('./');
 
   // First visit lands on onboarding; the disclaimer must be accepted.
@@ -36,6 +36,15 @@ test('onboarding → dashboard → pre-test → mistake log → flashcard → ex
   await page.getByRole('button', { name: /Show answer/ }).click();
   await page.getByRole('button', { name: /^Good/ }).click();
   await expect(page.getByText(/1 done/)).toBeVisible();
+
+  // Reference: a sheet renders, search spans sheets, the glossary tab filters terms.
+  await page.goto('./#/reference');
+  await expect(page.getByRole('heading', { name: 'Ports and protocols' })).toBeVisible();
+  await page.getByLabel('Search the reference').fill('GDPR');
+  await expect(page.getByRole('status')).toContainText('matching section');
+  await page.getByRole('tab', { name: /Glossary/ }).click();
+  await page.getByLabel('Search the reference').fill('zone transfer');
+  await expect(page.getByText('Zone transfer (AXFR)')).toBeVisible();
 
   // Backup works and produces a valid progress file.
   await page.goto('./#/settings');

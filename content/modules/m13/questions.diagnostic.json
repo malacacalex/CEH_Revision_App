@@ -1,0 +1,79 @@
+[
+  {
+    "id": "m13-q-9001",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A request for `/download?file=../../../../etc/passwd` returns the system password file. Which vulnerability is this?",
+    "options": ["Cross-site scripting", "Directory (path) traversal", "Server-side request forgery", "Clickjacking"],
+    "answer": 1,
+    "explanation": "Validate file names against an allow-list and resolve the path before checking it stays inside the web root.",
+    "optionNotes": [
+      "XSS runs script in a victim's browser.",
+      "Correct: `../` escapes the intended folder.",
+      "SSRF makes the server send requests to other hosts.",
+      "Clickjacking hides a page under a decoy UI."
+    ],
+    "tags": ["path-traversal", "diagnostic"],
+    "sources": ["https://owasp.org/www-community/attacks/Path_Traversal", "https://cwe.mitre.org/data/definitions/22.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-9002",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "During information gathering, why do testers read a site's /robots.txt?",
+    "options": [
+      "It disables the web application firewall",
+      "It contains the server's TLS private key",
+      "It lists every user account",
+      "It can list paths the owners want hidden from crawlers, such as admin areas"
+    ],
+    "answer": 3,
+    "explanation": "robots.txt is advisory for crawlers. Never rely on it to hide sensitive paths.",
+    "optionNotes": [
+      "It has no effect on security controls.",
+      "Private keys are never served there.",
+      "Not its purpose.",
+      "Correct: it is a hint, not an access control."
+    ],
+    "tags": ["recon", "robots-txt", "diagnostic"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9309",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-9003",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why should directory listing be disabled on a web server?",
+    "options": [
+      "It exposes every file in a folder that has no index page, including backups and configs",
+      "It slows the server down",
+      "It breaks HTTPS",
+      "It prevents caching"
+    ],
+    "answer": 0,
+    "explanation": "Directory listing is a classic information-exposure misconfiguration.",
+    "optionNotes": ["Correct.", "Performance is not the main issue.", "Unrelated to TLS.", "Unrelated to caching."],
+    "tags": ["hardening", "misconfiguration", "diagnostic"],
+    "sources": ["https://cwe.mitre.org/data/definitions/548.html", "https://owasp.org/Top10/A05_2021-Security_Misconfiguration/"],
+    "verify": false,
+    "rev": 1
+  }
+]

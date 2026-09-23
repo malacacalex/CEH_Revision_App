@@ -1,0 +1,74 @@
+[
+  {
+    "id": "m08-q-9001",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why does a sniffer on a switched network see less traffic than on a hub?",
+    "options": [
+      "Switches block all broadcast traffic",
+      "Switches encrypt every frame",
+      "A switch forwards each frame only to the port where the destination MAC address lives",
+      "Network cards cannot enter promiscuous mode on a switch"
+    ],
+    "answer": 2,
+    "explanation": "A hub repeats every frame to every port; a switch learns MAC addresses and forwards selectively.",
+    "optionNotes": [
+      "Broadcasts still reach every port.",
+      "Switches do not encrypt.",
+      "Correct.",
+      "Promiscuous mode still works; the frames just never arrive."
+    ],
+    "tags": ["sniffing", "switching", "diagnostic"],
+    "sources": ["https://wiki.wireshark.org/CaptureSetup/Ethernet", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-9002",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "In Wireshark, which display filter shows only packets to or from 10.0.0.5?",
+    "options": ["ip.addr == 10.0.0.5", "host 10.0.0.5 only", "ip.src = 10.0.0.5 & dst", "filter:10.0.0.5"],
+    "answer": 0,
+    "explanation": "Display filters use field names (ip.addr, tcp.port, http); capture filters use BPF syntax (host, port).",
+    "optionNotes": [
+      "Correct: ip.addr matches the source or the destination.",
+      "Capture-filter syntax (BPF), not a display filter, and 'only' is invalid.",
+      "Invalid syntax.",
+      "Not Wireshark syntax."
+    ],
+    "tags": ["wireshark", "diagnostic"],
+    "sources": ["https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html", "https://wiki.wireshark.org/DisplayFilters"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-9003",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "diagnostic",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which switch feature checks ARP packets against the DHCP snooping binding table to stop ARP spoofing?",
+    "options": ["Spanning Tree Protocol", "Dynamic ARP Inspection", "Port mirroring", "Jumbo frames"],
+    "answer": 1,
+    "explanation": "DAI drops ARP replies whose IP-to-MAC pairing does not match a trusted binding.",
+    "optionNotes": ["STP prevents switching loops.", "Correct.", "Mirroring copies traffic, which helps a sniffer.", "Jumbo frames change the frame size."],
+    "tags": ["arp-spoofing", "countermeasures", "diagnostic"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/002/",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html"
+    ],
+    "verify": true,
+    "rev": 1
+  }
+]

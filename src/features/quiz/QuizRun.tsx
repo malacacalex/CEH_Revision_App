@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { content } from '../../content/bundle.ts';
-import { finishSession, recordAnswer, setMistakeCause, startSession } from '../../db/repo.ts';
+import { finishSession, recordAnswer, saveProfile, setMistakeCause, startSession } from '../../db/repo.ts';
 import type { Confidence } from '../../domain/fsrs/scheduler.ts';
 import { assembleQuiz, QUIZ_MODES, type QuizMode } from '../../domain/quiz/assemble.ts';
 import { scoreQuiz, type AnswerRecord } from '../../domain/quiz/score.ts';
@@ -13,6 +13,7 @@ import { Markdown } from '../../ui/Markdown.tsx';
 import { ReportError } from '../../ui/ReportError.tsx';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
+const SKIPCHECK_PASS = 0.8;
 const CONFIDENCE: { value: Confidence; label: string; key: string }[] = [
   { value: 'sure', label: 'Sure', key: 's' },
   { value: 'unsure', label: 'Unsure', key: 'u' },
@@ -94,6 +95,8 @@ export function QuizRun() {
     if (index + 1 >= run.questions.length) {
       const report = scoreQuiz(run.questions, [...answers]);
       await finishSession(run.session, report.correct, new Date(), content.bundle.blueprint.moduleQuizPass);
+      // §4.1: intermediate users skip M0 by passing its 20-question check.
+      if (mode === 'skipcheck' && s && report.pct >= SKIPCHECK_PASS) await saveProfile({ ...s.profile, foundationsSkipped: true });
       setFinished(true);
     } else {
       setIndex((i) => i + 1);
@@ -102,7 +105,7 @@ export function QuizRun() {
       setCause(null);
       shownAt.current = performance.now();
     }
-  }, [run, submitted, index, answers]);
+  }, [run, submitted, index, answers, mode, s]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -263,6 +266,16 @@ function Summary({ run, answers, mode, module }: { run: Run; answers: AnswerReco
           </p>
         )}
         {mode === 'pretest' && <p className="mt-2 text-muted">Pre-test scores are meant to be low. Now read the notes; this primed your attention.</p>}
+        {mode === 'skipcheck' && (
+          <p className={`mt-2 font-semibold ${r.pct >= SKIPCHECK_PASS ? 'text-olive' : 'text-burgundy'}`}>
+            {r.pct >= SKIPCHECK_PASS
+              ? 'Passed: M0 Foundations is skipped and your plan starts at M1. You can undo this in Settings.'
+              : `Below ${pct(SKIPCHECK_PASS)}: M0 stays in your plan. Study the sections you missed, it only takes a few sessions.`}
+          </p>
+        )}
+        {mode === 'diagnostic' && (
+          <p className="mt-2 text-muted">This is your baseline, not a grade. Your weakest domains are now visible on the dashboard, and misses are in the mistake log.</p>
+        )}
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {(['sure', 'unsure', 'guess'] as const).map((c) => (
             <div key={c} className="rounded-lg bg-surface-2 p-3">
