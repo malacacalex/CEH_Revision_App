@@ -148,7 +148,7 @@ sequenceDiagram
   IMDS-->>App: Session token (hop limit 1)
   App->>IMDS: GET credentials with token header
   IMDS-->>App: Temporary role credentials
-  Note over App,IMDS: With HttpTokens required, GET without token gets 401
+  Note over App,IMDS: No token when required: 401
 ```
 
 A simple SSRF can usually send only GET requests without custom headers, so **requiring IMDSv2** (`HttpTokens: required`) blocks most metadata credential theft. `describe-instances` showing `"HttpTokens": "optional"` means IMDSv1 still works.
