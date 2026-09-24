@@ -1,0 +1,770 @@
+[
+  {
+    "id": "m12-c-0001",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "IDS vs IPS",
+    "back": "**IDS** monitors and analyses events and raises an **alert**. **IPS** does the same and can also **respond** to stop the attack (drop the packet, reset the connection, block the source). Response is the only functional difference.",
+    "tags": [
+      "ids",
+      "ips"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/intrusion_detection_system",
+      "https://csrc.nist.gov/glossary/term/intrusion_prevention_system",
+      "https://csrc.nist.gov/pubs/sp/800/94/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0002",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Three IDS/IPS detection methodologies",
+    "back": "1. **Signature-based** - matches patterns of known threats\n2. **Anomaly-based** - compares to a learned baseline of normal\n3. **Stateful protocol analysis** - compares to vendor profiles of benign protocol state\n\n*Most IDPS combine several.*",
+    "tags": [
+      "detection-methods"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0003",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Signature-based detection: strength and weakness",
+    "back": "**Strength:** precise and simple on **known** threats. **Weakness:** blind to unknown/zero-day attacks and to variants (change one byte and the signature misses).",
+    "tags": [
+      "signature",
+      "detection-methods"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://csrc.nist.gov/glossary/term/signature"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0004",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Anomaly-based detection: strength and weakness",
+    "back": "**Strength:** can catch previously **unknown** threats by spotting deviation from a baseline. **Weakness:** many **false positives**; needs a training period to build the profile.",
+    "tags": [
+      "anomaly",
+      "detection-methods"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0005",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Stateful protocol analysis",
+    "back": "Compares observed traffic to vendor profiles of how a protocol should behave in each state (e.g. FTP commands before vs after login). Tracks state and pairs requests with responses. Resource-heavy; some vendors call it deep packet inspection.",
+    "tags": [
+      "stateful-protocol-analysis",
+      "dpi"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/stateful_protocol_analysis",
+      "https://csrc.nist.gov/pubs/sp/800/94/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0006",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "False positive vs false negative",
+    "back": "**False positive:** benign activity flagged as malicious. **False negative:** a real attack missed. Cutting one usually raises the other; adjusting the IDPS to improve accuracy is **tuning**.",
+    "tags": [
+      "false-positive",
+      "false-negative",
+      "tuning"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/false_positive",
+      "https://csrc.nist.gov/glossary/term/false_negative"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0007",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Four IDPS technology types",
+    "back": "1. **Network-based (NIDS)** - a network segment\n2. **Wireless** - wireless protocols\n3. **Network behavior analysis (NBA)** - traffic flows (DDoS, worms)\n4. **Host-based (HIDS)** - one host's logs, processes, files",
+    "tags": [
+      "idps-types"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0008",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Inline vs passive sensor",
+    "back": "**Inline:** traffic passes through it (like a firewall), so it can **block** - this is how an IPS sits. **Passive:** reads a **copy** via SPAN/mirror port, network tap or IDS load balancer; can alert but not reliably block.",
+    "tags": [
+      "inline",
+      "passive",
+      "sensor"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0009",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Why a NIDS cannot see encrypted traffic",
+    "back": "A network IDS/IPS inspects packets on the wire; it **cannot read encrypted payloads** (VPN/TLS/SSH). Fix: TLS inspection at a proxy/NGFW, or host-based agents that see the decrypted activity.",
+    "tags": [
+      "encryption",
+      "blind-spot"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0010",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Fail-open vs fail-closed",
+    "back": "A **fail-open** system stops protecting when disabled (a network IDS is inherently fail-open - a DoS blinds it). A **fail-closed** firewall blocks traffic when it fails. Attackers exploit fail-open sensors with blinding floods.",
+    "tags": [
+      "fail-open",
+      "dos"
+    ],
+    "sources": [
+      "https://users.ece.cmu.edu/~adrian/731-sp04/readings/Ptacek-Newsham-ids98.pdf",
+      "https://csrc.nist.gov/pubs/sp/800/94/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0011",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Packet filter (stateless firewall)",
+    "back": "A routing device with an ACL ruleset that judges **each packet alone** on src/dst IP, protocol and port. No connection state, so it cannot relate packets in a session or trust return traffic.",
+    "tags": [
+      "packet-filter",
+      "stateless"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/packet_filter",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0012",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Stateful inspection firewall",
+    "back": "Tracks each connection in a **state table** (src/dst IP, ports, connection state) and blocks packets that deviate from the expected TCP state, so return traffic for an inside-initiated session is allowed automatically.",
+    "tags": [
+      "stateful"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/stateful_inspection",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0013",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Application / proxy-gateway firewall",
+    "back": "A proxy agent **terminates** the client connection and opens a **second** one to the destination, so the two hosts never connect directly. Inspects application-layer content and hides internal IPs.",
+    "tags": [
+      "proxy",
+      "application-firewall"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/application_proxy_gateway",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0014",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Circuit-level gateway",
+    "back": "Works at the OSI **session layer**: sets up two TCP/UDP connections and relays approved sessions (e.g. SOCKS) **without inspecting payload**. Validates the connection, not the content.",
+    "tags": [
+      "circuit-level",
+      "socks"
+    ],
+    "sources": [
+      "https://www.paloaltonetworks.com/cyberpedia/what-is-a-circuit-level-gateway",
+      "https://www.rfc-editor.org/rfc/rfc1928"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0015",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Next-generation firewall (NGFW)",
+    "back": "A stateful firewall **plus** application awareness (app-ID), integrated **IPS** and deep packet inspection, often with TLS inspection and threat intelligence.",
+    "tags": [
+      "ngfw"
+    ],
+    "sources": [
+      "https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall-ngfw",
+      "https://www.fortinet.com/resources/cyberglossary/next-generation-firewall"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0016",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "UTM vs WAF",
+    "back": "**UTM** merges firewall + AV + IDS/IPS into one appliance (one box must resource every task). **WAF** sits in front of a web server and filters HTTP for web attacks (XSS, SQLi) - it protects the server, not the client.",
+    "tags": [
+      "utm",
+      "waf"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final",
+      "https://owasp.org/www-community/Web_Application_Firewall"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0017",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "DMZ (screened subnet) and bastion host",
+    "back": "**DMZ:** a perimeter segment logically between internal and external networks; public servers (web, mail) go here so outside traffic never reaches the LAN directly. **Bastion host:** a hardened single-purpose host, usually in the DMZ.",
+    "tags": [
+      "dmz",
+      "bastion",
+      "screened-subnet"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/demilitarized_zone",
+      "https://csrc.nist.gov/glossary/term/bastion_host"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0018",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Deny-by-default firewall policy",
+    "back": "Block everything not **explicitly** permitted. On firewalls that match rules sequentially, place the most-matched rules near the top for performance.",
+    "tags": [
+      "deny-by-default"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0019",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "NAT is not a security control",
+    "back": "NAT hides internal addresses but is a **routing** technology, not a firewall feature; a **stateful firewall** gives the same protection (blocking unsolicited inbound) with less protocol breakage.",
+    "tags": [
+      "nat"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/network_address_translation",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0020",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Open-source IDS/IPS and host tools",
+    "back": "- **Snort / Suricata** - signature network IDS/IPS\n- **Zeek** - network behaviour / analysis\n- **OSSEC / Wazuh** - host IDS + file-integrity monitoring\n- **AIDE** - file-integrity checker",
+    "tags": [
+      "tools",
+      "snort",
+      "suricata",
+      "zeek"
+    ],
+    "sources": [
+      "https://www.snort.org/",
+      "https://suricata.io/",
+      "https://docs.zeek.org/en/master/about.html",
+      "https://www.ossec.net/",
+      "https://aide.github.io/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0021",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "command",
+    "front": "Anatomy of a Snort rule",
+    "back": "`alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:\"hit\"; content:\"/cgi-bin/\"; flow:established,to_server; sid:1000001; rev:1;)`\n\n**Header** = action, protocol, src, direction (`->` one-way, `<>` both), dst. **Options** in parentheses.",
+    "tags": [
+      "snort",
+      "rule"
+    ],
+    "sources": [
+      "https://docs.snort.org/rules/headers/",
+      "https://docs.snort.org/rules/headers/actions"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0022",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Key Snort rule options",
+    "back": "- `msg` - alert text\n- `sid` - unique id (**local rules start at 1000000**; 1-999999 reserved)\n- `rev` - revision\n- `classtype` - category\n- `content` - payload match\n- `flow` - e.g. established,to_server\n- `detection_filter` - rate threshold",
+    "tags": [
+      "snort",
+      "rule-options"
+    ],
+    "sources": [
+      "https://docs.snort.org/rules/options/general/sid",
+      "https://docs.snort.org/rules/options/non_payload/flow",
+      "https://docs.snort.org/rules/options/general/classtype",
+      "https://docs.snort.org/rules/options/post/detection_filter"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0023",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Suricata vs Snort",
+    "back": "Suricata is largely Snort-compatible. Actions: `alert, pass, drop, reject`; default **action-order** is pass, drop, reject, alert. It adds app-layer keywords (`http.uri`, `http.method`) and normalizes/reassembles per the destination OS.",
+    "tags": [
+      "suricata",
+      "snort"
+    ],
+    "sources": [
+      "https://docs.suricata.io/en/latest/rules/intro.html",
+      "https://docs.suricata.io/en/latest/configuration/suricata-yaml.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0024",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Honeypot",
+    "back": "A **decoy** system or resource with no production use, made attractive to attackers. Because it has no legitimate users, **almost any interaction is suspicious**, so alerts have very **few false positives**.",
+    "tags": [
+      "honeypot"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/honeypot",
+      "https://csrc.nist.gov/pubs/sp/800/94/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0025",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Honeypots supplement, not replace",
+    "back": "Honeypots **add to** IDS/IPS and other controls, they do not replace them. Review the **legality** before deploying, and have skilled analysts run them.",
+    "tags": [
+      "honeypot",
+      "policy"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0026",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Honeypot interaction levels",
+    "back": "- **Low-interaction:** emulates a few services; cheap; limited data; **easier to fingerprint**\n- **High-interaction:** real OS/services; richest data; more risk of being used as a **pivot**",
+    "tags": [
+      "honeypot",
+      "interaction"
+    ],
+    "sources": [
+      "https://www.fortinet.com/resources/cyberglossary/what-is-honeypot",
+      "https://www.kaspersky.com/resource-center/threats/what-is-a-honeypot"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0027",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Production vs research honeypots",
+    "back": "- **Production:** placed beside real servers to **detect internal compromise**\n- **Research:** study attacker **tools and trends** in the wild",
+    "tags": [
+      "honeypot",
+      "purpose"
+    ],
+    "sources": [
+      "https://www.fortinet.com/resources/cyberglossary/what-is-honeypot",
+      "https://www.kaspersky.com/resource-center/threats/what-is-a-honeypot"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0028",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Honeynet types (D3FEND)",
+    "back": "A **honeynet** is a network of honeypots.\n- **Standalone** - not connected to production\n- **Integrated** - inside the production environment\n- **Connected** - linked to the enterprise",
+    "tags": [
+      "honeynet"
+    ],
+    "sources": [
+      "https://d3fend.mitre.org/technique/d3f:StandaloneHoneynet/",
+      "https://d3fend.mitre.org/technique/d3f:IntegratedHoneynet/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0029",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Honeytoken / canary token",
+    "back": "A non-system decoy - a fake **credential, file or URL** that should never be used, so **any use is a high-signal alert**. D3FEND: Decoy User Credential / Decoy File.",
+    "tags": [
+      "honeytoken",
+      "canary"
+    ],
+    "sources": [
+      "https://d3fend.mitre.org/technique/d3f:DecoyUserCredential/",
+      "https://docs.canarytokens.org/guide/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0030",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Honeypot tools",
+    "back": "- **Cowrie** - medium/high-interaction SSH/Telnet\n- **Dionaea** - traps malware (SMB/HTTP/FTP)\n- **Conpot** - ICS/SCADA\n- **Honeyd** - many virtual hosts/OS personalities\n- **KFSensor** - Windows\n- **T-Pot** - all-in-one multi-honeypot platform",
+    "tags": [
+      "honeypot",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/cowrie/cowrie",
+      "https://github.com/DinoTools/dionaea",
+      "https://github.com/mushorg/conpot",
+      "https://github.com/DataSoft/Honeyd",
+      "https://github.com/telekom-security/tpotce"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0031",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Traffic normalization",
+    "back": "A normalizer rewrites ambiguous traffic to **one** interpretation before the IDS sees it, defeating insertion/evasion. Paired with target-based reassembly (frag3, host-os-policy).",
+    "tags": [
+      "normalization"
+    ],
+    "sources": [
+      "https://www.usenix.org/conference/10th-usenix-security-symposium/network-intrusion-detection-evasion-traffic-normalization",
+      "https://docs.suricata.io/en/latest/configuration/suricata-yaml.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0032",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Ingress and egress filtering",
+    "back": "Block invalid/spoofed and RFC 1918 private sources at the perimeter. **Egress filtering** (BCP 38 / RFC 2827, RFC 3704) stops spoofed outbound traffic and data tunnelling out - not just an inbound control.",
+    "tags": [
+      "ingress",
+      "egress",
+      "bcp38"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc2827",
+      "https://www.rfc-editor.org/rfc/rfc3704",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0033",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Inspect encrypted traffic",
+    "back": "Add **TLS decryption** at a proxy/NGFW, or deploy **host-based sensors** that see decrypted activity, so the IDS is not blind to VPN/TLS/SSH payloads.",
+    "tags": [
+      "tls-inspection",
+      "encryption"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0034",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Layered detection",
+    "back": "Combine **signature + anomaly + protocol analysis** and multiple IDPS types (**NIDS + HIDS + NBA**); keep signatures updated and tune thresholds/whitelists to cut false negatives.",
+    "tags": [
+      "layered-detection"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0035",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Detect tunnelling",
+    "back": "Use **network/DNS traffic analysis** (odd DNS volume, beaconing, non-standard protocols) and **egress-filter** to only required protocols. ATT&CK M1037 Filter Network Traffic, M1031 Network Intrusion Prevention.",
+    "tags": [
+      "tunnelling",
+      "detection"
+    ],
+    "sources": [
+      "https://d3fend.mitre.org/technique/d3f:NetworkTrafficAnalysis/",
+      "https://attack.mitre.org/mitigations/M1037/",
+      "https://attack.mitre.org/mitigations/M1031/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0036",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Segmentation and DMZ",
+    "back": "Segment the network and put public services in a **DMZ/screened subnet** so a perimeter bypass does not reach the internal LAN. Review firewall rulesets under change control. ATT&CK M1030.",
+    "tags": [
+      "segmentation",
+      "dmz"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final",
+      "https://attack.mitre.org/mitigations/M1030/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0037",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "SPAN port vs network tap",
+    "back": "Both feed a **passive** sensor a copy of traffic. **SPAN/mirror port:** built into the switch, but may drop packets under heavy load. **Network tap:** dedicated hardware on the link that copies everything, bought as an add-on.",
+    "tags": [
+      "span",
+      "tap",
+      "sensor"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0038",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "IDPS tuning tools",
+    "back": "- **Threshold** - the limit between normal and abnormal (e.g. 10 failed logins in 60 s)\n- **Blacklist** - entities known to be malicious\n- **Whitelist** - entities known to be benign (cuts false positives)\n\nReview all three regularly.",
+    "tags": [
+      "tuning",
+      "thresholds"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0039",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Snort's three classic modes",
+    "back": "1. **Sniffer** - prints packets to the console\n2. **Packet logger** - writes packets to disk\n3. **NIDS** - applies rules and raises alerts (the most configurable mode)",
+    "tags": [
+      "snort",
+      "modes"
+    ],
+    "sources": [
+      "http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node3.html",
+      "http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node6.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-c-0040",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Suricata EVE JSON",
+    "back": "Suricata's main output: one JSON record per event (`event_type` such as alert, flow, http, dns, tls) in `eve.json`, ready for a SIEM.",
+    "tags": [
+      "suricata",
+      "eve"
+    ],
+    "sources": [
+      "https://docs.suricata.io/en/latest/output/eve/eve-json-format.html",
+      "https://docs.suricata.io/en/latest/configuration/suricata-yaml.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

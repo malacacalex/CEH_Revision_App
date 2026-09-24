@@ -3,7 +3,7 @@
   "title": "Evading IDS, Firewalls, and Honeypots",
   "domain": "D4",
   "effortUnits": 1.25,
-  "status": "stub",
+  "status": "sample",
   "sections": [
     "IDS, IPS, and Firewall Concepts",
     "IDS, IPS, and Firewall Solutions",
@@ -12,8 +12,107 @@
     "Honeypot Concepts and Detecting Honeypots",
     "IDS/Firewall Evasion Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Distinguish IDS from IPS and name the three detection methodologies (signature, anomaly, stateful protocol analysis) with one strength and one weakness of each",
+      "section": "IDS, IPS, and Firewall Concepts"
+    },
+    {
+      "text": "Classify an IDPS as network-based, host-based, wireless or NBA, and tell inline from passive deployment from a scenario",
+      "section": "IDS, IPS, and Firewall Concepts"
+    },
+    {
+      "text": "Match a firewall type (packet filter, stateful, proxy/application, circuit-level, NGFW, UTM, WAF) to what it inspects, and place a DMZ, bastion host and NAT in a network layout",
+      "section": "IDS, IPS, and Firewall Solutions"
+    },
+    {
+      "text": "Read a Snort or Suricata rule: identify the action, header, direction operator and key options (msg, sid, rev, classtype, content, flow)",
+      "section": "IDS, IPS, and Firewall Solutions"
+    },
+    {
+      "text": "Classify honeypots by interaction level and purpose, distinguish honeynet types and honeytokens, and explain why honeypot alerts have few false positives",
+      "section": "Honeypot Concepts and Detecting Honeypots"
+    },
+    {
+      "text": "Select perimeter and sensor controls: deny-by-default, ingress/egress filtering, traffic normalization and target-based reassembly, TLS inspection, layered detection and segmentation",
+      "section": "IDS/Firewall Evasion Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "IDS, IPS, and Firewall Concepts",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "The detection methodologies, IDS-vs-IPS response, IDPS types and inline-vs-passive are tested directly and underpin the rest of the module."
+    },
+    {
+      "section": "IDS, IPS, and Firewall Solutions",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Firewall types, DMZ/bastion/NAT and reading a Snort or Suricata rule are frequent recall and command-output questions."
+    },
+    {
+      "section": "Evading IDS/Firewalls",
+      "priority": "SKIM",
+      "minutes": 30,
+      "why": "Not covered in the app yet: read this section in your course material and focus on how the defender detects and counters it."
+    },
+    {
+      "section": "Evading NAC and Endpoint Security",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Not covered in the app yet: read this section in your course material and focus on how the defender detects and counters it."
+    },
+    {
+      "section": "Honeypot Concepts and Detecting Honeypots",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Interaction and purpose classes, honeynet types, honeytokens and the low-false-positive property come up often."
+    },
+    {
+      "section": "IDS/Firewall Evasion Countermeasures",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Normalization/target-based reassembly, deny-by-default, egress filtering, TLS inspection and layered detection are the defender answers the exam rewards."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Write and test Snort 3 rules against a sample pcap",
+      "source": "free",
+      "where": "https://docs.snort.org/",
+      "skill": "Building a rule header and options (msg, sid, content, flow) and confirming it alerts on the intended traffic",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Run Suricata on a captured pcap and read the eve.json alerts",
+      "source": "free",
+      "where": "https://docs.suricata.io/en/latest/",
+      "skill": "Replaying traffic through Suricata and interpreting alert, flow and http records in EVE JSON",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Deploy a low-interaction honeypot (Cowrie) in an isolated VM and review the captured session log",
+      "source": "free",
+      "where": "https://github.com/cowrie/cowrie",
+      "skill": "Standing up an SSH/Telnet decoy and reading the attacker's commands, with no production system attached",
+      "minutes": 40,
+      "verify": true
+    },
+    {
+      "name": "Create a canary token and observe the alert when it is triggered",
+      "source": "free",
+      "where": "https://docs.canarytokens.org/guide/",
+      "skill": "Placing a decoy credential/file/URL as a high-signal tripwire and confirming the alert fires on use",
+      "minutes": 25,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a colleague the difference between signature-based and anomaly-based detection, and why each one misses a different kind of attack.",
+    "Explain why a network IDS must reassemble traffic the same way the destination host does, and what Snort frag3 or Suricata host-os-policy do to achieve that.",
+    "Explain why a honeypot's alerts have very few false positives, and what a defender does to keep a decoy credible."
+  ]
 }

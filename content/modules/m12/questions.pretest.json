@@ -1,0 +1,275 @@
+[
+  {
+    "id": "m12-q-0001",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the only functional capability that separates an IPS from an IDS?",
+    "options": [
+      "The IPS is always host-based while the IDS is network-based",
+      "The IPS uses signatures while the IDS uses anomaly detection",
+      "The IPS works at the application layer while the IDS works at the network layer",
+      "The IPS can actively respond to stop the attack, not just alert"
+    ],
+    "answer": 3,
+    "explanation": "IDS detects and alerts; IPS adds the ability to respond and stop the attack. That response is the defining difference.",
+    "optionNotes": [
+      "Both come in host and network forms.",
+      "Both can use either detection method.",
+      "Layer is unrelated to the IDS/IPS distinction.",
+      "Correct: an IPS can drop packets, reset connections or block the source; an IDS only alerts."
+    ],
+    "tags": ["ids", "ips"],
+    "sources": ["https://csrc.nist.gov/glossary/term/intrusion_detection_system", "https://csrc.nist.gov/glossary/term/intrusion_prevention_system"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0002",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which IDPS type inspects one machine's own logs, processes, file integrity and configuration changes?",
+    "options": ["Network behavior analysis (NBA)", "Network-based IDS (NIDS)", "Host-based IDS (HIDS)", "Wireless IDS"],
+    "answer": 2,
+    "explanation": "A host-based IDS runs on the host and monitors its logs, processes, files and configuration.",
+    "optionNotes": [
+      "NBA watches traffic flows across the network.",
+      "A NIDS watches a network segment, not a host's internals.",
+      "Correct: a HIDS agent watches a single host.",
+      "A wireless IDS watches wireless protocols."
+    ],
+    "tags": ["hids", "idps-types"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0003",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A stateless packet-filtering firewall makes its decision using which information?",
+    "options": [
+      "Source/destination IP, protocol and port of each packet",
+      "The full application-layer payload of each session",
+      "A state table of established connections",
+      "The user's authenticated identity"
+    ],
+    "answer": 0,
+    "explanation": "A stateless packet filter looks only at network/transport header fields and judges each packet on its own.",
+    "optionNotes": [
+      "Correct: a packet filter judges each packet on addresses, protocol and port.",
+      "That is an application/proxy firewall.",
+      "That is stateful inspection.",
+      "That needs an application or identity-aware firewall."
+    ],
+    "tags": ["packet-filter"],
+    "sources": ["https://csrc.nist.gov/glossary/term/packet_filter", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0004",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "In the Snort rule `alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:\"x\"; sid:1000001;)`, what does the `->` mean?",
+    "options": [
+      "Traffic is matched in both directions",
+      "Traffic flows one way, from source to destination",
+      "The rule rewrites the packet",
+      "The rule only fires on established connections"
+    ],
+    "answer": 1,
+    "explanation": "The direction operator `->` matches traffic from the source to the destination; `<>` matches both ways.",
+    "optionNotes": [
+      "That is the `<>` operator.",
+      "Correct: `->` matches source-to-destination only; `<>` matches both directions.",
+      "Rewriting needs the rewrite action and a replace option.",
+      "Connection state is set by the flow option, not the arrow."
+    ],
+    "tags": ["snort", "rule"],
+    "sources": ["https://docs.snort.org/rules/headers/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0005",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What defines a honeypot?",
+    "options": [
+      "A firewall that blocks all inbound traffic",
+      "A decoy resource with no production use, so almost any interaction is suspicious",
+      "A signature database shared between sensors",
+      "An encrypted tunnel for management traffic"
+    ],
+    "answer": 1,
+    "explanation": "A honeypot is a decoy with no legitimate purpose, so interaction with it is inherently suspicious.",
+    "optionNotes": [
+      "A honeypot observes; it does not block.",
+      "Correct: it is a decoy; legitimate users have no reason to touch it.",
+      "That describes a rule/signature set.",
+      "That is a VPN, not a honeypot."
+    ],
+    "tags": ["honeypot"],
+    "sources": ["https://csrc.nist.gov/glossary/term/honeypot"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0006",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A blue team places a fake set of admin credentials in a file that no employee should ever open, wired to alert on use. What is this?",
+    "options": ["A network tap", "A high-interaction honeypot", "A honeytoken (decoy credential)", "A WAF rule"],
+    "answer": 2,
+    "explanation": "A honeytoken is a non-system decoy - a credential, file or URL that should never be used, so any use is a high-signal alert.",
+    "optionNotes": [
+      "A tap copies traffic for a sensor.",
+      "A honeypot is a whole decoy system, not a single artifact.",
+      "Correct: a decoy credential/file is a honeytoken.",
+      "A WAF filters HTTP; it is not a decoy."
+    ],
+    "tags": ["honeytoken"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:DecoyUserCredential/", "https://docs.canarytokens.org/guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0007",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An IDS keeps missing attacks hidden in overlapping IP fragments. Which countermeasure most directly fixes this?",
+    "options": [
+      "Enabling NAT on the firewall",
+      "Adding more signatures to the ruleset",
+      "Blocking all ICMP at the perimeter",
+      "Target-based reassembly / traffic normalization before inspection"
+    ],
+    "answer": 3,
+    "explanation": "Fragmentation evasion works when the IDS reassembles differently from the host; target-based reassembly/normalization defeats it.",
+    "optionNotes": [
+      "NAT is a routing feature, not a detection fix.",
+      "New signatures do not help if the sensor never reassembles the fragments.",
+      "ICMP filtering is unrelated to fragment reassembly.",
+      "Correct: reassembling fragments the way the target OS would removes the ambiguity (Snort frag3, Suricata host-os-policy)."
+    ],
+    "tags": ["normalization", "frag3"],
+    "sources": [
+      "http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html",
+      "https://www.usenix.org/conference/10th-usenix-security-symposium/network-intrusion-detection-evasion-traffic-normalization"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0008",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A sensor is attached to a switch mirror port and receives a copy of the traffic. What can it NOT reliably do?",
+    "options": [
+      "Block the malicious traffic before it reaches the target",
+      "Raise an alert on a signature match",
+      "Log the suspicious packets",
+      "Forward alerts to a SIEM"
+    ],
+    "answer": 0,
+    "explanation": "A passive sensor reads a copy of the traffic; blocking needs an inline sensor that the traffic passes through.",
+    "optionNotes": [
+      "Correct: a passive sensor only sees a copy, so it cannot reliably stop the original traffic.",
+      "Passive sensors alert normally.",
+      "Passive sensors can log.",
+      "Alert forwarding does not depend on placement."
+    ],
+    "tags": ["passive", "sensor"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final", "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0009",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Where should a company place its public web and mail servers so outside traffic never reaches the internal LAN directly?",
+    "options": [
+      "In a DMZ (screened subnet)",
+      "On the internal LAN behind NAT",
+      "On the same subnet as the domain controllers",
+      "Outside the firewall with no filtering"
+    ],
+    "answer": 0,
+    "explanation": "Public-facing servers belong in a DMZ, a perimeter segment logically between the internal and external networks.",
+    "optionNotes": [
+      "Correct: the DMZ sits between the external and internal networks for public-facing hosts.",
+      "NAT hides addresses but puts the servers inside the trusted LAN.",
+      "That exposes the most sensitive servers.",
+      "Unfiltered servers have no perimeter protection."
+    ],
+    "tags": ["dmz"],
+    "sources": ["https://csrc.nist.gov/glossary/term/demilitarized_zone", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0010",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which firewall policy approach does NIST SP 800-41 recommend for inbound and outbound traffic?",
+    "options": [
+      "Allow by default: block only known-bad traffic",
+      "Deny by default: block everything not explicitly permitted",
+      "Allow all outbound, deny all inbound, no exceptions",
+      "Log all traffic but block nothing"
+    ],
+    "answer": 1,
+    "explanation": "NIST recommends deny-by-default rulesets: only expressly permitted traffic passes.",
+    "optionNotes": [
+      "Allow-by-default leaves every unknown path open.",
+      "Correct: permit only what is needed and deny the rest.",
+      "Outbound traffic also needs filtering (egress).",
+      "Logging without enforcement is not a firewall policy."
+    ],
+    "tags": ["deny-by-default"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf"],
+    "verify": false,
+    "rev": 1
+  }
+]

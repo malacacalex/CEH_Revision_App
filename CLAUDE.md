@@ -125,7 +125,8 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
 | M11 Session Hijacking | stub + notes | research + notes; cards and questions deferred (blocked) |
 | M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 24 verify |
-| M12–M20 | stub | built in parallel by agents in M4 (brief: scratchpad agent-brief.md) |
+| M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred |
+| M13–M20 | stub | built in parallel by agents in M4 (brief: scratchpad agent-brief.md) |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
 | Reference | 4 / 18 | sheets 1, 3, 4 (verify), 5; sheet 2 deferred · glossary 43 terms |
 

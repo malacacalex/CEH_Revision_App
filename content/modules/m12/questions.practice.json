@@ -1,0 +1,983 @@
+[
+  {
+    "id": "m12-q-0011",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which detection method compares traffic to vendor-defined profiles of how a protocol should behave in each state?",
+    "options": ["Packet filtering", "Signature-based detection", "Anomaly-based detection", "Stateful protocol analysis"],
+    "answer": 3,
+    "explanation": "Stateful protocol analysis checks observed traffic against universal vendor profiles of benign protocol state.",
+    "optionNotes": [
+      "Packet filtering enforces access rules; it is not a detection method.",
+      "Signatures match fixed patterns, not protocol state.",
+      "Anomaly detection uses a learned baseline, not vendor protocol profiles.",
+      "Correct: it tracks protocol state and pairs requests with responses."
+    ],
+    "tags": ["stateful-protocol-analysis"],
+    "sources": ["https://csrc.nist.gov/glossary/term/stateful_protocol_analysis", "https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0012",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "An anomaly-based IDS needs a period of watching normal traffic before it can detect deviations. What is that period called?",
+    "options": ["A quarantine window", "A grace period", "A training period", "A signature refresh"],
+    "answer": 2,
+    "explanation": "Anomaly detection builds its baseline profile over a training period of typical activity.",
+    "optionNotes": [
+      "Quarantine isolates hosts, unrelated here.",
+      "Grace period is not the term used.",
+      "Correct: the baseline profile is built during a training period.",
+      "Signature refresh updates a signature IDS, not a baseline."
+    ],
+    "tags": ["anomaly", "training"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final", "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0013",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A new malware variant with no published signature spreads through a network. Which detection approach has the best chance of catching it?",
+    "options": ["Anomaly-based detection", "Signature-based detection", "A stateless packet filter", "A blacklist of known-bad IPs"],
+    "answer": 0,
+    "explanation": "Signatures cannot match an unknown threat; anomaly detection can flag it as a deviation, at the cost of false positives.",
+    "optionNotes": [
+      "Correct: deviation from the baseline can flag a brand-new threat.",
+      "No signature exists yet for a new variant.",
+      "A packet filter enforces access rules, it does not detect malware.",
+      "A blacklist only covers already-known bad addresses."
+    ],
+    "tags": ["anomaly", "zero-day"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0014",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An analyst complains the IDS labels a nightly backup job as an attack every night. What is this, and what is the fix?",
+    "options": [
+      "A false negative; add more signatures",
+      "A false positive; tune the IDS (thresholds/whitelist)",
+      "An evasion attack; block the source",
+      "A true positive; open an incident"
+    ],
+    "answer": 1,
+    "explanation": "Benign activity flagged as malicious is a false positive; tuning (thresholds, whitelists) reduces it.",
+    "optionNotes": [
+      "A false negative is a missed attack, the opposite.",
+      "Correct: benign activity flagged as malicious is a false positive, fixed by tuning.",
+      "The backup is legitimate, not an evasion attempt.",
+      "It is not a real attack, so not a true positive."
+    ],
+    "tags": ["false-positive", "tuning"],
+    "sources": ["https://csrc.nist.gov/glossary/term/false_positive", "https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0015",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Reducing an IDS's false negatives typically has what side effect?",
+    "options": [
+      "It eliminates false positives",
+      "It increases false positives",
+      "It disables anomaly detection",
+      "It has no effect on false positives"
+    ],
+    "answer": 1,
+    "explanation": "False positives and false negatives trade off: cutting one usually raises the other.",
+    "optionNotes": [
+      "You cannot usually eliminate one while cutting the other.",
+      "Correct: the two trade off against each other.",
+      "It does not turn off a detection method.",
+      "There is a direct trade-off between them."
+    ],
+    "tags": ["false-positive", "false-negative"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0016",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team needs the IDS to actively drop attack packets in real time, not just alert. What must be true of the deployment?",
+    "options": [
+      "The sensor must be host-based",
+      "The sensor can stay passive on a mirror port",
+      "The sensor must be inline so traffic passes through it",
+      "The sensor must use anomaly detection"
+    ],
+    "answer": 2,
+    "explanation": "To prevent (block) in real time, the sensor must be inline; a passive sensor can only alert.",
+    "optionNotes": [
+      "Blocking is about placement, not host vs network.",
+      "A passive sensor sees only a copy and cannot reliably block.",
+      "Correct: only an inline sensor can block, because the traffic flows through it.",
+      "Blocking is about placement, not the detection method."
+    ],
+    "tags": ["inline", "ips"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0017",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why is a network IDS described as 'fail-open'?",
+    "options": [
+      "It only inspects open ports",
+      "It automatically opens all firewall ports on failure",
+      "It fails by blocking all traffic",
+      "If it is disabled (e.g. by a DoS) traffic still flows and protection simply stops"
+    ],
+    "answer": 3,
+    "explanation": "A network IDS is inherently fail-open: disabling it stops protection while traffic keeps flowing, unlike a fail-closed firewall.",
+    "optionNotes": [
+      "Fail-open refers to failure behaviour, not port scope.",
+      "It does not control firewall ports.",
+      "That would be fail-closed.",
+      "Correct: a passive network IDS does not sit in the traffic path, so its failure removes detection but not connectivity."
+    ],
+    "tags": ["fail-open"],
+    "sources": ["https://users.ece.cmu.edu/~adrian/731-sp04/readings/Ptacek-Newsham-ids98.pdf", "https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0018",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these is monitored by a host-based IDS but NOT by a network-based IDS?",
+    "options": [
+      "File integrity and configuration changes on the host",
+      "Traffic on a network segment between two subnets",
+      "Flows indicating a network-wide DDoS",
+      "Wireless protocol anomalies"
+    ],
+    "answer": 0,
+    "explanation": "A HIDS watches host internals: file integrity, processes, logs and configuration changes.",
+    "optionNotes": [
+      "Correct: file integrity and config changes are host-level events a HIDS agent sees.",
+      "That is a NIDS job.",
+      "That is network behavior analysis.",
+      "That is a wireless IDS job."
+    ],
+    "tags": ["hids"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0019",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "An IDS raises `[FRAGMENTATION] overlapping IP fragments detected` on inbound traffic. What class of problem is this alert about?",
+    "options": [
+      "Possible fragmentation-based evasion of inspection",
+      "A brute-force login attempt",
+      "A DNS misconfiguration",
+      "A TLS certificate error"
+    ],
+    "answer": 0,
+    "explanation": "Overlapping IP fragments are the fingerprint of fragmentation ambiguity that can defeat sensors which do not reassemble by target OS.",
+    "optionNotes": [
+      "Correct: overlapping fragments are a hallmark of fragment-reassembly ambiguity used to dodge inspection.",
+      "Brute force shows as repeated auth failures.",
+      "This is IP-layer, not DNS.",
+      "This is not a certificate issue."
+    ],
+    "tags": ["fragmentation"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc1858", "https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0020",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In IDS terminology, adjusting thresholds, blacklists and whitelists so the sensor fits its environment is called what?",
+    "options": ["Hardening", "Tuning", "Baselining", "Normalization"],
+    "answer": 1,
+    "explanation": "Adjusting an IDPS (thresholds, blacklists, whitelists, alert settings) to improve accuracy is tuning.",
+    "optionNotes": [
+      "Hardening reduces attack surface, a different idea.",
+      "Correct: tuning adjusts the IDPS to improve accuracy.",
+      "Baselining builds an anomaly profile; it is one input to tuning.",
+      "Normalization rewrites ambiguous traffic before inspection."
+    ],
+    "tags": ["tuning"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0021",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A firewall must let return traffic for connections started inside, without a rule for every possible external host. Which type does this?",
+    "options": ["Circuit-level gateway with no state", "Stateless packet filter", "Stateful inspection firewall", "A hub"],
+    "answer": 2,
+    "explanation": "A stateful firewall keeps a connection state table, so replies to inside-initiated sessions are allowed automatically.",
+    "optionNotes": [
+      "A gateway without state cannot track the connection.",
+      "A stateless filter has no memory of connections.",
+      "Correct: the state table remembers outbound connections and permits their replies.",
+      "A hub is not a firewall."
+    ],
+    "tags": ["stateful"],
+    "sources": ["https://csrc.nist.gov/glossary/term/stateful_inspection", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0022",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which firewall terminates the client's connection and opens a separate one to the server, so the two never connect directly?",
+    "options": ["Circuit-level gateway", "Stateless packet filter", "Stateful inspection firewall", "Application / proxy-gateway firewall"],
+    "answer": 3,
+    "explanation": "An application/proxy-gateway firewall proxies the connection in two halves and inspects application content.",
+    "optionNotes": [
+      "A circuit-level gateway relays sessions but does not inspect content.",
+      "A packet filter forwards packets directly.",
+      "Stateful inspection still forwards the original connection.",
+      "Correct: a proxy gateway relays through two connections and inspects content."
+    ],
+    "tags": ["proxy"],
+    "sources": ["https://csrc.nist.gov/glossary/term/application_proxy_gateway", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0023",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An organization wants to block SQL-injection and XSS attempts against its public website. Which control is designed for that?",
+    "options": ["A stateless packet filter", "A web application firewall (WAF)", "A circuit-level gateway", "NAT on the perimeter router"],
+    "answer": 1,
+    "explanation": "A WAF sits in front of the web server and applies rules to HTTP to block web attacks such as XSS and SQLi.",
+    "optionNotes": [
+      "A packet filter cannot see the HTTP payload.",
+      "Correct: a WAF filters HTTP for web attacks in front of the server.",
+      "A circuit-level gateway does not inspect payload.",
+      "NAT hides addresses; it does not inspect content."
+    ],
+    "tags": ["waf"],
+    "sources": ["https://owasp.org/www-community/Web_Application_Firewall", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0024",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What distinguishes a next-generation firewall (NGFW) from a traditional stateful firewall?",
+    "options": [
+      "It works only at the data-link layer",
+      "It only filters by IP and port",
+      "It has no state table",
+      "Application awareness plus integrated IPS and deep packet inspection"
+    ],
+    "answer": 3,
+    "explanation": "An NGFW is a stateful firewall plus application awareness, integrated IPS and deep packet inspection.",
+    "optionNotes": [
+      "An NGFW inspects up to the application layer.",
+      "That describes a basic packet filter.",
+      "An NGFW is stateful.",
+      "Correct: an NGFW adds app-ID, IPS and DPI on top of stateful inspection."
+    ],
+    "tags": ["ngfw"],
+    "sources": [
+      "https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall-ngfw",
+      "https://www.fortinet.com/resources/cyberglossary/next-generation-firewall"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0025",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "In `alert tcp any any -> $HOME_NET 22 (msg:\"SSH\"; flow:established,to_server; sid:1000010;)`, what does `flow:established,to_server` restrict the match to?",
+    "options": [
+      "Only the first SYN packet of a connection",
+      "Any UDP datagram to port 22",
+      "Packets on an established connection going from client to server",
+      "Server responses back to the client"
+    ],
+    "answer": 2,
+    "explanation": "flow:established,to_server matches packets on an already-established TCP connection travelling from client to server.",
+    "optionNotes": [
+      "Established excludes the initial handshake.",
+      "The rule is tcp, and flow is about state, not UDP.",
+      "Correct: it matches established TCP flows in the client-to-server direction.",
+      "to_server is client-to-server, not the reply."
+    ],
+    "tags": ["snort", "flow"],
+    "sources": ["https://docs.snort.org/rules/options/non_payload/flow"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0026",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "You write a custom local Snort rule. Which sid value is appropriate?",
+    "options": ["1000001", "10", "500", "999000"],
+    "answer": 0,
+    "explanation": "Snort reserves sids 0-999999 for distributed rules; local rules start at 1000000.",
+    "optionNotes": [
+      "Correct: local rules should use sids starting at 1000000.",
+      "1-999999 are reserved for distributed rules.",
+      "500 is in the reserved range.",
+      "999000 is still within the reserved 0-999999 range."
+    ],
+    "tags": ["snort", "sid"],
+    "sources": ["https://docs.snort.org/rules/options/general/sid"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0027",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which open-source tool is a host-based IDS with file-integrity monitoring, rather than a network signature IDS?",
+    "options": ["Zeek", "Snort", "Suricata", "OSSEC"],
+    "answer": 3,
+    "explanation": "OSSEC/Wazuh are host-based IDS that include file-integrity monitoring; Snort, Suricata and Zeek are network tools.",
+    "optionNotes": [
+      "Zeek is a network analysis/behaviour monitor.",
+      "Snort is a network signature IDS/IPS.",
+      "Suricata is a network signature IDS/IPS.",
+      "Correct: OSSEC (and Wazuh) are host IDS with file-integrity monitoring."
+    ],
+    "tags": ["ossec", "hids"],
+    "sources": ["https://www.ossec.net/", "https://documentation.wazuh.com/current/getting-started/index.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0028",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In a Snort rule header, what does the `<>` operator mean?",
+    "options": ["Match traffic in both directions", "Match only source to destination", "Rewrite the packet", "Drop the packet silently"],
+    "answer": 0,
+    "explanation": "The `<>` direction operator matches traffic in both directions; `->` matches source-to-destination only.",
+    "optionNotes": [
+      "Correct: `<>` is bidirectional; `->` is one-way.",
+      "That is `->`.",
+      "Rewriting is an action, not a direction operator.",
+      "Dropping is an action (sdrop), not a direction operator."
+    ],
+    "tags": ["snort", "rule"],
+    "sources": ["https://docs.snort.org/rules/headers/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0029",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A firewall is configured to trust any traffic whose source port is 53 (DNS). Why is this risky?",
+    "options": [
+      "DNS never uses port 53, so the rule never matches",
+      "An attacker can set their source port to 53 to slip traffic past the rule",
+      "Port 53 is only used by TLS",
+      "Source ports cannot be chosen by the sender"
+    ],
+    "answer": 1,
+    "explanation": "Trusting a source port is unsafe because the sender chooses it; an attacker simply sets it to the trusted value.",
+    "optionNotes": [
+      "DNS does use port 53; that is the point.",
+      "Correct: source ports are attacker-controlled, so trusting one is a classic misconfiguration.",
+      "Port 53 is DNS, not TLS.",
+      "Senders can freely choose their source port."
+    ],
+    "tags": ["firewall", "misconfiguration"],
+    "sources": ["https://nmap.org/book/man-bypass-firewalls-ids.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0030",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to NIST SP 800-41, NAT is best described as what?",
+    "options": [
+      "A form of intrusion detection",
+      "The main security function of a firewall",
+      "A routing technology, not a core security feature",
+      "An encryption protocol"
+    ],
+    "answer": 2,
+    "explanation": "NIST SP 800-41 states NAT is a routing technology; its protective side effect is matched by a stateful firewall.",
+    "optionNotes": [
+      "NAT does not detect intrusions.",
+      "NIST says NAT is not part of a firewall's security functionality.",
+      "Correct: NAT is a routing feature; a stateful firewall gives the same protection.",
+      "NAT does not encrypt."
+    ],
+    "tags": ["nat"],
+    "sources": ["https://csrc.nist.gov/glossary/term/network_address_translation", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0031",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "A hardened, single-purpose host placed in the DMZ to withstand attack is called a what?",
+    "options": ["Bastion host", "Jump box", "Honeypot", "Load balancer"],
+    "answer": 0,
+    "explanation": "A bastion host is a special-purpose computer built and configured to withstand attack, typically exposed in the DMZ.",
+    "optionNotes": [
+      "Correct: a bastion host is a hardened, single-purpose exposed host.",
+      "A jump box is for admin access, a different role.",
+      "A honeypot is a decoy, not a production service host.",
+      "A load balancer distributes traffic."
+    ],
+    "tags": ["bastion"],
+    "sources": ["https://csrc.nist.gov/glossary/term/bastion_host"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0032",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the main reason honeypots generate very few false positives?",
+    "options": [
+      "They are deployed on every workstation",
+      "They inspect only encrypted traffic",
+      "They run signature detection with a huge ruleset",
+      "They have no legitimate users, so almost any interaction is suspicious"
+    ],
+    "answer": 3,
+    "explanation": "A honeypot has no production role, so legitimate users have no reason to touch it and almost any interaction is an attack.",
+    "optionNotes": [
+      "Honeypots are dedicated decoys, not on every host.",
+      "Encryption is unrelated to a honeypot's low false-positive rate.",
+      "Honeypots rely on decoy value, not signatures.",
+      "Correct: no legitimate use means interaction is inherently suspicious."
+    ],
+    "tags": ["honeypot"],
+    "sources": ["https://csrc.nist.gov/glossary/term/honeypot", "https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0033",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A security team wants a decoy that lets attackers fully interact with a real OS and services to study their tools in depth. Which do they choose?",
+    "options": ["A honeytoken", "A low-interaction honeypot", "A high-interaction honeypot", "A stateless packet filter"],
+    "answer": 2,
+    "explanation": "High-interaction honeypots run real OS/services so attackers invest time and reveal their tools, at higher risk.",
+    "optionNotes": [
+      "A honeytoken is a single decoy artifact, not an interactive system.",
+      "Low-interaction only emulates a few services and yields limited data.",
+      "Correct: high-interaction decoys expose real systems for the richest data.",
+      "A packet filter is not a decoy."
+    ],
+    "tags": ["honeypot", "interaction"],
+    "sources": [
+      "https://www.fortinet.com/resources/cyberglossary/what-is-honeypot",
+      "https://www.kaspersky.com/resource-center/threats/what-is-a-honeypot"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0034",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What distinguishes a production honeypot from a research honeypot?",
+    "options": [
+      "A production honeypot is illegal; a research one is legal",
+      "A production honeypot detects compromise near real assets; a research honeypot studies attacker trends",
+      "A production honeypot only runs on Windows",
+      "There is no difference"
+    ],
+    "answer": 1,
+    "explanation": "Production honeypots sit beside real servers to detect compromise; research honeypots study attacker tools and trends.",
+    "optionNotes": [
+      "Legality depends on deployment, not this split.",
+      "Correct: purpose differs - internal detection vs studying attackers.",
+      "OS is not the distinction.",
+      "They differ in purpose."
+    ],
+    "tags": ["honeypot", "purpose"],
+    "sources": [
+      "https://www.fortinet.com/resources/cyberglossary/what-is-honeypot",
+      "https://www.kaspersky.com/resource-center/threats/what-is-a-honeypot"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0035",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker probes a service and notices its responses are incomplete, latency is odd, and the host has no user history. What are they likely detecting?",
+    "options": ["A DNS sinkhole", "A load-balanced web farm", "A TLS-inspecting proxy", "That they are inside a honeypot"],
+    "answer": 3,
+    "explanation": "Atypical emulated responses, off timing and no genuine user activity are classic honeypot fingerprints.",
+    "optionNotes": [
+      "A DNS sinkhole redirects domains; it is not this behaviour.",
+      "A web farm would still behave like a real service.",
+      "A TLS proxy affects certificates, not service emulation quality.",
+      "Correct: emulated, historyless systems are how attackers fingerprint honeypots."
+    ],
+    "tags": ["honeypot", "fingerprint"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:DecoyEnvironment/", "https://www.honeynet.org/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0036",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A network of interconnected honeypots is called a what?",
+    "options": ["A honeytoken", "A honeynet", "A subnet", "A botnet"],
+    "answer": 1,
+    "explanation": "A honeynet is a network of honeypots used to observe attacks across several decoys.",
+    "optionNotes": [
+      "A honeytoken is a single decoy artifact.",
+      "Correct: multiple honeypots networked together form a honeynet.",
+      "A subnet is an ordinary network segment.",
+      "A botnet is a network of compromised hosts, not decoys."
+    ],
+    "tags": ["honeynet"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:StandaloneHoneynet/", "https://www.kaspersky.com/resource-center/threats/what-is-a-honeypot"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0037",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "According to D3FEND, a decoy environment that is NOT connected to any production system is which kind of honeynet?",
+    "options": ["Standalone honeynet", "Integrated honeynet", "Connected honeynet", "Production honeynet"],
+    "answer": 0,
+    "explanation": "D3FEND defines a standalone honeynet as a decoy environment not connected to production systems.",
+    "optionNotes": [
+      "Correct: a standalone honeynet is isolated from production.",
+      "An integrated honeynet sits inside the production environment.",
+      "A connected honeynet links to the enterprise.",
+      "'Production honeynet' is not a D3FEND category."
+    ],
+    "tags": ["honeynet"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:StandaloneHoneynet/", "https://d3fend.mitre.org/technique/d3f:IntegratedHoneynet/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0038",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which honeypot emulates SSH and Telnet to record brute-force attempts and the attacker's shell commands?",
+    "options": ["AIDE", "Conpot", "Cowrie", "Snort"],
+    "answer": 2,
+    "explanation": "Cowrie is a medium/high-interaction SSH and Telnet honeypot that logs brute force and shell interaction.",
+    "optionNotes": [
+      "AIDE is a file-integrity checker, not a honeypot.",
+      "Conpot is an ICS/SCADA honeypot.",
+      "Correct: Cowrie is an SSH/Telnet honeypot.",
+      "Snort is an IDS/IPS, not a honeypot."
+    ],
+    "tags": ["honeypot", "cowrie"],
+    "sources": ["https://github.com/cowrie/cowrie"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0039",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A team needs a decoy that imitates industrial control (ICS/SCADA) systems. Which tool fits?",
+    "options": ["Cowrie", "Conpot", "Dionaea", "KFSensor"],
+    "answer": 1,
+    "explanation": "Conpot is purpose-built to emulate ICS/SCADA systems and gather intelligence on attackers targeting them.",
+    "optionNotes": [
+      "Cowrie targets SSH/Telnet.",
+      "Correct: Conpot is an ICS/SCADA honeypot.",
+      "Dionaea traps general malware over service protocols.",
+      "KFSensor is a Windows honeypot/IDS."
+    ],
+    "tags": ["honeypot", "conpot", "ics"],
+    "sources": ["https://github.com/mushorg/conpot"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0040",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "A fake credential or file placed so that any use of it triggers an alert is called a what?",
+    "options": ["Honeytoken", "Honeynet", "Bastion host", "Signature"],
+    "answer": 0,
+    "explanation": "A honeytoken is a non-system decoy (credential, file, URL) whose use is a high-signal alert.",
+    "optionNotes": [
+      "Correct: a decoy credential/file/URL is a honeytoken (canary token).",
+      "A honeynet is a network of honeypots.",
+      "A bastion host is a hardened server.",
+      "A signature is a detection pattern."
+    ],
+    "tags": ["honeytoken"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:DecoyUserCredential/", "https://docs.canarytokens.org/guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0041",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An IDS and the target host reassemble the same packet stream differently, letting attacks slip through. Which single control best addresses this?",
+    "options": [
+      "Allowing all fragmented packets",
+      "A longer signature list",
+      "Disabling the IDS logging",
+      "Traffic normalization with target-based reassembly"
+    ],
+    "answer": 3,
+    "explanation": "Insertion/evasion depends on differing reassembly; a normalizer plus target-based reassembly forces one interpretation.",
+    "optionNotes": [
+      "Allowing all fragments makes it worse.",
+      "Signatures do not help if reassembly differs.",
+      "Disabling logging hides the problem.",
+      "Correct: normalizing and reassembling by destination-OS removes the ambiguity (frag3, host-os-policy)."
+    ],
+    "tags": ["normalization"],
+    "sources": [
+      "https://www.usenix.org/conference/10th-usenix-security-symposium/network-intrusion-detection-evasion-traffic-normalization",
+      "http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0042",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Egress filtering at the perimeter primarily helps to do what?",
+    "options": [
+      "Replace the need for a firewall",
+      "Speed up inbound web traffic",
+      "Stop spoofed and unwanted outbound traffic from leaving",
+      "Encrypt internal traffic"
+    ],
+    "answer": 2,
+    "explanation": "Egress filtering (BCP 38 / RFC 2827) blocks spoofed outbound traffic and can restrict which protocols leave.",
+    "optionNotes": [
+      "It is one firewall policy, not a replacement.",
+      "It is about control, not speed.",
+      "Correct: egress filtering blocks spoofed sources and restricts outbound protocols (BCP 38).",
+      "Filtering is not encryption."
+    ],
+    "tags": ["egress", "bcp38"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2827", "https://www.rfc-editor.org/rfc/rfc3704"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0043",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A NIDS cannot see attacks inside TLS-encrypted sessions. Which two measures address this blind spot?",
+    "options": [
+      "Blocking all ICMP and enabling NAT",
+      "More NIDS signatures and a bigger mirror port",
+      "TLS inspection at a proxy/NGFW and host-based sensors",
+      "Disabling the IDS during peak hours"
+    ],
+    "answer": 2,
+    "explanation": "A network IDS is blind to encrypted payloads; TLS inspection or host-based agents restore visibility.",
+    "optionNotes": [
+      "ICMP/NAT do not reveal encrypted payloads.",
+      "Signatures cannot read encrypted payloads.",
+      "Correct: decrypt at a proxy/NGFW or watch decrypted activity on the host.",
+      "Disabling the IDS removes detection entirely."
+    ],
+    "tags": ["tls-inspection", "encryption"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0044",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which combination best reflects 'layered detection' recommended by NIST SP 800-94?",
+    "options": [
+      "Signature detection on a single NIDS only",
+      "Signature + anomaly + protocol analysis across NIDS, HIDS and NBA",
+      "Anomaly detection with no signatures",
+      "A firewall with no IDS at all"
+    ],
+    "answer": 1,
+    "explanation": "NIST advises combining detection methods and multiple IDPS types so no single bypass defeats detection.",
+    "optionNotes": [
+      "One method on one sensor leaves gaps.",
+      "Correct: combine methods and IDPS types for broader, more accurate detection.",
+      "Dropping signatures loses precise known-threat detection.",
+      "No IDS means no detection layer."
+    ],
+    "tags": ["layered-detection"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0045",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Analysts see steady, small DNS queries to one domain every few minutes from an internal host. Which countermeasure and reasoning fit?",
+    "options": [
+      "Network/DNS traffic analysis flags possible tunnelling or beaconing; egress-filter DNS",
+      "Add a signature for that exact domain and ignore the pattern",
+      "Open the firewall to speed up DNS",
+      "Disable DNS logging to reduce noise"
+    ],
+    "answer": 0,
+    "explanation": "Regular low-volume DNS beaconing is a tunnelling fingerprint; DNS/traffic analysis plus egress filtering to required resolvers counters it.",
+    "optionNotes": [
+      "Correct: regular low-volume DNS beaconing suggests tunnelling; traffic analysis and egress control address it.",
+      "One-off signatures miss the behavioural pattern.",
+      "Opening the firewall helps the attacker.",
+      "Disabling logs removes the evidence."
+    ],
+    "tags": ["tunnelling", "detection"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:NetworkTrafficAnalysis/", "https://attack.mitre.org/mitigations/M1037/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0046",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Placing public servers in a DMZ and separating internal zones is an example of which countermeasure?",
+    "options": ["Port knocking", "Signature tuning", "NAT traversal", "Network segmentation"],
+    "answer": 3,
+    "explanation": "Segmentation with a DMZ/screened subnet ensures a perimeter failure does not reach the internal LAN.",
+    "optionNotes": [
+      "Port knocking is a hiding technique, not a defence topology.",
+      "Tuning adjusts an IDS, not the topology.",
+      "NAT traversal is about crossing NAT, not segmentation.",
+      "Correct: segmentation limits how far a perimeter bypass can reach."
+    ],
+    "tags": ["segmentation", "dmz"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://attack.mitre.org/mitigations/M1030/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0047",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A firewall lets fragmented packets through without reassembly, and attackers exploit tiny/overlapping fragments. Which fix does NIST support?",
+    "options": [
+      "Reassemble fragments before inspection, or drop overlapping ones",
+      "Trust all fragments to preserve performance",
+      "Only inspect the first fragment",
+      "Enable NAT"
+    ],
+    "answer": 0,
+    "explanation": "Reassembling fragments before inspection (or dropping overlapping ones) removes fragment-based evasion.",
+    "optionNotes": [
+      "Correct: reassemble before inspecting, or drop overlapping fragments (RFC 5722).",
+      "Trusting all fragments is the vulnerability.",
+      "Inspecting only the first fragment misses the attack payload.",
+      "NAT is unrelated."
+    ],
+    "tags": ["fragmentation", "normalization"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://www.rfc-editor.org/rfc/rfc5722"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0048",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which perimeter rule set does NIST SP 800-41 recommend against IP source-address spoofing entering or leaving a network?",
+    "options": [
+      "Allow all private addresses across the perimeter",
+      "Block RFC 1918 and invalid source addresses (ingress and egress filtering)",
+      "Permit IP source routing for diagnostics",
+      "Trust any address inside the DMZ"
+    ],
+    "answer": 1,
+    "explanation": "NIST recommends blocking RFC 1918 and invalid source addresses at the perimeter, with ingress and egress filtering.",
+    "optionNotes": [
+      "Private addresses should not cross the perimeter.",
+      "Correct: block private/invalid sources both ways; egress filtering stops spoofed outbound.",
+      "Source routing should be blocked, not permitted.",
+      "The DMZ still enforces address rules."
+    ],
+    "tags": ["ingress", "egress"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://www.rfc-editor.org/rfc/rfc1918"],
+    "verify": false,
+    "rev": 1
+  }
+]

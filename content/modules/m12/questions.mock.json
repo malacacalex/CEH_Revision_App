@@ -1,0 +1,457 @@
+[
+  {
+    "id": "m12-q-0049",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "During an audit you find the perimeter sensor sits on a switch mirror port. What limitation should you note in the report?",
+    "options": [
+      "It can block attacks but cannot alert",
+      "It can detect and alert but cannot reliably block attacks",
+      "It can decrypt TLS by default",
+      "It monitors host file integrity"
+    ],
+    "answer": 1,
+    "explanation": "A mirror-port sensor is passive: it alerts on copies of the traffic but cannot block the originals.",
+    "optionNotes": [
+      "It is passive; blocking needs inline placement.",
+      "Correct: a passive (mirror-port) sensor only sees copies, so it cannot stop the traffic.",
+      "Mirroring does not grant decryption.",
+      "That is a host-based IDS function."
+    ],
+    "tags": ["passive", "sensor"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0050",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which term names an alert that fired on activity that was actually harmless?",
+    "options": ["True positive", "False negative", "False positive", "True negative"],
+    "answer": 2,
+    "explanation": "A false positive is a benign event incorrectly flagged as malicious.",
+    "optionNotes": [
+      "A true positive is a correct malicious alert.",
+      "A false negative is a missed real attack.",
+      "Correct: harmless activity flagged as malicious is a false positive.",
+      "A true negative is correctly saying nothing is wrong."
+    ],
+    "tags": ["false-positive"],
+    "sources": ["https://csrc.nist.gov/glossary/term/false_positive"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0051",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "A signature IDS misses a known worm after the author changed a few bytes. Which weakness of signature detection does this show?",
+    "options": [
+      "It only works on encrypted traffic",
+      "It produces too many false positives",
+      "It cannot log traffic",
+      "It fails on variants that no longer match the exact pattern"
+    ],
+    "answer": 3,
+    "explanation": "Signature detection matches fixed patterns, so a variant that alters the pattern evades it.",
+    "optionNotes": [
+      "Signature IDSs work on cleartext, not encrypted, traffic.",
+      "High false positives are an anomaly-detection issue.",
+      "Signature IDSs still log.",
+      "Correct: small changes break exact-match signatures."
+    ],
+    "tags": ["signature"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final", "https://csrc.nist.gov/glossary/term/signature"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0052",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A sensor logs `ALERT anomaly: web bandwidth 61% vs 13% baseline`. Which detection method produced this?",
+    "options": ["Anomaly-based detection", "Signature-based detection", "Stateless packet filtering", "A honeytoken trigger"],
+    "answer": 0,
+    "explanation": "Comparing observed bandwidth to a baseline profile and flagging the deviation is anomaly-based detection.",
+    "optionNotes": [
+      "Correct: comparing current activity to a learned baseline percentage is anomaly detection.",
+      "Signatures match patterns, not statistical baselines.",
+      "Packet filters enforce rules; they do not profile bandwidth.",
+      "A honeytoken alert is about decoy use, not bandwidth."
+    ],
+    "tags": ["anomaly"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0053",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "You must choose sensor placement for an IPS that will actively drop malicious packets. Where does it go?",
+    "options": [
+      "On a workstation as a screen saver",
+      "On a passive tap outside the firewall",
+      "On a spare mirror port",
+      "Inline, so all traffic passes through it"
+    ],
+    "answer": 3,
+    "explanation": "An IPS must be inline so the traffic flows through it and can be dropped.",
+    "optionNotes": [
+      "That is not a sensor deployment.",
+      "A passive tap cannot block.",
+      "A mirror port is passive.",
+      "Correct: prevention requires inline placement."
+    ],
+    "tags": ["inline", "ips"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0054",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which firewall type keeps a state table of active connections?",
+    "options": ["Circuit-level gateway without state", "Stateless packet filter", "Stateful inspection firewall", "A network hub"],
+    "answer": 2,
+    "explanation": "Stateful inspection maintains a state table of connections and blocks packets that break the expected state.",
+    "optionNotes": [
+      "A stateless gateway keeps no connection table.",
+      "A stateless filter keeps no state.",
+      "Correct: stateful inspection tracks connections in a state table.",
+      "A hub does no filtering."
+    ],
+    "tags": ["stateful"],
+    "sources": ["https://csrc.nist.gov/glossary/term/stateful_inspection"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0055",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A design needs a firewall that relays approved sessions at the session layer (like SOCKS) without inspecting payload. Which is it?",
+    "options": ["Circuit-level gateway", "Web application firewall", "Stateless packet filter", "Application-proxy gateway"],
+    "answer": 0,
+    "explanation": "A circuit-level gateway works at the session layer and relays approved sessions without inspecting the payload.",
+    "optionNotes": [
+      "Correct: a circuit-level gateway validates the session and relays it without content inspection.",
+      "A WAF inspects HTTP payloads.",
+      "A packet filter works at network/transport layer, not sessions.",
+      "A proxy gateway inspects application content."
+    ],
+    "tags": ["circuit-level"],
+    "sources": ["https://www.paloaltonetworks.com/cyberpedia/what-is-a-circuit-level-gateway", "https://www.rfc-editor.org/rfc/rfc1928"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0056",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "In `alert icmp any any -> $HOME_NET any (msg:\"ping\"; itype:8; sid:1000020;)`, what is `msg`?",
+    "options": ["The unique rule identifier", "The text label shown with the alert", "The ICMP type to match", "The revision number"],
+    "answer": 1,
+    "explanation": "The msg option provides the human-readable text attached to the alert.",
+    "optionNotes": ["That is sid.", "Correct: msg sets the alert's descriptive text.", "The ICMP type is set by itype.", "The revision is set by rev."],
+    "tags": ["snort", "msg"],
+    "sources": ["https://docs.snort.org/rules/options/general/msg", "https://docs.snort.org/rules/headers/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0057",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool outputs one JSON record per event (alert, flow, http, dns) in an eve.json file for a SIEM?",
+    "options": ["AIDE", "Suricata", "Honeyd", "iptables"],
+    "answer": 1,
+    "explanation": "Suricata writes EVE JSON: one JSON record per event, ready for a SIEM.",
+    "optionNotes": [
+      "AIDE checks file integrity; it is not a network sensor.",
+      "Correct: Suricata's EVE JSON output is per-event JSON.",
+      "Honeyd is a honeypot.",
+      "iptables is a firewall, not an IDS logger."
+    ],
+    "tags": ["suricata", "eve"],
+    "sources": ["https://docs.suricata.io/en/latest/output/eve/eve-json-format.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0058",
+    "module": 12,
+    "section": "IDS, IPS, and Firewall Solutions",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does a unified threat management (UTM) appliance provide?",
+    "options": [
+      "A network of decoy hosts",
+      "Only stateless packet filtering",
+      "Only web-application filtering",
+      "Firewall, malware detection and IDS/IPS combined in one system"
+    ],
+    "answer": 3,
+    "explanation": "A UTM appliance combines firewall, malware detection, IDS/IPS and more into a single system.",
+    "optionNotes": [
+      "That is a honeynet.",
+      "A packet filter is only one of UTM's functions.",
+      "That is a WAF.",
+      "Correct: UTM merges several security functions into one box."
+    ],
+    "tags": ["utm"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0059",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A honeypot's chief value to detection is that it produces what?",
+    "options": ["Faster internet routing", "Encrypted backups", "Alerts with very few false positives", "Automatic patching"],
+    "answer": 2,
+    "explanation": "Because nothing legitimate should touch a honeypot, its alerts carry very few false positives.",
+    "optionNotes": [
+      "They do not affect routing.",
+      "Honeypots are decoys, not backup systems.",
+      "Correct: with no legitimate users, interaction is inherently suspicious.",
+      "They observe; they do not patch."
+    ],
+    "tags": ["honeypot"],
+    "sources": ["https://csrc.nist.gov/glossary/term/honeypot", "https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0060",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Your budget and risk tolerance are low, and you only need to record basic scan/attack data. Which decoy suits you?",
+    "options": [
+      "A low-interaction honeypot",
+      "A high-interaction honeypot",
+      "A connected honeynet of real servers",
+      "An integrated production honeypot"
+    ],
+    "answer": 0,
+    "explanation": "A low-interaction honeypot emulates a few services cheaply and safely, collecting basic threat data.",
+    "optionNotes": [
+      "Correct: low-interaction decoys are cheap and gather basic data with less risk.",
+      "High-interaction adds cost and pivot risk.",
+      "A honeynet of real servers is heavier and riskier.",
+      "An integrated production decoy raises exposure."
+    ],
+    "tags": ["honeypot", "interaction"],
+    "sources": [
+      "https://www.fortinet.com/resources/cyberglossary/what-is-honeypot",
+      "https://www.kaspersky.com/resource-center/threats/what-is-a-honeypot"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0061",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to NIST SP 800-94, honeypots should be treated as what, relative to IDS/IPS?",
+    "options": [
+      "A supplement to other controls, not a replacement",
+      "A full replacement for firewalls",
+      "A replacement for all IDS/IPS",
+      "A required control on every host"
+    ],
+    "answer": 0,
+    "explanation": "NIST states honeypots supplement, not replace, IDS/IPS and other security controls.",
+    "optionNotes": [
+      "Correct: honeypots supplement other controls and need skilled handlers.",
+      "They do not replace firewalls.",
+      "They do not replace IDS/IPS.",
+      "They are dedicated decoys, not per-host controls."
+    ],
+    "tags": ["honeypot", "policy"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/94/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0062",
+    "module": 12,
+    "section": "Honeypot Concepts and Detecting Honeypots",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which platform bundles 20+ honeypots with visualization into one all-in-one deployment?",
+    "options": ["AIDE", "T-Pot", "Zeek", "Wazuh"],
+    "answer": 1,
+    "explanation": "T-Pot is an all-in-one platform combining many honeypots with visualization.",
+    "optionNotes": [
+      "AIDE is a file-integrity checker.",
+      "Correct: T-Pot is the all-in-one multi-honeypot platform.",
+      "Zeek is a network monitor.",
+      "Wazuh is a host IDS/XDR platform."
+    ],
+    "tags": ["honeypot", "tpot"],
+    "sources": ["https://github.com/telekom-security/tpotce"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0063",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Which pair of tools implements target-based reassembly to defeat fragmentation and insertion tricks?",
+    "options": ["AIDE and OSSEC", "iptables and NAT", "Snort frag3 and Suricata host-os-policy", "Honeyd and KFSensor"],
+    "answer": 2,
+    "explanation": "Snort's frag3 preprocessor and Suricata's host-os-policy reassemble traffic the way the target OS would, removing evasion ambiguity.",
+    "optionNotes": [
+      "Those are host integrity/IDS tools, not reassembly for a NIDS.",
+      "Those are firewall/routing features, not reassembly engines.",
+      "Correct: both reassemble by destination-OS behaviour.",
+      "Those are honeypots."
+    ],
+    "tags": ["frag3", "normalization"],
+    "sources": [
+      "http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html",
+      "https://docs.suricata.io/en/latest/configuration/suricata-yaml.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0064",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the recommended default posture for a firewall ruleset?",
+    "options": [
+      "Deny everything with no exceptions",
+      "Allow by default, deny known-bad",
+      "Allow everything and log",
+      "Deny by default, allow only what is needed"
+    ],
+    "answer": 3,
+    "explanation": "Firewalls should deny by default and permit only expressly required traffic.",
+    "optionNotes": [
+      "A total block would stop legitimate business.",
+      "Allow-by-default leaves unknowns open.",
+      "Logging without blocking is not enforcement.",
+      "Correct: deny-by-default with explicit allows."
+    ],
+    "tags": ["deny-by-default"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0065",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A perimeter bypass let an attacker reach a database server directly. Which design change most reduces this in future?",
+    "options": [
+      "Segment the network and place public services in a DMZ",
+      "Add more signatures to the NIDS",
+      "Turn on NAT at the router",
+      "Increase the firewall log verbosity"
+    ],
+    "answer": 0,
+    "explanation": "Network segmentation with a DMZ ensures a bypassed perimeter control does not expose internal servers.",
+    "optionNotes": [
+      "Correct: segmentation and a DMZ stop a perimeter failure from reaching internal systems.",
+      "Signatures do not change reachability.",
+      "NAT does not segment trust zones.",
+      "More logging does not prevent reach."
+    ],
+    "tags": ["segmentation", "dmz"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://attack.mitre.org/mitigations/M1030/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m12-q-0066",
+    "module": 12,
+    "section": "IDS/Firewall Evasion Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Blocking spoofed outbound packets whose source address is not owned by the organization is known as what?",
+    "options": ["NAT traversal", "Ingress-only filtering", "Port knocking", "Egress filtering (BCP 38)"],
+    "answer": 3,
+    "explanation": "Egress filtering (BCP 38 / RFC 2827) blocks outbound packets with source addresses the organization does not own.",
+    "optionNotes": [
+      "NAT traversal crosses NAT; it is not a filter.",
+      "Ingress filtering handles inbound.",
+      "Port knocking is an evasion/hiding trick.",
+      "Correct: egress filtering per BCP 38 / RFC 2827 blocks spoofed outbound traffic."
+    ],
+    "tags": ["egress", "bcp38"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2827", "https://www.rfc-editor.org/rfc/rfc3704"],
+    "verify": false,
+    "rev": 1
+  }
+]
