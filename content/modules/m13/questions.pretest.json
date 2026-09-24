@@ -1,0 +1,247 @@
+[
+  {
+    "id": "m13-q-0001",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "On Microsoft IIS, which component receives HTTP requests in kernel mode and queues them for the worker processes?",
+    "options": ["mod_status", "w3wp.exe", "HTTP.sys", "The application pool identity"],
+    "answer": 2,
+    "explanation": "IIS: HTTP.sys listens and queues, WAS/WWW service manage configuration, w3wp.exe worker processes run applications in pools.",
+    "optionNotes": [
+      "mod_status is an Apache module.",
+      "w3wp.exe is the user-mode worker process that runs the site code.",
+      "Correct: the kernel-mode HTTP listener.",
+      "The pool identity is the account a worker process runs as, not a listener."
+    ],
+    "tags": ["iis", "architecture"],
+    "sources": ["https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/introduction-to-iis-architecture"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0002",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does an Apache or nginx virtual host let an administrator do?",
+    "options": [
+      "Serve several websites from one server, chosen by IP address or by the Host header",
+      "Run the web server inside a virtual machine",
+      "Encrypt traffic between the server and the database",
+      "Hide the server version in the Server header"
+    ],
+    "answer": 0,
+    "explanation": "Virtual hosts map many site names to one server process; the Host header selects the site for name-based hosting.",
+    "optionNotes": [
+      "Correct: name-based virtual hosts use the Host header.",
+      "A virtual host is a configuration block, not a VM.",
+      "That is TLS to the database, unrelated.",
+      "That is ServerTokens / server_tokens."
+    ],
+    "tags": ["virtual-host", "architecture"],
+    "sources": ["https://httpd.apache.org/docs/2.4/vhosts/", "https://nginx.org/en/docs/http/request_processing.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0003",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A scan shows the response header `Server: Apache/2.4.49 (Unix) OpenSSL/1.1.1k PHP/7.4.3`. Which setting would reduce this header to just `Apache`?",
+    "options": ["Options -Indexes", "ServerSignature On", "TraceEnable off", "ServerTokens Prod"],
+    "answer": 3,
+    "explanation": "Apache's default is ServerTokens Full. ServerTokens Prod hides versions and modules; it slows fingerprinting but does not replace patching.",
+    "optionNotes": [
+      "This disables directory listings.",
+      "ServerSignature controls the footer on server-generated pages, and On adds information.",
+      "TraceEnable controls the TRACE method.",
+      "Correct: Prod sends only the product name."
+    ],
+    "tags": ["banner", "apache"],
+    "sources": ["https://httpd.apache.org/docs/2.4/mod/core.html", "https://www.rfc-editor.org/rfc/rfc9110"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0004",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which attack makes a shared proxy or CDN store a harmful response that is then served to many users?",
+    "options": ["DNS amplification", "Web cache poisoning", "Directory traversal", "Brute-force login"],
+    "answer": 1,
+    "explanation": "Cache poisoning abuses inputs the server uses but the cache does not key on, so one bad response is reused for everyone.",
+    "optionNotes": [
+      "DNS amplification floods a victim with large DNS answers.",
+      "Correct: the cache spreads the poisoned response.",
+      "Traversal reads files outside the web root.",
+      "Brute force guesses passwords."
+    ],
+    "tags": ["cache-poisoning"],
+    "sources": ["https://owasp.org/www-community/attacks/Cache_Poisoning", "https://portswigger.net/web-security/web-cache-poisoning"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0005",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Visitors to a company site land on a look-alike server, but the company's web server logs and files show no change. The DNS provider shows the site's A record was edited from an unfamiliar IP. What happened?",
+    "options": ["DNS server hijacking", "Website defacement", "HTTP response splitting", "Slowloris denial of service"],
+    "answer": 0,
+    "explanation": "DNS hijacking redirects traffic by changing records, often with stolen DNS account credentials. Protect DNS accounts with MFA and audit records.",
+    "optionNotes": [
+      "Correct: records were changed, so traffic goes elsewhere.",
+      "Defacement changes the content on the real server.",
+      "Response splitting injects headers into the server's own responses.",
+      "Slowloris exhausts connections; it does not redirect users."
+    ],
+    "tags": ["dns-hijacking"],
+    "sources": [
+      "https://www.cisa.gov/news-events/directives/ed-19-01-mitigate-dns-infrastructure-tampering",
+      "https://attack.mitre.org/techniques/T1584/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0006",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In MITRE ATT&CK, which technique ID describes a web shell used for persistence on a web server?",
+    "options": ["T1498", "T1190", "T1505.003", "T1595.003"],
+    "answer": 2,
+    "explanation": "T1190 is how the attacker gets in; T1505.003 is the web shell they leave to come back.",
+    "optionNotes": [
+      "T1498 is Network Denial of Service.",
+      "T1190 is Exploit Public-Facing Application (initial access).",
+      "Correct: Server Software Component: Web Shell.",
+      "T1595.003 is wordlist scanning (reconnaissance)."
+    ],
+    "tags": ["web-shell", "mitre"],
+    "sources": ["https://attack.mitre.org/techniques/T1505/003/", "https://attack.mitre.org/techniques/T1190/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0007",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A tester wants a full offline copy of a website to study its structure and comments. Which tool fits?",
+    "options": ["Hydra", "HTTrack", "wafw00f", "sslscan"],
+    "answer": 1,
+    "explanation": "Website mirroring (HTTrack, wget --mirror) lets the tester analyze pages offline without sending more requests.",
+    "optionNotes": [
+      "Hydra guesses passwords.",
+      "Correct: an offline browser that mirrors sites.",
+      "wafw00f identifies web application firewalls.",
+      "sslscan tests TLS configuration."
+    ],
+    "tags": ["mirroring", "tools"],
+    "sources": ["https://www.kali.org/tools/httrack/", "https://www.httrack.com/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0008",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's web server attack methodology, which step comes right after information gathering?",
+    "options": ["Web server password hacking", "Website mirroring", "Vulnerability scanning", "Web server footprinting / banner grabbing"],
+    "answer": 3,
+    "explanation": "EC order: information gathering, footprinting/banner grabbing, website mirroring, vulnerability scanning, session hijacking, password hacking.",
+    "optionNotes": [
+      "Password hacking is the last step.",
+      "Mirroring comes after footprinting.",
+      "Scanning comes after mirroring.",
+      "Correct: footprinting follows general information gathering."
+    ],
+    "tags": ["methodology", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0009",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which NIST publication is the main guide to patch management (enterprise patch management planning)?",
+    "options": ["SP 800-61", "SP 800-44", "SP 800-40", "SP 800-115"],
+    "answer": 2,
+    "explanation": "SP 800-40 Rev. 4 frames patching as preventive maintenance with risk responses and maintenance plans.",
+    "optionNotes": [
+      "SP 800-61 covers incident handling.",
+      "SP 800-44 covers securing public web servers.",
+      "Correct: Rev. 4 is the current version.",
+      "SP 800-115 covers security testing."
+    ],
+    "tags": ["patch-management", "nist"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0010",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An auditor sends an OPTIONS request and sees `Allow: GET, HEAD, POST, OPTIONS, TRACE`. Which hardening change does this finding point to on Apache?",
+    "options": ["ServerSignature Off", "TraceEnable off", "KeepAlive On", "Listen 8080"],
+    "answer": 1,
+    "explanation": "TRACE echoes the request back and has no use in production. Apache allows it by default; TraceEnable off makes it return 405.",
+    "optionNotes": [
+      "This hides the page footer, not a method.",
+      "Correct: TRACE should be disabled; the server then answers 405.",
+      "Keep-alive controls persistent connections.",
+      "Changing the port does not remove the method."
+    ],
+    "tags": ["http-methods", "hardening"],
+    "sources": [
+      "https://httpd.apache.org/docs/2.4/mod/core.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management/06-HTTP_Methods.md",
+      "https://nmap.org/nsedoc/scripts/http-methods.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

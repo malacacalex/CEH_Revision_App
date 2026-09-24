@@ -1,0 +1,475 @@
+[
+  {
+    "id": "m13-q-0059",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which nginx module provides a basic status page with active connection and request counts?",
+    "options": ["ngx_http_stub_status_module", "ngx_http_autoindex_module", "ngx_http_limit_req_module", "ngx_http_proxy_module"],
+    "answer": 0,
+    "explanation": "Status pages (nginx stub_status, Apache mod_status/mod_info) are useful for operations and must not be public.",
+    "optionNotes": [
+      "Correct: its location should be restricted to admins.",
+      "autoindex produces directory listings.",
+      "limit_req limits request rate.",
+      "proxy forwards requests to back ends."
+    ],
+    "tags": ["status-page", "nginx"],
+    "sources": ["https://nginx.org/en/docs/http/ngx_http_stub_status_module.html", "https://httpd.apache.org/docs/2.4/mod/mod_status.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0060",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An auditor finds an IIS application pool configured to run as LocalSystem. Why is this a finding?",
+    "options": [
+      "LocalSystem disables HTTP.sys",
+      "Code running in that pool, including an attacker's web shell, would get full control of the server",
+      "LocalSystem prevents the site from using HTTPS",
+      "LocalSystem turns on directory browsing"
+    ],
+    "answer": 1,
+    "explanation": "Least privilege for the worker process limits what a compromise of the site can do.",
+    "optionNotes": [
+      "HTTP.sys still works.",
+      "Correct: the default ApplicationPoolIdentity is a low-privilege virtual account.",
+      "TLS is independent of the pool account.",
+      "Directory browsing is a separate setting."
+    ],
+    "tags": ["iis", "least-privilege"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/iis/manage/configuring-security/application-pool-identities",
+      "https://csrc.nist.gov/glossary/term/least_privilege"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0061",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "If Apache's `ServerTokens` directive is not set at all, what does the Server header show?",
+    "options": [
+      "Nothing: the header is omitted",
+      "Only the word Apache",
+      "Full detail: product, version, OS type and compiled-in modules",
+      "A random string chosen at startup"
+    ],
+    "answer": 2,
+    "explanation": "Set ServerTokens Prod and ServerSignature Off on production servers, and keep patching since versions can still be inferred.",
+    "optionNotes": [
+      "Apache always sends a Server header.",
+      "That needs ServerTokens Prod.",
+      "Correct: the default is Full.",
+      "Apache never randomizes it."
+    ],
+    "tags": ["banner", "apache"],
+    "sources": ["https://httpd.apache.org/docs/2.4/mod/core.html", "https://www.rfc-editor.org/rfc/rfc9110"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0062",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A developer deploys by copying the whole project folder into the document root, including `.git/` and a `config.php.bak` file. What is the main risk?",
+    "options": [
+      "DNS records will be changed",
+      "The server will refuse to start",
+      "TLS certificates will expire sooner",
+      "Source code and secrets can be downloaded because they sit under the document root"
+    ],
+    "answer": 3,
+    "explanation": "WSTG checks for backup, old and unreferenced files and for file extensions the server serves as plain text.",
+    "optionNotes": ["Unrelated to DNS.", "The server starts normally.", "Unrelated to certificates.", "Correct: anything under the root can be requested."],
+    "tags": ["backup-files", "information-disclosure"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information.md",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management/03-File_Extensions_Handling_for_Sensitive_Information.md",
+      "https://cwe.mitre.org/data/definitions/538.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0063",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "An Apache 2.4.49 access log shows `GET /cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd HTTP/1.1 200`. What does this record show?",
+    "options": [
+      "A Slowloris connection",
+      "A successful path traversal using encoded dots, matching CVE-2021-41773",
+      "HTTP response splitting",
+      "A DNS hijacking attempt"
+    ],
+    "answer": 1,
+    "explanation": "The fix is upgrading Apache (2.4.51 or later) and keeping `Require all denied` on directories outside the served paths. The CVE is in CISA's KEV catalog.",
+    "optionNotes": [
+      "Slowloris does not request files.",
+      "Correct: `.%2e` decodes to `..`; the 200 means the file was served.",
+      "No CR LF is injected.",
+      "DNS is not involved."
+    ],
+    "tags": ["path-traversal", "apache"],
+    "sources": [
+      "https://httpd.apache.org/security/vulnerabilities_24.html",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "https://cwe.mitre.org/data/definitions/22.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0064",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Repeated SSH login attempts with different passwords against a web server's administration port are classified under which MITRE ATT&CK technique?",
+    "options": ["T1498 Network Denial of Service", "T1190 Exploit Public-Facing Application", "T1491.002 External Defacement", "T1110 Brute Force"],
+    "answer": 3,
+    "explanation": "Defend admin access with keys or MFA, lockout and rate limits, and restrict SSH to management networks.",
+    "optionNotes": [
+      "DoS attacks availability.",
+      "T1190 is exploiting a software flaw.",
+      "Defacement changes content.",
+      "Correct: password guessing is T1110.001."
+    ],
+    "tags": ["password-attack", "mitre"],
+    "sources": ["https://attack.mitre.org/techniques/T1110/", "https://attack.mitre.org/techniques/T1110/001/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0065",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A web server receives a flood of large DNS responses it never asked for, coming from thousands of open resolvers. What attack is this?",
+    "options": ["Web cache poisoning", "DNS server hijacking", "DNS amplification DDoS", "Directory brute forcing"],
+    "answer": 2,
+    "explanation": "Reflection/amplification is MITRE T1498.002. Upstream DDoS protection absorbs it; resolver owners must close open recursion.",
+    "optionNotes": [
+      "Cache poisoning targets HTTP caches.",
+      "Hijacking changes records; it does not flood.",
+      "Correct: spoofed queries made the resolvers answer the victim.",
+      "Brute forcing guesses paths."
+    ],
+    "tags": ["dns-amplification", "ddos"],
+    "sources": ["https://www.cisa.gov/news-events/alerts/2013/03/29/dns-amplification-attacks", "https://attack.mitre.org/techniques/T1498/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0066",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the key difference between website defacement and DNS server hijacking?",
+    "options": [
+      "Defacement changes content on the real server; DNS hijacking sends visitors to a different server",
+      "Defacement needs DNS credentials; hijacking needs a web shell",
+      "They are two names for the same attack",
+      "Defacement is a denial of service; hijacking is a brute-force attack"
+    ],
+    "answer": 0,
+    "explanation": "File integrity monitoring detects defacement; DNS record audits and registrar MFA protect against hijacking.",
+    "optionNotes": [
+      "Correct: where the change happens is the difference.",
+      "Reversed and inaccurate.",
+      "They differ in target and method.",
+      "Neither is defined that way."
+    ],
+    "tags": ["defacement", "dns-hijacking"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1491/002/",
+      "https://www.cisa.gov/news-events/directives/ed-19-01-mitigate-dns-infrastructure-tampering"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0067",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A CDN caches a page whose links are built from a request header that is not part of the cache key. An attacker sends one request with a malicious value, and every later visitor gets links to the attacker's domain. What attack is this?",
+    "options": ["DNS amplification", "HTTP request smuggling", "Server-side request forgery", "Web cache poisoning through an unkeyed input"],
+    "answer": 3,
+    "explanation": "Fix by not trusting unkeyed headers, adding used inputs to the cache key, or disabling caching for dynamic responses.",
+    "optionNotes": [
+      "DNS amplification is a flood.",
+      "Smuggling abuses request boundary parsing.",
+      "SSRF makes the server fetch internal resources.",
+      "Correct: one poisoned response is served to all users."
+    ],
+    "tags": ["cache-poisoning"],
+    "sources": [
+      "https://portswigger.net/web-security/web-cache-poisoning",
+      "https://owasp.org/www-community/attacks/Cache_Poisoning",
+      "https://capec.mitre.org/data/definitions/141.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0068",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which online service gives a report on a site's hosting provider, server software and history without the tester scanning the site?",
+    "options": ["Gobuster", "Nikto", "Netcraft site report", "Hydra"],
+    "answer": 2,
+    "explanation": "Passive sources (Netcraft, Shodan, search engines) come before active scanning in footprinting.",
+    "optionNotes": ["Gobuster sends many requests.", "Nikto actively scans the server.", "Correct: passive footprinting.", "Hydra attacks logins."],
+    "tags": ["footprinting", "tools"],
+    "sources": [
+      "https://sitereport.netcraft.com/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0069",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "`curl -I https://app.example` returns headers including `Server: Apache` and `X-Powered-By: PHP/7.2.24`. What should the tester note?",
+    "options": [
+      "The X-Powered-By header leaks the PHP version even though the Server banner is trimmed",
+      "The server supports HTTP/3",
+      "HSTS is correctly configured",
+      "The site uses DNS amplification protection"
+    ],
+    "answer": 0,
+    "explanation": "Remove X-Powered-By and similar headers, and update the outdated component itself.",
+    "optionNotes": [
+      "Correct: an old version number helps attackers pick exploits.",
+      "Nothing in these headers shows HTTP/3.",
+      "No Strict-Transport-Security header is shown.",
+      "Headers do not show that."
+    ],
+    "tags": ["banner", "information-disclosure"],
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Powered-By",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
+      "https://curl.se/docs/manpage.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0070",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which Nmap script checks a web server for common directories used by popular applications, using a fingerprint file similar to Nikto's?",
+    "options": ["http-methods", "http-enum", "http-title", "http-slowloris-check"],
+    "answer": 1,
+    "explanation": "http-enum is a quick way to find admin panels and known application folders during enumeration.",
+    "optionNotes": ["http-methods lists allowed methods.", "Correct.", "http-title reads page titles.", "http-slowloris-check tests slow-HTTP exposure."],
+    "tags": ["nmap", "enumeration"],
+    "sources": ["https://nmap.org/nsedoc/scripts/http-enum.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0071",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's methodology, a tester runs Nikto against the target after mirroring the site. Which step is this?",
+    "options": ["Information gathering", "Vulnerability scanning", "Session hijacking", "Web server password hacking"],
+    "answer": 1,
+    "explanation": "EC order: information gathering, footprinting, mirroring, vulnerability scanning, session hijacking, password hacking.",
+    "optionNotes": [
+      "That step collects public information first.",
+      "Correct: Nikto is a web server vulnerability scanner.",
+      "Session hijacking comes after scanning.",
+      "Password hacking is the last step."
+    ],
+    "tags": ["methodology", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.kali.org/tools/nikto/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0072",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why does NIST SP 800-44 recommend installing web content on a different partition or drive from the operating system?",
+    "options": [
+      "Because web servers cannot read the system drive",
+      "To make the site load faster",
+      "To limit what traversal and disk-filling attacks can reach or disrupt",
+      "To avoid needing TLS"
+    ],
+    "answer": 2,
+    "explanation": "Other SP 800-44 steps: dedicated host, remove samples, disable listings and symbolic links, least privilege, logging and integrity checks.",
+    "optionNotes": [
+      "They can; that is the risk.",
+      "Performance is not the reason given.",
+      "Correct: separation contains file access and space exhaustion.",
+      "Unrelated to TLS."
+    ],
+    "tags": ["hardening", "nist"],
+    "sources": ["https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf", "https://csrc.nist.gov/pubs/sp/800/44/ver2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0073",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A US federal agency runs a web server with a vulnerability newly added to CISA's Known Exploited Vulnerabilities catalog. What drives the remediation deadline?",
+    "options": [
+      "The vendor's end-of-life date",
+      "The CVSS score alone",
+      "The next annual audit",
+      "BOD 22-01, which sets due dates for fixing vulnerabilities listed in KEV"
+    ],
+    "answer": 3,
+    "explanation": "Everyone can use KEV to prioritize patching: known exploitation means the risk is real now.",
+    "optionNotes": [
+      "End of life is a separate issue.",
+      "Exploitation in the wild matters more than the score alone.",
+      "Far too late for an exploited flaw.",
+      "Correct: KEV entries carry a remediation due date."
+    ],
+    "tags": ["patch-management", "kev"],
+    "sources": [
+      "https://www.cisa.gov/news-events/directives/bod-22-01-reducing-significant-risk-known-exploited-vulnerabilities",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0074",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which IIS feature can automatically block clients that open too many concurrent requests or send requests too fast?",
+    "options": ["Dynamic IP Restrictions", "Directory Browsing", "Custom HTTP Errors", "Application Request Routing logs"],
+    "answer": 0,
+    "explanation": "Per-client limits help against brute forcing and slow or flood-style HTTP DoS on IIS.",
+    "optionNotes": [
+      "Correct: denyByConcurrentRequests and denyByRequestRate.",
+      "Browsing lists folder contents.",
+      "Custom errors hide error details.",
+      "Logs record requests; they do not block them."
+    ],
+    "tags": ["iis", "dos"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/dynamicipsecurity/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0075",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "On a Linux web server, which combination of events best indicates a web shell rather than normal activity?",
+    "options": [
+      "The nginx master process restarts its workers after a config reload",
+      "The access log rotates at midnight",
+      "Certificate renewal runs from a scheduled job",
+      "A new .php file appears in /var/www/html, then the apache user starts bash and nc"
+    ],
+    "answer": 3,
+    "explanation": "MITRE T1505.003 detection: unauthorized script creation in web folders followed by the web server process running system utilities.",
+    "optionNotes": [
+      "Normal nginx behavior.",
+      "Routine maintenance.",
+      "Routine maintenance.",
+      "Correct: an unexpected script plus the server account spawning tools."
+    ],
+    "tags": ["web-shell", "detection"],
+    "sources": ["https://attack.mitre.org/techniques/T1505/003/", "https://github.com/nsacyber/Mitigating-Web-Shells"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0076",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which TLS versions does NIST SP 800-52 Rev. 2 expect government web servers to support?",
+    "options": ["SSL 3.0 and TLS 1.0", "TLS 1.2, plus TLS 1.3 support by January 2024", "TLS 1.0 and TLS 1.1 only", "Any version the client asks for"],
+    "answer": 1,
+    "explanation": "Disable SSL and TLS 1.0/1.1, prefer TLS 1.3, and add HSTS so browsers stay on HTTPS.",
+    "optionNotes": ["Both are obsolete and insecure.", "Correct.", "Both are deprecated.", "Allowing any version invites downgrade attacks."],
+    "tags": ["tls"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/52/r2/final",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

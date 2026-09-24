@@ -3,15 +3,110 @@
   "title": "Hacking Web Servers",
   "domain": "D5",
   "effortUnits": 1,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Web Server Concepts",
     "Web Server Attacks",
     "Web Server Attack Methodology",
     "Web Server Attack Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Describe how Apache, nginx and IIS handle requests (document root, virtual hosts, worker processes, application pools, reverse proxies)",
+      "section": "Web Server Concepts"
+    },
+    {
+      "text": "Spot the common web server misconfigurations: verbose banners, directory listing, status pages, sample content, risky HTTP methods",
+      "section": "Web Server Concepts"
+    },
+    {
+      "text": "Recognize web server attack classes from a log line or scenario (traversal, response splitting, cache poisoning, smuggling, DoS, DNS hijacking, defacement, web shells)",
+      "section": "Web Server Attacks"
+    },
+    {
+      "text": "Map web server attacks to MITRE ATT&CK (T1190, T1505.003, T1498, T1499.002, T1491.002, T1110) and name the matching detection",
+      "section": "Web Server Attacks"
+    },
+    {
+      "text": "Put EC-Council's web server attack methodology in order and name the tool used at each step",
+      "section": "Web Server Attack Methodology"
+    },
+    {
+      "text": "Harden a web server using NIST SP 800-44, CIS Benchmarks and the Apache, nginx and IIS directives that matter",
+      "section": "Web Server Attack Countermeasures"
+    },
+    {
+      "text": "Explain patch management with NIST SP 800-40 Rev. 4 (risk responses, maintenance plans, verify and monitor) and CISA KEV prioritization",
+      "section": "Web Server Attack Countermeasures"
+    },
+    {
+      "text": "Choose detection controls for web server compromise: file integrity monitoring, log review, process lineage, WAF",
+      "section": "Web Server Attack Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Web Server Concepts",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Know the three servers' moving parts and the default settings that leak information; skip the long architecture diagrams."
+    },
+    {
+      "section": "Web Server Attacks",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Most questions describe an attack and ask for its name: learn the one clue that identifies each class."
+    },
+    {
+      "section": "Web Server Attack Methodology",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Step order and tool-to-step matching (banner grabbing, mirroring, directory brute forcing, Nikto) are frequent tool questions."
+    },
+    {
+      "section": "Web Server Attack Countermeasures",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Hardening directives, patch management terms and detection controls come up in scenario questions; skim long tool lists."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Fingerprint and audit your own local web server",
+      "source": "free",
+      "where": "https://github.com/digininja/DVWA",
+      "skill": "Banner grabbing with curl and Nmap, running Nikto and http-methods against a server you own, then fixing what they report",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Harden Apache or nginx and re-test",
+      "source": "free",
+      "where": "https://httpd.apache.org/docs/2.4/misc/security_tips.html",
+      "skill": "ServerTokens/server_tokens, TraceEnable, directory listing, status pages, request timeouts; compare scan results before and after",
+      "minutes": 40,
+      "verify": true
+    },
+    {
+      "name": "Check a TLS configuration against the Mozilla guideline",
+      "source": "free",
+      "where": "https://ssl-config.mozilla.org/",
+      "skill": "Generating a modern TLS config and verifying protocols, ciphers and HSTS with testssl.sh on your own server",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Practice path traversal and information disclosure labs",
+      "source": "free",
+      "where": "https://portswigger.net/web-security/all-labs",
+      "skill": "Recognizing traversal and information-leak responses in a legal training environment",
+      "minutes": 45,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a new sysadmin why a web server that answers with its exact version, lists folders and keeps sample files is easier to attack, and what three settings you would change first.",
+    "Tell the difference between DNS server hijacking, website defacement and web cache poisoning using one short story for each, and say where a defender would notice each one.",
+    "A critical web server flaw is announced and exploited, but the patch needs a week of testing. Walk through what you would do that week using NIST SP 800-40 terms."
+  ]
 }
