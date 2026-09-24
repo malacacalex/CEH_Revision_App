@@ -11,8 +11,113 @@
     "Web API and Webhooks",
     "Web Application Security"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Describe web application architecture (tiers, HTTP methods and status codes, cookies and sessions, same-origin policy, CORS, SOAP/REST/GraphQL) and tell encoding apart from encryption",
+      "section": "Web Application Concepts"
+    },
+    {
+      "text": "Name the OWASP Top 10:2025 categories, map them to the 2021 list, and give the OWASP Cheat Sheet countermeasure for each",
+      "section": "Web Application Threats"
+    },
+    {
+      "text": "Recognize XSS, CSRF, SSRF, path traversal, command injection, XXE, deserialization, clickjacking and session fixation from a request, response or log clue",
+      "section": "Web Application Threats"
+    },
+    {
+      "text": "Explain what a web shell is (ATT&CK T1505.003) and list the host, file and log signs that reveal one",
+      "section": "Web Application Threats"
+    },
+    {
+      "text": "Put the web application testing phases in order and match each tool (Burp Suite modules, ZAP, Nikto, WhatWeb, wafw00f, gobuster, ffuf, WPScan) to its purpose",
+      "section": "Web Application Hacking Methodology"
+    },
+    {
+      "text": "Name the OWASP API Security Top 10 (2023) risks, tell BOLA from BFLA, and describe how each shows up in API traffic",
+      "section": "Web API and Webhooks"
+    },
+    {
+      "text": "Explain how webhooks work and how a receiver verifies them (HMAC signature, timestamp tolerance, delivery IDs, SSRF limits)",
+      "section": "Web API and Webhooks"
+    },
+    {
+      "text": "Choose the right control for a web attack: output encoding, CSP, anti-CSRF tokens, cookie flags, security headers, rate limiting, WAF (models, modes, virtual patching)",
+      "section": "Web Application Security"
+    },
+    {
+      "text": "Place secure SDLC practices in order (NIST SSDF, OWASP SAMM and ASVS, threat modeling, SAST/DAST/IAST/SCA, SBOM, logging and alerting)",
+      "section": "Web Application Security"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Web Application Concepts",
+      "priority": "SKIM",
+      "minutes": 25,
+      "why": "HTTP methods, status codes, cookie flags and encoding schemes appear inside other questions; learn the tables, skip long architecture descriptions."
+    },
+    {
+      "section": "Web Application Threats",
+      "priority": "MUST",
+      "minutes": 45,
+      "why": "The largest block of questions: an attack described in one sentence, and you name it or its fix. Learn the one clue per attack and both OWASP Top 10 editions."
+    },
+    {
+      "section": "Web Application Hacking Methodology",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Phase order and tool-to-purpose matching (Burp modules, ZAP scans, directory brute forcers, fingerprinting tools) are frequent tool questions."
+    },
+    {
+      "section": "Web API and Webhooks",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "v13 added APIs and webhooks: know the OWASP API Top 10 2023 by number and how webhook signatures stop forged deliveries."
+    },
+    {
+      "section": "Web Application Security",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Scenario questions ask for the best control; know which header, cookie flag or SDLC practice fixes which attack, and what a WAF can and cannot do. Skim vendor tool lists."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Walk the OWASP Top 10 in OWASP Juice Shop",
+      "source": "free",
+      "where": "https://owasp.org/www-project-juice-shop/",
+      "skill": "Running a deliberately vulnerable app locally, proxying it through ZAP or Burp and recognizing access control, XSS and misconfiguration findings; reading the official companion guide for the fixes",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "PortSwigger Web Security Academy topic labs",
+      "source": "free",
+      "where": "https://portswigger.net/web-security/all-labs",
+      "skill": "Recognizing XSS, CSRF, SSRF, access control and API flaws in legal training labs, then writing the matching OWASP countermeasure",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Map the API Top 10 in OWASP crAPI",
+      "source": "free",
+      "where": "https://github.com/OWASP/crAPI",
+      "skill": "Mapping each OWASP API Security Top 10 (2023) risk to an endpoint in a local, intentionally broken API",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Baseline-scan and harden a local app",
+      "source": "free",
+      "where": "https://www.zaproxy.org/docs/docker/baseline-scan/",
+      "skill": "Running the ZAP baseline (passive) scan against an app you own, then adding CSP, HSTS, nosniff and cookie flags and re-scanning",
+      "minutes": 40,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a new developer why changing /api/orders/1001 to /api/orders/1002 should return 403, which OWASP lists call this flaw, and what single check in the code prevents it.",
+    "Tell the difference between reflected XSS, stored XSS and CSRF using one short story each, and say which control stops each one.",
+    "Your team receives payment events by webhook. Explain how you make sure a delivery really came from the provider, is not a replay, and cannot be abused to reach your internal network."
+  ]
 }
