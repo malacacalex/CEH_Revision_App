@@ -1,0 +1,781 @@
+[
+  {
+    "id": "m20-q-0072",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "How many rounds does AES perform with a 256-bit key?",
+    "options": ["10", "14", "12", "16"],
+    "answer": 1,
+    "explanation": "FIPS 197: rounds depend on key length, 10 / 12 / 14 for 128 / 192 / 256-bit keys; the block stays 128 bits.",
+    "optionNotes": ["10 rounds is AES-128.", "Correct: AES-256 uses 14 rounds.", "12 rounds is AES-192.", "16 rounds is DES."],
+    "tags": ["aes"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/197/final", "https://csrc.nist.gov/projects/block-cipher-techniques"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0073",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A bitmap logo is encrypted with AES, yet the outline of the logo is still clearly visible in the encrypted image. Which mode was most likely used?",
+    "options": ["CTR with a unique nonce", "CBC with a random IV", "GCM", "ECB"],
+    "answer": 3,
+    "explanation": "SP 800-38A: ECB encrypts each block independently, so structure leaks. The famous 'ECB penguin' shows it.",
+    "optionNotes": [
+      "CTR with a unique nonce also hides patterns.",
+      "CBC chains blocks, so repeated areas look random.",
+      "GCM uses a counter keystream; patterns disappear.",
+      "Correct: ECB maps identical plaintext blocks to identical ciphertext blocks."
+    ],
+    "tags": ["ecb", "modes"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/38/a/final", "https://csrc.nist.gov/pubs/sp/800/131/a/r3/ipd"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0074",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is ChaCha20-Poly1305?",
+    "options": [
+      "An authenticated encryption scheme combining a stream cipher and a MAC, used in TLS 1.3",
+      "A block cipher with a 64-bit block",
+      "A post-quantum key encapsulation mechanism",
+      "A password hashing function"
+    ],
+    "answer": 0,
+    "explanation": "RFC 8439 defines ChaCha20-Poly1305; RFC 8446 lists TLS_CHACHA20_POLY1305_SHA256 as a TLS 1.3 suite, useful on devices without AES hardware.",
+    "optionNotes": [
+      "Correct: ChaCha20 encrypts and Poly1305 authenticates (AEAD).",
+      "ChaCha20 is a stream cipher, not a 64-bit block cipher.",
+      "The post-quantum KEM standard is ML-KEM.",
+      "Password hashing uses Argon2id, bcrypt, scrypt or PBKDF2."
+    ],
+    "tags": ["chacha20", "aead"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8439", "https://www.rfc-editor.org/rfc/rfc8446"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0075",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An IoT vendor needs 128-bit security for firmware signatures but has little memory and bandwidth for keys and signatures. Which choice fits best?",
+    "options": ["DSA with a 1024-bit key", "RSA with a 3072-bit key", "ECDSA with the P-256 curve", "HMAC-SHA-256"],
+    "answer": 2,
+    "explanation": "ECC reaches the same security strength with far smaller keys (SP 800-57: 256-bit ECC ≈ RSA 3072 ≈ 128 bits).",
+    "optionNotes": [
+      "DSA is no longer approved for signing, and 1024 bits is too weak.",
+      "RSA-3072 gives the same strength with much larger keys and signatures.",
+      "Correct: P-256 gives 128-bit security with 256-bit keys.",
+      "HMAC needs a shared key and gives no public verification."
+    ],
+    "tags": ["ecc", "key-length"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final", "https://csrc.nist.gov/pubs/fips/186-5/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0076",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "FIPS 205 SLH-DSA is a post-quantum signature scheme based on which kind of mathematics?",
+    "options": ["Error-correcting codes", "Integer factoring", "Elliptic curves", "Hash functions"],
+    "answer": 3,
+    "explanation": "NIST chose SLH-DSA as a backup to lattice-based ML-DSA because it rests on different math: only the security of hash functions.",
+    "optionNotes": [
+      "Code-based cryptography is HQC, a backup KEM.",
+      "Factoring is RSA, which quantum computers break.",
+      "Elliptic curves are broken by Shor's algorithm.",
+      "Correct: SLH-DSA (from SPHINCS+) is a stateless hash-based signature."
+    ],
+    "tags": ["pqc", "slh-dsa"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/205/final",
+      "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0077",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which statement about SHA-3 is true?",
+    "options": [
+      "It replaced SHA-2, which NIST has withdrawn",
+      "It is based on the Keccak sponge construction and is standardized in FIPS 202",
+      "It produces only 160-bit digests",
+      "It is a block cipher mode"
+    ],
+    "answer": 1,
+    "explanation": "FIPS 202 (2015) added SHA-3 so that a hash with a different internal structure is available if SHA-2 is ever weakened.",
+    "optionNotes": [
+      "SHA-2 remains approved; SHA-3 is an alternative with a different design.",
+      "Correct: SHA-3 uses Keccak and includes the SHAKE extendable-output functions.",
+      "SHA-3 outputs 224 to 512 bits; 160 bits is SHA-1.",
+      "SHA-3 is a hash function family."
+    ],
+    "tags": ["sha3", "hashing"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/202/final", "https://csrc.nist.gov/projects/hash-functions"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0078",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Which classical cipher technique rearranges the positions of plaintext characters without changing the characters themselves?",
+    "options": ["Stream cipher", "Substitution cipher", "Transposition cipher", "Hash function"],
+    "answer": 2,
+    "explanation": "Classical ciphers are substitution (Caesar, Vigenère) or transposition (rail fence, columnar). Modern ciphers combine both ideas over many rounds.",
+    "optionNotes": [
+      "A stream cipher is a modern cipher that XORs data with a keystream.",
+      "Substitution replaces symbols with other symbols.",
+      "Correct: transposition only reorders symbols.",
+      "A hash function is one-way and not a cipher."
+    ],
+    "tags": ["classical-ciphers"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://www.cryptool.org/en/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0079",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A Windows administrator without extra software needs the SHA-256 value of a downloaded ISO from the Command Prompt. Which command works?",
+    "options": ["certutil -hashfile image.iso SHA256", "manage-bde -status image.iso", "cipher /e image.iso", "gpg --verify image.iso"],
+    "answer": 0,
+    "explanation": "Built-in options on Windows: `certutil -hashfile` in cmd or `Get-FileHash` in PowerShell; on Linux, `sha256sum`.",
+    "optionNotes": [
+      "Correct: certutil -hashfile computes MD5, SHA-1 or SHA-2 digests.",
+      "manage-bde reports BitLocker status for volumes.",
+      "cipher /e encrypts files with EFS.",
+      "gpg --verify checks a signature and needs GnuPG installed."
+    ],
+    "tags": ["hashing", "certutil"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0080",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why do the UK NCSC and France's ANSSI not recommend quantum key distribution as the main answer to quantum threats?",
+    "options": [
+      "QKD only works with RSA keys",
+      "QKD is already broken by Shor's algorithm",
+      "QKD does not authenticate the endpoints and needs special hardware links, so classical authentication is still required",
+      "QKD produces keys too long for AES"
+    ],
+    "answer": 2,
+    "explanation": "Both agencies prefer post-quantum cryptography (ML-KEM, ML-DSA), which runs on existing networks and handles authentication.",
+    "optionNotes": [
+      "QKD is independent of RSA.",
+      "Shor's algorithm targets factoring and discrete logs, not QKD physics.",
+      "Correct: QKD needs an authenticated channel and dedicated infrastructure.",
+      "QKD bits can feed any symmetric cipher."
+    ],
+    "tags": ["qkd", "quantum"],
+    "sources": [
+      "https://www.ncsc.gov.uk/whitepaper/quantum-security-technologies",
+      "https://cyber.gouv.fr/en/publications/should-quantum-key-distribution-be-used-secure-communications"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0081",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An attacker holds a contract signed by a victim and wants to write a different contract with exactly the same hash, so the signature appears valid on it. Which hash property must fail for this to work?",
+    "options": ["Second preimage resistance", "Collision resistance", "Preimage resistance", "Key length"],
+    "answer": 0,
+    "explanation": "Second preimage: given m1, find m2 ≠ m1 with the same hash. Collision: find any m1 ≠ m2. Collisions are easier (birthday bound), so collision-broken hashes such as MD5 are dangerous when the attacker prepares both documents.",
+    "optionNotes": [
+      "Correct: the target hash is fixed by an existing document.",
+      "Collision resistance concerns finding any pair, where the attacker controls both documents.",
+      "Preimage resistance concerns finding an input for a given digest with no starting document.",
+      "Hash functions have no key."
+    ],
+    "tags": ["hashing", "second-preimage"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/second_preimage_resistance",
+      "https://csrc.nist.gov/glossary/term/collision_resistance",
+      "https://csrc.nist.gov/pubs/sp/800/107/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0082",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which X.509 extension states whether a certificate belongs to a CA that may sign other certificates?",
+    "options": ["subjectAltName", "basicConstraints", "extendedKeyUsage", "validity"],
+    "answer": 1,
+    "explanation": "RFC 5280: basicConstraints (with optional pathLenConstraint) stops a leaf certificate from being used to issue others.",
+    "optionNotes": [
+      "subjectAltName lists identities such as DNS names.",
+      "Correct: basicConstraints CA:TRUE marks a CA certificate.",
+      "extendedKeyUsage lists purposes such as serverAuth or codeSigning.",
+      "validity holds the notBefore and notAfter dates; it is a field, not an extension."
+    ],
+    "tags": ["x509"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5280", "https://docs.openssl.org/master/man1/openssl-x509/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0083",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An admin runs `openssl req -new -newkey rsa:2048 -nodes -keyout srv.key -out srv.csr`. What does this produce?",
+    "options": [
+      "An encrypted copy of an existing certificate",
+      "A self-signed certificate valid for one year",
+      "A certificate revocation list",
+      "A new unencrypted private key and a certificate signing request to send to a CA"
+    ],
+    "answer": 3,
+    "explanation": "The CSR (PKCS #10) holds the public key and subject; the private key stays in srv.key on the server.",
+    "optionNotes": [
+      "No existing certificate is involved.",
+      "A self-signed certificate needs the -x509 option.",
+      "CRLs are produced by a CA, not by openssl req.",
+      "Correct: -new with -newkey creates a key pair and a CSR; -nodes leaves the key unencrypted."
+    ],
+    "tags": ["csr", "openssl"],
+    "sources": ["https://docs.openssl.org/master/man1/openssl-req/", "https://www.rfc-editor.org/rfc/rfc2986"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0084",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A payment terminal must know within seconds whether a specific client certificate has just been revoked. The CA publishes its CRL once a day. What should be used?",
+    "options": ["Certificate Transparency logs", "A longer CRL validity period", "A self-signed certificate", "OCSP"],
+    "answer": 3,
+    "explanation": "RFC 6960 OCSP returns good, revoked or unknown for a single certificate, avoiding the delay between CRL publications.",
+    "optionNotes": [
+      "CT logs record issuance, not revocation.",
+      "Longer CRL validity makes status even staler.",
+      "Self-signed certificates have no revocation infrastructure.",
+      "Correct: OCSP answers for one certificate on demand."
+    ],
+    "tags": ["ocsp", "revocation"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6960", "https://www.rfc-editor.org/rfc/rfc5280"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0085",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which protocol does certbot use to obtain and renew certificates automatically from Let's Encrypt?",
+    "options": ["SCEP over SNMP", "OCSP", "ACME", "PKCS #12"],
+    "answer": 2,
+    "explanation": "Let's Encrypt issues domain-validated certificates through ACME challenges; certbot is the EFF's ACME client.",
+    "optionNotes": [
+      "This is not how certbot talks to Let's Encrypt.",
+      "OCSP checks revocation status.",
+      "Correct: ACME (RFC 8555) automates domain validation and issuance.",
+      "PKCS #12 is a file format for bundling keys and certificates."
+    ],
+    "tags": ["acme", "certbot"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8555", "https://certbot.eff.org/", "https://letsencrypt.org/how-it-works/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0086",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company laptop has BitLocker enabled, yet ransomware running in the logged-in user's session encrypts and exfiltrates the user's files. Why did BitLocker not stop it?",
+    "options": [
+      "BitLocker was using XTS-AES 128 instead of 256",
+      "Full-disk encryption only protects data at rest; the running session sees decrypted data",
+      "BitLocker only encrypts the page file",
+      "Ransomware can always read the TPM"
+    ],
+    "answer": 1,
+    "explanation": "SP 800-111: storage encryption protects lost or stolen devices. Malware defense needs endpoint protection, least privilege and backups.",
+    "optionNotes": [
+      "Key length is irrelevant when the attacker reads data through the OS.",
+      "Correct: once unlocked, the volume is transparently decrypted for running processes.",
+      "BitLocker encrypts the whole volume.",
+      "The malware did not need the TPM; it simply read files."
+    ],
+    "tags": ["disk-encryption", "ransomware"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/111/final",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/",
+      "https://attack.mitre.org/techniques/T1486/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0087",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the status of TLS 1.0 and TLS 1.1?",
+    "options": ["Deprecated by RFC 8996", "Recommended for compatibility", "Required by NIST SP 800-52 Rev. 2", "Replaced by SSL 3.0"],
+    "answer": 0,
+    "explanation": "Allowed today: TLS 1.2 and TLS 1.3. SSL 2.0, SSL 3.0, TLS 1.0 and TLS 1.1 should all be disabled.",
+    "optionNotes": [
+      "Correct: RFC 8996 (2021) formally deprecated both.",
+      "They should be disabled, not kept for compatibility.",
+      "SP 800-52 Rev. 2 requires TLS 1.2 and support for TLS 1.3.",
+      "SSL 3.0 is older and prohibited by RFC 7568."
+    ],
+    "tags": ["tls"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8996", "https://csrc.nist.gov/pubs/sp/800/52/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0088",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Bob sends one PGP-encrypted e-mail to three recipients. How does OpenPGP encrypt it?",
+    "options": [
+      "Each recipient gets a copy encrypted with a shared password",
+      "The message is encrypted three times with Bob's private key",
+      "The message is encrypted once with a random session key, and that key is encrypted separately with each recipient's public key",
+      "The message is hashed and the hash is sent instead"
+    ],
+    "answer": 2,
+    "explanation": "OpenPGP (RFC 9580) and S/MIME are hybrid: fast symmetric encryption for the body, public key encryption only for the session key.",
+    "optionNotes": [
+      "Password-based symmetric encryption is a separate option and needs a shared secret.",
+      "Encrypting with a private key is signing, and anyone could read it.",
+      "Correct: hybrid encryption with one session key and one key packet per recipient.",
+      "A hash cannot be reversed to read the mail."
+    ],
+    "tags": ["pgp", "hybrid-encryption"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9580", "https://www.gnupg.org/documentation/manuals/gnupg/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0089",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "`gpg --verify report.pdf.sig report.pdf` prints `Good signature from \"Alice <alice@example.org>\"`. What does this establish?",
+    "options": [
+      "report.pdf was encrypted for Alice",
+      "report.pdf is unchanged since it was signed by the holder of Alice's private key",
+      "Alice's key is certified by a public CA",
+      "report.pdf contains no malware"
+    ],
+    "answer": 1,
+    "explanation": "gpg --verify checks a detached signature with the signer's public key. Whether the key really belongs to Alice depends on how you validated it (fingerprint check, web of trust).",
+    "optionNotes": [
+      "Verification concerns signatures, not encryption.",
+      "Correct: a valid signature proves integrity and origin from that key.",
+      "OpenPGP keys are trusted through the web of trust, not public CAs; gpg may still warn the key is not certified.",
+      "A signature says nothing about the file's safety."
+    ],
+    "tags": ["gnupg", "digital-signature"],
+    "sources": ["https://www.gnupg.org/documentation/manuals/gnupg/Operational-GPG-Commands.html", "https://www.rfc-editor.org/rfc/rfc9580"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0090",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Among the blockchain attacks EC-Council lists, what is an eclipse attack?",
+    "options": [
+      "Isolating a node so that all its peers are controlled by the attacker",
+      "Controlling more than half of the network's hash power",
+      "Creating many fake identities to sway voting",
+      "Re-entering a smart contract function before its state is updated"
+    ],
+    "answer": 0,
+    "explanation": "Eclipse attacks target a node's peer connections; they can support double spending against the eclipsed victim. Defenses include diverse, authenticated peer selection.",
+    "optionNotes": [
+      "Correct: the victim node sees only the attacker's version of the network.",
+      "That is a 51 % attack.",
+      "That is a Sybil attack.",
+      "That is reentrancy."
+    ],
+    "tags": ["blockchain", "eclipse", "ec-council-specific"],
+    "sources": [
+      "https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/attack-and-defense/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0091",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A server supports modern TLS, but the same RSA key is also used on an old service that still accepts SSLv2. An attacker uses the SSLv2 service to decrypt recorded TLS sessions. Which attack is this?",
+    "options": ["Heartbleed", "POODLE", "Sweet32", "DROWN"],
+    "answer": 3,
+    "explanation": "DROWN (2016): any server sharing a key with an SSLv2-enabled service is exposed. Disable SSLv2 everywhere and never reuse keys across services.",
+    "optionNotes": [
+      "Heartbleed is a memory over-read.",
+      "POODLE targets SSL 3.0 CBC padding.",
+      "Sweet32 targets 64-bit block ciphers.",
+      "Correct: DROWN uses SSLv2 as an oracle against RSA keys shared with TLS."
+    ],
+    "tags": ["drown", "tls-attacks"],
+    "sources": ["https://drownattack.com/", "https://www.rfc-editor.org/rfc/rfc7457"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0092",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An analyst has several files encrypted with the same key and also the original plaintext of one of them, a standard file header. Which attack model applies?",
+    "options": ["Known-plaintext attack", "Chosen-plaintext attack", "Ciphertext-only attack", "Chosen-ciphertext attack"],
+    "answer": 0,
+    "explanation": "Known-plaintext attacks were central to breaking Enigma and to linear cryptanalysis. Modern ciphers must resist all these models.",
+    "optionNotes": [
+      "Correct: the analyst has matching plaintext and ciphertext but did not choose it.",
+      "Chosen-plaintext requires the ability to encrypt chosen inputs.",
+      "Ciphertext-only means no plaintext is known.",
+      "Chosen-ciphertext requires getting chosen ciphertexts decrypted."
+    ],
+    "tags": ["attack-models"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://csrc.nist.gov/glossary/term/cryptanalysis"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0093",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Nmap NSE script lists a TLS server's supported cipher suites and grades them from A to F?",
+    "options": ["ssl-heartbleed", "ssl-enum-ciphers", "http-title", "smb-os-discovery"],
+    "answer": 1,
+    "explanation": "`nmap --script ssl-enum-ciphers -p 443 host` shows each protocol, its suites and a least-strength grade, based on the SSL Labs rating method.",
+    "optionNotes": [
+      "ssl-heartbleed tests only for CVE-2014-0160.",
+      "Correct: ssl-enum-ciphers enumerates suites per protocol version and grades them.",
+      "http-title reads a web page title.",
+      "smb-os-discovery fingerprints Windows hosts over SMB."
+    ],
+    "tags": ["nmap", "tls"],
+    "sources": ["https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html", "https://testssl.sh/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0094",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A researcher encrypts many pairs of plaintexts that differ in a fixed pattern of bits and studies how that difference propagates to the ciphertexts to recover key bits. Which method is this?",
+    "options": ["Rubber-hose attack", "Linear cryptanalysis", "Rainbow table attack", "Differential cryptanalysis"],
+    "answer": 3,
+    "explanation": "Differential (Biham and Shamir) and linear (Matsui) cryptanalysis are the classic block cipher attacks; modern ciphers such as AES are designed to resist both.",
+    "optionNotes": [
+      "Rubber-hose coerces a person.",
+      "Linear cryptanalysis uses linear approximations over known plaintext.",
+      "Rainbow tables reverse unsalted password hashes.",
+      "Correct: differential cryptanalysis tracks input differences through the rounds (chosen plaintext)."
+    ],
+    "tags": ["differential", "cryptanalysis"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap7.pdf", "https://csrc.nist.gov/glossary/term/chosen_plaintext_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0095",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A dumped password hash begins with `$2b$12$`. Which hashcat mode should the tester use?",
+    "options": ["-m 1000 (NTLM)", "-m 0 (MD5)", "-m 3200 (bcrypt)", "-m 1800 (sha512crypt)"],
+    "answer": 2,
+    "explanation": "Hash prefixes identify formats: $1$ md5crypt, $2b$ bcrypt, $5$ sha256crypt, $6$ sha512crypt. The hashcat example-hashes page maps them to modes.",
+    "optionNotes": [
+      "NTLM is 32 hex characters with no prefix.",
+      "Raw MD5 is 32 hex characters with no prefix.",
+      "Correct: the $2a$/$2b$ prefix identifies bcrypt; 12 is the cost factor.",
+      "sha512crypt hashes start with $6$."
+    ],
+    "tags": ["hashcat", "bcrypt"],
+    "sources": ["https://hashcat.net/wiki/doku.php?id=example_hashes", "https://hashcat.net/wiki/doku.php?id=hashcat"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0096",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What could the Heartbleed bug (CVE-2014-0160) expose?",
+    "options": [
+      "The CA's root private key",
+      "Only the server's public certificate",
+      "Chunks of server memory, including private keys and session data",
+      "Encrypted disk partitions"
+    ],
+    "answer": 2,
+    "explanation": "CISA advised patching OpenSSL, then replacing keys and certificates and resetting credentials that might have leaked.",
+    "optionNotes": [
+      "Heartbleed affected servers using OpenSSL, not CA root keys.",
+      "The certificate is public anyway; the danger was private memory.",
+      "Correct: the heartbeat over-read returned up to 64 KB of memory per request.",
+      "It is a TLS library bug, not a disk issue."
+    ],
+    "tags": ["heartbleed"],
+    "sources": ["https://www.cisa.gov/news-events/alerts/2014/04/08/openssl-heartbleed-vulnerability-cve-2014-0160", "https://heartbleed.com/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0097",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Malware silently adds an attacker-controlled certificate to the victim's trusted root store. What does this let the attacker do?",
+    "options": [
+      "Disable Certificate Transparency for all websites",
+      "Decrypt BitLocker volumes",
+      "Break AES-256 keys",
+      "Intercept HTTPS traffic with forged certificates that the victim's browser accepts"
+    ],
+    "answer": 3,
+    "explanation": "MITRE ATT&CK T1553.004 (Install Root Certificate) and T1557 (Adversary-in-the-Middle). Defenders monitor root store changes.",
+    "optionNotes": [
+      "CT is enforced by browsers and logs, not by the local root store.",
+      "Root certificates do not hold disk keys.",
+      "No certificate trick weakens AES itself.",
+      "Correct: any certificate signed by the rogue root will be trusted, enabling adversary-in-the-middle."
+    ],
+    "tags": ["root-certificate", "mitm"],
+    "sources": ["https://attack.mitre.org/techniques/T1553/004/", "https://attack.mitre.org/techniques/T1557/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0098",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In NIST key management guidance, what is a cryptoperiod?",
+    "options": [
+      "The time span during which a specific key is authorized for use",
+      "The time needed to brute-force a key",
+      "The delay between CRL publications",
+      "The lifetime of a TLS session ticket"
+    ],
+    "answer": 0,
+    "explanation": "SP 800-57 Part 1 sets recommended cryptoperiods by key type; shorter periods limit how much data one compromised key exposes.",
+    "optionNotes": [
+      "Correct: after its cryptoperiod, a key is rotated or retired.",
+      "That is an attack cost estimate, not a policy period.",
+      "That is the CRL update interval.",
+      "Session tickets are a TLS feature, not the NIST definition."
+    ],
+    "tags": ["key-management", "cryptoperiod"],
+    "sources": ["https://csrc.nist.gov/glossary/term/cryptoperiod", "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0099",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A web application stores passwords with PBKDF2-HMAC-SHA-256 at 1,000 iterations and a single salt shared by all users. What is the best improvement?",
+    "options": [
+      "Switch to unsalted SHA-512 for speed",
+      "Use a unique random salt per password and move to Argon2id, or raise PBKDF2 to around 600,000 iterations",
+      "Encrypt the password hashes with the same shared salt as the key",
+      "Keep the settings and add a CAPTCHA"
+    ],
+    "answer": 1,
+    "explanation": "OWASP Password Storage: Argon2id first choice; PBKDF2-HMAC-SHA-256 at 600,000 iterations if FIPS compliance is needed; always a per-password salt.",
+    "optionNotes": [
+      "Fast unsalted hashes make cracking easier.",
+      "Correct: unique salts stop table reuse; a higher work factor slows offline cracking.",
+      "A salt is not a key, and encryption adds a key management problem.",
+      "A CAPTCHA does nothing against offline cracking of a stolen database."
+    ],
+    "tags": ["password-storage", "pbkdf2"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "https://csrc.nist.gov/pubs/sp/800/132/final",
+      "https://www.rfc-editor.org/rfc/rfc9106"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0100",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A TLS scan of a public web server shows TLS 1.0 enabled and RC4 suites offered. What is the best remediation?",
+    "options": [
+      "Disable TLS 1.0/1.1 and RC4, keep TLS 1.2 and 1.3 with AEAD suites and ECDHE",
+      "Keep TLS 1.0 but add HSTS",
+      "Replace RC4 with 3DES",
+      "Buy a certificate with a longer validity period"
+    ],
+    "answer": 0,
+    "explanation": "RFC 8996 deprecates TLS 1.0/1.1, RFC 7465 prohibits RC4, and SP 800-52 Rev. 2 sets TLS 1.2 and 1.3 as the baseline.",
+    "optionNotes": [
+      "Correct: remove deprecated protocols and ciphers, and prefer forward-secret AEAD suites.",
+      "HSTS forces HTTPS but does not fix weak protocol versions.",
+      "3DES is also being retired (Sweet32).",
+      "Certificate validity has nothing to do with protocol or cipher strength."
+    ],
+    "tags": ["tls", "hardening"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8996", "https://www.rfc-editor.org/rfc/rfc7465", "https://csrc.nist.gov/pubs/sp/800/52/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0101",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which source should generate cryptographic keys, IVs and nonces?",
+    "options": [
+      "A counter starting at zero on every boot",
+      "The system clock in milliseconds",
+      "A cryptographically secure random bit generator such as an SP 800-90A DRBG",
+      "The user's password without a KDF"
+    ],
+    "answer": 2,
+    "explanation": "Weak randomness has broken real systems (DUHK used a hard-coded seed key). Use the OS CSPRNG or an SP 800-90A DRBG, per RFC 4086 guidance.",
+    "optionNotes": [
+      "A counter reset at each boot repeats values under the same key.",
+      "Timestamps are predictable.",
+      "Correct: approved DRBGs give unpredictable output.",
+      "Passwords have low entropy and need a key derivation function."
+    ],
+    "tags": ["randomness", "drbg"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/90/a/r1/final", "https://www.rfc-editor.org/rfc/rfc4086", "https://duhkattack.com/"],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,240 @@
+[
+  {
+    "id": "m20-q-0001",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Alice wants to send Bob a file that only Bob can read, using public key cryptography. Which key does she use to encrypt it?",
+    "options": ["Alice's public key", "Bob's private key", "Alice's private key", "Bob's public key"],
+    "answer": 3,
+    "explanation": "Confidentiality: encrypt with the recipient's public key. Signing: use the sender's private key.",
+    "optionNotes": [
+      "Only Alice could decrypt with her own private key, not Bob.",
+      "Alice never has Bob's private key; it never leaves Bob.",
+      "Encrypting with Alice's private key is signing: anyone with her public key could read it.",
+      "Correct: anyone can encrypt with Bob's public key; only Bob's private key decrypts."
+    ],
+    "tags": ["asymmetric"],
+    "sources": ["https://csrc.nist.gov/glossary/term/public_key_cryptography", "https://csrc.nist.gov/glossary/term/asymmetric_cryptography"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0002",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the digest length of SHA-1?",
+    "options": ["256 bits", "128 bits", "160 bits", "512 bits"],
+    "answer": 2,
+    "explanation": "MD5 = 128, SHA-1 = 160, SHA-256 = 256, SHA-512 = 512 bits. SHA-1 is being retired by NIST by the end of 2030.",
+    "optionNotes": ["256 bits is SHA-256.", "128 bits is MD5.", "Correct: SHA-1 outputs 160 bits.", "512 bits is SHA-512."],
+    "tags": ["hashing", "sha"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+      "https://www.nist.gov/news-events/news/2022/12/nist-retires-sha-1-cryptographic-algorithm"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0003",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Two routers must agree on a shared session key over an untrusted network without ever sending the key itself. Which algorithm is designed for exactly this?",
+    "options": ["AES", "Diffie-Hellman", "SHA-256", "HMAC"],
+    "answer": 1,
+    "explanation": "Diffie-Hellman lets two parties derive a common secret from public values. It does not authenticate them, so it is combined with certificates or signatures to stop man-in-the-middle attacks.",
+    "optionNotes": [
+      "AES encrypts data with a key it already has; it does not establish keys.",
+      "Correct: Diffie-Hellman is a key agreement protocol; both sides compute the same secret.",
+      "SHA-256 is a hash; it creates no shared secret.",
+      "HMAC needs a key that is already shared."
+    ],
+    "tags": ["diffie-hellman", "key-exchange"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2631", "https://csrc.nist.gov/glossary/term/key_agreement"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0004",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which PKI component checks a requester's identity before the certificate authority issues a certificate?",
+    "options": ["Registration authority", "Certificate revocation list", "OCSP responder", "Root certificate store"],
+    "answer": 0,
+    "explanation": "The RA handles identity vetting; the CA signs and issues. CRL and OCSP handle revocation afterwards.",
+    "optionNotes": [
+      "Correct: the RA verifies identity on behalf of the CA.",
+      "A CRL lists revoked certificates; it checks nobody.",
+      "An OCSP responder answers revocation status queries.",
+      "The root store holds trusted roots on the client side."
+    ],
+    "tags": ["pki", "registration-authority"],
+    "sources": ["https://csrc.nist.gov/glossary/term/registration_authority", "https://csrc.nist.gov/pubs/sp/800/32/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0005",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company wants e-mail encryption that uses certificates issued by its own internal certification authority and works in its standard mail clients. Which technology fits?",
+    "options": ["HSTS", "PGP web of trust", "S/MIME", "BitLocker"],
+    "answer": 2,
+    "explanation": "S/MIME = hierarchical trust through CAs; PGP/OpenPGP = web of trust. Both encrypt the message with a session key protected by the recipient's public key.",
+    "optionNotes": [
+      "HSTS forces HTTPS for websites; it does not encrypt e-mail.",
+      "PGP relies on users certifying each other's keys, not a corporate CA.",
+      "Correct: S/MIME uses X.509 certificates issued by CAs.",
+      "BitLocker encrypts disks, not messages."
+    ],
+    "tags": ["email", "smime"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8551", "https://www.rfc-editor.org/rfc/rfc5280"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0006",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An analyst runs `openssl x509 -in cert.pem -noout -issuer -subject` and sees `issuer=CN = lab.local` and `subject=CN = lab.local`. What does this most likely show?",
+    "options": ["A self-signed certificate", "A certificate issued by a public root CA", "A revoked certificate", "A certificate signing request"],
+    "answer": 0,
+    "explanation": "A self-signed certificate is signed with its own private key, so issuer and subject match. Browsers do not trust it unless it is added to the trust store.",
+    "optionNotes": [
+      "Correct: issuer equals subject, the mark of a self-signed certificate.",
+      "A publicly issued leaf certificate names the CA as issuer, not itself.",
+      "Revocation status is not in these fields; it needs a CRL or OCSP.",
+      "`openssl x509` reads certificates; a CSR has no issuer field."
+    ],
+    "tags": ["self-signed", "openssl"],
+    "sources": ["https://csrc.nist.gov/glossary/term/self_signed_certificate", "https://docs.openssl.org/master/man1/openssl-x509/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0007",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester can submit any text to a web service and receive the encrypted result, then studies the outputs to learn about the key. Which attack model is this?",
+    "options": ["Ciphertext-only attack", "Chosen-plaintext attack", "Known-plaintext attack", "Chosen-ciphertext attack"],
+    "answer": 1,
+    "explanation": "The attack models are ranked by attacker power: ciphertext-only < known-plaintext < chosen-plaintext < adaptive chosen-plaintext. Chosen-ciphertext uses a decryption oracle.",
+    "optionNotes": [
+      "Ciphertext-only means the attacker has only ciphertext, no oracle.",
+      "Correct: the attacker picks the plaintexts and sees their encryptions.",
+      "Known-plaintext means the attacker happens to have pairs but cannot choose them.",
+      "Chosen-ciphertext means the attacker gets chosen ciphertexts decrypted."
+    ],
+    "tags": ["attack-models"],
+    "sources": ["https://csrc.nist.gov/glossary/term/chosen_plaintext_attack", "https://cacr.uwaterloo.ca/hac/about/chap1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0008",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool is a GPU-accelerated password hash cracker that supports attack modes such as `-a 0` (wordlist) and `-a 3` (mask)?",
+    "options": ["testssl.sh", "VeraCrypt", "GnuPG", "hashcat"],
+    "answer": 3,
+    "explanation": "hashcat attack mode 0 is straight (dictionary), 3 is brute force / mask. John the Ripper is the other classic cracker.",
+    "optionNotes": [
+      "testssl.sh audits TLS configuration.",
+      "VeraCrypt encrypts volumes.",
+      "GnuPG encrypts and signs files and e-mail.",
+      "Correct: hashcat cracks hashes using GPUs, with straight, combination, mask and hybrid modes."
+    ],
+    "tags": ["hashcat", "tools"],
+    "sources": ["https://hashcat.net/wiki/doku.php?id=hashcat", "https://attack.mitre.org/techniques/T1110/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0009",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A developer plans to store user passwords as unsalted MD5 hashes. What should they use instead?",
+    "options": [
+      "Base64 encoding",
+      "SHA-1 without a salt",
+      "AES encryption with a key in the source code",
+      "A salted, slow password hash such as Argon2id or bcrypt"
+    ],
+    "answer": 3,
+    "explanation": "OWASP recommends Argon2id, then scrypt, bcrypt or PBKDF2 with a high work factor, each with a unique salt per password.",
+    "optionNotes": [
+      "Base64 is an encoding with no key; anyone can reverse it.",
+      "SHA-1 is fast and unsalted here, so it is cracked almost as easily as MD5.",
+      "Encryption is reversible, and a hard-coded key exposes every password.",
+      "Correct: slow salted hashes resist offline cracking and rainbow tables."
+    ],
+    "tags": ["password-storage"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html", "https://csrc.nist.gov/pubs/sp/800/63/b/4/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0010",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's terminology, what does GAK (Government Access to Keys) describe?",
+    "options": [
+      "A government-approved list of cipher suites",
+      "Key escrow that lets authorities obtain decryption keys under legal process",
+      "A national post-quantum algorithm",
+      "A key exchange protocol used in TLS 1.3"
+    ],
+    "answer": 1,
+    "explanation": "Key escrow means a trusted third party holds a copy of a key. EC-Council uses GAK for the case where that party is, or answers to, the government.",
+    "optionNotes": [
+      "Approved algorithm lists are NIST publications such as SP 800-131A, not GAK.",
+      "Correct: GAK is key escrow for law enforcement access.",
+      "The post-quantum standards are ML-KEM, ML-DSA and SLH-DSA.",
+      "TLS 1.3 uses (EC)DHE or PSK."
+    ],
+    "tags": ["key-escrow", "ec-council-specific"],
+    "sources": ["https://csrc.nist.gov/glossary/term/key_escrow", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  }
+]

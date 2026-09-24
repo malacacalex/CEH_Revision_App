@@ -3,15 +3,110 @@
   "title": "Cryptography",
   "domain": "D9",
   "effortUnits": 1.25,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Cryptography Concepts and Encryption Algorithms",
     "Applications of Cryptography",
     "Cryptanalysis Methods and Cryptography Attacks",
     "Cryptography Attack Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Choose between symmetric encryption, asymmetric encryption, hashing, MACs and digital signatures for a given security goal",
+      "section": "Cryptography Concepts and Encryption Algorithms"
+    },
+    {
+      "text": "State block size, key sizes and current status of DES, 3DES, AES, Blowfish, Twofish, RC4 and ChaCha20, and the weakness of ECB",
+      "section": "Cryptography Concepts and Encryption Algorithms"
+    },
+    {
+      "text": "Compare RSA, Diffie-Hellman and ECC, match key sizes to security strength, and name the NIST post-quantum standards",
+      "section": "Cryptography Concepts and Encryption Algorithms"
+    },
+    {
+      "text": "Explain PKI components, X.509 fields, chain of trust and revocation (CRL, OCSP), and create a self-signed certificate",
+      "section": "Applications of Cryptography"
+    },
+    {
+      "text": "Describe what TLS 1.3 removed and added, and contrast S/MIME with PGP and the main disk encryption tools",
+      "section": "Applications of Cryptography"
+    },
+    {
+      "text": "Classify a cryptanalysis scenario by attack model and name the attack (birthday, meet-in-the-middle, rainbow table, side channel, padding oracle, downgrade)",
+      "section": "Cryptanalysis Methods and Cryptography Attacks"
+    },
+    {
+      "text": "Recognize blockchain and quantum computing attacks and the tools used for cryptanalysis and TLS auditing",
+      "section": "Cryptanalysis Methods and Cryptography Attacks"
+    },
+    {
+      "text": "Recommend fixes for weak algorithms, key handling, password storage and TLS configuration, and outline a post-quantum migration",
+      "section": "Cryptography Attack Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Cryptography Concepts and Encryption Algorithms",
+      "priority": "MUST",
+      "minutes": 60,
+      "why": "Algorithm, key size and hash facts are asked directly; learn the tables and the symmetric vs asymmetric rules."
+    },
+    {
+      "section": "Applications of Cryptography",
+      "priority": "MUST",
+      "minutes": 45,
+      "why": "PKI, certificates, TLS, S/MIME vs PGP and disk encryption tools come up in many scenario questions."
+    },
+    {
+      "section": "Cryptanalysis Methods and Cryptography Attacks",
+      "priority": "MUST",
+      "minutes": 40,
+      "why": "Attack models and named attacks are easy points once you can tell them apart; skim the tool screenshots."
+    },
+    {
+      "section": "Cryptography Attack Countermeasures",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Mostly the reverse of the attacks section; focus on password storage, key management and TLS settings."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Encrypt, hash and sign files with OpenSSL and GnuPG",
+      "source": "free",
+      "where": "https://docs.openssl.org/master/man1/openssl-enc/",
+      "skill": "Symmetric file encryption with a password-derived key, hashing, and GPG key pairs, encryption and signatures on your own machine",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Create a self-signed certificate and inspect a real certificate chain",
+      "source": "free",
+      "where": "https://docs.openssl.org/master/man1/openssl-req/",
+      "skill": "openssl req -x509, openssl x509 -text and openssl s_client to read issuer, subject, SAN and validity",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Audit the TLS configuration of your own test server",
+      "source": "free",
+      "where": "https://testssl.sh/",
+      "skill": "Listing protocol versions, cipher suites and known TLS weaknesses with testssl.sh and Nmap ssl-enum-ciphers",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Explore classical and modern ciphers in CrypTool Online",
+      "source": "free",
+      "where": "https://www.cryptool.org/en/cto/",
+      "skill": "Frequency analysis on a substitution cipher and seeing why ECB leaks patterns",
+      "minutes": 30,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a friend how HTTPS lets two strangers agree on a secret key over the internet, and what the certificate adds that Diffie-Hellman alone cannot.",
+    "Explain why passwords are stored with a salted, slow hash instead of being encrypted, and how a salt defeats rainbow tables.",
+    "Explain why a large quantum computer threatens RSA and ECC far more than AES, and what 'harvest now, decrypt later' means for data you encrypt today."
+  ]
 }

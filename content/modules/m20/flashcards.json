@@ -1,0 +1,856 @@
+[
+  {
+    "id": "m20-c-0001",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Which crypto tool gives which security service?",
+    "back": "- **Encryption** → confidentiality\n- **Hash** → integrity (accidental or unkeyed)\n- **MAC / HMAC** → integrity + origin, shared key\n- **Digital signature** → integrity + origin + **non-repudiation**",
+    "tags": [
+      "services",
+      "non-repudiation"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/175/b/r1/final",
+      "https://csrc.nist.gov/glossary/term/digital_signature",
+      "https://csrc.nist.gov/glossary/term/message_authentication_code"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0002",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Symmetric vs asymmetric cryptography",
+    "back": "**Symmetric**: one shared secret key, fast, for bulk data. Problem: key distribution, n users need **n(n−1)/2** keys.\n**Asymmetric**: public + private key pair, slow, solves key distribution and enables signatures.\n\nReal systems are **hybrid**: public key crypto protects a random symmetric session key.",
+    "tags": [
+      "symmetric",
+      "asymmetric"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/symmetric_cryptography",
+      "https://csrc.nist.gov/glossary/term/asymmetric_cryptography",
+      "https://cacr.uwaterloo.ca/hac/about/chap1.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0003",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Which key does what in public key crypto?",
+    "back": "- **Encrypt** for Bob → Bob's **public** key; Bob decrypts with his **private** key\n- **Sign** as Alice → Alice's **private** key; anyone verifies with Alice's **public** key\n\nHook: *lock with theirs, sign with yours.*",
+    "tags": [
+      "asymmetric",
+      "digital-signature"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/public_key_cryptography",
+      "https://csrc.nist.gov/pubs/fips/186-5/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0004",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "AES at a glance (FIPS 197)",
+    "back": "- Rijndael, symmetric **block** cipher\n- **128-bit block**, always\n- Keys **128 / 192 / 256** bits → **10 / 12 / 14** rounds\n- Replaced DES and 3DES",
+    "tags": [
+      "aes",
+      "symmetric"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/197/final",
+      "https://csrc.nist.gov/projects/block-cipher-techniques"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0005",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "DES and 3DES: sizes and status",
+    "back": "- **DES**: 64-bit block, **56-bit** effective key, brute-forceable; FIPS 46-3 withdrawn 2005\n- **3DES / TDEA**: three DES passes, 64-bit block, ~112-bit strength with 3 keys\n- 3DES encryption **disallowed after 31 Dec 2023**; decrypting legacy data still allowed",
+    "tags": [
+      "des",
+      "3des"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/46-3/final",
+      "https://csrc.nist.gov/news/2023/nist-to-withdraw-sp-800-67-rev-2",
+      "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0006",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Blowfish, Twofish, RC4, ChaCha20",
+    "back": "- **Blowfish**: block, 64-bit block, 32–448-bit key\n- **Twofish**: block, 128-bit block, up to 256-bit key, AES finalist\n- **RC4**: stream cipher, banned from TLS (RFC 7465)\n- **ChaCha20**: stream cipher, 256-bit key, with Poly1305 in TLS 1.3",
+    "tags": [
+      "blowfish",
+      "twofish",
+      "rc4",
+      "chacha20"
+    ],
+    "sources": [
+      "https://www.schneier.com/academic/blowfish/",
+      "https://www.schneier.com/academic/twofish/",
+      "https://www.rfc-editor.org/rfc/rfc7465",
+      "https://www.rfc-editor.org/rfc/rfc8439"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0007",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Block cipher modes: ECB, CBC, CTR, GCM",
+    "back": "- **ECB**: each block alone → identical blocks give identical ciphertext (pattern leak)\n- **CBC**: chains blocks with an IV; padding oracles possible\n- **CTR**: counter → keystream; never reuse a counter\n- **GCM**: CTR + authentication tag (**AEAD**); unique IV required",
+    "tags": [
+      "modes",
+      "ecb",
+      "gcm"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/38/a/final",
+      "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+      "https://csrc.nist.gov/pubs/sp/800/131/a/r3/ipd"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0008",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "RSA, Diffie-Hellman, ECC: what each is for",
+    "back": "- **RSA**: encryption and signatures; hard problem = **factoring**; ≥ 2048-bit\n- **Diffie-Hellman**: **key agreement** only; discrete logarithm; no authentication by itself\n- **ECC** (ECDH, ECDSA, EdDSA): same jobs with much **smaller keys**",
+    "tags": [
+      "rsa",
+      "diffie-hellman",
+      "ecc"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc8017",
+      "https://www.rfc-editor.org/rfc/rfc2631",
+      "https://csrc.nist.gov/pubs/sp/800/56/a/r3/final",
+      "https://csrc.nist.gov/pubs/fips/186-5/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0009",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "NIST security strength equivalences (SP 800-57)",
+    "back": "| Bits | Symmetric | RSA/DH | ECC |\n|---|---|---|---|\n| 112 | 3TDEA | 2048 | 224 |\n| 128 | AES-128 | 3072 | 256 |\n| 192 | AES-192 | 7680 | 384 |\n| 256 | AES-256 | 15360 | 512 |",
+    "tags": [
+      "key-length",
+      "security-strength"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
+      "https://csrc.nist.gov/glossary/term/security_strength",
+      "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0010",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Hash digest sizes",
+    "back": "- **MD5**: 128 bits (broken for collisions)\n- **SHA-1**: 160 bits (collision 2017, retire by 2030)\n- **SHA-2**: SHA-224/256/384/512 (FIPS 180-4)\n- **SHA-3**: 224–512 + SHAKE extendable output (FIPS 202)",
+    "tags": [
+      "hashing",
+      "md5",
+      "sha"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/180-4/upd1/final",
+      "https://csrc.nist.gov/pubs/fips/202/final",
+      "https://www.rfc-editor.org/rfc/rfc6151",
+      "https://www.nist.gov/news-events/news/2022/12/nist-retires-sha-1-cryptographic-algorithm"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0011",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Three security properties of a hash",
+    "back": "1. **Preimage resistance**: given a digest, cannot find an input\n2. **Second preimage resistance**: given one input, cannot find another with the same digest\n3. **Collision resistance**: cannot find *any* two inputs with the same digest (birthday bound 2^(n/2))",
+    "tags": [
+      "hashing",
+      "collision"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/preimage_resistance",
+      "https://csrc.nist.gov/glossary/term/second_preimage_resistance",
+      "https://csrc.nist.gov/glossary/term/collision_resistance",
+      "https://csrc.nist.gov/pubs/sp/800/107/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0012",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "term",
+    "front": "HMAC vs digital signature",
+    "back": "**HMAC** (FIPS 198-1): hash + shared secret key → integrity and origin, but **no non-repudiation** because both sides hold the key.\n**Digital signature** (FIPS 186-5): private key signs the digest → integrity, origin **and** non-repudiation.",
+    "tags": [
+      "hmac",
+      "digital-signature"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/198-1/final",
+      "https://www.rfc-editor.org/rfc/rfc2104",
+      "https://csrc.nist.gov/pubs/fips/186-5/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0013",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "list",
+    "front": "NIST post-quantum standards",
+    "back": "- **FIPS 203 ML-KEM** (from Kyber): key encapsulation\n- **FIPS 204 ML-DSA** (from Dilithium): signatures, primary\n- **FIPS 205 SLH-DSA** (from SPHINCS+): hash-based signatures, backup\n- **HQC**: backup KEM selected 2025\n\nThreat: **Shor** breaks RSA/DH/ECC; **Grover** only weakens symmetric keys → use AES-256.",
+    "tags": [
+      "pqc",
+      "quantum"
+    ],
+    "sources": [
+      "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards",
+      "https://csrc.nist.gov/pubs/fips/203/final",
+      "https://csrc.nist.gov/pubs/fips/204/final",
+      "https://csrc.nist.gov/pubs/fips/205/final",
+      "https://www.nist.gov/news-events/news/2025/03/nist-selects-hqc-fifth-algorithm-post-quantum-encryption",
+      "https://csrc.nist.gov/pubs/ir/8105/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0014",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Quantum key distribution (QKD)",
+    "back": "Uses quantum physics (photons) to agree a shared key; eavesdropping disturbs the states and shows up. It does **not authenticate** the endpoints and needs special links, so the UK NCSC and France's ANSSI prefer post-quantum algorithms.",
+    "tags": [
+      "qkd",
+      "quantum"
+    ],
+    "sources": [
+      "https://www.ncsc.gov.uk/whitepaper/quantum-security-technologies",
+      "https://cyber.gouv.fr/en/publications/should-quantum-key-distribution-be-used-secure-communications"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0015",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "list",
+    "front": "PKI components",
+    "back": "- **CA**: issues and signs certificates\n- **RA**: verifies the requester's identity for the CA\n- **Certificate**: binds subject ↔ public key\n- **Repository**: publishes certificates and CRLs\n- **CRL / OCSP**: revocation status",
+    "tags": [
+      "pki"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/32/final",
+      "https://www.rfc-editor.org/rfc/rfc5280",
+      "https://csrc.nist.gov/glossary/term/registration_authority",
+      "https://csrc.nist.gov/glossary/term/certificate_authority"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0016",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Key fields of an X.509 v3 certificate",
+    "back": "Version · serial number · signature algorithm · **issuer** · **validity** (notBefore/notAfter) · **subject** · **subject public key info** · extensions: **subjectAltName**, keyUsage, basicConstraints (CA:TRUE/FALSE).\n\nNever the private key.",
+    "tags": [
+      "x509",
+      "certificates"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5280",
+      "https://docs.openssl.org/master/man1/openssl-x509/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0017",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Chain of trust",
+    "back": "Leaf (server) certificate → signed by an **intermediate CA** → signed by a **root CA**. The root is **self-signed** and trusted because it is preinstalled in the OS or browser store (trust anchor).",
+    "tags": [
+      "pki",
+      "chain-of-trust"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5280",
+      "https://csrc.nist.gov/glossary/term/trust_anchor"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0018",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "command",
+    "front": "Create a self-signed certificate with OpenSSL",
+    "back": "`openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`\n\n- `-x509`: output a certificate, not a CSR\n- `-nodes`: do not encrypt the private key\n- Issuer = subject, so browsers warn",
+    "tags": [
+      "self-signed",
+      "openssl"
+    ],
+    "sources": [
+      "https://docs.openssl.org/master/man1/openssl-req/",
+      "https://csrc.nist.gov/glossary/term/self_signed_certificate"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0019",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "term",
+    "front": "CRL vs OCSP",
+    "back": "**CRL**: a signed list of revoked serial numbers the CA publishes periodically; clients download it.\n**OCSP** (RFC 6960): the client asks a responder about **one** certificate in real time: good, revoked or unknown.",
+    "tags": [
+      "revocation",
+      "crl",
+      "ocsp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5280",
+      "https://www.rfc-editor.org/rfc/rfc6960",
+      "https://csrc.nist.gov/glossary/term/certificate_revocation_list"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0020",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "list",
+    "front": "What TLS 1.3 changed (RFC 8446)",
+    "back": "- Key exchange only **(EC)DHE or PSK** → forward secrecy by default\n- Removed: static RSA key transport, CBC, RC4, SHA-1, compression, renegotiation\n- **AEAD only**: AES-GCM, ChaCha20-Poly1305\n- 1-RTT handshake, certificate encrypted\n- Optional **0-RTT** data can be replayed",
+    "tags": [
+      "tls",
+      "tls13"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc8446",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0021",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Deprecated SSL/TLS versions",
+    "back": "- **SSL 2.0 / 3.0**: prohibited (SSL 3.0 by RFC 7568)\n- **TLS 1.0 / 1.1**: deprecated by RFC 8996 (2021)\n- Use **TLS 1.2** and **TLS 1.3** (NIST SP 800-52 Rev. 2)",
+    "tags": [
+      "tls"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc7568",
+      "https://www.rfc-editor.org/rfc/rfc8996",
+      "https://csrc.nist.gov/pubs/sp/800/52/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0022",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Perfect forward secrecy",
+    "back": "Each session uses a fresh ephemeral key exchange (DHE/ECDHE), so stealing the server's long-term private key later **does not decrypt past recorded sessions**. TLS 1.3 makes it the default.",
+    "tags": [
+      "pfs",
+      "tls"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/perfect_forward_secrecy",
+      "https://www.rfc-editor.org/rfc/rfc8446"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0023",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "term",
+    "front": "S/MIME vs PGP",
+    "back": "**S/MIME** (RFC 8551): X.509 certificates from **CAs** (hierarchical trust), built into corporate mail clients.\n**PGP / OpenPGP** (RFC 9580, GnuPG): users certify each other's keys in a **web of trust**.\n\nBoth: session key encrypts the mail, recipient public key encrypts the session key, sender private key signs.",
+    "tags": [
+      "email",
+      "smime",
+      "pgp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc8551",
+      "https://www.rfc-editor.org/rfc/rfc9580",
+      "https://www.gnupg.org/documentation/manuals/gnupg/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0024",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Disk encryption tools",
+    "back": "- **BitLocker** (Windows): TPM, XTS-AES; `manage-bde -status`\n- **FileVault** (macOS)\n- **LUKS / cryptsetup** (Linux)\n- **VeraCrypt**: containers, **hidden volumes** for plausible deniability\n\nProtects data at rest when the device is **off or locked**, not a running session.",
+    "tags": [
+      "disk-encryption",
+      "bitlocker",
+      "veracrypt"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde",
+      "https://support.apple.com/guide/security/volume-encryption-with-filevault-sec4c6dc1b6e/web",
+      "https://man7.org/linux/man-pages/man8/cryptsetup.8.html",
+      "https://www.veracrypt.fr/en/Hidden%20Volume.html",
+      "https://csrc.nist.gov/pubs/sp/800/111/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0025",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "command",
+    "front": "Hash a file on Linux, PowerShell, cmd and OpenSSL",
+    "back": "- `sha256sum file.iso`\n- `Get-FileHash file.iso` (SHA256 by default)\n- `certutil -hashfile file.iso SHA256`\n- `openssl dgst -sha256 file.iso`\n\nGUI: NirSoft HashMyFiles.",
+    "tags": [
+      "hashing",
+      "tools"
+    ],
+    "sources": [
+      "https://www.gnu.org/software/coreutils/manual/html_node/sha2-utilities.html",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil",
+      "https://docs.openssl.org/master/man1/openssl-dgst/",
+      "https://www.nirsoft.net/utils/hash_my_files.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0026",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Blockchain",
+    "back": "A distributed, **tamper-evident** ledger: each block holds the **hash of the previous block**, so changing old data breaks every later link. Nodes agree through consensus (**proof of work** or **proof of stake**). **Smart contracts** are programs stored on the chain.",
+    "tags": [
+      "blockchain"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/ir/8202/final",
+      "https://csrc.nist.gov/glossary/term/blockchain",
+      "https://bitcoin.org/bitcoin.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0027",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Using AI for cryptography tasks (v13 lab theme)",
+    "back": "1. **Check every command** against official docs: assistants suggest ECB, MD5 or raw passwords as keys\n2. **Never paste real keys**, passwords or client data into a public AI service\n3. Prefer vetted libraries over AI-written crypto code",
+    "tags": [
+      "ai",
+      "v13-new",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://genai.owasp.org/llm-top-10/",
+      "https://docs.openssl.org/master/man1/openssl-enc/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0028",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Cryptanalysis attack models",
+    "back": "- **Ciphertext-only**: only ciphertext\n- **Known-plaintext**: some plaintext–ciphertext pairs\n- **Chosen-plaintext**: can encrypt chosen inputs\n- **Adaptive chosen-plaintext**: chooses each input after seeing results\n- **Chosen-ciphertext**: can get chosen ciphertexts decrypted",
+    "tags": [
+      "attack-models"
+    ],
+    "sources": [
+      "https://cacr.uwaterloo.ca/hac/about/chap1.pdf",
+      "https://csrc.nist.gov/glossary/term/chosen_plaintext_attack",
+      "https://csrc.nist.gov/glossary/term/chosen_ciphertext_attack"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0029",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Linear vs differential cryptanalysis",
+    "back": "**Linear**: known plaintext; finds linear approximations linking plaintext, ciphertext and key bits.\n**Differential**: chosen plaintext; studies how input **differences** propagate to output differences.\nEC-Council also lists **integral** cryptanalysis.",
+    "tags": [
+      "cryptanalysis",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://cacr.uwaterloo.ca/hac/about/chap7.pdf",
+      "https://csrc.nist.gov/glossary/term/cryptanalysis",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0030",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Birthday attack",
+    "back": "Collisions in an n-bit output appear after about **2^(n/2)** tries. MD5 (128) → ~2^64; SHA-256 → ~2^128. **Sweet32** applies it to 64-bit block ciphers (3DES, Blowfish) in long sessions.",
+    "tags": [
+      "birthday-attack",
+      "collision"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/107/r1/final",
+      "https://sweet32.info/",
+      "https://cacr.uwaterloo.ca/hac/about/chap9.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0031",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Meet-in-the-middle attack",
+    "back": "Against double encryption: encrypt forward with every K1, decrypt backward with every K2, and match in the middle. Two k-bit keys give about **2^(k+1)** work, not 2^(2k). That is why 2DES was skipped and TDEA uses three passes.",
+    "tags": [
+      "meet-in-the-middle",
+      "3des"
+    ],
+    "sources": [
+      "https://cacr.uwaterloo.ca/hac/about/chap7.pdf",
+      "https://csrc.nist.gov/pubs/sp/800/67/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0032",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Rainbow table",
+    "back": "Precomputed chains of hashes that trade storage for time to reverse **unsalted** password hashes. A **unique random salt** per password makes one table useless.",
+    "tags": [
+      "rainbow-table",
+      "salt"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "https://csrc.nist.gov/pubs/sp/800/63/b/4/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0033",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "term",
+    "front": "Side-channel attack",
+    "back": "Recovers secrets from **physical leakage** of an implementation (timing, power use, electromagnetic emissions, sound), not from the math. Examples: timing attacks on RSA, differential power analysis on smart cards.",
+    "tags": [
+      "side-channel"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/side_channel_attack",
+      "https://csrc.nist.gov/glossary/term/differential_power_analysis",
+      "https://www.paulkocher.com/doc/TimingAttacks.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0034",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Named TLS attacks",
+    "back": "- **Heartbleed**: OpenSSL heartbeat over-read leaks memory and keys\n- **POODLE**: padding oracle on SSL 3.0 CBC\n- **FREAK / Logjam**: downgrade to export-grade RSA / DH\n- **DROWN**: SSLv2 used to attack TLS\n- **ROBOT**: Bleichenbacher oracle on RSA key exchange\n- **Sweet32**: birthday attack on 64-bit blocks",
+    "tags": [
+      "tls-attacks"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/04/08/openssl-heartbleed-vulnerability-cve-2014-0160",
+      "https://www.cisa.gov/news-events/alerts/2014/10/17/ssl-30-protocol-vulnerability-and-poodle-attack",
+      "https://weakdh.org/",
+      "https://drownattack.com/",
+      "https://robotattack.org/",
+      "https://sweet32.info/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0035",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Blockchain attacks",
+    "back": "- **51 % attack**: majority of hash power or stake rewrites recent blocks → **double spending**\n- **Sybil**: many fake identities\n- **Eclipse**: isolate a node so it only hears the attacker\n- **Reentrancy**: smart contract called back before it updates state",
+    "tags": [
+      "blockchain",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/",
+      "https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/attack-and-defense/",
+      "https://swcregistry.io/docs/SWC-107/",
+      "https://owasp.org/www-project-smart-contract-top-10/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0036",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "kind": "tool",
+    "front": "Cryptanalysis and TLS audit tools",
+    "back": "- **hashcat** (GPU) / **John the Ripper**: password hash cracking\n- **CrypTool**: learning and analysing ciphers\n- **RsaCtfTool**: attacks weak RSA keys\n- **testssl.sh, sslscan, Nmap ssl-enum-ciphers**: TLS versions, suites, known flaws",
+    "tags": [
+      "tools"
+    ],
+    "sources": [
+      "https://hashcat.net/wiki/doku.php?id=hashcat",
+      "https://www.openwall.com/john/",
+      "https://www.cryptool.org/en/",
+      "https://github.com/RsaCtfTool/RsaCtfTool",
+      "https://testssl.sh/",
+      "https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0037",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Replace weak crypto with…",
+    "back": "- DES, 3DES, RC4 → **AES-GCM** or **ChaCha20-Poly1305**\n- MD5, SHA-1 → **SHA-256** / SHA-3\n- RSA-1024 → **RSA ≥ 2048** (3072 for 128-bit) or **ECC P-256+**\n- ECB → an **AEAD** mode\n- SSL, TLS 1.0/1.1 → **TLS 1.2/1.3**",
+    "tags": [
+      "countermeasures"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final",
+      "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
+      "https://www.rfc-editor.org/rfc/rfc7465",
+      "https://www.rfc-editor.org/rfc/rfc8996"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0038",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "kind": "countermeasure",
+    "front": "How to store passwords",
+    "back": "Use a **slow, salted** password hash: **Argon2id** first, then scrypt, bcrypt, or PBKDF2-HMAC-SHA-256 with ~600,000 iterations. Unique random salt per password; optional secret **pepper**. Never encrypt passwords or use a fast hash like MD5/SHA-1.",
+    "tags": [
+      "password-storage",
+      "salt"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "https://www.rfc-editor.org/rfc/rfc9106",
+      "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
+      "https://csrc.nist.gov/pubs/sp/800/132/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0039",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Key management rules (SP 800-57)",
+    "back": "- Generate keys from a **CSPRNG**\n- One key per purpose; limited **cryptoperiod**, then rotate\n- Store private keys in an **HSM or TPM**, never in source code\n- Revoke and destroy compromised or expired keys",
+    "tags": [
+      "key-management"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html",
+      "https://csrc.nist.gov/glossary/term/cryptoperiod"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0040",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "kind": "countermeasure",
+    "front": "Hardening TLS",
+    "back": "- TLS **1.2 and 1.3** only\n- **AEAD** suites with **ECDHE** (forward secrecy)\n- Strong certificates (RSA ≥ 2048 or ECDSA P-256)\n- **HSTS** to stop SSL stripping\n- Verify with testssl.sh, SSL Labs or Nmap ssl-enum-ciphers",
+    "tags": [
+      "tls",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/52/r2/final",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html",
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://testssl.sh/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0041",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "kind": "countermeasure",
+    "front": "Protecting disk encryption keys",
+    "back": "- **TPM + PIN** pre-boot authentication (not TPM-only on high-risk laptops)\n- **Shut down or hibernate**, don't sleep, when unattended (cold boot)\n- Enable **DMA protection**\n- Escrow recovery keys safely",
+    "tags": [
+      "disk-encryption",
+      "cold-boot"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/countermeasures",
+      "https://csrc.nist.gov/pubs/sp/800/111/final",
+      "https://learn.microsoft.com/en-us/windows/security/hardware-security/tpm/trusted-platform-module-overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-c-0042",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "kind": "list",
+    "front": "Post-quantum migration steps",
+    "back": "1. **Inventory** every use of RSA, DH, ECC\n2. Build **crypto agility**\n3. Protect long-lived data first (**harvest now, decrypt later**)\n4. Adopt **ML-KEM / ML-DSA**, often in **hybrid** mode\n\nTimelines: NIST draft IR 8547 → deprecate 112-bit RSA/ECC after 2030, disallow after 2035; NCSC milestones 2028 / 2031 / 2035.",
+    "tags": [
+      "pqc",
+      "migration"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/ir/8547/ipd",
+      "https://www.ncsc.gov.uk/guidance/pqc-migration-timelines",
+      "https://www.cisa.gov/resources-tools/resources/quantum-readiness-migration-post-quantum-cryptography",
+      "https://csrc.nist.gov/glossary/term/crypto_agility"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,1635 @@
+[
+  {
+    "id": "m20-q-0011",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What block size does AES use, whatever the key length?",
+    "options": ["192 bits", "64 bits", "128 bits", "256 bits"],
+    "answer": 2,
+    "explanation": "FIPS 197: AES has a fixed 128-bit block and three key sizes (128, 192, 256 bits) with 10, 12 or 14 rounds.",
+    "optionNotes": [
+      "192 bits is one of the AES key sizes, not the block size.",
+      "64-bit blocks belong to DES, 3DES and Blowfish.",
+      "Correct: AES always encrypts 128-bit blocks.",
+      "256 bits is the largest AES key size, not the block size."
+    ],
+    "tags": ["aes"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/197/final", "https://csrc.nist.gov/projects/block-cipher-techniques"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0012",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the effective key length of DES?",
+    "options": ["56 bits", "64 bits", "112 bits", "128 bits"],
+    "answer": 0,
+    "explanation": "DES has a 64-bit block and a 56-bit effective key, small enough to brute-force, which is why FIPS 46-3 was withdrawn in 2005.",
+    "optionNotes": [
+      "Correct: 56 key bits; the other 8 bits of the 64-bit key are parity.",
+      "64 bits is the DES block size and nominal key size including parity bits.",
+      "112 bits is the approximate strength of three-key 3DES.",
+      "128 bits is the smallest AES key."
+    ],
+    "tags": ["des"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/46-3/final", "https://csrc.nist.gov/news/2023/nist-to-withdraw-sp-800-67-rev-2"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0013",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "In 2026 a company still encrypts new nightly backups with 3DES because its old appliance supports nothing else. What is the status of this use under NIST guidance?",
+    "options": [
+      "Deprecated but allowed until 2035",
+      "Acceptable as long as all three keys are different",
+      "Recommended, because 3DES has a 168-bit key",
+      "Disallowed: 3DES may no longer apply protection, only decrypt existing data"
+    ],
+    "answer": 3,
+    "explanation": "SP 800-131A Rev. 2 disallowed TDEA for encryption after 31 Dec 2023 and NIST withdrew SP 800-67 Rev. 2 on 1 Jan 2024. Move the backups to AES.",
+    "optionNotes": [
+      "2035 is the post-quantum horizon for RSA and ECC, not the 3DES date.",
+      "Three distinct keys were required earlier, but the whole cipher is now disallowed for encryption.",
+      "The 168 keying bits give only about 112 bits of strength because of meet-in-the-middle, and the cipher is retired anyway.",
+      "Correct: applying protection with TDEA has been disallowed since 1 January 2024; legacy decryption is still allowed."
+    ],
+    "tags": ["3des", "transition"],
+    "sources": ["https://csrc.nist.gov/news/2023/nist-to-withdraw-sp-800-67-rev-2", "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0014",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A backup script contains `openssl enc -aes-256-ecb -pbkdf2 -in db.dump -out db.enc`. What is the main cryptographic weakness?",
+    "options": [
+      "AES-256 is too short a key for backups",
+      "ECB mode encrypts identical plaintext blocks to identical ciphertext blocks",
+      "PBKDF2 cannot derive AES keys",
+      "OpenSSL cannot encrypt files larger than one block"
+    ],
+    "answer": 1,
+    "explanation": "ECB is the one mode that reveals repeated blocks. Use an authenticated mode or at least CBC/CTR with a random IV; NIST's draft SP 800-131A Rev. 3 proposes retiring ECB for confidentiality.",
+    "optionNotes": [
+      "AES-256 is the strongest AES key size.",
+      "Correct: ECB leaks patterns because each block is encrypted independently.",
+      "`-pbkdf2` is the right way to derive a key from a password in openssl enc.",
+      "openssl enc encrypts files of any size."
+    ],
+    "tags": ["modes", "ecb", "openssl"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/38/a/final",
+      "https://docs.openssl.org/master/man1/openssl-enc/",
+      "https://csrc.nist.gov/pubs/sp/800/131/a/r3/ipd"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0015",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these is a stream cipher?",
+    "options": ["RC4", "AES", "Blowfish", "Twofish"],
+    "answer": 0,
+    "explanation": "Stream ciphers (RC4, ChaCha20) encrypt data as a continuous stream; block ciphers (AES, DES, Blowfish, Twofish) work on fixed blocks. RC4 is now prohibited in TLS (RFC 7465).",
+    "optionNotes": [
+      "Correct: RC4 generates a keystream that is XORed with the data.",
+      "AES is a block cipher.",
+      "Blowfish is a 64-bit block cipher.",
+      "Twofish is a 128-bit block cipher."
+    ],
+    "tags": ["stream-cipher", "rc4"],
+    "sources": ["https://csrc.nist.gov/glossary/term/stream_cipher", "https://www.rfc-editor.org/rfc/rfc7465"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0016",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "The security of RSA rests on the difficulty of which problem?",
+    "options": [
+      "Finding hash collisions",
+      "Computing discrete logarithms on elliptic curves",
+      "Factoring the product of two large primes",
+      "Solving lattice problems"
+    ],
+    "answer": 2,
+    "explanation": "RSA = factoring; DH and DSA = discrete logarithm; ECC = elliptic curve discrete logarithm; ML-KEM/ML-DSA = lattices. Shor's algorithm breaks the first three on a large quantum computer.",
+    "optionNotes": [
+      "Collisions concern hash functions.",
+      "Elliptic curve discrete logarithms underpin ECC (ECDSA, ECDH).",
+      "Correct: recovering the private key from n = p × q requires factoring n.",
+      "Lattice problems underpin ML-KEM and ML-DSA, the post-quantum standards."
+    ],
+    "tags": ["rsa"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8017", "https://csrc.nist.gov/pubs/fips/186-5/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0017",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team must pick an RSA key size that matches the 128-bit security of AES-128, following NIST SP 800-57. Which modulus should they choose?",
+    "options": ["1024 bits", "3072 bits", "2048 bits", "15360 bits"],
+    "answer": 1,
+    "explanation": "SP 800-57 equivalences: 112 bits = RSA 2048 / ECC 224; 128 = RSA 3072 / ECC 256; 192 = RSA 7680 / ECC 384; 256 = RSA 15360 / ECC 512.",
+    "optionNotes": [
+      "RSA-1024 gives about 80 bits and is no longer acceptable.",
+      "Correct: RSA-3072 is rated at 128 bits of security.",
+      "RSA-2048 gives 112 bits, the current minimum but below 128.",
+      "RSA-15360 matches AES-256, far more than needed."
+    ],
+    "tags": ["key-length", "rsa"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final", "https://csrc.nist.gov/glossary/term/security_strength"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0018",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A student wants a free learning environment to try Caesar, Vigenère and AES encryption and to run frequency analysis on classical ciphers. Which tool fits best?",
+    "options": ["sslscan", "hashcat", "BitLocker", "CrypTool"],
+    "answer": 3,
+    "explanation": "CrypTool (CrypTool 2, CrypTool-Online) visualizes classical and modern ciphers and includes cryptanalysis tools such as frequency analysis.",
+    "optionNotes": [
+      "sslscan lists a server's TLS cipher suites.",
+      "hashcat cracks password hashes; it does not teach classical ciphers.",
+      "BitLocker encrypts Windows volumes.",
+      "Correct: CrypTool is an open-source e-learning platform for cryptography and cryptanalysis."
+    ],
+    "tags": ["cryptool", "tools"],
+    "sources": ["https://www.cryptool.org/en/", "https://www.cryptool.org/en/cto/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0019",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A bank needs proof that a customer approved a transfer, strong enough that the customer cannot later deny it. Which mechanism provides this?",
+    "options": [
+      "Encrypting the order with AES",
+      "An HMAC computed with a key shared with the bank",
+      "A digital signature made with the customer's private key",
+      "A SHA-256 hash of the order"
+    ],
+    "answer": 2,
+    "explanation": "Non-repudiation needs a key only the signer holds. Digital signatures (FIPS 186-5) give integrity, authentication and non-repudiation; MACs give only the first two.",
+    "optionNotes": [
+      "Encryption gives confidentiality, not proof of origin.",
+      "The bank also holds the HMAC key, so the customer could claim the bank forged it.",
+      "Correct: only the customer holds the private key, so the signature gives non-repudiation.",
+      "Anyone can compute a hash; it proves nothing about who made the order."
+    ],
+    "tags": ["digital-signature", "non-repudiation"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/186-5/final", "https://csrc.nist.gov/glossary/term/non_repudiation"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0020",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Two microservices authenticate messages with HMAC-SHA-256 using a shared key. An auditor says this cannot provide non-repudiation. Why is the auditor right?",
+    "options": [
+      "SHA-256 is too weak to be used in HMAC",
+      "Both services hold the same key, so either could have produced any tag",
+      "HMAC does not detect changes to the message",
+      "HMAC tags can be verified by anyone without a key"
+    ],
+    "answer": 1,
+    "explanation": "A MAC proves the message came from someone holding the key and was not altered. Because the key is shared, it cannot prove to a third party which holder sent it; that needs an asymmetric signature.",
+    "optionNotes": [
+      "HMAC-SHA-256 is a strong, approved construction.",
+      "Correct: with a shared secret, a valid tag does not prove which of the two holders made it.",
+      "HMAC does detect modification; that is its main purpose.",
+      "Verifying an HMAC requires the same secret key."
+    ],
+    "tags": ["hmac", "non-repudiation"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/198-1/final",
+      "https://www.rfc-editor.org/rfc/rfc2104",
+      "https://csrc.nist.gov/glossary/term/message_authentication_code"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0021",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Under FIPS 186-5, which signature algorithm may no longer be used to generate new signatures?",
+    "options": ["RSA", "ECDSA", "EdDSA", "DSA"],
+    "answer": 3,
+    "explanation": "FIPS 186-5 (2023) removed DSA for signature generation and added EdDSA; RSA and ECDSA stay.",
+    "optionNotes": [
+      "RSA remains approved with a modulus of at least 2048 bits.",
+      "ECDSA remains approved.",
+      "EdDSA was added in FIPS 186-5.",
+      "Correct: DSA is kept only to verify signatures made before FIPS 186-5."
+    ],
+    "tags": ["digital-signature", "dsa"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/186-5/final", "https://csrc.nist.gov/pubs/sp/800/131/a/r3/ipd"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0022",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which NIST post-quantum standard is a key encapsulation mechanism used to establish shared keys?",
+    "options": ["FIPS 203 ML-KEM", "FIPS 204 ML-DSA", "FIPS 205 SLH-DSA", "FIPS 186-5 EdDSA"],
+    "answer": 0,
+    "explanation": "August 2024: FIPS 203 ML-KEM (key establishment), FIPS 204 ML-DSA and FIPS 205 SLH-DSA (signatures). HQC was selected in 2025 as a backup KEM.",
+    "optionNotes": [
+      "Correct: ML-KEM (from CRYSTALS-Kyber) is the key encapsulation standard.",
+      "ML-DSA is a lattice-based signature scheme.",
+      "SLH-DSA is a hash-based signature scheme.",
+      "EdDSA is a classical signature scheme broken by Shor's algorithm."
+    ],
+    "tags": ["pqc"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/fips/203/final",
+      "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0023",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A hospital must keep archived records confidential for 25 years. They are encrypted with AES-128 and the keys are exchanged with RSA-2048. What is the best assessment of the quantum risk?",
+    "options": [
+      "RSA key exchange is the main risk (Shor); move to ML-KEM and consider AES-256 for margin",
+      "AES-128 is broken outright by Shor's algorithm, but RSA-2048 is safe",
+      "Both are safe because quantum computers only speed up hashing",
+      "Only a longer RSA key, such as 4096 bits, is needed"
+    ],
+    "answer": 0,
+    "explanation": "NIST IR 8105: public key schemes (RSA, DH, ECC) fall to Shor's algorithm; symmetric ciphers and hashes need larger sizes because of Grover. Long-lived data is exposed to harvest-now-decrypt-later today.",
+    "optionNotes": [
+      "Correct: Shor breaks RSA; Grover only weakens symmetric keys, so AES-256 restores margin.",
+      "Shor targets factoring and discrete logarithms, not AES.",
+      "Quantum algorithms threaten public key crypto directly.",
+      "A larger RSA key only delays Shor slightly; it does not fix the problem."
+    ],
+    "tags": ["quantum", "pqc"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8105/final", "https://www.cisa.gov/quantum"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0024",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which set of conditions makes a one-time pad unbreakable?",
+    "options": [
+      "The key is derived from a strong password with PBKDF2",
+      "The key is 256 bits and changed every day",
+      "The message is compressed before encryption",
+      "The key is truly random, as long as the message, and never reused"
+    ],
+    "answer": 3,
+    "explanation": "The one-time pad (Vernam cipher with a random, single-use key) is the only unconditionally secure cipher. Reusing the pad lets an attacker XOR two ciphertexts and cancel the key.",
+    "optionNotes": [
+      "A password-derived key is not truly random and not message-length.",
+      "A short key reused over long messages is not a one-time pad.",
+      "Compression does not add secrecy.",
+      "Correct: all three conditions are required for perfect secrecy."
+    ],
+    "tags": ["one-time-pad"],
+    "sources": ["https://csrc.nist.gov/glossary/term/one_time_pad", "https://cacr.uwaterloo.ca/hac/about/chap1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0025",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "EC-Council classifies modern ciphers in two ways. Which pair describes the classification based on the type of input data?",
+    "options": [
+      "Symmetric and asymmetric ciphers",
+      "Block ciphers and stream ciphers",
+      "Substitution and transposition ciphers",
+      "Classical and quantum ciphers"
+    ],
+    "answer": 1,
+    "explanation": "Modern ciphers are grouped by key (symmetric or asymmetric) and by input data (block or stream). Classical ciphers are substitution or transposition.",
+    "optionNotes": [
+      "Symmetric and asymmetric is the classification by key type.",
+      "Correct: by input data, a cipher processes fixed blocks or a continuous stream.",
+      "Substitution and transposition describe classical ciphers.",
+      "This is not one of the classifications."
+    ],
+    "tags": ["cipher-types", "ec-council-specific"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/block_cipher",
+      "https://csrc.nist.gov/glossary/term/stream_cipher",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0026",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team of 10 people wants every pair to have its own symmetric key. How many keys are needed?",
+    "options": ["20", "10", "45", "100"],
+    "answer": 2,
+    "explanation": "Pairwise symmetric keys grow as n(n−1)/2, the key distribution problem that public key cryptography solves (each person needs only one key pair).",
+    "optionNotes": [
+      "20 would be one key pair per person with asymmetric crypto.",
+      "One key per person only works with public key cryptography.",
+      "Correct: n(n−1)/2 = 10 × 9 / 2 = 45.",
+      "100 counts each pair twice and includes self-pairs."
+    ],
+    "tags": ["symmetric", "key-distribution"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://csrc.nist.gov/glossary/term/symmetric_cryptography"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0027",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these ciphers uses a 64-bit block?",
+    "options": ["Twofish", "AES", "Blowfish", "ChaCha20"],
+    "answer": 2,
+    "explanation": "64-bit block ciphers (DES, 3DES, Blowfish) are exposed to birthday attacks such as Sweet32 on long sessions; 128-bit designs (AES, Twofish) are not.",
+    "optionNotes": [
+      "Twofish uses 128-bit blocks.",
+      "AES uses 128-bit blocks.",
+      "Correct: Blowfish has a 64-bit block and a 32–448-bit key.",
+      "ChaCha20 is a stream cipher and has no block size in this sense."
+    ],
+    "tags": ["blowfish", "block-size"],
+    "sources": ["https://www.schneier.com/academic/blowfish/", "https://www.schneier.com/academic/twofish/", "https://sweet32.info/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0028",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A developer's code encrypts every message under the same AES-GCM key with the same fixed 96-bit nonce. What is the consequence?",
+    "options": [
+      "Messages become too long to transmit",
+      "No problem, because GCM is authenticated encryption",
+      "Only performance suffers, because GCM caches the nonce",
+      "Confidentiality and authenticity both fail: keystream and authentication key can be recovered"
+    ],
+    "answer": 3,
+    "explanation": "SP 800-38D requires the IV to be unique for each encryption under a key. Reused nonces expose XORs of plaintexts and allow forgeries.",
+    "optionNotes": [
+      "Ciphertext length is unaffected.",
+      "GCM's guarantees depend on nonce uniqueness; reuse breaks them.",
+      "Nonce reuse is a security failure, not a performance issue.",
+      "Correct: nonce reuse in GCM repeats the CTR keystream and lets an attacker forge tags."
+    ],
+    "tags": ["gcm", "nonce"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/38/d/final", "https://csrc.nist.gov/glossary/term/nonce"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0029",
+    "module": 20,
+    "section": "Cryptography Concepts and Encryption Algorithms",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does Kerckhoffs' principle say about designing a cipher?",
+    "options": [
+      "The algorithm must be kept secret to be secure",
+      "It should stay secure even if everything except the key is public",
+      "Keys should be as short as possible for speed",
+      "Every cipher must use a 128-bit block"
+    ],
+    "answer": 1,
+    "explanation": "Public, well-studied algorithms (AES, SHA-2) are trusted precisely because they survive open analysis; only the key is secret.",
+    "optionNotes": [
+      "Security through obscurity of the algorithm is exactly what the principle rejects.",
+      "Correct: security must rest on the key alone.",
+      "Short keys make brute force easier.",
+      "The principle says nothing about block size."
+    ],
+    "tags": ["kerckhoffs"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://csrc.nist.gov/glossary/term/cryptanalysis"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0030",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which X.509 extension lists the host names a TLS server certificate is valid for?",
+    "options": ["subjectAltName", "basicConstraints", "keyUsage", "issuer"],
+    "answer": 0,
+    "explanation": "RFC 5280 defines subjectAltName for DNS names, IP addresses and e-mail addresses; modern browsers rely on it instead of the subject CN.",
+    "optionNotes": [
+      "Correct: browsers match the host name against the subjectAltName entries.",
+      "basicConstraints says whether the certificate belongs to a CA.",
+      "keyUsage lists allowed key operations (signing, key encipherment).",
+      "issuer names the CA that signed the certificate."
+    ],
+    "tags": ["x509"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5280", "https://docs.openssl.org/master/man1/openssl-x509/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0031",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Employees see a browser warning on an internal web app whose certificate was issued by the company's own CA. Public websites work fine. What is the most likely cause?",
+    "options": [
+      "The server uses TLS 1.3",
+      "The company root CA certificate is not in the browsers' trust store",
+      "The certificate uses a 2048-bit RSA key",
+      "OCSP stapling is enabled"
+    ],
+    "answer": 1,
+    "explanation": "Browsers accept a certificate only if its chain leads to a trusted root (trust anchor). Deploy the internal root through device management, or use a public CA.",
+    "optionNotes": [
+      "TLS 1.3 is the current best version and causes no warning.",
+      "Correct: the chain ends at a root the browser does not trust.",
+      "RSA-2048 is an accepted key size.",
+      "OCSP stapling speeds up revocation checks; it does not cause trust warnings."
+    ],
+    "tags": ["chain-of-trust"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5280", "https://csrc.nist.gov/glossary/term/trust_anchor"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0032",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does OCSP provide?",
+    "options": [
+      "A real-time status check of one certificate: good, revoked or unknown",
+      "A signed list of all revoked certificates published periodically",
+      "A way to issue new certificates automatically",
+      "Encryption of the TLS handshake"
+    ],
+    "answer": 0,
+    "explanation": "CRL = batch list, may be stale between publications; OCSP = on-demand answer for one certificate.",
+    "optionNotes": [
+      "Correct: RFC 6960 defines per-certificate status queries.",
+      "That describes a CRL.",
+      "Automatic issuance is ACME.",
+      "OCSP does not encrypt anything."
+    ],
+    "tags": ["ocsp", "revocation"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6960", "https://csrc.nist.gov/glossary/term/online_certificate_status_protocol"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0033",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does an administrator send to a certification authority to request a server certificate?",
+    "options": [
+      "A certificate revocation list",
+      "The server's private key",
+      "A certificate signing request (PKCS #10) containing the public key and subject",
+      "The root CA certificate"
+    ],
+    "answer": 2,
+    "explanation": "RFC 2986 (PKCS #10) defines the CSR. `openssl req -new` creates one; the CA returns a signed certificate.",
+    "optionNotes": [
+      "A CRL lists revoked certificates.",
+      "The private key must never leave the server.",
+      "Correct: the CSR carries the public key and identity, signed with the private key.",
+      "The root certificate belongs to the CA, not the requester."
+    ],
+    "tags": ["csr"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2986", "https://docs.openssl.org/master/man1/openssl-req/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0034",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "`openssl s_client -connect shop.example:443` reports `Protocol  : TLSv1.3` and `Cipher    : TLS_AES_256_GCM_SHA384`. What can you conclude?",
+    "options": [
+      "The server certificate is self-signed",
+      "The session uses static RSA key transport",
+      "The session uses CBC mode with HMAC-SHA384",
+      "The session uses an AEAD cipher with an ephemeral key exchange, so it has forward secrecy"
+    ],
+    "answer": 3,
+    "explanation": "In TLS 1.3 the suite name only lists the AEAD and the hash; key exchange is negotiated separately and is ephemeral, giving forward secrecy by default.",
+    "optionNotes": [
+      "These lines say nothing about who issued the certificate.",
+      "TLS 1.3 removed static RSA key transport.",
+      "TLS 1.3 removed CBC; SHA384 here is the handshake hash.",
+      "Correct: TLS 1.3 suites are AEAD and key exchange is always (EC)DHE or PSK."
+    ],
+    "tags": ["tls13", "openssl"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8446", "https://docs.openssl.org/master/man1/openssl-s_client/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0035",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which key exchange method did TLS 1.3 remove?",
+    "options": ["Pre-shared keys", "ECDHE", "DHE with finite field groups", "Static RSA key transport"],
+    "answer": 3,
+    "explanation": "RFC 8446 removed static RSA and static DH so that every handshake has forward secrecy. It also removed CBC, RC4, SHA-1 and compression.",
+    "optionNotes": [
+      "PSK modes (resumption) remain.",
+      "ECDHE is the most common TLS 1.3 key exchange.",
+      "DHE with named groups is still allowed.",
+      "Correct: the client no longer encrypts the premaster secret with the server's RSA key."
+    ],
+    "tags": ["tls13"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8446", "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0036",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A bank enables TLS 1.3 0-RTT early data and lets clients send a funds transfer request in it. What is the specific risk?",
+    "options": [
+      "An attacker can replay the captured early data, repeating the transfer",
+      "The transfer is sent in plaintext",
+      "The server certificate is not verified",
+      "The session loses forward secrecy for all later data"
+    ],
+    "answer": 0,
+    "explanation": "RFC 8446 warns that 0-RTT data can be replayed. Only use it for idempotent requests (such as a GET), never for state-changing actions.",
+    "optionNotes": [
+      "Correct: 0-RTT data has no replay protection across connections.",
+      "Early data is encrypted with a key from the previous session.",
+      "Certificate authentication still happens on the original session.",
+      "Only the early data has weaker properties; the rest of the session uses fresh keys."
+    ],
+    "tags": ["tls13", "replay"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8446", "https://csrc.nist.gov/glossary/term/replay_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0037",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker recorded months of a server's HTTPS traffic, then stole the server's private key. All sessions used ECDHE cipher suites. What can the attacker decrypt?",
+    "options": [
+      "Only sessions from the last 24 hours",
+      "All recorded sessions",
+      "None of the recorded sessions, thanks to forward secrecy",
+      "Only sessions that used TLS 1.3"
+    ],
+    "answer": 2,
+    "explanation": "Perfect forward secrecy: compromising the long-term key does not reveal past session keys. The stolen key does let the attacker impersonate the server from now on, so revoke it.",
+    "optionNotes": [
+      "Forward secrecy has no time window.",
+      "That would be true only with static RSA key transport.",
+      "Correct: each session key came from ephemeral values that were discarded.",
+      "ECDHE gives forward secrecy in TLS 1.2 as well."
+    ],
+    "tags": ["pfs", "tls"],
+    "sources": ["https://csrc.nist.gov/glossary/term/perfect_forward_secrecy", "https://www.rfc-editor.org/rfc/rfc8446"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0038",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source tool implements the OpenPGP standard to encrypt and sign files and e-mail from the command line?",
+    "options": ["BitLocker", "GnuPG", "certutil", "Nmap"],
+    "answer": 1,
+    "explanation": "GnuPG implements OpenPGP (RFC 4880, RFC 9580): key pairs, encryption, signatures and the web of trust.",
+    "optionNotes": [
+      "BitLocker is Windows full-volume encryption.",
+      "Correct: GnuPG (gpg) is the free OpenPGP implementation.",
+      "certutil manages Windows certificates and computes hashes.",
+      "Nmap is a network scanner."
+    ],
+    "tags": ["pgp", "gnupg"],
+    "sources": ["https://www.gnupg.org/documentation/manuals/gnupg/", "https://www.rfc-editor.org/rfc/rfc9580"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0039",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Which situation does full-disk encryption such as BitLocker or FileVault protect against?",
+    "options": [
+      "Malware running in the logged-in user's session",
+      "A laptop lost while powered off",
+      "A phishing e-mail stealing the user's password",
+      "An administrator copying files from the running system"
+    ],
+    "answer": 1,
+    "explanation": "FDE protects data at rest (SP 800-111). It does nothing once the volume is unlocked and the system is running.",
+    "optionNotes": [
+      "Once unlocked, files are decrypted transparently for any process in the session.",
+      "Correct: without the key, the disk contents are unreadable.",
+      "Phishing steals credentials; FDE does not stop their use.",
+      "A running, unlocked system serves decrypted data to authorized users."
+    ],
+    "tags": ["disk-encryption"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/111/final",
+      "https://csrc.nist.gov/glossary/term/full_disk_encryption",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0040",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A journalist wants an encrypted container with a second, hidden volume inside it so that, under pressure, she can reveal one password without proving the other data exists. Which tool offers this?",
+    "options": ["GnuPG", "BitLocker", "VeraCrypt", "HashMyFiles"],
+    "answer": 2,
+    "explanation": "A VeraCrypt hidden volume lives in the free space of an outer volume; free space is random data, so its existence cannot be proven.",
+    "optionNotes": [
+      "GnuPG encrypts files and mail, not deniable containers.",
+      "BitLocker has no hidden volume feature.",
+      "Correct: VeraCrypt hidden volumes provide plausible deniability.",
+      "HashMyFiles only computes hashes."
+    ],
+    "tags": ["veracrypt", "disk-encryption"],
+    "sources": ["https://www.veracrypt.fr/en/Hidden%20Volume.html", "https://www.veracrypt.fr/en/Documentation.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0041",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "On a Windows laptop, `manage-bde -status C:` shows `Conversion Status: Fully Encrypted`, `Encryption Method: XTS-AES 128` and `Protection Status: Protection On`. What does this tell you?",
+    "options": [
+      "BitLocker fully encrypts C: with XTS-AES 128 and its protectors are active",
+      "C: is encrypted with EFS, file by file",
+      "BitLocker is suspended and the key is stored in clear",
+      "The drive uses VeraCrypt with AES-128"
+    ],
+    "answer": 0,
+    "explanation": "manage-bde is the command-line tool for BitLocker. XTS-AES is the default method for fixed drives on current Windows.",
+    "optionNotes": [
+      "Correct: manage-bde reports BitLocker status for the volume.",
+      "EFS is per-file encryption and is not reported by manage-bde.",
+      "Suspended protection would show Protection Off.",
+      "manage-bde is the BitLocker tool; it does not manage VeraCrypt."
+    ],
+    "tags": ["bitlocker"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0042",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "On Linux, which tool sets up and opens LUKS-encrypted volumes?",
+    "options": ["certutil", "VeraCrypt hidden volume", "manage-bde", "cryptsetup"],
+    "answer": 3,
+    "explanation": "LUKS is the Linux standard on-disk format for encrypted volumes, handled by cryptsetup and dm-crypt.",
+    "optionNotes": [
+      "certutil is a Windows certificate utility.",
+      "VeraCrypt can run on Linux, but LUKS is managed with cryptsetup.",
+      "manage-bde manages BitLocker on Windows.",
+      "Correct: cryptsetup luksFormat and luksOpen manage LUKS volumes."
+    ],
+    "tags": ["luks", "disk-encryption"],
+    "sources": ["https://man7.org/linux/man-pages/man8/cryptsetup.8.html", "https://csrc.nist.gov/pubs/sp/800/111/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0043",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "After downloading an installer, a user runs `Get-FileHash .\\setup.exe` and compares the `SHA256` value with the one on the vendor's HTTPS site. What is the user checking?",
+    "options": [
+      "That the vendor's certificate is valid",
+      "That the file is free of malware",
+      "That the file is encrypted",
+      "That the file was not altered or corrupted"
+    ],
+    "answer": 3,
+    "explanation": "Get-FileHash uses SHA256 by default. A hash comparison proves integrity only if the published hash itself comes from a trusted channel.",
+    "optionNotes": [
+      "The hash says nothing about certificates.",
+      "A malicious file from the vendor would still match; hashing is not malware scanning.",
+      "Hashing does not encrypt anything.",
+      "Correct: matching digests show integrity against the published value."
+    ],
+    "tags": ["hashing", "powershell"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash",
+      "https://www.gnu.org/software/coreutils/manual/html_node/sha2-utilities.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0044",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What makes a blockchain tamper-evident?",
+    "options": [
+      "Every block is encrypted with AES",
+      "Each block stores the hash of the previous block",
+      "A central server signs every transaction",
+      "Blocks are deleted after they are confirmed"
+    ],
+    "answer": 1,
+    "explanation": "NIST IR 8202: blockchains are distributed ledgers whose hash-linked blocks, plus consensus, make published transactions practically unchangeable.",
+    "optionNotes": [
+      "Blockchain data is usually public, not encrypted.",
+      "Correct: changing an old block changes its hash and breaks every later link.",
+      "Public blockchains have no central authority.",
+      "Blocks are kept forever; that is the ledger."
+    ],
+    "tags": ["blockchain"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8202/final", "https://bitcoin.org/bitcoin.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0045",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "On café Wi-Fi, an attacker intercepts a user's first plain-HTTP request to a bank and keeps the victim on HTTP (SSL stripping). Which server-side control prevents this for returning visitors?",
+    "options": ["A self-signed certificate", "OCSP", "HTTP Strict Transport Security (HSTS)", "A longer RSA key"],
+    "answer": 2,
+    "explanation": "RFC 6797 HSTS tells the browser to refuse plain HTTP for the host for a set time; preloading covers even the first visit.",
+    "optionNotes": [
+      "A self-signed certificate would only trigger warnings.",
+      "OCSP checks revocation; it does not force HTTPS.",
+      "Correct: HSTS makes the browser use HTTPS only for that host.",
+      "Key length does not stop a downgrade to HTTP."
+    ],
+    "tags": ["hsts", "tls"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0046",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which mechanism lets a domain owner discover certificates issued for its domains without its knowledge?",
+    "options": ["Certificate Transparency logs", "Certificate revocation lists", "Key escrow", "The keyUsage extension"],
+    "answer": 0,
+    "explanation": "RFC 6962 / RFC 9162 Certificate Transparency: CAs log every certificate, and monitors watch the logs for unexpected issuance.",
+    "optionNotes": [
+      "Correct: CT logs are public, append-only records of issued certificates.",
+      "CRLs list certificates the CA already revoked.",
+      "Key escrow stores copies of keys.",
+      "keyUsage limits what a certificate's key may do."
+    ],
+    "tags": ["certificate-transparency"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6962", "https://www.rfc-editor.org/rfc/rfc9162", "https://certificate.transparency.dev/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0047",
+    "module": 20,
+    "section": "Applications of Cryptography",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "The CEH v13 labs include performing cryptography tasks with an AI assistant. Which practice is correct when doing this?",
+    "options": [
+      "Trust the assistant's choice of cipher mode because it is up to date",
+      "Check every generated command against the official documentation and never paste real keys",
+      "Paste the client's private key so the assistant can debug it",
+      "Use AI-written cryptographic code in production without review"
+    ],
+    "answer": 1,
+    "explanation": "EC-Council's v13 AI lab uses assistants to produce encryption and hashing commands. Treat the output as a draft to verify, and keep keys and client data out of public AI tools.",
+    "optionNotes": [
+      "Assistants often suggest ECB, MD5 or passwords used directly as keys.",
+      "Correct: assistants invent flags and suggest weak modes; secrets must stay private.",
+      "Sharing a private key with a public service is a key compromise.",
+      "Unreviewed crypto code is a classic source of vulnerabilities."
+    ],
+    "tags": ["ai", "v13-new", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://genai.owasp.org/llm-top-10/",
+      "https://docs.openssl.org/master/man1/openssl-enc/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0048",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An attacker wants any two different documents that share the same 64-bit hash value. Roughly how many hash computations should they expect?",
+    "options": ["About 2^16", "About 2^64", "About 2^128", "About 2^32"],
+    "answer": 3,
+    "explanation": "Collision search is a birthday attack: about 2^(n/2) tries. That is why collision resistance of an n-bit hash is only n/2 bits.",
+    "optionNotes": [
+      "2^16 is much too small for a 64-bit hash.",
+      "2^64 is the cost of finding a preimage for a specific 64-bit value.",
+      "2^128 is far above the size of the output space.",
+      "Correct: the birthday bound is 2^(n/2) for an n-bit output."
+    ],
+    "tags": ["birthday-attack"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/107/r1/final", "https://cacr.uwaterloo.ca/hac/about/chap9.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0049",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "An auditor wants an open-source, CPU-based password cracker that detects many hash formats automatically, including Unix shadow files. Which tool fits?",
+    "options": ["John the Ripper", "VeraCrypt", "OpenSSL s_client", "certbot"],
+    "answer": 0,
+    "explanation": "John the Ripper and hashcat are the two classic crackers; MITRE ATT&CK lists offline password cracking as T1110.002.",
+    "optionNotes": [
+      "Correct: John the Ripper cracks many hash formats and auto-detects them.",
+      "VeraCrypt creates encrypted volumes.",
+      "s_client tests TLS connections.",
+      "certbot obtains certificates from Let's Encrypt."
+    ],
+    "tags": ["john", "tools"],
+    "sources": ["https://www.openwall.com/john/", "https://www.openwall.com/john/doc/", "https://attack.mitre.org/techniques/T1110/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0050",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester sends many crafted ciphertexts to a server and measures how long each decryption takes. Small timing differences reveal bits of the private key. What kind of attack is this?",
+    "options": ["A rainbow table attack", "A birthday attack", "A timing side-channel attack", "A downgrade attack"],
+    "answer": 2,
+    "explanation": "Side-channel attacks exploit physical properties of an implementation: time, power, electromagnetic emissions or sound. Kocher's 1996 paper showed timing attacks on RSA and DH.",
+    "optionNotes": [
+      "Rainbow tables reverse unsalted password hashes.",
+      "Birthday attacks look for hash collisions.",
+      "Correct: the leak comes from execution time, not from the math.",
+      "Downgrade attacks force weaker protocol versions."
+    ],
+    "tags": ["side-channel", "timing"],
+    "sources": ["https://csrc.nist.gov/glossary/term/side_channel_attack", "https://www.paulkocher.com/doc/TimingAttacks.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0051",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A legacy server still accepts SSL 3.0 with CBC cipher suites. An attacker on the network forces clients to fall back to SSL 3.0 and recovers session cookies byte by byte. Which attack is this?",
+    "options": ["Heartbleed", "POODLE", "Sweet32", "DUHK"],
+    "answer": 1,
+    "explanation": "POODLE (2014) made SSL 3.0 unusable; RFC 7568 prohibits SSL 3.0. The fix is to disable SSL 3.0 entirely.",
+    "optionNotes": [
+      "Heartbleed is a memory over-read in OpenSSL's heartbeat extension.",
+      "Correct: POODLE is a padding oracle on SSL 3.0 CBC, combined with a forced downgrade.",
+      "Sweet32 is a birthday attack on 64-bit block ciphers.",
+      "DUHK abuses a hard-coded RNG seed key."
+    ],
+    "tags": ["poodle", "tls-attacks"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/10/17/ssl-30-protocol-vulnerability-and-poodle-attack",
+      "https://www.rfc-editor.org/rfc/rfc7568",
+      "https://www.openssl.org/~bodo/ssl-poodle.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0052",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Nmap NSE script checks whether a TLS server is vulnerable to the OpenSSL heartbeat memory leak (CVE-2014-0160)?",
+    "options": ["ssl-heartbleed", "ssl-enum-ciphers", "ssl-cert", "ssh2-enum-algos"],
+    "answer": 0,
+    "explanation": "`nmap -p 443 --script ssl-heartbleed target` detects the flaw. Heartbleed leaks server memory, possibly including private keys.",
+    "optionNotes": [
+      "Correct: ssl-heartbleed tests for Heartbleed.",
+      "ssl-enum-ciphers lists and grades cipher suites.",
+      "ssl-cert shows the server certificate.",
+      "ssh2-enum-algos lists SSH algorithms, not TLS."
+    ],
+    "tags": ["heartbleed", "nmap"],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/ssl-heartbleed.html",
+      "https://www.cisa.gov/news-events/alerts/2014/04/08/openssl-heartbleed-vulnerability-cve-2014-0160"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0053",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Nmap `ssl-enum-ciphers` on your own server shows `TLSv1.2: ciphers: TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C` and `least strength: C`. Which weakness is being flagged?",
+    "options": [
+      "A missing HSTS header",
+      "An expired server certificate",
+      "A 64-bit block cipher suite exposed to Sweet32 birthday attacks",
+      "A 2048-bit RSA key that is too short"
+    ],
+    "answer": 2,
+    "explanation": "ssl-enum-ciphers grades each suite from A to F; the least strength line shows the weakest suite offered. Remove 3DES and keep AEAD suites.",
+    "optionNotes": [
+      "HSTS is an HTTP header; Nmap's cipher grading does not check it.",
+      "Certificate dates are not graded here.",
+      "Correct: 3DES has a 64-bit block, so long sessions leak data through collisions.",
+      "RSA-2048 is the accepted minimum; the C grade comes from 3DES."
+    ],
+    "tags": ["nmap", "sweet32"],
+    "sources": ["https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html", "https://sweet32.info/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0054",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Why did the industry move from DES to three-pass 3DES rather than simply encrypting twice with two DES keys?",
+    "options": [
+      "Double DES was patented and could not be used",
+      "Double encryption with DES is mathematically impossible",
+      "Two DES passes would double the block size to 128 bits",
+      "A meet-in-the-middle attack breaks double encryption with about 2^57 work, barely more than single DES"
+    ],
+    "answer": 3,
+    "explanation": "HAC Fact 7.33: with k-bit keys, meet-in-the-middle breaks double encryption in about 2^(k+1) operations and 2^k storage. Three passes (TDEA) raise the work to about 2^112.",
+    "optionNotes": [
+      "The reason is cryptanalytic, not legal.",
+      "Encrypting twice is possible; it is just not much stronger.",
+      "The block size stays 64 bits however many passes are used.",
+      "Correct: storing forward encryptions and matching backward decryptions defeats double encryption."
+    ],
+    "tags": ["meet-in-the-middle", "3des"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap7.pdf", "https://csrc.nist.gov/pubs/sp/800/67/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0055",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A mining pool gains more than half of a proof-of-work network's hash power, reverses a confirmed payment it made, and spends the same coins again. What is this?",
+    "options": ["A smart contract reentrancy attack", "A Sybil attack", "A 51 % attack enabling double spending", "A replay attack on TLS"],
+    "answer": 2,
+    "explanation": "In proof of work, the longest chain wins. With over 50 % of hash power, an attacker can out-mine honest nodes, reorganize recent blocks and double-spend.",
+    "optionNotes": [
+      "Reentrancy abuses a contract's code, not consensus.",
+      "A Sybil attack uses many fake identities, not majority hash power.",
+      "Correct: majority hash power lets the attacker rewrite recent blocks.",
+      "TLS replay is unrelated to blockchain consensus."
+    ],
+    "tags": ["blockchain", "51-percent"],
+    "sources": ["https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/", "https://bitcoin.org/bitcoin.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0056",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does \"harvest now, decrypt later\" describe?",
+    "options": [
+      "Storing encryption keys in a key escrow system",
+      "Stealing password hashes to crack them over the weekend",
+      "Collecting certificates from Certificate Transparency logs",
+      "Recording encrypted traffic today to decrypt it once a large quantum computer exists"
+    ],
+    "answer": 3,
+    "explanation": "CISA and NCSC warn that data with a long confidentiality life is already exposed, because recorded RSA/ECC-protected traffic could be decrypted with Shor's algorithm later.",
+    "optionNotes": [
+      "Key escrow is a key management practice.",
+      "That is ordinary offline password cracking.",
+      "CT logs are public by design.",
+      "Correct: this is why long-lived secrets need post-quantum protection now."
+    ],
+    "tags": ["quantum", "harvest-now"],
+    "sources": ["https://www.cisa.gov/quantum", "https://www.ncsc.gov.uk/guidance/pqc-migration-timelines"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0057",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "In a CTF, you are given an RSA public key with a suspiciously small modulus and must recover the private key. Which tool is built for this?",
+    "options": ["hashcat", "RsaCtfTool", "testssl.sh", "GnuPG"],
+    "answer": 1,
+    "explanation": "Weak RSA (small moduli, shared primes, small exponents) can be broken with factoring and known attacks; RsaCtfTool automates them.",
+    "optionNotes": [
+      "hashcat cracks password hashes, not RSA key pairs.",
+      "Correct: RsaCtfTool runs many attacks against weak RSA keys and parameters.",
+      "testssl.sh audits TLS servers.",
+      "GnuPG uses keys; it does not attack them."
+    ],
+    "tags": ["rsa", "tools"],
+    "sources": ["https://github.com/RsaCtfTool/RsaCtfTool", "https://www.rfc-editor.org/rfc/rfc8017"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0058",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's list of cryptography attacks, what is a rubber-hose attack?",
+    "options": [
+      "Obtaining the key from a person through coercion, threats or bribery",
+      "Trying every possible key",
+      "Measuring power consumption of a smart card",
+      "Replaying a captured login message"
+    ],
+    "answer": 0,
+    "explanation": "Rubber-hose cryptanalysis bypasses the math entirely. Defenses are procedural: split knowledge, dual control, and features such as VeraCrypt hidden volumes.",
+    "optionNotes": [
+      "Correct: it attacks the person, not the algorithm.",
+      "That is brute force.",
+      "That is power analysis, a side-channel attack.",
+      "That is a replay attack."
+    ],
+    "tags": ["rubber-hose", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://cacr.uwaterloo.ca/hac/about/chap1.pdf"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0059",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An attacker in the network path modifies a TLS handshake so that a misconfigured server agrees to 512-bit export-grade Diffie-Hellman, then computes the discrete log to read the session. Which attack is this?",
+    "options": ["DROWN", "Logjam", "Heartbleed", "ROBOT"],
+    "answer": 1,
+    "explanation": "Logjam (and FREAK for export RSA) are downgrade attacks. Fixes: disable export suites, use 2048-bit or larger DH groups or ECDHE, and move to TLS 1.3, which has a downgrade sentinel.",
+    "optionNotes": [
+      "DROWN uses SSLv2 to attack RSA-based TLS sessions.",
+      "Correct: Logjam downgrades to export-grade DHE and breaks the small group.",
+      "Heartbleed is a memory over-read bug.",
+      "ROBOT is a Bleichenbacher oracle on RSA key exchange."
+    ],
+    "tags": ["logjam", "downgrade"],
+    "sources": ["https://weakdh.org/", "https://www.rfc-editor.org/rfc/rfc7457", "https://www.rfc-editor.org/rfc/rfc8446"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0060",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A tester runs `hashcat -m 1000 -a 0 hashes.txt rockyou.txt`. What is this command doing?",
+    "options": [
+      "A rainbow table lookup on bcrypt hashes",
+      "A brute-force mask attack on MD5 hashes",
+      "A dictionary attack on NTLM hashes using the rockyou wordlist",
+      "Encrypting hashes.txt with AES"
+    ],
+    "answer": 2,
+    "explanation": "hashcat: -m selects the hash type (0 MD5, 100 SHA-1, 1000 NTLM, 3200 bcrypt), -a selects the attack (0 straight, 1 combination, 3 brute force/mask, 6 and 7 hybrid).",
+    "optionNotes": [
+      "hashcat does not use rainbow tables, and bcrypt is -m 3200.",
+      "Mask attacks use -a 3, and MD5 is -m 0.",
+      "Correct: -m 1000 is NTLM and -a 0 is straight (wordlist) mode.",
+      "hashcat cracks hashes; it does not encrypt files."
+    ],
+    "tags": ["hashcat"],
+    "sources": ["https://hashcat.net/wiki/doku.php?id=hashcat", "https://hashcat.net/wiki/doku.php?id=example_hashes"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0061",
+    "module": 20,
+    "section": "Cryptanalysis Methods and Cryptography Attacks",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A smart contract sends ether to the caller before setting the caller's balance to zero. The caller's contract receives the ether and immediately calls withdraw again, draining funds. What is this attack?",
+    "options": ["Reentrancy", "A 51 % attack", "An eclipse attack", "A birthday attack"],
+    "answer": 0,
+    "explanation": "SWC-107 reentrancy: update state before external calls (checks-effects-interactions) or use a reentrancy guard.",
+    "optionNotes": [
+      "Correct: the external call lets the attacker re-enter before state is updated.",
+      "A 51 % attack needs majority hash power or stake.",
+      "An eclipse attack isolates a node's network peers.",
+      "Birthday attacks find hash collisions."
+    ],
+    "tags": ["smart-contract", "reentrancy"],
+    "sources": [
+      "https://swcregistry.io/docs/SWC-107/",
+      "https://ethereum.org/en/developers/docs/smart-contracts/security/",
+      "https://owasp.org/www-project-smart-contract-top-10/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0062",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A web server was vulnerable to a memory-disclosure bug that could leak its TLS private key. The library is now patched. What else should the administrator do?",
+    "options": [
+      "Increase the session timeout",
+      "Nothing: patching removes the leaked data",
+      "Only restart the web server",
+      "Generate a new key pair, get a new certificate, and revoke the old one"
+    ],
+    "answer": 3,
+    "explanation": "After Heartbleed, CISA advised patching, then replacing keys and certificates, revoking the old ones and resetting credentials that may have leaked.",
+    "optionNotes": [
+      "Session timeouts are unrelated.",
+      "Patching stops new leaks but cannot un-leak the key.",
+      "A restart does not change the key.",
+      "Correct: a possibly leaked key must be treated as compromised."
+    ],
+    "tags": ["heartbleed", "revocation"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/04/08/openssl-heartbleed-vulnerability-cve-2014-0160",
+      "https://heartbleed.com/",
+      "https://www.rfc-editor.org/rfc/rfc5280"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0063",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which is an appropriate replacement for RC4 cipher suites in TLS?",
+    "options": ["NULL cipher suites", "3DES-CBC suites", "Export-grade RC2 suites", "AES-GCM or ChaCha20-Poly1305 suites"],
+    "answer": 3,
+    "explanation": "RFC 7465 prohibits RC4 in TLS. TLS 1.3 allows only AEAD suites: AES-GCM, AES-CCM and ChaCha20-Poly1305.",
+    "optionNotes": [
+      "NULL suites do not encrypt at all.",
+      "3DES is a 64-bit block cipher and is being withdrawn.",
+      "Export-grade ciphers are deliberately weak.",
+      "Correct: both are AEAD and allowed in TLS 1.2 and 1.3."
+    ],
+    "tags": ["rc4", "tls"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7465", "https://www.rfc-editor.org/rfc/rfc8446"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0064",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Executives' laptops use BitLocker with TPM-only protection and are often left in sleep mode in hotel rooms. Which change best reduces the risk of keys being read from memory?",
+    "options": [
+      "Add a pre-boot PIN and hibernate or shut down instead of sleeping",
+      "Switch from XTS-AES 128 to XTS-AES 256",
+      "Disable the TPM",
+      "Store the recovery key on the desktop"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft's BitLocker countermeasures guidance: TPM + PIN, DMA protection, and avoiding sleep against cold boot and DMA attacks.",
+    "optionNotes": [
+      "Correct: pre-boot authentication and powering off keep the key out of RAM.",
+      "A longer key does not help if the key can be read from memory.",
+      "Without a TPM, protection gets weaker, not stronger.",
+      "That would hand the key to anyone with the laptop."
+    ],
+    "tags": ["bitlocker", "cold-boot"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/countermeasures",
+      "https://learn.microsoft.com/en-us/windows/security/hardware-security/tpm/trusted-platform-module-overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0065",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement about password salts is correct?",
+    "options": [
+      "A salt replaces the need for a slow hash",
+      "A salt must be secret and the same for all users",
+      "A salt must be unique per password but does not need to be secret",
+      "A salt encrypts the password"
+    ],
+    "answer": 2,
+    "explanation": "OWASP and NIST SP 800-63B: random salt per password, stored with the hash, combined with a slow password hashing function.",
+    "optionNotes": [
+      "Salts stop precomputation, not fast guessing; a slow hash is still needed.",
+      "One shared salt still allows one table for all users; a secret shared value is a pepper.",
+      "Correct: uniqueness defeats precomputed tables; the salt is stored with the hash.",
+      "Salting is not encryption."
+    ],
+    "tags": ["salt", "password-storage"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
+      "https://csrc.nist.gov/glossary/term/salt"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0066",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A mobile app contains the AES key used to encrypt customer data, hard-coded in the source code. What is the best fix?",
+    "options": [
+      "Obfuscate the key string in the code",
+      "Move key handling to a managed key store or HSM and rotate the exposed key",
+      "Switch from AES to 3DES",
+      "Encode the key in Base64"
+    ],
+    "answer": 1,
+    "explanation": "Hard-coded keys are a cryptographic failure (OWASP Top 10). SP 800-57 and the OWASP Key Management cheat sheet call for protected storage, per-purpose keys and rotation.",
+    "optionNotes": [
+      "Obfuscation slows reverse engineering but the key is still in the app.",
+      "Correct: keys belong in protected stores, and an exposed key must be replaced.",
+      "3DES is weaker and does not solve key exposure.",
+      "Base64 is trivially reversible."
+    ],
+    "tags": ["key-management", "hard-coded-keys"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html",
+      "https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
+      "https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0067",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which free command-line tool checks your own server's TLS protocols, cipher suites and known flaws such as Heartbleed and ROBOT in one run?",
+    "options": ["testssl.sh", "John the Ripper", "cryptsetup", "HashMyFiles"],
+    "answer": 0,
+    "explanation": "testssl.sh, sslscan, Nmap ssl-enum-ciphers and the Qualys SSL Labs test are the usual ways to check a TLS setup.",
+    "optionNotes": [
+      "Correct: testssl.sh audits TLS/SSL configuration and tests for many known vulnerabilities.",
+      "John cracks password hashes.",
+      "cryptsetup manages LUKS disk encryption.",
+      "HashMyFiles computes file hashes."
+    ],
+    "tags": ["testssl", "tls"],
+    "sources": ["https://testssl.sh/", "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0068",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A company wants to prepare for quantum computers but does not know where it uses RSA and ECC. What should come first?",
+    "options": [
+      "Buy a quantum key distribution link for every site",
+      "Replace all AES-256 keys with AES-128",
+      "Build an inventory of where and how public key cryptography is used",
+      "Double every RSA key to 4096 bits and stop there"
+    ],
+    "answer": 2,
+    "explanation": "CISA's quantum-readiness factsheet and the NCSC timelines start with discovery and inventory, then prioritized migration to ML-KEM/ML-DSA, often in hybrid mode.",
+    "optionNotes": [
+      "QKD does not authenticate and is not the recommended path.",
+      "This weakens symmetric crypto, the opposite of quantum guidance.",
+      "Correct: you cannot migrate what you have not found; inventory drives prioritization.",
+      "Larger RSA keys do not resist Shor's algorithm."
+    ],
+    "tags": ["pqc", "migration"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/quantum-readiness-migration-post-quantum-cryptography",
+      "https://www.ncsc.gov.uk/guidance/pqc-migration-timelines"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0069",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which TLS 1.2 cipher suite choice gives forward secrecy?",
+    "options": ["Suites using static RSA key exchange", "Suites using ECDHE key exchange", "Suites using the NULL cipher", "Suites using RC4"],
+    "answer": 1,
+    "explanation": "NIST SP 800-52 Rev. 2 and OWASP prefer (EC)DHE suites with AEAD ciphers; TLS 1.3 makes ephemeral key exchange mandatory.",
+    "optionNotes": [
+      "Static RSA lets a stolen server key decrypt recorded sessions.",
+      "Correct: ephemeral ECDH creates a fresh key for each session.",
+      "NULL suites give no confidentiality at all.",
+      "RC4 is prohibited and does not change the key exchange."
+    ],
+    "tags": ["pfs", "tls"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/52/r2/final",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html",
+      "https://csrc.nist.gov/glossary/term/perfect_forward_secrecy"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0070",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A DeFi team wants to prevent reentrancy in a withdraw function. Which coding change is the standard defense?",
+    "options": [
+      "Hash the balance with SHA-256",
+      "Send the ether first, then update the balance",
+      "Increase the gas limit of the transaction",
+      "Update the balance before making the external transfer (checks-effects-interactions)"
+    ],
+    "answer": 3,
+    "explanation": "Ethereum's security guidance and SWC-107: follow checks-effects-interactions or use a reentrancy guard, and have contracts audited.",
+    "optionNotes": [
+      "Hashing the balance does not stop repeated withdrawals.",
+      "That is the vulnerable order.",
+      "More gas gives the attacker more room, not less.",
+      "Correct: state changes before external calls leave nothing to re-enter."
+    ],
+    "tags": ["smart-contract", "reentrancy"],
+    "sources": ["https://ethereum.org/en/developers/docs/smart-contracts/security/", "https://swcregistry.io/docs/SWC-107/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m20-q-0071",
+    "module": 20,
+    "section": "Cryptography Attack Countermeasures",
+    "domain": "D9",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which implementation practice defends against timing side-channel attacks on cryptographic code?",
+    "options": [
+      "Encrypting the log files",
+      "Using longer keys",
+      "Constant-time operations whose duration does not depend on secret data",
+      "Enabling TLS compression"
+    ],
+    "answer": 2,
+    "explanation": "Timing attacks (Kocher) exploit data-dependent execution time. Defenses: constant-time code, blinding for RSA, and well-reviewed libraries.",
+    "optionNotes": [
+      "Log encryption does not change how long operations take.",
+      "A longer key still leaks through data-dependent timing.",
+      "Correct: if timing does not depend on secrets, it leaks nothing about them.",
+      "Compression causes its own leaks (CRIME) and is removed in TLS 1.3."
+    ],
+    "tags": ["side-channel", "constant-time"],
+    "sources": ["https://www.paulkocher.com/doc/TimingAttacks.pdf", "https://csrc.nist.gov/glossary/term/side_channel_attack"],
+    "verify": false,
+    "rev": 1
+  }
+]
