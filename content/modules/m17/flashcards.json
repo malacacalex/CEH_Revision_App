@@ -1,0 +1,779 @@
+[
+  {
+    "id": "m17-c-0001",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OWASP Mobile Top 10 (2024 final): the 10 risks in order",
+    "back": "1. **M1** Improper Credential Usage\n2. **M2** Inadequate Supply Chain Security\n3. **M3** Insecure Authentication/Authorization\n4. **M4** Insufficient Input/Output Validation\n5. **M5** Insecure Communication\n6. **M6** Inadequate Privacy Controls\n7. **M7** Insufficient Binary Protections\n8. **M8** Security Misconfiguration\n9. **M9** Insecure Data Storage\n10. **M10** Insufficient Cryptography\n\n*Hook: \"Credentials, Supply, Auth, Input, Comms, Privacy, Binary, Config, Storage, Crypto\".*",
+    "tags": [
+      "owasp-mobile-top-10"
+    ],
+    "sources": [
+      "https://owasp.org/www-project-mobile-top-10/",
+      "https://github.com/OWASP/www-project-mobile-top-10"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0002",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "term",
+    "front": "OWASP Mobile 2016 vs 2024: what merged?",
+    "back": "- 2016 **M8 Code Tampering** + **M9 Reverse Engineering** → 2024 **M7 Insufficient Binary Protections**\n- 2016 **M4 Insecure Authentication** + **M6 Insecure Authorization** → 2024 **M3**\n- New in 2024: **M1 Improper Credential Usage**, **M2 Supply Chain**, **M6 Privacy Controls**\n\nOlder questions may still use the 2016 names.",
+    "tags": [
+      "owasp-mobile-top-10"
+    ],
+    "sources": [
+      "https://owasp.org/www-project-mobile-top-10/",
+      "https://github.com/OWASP/www-project-mobile-top-10/tree/master/2016-risks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0003",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "term",
+    "front": "M1 Improper Credential Usage: what does it cover?",
+    "back": "- **Hardcoded** credentials or API keys in code or config files\n- Credentials sent without encryption\n- Credentials stored insecurely on the device\n- Weak user authentication\n\nFix: no secrets in the app; keep them server-side or in the platform keystore.",
+    "tags": [
+      "owasp-mobile-top-10",
+      "credentials"
+    ],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m1-improper-credential-usage.md",
+      "https://developer.android.com/privacy-and-security/risks/hardcoded-cryptographic-secrets"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0004",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "term",
+    "front": "M7 Insufficient Binary Protections",
+    "back": "The app binary can be **reverse engineered** (secrets, algorithms found) or **tampered with** (license checks removed, malware added, app repackaged).\n\nDefenses: obfuscation, integrity checks at startup, enforcing important checks **server-side**. OWASP notes no protection is fully reliable: it raises the attacker's cost.",
+    "tags": [
+      "owasp-mobile-top-10",
+      "reverse-engineering"
+    ],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m7-insufficient-binary-protection.md",
+      "https://developer.android.com/topic/performance/app-optimization/enable-app-optimization"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0005",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Smishing",
+    "back": "Phishing by **SMS** (or messaging apps): a text with a lure (parcel, bank, prize) and a link or number.\n\nDefense: don't click; forward spam texts to **7726** (SPAM) in the US and report them in the app; user awareness. ATT&CK Mobile: **T1660 Phishing**.",
+    "tags": [
+      "smishing",
+      "phishing"
+    ],
+    "sources": [
+      "https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages",
+      "https://attack.mitre.org/techniques/T1660/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0006",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Caller ID spoofing and STIR/SHAKEN",
+    "back": "**Spoofing**: the caller deliberately falsifies the number shown on caller ID (\"neighbor\" numbers, banks, agencies) to vishing victims.\n\n**STIR/SHAKEN**: carrier framework that authenticates caller ID for calls carried over IP networks.",
+    "tags": [
+      "call-spoofing",
+      "vishing"
+    ],
+    "sources": [
+      "https://www.fcc.gov/spoofing",
+      "https://www.fcc.gov/call-authentication"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0007",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "OTP / 2FA hijacking: attack paths and defenses",
+    "back": "Paths:\n- **SIM swap / port-out**: the number moves to the attacker's SIM (T1451)\n- **SMS-stealing malware** reads codes (T1636.004)\n- Real-time phishing relays the code\n\nDefenses: carrier account **PIN**, drop **SMS MFA** for **FIDO**/passkeys (phishing-resistant). NIST SP 800-63B calls SMS OTP a **restricted** authenticator.",
+    "tags": [
+      "otp-hijacking",
+      "sim-swap",
+      "mfa"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1451/",
+      "https://www.cisa.gov/resources-tools/resources/mobile-communications-best-practice-guidance",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0008",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "Juice jacking",
+    "back": "Malware or data theft through a compromised **public USB charging port** (ATT&CK Mobile T1458 Replication Through Removable Media).\n\nDefense: use an AC power outlet, your own charger, or a **charge-only** cable; decline \"trust this computer\" prompts.",
+    "tags": [
+      "juice-jacking",
+      "usb"
+    ],
+    "sources": [
+      "https://www.fcc.gov/juice-jacking-tips-to-avoid-it",
+      "https://attack.mitre.org/techniques/T1458/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0009",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Overlay attack (GUI input capture) and tapjacking",
+    "back": "**Overlay**: malware draws a fake login screen over a real app to steal what the user types (T1417.002).\n**Tapjacking**: a transparent overlay tricks the user into tapping something else.\n\nDefenses: Android 12+ blocks touches passing through untrusted overlays; apps set `filterTouchesWhenObscured`; limit the \"display over other apps\" special permission.",
+    "tags": [
+      "overlay",
+      "tapjacking"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1417/002/",
+      "https://developer.android.com/privacy-and-security/risks/tapjacking"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0010",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "kind": "diagram",
+    "front": "\"Anatomy of a mobile attack\": the three attack surfaces (EC-Council framing)",
+    "back": "1. **Device**: browser, SMS/phone, apps, OS\n2. **Network**: Wi-Fi, rogue access points, MITM, SSL stripping\n3. **Data center / cloud**: web servers and databases behind the app\n\nA mobile assessment covers all three, not only the phone.",
+    "tags": [
+      "anatomy",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://pages.nist.gov/mobile-threat-catalogue/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0011",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Android application sandbox",
+    "back": "Each app gets a **unique Linux UID** and its own process: the kernel isolates apps (DAC).\n**SELinux** adds mandatory access control; since Android 9 each non-privileged app runs in its own SELinux sandbox.\n\nApps share data only through explicit IPC (intents, content providers).",
+    "tags": [
+      "android",
+      "sandbox"
+    ],
+    "sources": [
+      "https://source.android.com/docs/security/app-sandbox",
+      "https://source.android.com/docs/security/features/selinux"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0012",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "list",
+    "front": "Android permission types",
+    "back": "- **Install-time** (normal): low risk, granted at install\n- **Runtime** (dangerous): user prompt at run time, since **Android 6.0 (API 23)**; e.g. camera, microphone, location, SMS\n- **Special**: powerful actions defined by the platform, e.g. **draw over other apps**",
+    "tags": [
+      "android",
+      "permissions"
+    ],
+    "sources": [
+      "https://developer.android.com/guide/topics/permissions/overview",
+      "https://developer.android.com/training/permissions/requesting"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0013",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "list",
+    "front": "APK signature schemes",
+    "back": "- **v1**: JAR signing (all versions)\n- **v2**: whole-file signature, Android **7.0**\n- **v3**: adds **key rotation**, Android **9**\n- **v4**: for incremental install, Android 11\n\nCertificates are **self-signed**; Android does no CA check. The signature ties updates to the same developer.",
+    "tags": [
+      "android",
+      "apk-signing"
+    ],
+    "sources": [
+      "https://source.android.com/docs/security/features/apksigning",
+      "https://developer.android.com/tools/apksigner"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0014",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Sideloading (Android)",
+    "back": "Installing an APK from outside Google Play (web, email, third-party store).\n\nAndroid blocks it until the user allows **install unknown apps** for that source. Risks: no store vetting, repackaged malware. Defenses: MDM blocks unknown sources, **Play Protect** scans apps.",
+    "tags": [
+      "android",
+      "sideloading"
+    ],
+    "sources": [
+      "https://developer.android.com/distribute/marketing-tools/alternative-distribution",
+      "https://support.google.com/googleplay/answer/2812853"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0015",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Rooting: what it breaks for defenders",
+    "back": "Root access for the user or any malware that gets it:\n- bypasses the sandbox and built-in restrictions\n- usually needs an **unlocked bootloader** (Verified Boot shows the ORANGE warning)\n- fails attestation (**Play Integrity** device verdict)\n- MDM should mark the device non-compliant\n\nNIST SP 800-124r2: treat rooted or jailbroken devices as **untrusted**.",
+    "tags": [
+      "android",
+      "rooting"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/124/r2/final",
+      "https://developer.android.com/google/play/integrity/verdicts",
+      "https://source.android.com/docs/security/features/verifiedboot/boot-flow"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0016",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Verified Boot boot-screen colors",
+    "back": "- **GREEN**: locked, verified with the OEM key (no screen)\n- **YELLOW**: locked with a **custom root of trust**\n- **ORANGE**: bootloader **UNLOCKED**\n- **RED**: verification failed (corruption or no valid OS)\n\nChain of trust: hardware root → bootloader → boot/system/vendor (dm-verity), with **rollback protection**.",
+    "tags": [
+      "android",
+      "verified-boot"
+    ],
+    "sources": [
+      "https://source.android.com/docs/security/features/verifiedboot/boot-flow",
+      "https://source.android.com/docs/security/features/verifiedboot"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0017",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "command",
+    "front": "ADB basics a defender should know",
+    "back": "- `adb devices`: list connected devices\n- `adb shell`: shell on the device\n- `adb install app.apk` / `adb pull <path>`\n- `adb tcpip 5555`: debug over the network (TCP **5555**)\n\nSince Android 4.2.2 the phone must accept the computer's **RSA key**. Keep USB debugging off; never expose 5555 to a network.",
+    "tags": [
+      "android",
+      "adb"
+    ],
+    "sources": [
+      "https://developer.android.com/tools/adb",
+      "https://attack.mitre.org/techniques/T1458/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0018",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "command",
+    "front": "Risky manifest settings",
+    "back": "- `android:debuggable=\"true\"` in a release build\n- `android:allowBackup=\"true\"` (the **default**) for apps with sensitive data\n- `android:exported=\"true\"` on components that don't need it (Android 12+ requires an explicit value when an intent filter exists)\n- `android:usesCleartextTraffic=\"true\"`",
+    "tags": [
+      "android",
+      "manifest",
+      "misconfiguration"
+    ],
+    "sources": [
+      "https://developer.android.com/privacy-and-security/risks/android-debuggable",
+      "https://developer.android.com/privacy-and-security/risks/android-exported",
+      "https://developer.android.com/identity/data/autobackup"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0019",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "Network security configuration (Android)",
+    "back": "- Cleartext (HTTP) **off by default** for apps targeting Android 9 (API 28)+\n- Apps targeting 7.0+ trust **system CAs only**, not user-added CAs\n- `<pin-set>` pins server keys (with a backup pin and expiry)\n\nNever ship a TrustManager that accepts every certificate.",
+    "tags": [
+      "android",
+      "tls",
+      "pinning"
+    ],
+    "sources": [
+      "https://developer.android.com/privacy-and-security/security-config",
+      "https://developer.android.com/privacy-and-security/risks/unsafe-trustmanager"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0020",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "Android app analysis tools",
+    "back": "- **apktool**: decode resources and manifest, rebuild APK\n- **jadx**: DEX → Java decompiler\n- **dex2jar**: DEX → .class/JAR\n- **Androguard**: Python reverse-engineering library\n- **drozer**: tests an app's IPC endpoints by acting as another app\n- **MobSF**: automated static and dynamic analysis (Android, iOS)",
+    "tags": [
+      "android",
+      "tools"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/apktool/",
+      "https://github.com/skylot/jadx",
+      "https://github.com/ReversecLabs/drozer",
+      "https://github.com/MobSF/Mobile-Security-Framework-MobSF"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0021",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "diagram",
+    "front": "iOS secure boot chain",
+    "back": "**Boot ROM** (immutable, hardware root of trust, holds Apple Root CA public key) → **iBoot** → **kernel**\n\nEach step checks that the next is signed by Apple before running it.",
+    "tags": [
+      "ios",
+      "secure-boot"
+    ],
+    "sources": [
+      "https://support.apple.com/guide/security/boot-process-for-ipad-and-iphone-devices-secb3000f149/web",
+      "https://support.apple.com/guide/security/the-secure-enclave-sec59b0b31ff/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0022",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "iOS mandatory code signing",
+    "back": "All executable code must be signed with an **Apple-issued certificate**; third-party apps are validated and signed too.\n\nBlocks unsigned code and self-modifying code. Jailbreaks exist largely to switch this off.",
+    "tags": [
+      "ios",
+      "code-signing"
+    ],
+    "sources": [
+      "https://support.apple.com/guide/security/app-code-signing-process-sec7c917bf14/web",
+      "https://support.apple.com/guide/security/app-security-overview-sec35dd877d0/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0023",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "iOS app sandbox",
+    "back": "Every third-party app is sandboxed with a **randomly assigned home directory**. It reaches other data only through iOS services, with declared **entitlements**; **ASLR** randomizes memory.",
+    "tags": [
+      "ios",
+      "sandbox"
+    ],
+    "sources": [
+      "https://support.apple.com/guide/security/security-of-runtime-process-sec15bfe098e/web",
+      "https://csrc.nist.gov/glossary/term/sandbox"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0024",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "list",
+    "front": "iOS Data Protection classes",
+    "back": "- **A** Complete Protection: unavailable shortly after lock\n- **B** Protected Unless Open\n- **C** Protected Until First User Authentication (default)\n- **D** No Protection\n\nClass keys come from the **passcode + device UID**, so a strong passcode matters.",
+    "tags": [
+      "ios",
+      "data-protection"
+    ],
+    "sources": [
+      "https://support.apple.com/guide/security/data-protection-classes-secb010e978a/web",
+      "https://support.apple.com/guide/security/data-protection-overview-secf6276da8a/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0025",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "App Transport Security (ATS) requirements",
+    "back": "Blocks app connections that are not:\n- **TLS 1.2+**\n- with **forward secrecy** (ECDHE)\n- certificate RSA ≥ 2048 or ECC ≥ 256, SHA-256+\n\nExceptions must be declared in Info.plist and justified.",
+    "tags": [
+      "ios",
+      "ats",
+      "tls"
+    ],
+    "sources": [
+      "https://developer.apple.com/documentation/security/preventing-insecure-network-connections",
+      "https://mas.owasp.org/MASTG/0x04f-Testing-Network-Communication/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0026",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Jailbreaking: Apple's list of risks",
+    "back": "- **Security vulnerabilities** (layers removed, malware)\n- Instability and crashes\n- Shorter battery life\n- Unreliable voice and data\n- **Can't apply updates** safely\n\nApple may deny service. For the enterprise: untrusted device, block via MDM compliance.",
+    "tags": [
+      "ios",
+      "jailbreak"
+    ],
+    "sources": [
+      "https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios",
+      "https://csrc.nist.gov/pubs/sp/800/124/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0027",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "list",
+    "front": "Jailbreak types (EC-Council terms)",
+    "back": "- **Tethered**: needs a computer at every boot\n- **Semi-tethered**: boots alone, but not jailbroken until re-run from a computer\n- **Untethered**: stays jailbroken after reboot\n- **Semi-untethered**: re-run from an app on the device after reboot",
+    "tags": [
+      "ios",
+      "jailbreak",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0028",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "Lockdown Mode",
+    "back": "Optional **extreme** protection for people targeted by mercenary spyware.\n- Blocks most **message attachments** and link previews\n- Limits complex web technologies\n- Blocks configuration profiles and **MDM enrollment**\n\nNot an MDM setting; CISA recommends it for highly targeted people.",
+    "tags": [
+      "ios",
+      "lockdown-mode"
+    ],
+    "sources": [
+      "https://support.apple.com/en-us/105120",
+      "https://support.apple.com/guide/security/lockdown-mode-security-sec2437264f0/web",
+      "https://www.cisa.gov/resources-tools/resources/mobile-communications-best-practice-guidance"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0029",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "kind": "term",
+    "front": "MDM vs MAM vs EMM vs MTD",
+    "back": "- **MDM**: manages the whole **device** (passcode, encryption, wipe)\n- **MAM**: manages enterprise **apps** only, no device enrollment (BYOD-friendly)\n- **EMM**: umbrella suite (MDM + MAM + more)\n- **MTD**: on-device agent that **detects** threats (malicious apps, MitM, phishing) and can trigger EMM actions",
+    "tags": [
+      "mdm",
+      "mam",
+      "emm",
+      "mtd"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/124/r2/final",
+      "https://csrc.nist.gov/glossary/term/mobile_device_management",
+      "https://csrc.nist.gov/glossary/term/enterprise_mobility_management"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0030",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "kind": "list",
+    "front": "Mobile deployment models (NIST SP 800-124r2)",
+    "back": "- **Fully managed / strict enterprise** (GFE): company device, work use only\n- **COPE**: company-owned, personal use allowed\n- **CYOD**: employee buys from an approved list\n- **BYOD**: employee's own device; protect with MAM, work profile, containers",
+    "tags": [
+      "byod",
+      "cope",
+      "cyod"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/124/r2/final",
+      "https://csrc.nist.gov/glossary/term/corporate_owned_personally_enabled",
+      "https://csrc.nist.gov/glossary/term/bring_your_own_device"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0031",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "Full wipe vs selective (enterprise) wipe",
+    "back": "- **Full wipe**: erases everything; for company-owned devices\n- **Selective / enterprise wipe**: removes only work apps, data and settings; for **BYOD**\n\nNeeds power and network; a thief can power the device off first. Never the only control.",
+    "tags": [
+      "remote-wipe",
+      "byod"
+    ],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf",
+      "https://support.apple.com/guide/deployment/intro-to-device-management-depc0aadd3fe/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0032",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "kind": "list",
+    "front": "Android Enterprise management modes",
+    "back": "- **Work profile on personal device** (DPC = profile owner)\n- **Work profile on company-owned device**\n- **Fully managed device** (DPC = device owner)\n- **Dedicated device** (kiosk, single purpose)",
+    "tags": [
+      "android-enterprise",
+      "work-profile"
+    ],
+    "sources": [
+      "https://developers.google.com/android/work/terminology",
+      "https://developer.android.com/work/managed-profiles"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0033",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Apple supervision vs User Enrollment",
+    "back": "- **Supervision** (e.g. Automated Device Enrollment): organization-owned device, more restrictions and control\n- **User Enrollment**: BYOD; limited payloads; manages only the organization's accounts, apps and data, never the personal account",
+    "tags": [
+      "apple",
+      "supervision",
+      "byod"
+    ],
+    "sources": [
+      "https://support.apple.com/guide/deployment/about-device-supervision-dep1d89f0bff/web",
+      "https://support.apple.com/guide/deployment/user-enrollment-and-device-management-dep23db2037d/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0034",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "kind": "list",
+    "front": "EMM policies worth enforcing",
+    "back": "- Passcode, encryption, auto-lock\n- Block access if **rooted/jailbroken** or OS too old\n- Restrict sideloading, allowlist apps\n- Disable developer mode / USB debugging\n- Control camera, Bluetooth, copy/paste for work apps\n- Remote lock and wipe",
+    "tags": [
+      "mdm",
+      "policy"
+    ],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf",
+      "https://attack.mitre.org/mitigations/M1012/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0035",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OWASP MASVS control groups",
+    "back": "STORAGE · CRYPTO · AUTH · NETWORK · PLATFORM · CODE · RESILIENCE · PRIVACY\n\n**MASVS** = what to verify; **MASTG** = how to test; **MASWE** = the weaknesses list.",
+    "tags": [
+      "masvs",
+      "owasp-mas"
+    ],
+    "sources": [
+      "https://mas.owasp.org/MASVS/",
+      "https://mas.owasp.org/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0036",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OWASP MAS profiles",
+    "back": "- **MAS-L1** Essential security\n- **MAS-L2** Advanced security (sensitive apps: banking, health)\n- **MAS-R** Resilient: the device user may be the attacker (reverse engineers, cheaters)\n- **MAS-P** Baseline privacy",
+    "tags": [
+      "owasp-mas",
+      "profiles"
+    ],
+    "sources": [
+      "https://mas.owasp.org/Profiles/",
+      "https://mas.owasp.org/MASTG/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0037",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "Frida and objection",
+    "back": "**Frida**: dynamic instrumentation toolkit; injects JavaScript into a running app to trace and hook functions (Android, iOS...).\n**objection**: runtime mobile exploration built on Frida.\n\nUsed in MASTG testing to check what an app really does at run time.",
+    "tags": [
+      "frida",
+      "objection",
+      "tools"
+    ],
+    "sources": [
+      "https://frida.re/docs/home/",
+      "https://github.com/sensepost/objection",
+      "https://mas.owasp.org/MASTG/tools/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0038",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "kind": "list",
+    "front": "MITRE ATT&CK Mobile mitigations to know",
+    "back": "- **M1001** Security Updates\n- **M1002** Attestation (block devices that fail)\n- **M1006** Use Recent OS Version\n- **M1011** User Guidance\n- **M1012** Enterprise Policy\n- **M1013** Application Developer Guidance",
+    "tags": [
+      "mitre-attack-mobile"
+    ],
+    "sources": [
+      "https://attack.mitre.org/mitigations/mobile/",
+      "https://attack.mitre.org/mitigations/M1002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0039",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "kind": "list",
+    "front": "CISA mobile best practices (short list)",
+    "back": "- End-to-end encrypted messaging\n- **FIDO** phishing-resistant MFA; **no SMS MFA**\n- Password manager\n- **Carrier PIN** against SIM swap\n- Update weekly, auto-update\n- No personal VPN\n- iPhone: Lockdown Mode; Android: keep **Play Protect** on, avoid sideloading",
+    "tags": [
+      "cisa",
+      "guidelines"
+    ],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/mobile-communications-best-practice-guidance",
+      "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-c-0040",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "kind": "term",
+    "front": "NIST mobile publications",
+    "back": "- **SP 800-124r2** (2023): managing mobile device security in the enterprise\n- **SP 800-163r1** (2019): **app vetting**\n- **SP 1800-21**: COPE example solution\n- **SP 1800-22**: BYOD example solution",
+    "tags": [
+      "nist",
+      "guidelines"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/124/r2/final",
+      "https://csrc.nist.gov/pubs/sp/800/163/r1/final",
+      "https://csrc.nist.gov/pubs/sp/1800/22/final"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

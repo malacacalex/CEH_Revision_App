@@ -1,0 +1,1435 @@
+[
+  {
+    "id": "m17-q-0011",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the OWASP Mobile Top 10 2024, which risk absorbed the 2016 categories Code Tampering and Reverse Engineering?",
+    "options": [
+      "M4 Insufficient Input/Output Validation",
+      "M8 Security Misconfiguration",
+      "M2 Inadequate Supply Chain Security",
+      "M7 Insufficient Binary Protections"
+    ],
+    "answer": 3,
+    "explanation": "2016 M8 Code Tampering and M9 Reverse Engineering merged into 2024 M7 Insufficient Binary Protections.",
+    "optionNotes": [
+      "M4 covers injection and unvalidated data.",
+      "M8 covers insecure settings such as debug flags and cleartext traffic.",
+      "M2 covers third-party components and the build pipeline.",
+      "Correct: binary attacks (reverse engineering and tampering) are now one category."
+    ],
+    "tags": ["owasp-mobile-top-10"],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m7-insufficient-binary-protection.md",
+      "https://github.com/OWASP/www-project-mobile-top-10/tree/master/2016-risks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0012",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A tester finds that a shopping app still connects to its API when the server presents a self-signed, expired certificate. Which OWASP Mobile 2024 risk is this?",
+    "options": ["M1 Improper Credential Usage", "M9 Insecure Data Storage", "M5 Insecure Communication", "M7 Insufficient Binary Protections"],
+    "answer": 2,
+    "explanation": "OWASP M5 lists accepting self-signed, revoked, expired or wrong-host certificates as an attack vector. Validate certificates and consider pinning.",
+    "optionNotes": [
+      "M1 is about how credentials are stored or used, not certificate validation.",
+      "M9 is about data at rest on the device.",
+      "Correct: accepting bad certificates breaks TLS protection in transit.",
+      "M7 is about reverse engineering and tampering with the binary."
+    ],
+    "tags": ["owasp-mobile-top-10", "tls"],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m5-insecure-communication.md",
+      "https://developer.android.com/privacy-and-security/risks/unsafe-trustmanager"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0013",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A popular analytics SDK bundled in a company's app is found to be quietly sending contact lists to an unknown server. Which OWASP Mobile 2024 risk does this illustrate?",
+    "options": [
+      "M6 Inadequate Privacy Controls",
+      "M2 Inadequate Supply Chain Security",
+      "M3 Insecure Authentication/Authorization",
+      "M10 Insufficient Cryptography"
+    ],
+    "answer": 1,
+    "explanation": "M2 covers vulnerable or malicious third-party libraries and SDKs. Vet dependencies, keep an inventory and monitor their behavior.",
+    "optionNotes": [
+      "Privacy is harmed, but the root cause the question describes is the untrusted third-party component.",
+      "Correct: the weakness came in with a third-party component.",
+      "No authentication or authorization flaw is described.",
+      "Nothing here is about weak cryptography."
+    ],
+    "tags": ["owasp-mobile-top-10", "supply-chain"],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m2-inadequate-supply-chain-security.md",
+      "https://attack.mitre.org/techniques/T1474/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0014",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "By changing `accountId=1001` to `accountId=1002` in a request sent by a banking app, a tester sees another customer's statements. Which risk is this?",
+    "options": [
+      "M3 Insecure Authentication/Authorization",
+      "M4 Insufficient Input/Output Validation",
+      "M5 Insecure Communication",
+      "M8 Security Misconfiguration"
+    ],
+    "answer": 0,
+    "explanation": "OWASP M3 lists IDOR as a sign of missing authorization. The back end must check that the caller owns the object on every request.",
+    "optionNotes": [
+      "Correct: an IDOR, a missing server-side authorization check.",
+      "The input is valid; the server simply never checks ownership.",
+      "The traffic may be encrypted; the flaw is in authorization.",
+      "It is a logic flaw in authorization, not a setting."
+    ],
+    "tags": ["owasp-mobile-top-10", "idor"],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m3-insecure-authentication-authorization.md",
+      "https://mas.owasp.org/MASTG/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0015",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A flashlight app asks for contacts, precise location and the microphone, and sends that data to an ad network. Which OWASP Mobile 2024 risk fits best?",
+    "options": [
+      "M7 Insufficient Binary Protections",
+      "M4 Insufficient Input/Output Validation",
+      "M6 Inadequate Privacy Controls",
+      "M10 Insufficient Cryptography"
+    ],
+    "answer": 2,
+    "explanation": "OWASP M6 recommends minimizing the amount and variety of personal data an app processes; data it never collects cannot leak.",
+    "optionNotes": [
+      "Nothing about reverse engineering or tampering.",
+      "No input handling flaw is described.",
+      "Correct: it collects and shares personal data it does not need.",
+      "Nothing about cryptography."
+    ],
+    "tags": ["owasp-mobile-top-10", "privacy"],
+    "sources": [
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m6-inadequate-privacy-controls.md",
+      "https://developer.android.com/guide/topics/permissions/overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0016",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "During testing, the device log shows `I/LoginActivity: user=ana@corp.com token=eyJhbGciOiJIUzI1NiIs...`. What is the problem and the fix?",
+    "options": [
+      "Sensitive data is written to the system log; remove it from release builds",
+      "The token is too short; use a longer JWT",
+      "The app uses the wrong log level; change I to D",
+      "The email address is invalid; validate input"
+    ],
+    "answer": 0,
+    "explanation": "Logging credentials or tokens is unintended data exposure (OWASP M9). Android's guidance: don't log sensitive information in production.",
+    "optionNotes": [
+      "Correct: logs can be read by tools and other parties with access, so secrets must not be logged.",
+      "Length is not the issue; the token should not be logged at all.",
+      "Debug level still writes to the log.",
+      "The address is fine; the leak is the issue."
+    ],
+    "tags": ["android", "logging", "data-leak"],
+    "sources": [
+      "https://developer.android.com/privacy-and-security/risks/log-info-disclosure",
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m9-insecure-data-storage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0017",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "An employee receives a text saying a parcel is held and asking her to pay a small fee through a link. Which attack type is this?",
+    "options": [
+      "Phishing delivered by a voice call",
+      "Phishing delivered by SMS or messaging apps",
+      "Spoofing a Wi-Fi access point name",
+      "Sending unsolicited messages over Bluetooth"
+    ],
+    "answer": 1,
+    "explanation": "Smishing uses text messages with a lure and a link or number. ATT&CK Mobile T1660 Phishing includes SMS and messaging lures; users should report spam texts (7726 in the US).",
+    "optionNotes": ["That is vishing.", "Correct: SMS phishing.", "That is an evil twin / rogue AP.", "That is bluejacking."],
+    "tags": ["smishing"],
+    "sources": ["https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages", "https://attack.mitre.org/techniques/T1660/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0018",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which second factor best resists both SIM swapping and real-time phishing for a high-value account?",
+    "options": ["Email one-time links", "SMS one-time codes", "Codes from an authenticator app", "A FIDO security key or passkey"],
+    "answer": 3,
+    "explanation": "CISA: move away from SMS MFA; only FIDO authentication is phishing-resistant. NIST SP 800-63B treats SMS/voice OTP as a restricted authenticator.",
+    "optionNotes": [
+      "Email is weaker still; NIST does not accept it for out-of-band authentication.",
+      "SMS codes follow the phone number, which a SIM swap steals.",
+      "App codes survive a SIM swap but can still be phished.",
+      "Correct: FIDO is bound to the real site and not sent over the phone network."
+    ],
+    "tags": ["mfa", "otp-hijacking"],
+    "sources": [
+      "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0019",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A traveler wants to charge her phone at an airport kiosk USB port. What is the safest advice?",
+    "options": [
+      "Turn on USB debugging",
+      "Enable Bluetooth to share the load",
+      "Accept the \"Trust this computer\" prompt so charging is faster",
+      "Use her own charger in an AC outlet or a charge-only cable"
+    ],
+    "answer": 3,
+    "explanation": "Juice jacking abuses public USB ports to load malware or steal data (FCC; ATT&CK Mobile T1458). Power-only charging removes the data path.",
+    "optionNotes": [
+      "USB debugging gives the host even more access.",
+      "Bluetooth has nothing to do with charging and adds exposure.",
+      "Trusting an unknown host is exactly what juice jacking needs.",
+      "Correct: avoids a data connection to an unknown USB host."
+    ],
+    "tags": ["juice-jacking"],
+    "sources": ["https://www.fcc.gov/juice-jacking-tips-to-avoid-it", "https://attack.mitre.org/techniques/T1458/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0020",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the purpose of STIR/SHAKEN?",
+    "options": [
+      "Encrypting SMS messages end to end",
+      "Authenticating caller ID on calls carried over IP networks to fight spoofing",
+      "Blocking malicious apps on Android",
+      "Detecting SIM swaps at the carrier"
+    ],
+    "answer": 1,
+    "explanation": "Caller ID spoofing falsifies the displayed number; STIR/SHAKEN is the FCC-backed framework that authenticates it.",
+    "optionNotes": [
+      "SMS is not end-to-end encrypted by STIR/SHAKEN.",
+      "Correct: it lets carriers sign and verify caller ID information.",
+      "That is Play Protect's role.",
+      "SIM swap defenses are carrier PINs and account controls."
+    ],
+    "tags": ["call-spoofing"],
+    "sources": ["https://www.fcc.gov/call-authentication", "https://www.fcc.gov/spoofing"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0021",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A banking app's users report a fake login screen appearing on top of the real app. Which defenses address this attack? (Pick the best combination.)",
+    "options": [
+      "Turn on full-disk encryption",
+      "Enable certificate pinning and ATS",
+      "Block the \"display over other apps\" permission via policy and have the app reject obscured touches",
+      "Rotate the app's signing key"
+    ],
+    "answer": 2,
+    "explanation": "ATT&CK Mobile T1417.002 GUI Input Capture mimics prompts to steal input. Mitigations: restrict the overlay special permission, user guidance, and app-side tapjacking protections.",
+    "optionNotes": [
+      "Encryption protects data at rest.",
+      "Pinning protects traffic, not the screen.",
+      "Correct: overlay (GUI input capture) needs the overlay permission; filterTouchesWhenObscured and Android 12+ protections limit it.",
+      "Key rotation does not stop another app drawing on screen."
+    ],
+    "tags": ["overlay", "tapjacking"],
+    "sources": ["https://attack.mitre.org/techniques/T1417/002/", "https://developer.android.com/privacy-and-security/risks/tapjacking"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0022",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Since Android 9, idle background apps cannot use the camera or microphone. Which technique do spyware apps use to keep sensor access, according to ATT&CK Mobile?",
+    "options": [
+      "Foreground Persistence: running a foreground service with a notification",
+      "Rooting the device on every boot",
+      "Disabling SELinux from the app",
+      "Requesting the INTERNET permission"
+    ],
+    "answer": 0,
+    "explanation": "T1541 Foreground Persistence: apps keep sensor access by running in the foreground. The persistent notification and Android 12+ camera/microphone indicators help users spot it.",
+    "optionNotes": [
+      "Correct: T1541 abuses startForeground() to stay in the foreground.",
+      "Rooting is not needed for this and is much harder.",
+      "Apps cannot disable SELinux.",
+      "INTERNET does not grant sensor access."
+    ],
+    "tags": ["camera-mic-capture", "mitre-attack-mobile"],
+    "sources": ["https://attack.mitre.org/techniques/T1541/", "https://developer.android.com/about/versions/12/behavior-changes-all"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0023",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "EC-Council's \"anatomy of a mobile attack\" groups the attack surface into three areas. Which set is it?",
+    "options": ["Kernel, user space, hardware", "Device, network, data center/cloud", "Recon, exploit, persist", "Client, proxy, CDN"],
+    "answer": 1,
+    "explanation": "EC-Council splits a mobile attack across the device (apps, OS, browser, SMS), the network (Wi-Fi, MITM) and the data center or cloud (servers and databases).",
+    "optionNotes": [
+      "That is an OS architecture view.",
+      "Correct: the phone, the connection, and the back end behind the app.",
+      "Those are attack phases, not surfaces.",
+      "Not the EC-Council grouping."
+    ],
+    "tags": ["anatomy", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://pages.nist.gov/mobile-threat-catalogue/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0024",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Since Android 6.0, how are dangerous permissions such as camera or location granted?",
+    "options": [
+      "They are granted by enabling developer options",
+      "They are granted silently at install time",
+      "Only Google can grant them after review",
+      "The app requests them at run time and the user approves a prompt"
+    ],
+    "answer": 3,
+    "explanation": "Android 6.0 (API 23) introduced runtime permissions: dangerous permissions need an explicit user prompt; special permissions need a Settings toggle.",
+    "optionNotes": [
+      "Developer options do not grant app permissions.",
+      "Install-time grant applies to normal (low-risk) permissions.",
+      "Google Play review is separate from granting permissions on the device.",
+      "Correct: runtime permissions."
+    ],
+    "tags": ["android", "permissions"],
+    "sources": ["https://developer.android.com/training/permissions/requesting", "https://developer.android.com/guide/topics/permissions/overview"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0025",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which APK signature scheme introduced signing key rotation?",
+    "options": ["v3 (Android 9)", "v1 (JAR signing)", "v2 (Android 7.0)", "v4 (Android 11)"],
+    "answer": 0,
+    "explanation": "v1 JAR signing, v2 whole-APK (7.0), v3 key rotation (9), v4 incremental (11). Sign with all schemes for compatibility.",
+    "optionNotes": [
+      "Correct.",
+      "v1 is the original JAR-based signature.",
+      "v2 signs the whole file but has no rotation.",
+      "v4 supports incremental installation."
+    ],
+    "tags": ["android", "apk-signing"],
+    "sources": ["https://source.android.com/docs/security/features/apksigning", "https://developer.android.com/tools/apksigner"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0026",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A corporate Android phone shows an orange warning screen for ten seconds every time it boots. What does this indicate?",
+    "options": [
+      "The battery is failing",
+      "A security update is pending",
+      "The bootloader is unlocked, so the OS may not be verified",
+      "The device is enrolled in MDM"
+    ],
+    "answer": 2,
+    "explanation": "Verified Boot colors: YELLOW locked with custom root of trust, ORANGE unlocked, RED verification failure. An unlocked bootloader is usually the first step to rooting; treat the device as non-compliant.",
+    "optionNotes": [
+      "Hardware health is not shown this way.",
+      "Updates don't use the boot warning screens.",
+      "Correct: ORANGE is the Verified Boot state for an unlocked device.",
+      "MDM enrollment has no boot-screen color."
+    ],
+    "tags": ["android", "verified-boot", "rooting"],
+    "sources": [
+      "https://source.android.com/docs/security/features/verifiedboot/boot-flow",
+      "https://source.android.com/docs/security/features/verifiedboot/device-state"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0027",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An app's back end receives a Play Integrity verdict containing only `MEETS_BASIC_INTEGRITY`. What should a sensitive app conclude?",
+    "options": [
+      "The device passed only basic checks; it may be uncertified or have an unlocked bootloader, so limit or deny access",
+      "The device is genuine and fully patched",
+      "The app was installed from Google Play",
+      "The user passed biometric authentication"
+    ],
+    "answer": 0,
+    "explanation": "Play Integrity: MEETS_BASIC_INTEGRITY allows unlocked bootloaders and unverified boot; MEETS_DEVICE_INTEGRITY means a genuine certified device. ATT&CK mitigation M1002 Attestation.",
+    "optionNotes": [
+      "Correct: MEETS_DEVICE_INTEGRITY is missing, so the device is not proven genuine.",
+      "That would be MEETS_STRONG_INTEGRITY.",
+      "App origin is in the app verdict (PLAY_RECOGNIZED), not the device verdict.",
+      "Integrity verdicts say nothing about user authentication."
+    ],
+    "tags": ["android", "attestation", "play-integrity"],
+    "sources": ["https://developer.android.com/google/play/integrity/verdicts", "https://attack.mitre.org/mitigations/M1002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0028",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An employee installs an app from a link in a text message after turning on \"Install unknown apps\" for the browser. What is this called, and which control prevents it on managed phones?",
+    "options": [
+      "Jailbreaking; App Transport Security",
+      "Rooting; a stronger passcode",
+      "Sideloading; an MDM policy that blocks installs from unknown sources",
+      "Tethering; disabling Wi-Fi"
+    ],
+    "answer": 2,
+    "explanation": "Sideloaded apps skip store vetting. NIST SP 800-124r2 lists restricting sideloading and app stores as an EMM/MAM control; Play Protect scans installed apps.",
+    "optionNotes": [
+      "Jailbreaking is iOS; ATS protects network traffic.",
+      "Rooting gains root; installing an APK is not rooting.",
+      "Correct: installing outside the official store; MDM can restrict it.",
+      "Tethering shares a connection."
+    ],
+    "tags": ["android", "sideloading", "mdm"],
+    "sources": [
+      "https://developer.android.com/distribute/marketing-tools/alternative-distribution",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0029",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A developer needs to store an AES key that encrypts local data on Android. Where should it go?",
+    "options": [
+      "In a file on external storage",
+      "In SharedPreferences in plain text",
+      "Hardcoded in the source code",
+      "In the Android Keystore, hardware-backed where available"
+    ],
+    "answer": 3,
+    "explanation": "The Android Keystore keeps keys non-extractable and can bind them to secure hardware; StrongBox exists on Android 9+ devices that include it.",
+    "optionNotes": [
+      "External storage is the least protected location.",
+      "Other code with access to the app's files could read it.",
+      "Hardcoded keys are found by decompiling (OWASP M1/M10).",
+      "Correct: key material stays out of the app process and can live in the TEE or StrongBox."
+    ],
+    "tags": ["android", "keystore"],
+    "sources": ["https://developer.android.com/privacy-and-security/keystore", "https://source.android.com/docs/security/features/keystore"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0030",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What changed for `android:exported` in apps targeting Android 12 or higher?",
+    "options": [
+      "It now defaults to true for every component",
+      "Activities, services and receivers with intent filters must declare it explicitly or the app won't install",
+      "It was removed and replaced by permissions",
+      "It applies only to content providers"
+    ],
+    "answer": 1,
+    "explanation": "Android 12 \"safer component exporting\": declare exported explicitly. Set it to false unless other apps truly need to start the component.",
+    "optionNotes": [
+      "There is no implicit true anymore for these components; the value must be explicit.",
+      "Correct: an explicit value is mandatory for components with intent filters.",
+      "The attribute still exists.",
+      "It applies to activities, services and broadcast receivers."
+    ],
+    "tags": ["android", "exported"],
+    "sources": [
+      "https://developer.android.com/about/versions/12/behavior-changes-12",
+      "https://developer.android.com/privacy-and-security/risks/android-exported"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0031",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "On a lost-and-found corporate Android phone, an admin plugs in and runs `adb devices`, which returns `List of devices attached 192.168.1.20:5555 device`. What does it show?",
+    "options": [
+      "The phone is enrolled in MDM",
+      "The phone is in the boot loader",
+      "ADB debugging over TCP port 5555 was enabled on the phone",
+      "The phone is connected only by USB with debugging off"
+    ],
+    "answer": 2,
+    "explanation": "adb tcpip 5555 turns on debugging over the network. Enterprises should disable developer mode and USB debugging by policy (NIST SP 800-124r2).",
+    "optionNotes": [
+      "adb shows nothing about MDM enrollment.",
+      "Bootloader mode uses fastboot, not adb devices.",
+      "Correct: an IP:5555 entry means network ADB was set up (adb tcpip 5555).",
+      "Debugging is clearly on, and over the network."
+    ],
+    "tags": ["android", "adb"],
+    "sources": ["https://developer.android.com/tools/adb", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0032",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "An app's network security config contains `<base-config cleartextTrafficPermitted=\"true\"><trust-anchors><certificates src=\"system\"/><certificates src=\"user\"/></trust-anchors></base-config>`. What is the risk?",
+    "options": [
+      "It only affects debug builds",
+      "It pins the server certificate",
+      "It blocks all network traffic",
+      "It allows plain HTTP and trusts user-installed CAs, easing man-in-the-middle interception"
+    ],
+    "answer": 3,
+    "explanation": "Secure defaults: no cleartext for apps targeting Android 9+, and apps targeting 7.0+ trust only system CAs. Re-enabling either helps an attacker who installs a CA or sits on the network.",
+    "optionNotes": [
+      "base-config applies to all builds; only debug-overrides is debug-only.",
+      "Pinning uses a pin-set; there is none here.",
+      "It allows more, not less.",
+      "Correct: both settings weaken the secure defaults."
+    ],
+    "tags": ["android", "tls", "network-security-config"],
+    "sources": [
+      "https://developer.android.com/privacy-and-security/security-config",
+      "https://developer.android.com/privacy-and-security/risks/cleartext-communications"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0033",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "A manifest shows `<application android:allowBackup=\"true\" ...>` in an app that stores medical records. What should the reviewer recommend?",
+    "options": [
+      "Disable backup or exclude sensitive files from it",
+      "Nothing, backups are always encrypted end to end",
+      "Set android:debuggable to true",
+      "Rename the application class"
+    ],
+    "answer": 0,
+    "explanation": "Android Auto Backup is on by default (up to 25 MB per app). Apps with sensitive data should set allowBackup to false or use backup rules to exclude files.",
+    "optionNotes": [
+      "Correct: allowBackup is true by default; sensitive apps should opt out or exclude data.",
+      "Do not assume every backup channel protects the data as the app would.",
+      "That adds a new risk.",
+      "Unrelated."
+    ],
+    "tags": ["android", "backup", "misconfiguration"],
+    "sources": ["https://developer.android.com/identity/data/autobackup", "https://developer.android.com/guide/topics/manifest/application-element"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0034",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool decompiles an APK's DEX bytecode back into readable Java source?",
+    "options": ["adb", "jadx", "Nmap", "Hydra"],
+    "answer": 1,
+    "explanation": "Reverse engineering tools such as jadx and dex2jar show why secrets must never be hardcoded in an app (OWASP M1, M7).",
+    "optionNotes": [
+      "adb talks to the device; it does not decompile.",
+      "Correct: jadx is a DEX-to-Java decompiler.",
+      "Nmap scans networks.",
+      "Hydra brute-forces logins."
+    ],
+    "tags": ["android", "tools", "reverse-engineering"],
+    "sources": ["https://github.com/skylot/jadx", "https://www.kali.org/tools/jadx/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0035",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A tester wants to check whether an app's exported activities and content providers can be abused by another app on the same phone. Which tool is built for this?",
+    "options": ["drozer", "apktool", "Burp Suite", "Wireshark"],
+    "answer": 0,
+    "explanation": "drozer assumes the role of an Android app to test the attack surface exposed through IPC (activities, services, receivers, providers).",
+    "optionNotes": [
+      "Correct: drozer acts as an app and interacts with other apps' IPC endpoints.",
+      "apktool decodes and rebuilds the package but does not interact with running components.",
+      "Burp Suite intercepts HTTP(S) traffic.",
+      "Wireshark captures network packets."
+    ],
+    "tags": ["android", "tools", "ipc"],
+    "sources": ["https://github.com/ReversecLabs/drozer", "https://mas.owasp.org/MASTG/tools/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0036",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which command-line tool from the Android SDK lists connected devices, opens a shell on them and installs APKs?",
+    "options": ["apksigner", "adb", "jadx", "Frida"],
+    "answer": 1,
+    "explanation": "adb has a client, a server and the adbd daemon on the device. Keep USB debugging off on production phones.",
+    "optionNotes": ["apksigner signs and verifies APKs.", "Correct: Android Debug Bridge.", "jadx decompiles code.", "Frida instruments running apps."],
+    "tags": ["android", "adb", "tools"],
+    "sources": ["https://developer.android.com/tools/adb", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0037",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "How does iOS keep third-party apps from reading each other's files?",
+    "options": [
+      "Each app runs on a separate processor core",
+      "All apps share one folder protected by the passcode",
+      "Apps are separated only by App Store review",
+      "Each app is sandboxed in its own randomly assigned home directory"
+    ],
+    "answer": 3,
+    "explanation": "All third-party iOS apps are sandboxed; they reach other data only through iOS services and declared entitlements.",
+    "optionNotes": [
+      "CPU cores do not isolate data.",
+      "There is no shared folder for all apps.",
+      "Review helps, but isolation is enforced on the device.",
+      "Correct: sandboxing with a unique container per app."
+    ],
+    "tags": ["ios", "sandbox"],
+    "sources": ["https://support.apple.com/guide/security/security-of-runtime-process-sec15bfe098e/web", "https://csrc.nist.gov/glossary/term/sandbox"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0038",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the hardware root of trust in the iPhone secure boot chain?",
+    "options": ["The Secure Enclave passcode", "iBoot", "The Boot ROM, which holds the Apple Root CA public key", "The App Store certificate"],
+    "answer": 2,
+    "explanation": "Boot ROM → iBoot → kernel: each stage verifies Apple's signature on the next.",
+    "optionNotes": [
+      "The passcode protects data, not the boot chain.",
+      "iBoot is the next stage; the Boot ROM verifies it.",
+      "Correct: immutable code laid down at chip fabrication.",
+      "App signing comes much later, after the kernel runs."
+    ],
+    "tags": ["ios", "secure-boot"],
+    "sources": [
+      "https://support.apple.com/guide/security/boot-process-for-ipad-and-iphone-devices-secb3000f149/web",
+      "https://support.apple.com/guide/security/the-secure-enclave-sec59b0b31ff/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0039",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which iOS Data Protection class applies by default to third-party app data that has no class assigned?",
+    "options": ["Protected Unless Open", "Complete Protection", "Protected Until First User Authentication", "No Protection"],
+    "answer": 2,
+    "explanation": "Class C keys stay available after the first unlock following a reboot. Apps with very sensitive files should choose Complete Protection.",
+    "optionNotes": [
+      "Class B is for files that must be written while locked.",
+      "Class A must be chosen explicitly; data becomes unavailable soon after lock.",
+      "Correct: Class C is the default.",
+      "Class D is only protected by the device UID key."
+    ],
+    "tags": ["ios", "data-protection"],
+    "sources": [
+      "https://support.apple.com/guide/security/data-protection-classes-secb010e978a/web",
+      "https://support.apple.com/guide/security/data-protection-overview-secf6276da8a/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0040",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An iOS app must keep a refresh token between launches. Where should the developer store it?",
+    "options": ["In UserDefaults", "In the Keychain", "In a plist file inside the app bundle", "In the pasteboard"],
+    "answer": 1,
+    "explanation": "Use the Keychain (iOS) or Keystore (Android) for secrets. OWASP M9 and MASVS-STORAGE cover insecure local storage.",
+    "optionNotes": [
+      "UserDefaults is a plain preferences store.",
+      "Correct: the Keychain is made for small secrets and has its own protection classes.",
+      "Files in the bundle are readable after extraction and are signed, not secret.",
+      "The pasteboard can be read by other apps."
+    ],
+    "tags": ["ios", "keychain", "storage"],
+    "sources": [
+      "https://developer.apple.com/documentation/security/keychain-services",
+      "https://support.apple.com/guide/security/keychain-data-protection-secb0694df1a/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0041",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A human rights lawyer believes she is targeted by mercenary spyware. Which built-in iPhone feature is designed for her case?",
+    "options": ["Lockdown Mode", "Screen Time", "Low Power Mode", "Find My"],
+    "answer": 0,
+    "explanation": "Apple built Lockdown Mode for the few people personally targeted by sophisticated threats; CISA also recommends it for highly targeted individuals.",
+    "optionNotes": [
+      "Correct: an optional extreme protection that reduces the attack surface.",
+      "Screen Time limits usage; it is not an anti-spyware feature.",
+      "Low Power Mode saves battery.",
+      "Find My locates or erases a lost device."
+    ],
+    "tags": ["ios", "lockdown-mode"],
+    "sources": [
+      "https://support.apple.com/en-us/105120",
+      "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0042",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "IT cannot enroll an executive's iPhone in the company MDM: installing the management profile fails. The executive recently enabled a new security option. What is the most likely cause?",
+    "options": [
+      "The Keychain is full",
+      "The device is supervised",
+      "App Transport Security is blocking the MDM server",
+      "Lockdown Mode is on; it blocks configuration profiles and MDM enrollment"
+    ],
+    "answer": 3,
+    "explanation": "With Lockdown Mode on, configuration profiles can't be installed and the device can't be enrolled in MDM or supervision. It is not an option MDM can set.",
+    "optionNotes": [
+      "Keychain capacity does not affect enrollment.",
+      "Supervision makes management easier, not harder.",
+      "ATS applies to apps' connections, not profile installation.",
+      "Correct: the user must turn Lockdown Mode off, enroll, then turn it back on."
+    ],
+    "tags": ["ios", "lockdown-mode", "mdm"],
+    "sources": ["https://support.apple.com/en-us/105120", "https://support.apple.com/guide/security/lockdown-mode-security-sec2437264f0/web"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0043",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Reviewing an iOS app's Info.plist, you see `NSAppTransportSecurity` → `NSAllowsArbitraryLoads = true`. What does it do?",
+    "options": [
+      "Forces TLS 1.3 on all connections",
+      "Turns off App Transport Security, allowing insecure HTTP connections",
+      "Enables certificate pinning",
+      "Allows the app to load code from the internet"
+    ],
+    "answer": 1,
+    "explanation": "ATS requires TLS 1.2+ with forward secrecy and strong certificates. Global exceptions weaken M5 (Insecure Communication) protection and need justification.",
+    "optionNotes": [
+      "It relaxes security; it does not force a stronger TLS version.",
+      "Correct: ATS stops enforcing its requirements for the app's connections.",
+      "Pinning is configured separately.",
+      "Downloading code is a different (and restricted) behavior."
+    ],
+    "tags": ["ios", "ats", "tls"],
+    "sources": [
+      "https://developer.apple.com/documentation/security/preventing-insecure-network-connections",
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m5-insecure-communication.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0044",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A game's server wants proof that API requests come from a genuine, unmodified copy of its iOS app, not a script or a tampered build. Which Apple service fits?",
+    "options": ["App Attest (DeviceCheck)", "App Transport Security", "Lockdown Mode", "Data Protection class A"],
+    "answer": 0,
+    "explanation": "Attestation (App Attest on iOS, Play Integrity on Android) moves trust decisions to the server, which OWASP M7 recommends for important checks.",
+    "optionNotes": [
+      "Correct: it attests that requests come from legitimate instances of the app, with a key in the Secure Enclave.",
+      "ATS secures the connection, not the identity of the client app.",
+      "Lockdown Mode is a user protection mode.",
+      "Data Protection encrypts files at rest."
+    ],
+    "tags": ["ios", "attestation"],
+    "sources": [
+      "https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity",
+      "https://attack.mitre.org/mitigations/M1002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0045",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's terms, which jailbreak lets the device boot normally on its own but loses the jailbreak until it is re-applied from a computer?",
+    "options": ["Semi-untethered", "Tethered", "Untethered", "Semi-tethered"],
+    "answer": 3,
+    "explanation": "The four EC-Council labels describe what a reboot requires. For defenders, all four mean the same thing: an untrusted device that MDM should block.",
+    "optionNotes": [
+      "Semi-untethered is re-applied from an app on the device, no computer.",
+      "Tethered needs the computer to boot at all.",
+      "Untethered keeps the jailbreak after reboot.",
+      "Correct: boots alone, re-jailbreak needs a computer."
+    ],
+    "tags": ["ios", "jailbreak", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0046",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does COPE stand for in mobile deployment models?",
+    "options": [
+      "Certified Owner Policy Enforcement",
+      "Company Operated Private Enclave",
+      "Corporate-Owned, Personally Enabled",
+      "Corporate Operations Phone Encryption"
+    ],
+    "answer": 2,
+    "explanation": "NIST SP 800-124r2: COPE devices belong to the enterprise, with more lenient restrictions than strict enterprise use; NIST SP 1800-21 is the COPE example solution.",
+    "optionNotes": [
+      "Invented expansion.",
+      "Invented expansion.",
+      "Correct: the company owns the device and allows some personal use.",
+      "Invented expansion."
+    ],
+    "tags": ["cope"],
+    "sources": ["https://csrc.nist.gov/glossary/term/corporate_owned_personally_enabled", "https://csrc.nist.gov/pubs/sp/1800/21/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0047",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Employees buy their own phones, but only models from an IT-approved list that can run the company's EMM agent. Which model is this?",
+    "options": ["Fully managed", "BYOD", "COPE", "CYOD"],
+    "answer": 3,
+    "explanation": "CYOD limits hardware supply-chain risk while keeping personal ownership; NIST notes a BYOD program that rejects devices unable to run the agent is effectively CYOD.",
+    "optionNotes": [
+      "Fully managed devices are company-owned, work use only.",
+      "BYOD places no restriction on which personal device is used.",
+      "COPE devices are owned by the company.",
+      "Correct: Choose Your Own Device."
+    ],
+    "tags": ["cyod", "byod"],
+    "sources": ["https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf", "https://csrc.nist.gov/pubs/sp/800/124/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0048",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A stolen company phone is switched off by the thief before IT sends a remote wipe. What does this show?",
+    "options": [
+      "Remote wipe works offline",
+      "Remote wipe needs power and network, so it must not be the only control",
+      "The MDM agent was misconfigured",
+      "The phone had no passcode"
+    ],
+    "answer": 1,
+    "explanation": "Combine remote wipe with encryption, a strong passcode and auto-lock, so the data stays protected even if the wipe never arrives.",
+    "optionNotes": [
+      "Native wipe needs the device on and connected.",
+      "Correct: NIST calls remote wipe a fundamentally unreliable control on its own.",
+      "Nothing suggests a misconfiguration.",
+      "Nothing in the scenario says that."
+    ],
+    "tags": ["remote-wipe"],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf",
+      "https://support.apple.com/guide/deployment/intro-to-device-management-depc0aadd3fe/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0049",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A warehouse uses Android tablets locked to a single inventory app. Which Android Enterprise mode fits?",
+    "options": ["Dedicated device", "Work profile on a personal device", "BYOD with MAM only", "Unmanaged with a VPN"],
+    "answer": 0,
+    "explanation": "Dedicated devices are a subset of company-owned devices locked to a specific purpose; fully managed devices are for company-owned general use.",
+    "optionNotes": [
+      "Correct: company-owned, locked down for one purpose (kiosk).",
+      "Work profiles separate work and personal apps; there is no personal use here.",
+      "These are not personal devices.",
+      "No management at all is the opposite of what is needed."
+    ],
+    "tags": ["android-enterprise"],
+    "sources": ["https://developers.google.com/android/work/terminology", "https://developer.android.com/work/managed-profiles"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0050",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the main difference between MAM and MDM?",
+    "options": [
+      "MAM works only on iOS",
+      "MAM manages the whole device and MDM only apps",
+      "MAM manages enterprise apps without requiring the device to be enrolled",
+      "MAM replaces the need for any app vetting"
+    ],
+    "answer": 2,
+    "explanation": "MAM suits BYOD and partner users: app-level policies, app-level wipe and containers, with less intrusion into personal data.",
+    "optionNotes": [
+      "MAM exists on both platforms.",
+      "It is the other way round.",
+      "Correct: NIST notes MAM needs no device enrollment or enterprise profile.",
+      "Vetting is a separate control."
+    ],
+    "tags": ["mam", "mdm"],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf",
+      "https://csrc.nist.gov/glossary/term/mobile_application_management"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0051",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Security wants rooted or jailbroken phones blocked from corporate email automatically. Which combination does that?",
+    "options": [
+      "User training only",
+      "A stronger Wi-Fi password",
+      "A company-wide VPN only",
+      "EMM compliance policy using device attestation, with conditional access to email"
+    ],
+    "answer": 3,
+    "explanation": "NIST SP 800-124r2: EMM can limit access by OS version or rooted/jailbroken status. ATT&CK M1002 Attestation: prohibit devices that fail attestation from enterprise resources.",
+    "optionNotes": [
+      "Training helps but enforces nothing.",
+      "Wi-Fi passwords don't detect device state.",
+      "A VPN encrypts traffic but doesn't check the device.",
+      "Correct: detect via attestation/MTD, then block access while non-compliant."
+    ],
+    "tags": ["mdm", "attestation", "rooting"],
+    "sources": ["https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf", "https://attack.mitre.org/mitigations/M1002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0052",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which Apple enrollment method is designed for BYOD and lets IT manage only the organization's accounts and data?",
+    "options": ["Automated Device Enrollment", "User Enrollment", "Supervision with Apple Configurator", "Lockdown Mode"],
+    "answer": 1,
+    "explanation": "Apple: User Enrollment is for devices the user owns; Device Enrollment and ADE give more control for organization-owned devices.",
+    "optionNotes": [
+      "ADE is for organization-owned devices and gives supervision.",
+      "Correct: limited payloads, protects personal data.",
+      "Supervision is for organization-owned devices.",
+      "Lockdown Mode is a user protection mode and blocks enrollment."
+    ],
+    "tags": ["apple", "byod", "user-enrollment"],
+    "sources": [
+      "https://support.apple.com/guide/deployment/user-enrollment-and-device-management-dep23db2037d/web",
+      "https://support.apple.com/guide/deployment/about-device-supervision-dep1d89f0bff/web"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0053",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A contractor must use a sensitive app, but the company wants no enterprise data stored on the contractor's phone at all. Which NIST-described approach fits?",
+    "options": [
+      "Virtual mobile infrastructure (VMI): the app runs on a hosted virtual phone viewed through a thin client",
+      "App wrapping of the contractor's personal apps",
+      "Full-device MDM enrollment with full wipe",
+      "Sideloading the app from an internal website"
+    ],
+    "answer": 0,
+    "explanation": "NIST SP 800-124r2: VMI hosts a virtual mobile device and apps in the back end, so sensitive information never sits on the phone (but needs connectivity).",
+    "optionNotes": [
+      "Correct: data stays in the back-end infrastructure.",
+      "Wrapping applies policies to apps on the device; data still lands there.",
+      "Invasive for a non-employee and data still sits on the device.",
+      "Sideloading adds risk and still stores data locally."
+    ],
+    "tags": ["vmi", "byod"],
+    "sources": ["https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf", "https://csrc.nist.gov/pubs/sp/800/124/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0054",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the OWASP MAS project, what is the MASTG?",
+    "options": [
+      "A commercial mobile antivirus",
+      "The list of top 10 mobile risks",
+      "The testing guide describing how to test mobile apps against MASVS",
+      "An Android hardening build of the OS"
+    ],
+    "answer": 2,
+    "explanation": "MASVS defines the requirements, MASTG the test techniques and tools, MASWE the weaknesses.",
+    "optionNotes": [
+      "MASTG is free documentation, not a product.",
+      "That is the OWASP Mobile Top 10.",
+      "Correct: Mobile Application Security Testing Guide.",
+      "MASTG is not an OS."
+    ],
+    "tags": ["mastg", "owasp-mas"],
+    "sources": ["https://mas.owasp.org/MASTG/", "https://mas.owasp.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0055",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which OWASP MAS profile assumes the device's own user may be the attacker, such as a cheater or reverse engineer?",
+    "options": ["MAS-L1", "MAS-R", "MAS-L2", "MAS-P"],
+    "answer": 1,
+    "explanation": "MAS-R maps to MASVS-RESILIENCE controls: anti-tampering, anti-debugging, root/jailbreak detection, obfuscation.",
+    "optionNotes": [
+      "L1 is essential security for all apps.",
+      "Correct: Resilient security against reverse engineering and tampering.",
+      "L2 is advanced security for sensitive apps.",
+      "P is baseline privacy."
+    ],
+    "tags": ["owasp-mas", "profiles"],
+    "sources": ["https://mas.owasp.org/Profiles/", "https://mas.owasp.org/MASVS/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0056",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which NIST publication describes a process for vetting the security of mobile applications before an organization deploys them?",
+    "options": ["SP 800-163 Rev. 1", "SP 800-124 Rev. 2", "SP 800-63B", "SP 800-61"],
+    "answer": 0,
+    "explanation": "SP 800-163r1 (2019) defines app vetting; SP 800-124r2 (2023) covers enterprise mobile device security and references vetting as one technology.",
+    "optionNotes": [
+      "Correct: Vetting the Security of Mobile Applications.",
+      "800-124r2 is about managing mobile devices in the enterprise.",
+      "800-63B covers authentication.",
+      "800-61 covers incident handling."
+    ],
+    "tags": ["nist", "app-vetting"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/163/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r2.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0057",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In MITRE ATT&CK for Mobile, what does mitigation M1002 Attestation recommend?",
+    "options": [
+      "Use the newest OS version",
+      "Train users to spot phishing",
+      "Install security updates quickly",
+      "Use remote attestation and block devices that fail it from enterprise resources"
+    ],
+    "answer": 3,
+    "explanation": "Attestation (Play Integrity, Samsung Knox, App Attest) lets the enterprise or the app back end refuse compromised devices.",
+    "optionNotes": ["That is M1006 Use Recent OS Version.", "That is M1011 User Guidance.", "That is M1001 Security Updates.", "Correct."],
+    "tags": ["mitre-attack-mobile", "attestation"],
+    "sources": ["https://attack.mitre.org/mitigations/M1002/", "https://attack.mitre.org/mitigations/mobile/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0058",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A senior official asks for three quick changes to protect her phone accounts from takeover. Which set matches CISA's mobile guidance?",
+    "options": [
+      "Root the phone to install a firewall, use SMS MFA, reuse one strong password",
+      "Install a free personal VPN, use SMS MFA, disable updates",
+      "Switch to FIDO MFA, disable SMS as a second factor, set a carrier account PIN",
+      "Turn off the passcode, use Bluetooth only, avoid Wi-Fi"
+    ],
+    "answer": 2,
+    "explanation": "CISA's 2025 guidance: E2EE messaging, FIDO, no SMS MFA, password manager, telco PIN, regular updates, latest hardware, no personal VPN.",
+    "optionNotes": [
+      "Rooting removes protections; password reuse is unsafe.",
+      "CISA advises against personal VPNs and SMS MFA, and for regular updates.",
+      "Correct: phishing-resistant MFA and SIM-swap defenses.",
+      "Removing the passcode weakens the device."
+    ],
+    "tags": ["cisa", "guidelines", "mfa"],
+    "sources": [
+      "https://www.cisa.gov/sites/default/files/2025-12/guidance-mobile-communications-best-practices_508c.pdf",
+      "https://www.cisa.gov/resources-tools/resources/mobile-communications-best-practice-guidance"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0059",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A banking app must detect rooted or jailbroken devices, debuggers and repackaging. Which MASVS control group covers this?",
+    "options": ["MASVS-PRIVACY", "MASVS-STORAGE", "MASVS-NETWORK", "MASVS-RESILIENCE"],
+    "answer": 3,
+    "explanation": "RESILIENCE controls raise the cost of analysis (anti-tampering, anti-debugging, obfuscation); they add to, not replace, the other controls.",
+    "optionNotes": [
+      "PRIVACY covers data minimization and user control.",
+      "STORAGE covers sensitive data at rest.",
+      "NETWORK covers secure communication.",
+      "Correct: resilience against reverse engineering and tampering."
+    ],
+    "tags": ["masvs", "resilience", "rooting"],
+    "sources": ["https://mas.owasp.org/MASVS/", "https://mas.owasp.org/MASTG/0x05j-Testing-Resiliency-Against-Reverse-Engineering/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0060",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which dynamic instrumentation toolkit injects JavaScript into a running Android or iOS app to trace and hook its functions?",
+    "options": ["Frida", "apktool", "Nessus", "Aircrack-ng"],
+    "answer": 0,
+    "explanation": "Frida injects a JavaScript engine into the target process. Testers use it to verify runtime behavior, such as whether root detection or pinning works.",
+    "optionNotes": [
+      "Correct.",
+      "apktool works on the package at rest.",
+      "Nessus is a network vulnerability scanner.",
+      "Aircrack-ng is a Wi-Fi auditing suite."
+    ],
+    "tags": ["frida", "tools"],
+    "sources": ["https://frida.re/docs/home/", "https://mas.owasp.org/MASTG/tools/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0061",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool decodes an APK's resources and binary AndroidManifest.xml into readable files and can rebuild the package?",
+    "options": ["jadx", "apktool", "adb", "objection"],
+    "answer": 1,
+    "explanation": "apktool is a reverse-engineering tool for Android packages; reviewers use it to read the manifest (debuggable, exported, allowBackup).",
+    "optionNotes": ["jadx focuses on decompiling code to Java.", "Correct.", "adb talks to a device.", "objection explores a running app."],
+    "tags": ["apktool", "tools"],
+    "sources": ["https://apktool.org/", "https://www.kali.org/tools/apktool/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0062",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A tester sets a phone's Wi-Fi proxy to a laptop and installs the laptop tool's CA certificate to view the app's HTTPS requests. Which tool is this workflow typical of?",
+    "options": ["Nmap", "John the Ripper", "Burp Suite", "Metasploit"],
+    "answer": 2,
+    "explanation": "Proxy interception checks OWASP M5. It is also why Android 7+ apps don't trust user-installed CAs by default and why pinning matters.",
+    "optionNotes": [
+      "Nmap scans hosts.",
+      "John cracks password hashes.",
+      "Correct: Burp Proxy intercepts the app's HTTP(S) traffic.",
+      "Metasploit is an exploitation framework."
+    ],
+    "tags": ["burp", "tools", "tls"],
+    "sources": ["https://portswigger.net/burp/documentation/desktop/mobile", "https://developer.android.com/privacy-and-security/security-config"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0063",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source framework produces an automated static analysis report of an APK or IPA, flagging hardcoded secrets and risky manifest settings?",
+    "options": ["MobSF", "Hashcat", "Snort", "Maltego"],
+    "answer": 0,
+    "explanation": "MobSF performs static and dynamic analysis of Android, iOS and Windows apps; useful in an app vetting pipeline.",
+    "optionNotes": ["Correct: Mobile Security Framework.", "Hashcat cracks hashes.", "Snort is a network IDS.", "Maltego maps OSINT relationships."],
+    "tags": ["mobsf", "tools", "app-vetting"],
+    "sources": ["https://github.com/MobSF/Mobile-Security-Framework-MobSF", "https://mobsf.github.io/docs/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0064",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 3,
+    "stem": "Which toolkit, powered by Frida, lets a tester explore an app at run time (file system, keychain, memory) without needing a jailbreak?",
+    "options": ["Androguard", "drozer", "dex2jar", "objection"],
+    "answer": 3,
+    "explanation": "objection supports iOS and Android and is listed in the OWASP MASTG tools. Its findings show why secrets need the Keychain/Keystore and server-side checks.",
+    "optionNotes": [
+      "Androguard analyzes APKs statically.",
+      "drozer tests Android IPC endpoints; it is not Frida-based.",
+      "dex2jar converts DEX to Java class files.",
+      "Correct: runtime mobile exploration built on Frida."
+    ],
+    "tags": ["objection", "tools"],
+    "sources": ["https://github.com/sensepost/objection", "https://mas.owasp.org/MASTG/tools/"],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -3,7 +3,7 @@
   "title": "Hacking Mobile Platforms",
   "domain": "D7",
   "effortUnits": 1,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Mobile Platform Attack Vectors",
     "Hacking Android OS",
@@ -11,8 +11,109 @@
     "Mobile Device Management",
     "Mobile Security Guidelines and Tools"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "List the OWASP Mobile Top 10 2024 risks in order and match a finding (hardcoded key, bad certificate check, IDOR, debug flag) to its category",
+      "section": "Mobile Platform Attack Vectors"
+    },
+    {
+      "text": "Recognize smishing, caller ID spoofing, SIM swap / OTP hijacking, juice jacking, overlays and camera or microphone capture, and name the defense for each",
+      "section": "Mobile Platform Attack Vectors"
+    },
+    {
+      "text": "Explain the Android security model: UID sandbox with SELinux, permission types, APK signing schemes, Verified Boot and the Keystore",
+      "section": "Hacking Android OS"
+    },
+    {
+      "text": "Spot risky Android settings (debuggable, allowBackup, exported components, cleartext traffic, user CAs, network ADB) in a manifest or command output",
+      "section": "Hacking Android OS"
+    },
+    {
+      "text": "Explain the iOS security model: secure boot chain, mandatory code signing, sandbox, Data Protection classes, Keychain and ATS",
+      "section": "Hacking iOS"
+    },
+    {
+      "text": "Describe why rooted or jailbroken devices are untrusted, the EC-Council jailbreak types, and how attestation and Lockdown Mode fit in",
+      "section": "Hacking iOS"
+    },
+    {
+      "text": "Compare MDM, MAM, EMM and MTD and choose a deployment model (fully managed, COPE, CYOD, BYOD) and wipe type for a scenario",
+      "section": "Mobile Device Management"
+    },
+    {
+      "text": "Use OWASP MASVS/MASTG, NIST SP 800-124r2 and 800-163r1, MITRE ATT&CK Mobile and CISA guidance, and name the common mobile testing tools",
+      "section": "Mobile Security Guidelines and Tools"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Mobile Platform Attack Vectors",
+      "priority": "MUST",
+      "minutes": 40,
+      "why": "The OWASP Mobile Top 10 2024 order and the SMS/OTP/spoofing attacks are frequent scenario questions."
+    },
+    {
+      "section": "Hacking Android OS",
+      "priority": "MUST",
+      "minutes": 40,
+      "why": "Sandbox, permissions, rooting, ADB and manifest settings carry most of the Android questions; learn the concepts, skip tool screenshots."
+    },
+    {
+      "section": "Hacking iOS",
+      "priority": "SKIM",
+      "minutes": 25,
+      "why": "Know the jailbreak types and the iOS protections by name; the exploit details are not needed."
+    },
+    {
+      "section": "Mobile Device Management",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "MDM vs MAM, BYOD vs COPE and remote wipe choices are classic scenario questions."
+    },
+    {
+      "section": "Mobile Security Guidelines and Tools",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Learn what each tool does in one line and the main guideline names; skip vendor product lists."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Analyze an OWASP MAS reference app with MobSF",
+      "source": "free",
+      "where": "https://mas.owasp.org/MASTG/apps/",
+      "skill": "Reading a static analysis report: manifest flags, hardcoded secrets, network settings, mapped to MASVS",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Solve a beginner MAS crackme in the Android emulator",
+      "source": "free",
+      "where": "https://mas.owasp.org/crackmes/",
+      "skill": "Decompiling a practice app with jadx and apktool to see why client-side checks and hardcoded secrets fail",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Harden your own Android phone and review its app permissions",
+      "source": "free",
+      "where": "https://support.google.com/googleplay/answer/2812853",
+      "skill": "Play Protect, updates, unknown-sources settings, runtime permissions and developer options, as a user and as an MDM would",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Map a mobile malware report to ATT&CK for Mobile in the Navigator",
+      "source": "free",
+      "where": "https://mitre-attack.github.io/attack-navigator/",
+      "skill": "Turning a mobile threat write-up into tactics, techniques and mitigations (attestation, enterprise policy)",
+      "minutes": 40,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a friend why a text message code is a weak second factor, what a SIM swap is, and what she should use instead.",
+    "Compare how Android and iOS stop one app from reading another app's data, and explain what rooting or jailbreaking changes for a company's security team.",
+    "A small company wants staff to read work email on their own phones. Explain the choices (MDM, MAM, work profile, selective wipe) and which one you would recommend."
+  ]
 }

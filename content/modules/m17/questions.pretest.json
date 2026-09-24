@@ -1,0 +1,261 @@
+[
+  {
+    "id": "m17-q-0001",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which risk is number one (M1) in the OWASP Mobile Top 10 2024?",
+    "options": ["Insecure Data Storage", "Improper Platform Usage", "Improper Credential Usage", "Insufficient Cryptography"],
+    "answer": 2,
+    "explanation": "The 2024 list starts with Improper Credential Usage (hardcoded or badly handled credentials) and ends with Insufficient Cryptography.",
+    "optionNotes": ["That is M9 in 2024 (M2 in 2016).", "That was M1 in the 2016 list.", "Correct: M1 in the 2024 list.", "That is M10 in 2024."],
+    "tags": ["owasp-mobile-top-10"],
+    "sources": ["https://owasp.org/www-project-mobile-top-10/", "https://github.com/OWASP/www-project-mobile-top-10"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0002",
+    "module": 17,
+    "section": "Mobile Platform Attack Vectors",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An employee's phone suddenly loses signal, and minutes later the attacker resets her bank password using a code sent by SMS. Which attack most likely happened?",
+    "options": ["Tapjacking", "Juice jacking", "Bluejacking", "SIM swapping"],
+    "answer": 3,
+    "explanation": "Losing service then seeing SMS codes abused is the classic SIM swap sign (ATT&CK Mobile T1451). A carrier PIN and non-SMS MFA reduce the risk.",
+    "optionNotes": [
+      "Tapjacking tricks taps on the screen with an overlay.",
+      "Juice jacking needs the phone plugged into a malicious USB port.",
+      "Bluejacking sends unsolicited Bluetooth messages; it does not move a phone number.",
+      "Correct: the number was moved to the attacker's SIM, so the SMS code went to them."
+    ],
+    "tags": ["sim-swap", "otp-hijacking"],
+    "sources": ["https://attack.mitre.org/techniques/T1451/", "https://www.fcc.gov/consumers/guides/cell-phone-fraud"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0003",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "How does Android isolate one app's data from another app by default?",
+    "options": [
+      "All apps share one user ID but use separate folders",
+      "Each app runs under its own Linux user ID in its own process",
+      "Apps are isolated only by Google Play review",
+      "Each app runs in a separate virtual machine with its own kernel"
+    ],
+    "answer": 1,
+    "explanation": "Android assigns a unique UID per app and the kernel enforces separation (DAC); SELinux adds per-app MAC.",
+    "optionNotes": [
+      "Apps do not share a UID by default; the per-app UID is the core of the sandbox.",
+      "Correct: UID-based kernel sandbox, reinforced by SELinux.",
+      "Store review helps, but isolation is enforced on the device by the kernel.",
+      "Apps share the Linux kernel; they are not full virtual machines."
+    ],
+    "tags": ["android", "sandbox"],
+    "sources": ["https://source.android.com/docs/security/app-sandbox", "https://source.android.com/docs/security/features/selinux"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0004",
+    "module": 17,
+    "section": "Hacking Android OS",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A code review of a production Android app finds this line in the manifest: `<application android:debuggable=\"true\" ...>`. What is the main risk?",
+    "options": [
+      "Anyone with device access can attach a debugger and inspect or change the app at run time",
+      "The app cannot be installed from Google Play",
+      "The app's traffic is sent over cleartext HTTP",
+      "The app's data is backed up to the cloud"
+    ],
+    "answer": 0,
+    "explanation": "Set android:debuggable to false in release builds. OWASP lists debug features left in production under M8 Security Misconfiguration.",
+    "optionNotes": [
+      "Correct: debuggable release builds expose the app to runtime inspection.",
+      "The flag is a security risk; it does not describe store installation rules.",
+      "Cleartext traffic is controlled by usesCleartextTraffic or the network security config.",
+      "Backup is controlled by android:allowBackup."
+    ],
+    "tags": ["android", "misconfiguration"],
+    "sources": [
+      "https://developer.android.com/privacy-and-security/risks/android-debuggable",
+      "https://github.com/OWASP/www-project-mobile-top-10/blob/master/2023-risks/m8-security-misconfiguration.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0005",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does jailbreaking an iPhone do?",
+    "options": [
+      "Unlocks the phone to work with another carrier",
+      "Removes iOS restrictions such as mandatory code signing so unapproved code can run",
+      "Installs a newer iOS version before its release",
+      "Encrypts the phone with a stronger key"
+    ],
+    "answer": 1,
+    "explanation": "Apple warns that jailbreaking removes security layers, causes instability and can prevent future updates. Enterprises treat jailbroken devices as untrusted.",
+    "optionNotes": [
+      "That is carrier unlocking, a different thing.",
+      "Correct: it bypasses the security layers Apple enforces.",
+      "Jailbreaking does not deliver official updates; it often blocks them.",
+      "It weakens protection; it does not add encryption."
+    ],
+    "tags": ["ios", "jailbreak"],
+    "sources": [
+      "https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios",
+      "https://csrc.nist.gov/pubs/sp/800/124/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0006",
+    "module": 17,
+    "section": "Hacking iOS",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's jailbreak terms, which type keeps the device jailbroken after every reboot with no computer needed?",
+    "options": ["Untethered", "Tethered", "Semi-tethered", "Semi-untethered"],
+    "answer": 0,
+    "explanation": "The four EC-Council types differ only by what is needed after a reboot: tethered (computer to boot), semi-tethered (computer to re-jailbreak), semi-untethered (on-device app), untethered (nothing).",
+    "optionNotes": [
+      "Correct: untethered survives reboots on its own.",
+      "Tethered needs a computer at every boot.",
+      "Semi-tethered boots alone but loses the jailbreak until re-run from a computer.",
+      "Semi-untethered must be re-run from an app on the device after reboot."
+    ],
+    "tags": ["ios", "jailbreak", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0007",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A company lets staff read work email on their own phones but must not see or wipe their personal photos. Which approach fits best?",
+    "options": [
+      "No management, only a VPN",
+      "Full MDM with full-device wipe",
+      "MAM or a work profile with selective (enterprise) wipe",
+      "Jailbreak detection only"
+    ],
+    "answer": 2,
+    "explanation": "NIST SP 800-124r2: MAM and selective wipe address BYOD privacy concerns; full wipe is typical for company-owned devices.",
+    "optionNotes": [
+      "A VPN protects traffic but does not manage or wipe work data.",
+      "Full wipe would erase personal photos; too invasive for BYOD.",
+      "Correct: manages only work apps and data, keeps personal data private.",
+      "Detection alone does not separate or protect work data."
+    ],
+    "tags": ["byod", "mam", "remote-wipe"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/124/r2/final", "https://developer.android.com/work/managed-profiles"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0008",
+    "module": 17,
+    "section": "Mobile Device Management",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does a Mobile Threat Defense (MTD) product mainly add to an MDM?",
+    "options": [
+      "Printing and file-sharing policies",
+      "Distribution of the corporate app catalog",
+      "Enrollment of devices at purchase time",
+      "On-device detection of malicious apps, network attacks and phishing"
+    ],
+    "answer": 3,
+    "explanation": "MTD agents watch for malicious apps, MitM, phishing and vulnerable configurations, and integrate with EMM to quarantine or block.",
+    "optionNotes": [
+      "Unrelated to MTD.",
+      "App distribution is an MDM/MAM function.",
+      "Enrollment is handled by MDM and the vendor programs.",
+      "Correct: MTD detects threats and can trigger EMM actions."
+    ],
+    "tags": ["mtd"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/124/r2/final", "https://csrc.nist.gov/glossary/term/mobile_threat_defense"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0009",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool performs automated static and dynamic security analysis of Android and iOS apps from one web interface?",
+    "options": ["John the Ripper", "Wireshark", "Nmap", "MobSF"],
+    "answer": 3,
+    "explanation": "MobSF (Mobile Security Framework) is an all-in-one app assessment framework for Android, iOS and Windows packages.",
+    "optionNotes": [
+      "John the Ripper cracks password hashes.",
+      "Wireshark captures network packets.",
+      "Nmap scans hosts and ports.",
+      "Correct: Mobile Security Framework."
+    ],
+    "tags": ["mobsf", "tools"],
+    "sources": ["https://github.com/MobSF/Mobile-Security-Framework-MobSF", "https://mas.owasp.org/MASTG/tools/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m17-q-0010",
+    "module": 17,
+    "section": "Mobile Security Guidelines and Tools",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which OWASP project defines the security requirements a mobile app should meet, grouped into controls such as STORAGE, NETWORK and RESILIENCE?",
+    "options": ["MASVS", "MASTG", "ASVS", "SAMM"],
+    "answer": 0,
+    "explanation": "MASVS says what to verify (8 control groups), MASTG says how to test it, MASWE lists the weaknesses.",
+    "optionNotes": [
+      "Correct: the Mobile Application Security Verification Standard.",
+      "The MASTG is the testing guide that explains how to test those controls.",
+      "ASVS is the web application standard.",
+      "SAMM is a software assurance maturity model."
+    ],
+    "tags": ["masvs"],
+    "sources": ["https://mas.owasp.org/MASVS/", "https://mas.owasp.org/"],
+    "verify": false,
+    "rev": 1
+  }
+]

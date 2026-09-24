@@ -128,7 +128,10 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 18 mock, 6 verify |
 | M14 Hacking Web Applications | stub | deferred (blocked) |
-| M15–M18 | stub | built in parallel by agents in M4 (brief: scratchpad agent-brief.md) |
+| M15 SQL Injection | stub | full build deferred (blocked) |
+| M16 Hacking Wireless Networks | stub | full build deferred (blocked) |
+| M17 Hacking Mobile Platforms | built | 40 cards, 10 pretest, 54 practice, 20 mock, 8 verify |
+| M18 IoT and OT Hacking | stub | full build deferred (blocked); research gathered |
 | M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
 | M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
@@ -167,3 +170,6 @@ passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-pl
 - 2026-09-24 — M4 wave 1 (agents in parallel, lead integrates): M5 and M10 built, M9 sample, M11 notes;
   M3, M4, M6, M8 and parts of M9/M11 deferred. Content 0.4.0. Many parallel agents hit the session limit:
   run 4 at a time.
+- 2026-09-24 — M4 wave 2: M7, M13, M17, M19, M20 built, M12 sample (content 0.5.0 → 0.10.0); Mermaid label
+  rendering fixed (DOMPurify foreignObject integration point + label CSS). M14, M15, M16, M18 blocked and
+  deferred. Every remaining M4 gap is a safety-layer block listed in research/deferred.md.
