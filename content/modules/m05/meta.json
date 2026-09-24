@@ -3,14 +3,107 @@
   "title": "Vulnerability Analysis",
   "domain": "D3",
   "effortUnits": 1,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Vulnerability Assessment Concepts",
     "Vulnerability Assessment Tools",
     "Vulnerability Assessment Reports"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Classify a weakness (misconfiguration, default credentials, missing patch, buffer overflow, design flaw, zero-day) and link it to its CWE or OWASP category",
+      "section": "Vulnerability Assessment Concepts"
+    },
+    {
+      "text": "Tell CVE, NVD, CWE, CAPEC, CPE, CVSS, EPSS and KEV apart: who runs each one and what question it answers",
+      "section": "Vulnerability Assessment Concepts"
+    },
+    {
+      "text": "Read a CVSS v3.1 vector string, give its severity band, and name what CVSS v4.0 changed (AT, UI values, no Scope, Threat group, supplemental metrics)",
+      "section": "Vulnerability Assessment Concepts"
+    },
+    {
+      "text": "Put the vulnerability-management life cycle in order, from asset inventory and baseline to verification and monitoring",
+      "section": "Vulnerability Assessment Concepts"
+    },
+    {
+      "text": "Choose the right assessment type and scanning approach (credentialed, agent-based, passive, internal or external) for a scenario",
+      "section": "Vulnerability Assessment Tools"
+    },
+    {
+      "text": "Recognize Nessus, OpenVAS/Greenbone, Nikto, Nmap NSE, OWASP ZAP, Nuclei, Trivy and Lynis from their output, options or ports",
+      "section": "Vulnerability Assessment Tools"
+    },
+    {
+      "text": "Explain what AI adds to vulnerability assessment and the rules for using it with client data",
+      "section": "Vulnerability Assessment Tools"
+    },
+    {
+      "text": "Validate findings (false positives and false negatives), prioritize them with KEV, EPSS and asset context, and pick a risk response",
+      "section": "Vulnerability Assessment Reports"
+    },
+    {
+      "text": "Structure a vulnerability assessment report for managers and for the teams who fix the findings",
+      "section": "Vulnerability Assessment Reports"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Vulnerability Assessment Concepts",
+      "priority": "MUST",
+      "minutes": 50,
+      "why": "CVSS metrics and bands, CVE vs CWE vs NVD, KEV and EPSS, and the life cycle order are the bulk of this module's questions."
+    },
+    {
+      "section": "Vulnerability Assessment Tools",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Tool-identification and scanning-approach scenarios (credentialed, agent, passive) come up often; learn the tool table, skip vendor feature lists."
+    },
+    {
+      "section": "Vulnerability Assessment Reports",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Know the report parts, false positive vs false negative, and how to rank findings; the sample report layouts add little."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Research one CVE end to end: NVD record, CVSS vector, CWE, EPSS score and KEV status",
+      "source": "free",
+      "where": "https://nvd.nist.gov/vuln/search",
+      "skill": "Reading a CVSS vector and combining severity, exploitation probability and known exploitation into a priority",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Install Greenbone Community Edition on Kali and scan a Metasploitable 2 VM in your own isolated lab",
+      "source": "free",
+      "where": "https://greenbone.github.io/docs/latest/22.4/kali/index.html",
+      "skill": "Setting up gvm, running a scan, reading results with QoD, separating true and false positives",
+      "minutes": 90,
+      "verify": true
+    },
+    {
+      "name": "Compare an unauthenticated and a credentialed Nessus Essentials scan of your own lab VM",
+      "source": "free",
+      "where": "https://www.tenable.com/products/nessus/nessus-essentials",
+      "skill": "Seeing how credentials change findings, false positives and patch-level accuracy",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Scan DVWA in your own lab with Nikto, then with OWASP ZAP, and compare the findings",
+      "source": "free",
+      "where": "https://github.com/digininja/DVWA",
+      "skill": "Telling web server findings (Nikto) apart from web application findings (ZAP) and reading Nikto tuning and output options",
+      "minutes": 45,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a manager why a CVSS 9.8 finding on a lab server can wait while a CVSS 7.5 finding on the VPN gateway must be fixed this week.",
+    "Explain the difference between CVE, CWE and CVSS using one real vulnerability as the example.",
+    "Walk through the vulnerability-management life cycle for one missing patch, from asset inventory to the monitoring that proves it stays fixed."
+  ]
 }

@@ -1,0 +1,259 @@
+[
+  {
+    "id": "m10-q-0001",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which property of information security does a denial-of-service attack mainly target?",
+    "options": ["Availability", "Confidentiality", "Integrity", "Non-repudiation"],
+    "answer": 0,
+    "explanation": "DoS and DDoS attacks deny or delay access to a resource, which is the definition of an attack on availability.",
+    "optionNotes": [
+      "Correct: the service stops being usable by legitimate users.",
+      "Nothing is disclosed in a pure DoS.",
+      "Data is not changed in a pure DoS.",
+      "Non-repudiation is about denying an action, not about access to a service."
+    ],
+    "tags": ["availability"],
+    "sources": ["https://csrc.nist.gov/glossary/term/denial_of_service", "https://csrc.nist.gov/glossary/term/availability"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0002",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An online shop's link is saturated by tens of gigabits per second of UDP traffic arriving from thousands of addresses. Which DDoS category is this?",
+    "options": ["Permanent DoS", "Protocol", "Application layer", "Volumetric"],
+    "answer": 3,
+    "explanation": "Volumetric attacks are measured in bits per second and aim at the link capacity; UDP floods and amplification are the classic examples.",
+    "optionNotes": [
+      "A PDoS damages hardware or firmware; nothing here is damaged.",
+      "Protocol attacks exhaust connection state or packet processing, such as a SYN flood.",
+      "Application layer attacks send valid-looking requests to a specific page or API.",
+      "Correct: the goal is to fill the bandwidth."
+    ],
+    "tags": ["categories"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks",
+      "https://learn.microsoft.com/en-us/azure/ddos-protection/types-of-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0003",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In a botnet, what is the role of the command and control (C2) channel?",
+    "options": [
+      "It stores the stolen data of the victim",
+      "It carries the bot master's orders to the infected machines",
+      "It filters attack traffic before it reaches the target",
+      "It is the vulnerability used to infect each bot"
+    ],
+    "answer": 1,
+    "explanation": "Bots (zombies) are the compromised machines, the bot master is the operator and C2 is the channel (IRC, HTTP or peer-to-peer) used to send commands.",
+    "optionNotes": [
+      "Some botnets exfiltrate data, but that is not what C2 means.",
+      "Correct: C2 is how the bot master tells the bots what to do.",
+      "Filtering is a defense, not part of the botnet.",
+      "The infection vector is separate from the control channel."
+    ],
+    "tags": ["botnet"],
+    "sources": ["https://csrc.nist.gov/glossary/term/botnet", "https://attack.mitre.org/techniques/T1583/005/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0004",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does a SYN flood exhaust on the target server?",
+    "options": [
+      "The disk space used for web server logs",
+      "The DNS cache",
+      "The table of half-open connections waiting for the final ACK",
+      "The number of TLS certificates the server can hold"
+    ],
+    "answer": 2,
+    "explanation": "A SYN flood never completes the three-way handshake, so the server's backlog of half-open connections fills and new clients are refused.",
+    "optionNotes": [
+      "Logs may grow, but that is not the mechanism.",
+      "DNS caches are not involved in a TCP handshake.",
+      "Correct: each SYN leaves an entry in SYN-RECEIVED until the backlog is full.",
+      "Certificates are unrelated to the TCP handshake."
+    ],
+    "tags": ["syn-flood"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc4987", "https://www.cloudflare.com/learning/ddos/syn-flood-ddos-attack/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0005",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to CISA alert TA14-017A, which UDP protocol has the highest bandwidth amplification factor?",
+    "options": ["NTP", "DNS", "Memcached", "SSDP"],
+    "answer": 2,
+    "explanation": "Remember the top three as Memcached, NTP, CharGEN. Memcached reflection over UDP port 11211 broke records in 2018.",
+    "optionNotes": ["NTP is second, at about 557.", "DNS is listed at 28 to 54.", "Correct: 10,000 to 51,000.", "SSDP is listed at about 31."],
+    "tags": ["amplification"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks",
+      "https://blog.cloudflare.com/memcrashed-major-amplification-attacks-from-port-11211/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0006",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A web server's connection slots are all taken, yet bandwidth use is tiny. Each connection sends a few bytes of an HTTP header every few seconds and never finishes the request. Which attack is this?",
+    "options": ["HTTP GET flood", "Slowloris", "Smurf attack", "SYN flood"],
+    "answer": 1,
+    "explanation": "Slowloris is a low-and-slow application layer attack. The fix is request timeouts and minimum data rates, not more bandwidth.",
+    "optionNotes": [
+      "A GET flood sends many complete requests quickly.",
+      "Correct: partial headers keep connections open with very little bandwidth.",
+      "Smurf uses ICMP echo to a broadcast address.",
+      "A SYN flood never completes the TCP handshake; here connections are established."
+    ],
+    "tags": ["slowloris"],
+    "sources": ["https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/", "https://nvd.nist.gov/vuln/detail/CVE-2007-6750"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0007",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A hacktivist group asks supporters to run an open-source flooding tool that sends TCP, UDP or HTTP traffic and does not hide the user's own IP address. Which tool is it?",
+    "options": ["AWS Shield", "Wireshark", "Snort", "LOIC"],
+    "answer": 3,
+    "explanation": "LOIC is the classic hacktivist DoS tool. Because it does not hide the sender, users of it have been identified and prosecuted.",
+    "optionNotes": [
+      "AWS Shield is a DDoS protection service.",
+      "Wireshark captures and analyzes traffic.",
+      "Snort is an intrusion detection and prevention system.",
+      "Correct: Low Orbit Ion Cannon."
+    ],
+    "tags": ["tools", "loic"],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/low-orbit-ion-cannon-loic/",
+      "https://www.imperva.com/learn/ddos/low-orbit-ion-cannon/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0008",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "On a Linux web server, `sysctl net.ipv4.tcp_syncookies` returns `net.ipv4.tcp_syncookies = 1`. What does this mean?",
+    "options": [
+      "SYN cookies are sent when the SYN backlog overflows",
+      "The server refuses every new TCP connection",
+      "Only one half-open connection is allowed per client",
+      "HTTP cookies are required for every request"
+    ],
+    "answer": 0,
+    "explanation": "With tcp_syncookies = 1, Linux keeps working normally and only switches to SYN cookies when the SYN queue of a socket overflows.",
+    "optionNotes": [
+      "Correct: 1 is the default; cookies are a fallback when the backlog is full.",
+      "Nothing is refused; the setting helps accept real clients during a flood.",
+      "The value is a mode, not a per-client limit.",
+      "This is a TCP setting, unrelated to HTTP cookies."
+    ],
+    "tags": ["syn-flood", "linux"],
+    "sources": ["https://docs.kernel.org/networking/ip-sysctl.html", "https://www.rfc-editor.org/rfc/rfc4987"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0009",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An ISP wants to make sure none of its customers can send packets with forged source addresses, so its network cannot be used to launch reflection attacks. What should it deploy?",
+    "options": [
+      "Ingress filtering at the customer edge (BCP 38)",
+      "Remotely triggered black hole routing",
+      "A web application firewall",
+      "SYN cookies on its routers"
+    ],
+    "answer": 0,
+    "explanation": "BCP 38 (RFC 2827) filters spoofed sources where they enter the network. It protects other networks, since reflection attacks need a spoofed victim address.",
+    "optionNotes": [
+      "Correct: drop customer packets whose source address is not the customer's.",
+      "RTBH drops traffic to an attacked address; it does not stop spoofing.",
+      "A WAF filters HTTP requests to a web application.",
+      "SYN cookies protect a TCP server's backlog, not the network from spoofing."
+    ],
+    "tags": ["bcp38", "anti-spoofing"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2827", "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0010",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's DDoS response strategies, what does \"degrading services\" mean?",
+    "options": [
+      "Shutting down the whole service until the attack ends",
+      "Adding extra bandwidth and servers",
+      "Turning off non-critical features to keep the critical ones running",
+      "Sending the attack traffic to a honeypot"
+    ],
+    "answer": 2,
+    "explanation": "EC-Council lists three strategies: absorb (extra capacity), degrade (drop non-critical functions) and shut down (stop the service).",
+    "optionNotes": ["That is the shut-down strategy.", "That is absorbing the attack.", "Correct.", "That is deflecting the attack."],
+    "tags": ["response", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.ncsc.gov.uk/collection/denial-service-dos-guidance-collection"
+    ],
+    "verify": true,
+    "rev": 1
+  }
+]

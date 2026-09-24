@@ -115,9 +115,16 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 |---|---|---|
 | M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
 | M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
-| M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice |
 | M2 Footprinting and Reconnaissance | stub + notes | notes and research/m02.md written; cards and questions deferred (research/deferred.md) |
-| M4–M20 | stub | built one by one in M4 (`/build-module N`) |
+| M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice; full build deferred |
+| M4 Enumeration | stub | deferred (blocked) |
+| M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 19 mock, 14 verify |
+| M6 System Hacking | stub | deferred (blocked) |
+| M8 Sniffing | stub | research/m08.md only; notes and items deferred (blocked) |
+| M9 Social Engineering | sample | notes, 31 cards, 10 pretest, 12 verify; practice + mock deferred (blocked) |
+| M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
+| M11 Session Hijacking | stub + notes | research + notes; cards and questions deferred (blocked) |
+| M7, M12–M20 | stub | built in parallel by agents in M4 (brief: scratchpad agent-brief.md) |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
 | Reference | 4 / 18 | sheets 1, 3, 4 (verify), 5; sheet 2 deferred · glossary 43 terms |
 
@@ -151,3 +158,6 @@ passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-pl
   keep command output on one line with backticks. Mermaid state labels need `state "Label" as X`.
 - 2026-09-23 — M2 partial: research/m02.md and notes pushed (content 0.3.1), module stays `stub`.
   Cards and questions were blocked during generation and are listed in research/deferred.md.
+- 2026-09-24 — M4 wave 1 (agents in parallel, lead integrates): M5 and M10 built, M9 sample, M11 notes;
+  M3, M4, M6, M8 and parts of M9/M11 deferred. Content 0.4.0. Many parallel agents hit the session limit:
+  run 4 at a time.

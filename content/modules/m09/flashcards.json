@@ -1,0 +1,605 @@
+[
+  {
+    "id": "m09-c-0001",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Social engineering",
+    "back": "Tricking a person into revealing information (such as a password) or taking an action that helps an attack.\n\nIt targets **people and process**, not a software flaw, so a patch does not fix it: training, policy and verification do.",
+    "tags": [
+      "social-engineering"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/social_engineering",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0002",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Persuasion levers in scam messages (NCSC)",
+    "back": "1. **Authority**: claims to be a bank, boss, government\n2. **Urgency**: short deadline or threat\n3. **Emotion**: fear, curiosity, hope\n4. **Scarcity**: something rare or limited\n5. **Current events**: tax season, news, big events\n\nEC-Council adds intimidation, consensus (social proof), familiarity, trust and greed.",
+    "tags": [
+      "persuasion",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.ncsc.gov.uk/collection/phishing-scams/spot-scams",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0003",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "kind": "diagram",
+    "front": "EC-Council's four phases of a social engineering attack",
+    "back": "```mermaid\nflowchart LR\n  R[Research the company] --> S[Select a victim]\n  S --> D[Develop a relationship]\n  D --> E[Exploit the relationship]\n```\nResearch uses OSINT; the victim is often new, frustrated or helpful by role.",
+    "tags": [
+      "phases",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0004",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Why companies are vulnerable (EC-Council)",
+    "back": "- Insufficient security training\n- Unregulated access to information\n- Several organizational units (hard to know who is who)\n- Missing security policies",
+    "tags": [
+      "vulnerability-factors",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.ncsc.gov.uk/guidance/phishing"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0005",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "T1566 Phishing vs T1598 Phishing for Information",
+    "back": "**T1598** (Reconnaissance): the lure collects data, usually credentials.\n**T1566** (Initial Access): the lure runs code or gives access.\n\nSame sub-techniques in both: attachment, link, service, voice. Hook: **T1598 collects, T1566 executes.**",
+    "tags": [
+      "mitre-attack",
+      "phishing"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1566/",
+      "https://attack.mitre.org/techniques/T1598/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0006",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "The three families of social engineering",
+    "back": "- **Human-based**: in person or by phone (impersonation, vishing, tailgating)\n- **Computer-based**: email, web, chat, social media (phishing, pharming, fake profiles)\n- **Mobile-based**: SMS, apps, QR codes (smishing, quishing, repackaged apps)",
+    "tags": [
+      "types",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/techniques/T1566/",
+      "https://attack.mitre.org/techniques/T1660/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0007",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Piggybacking vs tailgating (EC-Council)",
+    "back": "**Piggybacking**: an authorized person **knowingly** lets the attacker in (\"I forgot my badge\").\n**Tailgating**: the attacker slips in behind **without** consent.\n\nMany other sources use the two words as synonyms. Countermeasure: access vestibules (mantraps), turnstiles, no-holding-doors policy.",
+    "tags": [
+      "physical",
+      "tailgating",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/spoofing",
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation/defining-insider-threats",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0008",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Reverse social engineering",
+    "back": "The attacker creates a problem (or advertises help), then poses as the fixer so that the **victim contacts the attacker**. Trust is higher because the victim started the contact.\n\nExample pattern: a fake alert that says \"call this support number\".",
+    "tags": [
+      "reverse-se",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-tech-support-scams",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0009",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Quid pro quo, baiting, elicitation, honey trap",
+    "back": "- **Quid pro quo**: a service in exchange for access (\"free IT help, just confirm your password\")\n- **Baiting**: an infected USB drive or free download left for someone curious\n- **Elicitation**: a casual chat steered to pull out facts\n- **Honey trap**: a romantic or friendly persona",
+    "tags": [
+      "human-based",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1091/",
+      "https://consumer.ftc.gov/articles/what-know-about-romance-scams",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0010",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Insider threat",
+    "back": "The risk that an insider uses **authorized access or knowledge**, wittingly or unwittingly, to harm the organization's confidentiality, integrity or availability.\n\nCISA program: **detect and identify → assess → manage**.",
+    "tags": [
+      "insider-threat"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/insider_threat",
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0011",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Types of insider threat",
+    "back": "CISA: **negligent** and **accidental** (unintentional), **malicious** (intentional), **collusive** (with an outsider), **third-party** (contractors, vendors).\n\nEC-Council: **malicious, negligent, professional, compromised** (an outsider controls a stolen insider account).",
+    "tags": [
+      "insider-threat",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation/defining-insider-threats",
+      "https://www.cisa.gov/resources-tools/resources/insider-threat-mitigation-guide",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0012",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Defending against AI voice cloning and deepfake calls",
+    "back": "Cloned voices need only a short public clip; deepfake video can fake an executive in a live call.\n\n- Verify via a **separate, known channel** (call back)\n- Agree a **secret word or phrase** for urgent requests\n- Require a **second approver** for payments\n- Limit public audio and video of key staff",
+    "tags": [
+      "ai",
+      "v13-new",
+      "impersonation"
+    ],
+    "sources": [
+      "https://www.ic3.gov/PSA/2024/PSA241203",
+      "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
+      "https://media.defense.gov/2023/Sep/12/2003298925/-1/-1/0/CSI-DEEPFAKE-THREATS.PDF"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0013",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Phishing variants by target",
+    "back": "- **Phishing**: anyone, generic lure\n- **Spear phishing**: a chosen person or team, researched details\n- **Whaling**: senior executives\n- **BEC**: finance staff; fake CEO or supplier asks for a payment or bank change",
+    "tags": [
+      "phishing"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1566/",
+      "https://attack.mitre.org/techniques/T1684/001/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0014",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Pharming",
+    "back": "Redirecting users to a fake site by **technical means**, usually DNS or hosts-file poisoning, so the victim types the right address and still lands on the attacker's site. No bad link needs to be clicked.",
+    "tags": [
+      "pharming"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/pharming",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0015",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Watering hole attack",
+    "back": "The attacker compromises a website that the **target group already visits** and waits for them to come. ATT&CK files it under **Drive-by Compromise (T1189)**.",
+    "tags": [
+      "watering-hole"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/watering_hole_attack",
+      "https://attack.mitre.org/techniques/T1189/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0016",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Phishing indicators (CISA, FTC)",
+    "back": "- Sender address close to, but not exactly, the real one\n- Generic greeting, no contact details\n- Link text differs from the real target (hover); URL shorteners\n- Spelling and layout errors (less reliable with AI text)\n- Unexpected attachment, urgency",
+    "tags": [
+      "phishing",
+      "detection"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0017",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "SET, Gophish, Evilginx",
+    "back": "- **Social-Engineer Toolkit (SET)**: TrustedSec's open-source framework for authorized SE tests; `setoolkit` on Kali\n- **Gophish**: open-source phishing **simulation** platform (campaigns, landing pages, results)\n- **Evilginx**: adversary-in-the-middle proxy that captures credentials **and session cookies**, bypassing OTP-style MFA",
+    "tags": [
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/trustedsec/social-engineer-toolkit",
+      "https://www.kali.org/tools/set/",
+      "https://getgophish.com/",
+      "https://github.com/kgretzky/evilginx2"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0018",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Kinds of identity theft",
+    "back": "- **Financial**: new credit, account takeover\n- **Medical**: care, drugs, insurance claims\n- **Tax**: fraudulent refund\n- **Child**: clean credit file\n- **Criminal**: victim's name given on arrest\n- **Synthetic**: real and fake PII combined into a new person",
+    "tags": [
+      "identity-theft"
+    ],
+    "sources": [
+      "https://consumer.ftc.gov/articles/what-know-about-identity-theft",
+      "https://consumer.ftc.gov/articles/what-know-about-medical-identity-theft",
+      "https://fedpaymentsimprovement.org/strategic-initiatives/payments-security/synthetic-identity-payments-fraud/",
+      "https://www.identitytheft.gov/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0019",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Impersonation on social networks",
+    "back": "Fake or hijacked profiles (persona building, ATT&CK **T1585.001**) build trust, then ask for data, money or a file. Fake recruiters are a classic route (**T1566.003**, spearphishing via service). Social media also feeds research (**T1593.001**).",
+    "tags": [
+      "social-media",
+      "impersonation"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1585/001/",
+      "https://attack.mitre.org/techniques/T1566/003/",
+      "https://www.ncsc.gov.uk/guidance/social-media-how-to-use-it-safely"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0020",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Smishing, vishing, quishing",
+    "back": "- **Smishing**: SMS lure (link or callback number)\n- **Vishing**: voice call; caller ID can be spoofed over VoIP\n- **Quishing**: QR code that leads to a phishing site (stickers over real codes)\n\nATT&CK for Mobile groups smishing and quishing under **T1660 Phishing**.",
+    "tags": [
+      "mobile",
+      "phishing"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://attack.mitre.org/techniques/T1660/",
+      "https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0021",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "SIM swap",
+    "back": "The attacker impersonates the victim to the mobile carrier and gets the number moved to their own SIM, then receives SMS codes and resets accounts (ATT&CK Mobile **T1451**).\n\nDefense: carrier PIN or port-out lock, **non-SMS** MFA.",
+    "tags": [
+      "sim-swap",
+      "mobile"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1451/",
+      "https://consumer.ftc.gov/consumer-alerts/2019/10/sim-swap-scams-how-protect-yourself"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0022",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council's mobile-based techniques",
+    "back": "- Publishing **malicious apps** that imitate real ones\n- **Repackaging** legitimate apps with malware\n- **Fake security apps**\n- **Smishing** (and QR-code lures)",
+    "tags": [
+      "mobile",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1655/",
+      "https://attack.mitre.org/techniques/T1660/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0023",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "MFA fatigue (push bombing)",
+    "back": "With a stolen password, the attacker triggers push prompts again and again until the user taps Approve (ATT&CK **T1621**, MFA Request Generation).\n\nDefense: number matching, phishing-resistant MFA, teach users to report unexpected prompts.",
+    "tags": [
+      "mfa",
+      "mobile"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1621/",
+      "https://www.cisa.gov/MFA"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0024",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Mobile social engineering countermeasures",
+    "back": "- Install apps from **official stores** only; keep **Play Protect** on\n- Do not tap links in unexpected texts; open the official app instead\n- Forward spam texts to **7726**\n- Carrier PIN against SIM swaps\n- Check a QR code's preview URL before opening",
+    "tags": [
+      "mobile",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://support.google.com/googleplay/answer/2812853",
+      "https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages",
+      "https://consumer.ftc.gov/consumer-alerts/2019/10/sim-swap-scams-how-protect-yourself"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0025",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "SPF, DKIM, DMARC",
+    "back": "- **SPF** (RFC 7208): which servers may send for the domain\n- **DKIM** (RFC 6376): domain signature over headers and body\n- **DMARC** (RFC 7489): SPF or DKIM must pass **and align** with the From domain; policy `p=none | quarantine | reject`; `rua=` reports",
+    "tags": [
+      "email-authentication"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc7208",
+      "https://www.rfc-editor.org/rfc/rfc6376",
+      "https://www.rfc-editor.org/rfc/rfc7489",
+      "https://csrc.nist.gov/pubs/sp/800/177/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0026",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Phishing-resistant MFA",
+    "back": "Authentication that binds the result to the real site (channel binding or verifier name binding), so a fake site cannot relay it. Codes the user **types** (SMS, OTP, push codes) are **not** phishing-resistant.\n\nWidely available option: **FIDO2/WebAuthn** (security keys, passkeys).",
+    "tags": [
+      "mfa",
+      "phishing-resistant"
+    ],
+    "sources": [
+      "https://pages.nist.gov/800-63-4/sp800-63b.html",
+      "https://csrc.nist.gov/glossary/term/phishing_resistance",
+      "https://www.cisa.gov/MFA"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0027",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "NCSC's four layers against phishing",
+    "back": "1. Make it hard for attackers to reach users (DMARC, filtering)\n2. Help users identify and **report**\n3. Protect against the effects of a successful phish (MFA, patching, least privilege)\n4. Respond quickly to incidents",
+    "tags": [
+      "defense-in-depth"
+    ],
+    "sources": [
+      "https://www.ncsc.gov.uk/guidance/phishing",
+      "https://www.cisa.gov/resources-tools/resources/phishing-guidance-stopping-attack-cycle-phase-one"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0028",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Identity theft response (US)",
+    "back": "1. Report and get a recovery plan at **IdentityTheft.gov**\n2. **Credit freeze** (free; blocks new credit)\n3. **Fraud alert**: initial 1 year; extended 7 years (needs an identity theft report)\n4. Change passwords, check statements",
+    "tags": [
+      "identity-theft"
+    ],
+    "sources": [
+      "https://consumer.ftc.gov/articles/what-know-about-identity-theft",
+      "https://consumer.ftc.gov/articles/credit-freezes-and-fraud-alerts",
+      "https://www.identitytheft.gov/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0029",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Where to report phishing",
+    "back": "- Email: **reportphishing@apwg.org**; UK: NCSC Suspicious Email Reporting Service\n- Text messages: forward to **7726** (SPAM)\n- US fraud: ReportFraud.ftc.gov; internet crime and BEC: **IC3**\n- Inside the company: the report button or SOC",
+    "tags": [
+      "reporting"
+    ],
+    "sources": [
+      "https://apwg.org/reportphishing/",
+      "https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams",
+      "https://www.ncsc.gov.uk/collection/phishing-scams/report-scam-email",
+      "https://www.ic3.gov/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0030",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Insider threat controls",
+    "back": "- **Least privilege** and **separation of duties**\n- Job rotation and mandatory leave\n- Monitoring and data loss prevention\n- Fast offboarding (remove access on the last day)\n- A program to detect, assess and manage concerning behavior",
+    "tags": [
+      "insider-threat",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/separation_of_duty",
+      "https://csrc.nist.gov/glossary/term/least_privilege",
+      "https://www.cisa.gov/resources-tools/resources/insider-threat-mitigation-guide"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-c-0031",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Anti-phishing toolbars and feeds",
+    "back": "- **Netcraft extension**: blocks known phishing sites, shows site info, reports URLs\n- **PhishTank**: community phishing database with a free API (Cisco Talos)\n- **Google Safe Browsing**: blocklists used by browsers",
+    "tags": [
+      "tools",
+      "anti-phishing"
+    ],
+    "sources": [
+      "https://www.netcraft.com/apps/browser/",
+      "https://phishtank.org/",
+      "https://safebrowsing.google.com/"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

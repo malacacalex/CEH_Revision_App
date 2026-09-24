@@ -3,14 +3,103 @@
   "title": "Denial-of-Service",
   "domain": "D4",
   "effortUnits": 0.75,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "DoS/DDoS Concepts",
     "DoS/DDoS Attack Techniques",
     "DoS/DDoS Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Explain the difference between DoS and DDoS and why a DoS is an attack on availability",
+      "section": "DoS/DDoS Concepts"
+    },
+    {
+      "text": "Sort an attack into volumetric, protocol or application layer, and map it to MITRE ATT&CK T1498 or T1499",
+      "section": "DoS/DDoS Concepts"
+    },
+    {
+      "text": "Describe how a botnet is built and controlled, using Mirai as the example",
+      "section": "DoS/DDoS Concepts"
+    },
+    {
+      "text": "Recognize SYN floods, reflection and amplification, smurf, fragment attacks and low-and-slow HTTP attacks from a short description or log excerpt",
+      "section": "DoS/DDoS Attack Techniques"
+    },
+    {
+      "text": "Rank the main amplification protocols by the CISA TA14-017A amplification factors and name their ports",
+      "section": "DoS/DDoS Attack Techniques"
+    },
+    {
+      "text": "Identify DoS toolkits (LOIC, HOIC, Slowloris, R.U.D.Y.) by name and trait",
+      "section": "DoS/DDoS Attack Techniques"
+    },
+    {
+      "text": "Choose the right countermeasure for each attack: SYN cookies, BCP 38 ingress filtering, RTBH, rate limiting, request timeouts, WAF, scrubbing and anycast",
+      "section": "DoS/DDoS Countermeasures"
+    },
+    {
+      "text": "Outline a DDoS response plan and name the EC-Council detection techniques and response strategies",
+      "section": "DoS/DDoS Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "DoS/DDoS Concepts",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Learn the three categories, botnet vocabulary and the EC-Council propagation names; the history can be skipped."
+    },
+    {
+      "section": "DoS/DDoS Attack Techniques",
+      "priority": "MUST",
+      "minutes": 40,
+      "why": "Most questions describe an attack and ask for its name, category or the protocol abused; learn the amplification ranking."
+    },
+    {
+      "section": "DoS/DDoS Countermeasures",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Matching each attack to its countermeasure (SYN cookies, BCP 38, RTBH, timeouts, scrubbing) is tested often."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Inspect the SYN flood defenses of your own Linux VM",
+      "source": "free",
+      "where": "https://docs.kernel.org/networking/ip-sysctl.html",
+      "skill": "Reading tcp_syncookies, tcp_max_syn_backlog and tcp_synack_retries and watching socket states with ss on a machine you own",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Harden a test web server against floods and slow requests",
+      "source": "free",
+      "where": "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html",
+      "skill": "Configuring request-rate limits (nginx limit_req) and request timeouts (Apache mod_reqtimeout) in your own lab",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Test whether your network allows spoofed source addresses",
+      "source": "free",
+      "where": "https://www.caida.org/projects/spoofer/",
+      "skill": "Measuring source address validation (BCP 38) on a network you are responsible for with CAIDA's Spoofer client",
+      "minutes": 20,
+      "verify": true
+    },
+    {
+      "name": "Write a DDoS response plan for a small online service",
+      "source": "free",
+      "where": "https://www.ncsc.gov.uk/collection/denial-service-dos-guidance-collection",
+      "skill": "Mapping dependencies, upstream contacts, scaling options and test steps before an attack",
+      "minutes": 40,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a shop owner why their website can go down even though nobody hacked into it, and why blocking one IP address does not stop a DDoS.",
+    "Walk through a DNS or NTP amplification attack from the attacker's first packet to the victim's overloaded link, then name one fix for the victim, one for the reflector's owner and one for the attacker's ISP.",
+    "Explain why a Slowloris attack needs so little bandwidth, and why the fix is a timeout rather than a bigger link."
+  ]
 }

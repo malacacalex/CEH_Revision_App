@@ -1,0 +1,642 @@
+[
+  {
+    "id": "m10-c-0001",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "DoS vs DDoS",
+    "back": "**DoS**: one source denies legitimate users access to a service (flood or crash).\n**DDoS**: many coordinated sources, usually a botnet.\n\nThe difference is the **number of sources**, which is why blocking one IP address does not stop a DDoS.",
+    "tags": [
+      "dos",
+      "ddos"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/denial_of_service",
+      "https://csrc.nist.gov/glossary/term/distributed_denial_of_service"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0002",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "The three DDoS categories",
+    "back": "1. **Volumetric**: fill the bandwidth (UDP/ICMP floods, amplification)\n2. **Protocol**: exhaust state or packet processing at layers 3–4 (SYN flood, fragments)\n3. **Application layer**: exhaust the server behind one page or API at layer 7 (HTTP flood, Slowloris)",
+    "tags": [
+      "categories"
+    ],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks",
+      "https://learn.microsoft.com/en-us/azure/ddos-protection/types-of-attacks",
+      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0003",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Units used for each DDoS category",
+    "back": "- Volumetric: **bits per second (bps)**\n- Protocol: **packets per second (pps)**\n- Application layer: **requests per second (rps)**\n\nEC-Council framing; vendors report attack sizes the same way.",
+    "tags": [
+      "categories",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0004",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Botnet vocabulary",
+    "back": "- **Bot / zombie**: a compromised machine\n- **Bot master (herder)**: the person in control\n- **C2 (command and control)**: the channel used to send orders (IRC, HTTP(S), peer-to-peer)\n\nATT&CK: acquire a botnet T1583.005, compromise one T1584.005.",
+    "tags": [
+      "botnet"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/botnet",
+      "https://attack.mitre.org/techniques/T1583/005/",
+      "https://attack.mitre.org/techniques/T1584/005/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0005",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Mirai",
+    "back": "IoT botnet (2016) that scanned for devices with **Telnet** open and logged in with a short list of **factory default usernames and passwords**. Its code was published, so many variants followed.\n\nDefense: change default credentials, patch, do not expose Telnet.",
+    "tags": [
+      "botnet",
+      "mirai",
+      "iot"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://www.cloudflare.com/learning/ddos/glossary/mirai-botnet/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0006",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "ATT&CK T1498 vs T1499",
+    "back": "**T1498 Network DoS**: exhaust bandwidth (.001 direct network flood, .002 reflection amplification).\n**T1499 Endpoint DoS**: exhaust or crash a host or service (.001 OS exhaustion, .002 service exhaustion, .003 application exhaustion, .004 exploitation).\n\nBoth are in the **Impact** tactic (TA0040).",
+    "tags": [
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1498/",
+      "https://attack.mitre.org/techniques/T1499/",
+      "https://attack.mitre.org/tactics/TA0040/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0007",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council botnet scanning methods",
+    "back": "How bots find new vulnerable hosts:\n- **Random** scanning\n- **Hit-list** scanning (pre-built list of targets)\n- **Topological** scanning (uses info found on the infected host)\n- **Local subnet** scanning\n- **Permutation** scanning (shared pseudo-random order)",
+    "tags": [
+      "botnet",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-botnet/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0008",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council malicious code propagation models",
+    "back": "- **Central source**: new victims download the code from one central server\n- **Back-chaining**: the code is copied from the attacking host that just compromised the victim\n- **Autonomous**: the attacker sends the code along with the exploit itself",
+    "tags": [
+      "botnet",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/glossary/term/botnet"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0009",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Ransom DDoS (RDoS)",
+    "back": "Extortion: the attacker threatens or starts a DDoS and asks for payment to stop. Paying does not guarantee the attack stops. Report it and bring in your ISP or protection provider.",
+    "tags": [
+      "extortion"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/ransom-ddos-attack/",
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0010",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "SYN flood",
+    "back": "Many SYNs (often spoofed) that never complete the handshake. Each leaves a **half-open** connection in **SYN-RECEIVED** until the backlog is full and real clients are refused.\n\nCategory: protocol. ATT&CK T1499.001.",
+    "tags": [
+      "syn-flood"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4987",
+      "https://www.cloudflare.com/learning/ddos/syn-flood-ddos-attack/",
+      "https://attack.mitre.org/techniques/T1499/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0011",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Reflection vs amplification",
+    "back": "- **Reflection**: requests carry the **victim's spoofed source address**, so third-party servers (reflectors) answer the victim.\n- **Amplification**: the answer is much larger than the request.\n\nTogether = **DRDoS**. Needs a connectionless protocol (UDP).",
+    "tags": [
+      "amplification",
+      "reflection"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1498/002/",
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0012",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Top amplification factors (CISA TA14-017A)",
+    "back": "1. **Memcached** 10,000–51,000\n2. **NTP** 556.9 (monlist)\n3. **CharGEN** 358.8\n4. **QOTD** 140.3\n5. **CLDAP** 56–70\n6. **DNS** 28–54\n\nMnemonic: **Many Nasty Chars** (Memcached, NTP, CharGEN).",
+    "tags": [
+      "amplification"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks",
+      "https://blog.cloudflare.com/memcrashed-major-amplification-attacks-from-port-11211/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0013",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "port",
+    "front": "UDP ports abused for amplification",
+    "back": "- DNS **53**\n- NTP **123**\n- SNMP **161**\n- CharGEN **19**, QOTD **17**\n- CLDAP **389**\n- SSDP **1900**\n- WS-Discovery **3702**\n- Memcached **11211**",
+    "tags": [
+      "amplification",
+      "ports"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks",
+      "https://www.cloudflare.com/learning/ddos/ssdp-ddos-attack/",
+      "https://blog.cloudflare.com/memcrashed-major-amplification-attacks-from-port-11211/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0014",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "NTP amplification",
+    "back": "Spoofed `monlist` requests make NTP servers send a list of up to 600 recent clients to the victim (CVE-2013-5211). Fix: ntpd 4.2.7p26 or later, or disable monlist.",
+    "tags": [
+      "amplification",
+      "ntp"
+    ],
+    "sources": [
+      "https://nvd.nist.gov/vuln/detail/CVE-2013-5211",
+      "https://www.cisa.gov/news-events/alerts/2014/01/13/ntp-amplification-attacks-using-cve-2013-5211",
+      "https://www.cloudflare.com/learning/ddos/ntp-amplification-ddos-attack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0015",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Smurf vs Fraggle",
+    "back": "**Smurf**: ICMP echo requests to a **directed broadcast** address with the victim's spoofed source; every host replies to the victim.\n**Fraggle**: the same with **UDP** (echo, chargen).\n\nFix: routers drop directed broadcasts (RFC 2644).",
+    "tags": [
+      "smurf",
+      "fraggle"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/smurf-ddos-attack/",
+      "https://www.rfc-editor.org/rfc/rfc2644",
+      "https://www.imperva.com/learn/ddos/smurf-attack-ddos/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0016",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Old malformed-packet attacks",
+    "back": "- **Ping of death**: reassembled IP packet above **65,535 bytes** (CVE-1999-0128)\n- **Teardrop**: **overlapping** fragments (CVE-1999-0015)\n- **Land**: **same source and destination** IP and port (CVE-1999-0016)\n\nAll fixed by patched TCP/IP stacks.",
+    "tags": [
+      "fragmentation"
+    ],
+    "sources": [
+      "https://nvd.nist.gov/vuln/detail/CVE-1999-0128",
+      "https://nvd.nist.gov/vuln/detail/CVE-1999-0015",
+      "https://nvd.nist.gov/vuln/detail/CVE-1999-0016",
+      "https://www.cloudflare.com/learning/ddos/ping-of-death-ddos-attack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0017",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Slowloris",
+    "back": "Low-and-slow layer 7 attack: opens many connections and keeps each open by sending **partial HTTP headers** slowly. The connection pool fills with little bandwidth.\n\nApache: CVE-2007-6750, fixed with **mod_reqtimeout**.",
+    "tags": [
+      "slowloris",
+      "application-layer"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/",
+      "https://nvd.nist.gov/vuln/detail/CVE-2007-6750",
+      "https://www.imperva.com/learn/ddos/slowloris/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0018",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "HTTP flood",
+    "back": "Many valid-looking GET or POST requests, often to expensive pages (search, login). Each request is legal, so packet filters cannot tell it from real users. Defenses: WAF, rate limiting, challenges, caching.",
+    "tags": [
+      "http-flood",
+      "application-layer"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/http-flood-ddos-attack/",
+      "https://www.imperva.com/learn/ddos/http-flood/",
+      "https://attack.mitre.org/techniques/T1499/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0019",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "HTTP/2 Rapid Reset (CVE-2023-44487)",
+    "back": "The client opens HTTP/2 streams and cancels them immediately, many times per connection; the server keeps doing work for requests that no longer exist. Record-size attacks in 2023. Fix: patched servers and limits on stream resets.",
+    "tags": [
+      "http2",
+      "application-layer"
+    ],
+    "sources": [
+      "https://nvd.nist.gov/vuln/detail/CVE-2023-44487",
+      "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487",
+      "https://blog.cloudflare.com/technical-breakdown-http2-rapid-reset-ddos-attack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0020",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "LOIC and HOIC",
+    "back": "- **LOIC** (Low Orbit Ion Cannon): open-source TCP/UDP/HTTP flooder used by hacktivist groups; it does **not** hide the user's IP.\n- **HOIC** (High Orbit Ion Cannon): LOIC's successor for HTTP floods, with \"booster\" scripts to vary requests.",
+    "tags": [
+      "tools",
+      "loic",
+      "hoic"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/low-orbit-ion-cannon-loic/",
+      "https://www.imperva.com/learn/ddos/low-orbit-ion-cannon/",
+      "https://www.imperva.com/learn/ddos/high-orbit-ion-cannon/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0021",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Permanent DoS (PDoS, phlashing)",
+    "back": "Damages the device itself, usually by corrupting firmware, so it must be reflashed or replaced. Related ATT&CK technique: T1495 Firmware Corruption.",
+    "tags": [
+      "pdos",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1495/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0022",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Other EC-Council DoS terms",
+    "back": "- **Peer-to-peer attack**: clients of a file-sharing hub are redirected to connect to the victim\n- **Pulse wave**: short repeated bursts, switching between targets\n- **Multi-vector**: several categories at once\n- **Spoofed session flood**: fake TCP sessions to get past stateful devices",
+    "tags": [
+      "terms",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0023",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "RFC 4987 SYN flood defenses",
+    "back": "- Filtering\n- Increasing the backlog\n- Reducing the SYN-RECEIVED timer\n- Recycling the oldest half-open TCB\n- SYN cache\n- **SYN cookies**\n- Hybrid approaches\n- Firewalls and proxies",
+    "tags": [
+      "syn-flood",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4987",
+      "https://blog.cloudflare.com/syn-packet-handling-in-the-wild/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0024",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "command",
+    "front": "Linux: are SYN cookies on?",
+    "back": "`sysctl net.ipv4.tcp_syncookies`\n\n- `1` (default): cookies are sent only when the SYN backlog overflows\n- `0`: off\n\nThey are a fallback during an attack, not a fix for a server overloaded by real users. Related: `tcp_max_syn_backlog`, `tcp_synack_retries`.",
+    "tags": [
+      "syn-flood",
+      "linux"
+    ],
+    "sources": [
+      "https://docs.kernel.org/networking/ip-sysctl.html",
+      "https://blog.cloudflare.com/syn-packet-handling-in-the-wild/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0025",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "BCP 38 (RFC 2827) ingress filtering",
+    "back": "The ISP drops packets from a customer whose **source address does not belong to that customer**. This stops spoofing at the edge, which makes reflection attacks impossible from that network.\n\nBCP 84 (RFC 3704) extends it to multihomed networks with **uRPF**.",
+    "tags": [
+      "bcp38",
+      "anti-spoofing"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc2827",
+      "https://www.rfc-editor.org/rfc/rfc3704",
+      "https://csrc.nist.gov/pubs/sp/800/189/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0026",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Remotely triggered black hole (RTBH)",
+    "back": "The ISP drops all traffic to the attacked address (RFC 5635; BGP BLACKHOLE community, RFC 7999). It protects the rest of the network, but the **target goes offline**, so the attacker's goal is met for that address.",
+    "tags": [
+      "rtbh",
+      "blackhole"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5635",
+      "https://www.rfc-editor.org/rfc/rfc7999",
+      "https://www.cloudflare.com/learning/ddos/glossary/ddos-blackhole-routing/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0027",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Stop being an amplifier",
+    "back": "- Close open DNS resolvers (BCP 140 / RFC 5358), use response rate limiting\n- Patch or disable NTP monlist\n- Disable unused UDP services (CharGEN, QOTD, SSDP, memcached UDP)\n- Rate-limit UDP services",
+    "tags": [
+      "amplification",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks",
+      "https://www.rfc-editor.org/rfc/rfc5358",
+      "https://nvd.nist.gov/vuln/detail/CVE-2013-5211"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0028",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Slow attack defenses (Slowloris, R.U.D.Y.)",
+    "back": "- Request timeouts and **minimum data rates** (Apache `mod_reqtimeout`)\n- Connection limits per IP (nginx `limit_conn`)\n- Reverse proxy or CDN in front of the server\n\nA timeout, not more bandwidth.",
+    "tags": [
+      "slowloris",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html",
+      "https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html",
+      "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0029",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Absorb and divert",
+    "back": "- **Anycast**: one IP announced from many sites, the flood is split\n- **Scrubbing center**: traffic rerouted to a provider, cleaned, sent back\n- **CDN / protection services**: Cloudflare, Akamai, AWS Shield, Azure DDoS Protection, Google Cloud Armor\n- **Over-provisioning**: spare capacity, costly",
+    "tags": [
+      "mitigation",
+      "services"
+    ],
+    "sources": [
+      "https://www.cloudflare.com/learning/cdn/glossary/anycast-network/",
+      "https://www.cloudflare.com/learning/ddos/ddos-mitigation/",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html",
+      "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0030",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Rate limiting",
+    "back": "Caps requests per client key (IP, user, API key). nginx `limit_req` uses a leaky bucket and rejects excess requests with **503** by default. Watch out for many users behind one NAT address.",
+    "tags": [
+      "rate-limiting"
+    ],
+    "sources": [
+      "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html",
+      "https://www.cloudflare.com/learning/bots/what-is-rate-limiting/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0031",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council detection techniques",
+    "back": "- **Activity profiling**: average packet rate per flow; a sudden rise = attack\n- **Sequential change-point detection**: statistical change in traffic (CUSUM)\n- **Wavelet-based signal analysis**: split traffic into frequency components to spot anomalies",
+    "tags": [
+      "detection",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0032",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council response strategies",
+    "back": "- **Absorb** the attack (extra capacity)\n- **Degrade** services (turn off non-critical features)\n- **Shut down** services until it ends\n\nAlso: deflect with honeypots, neutralize handlers, protect secondary victims, post-attack forensics (traffic pattern analysis, traceback).",
+    "tags": [
+      "response",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.ncsc.gov.uk/collection/denial-service-dos-guidance-collection"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-c-0033",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "DDoS response plan (NCSC / CISA)",
+    "back": "1. Understand your service and its bottlenecks\n2. Know your upstream defenses and **contacts** (ISP, cloud, protection provider)\n3. Plan to scale or degrade gracefully\n4. Test the plan\n\nThen handle it as an incident: detect, respond, recover, learn.",
+    "tags": [
+      "response"
+    ],
+    "sources": [
+      "https://www.ncsc.gov.uk/collection/denial-service-dos-guidance-collection",
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks",
+      "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,289 @@
+[
+  {
+    "id": "m10-q-0056",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What separates Endpoint Denial of Service (ATT&CK T1499) from Network Denial of Service (T1498)?",
+    "options": [
+      "T1499 always uses reflectors; T1498 never does",
+      "T1499 exhausts or crashes a host or service; T1498 exhausts the network bandwidth to it",
+      "T1499 is carried out by one host; T1498 always needs a botnet",
+      "T1499 targets confidentiality; T1498 targets availability"
+    ],
+    "answer": 1,
+    "explanation": "Network DoS fills the pipe (direct floods, reflection amplification). Endpoint DoS goes after the OS, a service or an application, by exhaustion or by exploiting a bug.",
+    "optionNotes": [
+      "Reflection amplification is a T1498 sub-technique.",
+      "Correct.",
+      "Both can be single-source or distributed.",
+      "Both target availability."
+    ],
+    "tags": ["mitre-attack"],
+    "sources": ["https://attack.mitre.org/techniques/T1498/", "https://attack.mitre.org/techniques/T1499/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0057",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "While a bank's security team is busy with a large DDoS on its public website, fraudulent transfers are pushed through a compromised back-office account. What role did the DDoS most likely play?",
+    "options": [
+      "A smokescreen to distract defenders from another intrusion",
+      "A permanent DoS against the transfer system",
+      "A reflection attack using the bank's servers",
+      "A test of the bank's backup link"
+    ],
+    "answer": 0,
+    "explanation": "A DDoS can be a diversion. During an attack, keep watching other systems for intrusions.",
+    "optionNotes": [
+      "Correct: the flood absorbs attention and fills logs.",
+      "Nothing was permanently damaged.",
+      "The bank was the target, not the reflector.",
+      "Attackers do not test the victim's resilience for it."
+    ],
+    "tags": ["motives"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks",
+      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0058",
+    "module": 10,
+    "section": "DoS/DDoS Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's botnet scanning methods, which one uses information found on the newly infected machine, such as addresses of other hosts it talks to, to choose the next targets?",
+    "options": ["Permutation scanning", "Random scanning", "Hit-list scanning", "Topological scanning"],
+    "answer": 3,
+    "explanation": "Remember the five: random, hit-list, topological, local subnet, permutation.",
+    "optionNotes": [
+      "Permutation scanning follows a shared pseudo-random order.",
+      "Random scanning picks addresses at random.",
+      "Hit-list scanning uses a list prepared in advance.",
+      "Correct."
+    ],
+    "tags": ["botnet", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/botnet"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0059",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "The Fraggle attack is the variant of the smurf attack that uses which protocol?",
+    "options": ["TCP", "ICMP", "UDP", "ARP"],
+    "answer": 2,
+    "explanation": "Smurf = ICMP, Fraggle = UDP; both need directed broadcasts, which routers drop by default (RFC 2644).",
+    "optionNotes": [
+      "TCP needs a handshake, which a broadcast cannot complete.",
+      "ICMP is used by smurf itself.",
+      "Correct: UDP echo or chargen sent to a broadcast address.",
+      "ARP is not routed across networks."
+    ],
+    "tags": ["fraggle", "ec-council-specific"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2644", "https://www.cloudflare.com/learning/ddos/smurf-ddos-attack/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0060",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A victim receives floods of UDP replies from source port 1900, sent by thousands of home routers and smart TVs with UPnP enabled. Which reflection vector is being used?",
+    "options": ["CLDAP", "NTP", "Memcached", "SSDP"],
+    "answer": 3,
+    "explanation": "The reflectors' source port identifies the protocol. SSDP reflectors are usually consumer devices exposing UPnP to the internet.",
+    "optionNotes": [
+      "CLDAP uses port 389.",
+      "NTP uses port 123.",
+      "Memcached uses port 11211.",
+      "Correct: SSDP runs on UDP 1900 (factor about 31 in CISA TA14-017A)."
+    ],
+    "tags": ["amplification", "ssdp"],
+    "sources": [
+      "https://www.cloudflare.com/learning/ddos/ssdp-ddos-attack/",
+      "https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0061",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Which of these attacks works without spoofing the source address?",
+    "options": ["Smurf", "Slowloris", "DNS amplification", "NTP reflection"],
+    "answer": 1,
+    "explanation": "Anything built on a completed TCP connection (Slowloris, HTTP floods) cannot spoof; reflection attacks depend on spoofing, so BCP 38 does not help against Slowloris.",
+    "optionNotes": [
+      "Smurf needs the victim's address as the spoofed source.",
+      "Correct: it needs real, completed TCP connections.",
+      "DNS amplification needs the victim's spoofed address.",
+      "NTP reflection needs the victim's spoofed address."
+    ],
+    "tags": ["slowloris", "spoofing"],
+    "sources": ["https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris/", "https://attack.mitre.org/techniques/T1498/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0062",
+    "module": 10,
+    "section": "DoS/DDoS Attack Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A packet capture on a victim's uplink shows a stream of lines like `UDP 198.51.100.9.19 > 203.0.113.10.8080 length 1024` from many different sources. Which service is being abused?",
+    "options": ["CharGEN reflection", "DNS amplification", "SNMP reflection", "NTP amplification"],
+    "answer": 0,
+    "explanation": "CharGEN (factor about 359 in CISA TA14-017A) should be disabled everywhere; it has no modern use.",
+    "optionNotes": [
+      "Correct: UDP port 19 is the character generator service.",
+      "DNS replies come from port 53.",
+      "SNMP replies come from port 161.",
+      "NTP replies come from port 123."
+    ],
+    "tags": ["amplification", "chargen"],
+    "sources": ["https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks", "https://www.rfc-editor.org/rfc/rfc864"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0063",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "What does strict unicast Reverse Path Forwarding (uRPF), described in BCP 84, check on each incoming packet?",
+    "options": [
+      "That the destination port is open",
+      "That the packet's TTL is above a threshold",
+      "That the best route back to the source address uses the interface the packet arrived on",
+      "That the payload matches a known attack signature"
+    ],
+    "answer": 2,
+    "explanation": "uRPF automates ingress filtering (BCP 38) on routers; BCP 84 (RFC 3704) explains how to use it on multihomed networks.",
+    "optionNotes": [
+      "uRPF does not look at ports.",
+      "TTL is not the uRPF check.",
+      "Correct: otherwise the source is probably spoofed and the packet is dropped.",
+      "That is IDS signature matching."
+    ],
+    "tags": ["urpf", "anti-spoofing"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc3704", "https://csrc.nist.gov/pubs/sp/800/189/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0064",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A public API receives 50,000 requests per second from three IP addresses while normal users send a few per minute. What is the simplest effective control?",
+    "options": [
+      "Per-client rate limiting at the API gateway or reverse proxy",
+      "Enable SYN cookies",
+      "Ask the ISP to blackhole the API's address",
+      "Turn off directed broadcasts"
+    ],
+    "answer": 0,
+    "explanation": "Rate limiting keys on the client (IP, token) and caps requests per interval. A few noisy sources are the easy case; botnets need WAF rules and challenges too.",
+    "optionNotes": [
+      "Correct: excess requests are delayed or rejected (nginx limit_req returns 503 by default).",
+      "The clients complete the handshake; this is a layer 7 problem.",
+      "Blackholing would take the API offline for everyone.",
+      "Directed broadcasts are unrelated to HTTP."
+    ],
+    "tags": ["rate-limiting"],
+    "sources": ["https://nginx.org/en/docs/http/ngx_http_limit_req_module.html", "https://www.cloudflare.com/learning/bots/what-is-rate-limiting/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0065",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An e-commerce company is writing its DDoS plan. Which preparation step do both the UK NCSC and the CISA/FBI/MS-ISAC guidance stress before any attack?",
+    "options": [
+      "Plan to pay any ransom quickly",
+      "Keep the attacker's IP addresses in a blocklist",
+      "Disable logging to save resources during attacks",
+      "Know what your ISP and protection providers can do and how to reach them fast"
+    ],
+    "answer": 3,
+    "explanation": "Understand your service, know your upstream defenses and contacts, plan to scale or degrade, and test the plan.",
+    "optionNotes": [
+      "Paying does not guarantee the attack stops.",
+      "DDoS sources change constantly; a static list is useless.",
+      "Logs are needed to classify the attack and learn from it.",
+      "Correct: upstream help must be arranged in advance."
+    ],
+    "tags": ["response"],
+    "sources": [
+      "https://www.ncsc.gov.uk/collection/denial-service-dos-guidance-collection",
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m10-q-0066",
+    "module": 10,
+    "section": "DoS/DDoS Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "An analyst has a packet capture from a server that went offline and wants to look at the TCP flags and source addresses packet by packet. Which tool is designed for this?",
+    "options": ["HOIC", "LOIC", "Wireshark", "mod_reqtimeout"],
+    "answer": 2,
+    "explanation": "Traffic analysis is how you classify a DoS: many SYNs without ACKs, large UDP from one port, or slow partial requests each point to a different fix.",
+    "optionNotes": [
+      "HOIC is a flooding tool.",
+      "LOIC is a flooding tool.",
+      "Correct: a protocol analyzer.",
+      "mod_reqtimeout is an Apache module that limits slow requests."
+    ],
+    "tags": ["detection", "tools"],
+    "sources": ["https://www.wireshark.org/docs/wsug_html_chunked/", "https://www.cisa.gov/news-events/news/understanding-denial-service-attacks"],
+    "verify": false,
+    "rev": 1
+  }
+]

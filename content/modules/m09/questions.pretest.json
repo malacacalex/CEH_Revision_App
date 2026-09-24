@@ -1,0 +1,261 @@
+[
+  {
+    "id": "m09-q-0001",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement best describes social engineering?",
+    "options": [
+      "Scanning a network for open ports and services",
+      "Exploiting a buffer overflow in a web server",
+      "Manipulating people into giving information or taking actions that help an attack",
+      "Cracking password hashes offline"
+    ],
+    "answer": 2,
+    "explanation": "Social engineering deceives a person into revealing information or doing something useful to the attacker.",
+    "optionNotes": [
+      "That is scanning.",
+      "That is a software exploit.",
+      "Correct: the target is the person, not the software.",
+      "That is password cracking, although social engineering may supply the password directly."
+    ],
+    "tags": ["social-engineering"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/social_engineering",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0002",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An email says: 'Final notice from the tax office: pay within 2 hours or a penalty is applied.' Which two levers does it use?",
+    "options": ["Scarcity and social proof", "Authority and urgency", "Reciprocity and liking", "Curiosity and consistency"],
+    "answer": 1,
+    "explanation": "Official-sounding senders (authority) and short deadlines with penalties (urgency) push people to act before thinking.",
+    "optionNotes": [
+      "Nothing rare is offered and it does not claim others complied.",
+      "Correct: an official sender plus a short deadline.",
+      "No favor or friendship is involved.",
+      "It does not tease or ask for consistency with earlier commitments."
+    ],
+    "tags": ["persuasion"],
+    "sources": [
+      "https://www.ncsc.gov.uk/collection/phishing-scams/spot-scams",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0003",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A caller claims to be from the IT help desk and offers to fix a 'slow laptop' if the employee reads out their password. Which technique is this?",
+    "options": ["Quid pro quo", "Dumpster diving", "Shoulder surfing", "Pharming"],
+    "answer": 0,
+    "explanation": "Quid pro quo means 'something for something': help or a gift in return for credentials. Real IT staff never ask for a password.",
+    "optionNotes": [
+      "Correct: a service offered in exchange for access.",
+      "Dumpster diving searches rubbish.",
+      "Shoulder surfing watches someone type.",
+      "Pharming redirects web traffic technically."
+    ],
+    "tags": ["human-based", "ec-council-specific"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0004",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "An employee who ignores policy and lends their badge to a contractor 'just this once' is which type of insider threat?",
+    "options": ["Compromised insider", "Malicious insider", "Collusive insider", "Negligent insider"],
+    "answer": 3,
+    "explanation": "CISA: negligent insiders know the security policies but choose to ignore them, for example by letting someone piggyback.",
+    "optionNotes": [
+      "A compromised insider's account is controlled by an outsider.",
+      "A malicious insider intends harm.",
+      "Collusive means working with an outside attacker on purpose.",
+      "Correct: knows the rules, ignores them, no intent to harm."
+    ],
+    "tags": ["insider-threat"],
+    "sources": [
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation/defining-insider-threats",
+      "https://csrc.nist.gov/glossary/term/insider_threat"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0005",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is whaling?",
+    "options": [
+      "Spear phishing aimed at senior executives",
+      "Phishing through SMS messages",
+      "Redirecting users through DNS poisoning",
+      "Bulk phishing sent to millions of addresses"
+    ],
+    "answer": 0,
+    "explanation": "Whaling targets 'big fish' such as the CEO or CFO, usually with legal, board or finance themes.",
+    "optionNotes": ["Correct.", "That is smishing.", "That is pharming.", "That is untargeted mass phishing."],
+    "tags": ["phishing", "whaling"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1566/",
+      "https://attack.mitre.org/techniques/T1684/001/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0006",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A security team wants an open-source platform to run authorized phishing-awareness campaigns and track who opened, clicked and reported. Which tool fits?",
+    "options": ["Nmap", "Gophish", "Wireshark", "John the Ripper"],
+    "answer": 1,
+    "explanation": "Gophish manages templates, landing pages, target groups and campaign results for awareness testing.",
+    "optionNotes": [
+      "Nmap scans networks.",
+      "Correct: an open-source phishing simulation framework.",
+      "Wireshark captures packets.",
+      "John the Ripper cracks passwords."
+    ],
+    "tags": ["tools", "gophish"],
+    "sources": ["https://getgophish.com/", "https://docs.getgophish.com/user-guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0007",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Stickers with a new QR code are found glued over the payment codes on city parking meters. What is this?",
+    "options": ["Spimming", "Vishing", "Tailgating", "Quishing"],
+    "answer": 3,
+    "explanation": "Quishing uses QR codes to send victims to phishing sites; covering real codes on meters is a reported pattern.",
+    "optionNotes": [
+      "Spimming is spam over instant messaging.",
+      "Vishing uses voice calls.",
+      "Tailgating is physical entry behind someone.",
+      "Correct: QR-code phishing."
+    ],
+    "tags": ["quishing", "mobile"],
+    "sources": [
+      "https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information",
+      "https://attack.mitre.org/techniques/T1660/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0008",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which attack lets an attacker receive a victim's SMS one-time codes by convincing the mobile carrier to move the number?",
+    "options": ["Smishing", "Bluejacking", "SIM swapping", "Repackaging"],
+    "answer": 2,
+    "explanation": "In a SIM swap the attacker impersonates the victim to the carrier; SMS-based MFA then goes to the attacker.",
+    "optionNotes": [
+      "Smishing sends lures by SMS; it does not move the number.",
+      "Bluejacking sends unsolicited Bluetooth messages.",
+      "Correct: ATT&CK Mobile T1451.",
+      "Repackaging modifies an app."
+    ],
+    "tags": ["sim-swap"],
+    "sources": ["https://attack.mitre.org/techniques/T1451/", "https://consumer.ftc.gov/consumer-alerts/2019/10/sim-swap-scams-how-protect-yourself"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0009",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which email authentication record tells receiving servers what to do with mail that fails SPF and DKIM alignment, and where to send reports?",
+    "options": ["DKIM", "SPF", "DMARC", "MX"],
+    "answer": 2,
+    "explanation": "DMARC publishes a policy (none, quarantine, reject) and reporting addresses on top of SPF and DKIM results.",
+    "optionNotes": [
+      "DKIM signs messages.",
+      "SPF lists allowed sending servers.",
+      "Correct: RFC 7489 policy and reporting.",
+      "MX records route incoming mail."
+    ],
+    "tags": ["email-authentication"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://csrc.nist.gov/pubs/sp/800/177/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0010",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A mail header shows `Authentication-Results: mx.example.net; spf=fail smtp.mailfrom=payroll-example.com; dkim=none; dmarc=fail header.from=example.com`. What should the analyst conclude?",
+    "options": [
+      "The receiving server is misconfigured and rejected valid mail",
+      "The message is authentic because a DMARC result is present",
+      "SPF passed, so only the DKIM key is missing",
+      "The message claims to be from example.com but failed authentication, so it is likely spoofed"
+    ],
+    "answer": 3,
+    "explanation": "Read each method in Authentication-Results: spf=fail, dkim=none and dmarc=fail for header.from=example.com mean the From domain was not authenticated.",
+    "optionNotes": [
+      "Nothing shows a receiver error; the sender failed the checks.",
+      "A DMARC result can be fail; its presence proves nothing.",
+      "The header says spf=fail.",
+      "Correct: SPF fail, no DKIM and DMARC fail for the From domain."
+    ],
+    "tags": ["email-authentication", "headers"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8601", "https://www.rfc-editor.org/rfc/rfc7489"],
+    "verify": false,
+    "rev": 1
+  }
+]

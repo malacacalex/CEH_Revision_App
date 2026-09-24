@@ -1,0 +1,1353 @@
+[
+  {
+    "id": "m05-q-0011",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these is a correctly formatted CVE identifier?",
+    "options": ["CVE-24-1234", "CVE-2024-12345", "CWE-2024-1234", "CVE-2024-123"],
+    "answer": 1,
+    "explanation": "CVE IDs follow CVE-YYYY-NNNN with four or more digits after the year (the CVE JSON schema allows 4 to 19).",
+    "optionNotes": [
+      "The year must have four digits.",
+      "Correct: CVE, a four-digit year, then four or more digits.",
+      "CWE is the weakness list, not the vulnerability ID.",
+      "The sequence number needs at least four digits."
+    ],
+    "tags": ["cve"],
+    "sources": ["https://github.com/CVEProject/cve-schema", "https://www.cve.org/ResourcesSupport/Glossary"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0012",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Who assigns CVE IDs and publishes the corresponding CVE Records?",
+    "options": ["CISA's KEV team", "The NVD analysts at NIST", "FIRST's CVSS SIG", "CVE Numbering Authorities (CNAs)"],
+    "answer": 3,
+    "explanation": "CNAs (vendors, CERTs, researchers, and MITRE as CNA of last resort) assign CVE IDs and author the records.",
+    "optionNotes": [
+      "The KEV team lists exploited CVEs that already exist.",
+      "The NVD enriches records after they are published; it does not assign IDs.",
+      "FIRST maintains CVSS, not CVE.",
+      "Correct: CNAs are authorized to assign IDs and publish records within their scope."
+    ],
+    "tags": ["cve", "cna"],
+    "sources": ["https://www.cve.org/ResourcesSupport/Glossary", "https://www.cve.org/ResourcesSupport/FAQs"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0013",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does the NVD add to a CVE Record that the CVE entry itself may not contain?",
+    "options": [
+      "A CVSS base score, CWE mapping and CPE applicability data",
+      "The original CVE ID assignment",
+      "Exploit code for testing the vulnerability",
+      "The environmental CVSS score for your organization"
+    ],
+    "answer": 0,
+    "explanation": "NIST's NVD analyzes each published CVE and attaches severity (CVSS base), weakness type (CWE) and affected products (CPE).",
+    "optionNotes": [
+      "Correct: NVD enrichment adds CVSS, CWE and CPE.",
+      "CNAs assign the ID before NVD sees it.",
+      "NVD does not publish exploits.",
+      "Environmental scoring depends on your environment, so only you can do it."
+    ],
+    "tags": ["nvd"],
+    "sources": ["https://nvd.nist.gov/vuln-metrics/cvss", "https://nvd.nist.gov/general"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0014",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which CVSS metrics does the NVD provide for CVE records?",
+    "options": ["Environmental metrics only", "Base, temporal and environmental metrics", "Base metrics only", "Threat and supplemental metrics only"],
+    "answer": 2,
+    "explanation": "NVD scores the base group; each organization adds threat/temporal and environmental context itself with a CVSS calculator.",
+    "optionNotes": [
+      "Environmental metrics are set by each organization.",
+      "NVD does not provide temporal or environmental assessments.",
+      "Correct: NVD scores the intrinsic characteristics only.",
+      "NVD does not provide threat or supplemental assessments."
+    ],
+    "tags": ["nvd", "cvss"],
+    "sources": ["https://nvd.nist.gov/vuln-metrics/cvss", "https://www.first.org/cvss/v3.1/user-guide"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0015",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "NVD rates a flaw 9.8, but the only affected server sits on an isolated lab network and holds test data. Which CVSS metric group lets the team reflect this in its own score?",
+    "options": ["Supplemental", "Base", "Temporal", "Environmental"],
+    "answer": 3,
+    "explanation": "Modified base metrics (for example a reduced attack vector) and security requirements (CR/IR/AR) belong to the environmental group.",
+    "optionNotes": [
+      "Supplemental metrics (v4.0) add context but never change the score.",
+      "Base metrics describe the flaw itself and stay the same everywhere.",
+      "Temporal metrics track exploit code and fixes over time.",
+      "Correct: environmental metrics adapt the score to your environment and asset importance."
+    ],
+    "tags": ["cvss"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://www.first.org/cvss/v3.1/user-guide"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0016",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A finding shows `CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N` (6.1). Which statement about this vulnerability is correct?",
+    "options": [
+      "The attacker needs physical access to the device",
+      "A victim must take an action, such as clicking a link, and the impact reaches beyond the vulnerable component",
+      "The attacker must already hold administrator privileges",
+      "It fully compromises confidentiality, integrity and availability"
+    ],
+    "answer": 1,
+    "explanation": "Read the vector metric by metric. This pattern (network, user interaction, scope changed, low C and I) is typical of reflected cross-site scripting and scores 6.1 Medium.",
+    "optionNotes": [
+      "AV:N means exploitable over the network.",
+      "Correct: UI:R means user interaction is required; S:C means scope changed.",
+      "PR:N means no privileges are needed.",
+      "C:L/I:L/A:N is a limited impact, with no availability impact."
+    ],
+    "tags": ["cvss", "vector-string"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://www.first.org/cvss/calculator/3.1"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0017",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In CVSS v3.1, what does the Attack Vector value Physical (AV:P) mean?",
+    "options": [
+      "The attacker must be on the same local subnet",
+      "The attack can be launched from anywhere on the internet",
+      "The attacker must touch or physically manipulate the vulnerable component",
+      "The attacker needs a local logged-in session"
+    ],
+    "answer": 2,
+    "explanation": "Attack Vector, from widest to narrowest: Network, Adjacent, Local, Physical. The narrower the vector, the lower the score.",
+    "optionNotes": ["That is Adjacent (AV:A).", "That is Network (AV:N).", "Correct.", "That is Local (AV:L)."],
+    "tags": ["cvss"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://www.first.org/cvss/calculator/3.1"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0018",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A Bluetooth stack flaw can only be exploited by an attacker within radio range of the device. Which CVSS v3.1 Attack Vector fits?",
+    "options": ["Adjacent (A)", "Network (N)", "Local (L)", "Physical (P)"],
+    "answer": 0,
+    "explanation": "Adjacent covers attacks bound to the network stack but limited to a logically adjacent topology: same subnet, Bluetooth, 802.11.",
+    "optionNotes": [
+      "Correct: limited to a shared physical or logical network such as Bluetooth, Wi-Fi or the local subnet.",
+      "Network means routable across the internet.",
+      "Local means the attacker needs local access or a user to run something on the system.",
+      "Physical means touching the hardware."
+    ],
+    "tags": ["cvss"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://www.first.org/cvss/calculator/3.1"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0019",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which three metrics make up the CVSS v3.1 Temporal group?",
+    "options": [
+      "Confidentiality, Integrity and Availability Requirements",
+      "Attack Vector, Attack Complexity, Privileges Required",
+      "Exploit Code Maturity, Remediation Level, Report Confidence",
+      "Safety, Automatable, Recovery"
+    ],
+    "answer": 2,
+    "explanation": "Temporal metrics change over time: exploit code appears, patches ship, and confidence in the report grows. v4.0 replaces this group with Threat (Exploit Maturity only).",
+    "optionNotes": [
+      "These are environmental security requirements.",
+      "These are base exploitability metrics.",
+      "Correct.",
+      "These are CVSS v4.0 supplemental metrics."
+    ],
+    "tags": ["cvss"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://nvd.nist.gov/vuln-metrics/cvss"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0020",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "How does CVSS v4.0 replace the v3.1 Scope metric?",
+    "options": [
+      "It scores impact separately for the vulnerable system and for subsequent systems",
+      "It adds a Scope Changed value to Attack Vector",
+      "It moves Scope into the Threat group",
+      "It drops impact on other systems from scoring altogether"
+    ],
+    "answer": 0,
+    "explanation": "Scope was hard to apply consistently, so v4.0 describes impact on the vulnerable system and on subsequent systems with separate metrics.",
+    "optionNotes": [
+      "Correct: VC/VI/VA for the vulnerable system and SC/SI/SA for subsequent systems.",
+      "Attack Vector keeps its four values.",
+      "The Threat group holds Exploit Maturity only.",
+      "Impact on other systems is still scored, through the subsequent-system metrics."
+    ],
+    "tags": ["cvss", "cvss-v4"],
+    "sources": ["https://www.first.org/cvss/v4.0/specification-document", "https://www.first.org/cvss/v4.0/faq"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0021",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "A CVSS v4.0 score is labeled CVSS-BT. Which metric groups were used to calculate it?",
+    "options": ["Base and Temporal", "Base and Threat", "Base and Environmental", "Base, Threat and Environmental"],
+    "answer": 1,
+    "explanation": "v4.0 names each score by the groups used: CVSS-B, CVSS-BT, CVSS-BE, CVSS-BTE. Providers such as the NVD usually publish CVSS-B only.",
+    "optionNotes": ["v4.0 has no Temporal group; it became Threat.", "Correct.", "That would be CVSS-BE.", "That would be CVSS-BTE."],
+    "tags": ["cvss", "cvss-v4"],
+    "sources": ["https://www.first.org/cvss/v4.0/specification-document", "https://nvd.nist.gov/vuln-metrics/cvss"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0022",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which values can the User Interaction metric take in CVSS v4.0?",
+    "options": ["Not Defined, Required, Optional", "None, Required", "Low, High", "None, Passive, Active"],
+    "answer": 3,
+    "explanation": "v4.0 splits user interaction by how much the victim has to do: Passive (limited, involuntary) or Active (conscious, specific actions).",
+    "optionNotes": ["Not a CVSS value set.", "Those are the v3.1 values.", "Those are Attack Complexity values.", "Correct."],
+    "tags": ["cvss", "cvss-v4"],
+    "sources": ["https://www.first.org/cvss/v4.0/specification-document", "https://www.first.org/cvss/calculator/4.0"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0023",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A vendor adds the Supplemental metric Automatable: Yes to a CVSS v4.0 vector. How does this change the CVSS-B score?",
+    "options": [
+      "It lowers the score because automation makes patching easier",
+      "It raises the score by one point",
+      "It moves the score into the Critical band",
+      "It does not change the score; it only adds context for the consumer"
+    ],
+    "answer": 3,
+    "explanation": "Safety, Automatable, Recovery, Value Density, Vulnerability Response Effort and Provider Urgency describe extra characteristics; each consumer decides how much weight to give them.",
+    "optionNotes": [
+      "Automatable describes whether an attacker can automate exploitation, not patching.",
+      "There is no fixed bonus for any metric.",
+      "Supplemental values do not affect the severity band.",
+      "Correct: supplemental metrics never modify the score."
+    ],
+    "tags": ["cvss", "cvss-v4"],
+    "sources": ["https://www.first.org/cvss/v4.0/specification-document", "https://www.first.org/cvss/v4.0/faq"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0024",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does an EPSS score estimate?",
+    "options": [
+      "How many hosts in your network have the vulnerability",
+      "The damage an exploit would cause to the organization",
+      "The probability that a published CVE will be exploited in the wild in the next 30 days",
+      "How long the vendor will take to release a patch"
+    ],
+    "answer": 2,
+    "explanation": "EPSS (FIRST) publishes a daily 0–1 probability and a percentile for every CVE. It is not a complete risk score.",
+    "optionNotes": ["EPSS knows nothing about your network.", "EPSS measures likelihood, not impact.", "Correct.", "Patch timing is not modeled."],
+    "tags": ["epss"],
+    "sources": ["https://www.first.org/epss/", "https://www.first.org/epss/faq"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0025",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "The EPSS API returns `{\"cve\":\"CVE-2023-0001\",\"epss\":\"0.020\",\"percentile\":\"0.850\"}` for a CVE. How should this be read?",
+    "options": [
+      "An 85% chance of exploitation in the next 30 days",
+      "About a 2% chance of exploitation activity in the next 30 days, which is higher than 85% of all scored CVEs",
+      "A CVSS score of 2.0, in the Low band",
+      "It has been exploited on 2% of internet hosts"
+    ],
+    "answer": 1,
+    "explanation": "Most CVEs have very low EPSS values, so even a small probability can rank high. Use the probability for decisions and the percentile for comparison. (Illustrative values.)",
+    "optionNotes": [
+      "0.850 is the percentile, not the probability.",
+      "Correct: the probability is absolute; the percentile is a ranking.",
+      "EPSS is not CVSS and uses a 0–1 scale.",
+      "EPSS predicts future activity; it does not count infected hosts."
+    ],
+    "tags": ["epss"],
+    "sources": ["https://www.first.org/epss/faq", "https://www.first.org/epss/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0026",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which of these is one of CISA's three criteria for adding a vulnerability to the KEV catalog?",
+    "options": [
+      "There is a clear remediation action, such as a vendor update",
+      "The CVSS base score is 9.0 or higher",
+      "Proof-of-concept code is published on GitHub",
+      "The flaw affects a US federal agency"
+    ],
+    "answer": 0,
+    "explanation": "KEV criteria: (1) an assigned CVE ID, (2) reliable evidence of active exploitation, (3) a clear remediation action.",
+    "optionNotes": [
+      "Correct: assigned CVE ID, reliable evidence of active exploitation, and clear remediation guidance.",
+      "Severity is not a criterion; medium-rated flaws are listed too.",
+      "Public PoC code is not evidence of exploitation in the wild.",
+      "KEV lists exploited flaws whoever is affected."
+    ],
+    "tags": ["kev"],
+    "sources": ["https://www.cisa.gov/known-exploited-vulnerabilities", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0027",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A security trainer wants a catalog of mistake types such as SQL injection and out-of-bounds write, independent of any single product, to teach developers. Which resource fits?",
+    "options": ["CPE", "CVE", "CWE", "KEV"],
+    "answer": 2,
+    "explanation": "CWE is the root-cause taxonomy (e.g. CWE-89 SQL injection, CWE-787 out-of-bounds write); the CWE Top 25 ranks the most dangerous ones.",
+    "optionNotes": [
+      "CPE names products and versions.",
+      "CVE lists individual vulnerabilities in specific products.",
+      "Correct: CWE lists weakness types.",
+      "KEV lists specific exploited CVEs."
+    ],
+    "tags": ["cwe"],
+    "sources": ["https://cwe.mitre.org/about/index.html", "https://cwe.mitre.org/top25/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0028",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "During an assessment the team logs in to a switch's web console with the vendor's factory username and password. How should this finding be classified?",
+    "options": ["Zero-day vulnerability", "Use of default credentials", "Buffer overflow", "Missing encryption of sensitive data"],
+    "answer": 1,
+    "explanation": "Default passwords are published in manuals and online lists; changing them at deployment is basic hardening.",
+    "optionNotes": [
+      "The weakness is well known, not unknown to the vendor.",
+      "Correct: CWE-1392, a very common misconfiguration.",
+      "No memory corruption is involved.",
+      "The problem is the password, not encryption."
+    ],
+    "tags": ["vulnerability-classification", "default-credentials"],
+    "sources": ["https://cwe.mitre.org/data/definitions/1392.html", "https://owasp.org/Top10/A05_2021-Security_Misconfiguration/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0029",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An assessment finds a public web server still running a web server release that stopped receiving security updates years ago. Which vulnerability class best describes this?",
+    "options": ["Outdated or unsupported software (patch management)", "Design flaw", "Default installation", "Zero-day"],
+    "answer": 0,
+    "explanation": "OWASP A06 (vulnerable and outdated components): unsupported software accumulates known, unpatchable CVEs. The fix is to upgrade or replace it.",
+    "optionNotes": [
+      "Correct: an end-of-life component can no longer be patched.",
+      "A design flaw is built into the architecture, whatever the version.",
+      "Default installation is about untouched default settings, not age.",
+      "The flaws in old versions are publicly known."
+    ],
+    "tags": ["vulnerability-classification", "patch-management"],
+    "sources": ["https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/", "https://cwe.mitre.org/data/definitions/1104.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0030",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What are the possible decision outcomes in CISA's Stakeholder-Specific Vulnerability Categorization (SSVC)?",
+    "options": ["Reserved, Published, Rejected", "Low, Medium, High, Critical", "Accept, Mitigate, Transfer, Avoid", "Track, Track*, Attend, Act"],
+    "answer": 3,
+    "explanation": "SSVC is a decision tree using exploitation status, technical impact, automatability and mission impact; Act is the most urgent outcome.",
+    "optionNotes": ["These are CVE record states.", "These are CVSS severity ratings.", "These are risk responses.", "Correct."],
+    "tags": ["ssvc", "prioritization"],
+    "sources": ["https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc", "https://www.cisa.gov/known-exploited-vulnerabilities"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0031",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A researcher finds a flaw in a vendor's router firmware. What is the responsible next step under coordinated vulnerability disclosure?",
+    "options": [
+      "Report it privately to the vendor (or a coordinator such as CISA) and agree on a timeline before publishing",
+      "Publish full details at once so users can protect themselves",
+      "Sell the details to the highest bidder",
+      "Request a CVE ID from the NVD and publish exploit code"
+    ],
+    "answer": 0,
+    "explanation": "Coordinated disclosure: private report, fix and advisory prepared, then public details with a CVE ID assigned by a CNA.",
+    "optionNotes": [
+      "Correct.",
+      "Full public disclosure before a fix leaves users exposed.",
+      "That is not disclosure; it arms attackers.",
+      "CNAs assign CVE IDs, not the NVD, and releasing exploits early is not coordinated."
+    ],
+    "tags": ["disclosure"],
+    "sources": [
+      "https://www.cisa.gov/coordinated-vulnerability-disclosure-process",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Vulnerability_Disclosure_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0032",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "NVD shows an old CVE as High 10.0 under CVSS v2 and Critical 9.8 under CVSS v3.1. Why is the v2 rating not Critical?",
+    "options": [
+      "The v2 score was wrong and NVD never corrected it",
+      "CVSS v2 ratings in the NVD have no Critical band; High covers 7.0 to 10.0",
+      "Critical is only used for CVEs in the KEV catalog",
+      "v2 scores include environmental metrics that lower the rating"
+    ],
+    "answer": 1,
+    "explanation": "NVD bands for v2: Low 0–3.9, Medium 4–6.9, High 7–10. Critical (9.0–10.0) exists from v3.0 on. NVD stopped producing v2 scores for new CVEs in July 2022.",
+    "optionNotes": [
+      "The label follows the v2 bands; nothing is wrong.",
+      "Correct.",
+      "Ratings come from the score bands, not from KEV.",
+      "NVD scores base metrics only, in every version."
+    ],
+    "tags": ["cvss", "nvd"],
+    "sources": ["https://nvd.nist.gov/vuln-metrics/cvss", "https://www.first.org/cvss/v3.1/specification-document"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0033",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's terms, which vulnerability assessment approach first discovers the protocols and services on each host, then picks only the tests that fit them?",
+    "options": ["Product-based solution", "Tree-based assessment", "Service-based solution", "Inference-based assessment"],
+    "answer": 3,
+    "explanation": "Inference-based tools build an inventory of what is running and infer which vulnerabilities to test; tree-based tools follow a strategy the auditor sets for each OS or machine type.",
+    "optionNotes": [
+      "Product-based: the organization runs the tool in-house.",
+      "Tree-based: the auditor chooses a strategy per machine type in advance.",
+      "Service-based: a third party runs the assessment for you.",
+      "Correct."
+    ],
+    "tags": ["assessment-approaches", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0034",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "A company buys a vulnerability assessment appliance and runs it inside its own network. In EC-Council's terms, what kind of assessment solution is this?",
+    "options": ["Inference-based", "Service-based", "Product-based", "Passive"],
+    "answer": 2,
+    "explanation": "Product-based solutions sit inside the network (good internal view, the team runs them); service-based solutions are provided by a third party.",
+    "optionNotes": [
+      "Inference-based describes how tests are chosen, not who runs them.",
+      "Service-based means a consultant or provider runs it, often from outside.",
+      "Correct: installed and operated in-house.",
+      "An appliance that sends probes is active."
+    ],
+    "tags": ["assessment-approaches", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0035",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "The client wants to know what an attacker on the internet could find on its public web and mail servers. Which type of assessment is this?",
+    "options": ["Host-based assessment", "Internal assessment", "External assessment", "Wireless assessment"],
+    "answer": 2,
+    "explanation": "External scans see only what the perimeter allows; internal scans usually find more. NIST SP 800-115 recommends both viewpoints.",
+    "optionNotes": [
+      "Host-based means checking a system locally, usually with credentials.",
+      "Internal assessment is run from inside the network.",
+      "Correct: performed from outside the perimeter.",
+      "Wireless assessments target Wi-Fi networks."
+    ],
+    "tags": ["assessment-types"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/glossary/term/vulnerability_assessment"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0036",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "An analyst opens https://scanner01:8834 in a browser to create scan policies and review plugin results. Which product is this?",
+    "options": ["Nikto", "Greenbone Security Assistant", "OWASP ZAP", "Nessus"],
+    "answer": 3,
+    "explanation": "Nessus: web UI on 8834, checks called plugins, scan templates. Greenbone: GSA web UI, checks called NVTs.",
+    "optionNotes": [
+      "Nikto is a command-line tool with no web console.",
+      "GSA runs on port 9392 in the Kali setup and uses NVTs, not plugins.",
+      "ZAP is a desktop proxy (default proxy port 8080), not a web console.",
+      "Correct: Nessus serves its web UI on TCP 8834."
+    ],
+    "tags": ["nessus", "ports"],
+    "sources": ["https://docs.tenable.com/nessus/Content/PortRequirements.htm", "https://docs.tenable.com/nessus/Content/Plugins.htm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0037",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which scanner runs community-written checks defined as YAML templates against web apps, APIs, networks, DNS and cloud configurations?",
+    "options": ["Nuclei", "Lynis", "OpenVAS", "searchsploit"],
+    "answer": 0,
+    "explanation": "Nuclei templates describe a request and what a vulnerable response looks like, so new checks can be written quickly for trending CVEs.",
+    "optionNotes": [
+      "Correct: Nuclei is template-driven.",
+      "Lynis audits a Unix-like host locally with shell tests.",
+      "OpenVAS runs NASL vulnerability tests (NVTs).",
+      "searchsploit only searches the Exploit-DB archive."
+    ],
+    "tags": ["nuclei"],
+    "sources": ["https://github.com/projectdiscovery/nuclei", "https://docs.projectdiscovery.io/tools/nuclei/overview"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0038",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "While testers browse a web app through a proxy, the tool flags missing security headers and cookies without the Secure flag, without sending any attack requests. What is doing this?",
+    "options": ["OWASP ZAP's active scanner", "OWASP ZAP's passive scanner", "Nikto with -Tuning 9", "Nmap's vuln script category"],
+    "answer": 1,
+    "explanation": "ZAP's passive scan reviews requests and responses safely; its active scan attacks the target and is treated as an attack.",
+    "optionNotes": [
+      "Active scanning sends attacks and must only be used with permission.",
+      "Correct: passive scanning only inspects the traffic that flows through.",
+      "Nikto sends its own requests; tuning 9 is SQL injection tests.",
+      "Nmap scripts send their own probes and are not a web proxy."
+    ],
+    "tags": ["zap", "passive-scan"],
+    "sources": ["https://www.zaproxy.org/docs/desktop/start/features/pscan/", "https://www.zaproxy.org/docs/desktop/start/features/ascan/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0039",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Most of a company's laptops are rarely on the office network when the weekly network scan runs. Which approach gives the most complete vulnerability data for them?",
+    "options": [
+      "Install scanning agents that collect data locally and report to the manager",
+      "Run the network scan twice as often",
+      "Scan the VPN concentrator instead of the laptops",
+      "Switch to an unauthenticated external scan"
+    ],
+    "answer": 0,
+    "explanation": "Agent-based scanning suits mobile and remote hosts and puts little load on the network; agents report whenever they connect.",
+    "optionNotes": [
+      "Correct: agents do not need the laptop to be reachable at scan time.",
+      "More scans still miss hosts that are offline or away.",
+      "Scanning the concentrator says nothing about the laptops.",
+      "External unauthenticated scans see even less."
+    ],
+    "tags": ["agent-based-scan"],
+    "sources": ["https://docs.tenable.com/nessus/Content/Agents.htm", "https://csrc.nist.gov/glossary/term/agent"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0040",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A plant's control network has old devices that can crash when probed. The team still needs a list of software versions and likely vulnerabilities. What should it use?",
+    "options": [
+      "A ZAP active scan",
+      "An aggressive credentialed scan of every device",
+      "Passive monitoring of a SPAN port or network tap",
+      "A full Nikto scan of each device"
+    ],
+    "answer": 2,
+    "explanation": "Passive tools such as Tenable Network Monitor infer assets and flaws from the traffic itself; they see only what crosses the wire, but cause no disruption.",
+    "optionNotes": [
+      "An active web attack scan is even more disruptive.",
+      "Active scanning is what risks crashing the devices.",
+      "Correct: listening to traffic avoids sending probes to fragile devices.",
+      "Nikto sends thousands of requests."
+    ],
+    "tags": ["passive-scan", "ot"],
+    "sources": ["https://docs.tenable.com/nessus-network-monitor/Content/Welcome.htm", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0041",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Nikto reports `+ Server: Apache/2.2.8 (Ubuntu) DAV/2` followed by `+ Apache/2.2.8 appears to be outdated (current is at least Apache/2.4.x)`. What does this finding mainly indicate?",
+    "options": [
+      "Directory listing is enabled on the web root",
+      "The site is vulnerable to SQL injection",
+      "The server has been compromised by an attacker",
+      "The web server runs an outdated release that likely has known, unpatched vulnerabilities"
+    ],
+    "answer": 3,
+    "explanation": "Version findings come from the Server banner. Confirm the real version (banners can be changed or backported) and plan an upgrade.",
+    "optionNotes": [
+      "Directory listing would appear as a separate finding.",
+      "Nothing in these lines tests for SQL injection.",
+      "An old version is a weakness, not proof of compromise.",
+      "Correct: the banner shows an old version; check patch status and upgrade."
+    ],
+    "tags": ["nikto", "patch-management"],
+    "sources": ["https://www.kali.org/tools/nikto/", "https://cirt.net/Nikto2"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0042",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "Which Nikto option restricts a scan to selected test classes, such as 2 (misconfiguration or default files) and b (software identification)?",
+    "options": ["`-evasion 2b`", "`-Tuning 2b`", "`-Format 2b`", "`-Plugins 2b`"],
+    "answer": 1,
+    "explanation": "Useful Nikto options: -h target, -port, -ssl, -Tuning test classes, -evasion encoding, -o and -Format for reports.",
+    "optionNotes": [
+      "-evasion selects URI encoding tricks.",
+      "Correct: -Tuning selects test categories.",
+      "-Format sets the output file format.",
+      "-Plugins names plugins to run, not numbered test classes."
+    ],
+    "tags": ["nikto", "command"],
+    "sources": ["https://www.kali.org/tools/nikto/", "https://github.com/sullo/nikto"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0043",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "`searchsploit vsftpd 2.3.4` returns `vsftpd 2.3.4 - Backdoor Command Execution | unix/remote/...`. What is the right conclusion during a vulnerability assessment?",
+    "options": [
+      "A public exploit exists for that version, so confirm the version and rate the finding as high priority",
+      "The target is confirmed compromised",
+      "The exploit must be run to complete the vulnerability assessment",
+      "The finding is a false positive because the exploit is old"
+    ],
+    "answer": 0,
+    "explanation": "searchsploit searches a local copy of Exploit-DB. It helps vulnerability research: available exploit code pushes a finding up the queue.",
+    "optionNotes": [
+      "Correct: public exploit code raises the likelihood of attack.",
+      "A search result says nothing about the target's state.",
+      "A vulnerability assessment does not exploit; that needs pen test scope.",
+      "Age does not make a finding false; old exploits keep working on unpatched systems."
+    ],
+    "tags": ["searchsploit", "vulnerability-research"],
+    "sources": ["https://www.kali.org/tools/exploitdb/", "https://www.exploit-db.com/searchsploit"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0044",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the Greenbone Community Edition, what is an NVT?",
+    "options": [
+      "The daemon that stores results and schedules tasks",
+      "The Greenbone web interface",
+      "A vulnerability test script, written in NASL, delivered through the feed",
+      "An exported report format"
+    ],
+    "answer": 2,
+    "explanation": "Greenbone checks are Vulnerability Tests (VTs/NVTs) written in NASL and updated daily in the Community Feed.",
+    "optionNotes": [
+      "That is gvmd.",
+      "The web interface is GSA.",
+      "Correct: NVT = Network Vulnerability Test.",
+      "Reports are exported through report formats, not NVTs."
+    ],
+    "tags": ["openvas"],
+    "sources": ["https://greenbone.github.io/docs/latest/glossary.html", "https://greenbone.github.io/docs/latest/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0045",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A Greenbone scan found a possible flaw with a Quality of Detection of 30%, but it does not appear in the default report view. Why?",
+    "options": [
+      "Results under 30% QoD are deleted automatically",
+      "By default only results with a QoD of 70% or higher are shown",
+      "QoD 30% means the flaw was confirmed and already fixed",
+      "Greenbone hides all medium-severity results"
+    ],
+    "answer": 1,
+    "explanation": "QoD (0–100%) says how reliable the detection method is: an authenticated package check rates higher than a remote banner guess.",
+    "optionNotes": [
+      "They are kept; change the filter to see them.",
+      "Correct: the default filter hides lower-reliability detections.",
+      "QoD measures detection reliability, not fix status.",
+      "The filter is about QoD, not severity."
+    ],
+    "tags": ["openvas", "false-positive"],
+    "sources": ["https://docs.greenbone.net/GSM-Manual/gos-22.04/en/reports.html", "https://docs.greenbone.net/GSM-Manual/gos-22.04/en/scanning.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0046",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source tool audits a Linux, macOS or Unix host locally for hardening and compliance issues?",
+    "options": ["OWASP ZAP", "Nikto", "Nuclei", "Lynis"],
+    "answer": 3,
+    "explanation": "Lynis is a host-based auditing tool used for hardening, compliance testing (PCI, HIPAA, SOX) and vulnerability detection.",
+    "optionNotes": [
+      "ZAP tests web applications.",
+      "Nikto scans web servers over HTTP.",
+      "Nuclei runs templates against remote targets.",
+      "Correct: Lynis runs on the host itself."
+    ],
+    "tags": ["lynis", "host-based"],
+    "sources": ["https://cisofy.com/lynis/", "https://www.kali.org/tools/lynis/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0047",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A DevOps team wants each container image checked for vulnerable OS packages and libraries in the CI pipeline before deployment. Which tool fits best?",
+    "options": ["Nessus Network Monitor", "Nikto", "Trivy", "searchsploit"],
+    "answer": 2,
+    "explanation": "Software composition and image scanners (Trivy, OWASP Dependency-Check) find known-vulnerable components before they run.",
+    "optionNotes": [
+      "A passive network monitor watches traffic, not images.",
+      "Nikto tests running web servers.",
+      "Correct: Trivy scans container images, file systems, repositories and Kubernetes.",
+      "searchsploit finds exploits, it does not scan images."
+    ],
+    "tags": ["trivy", "sca"],
+    "sources": ["https://github.com/aquasecurity/trivy", "https://owasp.org/www-project-dependency-check/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0048",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "During an agreed internal scan, several old network printers reboot when probed. What should the tester do?",
+    "options": [
+      "Pause, tell the client contact, then rescan them in an agreed window with gentler settings or exclude them",
+      "Carry on at full speed so the scan finishes quickly",
+      "Delete the printers from the report",
+      "Switch to exploiting the printers to prove impact"
+    ],
+    "answer": 0,
+    "explanation": "Vulnerability scans generate far more traffic than port scans and can disrupt fragile systems; testers coordinate with owners, throttle, use safe checks or exclude devices.",
+    "optionNotes": [
+      "Correct: follow the rules of engagement and reduce the scan's impact.",
+      "Continuing could disrupt business further.",
+      "Hiding the issue removes useful information: the fragility is itself a finding.",
+      "Exploitation is outside a vulnerability assessment's scope."
+    ],
+    "tags": ["scanning-impact"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/glossary/term/vulnerability_scanning"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0049",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A consultant wants to paste a client's full Nessus export into a public AI chatbot to get a quick summary. What is the main problem?",
+    "options": [
+      "Nessus exports are encrypted and cannot be read",
+      "Chatbots cannot read CSV files",
+      "The summary would be too short to be useful",
+      "It sends confidential vulnerability data to a third party, which can breach the NDA and data-handling rules"
+    ],
+    "answer": 3,
+    "explanation": "Use AI only with approved tools and sanitized data, and check every CVE and fix it suggests. Treat scan results as sensitive.",
+    "optionNotes": [
+      "Standard exports (CSV, HTML, .nessus) are readable.",
+      "The format is not the issue.",
+      "Length is not the issue.",
+      "Correct: scan data maps the client's weaknesses and must stay protected."
+    ],
+    "tags": ["ai", "data-handling"],
+    "sources": ["https://genai.owasp.org/llm-top-10/", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0050",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's grouping of vulnerability assessment tools, which type looks for previously unknown flaws, for example by fuzzing inputs?",
+    "options": ["Scope assessment tools", "Depth assessment tools", "Host-based assessment tools", "Cluster scanners"],
+    "answer": 1,
+    "explanation": "EC-Council contrasts depth (deep, unknown flaws, fuzzers) with scope (breadth across the environment).",
+    "optionNotes": [
+      "Scope tools cover many systems broadly.",
+      "Correct: they go deep into one target to find unknown vulnerabilities.",
+      "Host-based tools audit a single system's configuration and patches.",
+      "Cluster scanners spread scanning across several machines."
+    ],
+    "tags": ["tool-types", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0051",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A scanner flags an OpenSSL CVE on a server, but a manual check shows the installed package already contains the vendor's backported fix. How should the finding be handled?",
+    "options": [
+      "Ask the vendor to reject the CVE",
+      "Report it as critical anyway, to be safe",
+      "Delete it from the scan data without a trace",
+      "Record it as a false positive with the evidence and leave it out of the open findings"
+    ],
+    "answer": 3,
+    "explanation": "Validate before reporting. Documented false positives keep the report accurate and show the finding was checked.",
+    "optionNotes": [
+      "The CVE is real for unpatched versions; only this host is unaffected.",
+      "Reporting known false findings erodes trust in the report.",
+      "Keep a record so the next assessor does not repeat the work.",
+      "Correct: validate, document the evidence, close it as a false positive."
+    ],
+    "tags": ["false-positive", "validation"],
+    "sources": ["https://csrc.nist.gov/glossary/term/false_positive", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0052",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is a POA&M in vulnerability reporting?",
+    "options": [
+      "The executive summary of a pen test report",
+      "A scanner plugin that checks patch levels",
+      "A plan that lists each weakness with the fix, resources, owner and milestone dates",
+      "A CVSS metric for exploit maturity"
+    ],
+    "answer": 2,
+    "explanation": "NIST SP 800-115 says internal reports should include the test methodology, results, analysis and a POA&M so each vulnerability gets a specific, measurable action.",
+    "optionNotes": [
+      "The executive summary states overall risk; the POA&M tracks fixes.",
+      "It is a management document, not a check.",
+      "Correct: Plan of Action and Milestones.",
+      "Not a CVSS metric."
+    ],
+    "tags": ["poam", "reporting"],
+    "sources": ["https://csrc.nist.gov/glossary/term/plan_of_action_and_milestones", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0053",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A hospital's imaging workstation runs an OS the vendor no longer patches and cannot be replaced for a year. Which response best reduces the risk meanwhile?",
+    "options": [
+      "Accept the risk silently and remove it from the report",
+      "Mitigate with compensating controls such as isolating it on a restricted network segment",
+      "Transfer the risk by moving the workstation to a different floor",
+      "Run the vulnerability scan less often"
+    ],
+    "answer": 1,
+    "explanation": "When a patch is impossible, mitigate with compensating controls (segmentation, firewall rules, application allow-listing) and plan replacement.",
+    "optionNotes": [
+      "Acceptance must be a documented decision by the owner, not silence.",
+      "Correct: segmentation and strict access rules reduce exposure until replacement.",
+      "Moving it physically does not share the risk with another party.",
+      "Scanning less only hides the risk."
+    ],
+    "tags": ["risk-response", "compensating-control"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://csrc.nist.gov/glossary/term/compensating_controls"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0054",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Management decides not to fix a low-severity finding on an internal test server because the cost outweighs the risk. What must happen for this to be a proper risk acceptance?",
+    "options": [
+      "The owner documents and signs off the decision and it is reviewed later",
+      "The finding is deleted from the scan results",
+      "The server is excluded from all future scans",
+      "The CVSS score is lowered to 0.0"
+    ],
+    "answer": 0,
+    "explanation": "Accept is one of the four risk responses (accept, mitigate, transfer, avoid). It must be explicit, justified and revisited.",
+    "optionNotes": [
+      "Correct: acceptance is a recorded, owned decision.",
+      "Deleting the data hides the decision.",
+      "Excluding the host means missing new, more serious flaws.",
+      "Scores describe the flaw; they are not edited to fit a decision."
+    ],
+    "tags": ["risk-response"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://csrc.nist.gov/pubs/sp/800/30/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0055",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "After a patch is deployed, what is the most direct way to confirm the vulnerability is gone?",
+    "options": [
+      "Wait for the next annual assessment",
+      "Ask the administrator whether the patch was installed",
+      "Rescan the host (or check the installed version) and confirm the finding no longer appears",
+      "Check that the CVE is still listed in NVD"
+    ],
+    "answer": 2,
+    "explanation": "Verify the risk response (SP 800-40r4): confirm the patch is installed and effective, then keep monitoring so nobody removes it.",
+    "optionNotes": [
+      "Too late; the flaw may still be open.",
+      "A statement is not evidence.",
+      "Correct: verification step.",
+      "The CVE stays in NVD whether or not you patched."
+    ],
+    "tags": ["verification", "remediation"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0056",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Finding A is CVSS 9.8 on an isolated lab host with no sensitive data. Finding B is CVSS 7.5 on an internet-facing VPN gateway and is listed in CISA's KEV catalog. Which should be fixed first?",
+    "options": [
+      "Finding B, because it is actively exploited and exposed to the internet",
+      "Finding A, because its base score is higher",
+      "Both at the same time, because both are High or above",
+      "Neither, because lab and VPN hosts are out of scope"
+    ],
+    "answer": 0,
+    "explanation": "Prioritize with context: KEV status, EPSS, exposure and asset value, then CVSS base severity.",
+    "optionNotes": [
+      "Correct: exploitation evidence and exposure outweigh a higher base score.",
+      "The base score ignores exploitation and exposure.",
+      "Priorities exist precisely because teams cannot fix everything at once.",
+      "Nothing says they are out of scope."
+    ],
+    "tags": ["prioritization", "kev"],
+    "sources": [
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "https://nvd.nist.gov/vuln-metrics/cvss",
+      "https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0057",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to NIST SP 800-115, what should mitigation recommendations include for each finding?",
+    "options": ["Only the CVSS score", "The root cause, with technical and process fixes", "The exploit code used", "Only the scanner's plugin ID"],
+    "answer": 1,
+    "explanation": "Root-cause analysis turns findings into lasting fixes, such as updating the patch management process, not only the one missing patch.",
+    "optionNotes": [
+      "A score does not tell anyone how to fix the problem.",
+      "Correct: for example, apply the patch and also fix the patch process.",
+      "Exploit code does not help the fixers and is sensitive.",
+      "A plugin ID alone is not a recommendation."
+    ],
+    "tags": ["root-cause", "reporting"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/glossary/term/root_cause_analysis"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0058",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "The same missing monthly security update appears on 300 of 320 Windows servers. What is the most valuable recommendation?",
+    "options": [
+      "Recommend replacing all 300 servers",
+      "List 300 separate findings and let each server owner decide",
+      "Rate it low because it affects almost everyone equally",
+      "Investigate and fix the patch deployment process, then deploy the update and rescan"
+    ],
+    "answer": 3,
+    "explanation": "Group findings by root cause. A widespread missing patch usually means patch management failed; fix the process so it does not recur.",
+    "optionNotes": [
+      "Replacement is not needed when an update exists.",
+      "This fixes symptoms one by one and misses the cause.",
+      "How widespread a flaw is raises its importance.",
+      "Correct: a systemic gap points to a broken process (root cause)."
+    ],
+    "tags": ["root-cause", "patch-management"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/pubs/sp/800/40/r4/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0059",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why should vulnerability scan reports be stored encrypted with restricted access?",
+    "options": [
+      "Reports contain the scanner's license key",
+      "Compliance frameworks forbid printing them",
+      "Encryption makes the report load faster",
+      "They list exactly which systems are weak and how, which is valuable to an attacker"
+    ],
+    "answer": 3,
+    "explanation": "NIST SP 800-115 treats architecture, configuration and vulnerability data from an assessment as sensitive, to be protected when collected, stored, sent and destroyed.",
+    "optionNotes": [
+      "License keys are not the concern.",
+      "Printing is not the concern; exposure is.",
+      "Encryption does not speed anything up.",
+      "Correct: a report is a map of the organization's weaknesses."
+    ],
+    "tags": ["data-handling", "reporting"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.ncsc.gov.uk/collection/vulnerability-management"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0060",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Before rolling a critical patch out to all production web servers, what should the team do first?",
+    "options": [
+      "Deploy it everywhere at once",
+      "Test it on a comparable non-production system",
+      "Wait for next year's assessment",
+      "Disable logging during the update"
+    ],
+    "answer": 1,
+    "explanation": "NIST SP 800-115: test the remediation, coordinate it through change management, implement it, then verify.",
+    "optionNotes": [
+      "Mass deployment without testing risks outages.",
+      "Correct: test to catch side effects before production.",
+      "Delaying a critical patch leaves the flaw open.",
+      "Logging must stay on to trace problems."
+    ],
+    "tags": ["remediation"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/pubs/sp/800/40/r4/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0061",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A Nessus report's scan information section shows `Credentialed checks : no`. What does this mean for the results?",
+    "options": [
+      "Every finding in it is a false positive",
+      "The report is invalid and must be deleted",
+      "The scan only saw what hosts expose over the network, so missing patches and local settings may be missed",
+      "Nessus exploited the hosts instead of logging in"
+    ],
+    "answer": 2,
+    "explanation": "Check whether authentication worked before trusting a clean report; add credentials and rescan for patch-level accuracy.",
+    "optionNotes": [
+      "Remote findings can be real; they need validation.",
+      "The results are still useful, just limited.",
+      "Correct: without credentials the scanner relies on remote checks and banners.",
+      "Nessus does not exploit to compensate for missing credentials."
+    ],
+    "tags": ["credentialed-scan", "nessus"],
+    "sources": ["https://docs.tenable.com/nessus/Content/Credentials.htm", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0062",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A Nessus finding has the severity Info. What does that usually mean?",
+    "options": [
+      "It records information, such as a detected service or OS, rather than a vulnerability",
+      "It is the most urgent severity",
+      "It was confirmed by exploitation",
+      "It is a false positive"
+    ],
+    "answer": 0,
+    "explanation": "Nessus severities: Critical, High, Medium, Low, Info. Info results (and most findings without a CVE) have no CVSS-based rating or VPR.",
+    "optionNotes": [
+      "Correct: informational plugins document what was found.",
+      "Critical is the most urgent.",
+      "Nessus severities do not come from exploitation.",
+      "Informational does not mean wrong."
+    ],
+    "tags": ["nessus", "reporting"],
+    "sources": ["https://docs.tenable.com/nessus/Content/RiskMetrics.htm", "https://docs.tenable.com/nessus/Content/Vulnerabilities.htm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0063",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which Tenable rating combines CVSS with current threat data such as exploit activity, and ranges from 0.1 to 10?",
+    "options": ["EPSS percentile", "Vulnerability Priority Rating (VPR)", "CVSS temporal score", "Greenbone QoD"],
+    "answer": 1,
+    "explanation": "VPR helps rank what to fix first. In Nessus it is static per scan, so rescan to see the latest values.",
+    "optionNotes": [
+      "EPSS is FIRST's probability model, not Tenable's.",
+      "Correct: VPR is Tenable's dynamic, threat-based rating.",
+      "Temporal scores come from the CVSS standard, not Tenable.",
+      "QoD measures detection reliability in Greenbone."
+    ],
+    "tags": ["nessus", "prioritization"],
+    "sources": ["https://docs.tenable.com/nessus/Content/RiskMetrics.htm", "https://www.first.org/epss/faq"],
+    "verify": false,
+    "rev": 1
+  }
+]

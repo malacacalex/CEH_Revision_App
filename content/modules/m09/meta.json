@@ -3,7 +3,7 @@
   "title": "Social Engineering",
   "domain": "D4",
   "effortUnits": 0.75,
-  "status": "stub",
+  "status": "sample",
   "sections": [
     "Social Engineering Concepts",
     "Human-based Techniques",
@@ -11,8 +11,113 @@
     "Mobile-based Techniques",
     "Social Engineering Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Define social engineering, name the persuasion levers it relies on and put EC-Council's four attack phases in order",
+      "section": "Social Engineering Concepts"
+    },
+    {
+      "text": "Tell phishing for information (T1598) from phishing for access (T1566) and place social engineering in MITRE ATT&CK",
+      "section": "Social Engineering Concepts"
+    },
+    {
+      "text": "Recognize human-based techniques from a short scenario, including piggybacking vs tailgating, reverse social engineering and quid pro quo",
+      "section": "Human-based Techniques"
+    },
+    {
+      "text": "Classify an insider threat (negligent, accidental, malicious, collusive, third-party, compromised) and name early warning signs",
+      "section": "Human-based Techniques"
+    },
+    {
+      "text": "Explain how AI voice cloning and deepfake video change impersonation, and which process controls still stop it",
+      "section": "Human-based Techniques"
+    },
+    {
+      "text": "Identify phishing variants (spear phishing, whaling, BEC, pharming, watering hole) and read the real domain behind a link",
+      "section": "Computer-based Techniques"
+    },
+    {
+      "text": "Describe impersonation on social networks and the main kinds of identity theft, and recognize SET, Gophish and Evilginx",
+      "section": "Computer-based Techniques"
+    },
+    {
+      "text": "Recognize smishing, quishing, malicious or repackaged apps, SIM swapping and MFA fatigue on mobile devices",
+      "section": "Mobile-based Techniques"
+    },
+    {
+      "text": "Choose layered countermeasures: SPF, DKIM and DMARC, phishing-resistant MFA, callback verification, training, insider controls and identity theft response",
+      "section": "Social Engineering Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Social Engineering Concepts",
+      "priority": "MUST",
+      "minutes": 20,
+      "why": "The persuasion levers and the four phases are asked directly; learn EC-Council's word lists."
+    },
+    {
+      "section": "Human-based Techniques",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Scenario questions hinge on one word (consent, who calls whom, what is offered); insider types and AI impersonation are here too."
+    },
+    {
+      "section": "Computer-based Techniques",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Phishing variants, identity theft and phishing tools are the most tested part of the module."
+    },
+    {
+      "section": "Mobile-based Techniques",
+      "priority": "SKIM",
+      "minutes": 15,
+      "why": "Learn the names (smishing, quishing, repackaged apps, SIM swap); the mechanics repeat the computer-based ones."
+    },
+    {
+      "section": "Social Engineering Countermeasures",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Best-countermeasure questions are common; know SPF/DKIM/DMARC, phishing-resistant MFA and out-of-band verification."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Analyze the headers of a suspicious email you received",
+      "source": "free",
+      "where": "https://toolbox.googleapps.com/apps/messageheader/",
+      "skill": "Reading Received and Authentication-Results headers to judge SPF, DKIM and DMARC results and the real sending path",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Take the Google phishing quiz and write down the clue in each message",
+      "source": "free",
+      "where": "https://phishingquiz.withgoogle.com/",
+      "skill": "Spotting look-alike domains, mismatched links and pressure cues in realistic messages",
+      "minutes": 20,
+      "verify": true
+    },
+    {
+      "name": "Run a phishing-awareness simulation against your own test mailbox with Gophish and MailHog",
+      "source": "free",
+      "where": "https://docs.getgophish.com/user-guide/getting-started",
+      "skill": "How simulation platforms track opens, clicks and reports, and how results feed an awareness program (own lab only, no real users)",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Phishing email analysis room on TryHackMe",
+      "source": "free",
+      "where": "https://tryhackme.com/room/phishingemails1tryoe",
+      "skill": "Triage of phishing emails: sender, links, attachments and header analysis on a practice platform",
+      "minutes": 45,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a new receptionist why a friendly, confident caller who knows the manager's name can still be an attacker, and what they should do before helping.",
+    "Walk through how a SIM swap lets an attacker reset a bank password, then explain why a FIDO2 security key would have stopped the takeover.",
+    "Explain what SPF, DKIM and DMARC each check, and why a business email compromise from a look-alike domain can pass all three."
+  ]
 }

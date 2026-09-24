@@ -1,0 +1,247 @@
+[
+  {
+    "id": "m05-q-0001",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does a CWE entry describe?",
+    "options": [
+      "A type of weakness that can lead to vulnerabilities, such as improper input neutralization",
+      "One specific vulnerability in one product version",
+      "A standard name for a product and its version",
+      "A probability that a flaw will be exploited in the next 30 days"
+    ],
+    "answer": 0,
+    "explanation": "CVE names an instance (this flaw in this product); CWE names the kind of mistake behind it; CPE names the product; EPSS estimates exploitation likelihood.",
+    "optionNotes": ["Correct: CWE catalogs weakness types (root causes).", "That is a CVE record.", "That is a CPE name.", "That is an EPSS score."],
+    "tags": ["cwe", "cve"],
+    "sources": ["https://cwe.mitre.org/about/index.html", "https://www.cve.org/About/Overview"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0002",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which organization maintains the CVSS specification?",
+    "options": ["MITRE", "NIST", "FIRST", "CISA"],
+    "answer": 2,
+    "explanation": "CVSS is a FIRST standard; the NVD only applies it to CVE records.",
+    "optionNotes": [
+      "MITRE operates the CVE Program and CWE.",
+      "NIST runs the NVD, which publishes CVSS scores but does not own the standard.",
+      "Correct: FIRST owns and manages CVSS.",
+      "CISA sponsors CVE and runs the KEV catalog."
+    ],
+    "tags": ["cvss"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://nvd.nist.gov/vuln-metrics/cvss"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0003",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Two CVEs both have a CVSS base score of 8.1. One is listed in CISA's KEV catalog, the other is not. Which should the team patch first, and why?",
+    "options": [
+      "Either one, because equal CVSS scores mean equal risk",
+      "The KEV-listed one, because there is evidence it is already being exploited in the wild",
+      "The one not in KEV, because attackers have not found it yet",
+      "Neither until a CVSS environmental score has been calculated for every host"
+    ],
+    "answer": 1,
+    "explanation": "Use threat data on top of the base score: a KEV entry means attackers are using the flaw now, so it goes to the top of the queue.",
+    "optionNotes": [
+      "CVSS measures severity, not risk; exploitation status changes the priority.",
+      "Correct: confirmed exploitation raises the urgency.",
+      "Unexploited flaws are less urgent, not more.",
+      "Waiting for a perfect score delays the fix of a flaw that is actively exploited."
+    ],
+    "tags": ["kev", "prioritization"],
+    "sources": ["https://www.cisa.gov/known-exploited-vulnerabilities-catalog", "https://nvd.nist.gov/vuln-metrics/cvss"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0004",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team inventories its servers and records their approved configurations before running the first scan. In EC-Council's vulnerability-management life cycle, which phase is this?",
+    "options": ["Verification", "Vulnerability assessment", "Remediation", "Pre-assessment"],
+    "answer": 3,
+    "explanation": "Pre-assessment: know your assets and their baseline. Then assess, then do the post-assessment steps: risk assessment, remediation, verification, monitoring.",
+    "optionNotes": [
+      "Verification confirms that fixes worked.",
+      "This phase is the scanning and analysis itself.",
+      "Remediation fixes findings after the assessment.",
+      "Correct: identify assets and create a baseline before scanning."
+    ],
+    "tags": ["vulnerability-management-lifecycle", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/pubs/sp/800/40/r4/final"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0005",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An unauthenticated scan says a Linux server 'may be vulnerable' based only on its SSH banner. What change would give the most accurate patch-level results?",
+    "options": [
+      "Increase the scan speed",
+      "Scan the server from the internet instead of the LAN",
+      "Run a credentialed scan so the scanner can log in and read installed package versions",
+      "Scan only port 22"
+    ],
+    "answer": 2,
+    "explanation": "Banners can be misleading, for example when a distribution backports fixes without changing the version. A credentialed scan checks the installed packages themselves.",
+    "optionNotes": [
+      "Speed does not improve accuracy.",
+      "External scanning sees less, not more.",
+      "Correct: authenticated checks read versions directly.",
+      "Narrowing the ports still leaves the scan guessing from the banner."
+    ],
+    "tags": ["credentialed-scan", "false-positive"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://docs.tenable.com/nessus/Content/Credentials.htm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0006",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source tool is designed specifically to scan web servers for dangerous files, outdated server software and server misconfigurations?",
+    "options": ["Nikto", "Lynis", "Trivy", "searchsploit"],
+    "answer": 0,
+    "explanation": "Nikto sends thousands of HTTP requests to find risky files, old versions and misconfigurations on a web server.",
+    "optionNotes": [
+      "Correct: Nikto is a web server scanner.",
+      "Lynis audits Linux/Unix hosts locally.",
+      "Trivy scans container images, file systems and repositories.",
+      "searchsploit searches a local copy of Exploit-DB."
+    ],
+    "tags": ["nikto"],
+    "sources": ["https://cirt.net/Nikto2", "https://www.kali.org/tools/nikto/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0007",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which component of the Greenbone Community Edition gives users the web interface they log in to?",
+    "options": ["The Greenbone Community Feed", "gvmd", "ospd-openvas", "Greenbone Security Assistant (GSA)"],
+    "answer": 3,
+    "explanation": "Browser → GSA → gvmd → ospd-openvas → OpenVAS scanner. On Kali the GSA is reached at https://127.0.0.1:9392.",
+    "optionNotes": [
+      "The feed supplies the vulnerability tests.",
+      "gvmd is the management daemon behind the UI.",
+      "ospd-openvas lets gvmd control the OpenVAS scanner.",
+      "Correct: GSA is the web UI (gsad serves it)."
+    ],
+    "tags": ["openvas"],
+    "sources": ["https://greenbone.github.io/docs/latest/architecture.html", "https://greenbone.github.io/docs/latest/22.4/kali/index.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0008",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Nmap prints `| vulners: cpe:/a:openbsd:openssh:7.2p2: CVE-2016-6515 (score and link follow) ...` for port 22. What produced this list?",
+    "options": [
+      "Nmap exploited each CVE and confirmed it works",
+      "The vulners NSE script matched the detected product version (CPE) to known CVEs",
+      "The SSH server printed its own list of vulnerabilities in the banner",
+      "The Nessus plugin feed was loaded into Nmap"
+    ],
+    "answer": 1,
+    "explanation": "vulners needs -sV: version detection finds a CPE, the script lists CVEs with CVSS scores. It is version matching, so validate before reporting.",
+    "optionNotes": [
+      "The script does not exploit anything; it is a lookup.",
+      "Correct: vulners looks up CVEs for the CPE found by version detection.",
+      "Servers do not advertise their CVEs.",
+      "Nmap does not use Nessus plugins."
+    ],
+    "tags": ["nmap", "nse"],
+    "sources": ["https://nmap.org/nsedoc/scripts/vulners.html", "https://nmap.org/nsedoc/categories/vuln.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0009",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A scanner misses a real, exploitable vulnerability on a host. What is this called?",
+    "options": ["A false negative", "A false positive", "A true positive", "A true negative"],
+    "answer": 0,
+    "explanation": "False negatives are the dangerous error: they give a false sense of security. Credentials, current feeds and manual checks reduce them.",
+    "optionNotes": [
+      "Correct: a real flaw that was not reported.",
+      "A false positive is a reported flaw that is not there.",
+      "A true positive is a real flaw that was reported.",
+      "A true negative is no flaw and no report."
+    ],
+    "tags": ["false-negative"],
+    "sources": ["https://csrc.nist.gov/glossary/term/false_negative", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0010",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In a vulnerability assessment report, which part is written for senior management rather than for system administrators?",
+    "options": ["The scan configuration details", "The per-host findings list", "The raw plugin output appendix", "The executive summary"],
+    "answer": 3,
+    "explanation": "Reports have several audiences: an executive summary for leaders, detailed findings and evidence for the people who remediate.",
+    "optionNotes": [
+      "Scan settings document the method for reviewers.",
+      "Per-host findings are for the technical teams who fix them.",
+      "Raw output is supporting evidence for technical staff.",
+      "Correct: it states risk and priorities in business terms."
+    ],
+    "tags": ["reporting"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
+    "rev": 1
+  }
+]
