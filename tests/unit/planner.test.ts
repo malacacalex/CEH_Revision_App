@@ -3,7 +3,8 @@ import { buildPlan, readinessTradeOff, type PlannerProfile, type PlannerProgress
 import { loadContentFromDisk } from '../../scripts/load-content.ts';
 
 const { bundle } = loadContentFromDisk();
-const content = { blueprint: bundle!.blueprint, modules: bundle!.modules.map((m) => m.meta) };
+// Reference schedule in course order: drop the build status so these tests don't move as modules get built.
+const content = { blueprint: bundle!.blueprint, modules: bundle!.modules.map(({ meta: { status: _status, ...m } }) => m) };
 
 /** The spec's reference user (§5.3): window Dec 14 → Jan 22, 10 h/week, beginner, busy until Oct 12. */
 const axel: PlannerProfile = {
@@ -62,6 +63,18 @@ describe('planner — reference schedule', () => {
     const compressed = buildPlan({ ...axel, hoursPerWeek: t.compressed! }, fresh, content, TODAY, { compressed: true });
     expect(compressed.mocksPlanned).toBe(3);
     expect(compressed.status).toBe('on-track');
+  });
+});
+
+describe('planner — content status', () => {
+  it('schedules built modules first, in course order, then sample, then stub', () => {
+    const mixed = {
+      ...content,
+      modules: content.modules.map((m) => ({ ...m, status: m.module === 2 ? ('stub' as const) : m.module === 3 ? ('sample' as const) : ('built' as const) })),
+    };
+    const order = [...new Set(buildPlan(axel, fresh, mixed, TODAY).days.flatMap((d) => d.items).flatMap((i) => (i.kind === 'module' ? [i.module] : [])))];
+    expect(order.slice(0, 3)).toEqual([0, 1, 4]);
+    expect(order.slice(-2)).toEqual([3, 2]);
   });
 });
 

@@ -34,7 +34,8 @@ export interface PlannerProgress {
 
 export interface PlannerContent {
   blueprint: Blueprint;
-  modules: Pick<ModuleMeta, 'module' | 'title' | 'effortUnits'>[];
+  /** `status` missing = treated as built. */
+  modules: (Pick<ModuleMeta, 'module' | 'title' | 'effortUnits'> & Partial<Pick<ModuleMeta, 'status'>>)[];
 }
 
 export interface PlannerOptions {
@@ -124,12 +125,15 @@ export function dayCapacity(date: ISODate, profile: PlannerProfile, opts: Planne
   return weekHours(date, profile, opts) * DAY_WEIGHTS[weekday(date)]! * busyFactor(date, profile.busyPeriods);
 }
 
+const STATUS_RANK = { built: 0, sample: 1, stub: 2 } as const;
+
 function moduleOrder(profile: PlannerProfile, content: PlannerContent): number[] {
   return content.modules
-    .map((m) => m.module)
     // M0 is on the plan until the user passes the Foundations skip-check (beginners always take it).
-    .filter((n) => n > 0 || !profile.foundationsSkipped || profile.level === 'beginner')
-    .sort((a, b) => a - b);
+    .filter((m) => m.module > 0 || !profile.foundationsSkipped || profile.level === 'beginner')
+    // Modules with full content first, in course order; the rest follow and move up as they get built.
+    .sort((a, b) => STATUS_RANK[a.status ?? 'built'] - STATUS_RANK[b.status ?? 'built'] || a.module - b.module)
+    .map((m) => m.module);
 }
 
 function buildBlocks(profile: PlannerProfile, progress: PlannerProgress, content: PlannerContent, compressed: boolean): Block[] {
