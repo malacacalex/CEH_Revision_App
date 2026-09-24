@@ -192,6 +192,11 @@ body {
 .prose-notes .mermaid-diagram p {
   margin: 0;
 }
+/* Edge labels sit on the line: give them the page background so the line doesn't strike them through. */
+.prose-notes .mermaid-diagram .edgeLabel p,
+.prose-notes .mermaid-diagram .edgeLabel span {
+  background-color: var(--surface);
+}
 .prose-notes .mermaid-diagram svg {
   max-width: 100%;
   height: auto;

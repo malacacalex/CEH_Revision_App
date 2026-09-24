@@ -40,7 +40,13 @@ export function Markdown({ source, className = '' }: { source: string; className
           div.className = 'mermaid-diagram';
           div.setAttribute('role', 'img');
           div.setAttribute('aria-label', 'Diagram');
-          div.innerHTML = DOMPurify.sanitize(svg, { USE_PROFILES: { svg: true, svgFilters: true }, ADD_TAGS: ['foreignObject'] });
+          // Mermaid puts HTML (div/span/p/br) inside <foreignObject> for labels; without the integration point
+          // DOMPurify strips it, which drops line breaks and the label background on edges.
+          div.innerHTML = DOMPurify.sanitize(svg, {
+            USE_PROFILES: { svg: true, svgFilters: true, html: true },
+            ADD_TAGS: ['foreignObject'],
+            HTML_INTEGRATION_POINTS: { foreignobject: true },
+          });
           pre.replaceWith(div);
         } catch {
           // Leave the source visible if the diagram fails to render.
