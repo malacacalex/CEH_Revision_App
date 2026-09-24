@@ -128,7 +128,8 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 18 mock, 6 verify |
 | M14 Hacking Web Applications | stub | deferred (blocked) |
-| M15–M19 | stub | built in parallel by agents in M4 (brief: scratchpad agent-brief.md) |
+| M15–M18 | stub | built in parallel by agents in M4 (brief: scratchpad agent-brief.md) |
+| M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
 | M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
 | Reference | 4 / 18 | sheets 1, 3, 4 (verify), 5; sheet 2 deferred · glossary 43 terms |

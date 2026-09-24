@@ -3,7 +3,7 @@
   "title": "Cloud Computing",
   "domain": "D8",
   "effortUnits": 1.25,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Cloud Computing Concepts",
     "Cloud Computing Threats",
@@ -14,8 +14,131 @@
     "Container Hacking",
     "Cloud Security"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Use the NIST definition to classify a cloud offering by characteristic, service model (IaaS, PaaS, SaaS, FaaS) and deployment model, and name the five NIST cloud actors",
+      "section": "Cloud Computing Concepts"
+    },
+    {
+      "text": "Say who is responsible for each layer under the shared responsibility model for a given service model",
+      "section": "Cloud Computing Concepts"
+    },
+    {
+      "text": "Recognize the main cloud threats (misconfigured storage, IAM mistakes, metadata-service abuse, cryptojacking, log tampering) and map them to CSA Top Threats and MITRE ATT&CK",
+      "section": "Cloud Computing Threats"
+    },
+    {
+      "text": "Describe an authorized cloud assessment, including provider testing rules, and match cloud security tools to their purpose",
+      "section": "Cloud Hacking"
+    },
+    {
+      "text": "Read AWS CLI output to spot a public bucket, IMDSv1 still allowed or a long-term key, and name the AWS service that detects or prevents each issue",
+      "section": "AWS Hacking"
+    },
+    {
+      "text": "Explain Azure identity risks (managed identities, SAS tokens, consent phishing, standing admins) and the Entra controls that reduce them",
+      "section": "Microsoft Azure Hacking"
+    },
+    {
+      "text": "Identify Google Cloud exposures (allUsers, service account keys, metadata tokens) and the matching controls",
+      "section": "Google Cloud Hacking"
+    },
+    {
+      "text": "Use NIST SP 800-190 risk areas, Kubernetes and Docker ports, Pod Security Standards and RBAC to assess a container platform",
+      "section": "Container Hacking"
+    },
+    {
+      "text": "Choose cloud defenses from CSA CCM, CIS Benchmarks, CSPM, CWPP, CASB and organization guardrails",
+      "section": "Cloud Security"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Cloud Computing Concepts",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Service and deployment models, NIST actors and shared responsibility underpin every other question in the module."
+    },
+    {
+      "section": "Cloud Computing Threats",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Scenario questions ask you to name the threat or attack from its symptoms, including EC-Council's attack names."
+    },
+    {
+      "section": "Cloud Hacking",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Know the assessment flow, provider testing rules and which tool does what; skip step-by-step attack material."
+    },
+    {
+      "section": "AWS Hacking",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "S3 exposure, IMDSv2, IAM keys and CloudTrail/GuardDuty are the most concrete cloud items and appear as command-output questions."
+    },
+    {
+      "section": "Microsoft Azure Hacking",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Learn the IMDS header, managed identities, SAS types and the Entra controls; tool names at recognition level."
+    },
+    {
+      "section": "Google Cloud Hacking",
+      "priority": "SKIM",
+      "minutes": 15,
+      "why": "allUsers vs allAuthenticatedUsers, the metadata header and service account keys are the testable points."
+    },
+    {
+      "section": "Container Hacking",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Ports, privileged containers, Kubernetes Secrets, RBAC and the container tools are frequent exam material."
+    },
+    {
+      "section": "Cloud Security",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Countermeasure questions: pick the framework, benchmark, product family or guardrail that fits the scenario."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Work through the flAWS challenge levels",
+      "source": "free",
+      "where": "http://flaws.cloud/",
+      "skill": "Recognizing common AWS misconfigurations (public buckets, leaked keys, metadata exposure) in a hosted, legal environment",
+      "minutes": 90,
+      "verify": true
+    },
+    {
+      "name": "Deploy a CloudGoat scenario in your own AWS account, then audit it with Prowler or ScoutSuite",
+      "source": "free",
+      "where": "https://github.com/RhinoSecurityLabs/cloudgoat",
+      "skill": "Reading posture findings and IAM policies on a vulnerable-by-design lab you own; tear it down afterwards",
+      "minutes": 90,
+      "verify": true
+    },
+    {
+      "name": "Scan images with Trivy and a local cluster with kube-bench",
+      "source": "free",
+      "where": "https://github.com/aquasecurity/trivy",
+      "skill": "Finding image CVEs, secrets and CIS Kubernetes Benchmark failures on your own kind or minikube cluster",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Kubernetes Goat scenarios on a local cluster",
+      "source": "free",
+      "where": "https://github.com/madhuakula/kubernetes-goat",
+      "skill": "Seeing RBAC, secret and privileged-pod weaknesses in an intentionally vulnerable cluster you run yourself",
+      "minutes": 90,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain the shared responsibility model to a manager who thinks moving to the cloud means the provider handles all security, using IaaS, PaaS and SaaS examples.",
+    "Explain how an SSRF flaw in a web app can lead to stolen cloud credentials through the metadata service, and why IMDSv2 or a required header stops most of it.",
+    "Explain why a container is a weaker security boundary than a virtual machine, and list the settings that make a Kubernetes pod safer."
+  ]
 }

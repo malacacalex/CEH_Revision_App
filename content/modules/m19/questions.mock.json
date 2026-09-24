@@ -1,0 +1,832 @@
+[
+  {
+    "id": "m19-q-0071",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which NIST essential characteristic means the provider automatically monitors and reports resource usage, giving transparency to both the provider and the consumer?",
+    "options": ["On-demand self-service", "Resource pooling", "Measured service", "Rapid elasticity"],
+    "answer": 2,
+    "explanation": "The five characteristics are on-demand self-service, broad network access, resource pooling, rapid elasticity and measured service. Usage metering also helps defenders spot abuse such as cryptojacking.",
+    "optionNotes": [
+      "Self-service is provisioning without provider staff.",
+      "Pooling is multi-tenant sharing of resources.",
+      "Correct: metering is what makes pay-per-use billing possible.",
+      "Elasticity is scaling with demand."
+    ],
+    "tags": ["nist-800-145", "cloud-characteristics"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/145/final", "https://csrc.nist.gov/glossary/term/measured_service"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0072",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A startup deploys its web application on a PaaS offering. Which security task stays with the startup rather than the provider?",
+    "options": [
+      "Patching the underlying operating system",
+      "Securing the application code and controlling who can access the app and its data",
+      "Physical security of the data center",
+      "Updating the hypervisor"
+    ],
+    "answer": 1,
+    "explanation": "Microsoft's responsibility matrix shows data, endpoints, accounts and access management with the customer in every model; applications and network controls move fully to the provider only in SaaS.",
+    "optionNotes": [
+      "In PaaS the provider manages the OS and runtime.",
+      "Correct: in PaaS the customer owns its code, data and identities.",
+      "Physical security is always the provider's.",
+      "The hypervisor is always the provider's."
+    ],
+    "tags": ["shared-responsibility", "paas"],
+    "sources": ["https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility", "https://csrc.nist.gov/pubs/sp/800/145/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0073",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which NIST cloud actor is a party that can conduct an independent assessment of cloud services, information system operations, performance and security?",
+    "options": ["Cloud auditor", "Cloud carrier", "Cloud consumer", "Cloud broker"],
+    "answer": 0,
+    "explanation": "Auditors check controls against standards, for example through CSA STAR level 2 attestations or ISO 27001 certifications.",
+    "optionNotes": [
+      "Correct: independent assessment is the auditor's role.",
+      "The carrier provides connectivity and transport.",
+      "The consumer uses the services.",
+      "The broker manages delivery and negotiates between providers and consumers."
+    ],
+    "tags": ["cloud-actors", "nist-500-292"],
+    "sources": ["https://csrc.nist.gov/glossary/term/cloud_auditor", "https://www.nist.gov/publications/nist-cloud-computing-reference-architecture"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0074",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A broker offers customers a compute service and, each month, automatically chooses whichever of several providers has the best price and reliability score. Which broker category is this?",
+    "options": ["Cloud carriage", "Service aggregation", "Service intermediation", "Service arbitrage"],
+    "answer": 3,
+    "explanation": "NIST SP 500-292 describes arbitrage as similar to aggregation except that the broker can select providers dynamically, for example with a scoring service.",
+    "optionNotes": [
+      "Carriage (transport) belongs to the cloud carrier.",
+      "Aggregation combines services from a fixed set of providers.",
+      "Intermediation enhances a single service.",
+      "Correct: arbitrage means the aggregated services are not fixed; the broker chooses flexibly."
+    ],
+    "tags": ["cloud-broker", "nist-500-292"],
+    "sources": ["https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=909505", "https://csrc.nist.gov/glossary/term/cloud_broker"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0075",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement describes serverless computing (Function as a Service)?",
+    "options": [
+      "The provider runs the customer's functions on events and scales them, with no servers for the customer to manage",
+      "The customer rents bare-metal servers and installs its own hypervisor",
+      "The customer buys a finished application and only manages users",
+      "Applications run without any servers anywhere"
+    ],
+    "answer": 0,
+    "explanation": "Examples are AWS Lambda, Azure Functions and Google Cloud Functions. Security focus moves to code, dependencies, function permissions and untrusted event input.",
+    "optionNotes": [
+      "Correct: event-driven functions, scaled and billed per execution by the provider.",
+      "That is closer to bare-metal IaaS.",
+      "That is SaaS.",
+      "Servers still exist; the provider manages them."
+    ],
+    "tags": ["serverless"],
+    "sources": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+      "https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts",
+      "https://owasp.org/www-project-serverless-top-10/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0076",
+    "module": 19,
+    "section": "Cloud Computing Threats",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Six months after an administrator left the company, her cloud console account is still active and an attacker signs in with her leaked password. Which CSA top threat does this illustrate most directly?",
+    "options": ["Insecure software development", "Identity and access management", "System vulnerabilities", "Unauthenticated resource sharing"],
+    "answer": 1,
+    "explanation": "Joiner-mover-leaver processes, MFA and regular access reviews address the second-ranked CSA threat. Valid cloud accounts are among the most common cloud entry points.",
+    "optionNotes": [
+      "No software was developed insecurely here.",
+      "Correct: an account that should have been removed is an IAM failure (ATT&CK T1078.004).",
+      "No software flaw was exploited.",
+      "The attacker authenticated; nothing was shared openly."
+    ],
+    "tags": ["iam", "csa-top-threats"],
+    "sources": ["https://cloudsecurityalliance.org/artifacts/top-threats-to-cloud-computing-2024", "https://attack.mitre.org/techniques/T1078/004/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0077",
+    "module": 19,
+    "section": "Cloud Computing Threats",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "An attacker intercepts a signed SOAP message, moves the signed element to a new location in the XML and inserts a forged body, so the signature still validates but the server processes the attacker's request. What does EC-Council call this?",
+    "options": ["Side-channel attack", "Cloudborne attack", "Cloud hopping", "Wrapping attack"],
+    "answer": 3,
+    "explanation": "Wrapping attacks exploit the gap between what the signature covers and what the application actually processes. Defenses: strict XML schema validation and processing only the signed elements.",
+    "optionNotes": [
+      "Side channels leak data through shared hardware.",
+      "Cloudborne is a bare-metal firmware implant.",
+      "Cloud hopping pivots through a service provider.",
+      "Correct: XML signature wrapping targets web-service message validation."
+    ],
+    "tags": ["cloud-attacks", "xml", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0078",
+    "module": 19,
+    "section": "Cloud Computing Threats",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A mobile app embeds a static API key that gives full read and write access to the company's cloud backend API, and the API has no rate limiting. Which CSA top threat category is this?",
+    "options": ["Limited cloud visibility", "Advanced persistent threats", "Insecure interfaces and APIs", "Inadequate cloud security strategy"],
+    "answer": 2,
+    "explanation": "APIs are the front door of every cloud service. Use per-user authentication and authorization, least privilege, rate limits and input validation, and never ship shared secrets in client apps.",
+    "optionNotes": [
+      "Visibility concerns detection, not the API design.",
+      "Nothing indicates a persistent state-backed actor.",
+      "Correct: a weakly protected, over-privileged API is an insecure interface.",
+      "Strategy concerns overall planning, not this specific flaw."
+    ],
+    "tags": ["api-security", "csa-top-threats"],
+    "sources": [
+      "https://cloudsecurityalliance.org/artifacts/top-threats-to-cloud-computing-2024",
+      "https://cloudsecurityalliance.org/research/topics/top-threats"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0079",
+    "module": 19,
+    "section": "Cloud Computing Threats",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "An intruder shares a copy of a database disk snapshot with an AWS account the intruder controls, to read the data there. Which ATT&CK technique is this?",
+    "options": [
+      "Cloud Service Dashboard (T1538)",
+      "Data from Cloud Storage (T1530)",
+      "Transfer Data to Cloud Account (T1537)",
+      "Implant Internal Image (T1525)"
+    ],
+    "answer": 2,
+    "explanation": "T1537 can avoid network-based exfiltration monitoring because the data never leaves the provider. Detect snapshot or image sharing events and restrict sharing with guardrails.",
+    "optionNotes": [
+      "T1538 is using the provider's web console to gather information.",
+      "T1530 is reading data directly from storage such as buckets.",
+      "Correct: moving data to another cloud account in the same provider is T1537.",
+      "T1525 is planting a malicious image for persistence."
+    ],
+    "tags": ["mitre-attack", "exfiltration"],
+    "sources": ["https://attack.mitre.org/techniques/T1537/", "https://attack.mitre.org/matrices/enterprise/cloud/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0080",
+    "module": 19,
+    "section": "Cloud Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source tool from Rhino Security Labs is an exploitation framework designed for testing the security of Amazon Web Services environments?",
+    "options": ["AzureHound", "ScoutSuite", "Trivy", "Pacu"],
+    "answer": 3,
+    "explanation": "Pacu organizes modules for enumeration, privilege escalation checks and more. Use it only on accounts you own or are authorized to test, for example against a CloudGoat lab.",
+    "optionNotes": [
+      "AzureHound collects Azure data for BloodHound.",
+      "ScoutSuite is a multi-cloud auditing tool from NCC Group.",
+      "Trivy is a scanner from Aqua Security.",
+      "Correct: Pacu is the AWS exploitation framework."
+    ],
+    "tags": ["tools", "aws"],
+    "sources": ["https://github.com/RhinoSecurityLabs/pacu", "https://github.com/RhinoSecurityLabs/cloudgoat"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0081",
+    "module": 19,
+    "section": "Cloud Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which activity do cloud providers' penetration testing rules consistently forbid, even for a customer testing its own resources?",
+    "options": [
+      "Denial-of-service testing and anything that affects other customers",
+      "Scanning your own virtual machines for open ports",
+      "Reviewing IAM policies in your own account",
+      "Testing your own web application for injection flaws"
+    ],
+    "answer": 0,
+    "explanation": "AWS, Microsoft and Google all publish rules for customer testing. Read them before the engagement and put them in the rules of engagement.",
+    "optionNotes": [
+      "Correct: DoS and attacks on other tenants or the provider's platform are off limits.",
+      "Scanning your own resources is normally allowed.",
+      "Reviewing your own configuration needs no special approval.",
+      "Testing your own application is the normal case."
+    ],
+    "tags": ["pentest-policy", "authorization"],
+    "sources": [
+      "https://aws.amazon.com/security/penetration-testing/",
+      "https://www.microsoft.com/en-us/msrc/pentest-rules-of-engagement",
+      "https://support.google.com/cloud/answer/6262505"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0082",
+    "module": 19,
+    "section": "Cloud Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "During an authorized AWS review, the tester wants to know whether a given IAM user could delete S3 buckets, without actually trying the action. What is the right approach?",
+    "options": [
+      "Try deleting a production bucket and see whether it fails",
+      "Use the IAM policy simulator, for example `aws iam simulate-principal-policy`, for that user and action",
+      "Ask the user for their password and test in the console",
+      "Read the S3 server access logs"
+    ],
+    "answer": 1,
+    "explanation": "Policy simulation and IAM Access Analyzer answer 'who can do what' safely. Remember that SCPs and permissions boundaries can also limit what an identity policy allows.",
+    "optionNotes": [
+      "Destructive testing on production is out of bounds.",
+      "Correct: the simulator evaluates policies and returns allowed or denied without performing the action.",
+      "Never collect user passwords.",
+      "Access logs show past requests, not what is permitted."
+    ],
+    "tags": ["iam", "aws-cli"],
+    "sources": [
+      "https://docs.aws.amazon.com/cli/latest/reference/iam/simulate-principal-policy.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0083",
+    "module": 19,
+    "section": "AWS Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "`aws s3api get-public-access-block --bucket reports` returns `{\"PublicAccessBlockConfiguration\": {\"BlockPublicAcls\": false, \"IgnorePublicAcls\": false, \"BlockPublicPolicy\": false, \"RestrictPublicBuckets\": false}}`. What should the defender do next?",
+    "options": [
+      "Check the account-level setting and turn Block Public Access on unless the bucket must truly be public",
+      "Nothing: false means public access is blocked",
+      "Delete the bucket immediately",
+      "Enable server-side encryption, which blocks public access"
+    ],
+    "answer": 0,
+    "explanation": "Block Public Access overrides public ACLs and policies. With all settings off, a single careless ACL or policy can expose the bucket (ATT&CK T1530).",
+    "optionNotes": [
+      "Correct: all four protections are off for this bucket; enable them (preferably account-wide).",
+      "False means the protection is off.",
+      "Deleting data is not the first response; fix the setting and review access.",
+      "Encryption does not stop authorized, including anonymous, reads."
+    ],
+    "tags": ["s3", "aws-cli"],
+    "sources": [
+      "https://docs.aws.amazon.com/cli/latest/reference/s3api/get-public-access-block.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0084",
+    "module": 19,
+    "section": "AWS Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does the S3 Block Public Access setting BlockPublicPolicy do?",
+    "options": [
+      "It deletes existing public ACLs",
+      "It encrypts every object with a new key",
+      "It rejects bucket policies that would grant public access",
+      "It blocks all access from outside the VPC"
+    ],
+    "answer": 2,
+    "explanation": "The four settings are BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy and RestrictPublicBuckets. Two deal with ACLs and two with bucket policies.",
+    "optionNotes": [
+      "IgnorePublicAcls ignores public ACLs; nothing is deleted.",
+      "Encryption is a separate setting.",
+      "Correct: PUT bucket policy calls that allow public access fail.",
+      "Network restrictions use VPC endpoint policies, not this setting."
+    ],
+    "tags": ["s3", "storage"],
+    "sources": ["https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0085",
+    "module": 19,
+    "section": "AWS Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A security team wants a list of all S3 buckets, IAM roles and KMS keys in its account that are shared with principals outside the organization. Which AWS feature is built for this?",
+    "options": ["AWS Cost Explorer", "AWS Shield", "Amazon CloudFront", "IAM Access Analyzer"],
+    "answer": 3,
+    "explanation": "Access Analyzer uses automated reasoning over resource policies. It complements CSPM tools that check other configuration issues.",
+    "optionNotes": [
+      "Cost Explorer shows spending.",
+      "Shield is DDoS protection.",
+      "CloudFront is a content delivery network.",
+      "Correct: its external access analyzer reports resources shared outside the zone of trust."
+    ],
+    "tags": ["iam", "aws-services"],
+    "sources": [
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0086",
+    "module": 19,
+    "section": "AWS Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why does the EC2 instance metadata option HttpPutResponseHopLimit matter for IMDSv2?",
+    "options": [
+      "It sets how many API calls the instance may make per second",
+      "It sets the IP TTL of the token response, so a low value stops the token from reaching hosts or containers beyond the allowed hops",
+      "It limits how many IAM roles can be attached to the instance",
+      "It sets how long the metadata token is valid in hours"
+    ],
+    "answer": 1,
+    "explanation": "IMDSv2 uses a PUT request for a session token, required headers and a hop limit. Container setups may need a limit of 2, which is a trade-off to understand.",
+    "optionNotes": [
+      "Rate limiting is not what this option controls.",
+      "Correct: with a hop limit of 1 the PUT response cannot travel past the instance itself.",
+      "An instance has at most one instance profile; this option is unrelated.",
+      "Token lifetime is set in the token request header, in seconds."
+    ],
+    "tags": ["imdsv2", "metadata-service"],
+    "sources": [
+      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-v2-how-it-works.html",
+      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0087",
+    "module": 19,
+    "section": "Microsoft Azure Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A company wants Microsoft Entra ID to require MFA whenever a user signs in from outside the corporate network, and to block sign-ins from countries where it has no staff. Which feature does this?",
+    "options": ["Privileged Identity Management", "Conditional Access", "Azure Key Vault", "Network security groups"],
+    "answer": 1,
+    "explanation": "Conditional Access is Entra's policy engine: signals (user, location, device, risk) lead to decisions (allow, require MFA, block).",
+    "optionNotes": [
+      "PIM manages just-in-time role activation.",
+      "Correct: Conditional Access applies if-then policies to sign-in signals such as location.",
+      "Key Vault stores secrets and keys.",
+      "NSGs filter traffic to Azure resources, not user sign-ins."
+    ],
+    "tags": ["conditional-access", "azure-identity"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
+      "https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-ins"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0088",
+    "module": 19,
+    "section": "Microsoft Azure Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which collection of PowerShell scripts from NetSPI is used to assess the security of Microsoft Azure environments?",
+    "options": ["CloudGoat", "ROADtools", "Pacu", "MicroBurst"],
+    "answer": 3,
+    "explanation": "Know the Azure tool names at recognition level: MicroBurst, ROADtools, AzureHound, Stormspotter. On the defensive side, Defender for Cloud and Sentinel.",
+    "optionNotes": [
+      "CloudGoat is a vulnerable-by-design AWS lab.",
+      "ROADtools, by Dirk-jan Mollema, focuses on Entra ID and is written in Python.",
+      "Pacu targets AWS.",
+      "Correct: MicroBurst is NetSPI's Azure security assessment toolkit."
+    ],
+    "tags": ["tools", "azure"],
+    "sources": ["https://github.com/NetSPI/MicroBurst", "https://github.com/dirkjanm/ROADtools"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0089",
+    "module": 19,
+    "section": "Microsoft Azure Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An investigator runs `az account show` on a build agent and sees `\"name\": \"Production\"` and `\"user\": {\"name\": \"a1b2c3d4-app\", \"type\": \"servicePrincipal\"}`. What does this tell the investigator?",
+    "options": [
+      "The CLI on that agent is signed in as a service principal with access to the Production subscription",
+      "The CLI is signed in as a human user called Production",
+      "The agent has no Azure access",
+      "The output shows the storage account key"
+    ],
+    "answer": 0,
+    "explanation": "Credentials cached on build agents are a target. Prefer managed identities or workload identity federation for pipelines, with only the roles the pipeline needs.",
+    "optionNotes": [
+      "Correct: the user type is servicePrincipal and the subscription name is Production.",
+      "Production is the subscription name; the identity is a service principal.",
+      "An active account context is shown, so it has access.",
+      "az account show does not display keys."
+    ],
+    "tags": ["azure-cli", "azure-identity"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest",
+      "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0090",
+    "module": 19,
+    "section": "Google Cloud Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In Google Cloud IAM, what does the principal allUsers represent?",
+    "options": [
+      "All service accounts in the project",
+      "All users in your Google Workspace domain",
+      "Anyone on the internet, signed in or not",
+      "All project owners"
+    ],
+    "answer": 2,
+    "explanation": "Granting allUsers or allAuthenticatedUsers on a bucket exposes it. Public access prevention blocks both at bucket, project or organization level.",
+    "optionNotes": [
+      "Service accounts are individual principals.",
+      "Domain-wide access uses a domain principal.",
+      "Correct: allUsers makes a resource fully public.",
+      "Owners are granted through a role, not this principal."
+    ],
+    "tags": ["gcp-storage", "gcp-iam"],
+    "sources": ["https://cloud.google.com/storage/docs/access-control/iam", "https://cloud.google.com/iam/docs/principal-identifiers"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0091",
+    "module": 19,
+    "section": "Google Cloud Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Security wants to guarantee that nobody in any project of the organization can create new service account keys, while still allowing service accounts to exist. What should they use?",
+    "options": [
+      "Turn on Data Access audit logs",
+      "Delete all service accounts",
+      "A VPC firewall rule",
+      "An Organization Policy constraint that disables service account key creation"
+    ],
+    "answer": 3,
+    "explanation": "Organization Policy sets guardrails such as disabling key creation, restricting public IPs or domains. It is Google's counterpart to AWS SCPs and Azure Policy.",
+    "optionNotes": [
+      "Logging records key creation but does not prevent it.",
+      "Workloads need service accounts; the problem is exported keys.",
+      "Firewall rules filter network traffic, not IAM API calls.",
+      "Correct: Organization Policy constraints apply across the resource hierarchy."
+    ],
+    "tags": ["gcp-iam", "guardrails"],
+    "sources": [
+      "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+      "https://cloud.google.com/iam/docs/best-practices-service-accounts"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0092",
+    "module": 19,
+    "section": "Google Cloud Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "In a GKE cluster, the nodes run as a service account with the broad Editor role and pods have not been isolated from the metadata server. Why is this dangerous, and what is the fix?",
+    "options": [
+      "Pods cannot reach the metadata server, so there is no risk",
+      "Any compromised pod can get the node service account's token from the metadata server; use Workload Identity Federation for GKE and a minimal node service account",
+      "The Editor role only allows reading logs, so the risk is small",
+      "The fix is to open port 10250 to the internet so Google can monitor it"
+    ],
+    "answer": 1,
+    "explanation": "Google's hardening guide recommends a least-privilege node service account and Workload Identity Federation for GKE, which gives each Kubernetes service account its own cloud identity.",
+    "optionNotes": [
+      "Pods can reach it unless blocked or Workload Identity is used.",
+      "Correct: without isolation, every pod inherits the node's cloud permissions.",
+      "Editor is a broad role that can change most resources.",
+      "Exposing the kubelet API is a serious weakness in itself."
+    ],
+    "tags": ["gke", "metadata-service"],
+    "sources": [
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/hardening-your-cluster",
+      "https://cloud.google.com/compute/docs/access/service-accounts"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0093",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which TCP port does the Kubernetes API server use by default?",
+    "options": ["2379", "10250", "6443", "8080"],
+    "answer": 2,
+    "explanation": "Restrict API server access to trusted networks and require authentication for every request. Default ports: 6443 API server, 2379-2380 etcd, 10250 kubelet, 30000-32767 NodePort.",
+    "optionNotes": [
+      "2379 is the etcd client API.",
+      "10250 is the kubelet API.",
+      "Correct: kube-apiserver listens on 6443.",
+      "8080 was an old insecure local port, not the default secure API port."
+    ],
+    "tags": ["kubernetes", "ports"],
+    "sources": [
+      "https://kubernetes.io/docs/reference/networking/ports-and-protocols/",
+      "https://kubernetes.io/docs/tasks/administer-cluster/securing-a-cluster/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0094",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A payments pod and a public web pod run in the same Kubernetes cluster, and no NetworkPolicies exist. A compromised web pod can connect directly to the payments pod. How is this fixed?",
+    "options": [
+      "Apply NetworkPolicies, starting with default deny, and allow only the needed flows (with a network plugin that enforces them)",
+      "Rename the payments pod",
+      "Give the web pod a larger CPU limit",
+      "Store the payments pod's image in a private registry"
+    ],
+    "answer": 0,
+    "explanation": "NIST SP 800-190 lists poorly separated inter-container traffic as an orchestrator risk. Segment by sensitivity, and consider separate node pools or clusters for the most sensitive workloads.",
+    "optionNotes": [
+      "Correct: pods are non-isolated by default until a NetworkPolicy selects them.",
+      "Names do not control traffic.",
+      "Resource limits do not restrict network access.",
+      "Registry privacy protects images, not runtime traffic."
+    ],
+    "tags": ["kubernetes", "network-policy"],
+    "sources": ["https://kubernetes.io/docs/concepts/services-networking/network-policies/", "https://csrc.nist.gov/pubs/sp/800/190/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0095",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool checks whether a Kubernetes deployment follows the security best practices defined in the CIS Kubernetes Benchmark?",
+    "options": ["Clair", "kube-hunter", "kube-bench", "Pacu"],
+    "answer": 2,
+    "explanation": "kube-bench reports PASS, FAIL and WARN per benchmark item, for control plane, etcd, worker nodes and policies. Docker Bench for Security does the same for Docker hosts.",
+    "optionNotes": [
+      "Clair scans images for vulnerabilities.",
+      "kube-hunter hunts for weaknesses from an attacker's viewpoint rather than checking the benchmark.",
+      "Correct: kube-bench runs the CIS Kubernetes Benchmark checks.",
+      "Pacu is for AWS."
+    ],
+    "tags": ["kubernetes", "tools", "cis-benchmarks"],
+    "sources": [
+      "https://github.com/aquasecurity/kube-bench",
+      "https://aquasecurity.github.io/kube-bench/latest/",
+      "https://www.cisecurity.org/benchmark/kubernetes"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0096",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "`docker inspect` on a running container shows `\"Privileged\": true` in HostConfig and `\"User\": \"\"` in Config. What do these two values mean together?",
+    "options": [
+      "The container runs privileged and as root (no user set), the riskiest combination for escape to the host",
+      "The container is sandboxed and runs as an unprivileged user",
+      "The container has no network access",
+      "The image is signed with Docker Content Trust"
+    ],
+    "answer": 0,
+    "explanation": "Fix with a non-root USER in the Dockerfile or runAsNonRoot in Kubernetes, drop capabilities instead of using --privileged, and consider rootless Docker or user namespaces.",
+    "optionNotes": [
+      "Correct: an empty User means the image default, usually root; Privileged removes most isolation.",
+      "Both values say the opposite.",
+      "Neither field controls networking.",
+      "Signing is unrelated to these fields."
+    ],
+    "tags": ["docker", "container-escape"],
+    "sources": [
+      "https://docs.docker.com/reference/cli/docker/container/inspect/",
+      "https://docs.docker.com/reference/cli/docker/container/run/",
+      "https://docs.docker.com/engine/security/rootless/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0097",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "The Kubernetes documentation's layered '4C' model of cloud native security consists of which four layers?",
+    "options": [
+      "Compute, Configuration, Credentials, Compliance",
+      "Cloud, Cluster, Container, Code",
+      "Control plane, CNI, CRI, CSI",
+      "Client, Cache, Controller, Console"
+    ],
+    "answer": 1,
+    "explanation": "A secure pod cannot fix an insecure cloud account or cluster, and the reverse is also true. The model was in the Kubernetes security overview page and is widely used in study material.",
+    "optionNotes": [
+      "Plausible words, but not the model.",
+      "Correct: each layer builds on the security of the outer one.",
+      "These are Kubernetes component interfaces, not the security model.",
+      "Not the model."
+    ],
+    "tags": ["kubernetes", "defense-in-depth"],
+    "sources": [
+      "https://web.archive.org/web/20230127212146/https://kubernetes.io/docs/concepts/security/overview/",
+      "https://kubernetes.io/docs/concepts/security/overview/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0098",
+    "module": 19,
+    "section": "Cloud Security",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does a CSA STAR level 2 entry for a cloud provider indicate?",
+    "options": [
+      "The provider offers only SaaS services",
+      "The provider only filled in a self-assessment questionnaire",
+      "The provider was breached in the last year",
+      "The provider earned a third-party certification or attestation"
+    ],
+    "answer": 3,
+    "explanation": "Customers can use STAR entries and CCM mappings to check a provider's controls before signing a contract.",
+    "optionNotes": [
+      "STAR levels do not depend on the service model.",
+      "That is level 1 (self-assessment, based on the CAIQ).",
+      "STAR is an assurance registry, not a breach list.",
+      "Correct: level 2 is third-party audited."
+    ],
+    "tags": ["csa-star", "compliance"],
+    "sources": ["https://cloudsecurityalliance.org/star", "https://cloudsecurityalliance.org/research/cloud-controls-matrix"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0099",
+    "module": 19,
+    "section": "Cloud Security",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Database passwords are hard-coded in several serverless functions and container images. What is the recommended fix?",
+    "options": [
+      "Make the repositories private and keep the passwords",
+      "Base64-encode the passwords in the code",
+      "Put the passwords in the image's environment variables at build time",
+      "Move them to a managed secrets service (Secrets Manager, Key Vault or Secret Manager), grant access by identity and rotate them"
+    ],
+    "answer": 3,
+    "explanation": "Embedded clear-text secrets are an image risk in NIST SP 800-190. OWASP's secrets management guidance recommends central storage, least-privilege access, rotation and auditing.",
+    "optionNotes": [
+      "Private repositories still leak through forks, clones and insiders.",
+      "Base64 is encoding, not encryption.",
+      "Build-time variables are baked into the image and can be read from it.",
+      "Correct: a vault with identity-based access and rotation removes secrets from code."
+    ],
+    "tags": ["secrets"],
+    "sources": [
+      "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+      "https://csrc.nist.gov/pubs/sp/800/190/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0100",
+    "module": 19,
+    "section": "Cloud Security",
+    "domain": "D8",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which script checks a Docker host and its containers against dozens of common best practices based on the CIS Docker Benchmark?",
+    "options": ["S3Scanner", "kube-hunter", "Docker Bench for Security", "ROADtools"],
+    "answer": 2,
+    "explanation": "CIS Benchmarks are free, consensus-based secure configuration guides. Tools like Docker Bench, kube-bench and Security Hub turn them into automated checks.",
+    "optionNotes": [
+      "S3Scanner looks for misconfigured buckets.",
+      "kube-hunter looks for weaknesses in Kubernetes clusters.",
+      "Correct: Docker Bench for Security automates the CIS Docker checks.",
+      "ROADtools explores Microsoft Entra ID."
+    ],
+    "tags": ["cis-benchmarks", "docker", "tools"],
+    "sources": ["https://github.com/docker/docker-bench-security", "https://www.cisecurity.org/benchmark/docker"],
+    "verify": false,
+    "rev": 1
+  }
+]

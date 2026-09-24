@@ -1,0 +1,274 @@
+[
+  {
+    "id": "m19-q-0001",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which NIST SP 800-145 essential characteristic describes capacity that can grow and shrink quickly, often automatically, to match demand?",
+    "options": ["Rapid elasticity", "Resource pooling", "Measured service", "Broad network access"],
+    "answer": 0,
+    "explanation": "NIST lists five essential characteristics: on-demand self-service, broad network access, resource pooling, rapid elasticity and measured service. Elasticity is the one about scaling with demand.",
+    "optionNotes": [
+      "Correct: elasticity is scaling out and in with demand.",
+      "Resource pooling is the provider serving many tenants from shared resources.",
+      "Measured service is metering usage so it can be billed and monitored.",
+      "Broad network access means the service is reachable over standard networks from many client types."
+    ],
+    "tags": ["nist-800-145", "cloud-characteristics"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/145/final", "https://csrc.nist.gov/glossary/term/cloud_computing"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0002",
+    "module": 19,
+    "section": "Cloud Computing Concepts",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Three regional hospitals build a shared cloud that only they use, because they all follow the same health-data compliance rules. Which deployment model is this?",
+    "options": ["Hybrid cloud", "Public cloud", "Community cloud", "Private cloud"],
+    "answer": 2,
+    "explanation": "NIST defines a community cloud as infrastructure provisioned for exclusive use by a specific community of consumers with shared concerns such as mission, security requirements or compliance.",
+    "optionNotes": [
+      "Hybrid means combining two or more distinct deployment models.",
+      "A public cloud is open to the general public.",
+      "Correct: several organizations with shared concerns use one exclusive infrastructure.",
+      "A private cloud is exclusive to a single organization, not a group of them."
+    ],
+    "tags": ["deployment-models"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/145/final", "https://csrc.nist.gov/glossary/term/community_cloud"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0003",
+    "module": 19,
+    "section": "Cloud Computing Threats",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 3,
+    "stem": "An espionage group breaks into a managed IT service provider and then uses the provider's trusted access to reach the networks of the provider's customers. What does EC-Council call this cloud attack?",
+    "options": ["Side-channel attack", "Cloudborne", "Wrapping attack", "Cloud hopping"],
+    "answer": 3,
+    "explanation": "Cloud hopping abuses the trust between a managed service provider and its customers. MITRE ATT&CK tracks the technique as T1199 Trusted Relationship and attributes the best-known campaign to menuPass (APT10).",
+    "optionNotes": [
+      "A side-channel attack infers data from shared hardware such as CPU caches.",
+      "Cloudborne is a firmware implant that survives the reassignment of a bare-metal server.",
+      "A wrapping attack manipulates signed XML (SOAP) messages.",
+      "Correct: pivoting from a service provider into its clients is cloud hopping (the APT10 / menuPass campaigns)."
+    ],
+    "tags": ["cloud-attacks", "trusted-relationship", "ec-council-specific"],
+    "sources": [
+      "https://attack.mitre.org/groups/G0045/",
+      "https://attack.mitre.org/techniques/T1199/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0004",
+    "module": 19,
+    "section": "Cloud Hacking",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A consultant needs a read-only, multi-cloud auditing tool that pulls configuration data through the provider APIs and produces an HTML report of risky settings. Which tool fits best?",
+    "options": ["Pacu", "ScoutSuite", "CloudGoat", "Falco"],
+    "answer": 1,
+    "explanation": "ScoutSuite queries the cloud APIs with read access and reports misconfigurations for AWS, Azure, Google Cloud and others. Audit tools list findings; exploitation frameworks such as Pacu test them.",
+    "optionNotes": [
+      "Pacu is an AWS exploitation framework, not a read-only auditor.",
+      "Correct: ScoutSuite is NCC Group's multi-cloud security auditing tool.",
+      "CloudGoat deploys intentionally vulnerable AWS scenarios for training.",
+      "Falco detects suspicious behavior at runtime from system calls."
+    ],
+    "tags": ["tools", "cspm"],
+    "sources": ["https://github.com/nccgroup/ScoutSuite", "https://github.com/prowler-cloud/prowler"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0005",
+    "module": 19,
+    "section": "AWS Hacking",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A web app on EC2 has a server-side request forgery (SSRF) flaw. The team fears an attacker could make the app fetch the instance role's credentials from the metadata service. Which EC2 setting most directly reduces that risk?",
+    "options": [
+      "Move the instance to a different Availability Zone",
+      "Enable S3 Block Public Access on the account",
+      "Set the instance metadata option HttpTokens to required (IMDSv2 only)",
+      "Turn on default EBS volume encryption"
+    ],
+    "answer": 2,
+    "explanation": "With IMDSv2 required, every metadata request needs a session token obtained with a PUT request, and requests without it get 401. Also give the role least privilege and fix the SSRF itself.",
+    "optionNotes": [
+      "The Availability Zone has no effect on metadata access.",
+      "Block Public Access protects buckets, not the metadata endpoint.",
+      "Correct: IMDSv2 needs a token obtained with a PUT request, which a simple SSRF GET cannot provide.",
+      "Disk encryption protects data at rest, not the metadata credentials."
+    ],
+    "tags": ["imdsv2", "ssrf", "metadata-service"],
+    "sources": [
+      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-v2-how-it-works.html",
+      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html",
+      "https://attack.mitre.org/techniques/T1552/005/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0006",
+    "module": 19,
+    "section": "Microsoft Azure Hacking",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which type of Azure Storage shared access signature (SAS) is secured with Microsoft Entra credentials instead of the storage account key?",
+    "options": ["Stored access policy", "Service SAS", "Account SAS", "User delegation SAS"],
+    "answer": 3,
+    "explanation": "Azure has three SAS types: user delegation (Entra credentials), service and account (both signed with the account key). A leaked SAS works until it expires, so keep expiry short and scope narrow.",
+    "optionNotes": [
+      "A stored access policy groups constraints for service SAS tokens; it is not a SAS type.",
+      "A service SAS is signed with the storage account key.",
+      "An account SAS is also signed with the storage account key.",
+      "Correct: Microsoft recommends it because no account key is involved."
+    ],
+    "tags": ["azure-storage", "sas"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview",
+      "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0007",
+    "module": 19,
+    "section": "Google Cloud Hacking",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A Cloud Storage bucket grants the Storage Object Viewer role to allAuthenticatedUsers. The owner says this is safe because only company staff can sign in. What is the actual exposure?",
+    "options": [
+      "Anyone with any Google account can read the objects",
+      "Only users in the company's Google Workspace domain can read the objects",
+      "Only service accounts in the same project can read the objects",
+      "Nobody can read them until uniform bucket-level access is enabled"
+    ],
+    "answer": 0,
+    "explanation": "allUsers is anyone on the internet and allAuthenticatedUsers is anyone signed in to a Google account. Both make data public in practice; public access prevention blocks them.",
+    "optionNotes": [
+      "Correct: allAuthenticatedUsers means every authenticated Google account, not just your organization.",
+      "That would need a domain principal, not allAuthenticatedUsers.",
+      "Service accounts are not what this principal is limited to.",
+      "Uniform bucket-level access changes how access is managed; it does not stop IAM grants."
+    ],
+    "tags": ["gcp-storage", "misconfiguration"],
+    "sources": ["https://cloud.google.com/storage/docs/access-control/iam", "https://cloud.google.com/storage/docs/public-access-prevention"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0008",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A kube-bench run on a worker node prints `[FAIL] 4.2.1 Ensure that the --anonymous-auth argument is set to false`. What does this finding mean?",
+    "options": [
+      "The API server rejects every anonymous request",
+      "The kubelet accepts unauthenticated requests on its API",
+      "etcd is running without TLS",
+      "The container image contains a known CVE"
+    ],
+    "answer": 1,
+    "explanation": "kube-bench compares a cluster with the CIS Kubernetes Benchmark. An anonymous kubelet API (port 10250) can let anyone who reaches the node list pods or even run commands, depending on authorization mode.",
+    "optionNotes": [
+      "That would be the secure state, which would pass the check.",
+      "Correct: by default the kubelet treats unauthenticated requests as system:anonymous; the fix is --anonymous-auth=false.",
+      "etcd TLS checks are in a different section of the benchmark.",
+      "kube-bench checks configuration against the CIS benchmark; image CVEs are a job for scanners like Trivy."
+    ],
+    "tags": ["kubernetes", "kube-bench", "kubelet"],
+    "sources": [
+      "https://github.com/aquasecurity/kube-bench",
+      "https://kubernetes.io/docs/reference/access-authn-authz/kubelet-authn-authz/",
+      "https://www.cisecurity.org/benchmark/kubernetes"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0009",
+    "module": 19,
+    "section": "Container Hacking",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which TCP port does the kubelet API listen on by default?",
+    "options": ["10250", "6443", "2379", "2376"],
+    "answer": 0,
+    "explanation": "Kubernetes default ports: 6443 API server, 2379-2380 etcd, 10250 kubelet, 30000-32767 NodePort services. None of them should be reachable from the internet.",
+    "optionNotes": [
+      "Correct: 10250 is the kubelet API.",
+      "6443 is the Kubernetes API server.",
+      "2379 is the etcd client API.",
+      "2376 is the Docker daemon over TLS."
+    ],
+    "tags": ["ports", "kubernetes"],
+    "sources": [
+      "https://kubernetes.io/docs/reference/networking/ports-and-protocols/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/kubelet-authn-authz/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m19-q-0010",
+    "module": 19,
+    "section": "Cloud Security",
+    "domain": "D8",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A company with 40 AWS accounts wants a rule that no member account, not even its administrators, can disable CloudTrail. Which control fits?",
+    "options": [
+      "An IAM user policy attached to each administrator",
+      "A service control policy (SCP) in AWS Organizations that denies the CloudTrail stop and delete actions",
+      "A security group rule on each VPC",
+      "Enabling GuardDuty in every account"
+    ],
+    "answer": 1,
+    "explanation": "SCPs set the maximum permissions for member accounts; they grant nothing on their own. Denying cloudtrail:StopLogging and DeleteTrail keeps the audit trail on, which counters ATT&CK T1562.008.",
+    "optionNotes": [
+      "Account administrators could simply remove or change their own IAM policies.",
+      "Correct: SCPs cap what any principal in member accounts can do, including administrators.",
+      "Security groups filter network traffic, not API actions.",
+      "GuardDuty would detect the change afterwards but not prevent it."
+    ],
+    "tags": ["guardrails", "scp", "logging"],
+    "sources": [
+      "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
+      "https://attack.mitre.org/techniques/T1562/008/",
+      "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]
