@@ -1,0 +1,1024 @@
+[
+  {
+    "id": "m07-c-0001",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Malware",
+    "back": "Software or firmware written to perform an unauthorized process that harms the **confidentiality, integrity or availability** of a system.\n\nThe owner never agreed to what it does; that is what makes it malware.",
+    "tags": [
+      "malware"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/malware",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0002",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Virus vs worm vs Trojan: the one-line test",
+    "back": "- **Virus**: replicates by infecting a host file; needs a user action\n- **Worm**: replicates **by itself**, self-contained, usually over the network\n- **Trojan**: **does not replicate**; looks useful, hides a malicious function\n\nHook: *a Virus needs a Vehicle, a Worm Walks alone, a Trojan Tricks you.*",
+    "tags": [
+      "malware-types"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/virus",
+      "https://csrc.nist.gov/glossary/term/worm",
+      "https://csrc.nist.gov/glossary/term/trojan_horse",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0003",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "NIST SP 800-83 virus subtypes",
+    "back": "**Compiled** (run by the OS):\n- file infector: attaches to executables\n- boot sector: infects the MBR or boot sector\n- multipartite: file infector + boot sector\n\n**Interpreted** (run by an application):\n- macro: document macros\n- scripting: scripts run by OS services",
+    "tags": [
+      "virus-types"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://csrc.nist.gov/glossary/term/macro_virus"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0004",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Two kinds of worm (SP 800-83)",
+    "back": "- **Network service worm**: exploits a vulnerable network service to reach new hosts (WannaCry over SMBv1)\n- **Mass-mailing worm**: e-mails itself; like an e-mail virus but self-contained",
+    "tags": [
+      "worm"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0005",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Rootkit",
+    "back": "A set of files or tools installed after gaining privileged access, to **hide** the attacker's activity and **keep** that access (ATT&CK T1014).\n\nKernel and boot-level rootkits can make the OS lie to security tools, so scan from trusted media and usually rebuild.",
+    "tags": [
+      "rootkit"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/rootkit",
+      "https://attack.mitre.org/techniques/T1014/",
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/rootkits-malware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0006",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Bootkit",
+    "back": "Malware that modifies boot sectors or boot code so it runs **before the operating system** loads (ATT&CK T1542.003).\n\nDefense: UEFI **Secure Boot**, firmware integrity (NIST SP 800-193), measured boot.",
+    "tags": [
+      "bootkit",
+      "rootkit"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1542/003/",
+      "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/oem-secure-boot",
+      "https://csrc.nist.gov/pubs/sp/800/193/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0007",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Backdoor and RAT",
+    "back": "**Backdoor**: an undocumented way into a system; as malware, a program that listens for remote commands.\n**Remote access Trojan (RAT)**: a backdoor that gives the attacker full remote control (files, screen, webcam, shell).\n\nAttackers also abuse legitimate remote tools (T1219).",
+    "tags": [
+      "backdoor",
+      "rat"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/backdoor",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://attack.mitre.org/techniques/T1219/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0008",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Botnet",
+    "back": "A network of compromised hosts (**bots** or zombies) that obey a **command-and-control (C2)** server: DDoS, spam, credential stuffing, mining.\n\nExample: **Mirai** enslaved IoT devices by logging in over Telnet with default passwords.",
+    "tags": [
+      "botnet"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/botnet",
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://attack.mitre.org/tactics/TA0011/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0009",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Ransomware",
+    "back": "Malware that **encrypts** data (T1486) and demands payment for the key. It usually deletes shadow copies and backups first (T1490).\n\n**Double extortion**: data is also stolen and the attacker threatens to leak it.",
+    "tags": [
+      "ransomware"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1486/",
+      "https://attack.mitre.org/techniques/T1490/",
+      "https://www.cisa.gov/stopransomware/ransomware-guide"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0010",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Spyware, keylogger, adware, logic bomb",
+    "back": "- **Spyware**: secretly collects information about users or the organization\n- **Keylogger**: records keystrokes (T1056.001)\n- **Adware / PUA**: unwanted ads or bundled software; raises risk even when not strictly malicious\n- **Logic bomb**: code that fires when a condition is met (a date, an employee removed from payroll)",
+    "tags": [
+      "spyware",
+      "logic-bomb"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/spyware",
+      "https://attack.mitre.org/techniques/T1056/001/",
+      "https://csrc.nist.gov/glossary/term/logic_bomb",
+      "https://learn.microsoft.com/en-us/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0011",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Malware kit components (EC-Council names)",
+    "back": "- **Dropper**: carries the payload inside and installs it\n- **Downloader**: fetches the payload from the internet\n- **Crypter**: encrypts the code to evade scanning\n- **Packer**: compresses the executable (e.g. UPX)\n- **Obfuscator**: makes code hard to read\n- **Wrapper / binder**: joins the Trojan to a legitimate program\n- **Exploit** + **payload**: the way in, then what runs",
+    "tags": [
+      "malware-components",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1027/",
+      "https://attack.mitre.org/techniques/T1027/002/",
+      "https://attack.mitre.org/techniques/T1105/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0012",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Polymorphic vs metamorphic malware",
+    "back": "**Polymorphic**: changes its encryption or appearance with each copy; the decrypted core stays the same.\n**Metamorphic**: rewrites its whole code body on each copy, with no constant core.\n\nBoth defeat simple signatures; behavior detection and emulation still work.",
+    "tags": [
+      "virus-types",
+      "evasion",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1027/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0013",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "EC-Council virus types to recognize",
+    "back": "- **Stealth**: hides its changes from AV (intercepts OS calls)\n- **Encryption**: encrypted body, small decryptor\n- **Cavity (space-filler)**: fills empty space in a file, size unchanged\n- **Sparse infector**: infects only now and then to avoid notice\n- **Companion**: same name, different extension, runs first\n- **File-extension**: hides behind a double extension such as `invoice.pdf.exe`",
+    "tags": [
+      "virus-types",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0014",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Advanced persistent threat (APT)",
+    "back": "A skilled, well-resourced adversary that uses several attack vectors and **establishes and extends a long-term presence** to steal data or prepare disruption.\n\nKey words: stealthy, targeted, persistent. SP 800-83: hosts often have to be rebuilt.",
+    "tags": [
+      "apt"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/advanced_persistent_threat",
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/advanced-persistent-threats",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0015",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "APT lifecycle (EC-Council)",
+    "back": "1. Preparation\n2. Initial intrusion\n3. Expansion\n4. Persistence\n5. Search and exfiltration\n6. Cleanup\n\nHook: *Please Ignore Every Persistent Spy's Cleanup.*",
+    "tags": [
+      "apt",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/glossary/term/advanced_persistent_threat"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0016",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Common malware infection vectors (ATT&CK)",
+    "back": "- Phishing attachment: T1566.001\n- User runs a disguised file: T1204.002\n- Drive-by download: T1189\n- Removable media / AutoRun: T1091\n- Poisoned software update: T1195.002\n- Worm exploiting a remote service: T1210",
+    "tags": [
+      "infection-vectors",
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1566/001/",
+      "https://attack.mitre.org/techniques/T1204/002/",
+      "https://attack.mitre.org/techniques/T1189/",
+      "https://attack.mitre.org/techniques/T1091/",
+      "https://attack.mitre.org/techniques/T1195/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0017",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Fileless malware",
+    "back": "Malware that avoids writing a program file to disk: it runs **in memory** and abuses **built-in tools** (PowerShell, WMI, mshta), storing any persistence in the registry, WMI repository or scheduled tasks.\n\nGoal: leave nothing for file-based antivirus to scan.",
+    "tags": [
+      "fileless"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats",
+      "https://attack.mitre.org/techniques/T1027/011/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0018",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Microsoft's three types of fileless threat",
+    "back": "- **Type I**: no file activity at all (network exploit loads a backdoor into memory)\n- **Type II**: indirect file activity (script stored in the WMI repository or registry)\n- **Type III**: needs files to operate (registry file handler launching a script via mshta)",
+    "tags": [
+      "fileless"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats",
+      "https://attack.mitre.org/techniques/T1027/011/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0019",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Living off the land (LOTL)",
+    "back": "Using the target's own trusted binaries and admin tools (PowerShell, WMI, certutil, rundll32, mshta, regsvr32) instead of custom malware.\n\nCatalogs: **LOLBAS** (Windows), **GTFOBins** (Unix). ATT&CK: T1218 system binary proxy execution.",
+    "tags": [
+      "lotl",
+      "fileless"
+    ],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques",
+      "https://lolbas-project.github.io/",
+      "https://attack.mitre.org/techniques/T1218/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0020",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Reflective loading and process hollowing",
+    "back": "**Reflective code loading** (T1620): allocate memory inside a process and run a payload there, with no file on disk.\n**Process hollowing** (T1055.012): start a legitimate process suspended, replace its memory with malicious code, resume it.\n\nBoth hide inside trusted process names.",
+    "tags": [
+      "process-injection",
+      "fileless"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1620/",
+      "https://attack.mitre.org/techniques/T1055/012/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0021",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Fileless persistence points",
+    "back": "- Registry **Run/RunOnce** keys (T1547.001)\n- **Scheduled tasks** (T1053.005)\n- **WMI event subscriptions** (T1546.003)\n- Script stored in a registry value, launched by a native tool\n\nFind them with **Autoruns**.",
+    "tags": [
+      "persistence",
+      "fileless"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1547/001/",
+      "https://attack.mitre.org/techniques/T1053/005/",
+      "https://attack.mitre.org/techniques/T1546/003/",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0022",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "AMSI (Antimalware Scan Interface)",
+    "back": "A Windows interface that lets scripting engines (PowerShell, VBScript, JScript, Office VBA) hand the **de-obfuscated** script content to the installed antivirus **before it runs**.\n\nObfuscation hides code on disk, but the engine must eventually see plain code, and AMSI scans it there.",
+    "tags": [
+      "amsi",
+      "fileless"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal",
+      "https://learn.microsoft.com/en-us/windows/win32/amsi/how-amsi-helps"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0023",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "command",
+    "front": "PowerShell script block logging",
+    "back": "Records the content of every script block PowerShell processes, including de-obfuscated code, as **event ID 4104** in `Microsoft-Windows-PowerShell/Operational`.\n\nForward it to the SIEM: it is one of the best sources for fileless attacks.",
+    "tags": [
+      "powershell",
+      "logging"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows",
+      "https://attack.mitre.org/techniques/T1059/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0024",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Limiting PowerShell abuse",
+    "back": "- **Constrained Language Mode**, enforced by App Control for Business or AppLocker\n- Script block and module logging\n- AMSI-aware antivirus\n- Remove PowerShell 2.0 (no AMSI or logging)\n- Allowlist which scripts may run",
+    "tags": [
+      "powershell",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_modes",
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/appcontrol",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0025",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Why fileless still leaves evidence",
+    "back": "- **Memory**: capture and analyze with Volatility\n- **Registry and WMI repository**: persistence stored as data\n- **Event logs**: 4104, Sysmon 1 (command lines), 8 (remote threads)\n- **EDR telemetry**: parent/child process chains such as Word → PowerShell",
+    "tags": [
+      "fileless",
+      "detection"
+    ],
+    "sources": [
+      "https://volatility3.readthedocs.io/en/latest/",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/defender-endpoint/overview-endpoint-detection-response"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0026",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "ATT&CK T1588.007: Obtain Capabilities: Artificial Intelligence",
+    "back": "Adversaries obtain generative AI tools (LLMs) to help with reconnaissance, scripting, social engineering and even payload development.\n\nMost observed use is **productivity**, not new capabilities.",
+    "tags": [
+      "ai",
+      "v13-new",
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1588/007/",
+      "https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/",
+      "https://cloud.google.com/blog/topics/threat-intelligence/adversarial-misuse-generative-ai"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0027",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "What AI changes for malware (2024-2025 reports)",
+    "back": "- Faster research, debugging and translation of lures\n- Fluent phishing and **deepfake** voice/video\n- **Runtime LLM calls**: malware asks a model to rewrite or generate code (PROMPTFLUX, PROMPTSTEAL)\n- Proof-of-concept AI ransomware (PromptLock)\n- Lower skill needed to build basic malware",
+    "tags": [
+      "ai",
+      "v13-new"
+    ],
+    "sources": [
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://www.welivesecurity.com/en/ransomware/first-known-ai-powered-ransomware-uncovered-eset-research/",
+      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0028",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Just-in-time self-modification",
+    "back": "Malware that asks an LLM **while running** to rewrite or obfuscate its own code, so every copy differs. Google reported this in the PROMPTFLUX dropper (2025, experimental).\n\nImpact: hashes and simple signatures fail; behavior, network and memory detection still work.",
+    "tags": [
+      "ai",
+      "v13-new",
+      "evasion"
+    ],
+    "sources": [
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://attack.mitre.org/techniques/T1027/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0029",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "NCSC view: where AI helps attackers most",
+    "back": "- **Reconnaissance** and **social engineering**: clear uplift\n- Malware and exploit development: uplift mainly for capable, well-resourced actors\n- Lower barrier for novices\n- Defenders gain too: detection and secure-by-design",
+    "tags": [
+      "ai",
+      "v13-new"
+    ],
+    "sources": [
+      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat",
+      "https://cloud.google.com/blog/topics/threat-intelligence/adversarial-misuse-generative-ai"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0030",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Adversarial ML: evasion vs poisoning",
+    "back": "**Evasion**: craft an input (for example a tweaked sample) that an ML classifier mislabels as benign.\n**Poisoning**: corrupt the training data so the model learns the wrong thing.\n\nML malware detectors are targets too (NIST AI 100-2, MITRE ATLAS).",
+    "tags": [
+      "ai",
+      "v13-new",
+      "adversarial-ml"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
+      "https://atlas.mitre.org/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0031",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "list",
+    "front": "AI on the defender's side",
+    "back": "- **ML in antivirus/EDR**: cloud models score new files and behavior\n- **LLM code explanation**: e.g. VirusTotal Code Insight summarizes suspicious scripts\n- **SOC assistants**: summarize alerts, draft queries\n\nThe analyst still verifies: models can be wrong or manipulated.",
+    "tags": [
+      "ai",
+      "v13-new",
+      "detection"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/cloud-protection-microsoft-defender-antivirus",
+      "https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0032",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Defending against AI-enabled phishing and deepfakes",
+    "back": "- **Out-of-band verification** of payment or access requests (call back a known number)\n- Phishing-resistant MFA\n- Awareness training that uses realistic AI examples\n- Process controls: two-person approval for transfers",
+    "tags": [
+      "ai",
+      "v13-new",
+      "deepfake"
+    ],
+    "sources": [
+      "https://media.defense.gov/2023/Sep/12/2003298925/-1/-1/0/CSI-DEEPFAKE-THREATS.PDF",
+      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0033",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Static vs dynamic malware analysis",
+    "back": "**Static**: examine the sample **without running it** (hashes, strings, PE headers, imports, packing, disassembly).\n**Dynamic**: **run it** in an isolated sandbox and watch processes, files, registry and network.\n\nUsual order: static first, then dynamic.",
+    "tags": [
+      "malware-analysis"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://docs.remnux.org/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0034",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Safe malware lab checklist",
+    "back": "- Isolated VM, **host-only** network, no shared folders\n- **Snapshot** before, revert after each run\n- Fake internet with **INetSim**\n- Toolkits: **REMnux** (Linux), **FLARE-VM** (Windows)\n- Remember: some samples detect VMs and stay quiet (T1497)",
+    "tags": [
+      "malware-lab"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://www.inetsim.org/",
+      "https://docs.remnux.org/",
+      "https://github.com/mandiant/flare-vm",
+      "https://attack.mitre.org/techniques/T1497/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0035",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Sheep dip",
+    "back": "EC-Council term for a dedicated, **isolated computer** used to check files and removable media for malware before they enter the network.",
+    "tags": [
+      "malware-lab",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/news/using-caution-usb-drives"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0036",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "command",
+    "front": "Hashing a sample on Windows",
+    "back": "`certutil -hashfile sample.bin SHA256`\n`Get-FileHash .\\sample.bin -Algorithm SHA256`\n\nUse SHA-256 as the ID. MD5 is broken for collisions but still appears in reports.",
+    "tags": [
+      "hashing",
+      "static-analysis"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash",
+      "https://www.rfc-editor.org/rfc/rfc6151"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0037",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "VirusTotal",
+    "back": "Aggregates many antivirus engines, URL scanners and analysis tools for a file, URL, domain or IP.\n\n**Search by hash first**: uploaded files are shared with partners and premium users, so never upload confidential documents.",
+    "tags": [
+      "virustotal",
+      "static-analysis"
+    ],
+    "sources": [
+      "https://docs.virustotal.com/docs/how-it-works",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sigcheck"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0038",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "Strings, Detect It Easy, ssdeep",
+    "back": "- **Strings** (Sysinternals): ASCII and Unicode text: URLs, IPs, paths\n- **Detect It Easy**: file type, compiler and **packer** detection\n- **ssdeep**: fuzzy hash (CTPH) that matches similar, not identical, files",
+    "tags": [
+      "static-analysis",
+      "tools"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/strings",
+      "https://github.com/horsicq/Detect-It-Easy",
+      "https://ssdeep-project.github.io/ssdeep/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0039",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Packing and its signs",
+    "back": "Packing compresses or encrypts an executable so its real code only appears in memory (T1027.002), which changes the signature.\n\nSigns: **high entropy**, very few imports, section names like `UPX0`/`UPX1`, small file with a big unpacked size.",
+    "tags": [
+      "packing",
+      "static-analysis"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1027/002/",
+      "https://upx.github.io/",
+      "https://github.com/horsicq/Detect-It-Easy"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0040",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "Sysinternals for dynamic analysis",
+    "back": "- **Process Monitor**: file, registry, process/thread activity in real time\n- **Process Explorer**: processes, loaded DLLs, handles\n- **TCPView**: TCP/UDP endpoints and owning process\n- **Autoruns**: every autostart location (Run keys, services, tasks)\n- **Sigcheck**: signatures and VirusTotal lookup",
+    "tags": [
+      "sysinternals",
+      "dynamic-analysis"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/procmon",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sigcheck"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0041",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Sysmon event IDs worth knowing",
+    "back": "- **1** process creation (full command line)\n- **3** network connection\n- **7** image (DLL) loaded\n- **8** CreateRemoteThread (injection)\n- **11** file create\n- **13** registry value set\n- **22** DNS query",
+    "tags": [
+      "sysmon",
+      "dynamic-analysis"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://attack.mitre.org/techniques/T1055/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0042",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "YARA",
+    "back": "Pattern-matching tool for identifying and classifying malware. A rule has an identifier, optional **meta**, **strings** (text, hex, regex) and a boolean **condition**.\n\nSurvives small changes that break a hash; used in VirusTotal hunting and CISA advisories.",
+    "tags": [
+      "yara",
+      "detection"
+    ],
+    "sources": [
+      "https://yara.readthedocs.io/en/stable/writingrules.html",
+      "https://virustotal.github.io/yara/",
+      "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0043",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Pyramid of Pain (bottom to top)",
+    "back": "1. Hash values: trivial to change\n2. IP addresses: easy\n3. Domain names: simple\n4. Network/host artifacts: annoying\n5. Tools: challenging\n6. **TTPs**: tough\n\nThe higher you detect, the more it costs the attacker to adapt.",
+    "tags": [
+      "ioc",
+      "threat-intelligence"
+    ],
+    "sources": [
+      "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html",
+      "https://csrc.nist.gov/glossary/term/indicator"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0044",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Virus detection methods (EC-Council)",
+    "back": "- **Scanning**: match known signatures\n- **Integrity checking**: compare file checksums with a baseline\n- **Interception**: watch OS requests (e.g. writes to executables)\n- **Code emulation**: run code in a virtual CPU to unmask it\n- **Heuristic analysis**: flag suspicious traits in unknown code",
+    "tags": [
+      "virus-detection",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/glossary/term/antivirus_software",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0045",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Signature vs heuristic vs behavior detection",
+    "back": "- **Signature**: known pattern; fast, few false positives, misses new variants\n- **Heuristic**: suspicious code traits; catches some new variants, more false positives\n- **Behavior**: what the program does at run time; best against customized and fileless malware",
+    "tags": [
+      "detection"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/signature",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://docs.virustotal.com/docs/how-it-works"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0046",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Application allowlisting",
+    "back": "Only applications on an approved list may run (NIST SP 800-167). Stops unknown malware, unlicensed and unauthorized software.\n\nWindows: **App Control for Business**, **AppLocker**. ATT&CK mitigation M1038 (Execution Prevention).",
+    "tags": [
+      "allowlisting"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/167/final",
+      "https://csrc.nist.gov/glossary/term/application_allowlisting",
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/appcontrol",
+      "https://attack.mitre.org/mitigations/M1038/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0047",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Ransomware countermeasures (CISA guide)",
+    "back": "- **Offline, encrypted** backups, **tested** regularly\n- Golden images of critical systems\n- Patch internet-facing systems, MFA on remote access\n- Controlled folder access / EDR\n- Check backups for the dropper before restoring\n- Paying is discouraged",
+    "tags": [
+      "ransomware",
+      "backups"
+    ],
+    "sources": [
+      "https://www.cisa.gov/stopransomware/ransomware-guide",
+      "https://learn.microsoft.com/en-us/defender-endpoint/controlled-folders",
+      "https://attack.mitre.org/mitigations/M1053/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0048",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "list",
+    "front": "When to rebuild instead of disinfect (SP 800-83)",
+    "back": "- The attacker had **admin-level** access\n- Admin access was open to anyone (backdoor, open share)\n- **System files replaced** (Trojan, backdoor, rootkit)\n- Host **unstable** after cleaning\n- **Doubt** about the extent of the infection",
+    "tags": [
+      "eradication",
+      "incident-response"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0049",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Malware containment options (SP 800-83)",
+    "back": "- User participation (report, disconnect)\n- Automated detection (AV, IPS custom signatures, content filtering)\n- **Disable services** the malware uses\n- **Disable connectivity**: block C2, isolate hosts or subnets",
+    "tags": [
+      "containment",
+      "incident-response"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0050",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "Rootkit and integrity checkers",
+    "back": "- **chkrootkit**, **rkhunter**: look for known rootkit signs on Linux\n- **AIDE** (Tripwire-style): file integrity database; alerts when system files change\n- Scan from **trusted boot media**: an infected OS can hide files from its own tools",
+    "tags": [
+      "rootkit",
+      "integrity"
+    ],
+    "sources": [
+      "https://www.chkrootkit.org/",
+      "https://rkhunter.sourceforge.net/",
+      "https://aide.github.io/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0051",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Stopping macro and attachment malware",
+    "back": "- Internet macros blocked by default (Mark of the Web) in Microsoft 365\n- ASR rule: block Office apps from creating child processes\n- Mail filtering and attachment sandboxing\n- User training (M1017)",
+    "tags": [
+      "macro",
+      "phishing"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/deployoffice/security/internet-macros-blocked",
+      "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference",
+      "https://attack.mitre.org/mitigations/M1017/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-c-0052",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Worms and IoT botnets",
+    "back": "- **Patch** the exploited service (MS17-010 for WannaCry)\n- Block the port at the perimeter (SMB 445), segment networks\n- IoT: change **default credentials**, disable Telnet, update firmware\n- Network IPS with custom signatures while patches roll out",
+    "tags": [
+      "worm",
+      "botnet"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010",
+      "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware",
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

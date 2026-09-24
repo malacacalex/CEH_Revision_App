@@ -1,0 +1,270 @@
+[
+  {
+    "id": "m07-q-0001",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A user downloads a free PDF converter that works as advertised, but it also quietly opens a remote connection for an attacker. The program never copies itself anywhere. What is it?",
+    "options": ["Trojan", "Worm", "Virus", "Logic bomb"],
+    "answer": 0,
+    "explanation": "A Trojan horse is a non-replicating program that looks benign but hides a malicious purpose, often a backdoor for the attacker.",
+    "optionNotes": [
+      "Correct: useful on the surface, hidden malicious function, no replication.",
+      "A worm copies itself across the network on its own.",
+      "A virus inserts copies of itself into other files.",
+      "A logic bomb waits for a trigger condition; nothing here says so."
+    ],
+    "tags": ["trojan", "malware-types"],
+    "sources": ["https://csrc.nist.gov/glossary/term/trojan_horse", "https://learn.microsoft.com/en-us/defender-endpoint/malware/trojans-malware"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0002",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which malware type encrypts a victim's files and demands payment for the decryption key?",
+    "options": ["Spyware", "Ransomware", "Adware", "Rootkit"],
+    "answer": 1,
+    "explanation": "Ransomware attacks availability by encrypting data, and often steals it first for double extortion.",
+    "optionNotes": [
+      "Spyware steals information quietly.",
+      "Correct: data encrypted for impact (ATT&CK T1486).",
+      "Adware shows unwanted ads.",
+      "A rootkit hides the attacker's presence."
+    ],
+    "tags": ["ransomware"],
+    "sources": ["https://attack.mitre.org/techniques/T1486/", "https://www.cisa.gov/stopransomware/ransomware-guide"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0003",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which statement BEST describes an advanced persistent threat?",
+    "options": [
+      "Any attack that uses a zero-day exploit",
+      "A virus that reinstalls itself after every reboot",
+      "A well-resourced adversary that keeps long-term, hidden access to reach its goals",
+      "An automated scanner that probes the internet continuously"
+    ],
+    "answer": 2,
+    "explanation": "An APT establishes and extends its presence in a target over a long period, usually to steal data.",
+    "optionNotes": [
+      "Zero-days may be used, but they do not define an APT.",
+      "Surviving reboots is persistence, one technique, not the definition of an APT.",
+      "Correct: skill, resources and a long-term presence define an APT.",
+      "Internet-wide scanning is opportunistic, not targeted and persistent."
+    ],
+    "tags": ["apt"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/advanced_persistent_threat",
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/advanced-persistent-threats"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0004",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An EDR alert shows Word starting `powershell.exe`, which downloads code and runs it only in memory. No new executable is written to disk. What kind of threat is this?",
+    "options": ["Mass-mailing worm", "Boot sector virus", "Adware", "Fileless malware"],
+    "answer": 3,
+    "explanation": "Fileless malware abuses built-in tools such as PowerShell and keeps its code in memory, so file scanners have nothing to scan.",
+    "optionNotes": [
+      "A mass-mailing worm spreads by e-mail; nothing here is sent.",
+      "A boot sector virus infects the boot record.",
+      "Adware shows ads and does not act like this.",
+      "Correct: native tools and in-memory execution with no dropped program file."
+    ],
+    "tags": ["fileless"],
+    "sources": ["https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats", "https://attack.mitre.org/techniques/T1059/001/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0005",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which Windows feature lets an antivirus product inspect PowerShell script content after it has been de-obfuscated, just before it runs?",
+    "options": ["BitLocker", "AMSI (Antimalware Scan Interface)", "Windows Firewall", "User Account Control"],
+    "answer": 1,
+    "explanation": "Obfuscation must be undone before a script engine can run the code. AMSI scans it at that point.",
+    "optionNotes": [
+      "BitLocker encrypts disks.",
+      "Correct: scripting engines pass the plain script to AMSI for scanning.",
+      "The firewall filters network traffic.",
+      "UAC asks for consent before elevation; it does not scan scripts."
+    ],
+    "tags": ["amsi", "fileless"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal",
+      "https://learn.microsoft.com/en-us/windows/win32/amsi/how-amsi-helps"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0006",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why does AI-generated or self-rewriting malware cause the MOST trouble for signature-based antivirus?",
+    "options": [
+      "AI malware only runs in the cloud",
+      "AI-written code cannot be executed by Windows",
+      "Signature databases cannot store AI-generated files",
+      "Each copy can look different, so fixed hashes and patterns stop matching"
+    ],
+    "answer": 3,
+    "explanation": "Constant change is the classic weakness of signature matching, whether a packer or an LLM makes the variants.",
+    "optionNotes": [
+      "AI-assisted malware runs on ordinary endpoints.",
+      "AI-written code runs like any other code.",
+      "Signatures describe patterns, not who wrote the file.",
+      "Correct: new variants break static signatures; behavior detection still works."
+    ],
+    "tags": ["ai", "v13-new", "evasion"],
+    "sources": [
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://attack.mitre.org/techniques/T1027/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0007",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which of these steps belongs to STATIC malware analysis?",
+    "options": [
+      "Capturing the sample's network traffic with Wireshark",
+      "Recording the registry keys the sample changes in a sandbox",
+      "Extracting readable strings such as URLs from the sample",
+      "Watching the processes the sample starts with Process Monitor"
+    ],
+    "answer": 2,
+    "explanation": "Static analysis examines the file itself (hashes, strings, headers, imports); anything that needs the sample to run is dynamic.",
+    "optionNotes": [
+      "Traffic only appears when the sample runs: dynamic.",
+      "Registry changes only appear when the sample runs: dynamic.",
+      "Correct: the file is read, never executed.",
+      "Spawned processes only appear when the sample runs: dynamic."
+    ],
+    "tags": ["malware-analysis", "static-analysis"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/strings",
+      "https://docs.remnux.org/",
+      "https://csrc.nist.gov/pubs/sp/800/83/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0008",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which Sysinternals tool lists every program set to start automatically, including Run keys, services and scheduled tasks?",
+    "options": ["Autoruns", "TCPView", "Strings", "Sigcheck"],
+    "answer": 0,
+    "explanation": "Autoruns is the quickest way to find persistence, including registry and WMI-based autostarts.",
+    "optionNotes": [
+      "Correct: it covers all autostart locations.",
+      "TCPView shows network endpoints.",
+      "Strings extracts text from files.",
+      "Sigcheck shows file signatures and version information."
+    ],
+    "tags": ["sysinternals", "persistence"],
+    "sources": ["https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns", "https://attack.mitre.org/techniques/T1547/001/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0009",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A company wants to be able to recover from ransomware without paying. Which control matters MOST?",
+    "options": [
+      "A warning banner on the login screen",
+      "A mapped network drive that copies files every hour",
+      "A longer password policy",
+      "Offline, encrypted backups that are tested regularly"
+    ],
+    "answer": 3,
+    "explanation": "CISA's ransomware guide puts offline, encrypted, tested backups first because attackers hunt for reachable backups.",
+    "optionNotes": [
+      "A banner deters, it does not restore.",
+      "Ransomware encrypts every drive it can reach, mapped shares included.",
+      "Passwords help prevent access but do not recover data.",
+      "Correct: ransomware cannot reach offline copies, and testing proves they restore."
+    ],
+    "tags": ["ransomware", "backups"],
+    "sources": ["https://www.cisa.gov/stopransomware/ransomware-guide", "https://attack.mitre.org/mitigations/M1053/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0010",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "During incident response a technician finds `vssadmin.exe delete shadows /all /quiet` in the command-line history of an infected server. What does this MOST likely show?",
+    "options": [
+      "A worm scanning for SMB hosts",
+      "A routine backup job cleaning old snapshots",
+      "Ransomware preparing to block recovery before encrypting",
+      "A keylogger saving captured keystrokes"
+    ],
+    "answer": 2,
+    "explanation": "Ransomware removes Volume Shadow Copies so the victim cannot roll back files for free.",
+    "optionNotes": [
+      "Scanning for hosts does not touch shadow copies.",
+      "Deleting all shadow copies quietly is a classic ransomware step, not routine housekeeping.",
+      "Correct: deleting shadow copies is ATT&CK T1490, Inhibit System Recovery.",
+      "Keyloggers do not delete snapshots."
+    ],
+    "tags": ["ransomware", "command-output"],
+    "sources": ["https://attack.mitre.org/techniques/T1490/", "https://attack.mitre.org/techniques/T1486/"],
+    "verify": false,
+    "rev": 1
+  }
+]

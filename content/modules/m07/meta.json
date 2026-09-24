@@ -3,7 +3,7 @@
   "title": "Malware Threats",
   "domain": "D3",
   "effortUnits": 1.5,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Malware and APT Concepts",
     "Fileless Malware Concepts",
@@ -11,8 +11,109 @@
     "Malware Analysis",
     "Malware Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Tell a virus, worm, Trojan, rootkit, backdoor, bot, spyware, logic bomb and ransomware apart from their behavior",
+      "section": "Malware and APT Concepts"
+    },
+    {
+      "text": "Name the parts of a malware kit (dropper, downloader, packer, crypter, wrapper, payload) and the common infection vectors",
+      "section": "Malware and APT Concepts"
+    },
+    {
+      "text": "Describe what makes a threat an APT and put the APT lifecycle stages in order",
+      "section": "Malware and APT Concepts"
+    },
+    {
+      "text": "Explain how fileless malware uses native tools, memory and the registry or WMI, and which controls see it (AMSI, script block logging, EDR)",
+      "section": "Fileless Malware Concepts"
+    },
+    {
+      "text": "Explain what AI changes for malware authors and defenders, including runtime LLM use, polymorphism and attacks on ML detectors",
+      "section": "AI-based Malware Concepts"
+    },
+    {
+      "text": "Separate static from dynamic analysis and match each step to its tool (hashing, strings, packing, PE imports, Process Monitor, Autoruns, Sysmon)",
+      "section": "Malware Analysis"
+    },
+    {
+      "text": "Set up a safe analysis lab and turn findings into indicators and YARA rules",
+      "section": "Malware Analysis"
+    },
+    {
+      "text": "Choose layered countermeasures for a malware scenario and decide when to rebuild a host instead of cleaning it",
+      "section": "Malware Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Malware and APT Concepts",
+      "priority": "MUST",
+      "minutes": 45,
+      "why": "Most malware questions are type identification from a short description; learn the defining trait of each type and the APT lifecycle order."
+    },
+    {
+      "section": "Fileless Malware Concepts",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Short section, but fileless and living-off-the-land scenarios are common and link to the detection tools."
+    },
+    {
+      "section": "AI-based Malware Concepts",
+      "priority": "SKIM",
+      "minutes": 15,
+      "why": "New in v13: know what AI changes and the detection answer; skip vendor product detail."
+    },
+    {
+      "section": "Malware Analysis",
+      "priority": "MUST",
+      "minutes": 45,
+      "why": "Static vs dynamic and tool-to-task matching are frequent tool-identification questions."
+    },
+    {
+      "section": "Malware Countermeasures",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Scenario questions ask for the best control; learn the virus detection methods and the rebuild rule."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Hash, look up and inspect a harmless test file",
+      "source": "free",
+      "where": "https://www.eicar.org/download-anti-malware-testfile/",
+      "skill": "Static analysis basics on the EICAR test file in your own VM: SHA-256 hash, VirusTotal hash lookup, Strings, and watching your antivirus react",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Write and test a YARA rule against your own files",
+      "source": "free",
+      "where": "https://yara.readthedocs.io/en/stable/writingrules.html",
+      "skill": "Rule structure (meta, strings, condition) and matching a family by stable features instead of a hash",
+      "minutes": 40,
+      "verify": true
+    },
+    {
+      "name": "Baseline autostarts and process activity with Sysinternals on your own PC",
+      "source": "free",
+      "where": "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns",
+      "skill": "Reading Autoruns, Process Monitor and TCPView output the way a dynamic analysis does, on a clean system",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Map a #StopRansomware advisory to ATT&CK and pick the countermeasures",
+      "source": "free",
+      "where": "https://www.cisa.gov/stopransomware",
+      "skill": "Turning a real ransomware report into techniques (T1486, T1490, T1566) and matching controls",
+      "minutes": 40,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a friend the difference between a virus, a worm and a Trojan using one everyday example for each, then say which one WannaCry was and why.",
+    "Walk through how fileless malware can run without dropping a program file, and explain why AMSI and script block logging still catch it.",
+    "Describe how you would analyze an unknown attachment safely, from lab setup to a YARA rule, and say which steps are static and which are dynamic."
+  ]
 }

