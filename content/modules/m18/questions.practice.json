@@ -807,5 +807,409 @@
     ],
     "verify": false,
     "rev": 1
+  },
+  {
+    "id": "m18-q-0078",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In an MQTT topic filter, what does the `#` wildcard match?",
+    "options": [
+      "Only the broker's own `$SYS` status topics",
+      "Exactly one topic level at that position",
+      "The current topic level and every level below it",
+      "Only messages the broker has stored as retained"
+    ],
+    "answer": 2,
+    "explanation": "In MQTT, `#` is the multi-level wildcard: `home/#` matches `home` and everything under it. `+` matches exactly one level. This is why an anonymous broker that allows a subscription to `#` leaks every topic.",
+    "optionNotes": [
+      "Wildcards at the first level do not match topics that start with `$`, such as `$SYS`.",
+      "That is the single-level wildcard `+`.",
+      "Correct: `#` is the multi-level wildcard and must be the last character of the filter.",
+      "Retained messages are a separate feature, not what a wildcard selects."
+    ],
+    "tags": ["mqtt", "wildcard"],
+    "sources": ["https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html", "https://mqtt.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0079",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A review of a smart camera finds that its cloud API returns another customer's video stream when the camera ID in the request is changed. Which OWASP IoT Top 10 (2018) category fits best?",
+    "options": ["Insecure ecosystem interfaces", "Insecure network services", "Lack of physical hardening", "Lack of device management"],
+    "answer": 0,
+    "explanation": "OWASP I3 covers the web, cloud, API and mobile interfaces around the device. A cloud API without proper authorization checks is the classic I3 finding.",
+    "optionNotes": [
+      "Correct: the flaw is in the cloud API around the device (I3).",
+      "I2 is about services running on the device itself, such as Telnet or UPnP.",
+      "I10 is about opening the device or reaching its debug ports.",
+      "I8 is about inventory, monitoring and decommissioning of devices."
+    ],
+    "tags": ["owasp-iot-top-10", "i3"],
+    "sources": ["https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf", "https://owasp.org/www-project-internet-of-things/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0080",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "During a teardown, a product-security team finds a header on the circuit board that gives a root console over UART with no password. Which OWASP IoT Top 10 (2018) category does this finding belong to?",
+    "options": ["Insecure ecosystem interfaces", "Lack of physical hardening", "Insecure data transfer and storage", "Lack of secure update mechanism"],
+    "answer": 1,
+    "explanation": "OWASP I10 covers physical access weaknesses: easy disassembly and exposed debug interfaces such as UART or JTAG. OWASP ISTG lists these physical interfaces as test targets.",
+    "optionNotes": [
+      "I3 is about cloud, web, API and mobile interfaces around the device.",
+      "Correct: an open UART console is an I10 finding.",
+      "I7 is about cleartext traffic or secrets stored unprotected.",
+      "I4 is about unsigned or unverified firmware updates."
+    ],
+    "tags": ["owasp-iot-top-10", "i10", "uart"],
+    "sources": ["https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf", "https://owasp.org/www-project-iot-security-testing-guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0081",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A firewall review finds UDP 5683 open to the internet on a batch of field sensors. Which protocol is exposed, and what abuse does its RFC warn about?",
+    "options": [
+      "Modbus/TCP, which accepts unauthenticated register writes",
+      "MQTT, which lets anonymous clients subscribe to every topic",
+      "UPnP/SSDP, which lets devices open router ports unasked",
+      "CoAP, which RFC 7252 warns can be abused for amplification"
+    ],
+    "answer": 3,
+    "explanation": "UDP 5683 is the default CoAP port (5684 for CoAP over DTLS). RFC 7252 section 11.3 warns that CoAP responses can be larger than requests, so an exposed endpoint can be used in amplification attacks.",
+    "optionNotes": [
+      "Modbus/TCP uses TCP 502.",
+      "MQTT uses TCP 1883 (8883 with TLS), not UDP 5683.",
+      "SSDP uses UDP 1900.",
+      "Correct: CoAP on UDP 5683; RFC 7252 §11.3 covers amplification."
+    ],
+    "tags": ["coap", "ports", "amplification"],
+    "sources": [
+      "https://datatracker.ietf.org/doc/html/rfc7252",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0082",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A wireless sensor mesh suddenly lists dozens of \"new\" nodes that all share one radio fingerprint and try to join the routing. Which attack class fits best?",
+    "options": ["Side-channel attack", "Jamming attack", "Replay attack", "Sybil attack"],
+    "answer": 3,
+    "explanation": "In a Sybil attack one physical node claims many identities to gain influence over the network, for example over routing or voting. Node authentication is the countermeasure.",
+    "optionNotes": [
+      "Side-channel attacks leak secrets through power, timing or EM and need physical access.",
+      "Jamming floods the channel with noise; devices go offline instead of multiplying.",
+      "Replay resends one captured valid message; it does not create new identities.",
+      "Correct: one entity posing as many nodes."
+    ],
+    "tags": ["sybil", "radio"],
+    "sources": ["https://csrc.nist.gov/glossary/term/sybil_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0083",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's five-phase IoT hacking methodology, which phase comes right after information gathering?",
+    "options": ["Gain remote access", "Launch attacks", "Vulnerability scanning", "Maintain access"],
+    "answer": 2,
+    "explanation": "EC-Council's order is information gathering, vulnerability scanning, launch attacks, gain remote access, maintain access. Defenders run the first two against their own devices first.",
+    "optionNotes": [
+      "Gaining remote access is the fourth phase.",
+      "Launching attacks is the third phase.",
+      "Correct: the second phase.",
+      "Maintaining access is the last phase."
+    ],
+    "tags": ["methodology", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0084",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source hardware tool is built to monitor Bluetooth traffic, including Bluetooth Low Energy, during an authorized device assessment?",
+    "options": ["KillerBee", "Ubertooth One", "JTAGulator", "binwalk"],
+    "answer": 1,
+    "explanation": "Ubertooth One is an open 2.4 GHz platform for Bluetooth monitoring and experimentation. KillerBee targets IEEE 802.15.4 / Zigbee instead.",
+    "optionNotes": [
+      "KillerBee is the IEEE 802.15.4 / Zigbee framework.",
+      "Correct: Bluetooth monitoring platform.",
+      "JTAGulator finds JTAG and UART pins on a circuit board.",
+      "binwalk analyzes firmware images, not radio traffic."
+    ],
+    "tags": ["ubertooth", "bluetooth", "tools"],
+    "sources": ["https://github.com/greatscottgadgets/ubertooth", "https://www.kali.org/tools/ubertooth/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0085",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A hardware reviewer must find out which pins on an unfamiliar circuit board expose a JTAG or UART debug interface. Which tool is designed for this?",
+    "options": ["JTAGulator", "ChipWhisperer", "HackRF One", "GNU Radio"],
+    "answer": 0,
+    "explanation": "JTAGulator identifies on-chip debug interfaces (JTAG, UART) from unknown test points. Finding them lets the manufacturer confirm debug ports are disabled before shipping (OWASP I10).",
+    "optionNotes": [
+      "Correct: it locates JTAG/UART pinouts.",
+      "ChipWhisperer is for side-channel power analysis and fault injection.",
+      "HackRF One is a software-defined radio.",
+      "GNU Radio is a signal-processing framework for radio work."
+    ],
+    "tags": ["jtagulator", "hardware", "tools"],
+    "sources": ["https://github.com/grandideastudio/jtagulator", "https://owasp.org/www-project-iot-security-testing-guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0086",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An authorized scan report shows `1883/tcp open mqtt | mqtt-subscribe: Topics and their most recent payloads: $SYS/broker/version: ...`. What should the defender conclude?",
+    "options": [
+      "The broker is a CoAP server answering resource discovery",
+      "The broker only accepts clients over TLS on this port",
+      "The broker let a client connect and subscribe without credentials",
+      "The broker rejected the script and returned an error banner"
+    ],
+    "answer": 2,
+    "explanation": "The mqtt-subscribe script connects to the broker and subscribes to topics; printing `$SYS` topics and payloads means the connection was accepted. Fix: disable anonymous access, add password files and ACLs, and move clients to TLS on 8883.",
+    "optionNotes": [
+      "CoAP uses UDP 5683 and a different script (coap-resources).",
+      "1883 is the plaintext MQTT port; TLS is normally on 8883.",
+      "Correct: payloads were read, so anonymous access worked.",
+      "A rejected connection would not print topics and payloads."
+    ],
+    "tags": ["mqtt", "nmap", "nse"],
+    "sources": ["https://nmap.org/nsedoc/scripts/mqtt-subscribe.html", "https://mosquitto.org/man/mosquitto-conf-5.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0087",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "binwalk run on a camera's firmware image reports `Squashfs filesystem, little endian` at an offset. What does this tell the product-security team?",
+    "options": [
+      "The image holds an unencrypted file system they can extract and review",
+      "The image is encrypted, so its contents cannot be inspected",
+      "The image carries a valid vendor signature and is trusted",
+      "The camera has a network service listening on that offset"
+    ],
+    "answer": 0,
+    "explanation": "binwalk identifies embedded file systems and compressed data. A readable Squashfs file system can be extracted and checked for hardcoded passwords, keys and outdated components (OWASP I1, I5).",
+    "optionNotes": [
+      "Correct: extract it and look for secrets and old libraries.",
+      "An encrypted image would show high entropy, not a recognized file system.",
+      "binwalk signatures describe file formats, not code-signing status.",
+      "An offset is a position in the file, not a network port."
+    ],
+    "tags": ["binwalk", "firmware"],
+    "sources": ["https://github.com/ReFirmLabs/binwalk", "https://github.com/scriptingxss/owasp-fstm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0088",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which OWASP project is a deliberately insecure firmware image built for practicing IoT security testing?",
+    "options": ["FSTM", "ISVS", "ISTG", "IoTGoat"],
+    "answer": 3,
+    "explanation": "OWASP IoTGoat is intentionally vulnerable firmware for practice. ISVS is the verification standard, ISTG the testing guide and FSTM the firmware testing methodology.",
+    "optionNotes": [
+      "FSTM is the Firmware Security Testing Methodology.",
+      "ISVS is a set of security requirements to verify against.",
+      "ISTG is the IoT Security Testing Guide.",
+      "Correct: deliberately vulnerable firmware."
+    ],
+    "tags": ["owasp", "iotgoat"],
+    "sources": ["https://github.com/OWASP/IoTGoat", "https://owasp.org/www-project-internet-of-things/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0089",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An office DVR was part of a Mirai botnet. IT rebooted it and plugged it straight back in, and it was reinfected within minutes. What step did they miss?",
+    "options": [
+      "Running a full antivirus scan on the DVR's storage",
+      "Changing the default password before reconnecting it",
+      "Restoring the DVR's previous configuration backup",
+      "Moving the DVR to a new public IP address"
+    ],
+    "answer": 1,
+    "explanation": "Mirai lives in memory, so a reboot removes it, but the device stays exposed while the default password works. CISA's advice: reboot while disconnected, change the password to a strong one, and only then reconnect.",
+    "optionNotes": [
+      "Mirai does not persist on storage; a reboot already clears it.",
+      "Correct: the weakness is the default password, not the infection.",
+      "A backup would restore the same default credentials.",
+      "Mirai scans the internet, so a new address is found again quickly."
+    ],
+    "tags": ["mirai", "default-passwords"],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0090",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which NISTIR 8259A capability lets a device report on its own security state, for example through logs that reveal it may have been compromised?",
+    "options": ["Cybersecurity state awareness", "Device configuration", "Logical access to interfaces", "Data protection"],
+    "answer": 0,
+    "explanation": "The 8259A core baseline has six capabilities: device identification, device configuration, data protection, logical access to interfaces, software update and cybersecurity state awareness. The last one covers reporting the device's state so compromise can be detected.",
+    "optionNotes": [
+      "Correct: it supports detecting compromise.",
+      "Configuration is about changing the device's settings securely.",
+      "Logical access is about restricting who and what can use the interfaces.",
+      "Data protection covers keeping stored and sent data safe."
+    ],
+    "tags": ["nistir-8259a"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8259/a/final", "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259A.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0091",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which NIST publication sets out the non-technical support manufacturers should give IoT customers, such as documentation and education?",
+    "options": ["NIST SP 800-193", "NISTIR 8259A", "NISTIR 8259B", "NIST SP 800-82r3"],
+    "answer": 2,
+    "explanation": "NISTIR 8259B is the non-technical supporting capability core baseline (documentation, information and query reception, information dissemination, education and awareness). 8259A covers the technical device capabilities.",
+    "optionNotes": [
+      "SP 800-193 is about platform firmware resiliency.",
+      "8259A lists the technical capabilities built into the device.",
+      "Correct: the non-technical baseline.",
+      "SP 800-82r3 is the guide to OT security."
+    ],
+    "tags": ["nistir-8259b"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8259/b/final", "https://csrc.nist.gov/pubs/ir/8259/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0092",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Smart TVs and badge readers share a flat network with staff laptops and file servers. Which change best limits the damage if one of these IoT devices is compromised?",
+    "options": [
+      "Enable UPnP so each device opens only the ports it asks for",
+      "Put them on a separate segment that only allows the flows they need",
+      "Install endpoint antivirus agents on every IoT device",
+      "Give all IoT devices one shared, strong admin password"
+    ],
+    "answer": 1,
+    "explanation": "Segmentation (a separate VLAN or SSID with allowlisted flows) keeps a compromised device away from the rest of the network. ENISA calls this risk segmentation, and RFC 8520 MUD automates the allowlist.",
+    "optionNotes": [
+      "UPnP lets devices open ports without review; CISA advises disabling it.",
+      "Correct: isolate and allow only what the device needs.",
+      "Most IoT devices cannot run endpoint agents.",
+      "A shared password means one leak unlocks every device."
+    ],
+    "tags": ["segmentation", "network-isolation"],
+    "sources": ["https://www.enisa.europa.eu/publications/baseline-security-recommendations-for-iot", "https://datatracker.ietf.org/doc/html/rfc8520"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0093",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A vendor wants its boot firmware to block unauthorized changes, notice when the image is corrupted and restore a known-good copy. Which NIST publication frames firmware security around exactly these goals?",
+    "options": ["NISTIR 8259A", "NIST SP 800-213", "NIST SP 800-82r3", "NIST SP 800-193"],
+    "answer": 3,
+    "explanation": "NIST SP 800-193 (Platform Firmware Resiliency Guidelines) is built on three principles: protect firmware from unauthorized change, detect corruption, and recover to a known-good state.",
+    "optionNotes": [
+      "8259A lists device capabilities such as software update, not the firmware resiliency model.",
+      "SP 800-213 guides federal agencies in setting IoT device requirements.",
+      "SP 800-82r3 is the guide to OT security.",
+      "Correct: platform firmware resiliency rests on protect, detect and recover."
+    ],
+    "tags": ["sp-800-193", "firmware"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/193/final"],
+    "verify": false,
+    "rev": 1
   }
 ]

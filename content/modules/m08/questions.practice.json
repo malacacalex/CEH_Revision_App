@@ -1402,5 +1402,257 @@
     "sources": ["https://www.tcpdump.org/manpages/tcpdump.1.html", "https://www.kali.org/tools/tcpdump/"],
     "verify": false,
     "rev": 1
+  },
+  {
+    "id": "m08-q-0085",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "The DHCP server reports that its address pool is empty. The switch shows hundreds of DHCP Discover messages in a minute, each from a different client MAC, all entering on one access port. Which attack fits best?",
+    "options": ["DHCP starvation", "MAC flooding", "Rogue DHCP server", "ARP poisoning"],
+    "answer": 0,
+    "explanation": "Many DHCP requests from spoofed MACs that use up every lease is DHCP starvation, a denial of service that is often followed by a rogue server.",
+    "optionNotes": [
+      "Correct: the requests exhaust the pool so real clients get no lease.",
+      "MAC flooding fills the switch's MAC table; it does not need DHCP and does not empty the address pool.",
+      "A rogue server answers clients; it does not consume the real server's leases.",
+      "ARP poisoning forges IP-to-MAC answers; it does not involve DHCP requests."
+    ],
+    "tags": ["dhcp", "detection"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/003/",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0086",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which single switch feature, with rate limiting on untrusted ports, addresses both DHCP starvation and a rogue DHCP server?",
+    "options": ["IP Source Guard", "Dynamic ARP Inspection", "BPDU guard", "DHCP snooping"],
+    "answer": 3,
+    "explanation": "DHCP snooping drops server messages on untrusted ports (rogue server) and can rate-limit DHCP traffic from host ports (starvation).",
+    "optionNotes": [
+      "IP Source Guard filters source IPs after DHCP snooping has built its table; it does not stop DHCP floods.",
+      "DAI checks ARP packets against the binding table; it does not filter DHCP.",
+      "BPDU guard protects spanning tree on edge ports.",
+      "Correct: trusted/untrusted ports stop the rogue server, rate limiting slows the request flood."
+    ],
+    "tags": ["dhcp-snooping", "dhcp"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/ip/b_179_ip_9300_cg/configuring_dhcp.html",
+      "https://attack.mitre.org/techniques/T1557/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0087",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A switch logs that the finance printer's MAC address now also appears on a conference-room port, while the printer is still connected to its usual port. No other new MACs appear. Which technique does this point to?",
+    "options": ["MAC flooding", "MAC spoofing", "DHCP starvation", "DNS poisoning"],
+    "answer": 1,
+    "explanation": "One known MAC showing up on a second port is the signature of a device cloning another device's MAC address.",
+    "optionNotes": [
+      "MAC flooding shows thousands of new random MACs, not one existing MAC on a new port.",
+      "Correct: a single MAC borrowed from an allowed device, seen where it has never been.",
+      "DHCP starvation shows many DHCP requests and an empty pool.",
+      "DNS poisoning changes name answers; it leaves no trace in the switch's MAC table."
+    ],
+    "tags": ["mac-spoofing", "detection"],
+    "sources": [
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html",
+      "https://manpages.debian.org/bookworm/macchanger/macchanger.1.en.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0088",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Users in one branch land on a fake copy of the intranet portal. Their PCs use the correct DNS server and their ARP tables look normal, but that server returns 10.2.2.66 for the portal, while the authoritative server says 10.2.2.10. Which attack is most likely?",
+    "options": ["Rogue DHCP server", "ARP poisoning", "DNS cache poisoning", "MAC flooding"],
+    "answer": 2,
+    "explanation": "The resolver itself holds a wrong answer for the name: its cache has been poisoned. DNSSEC validation and RFC 5452 randomization are the defenses.",
+    "optionNotes": [
+      "A rogue DHCP server would hand out a different DNS server, but the clients use the correct one.",
+      "ARP poisoning would show a changed MAC for the gateway or server in the ARP tables.",
+      "Correct: the right server, the wrong cached answer.",
+      "MAC flooding lets an attacker see traffic; it does not change DNS answers."
+    ],
+    "tags": ["dns", "detection"],
+    "sources": [
+      "https://capec.mitre.org/data/definitions/142.html",
+      "https://www.kb.cert.org/vuls/id/800113",
+      "https://www.rfc-editor.org/rfc/rfc5452"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0089",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why can MAC flooding make a switch expose other hosts' unicast traffic?",
+    "options": [
+      "The switch disables its VLANs to recover and merges all ports into a single segment",
+      "The flood rewrites the gateway's entry in every host's ARP cache with the attacker's MAC",
+      "A full MAC table stops the switch from learning, so it floods unknown unicast frames to all ports",
+      "The flood forces the switch to copy every port to the attacker's port as a SPAN session"
+    ],
+    "answer": 2,
+    "explanation": "The switch forwards unicast by its MAC table; once the table is full of fake entries, frames to unlearned destinations are flooded, and the attacker's port receives them.",
+    "optionNotes": [
+      "VLANs stay in place; flooding stays inside the VLAN.",
+      "That describes ARP poisoning, which targets hosts, not the switch.",
+      "Correct: this is the hub-like fail-open behavior MAC flooding relies on.",
+      "SPAN is configured by an administrator; flooding does not create it."
+    ],
+    "tags": ["switching", "mac-flooding"],
+    "sources": ["https://wiki.wireshark.org/CaptureSetup/Ethernet", "https://manpages.debian.org/bookworm/dsniff/macof.8.en.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0090",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An analyst must decide between MAC flooding and ARP poisoning as the cause of an interception. Which observation points to ARP poisoning?",
+    "options": [
+      "The switch's MAC table is at capacity with entries learned on one port",
+      "Hosts' ARP caches map the gateway's IP to a workstation's MAC address",
+      "The DHCP server's pool of addresses is empty after a burst of requests",
+      "A port shows a trunk negotiated with DTP instead of access mode"
+    ],
+    "answer": 1,
+    "explanation": "ARP poisoning lies to the hosts about which MAC owns an IP, so the evidence is in their ARP caches (and in arpwatch alerts), not in the switch's table.",
+    "optionNotes": [
+      "A full MAC table learned on one port is the MAC flooding signature.",
+      "Correct: a wrong IP-to-MAC pair in the victims' caches is the ARP poisoning signature.",
+      "An empty pool after a request burst points to DHCP starvation.",
+      "A negotiated trunk on an access port points to VLAN hopping by switch spoofing."
+    ],
+    "tags": ["arp", "detection"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/002/",
+      "https://www.rfc-editor.org/rfc/rfc826",
+      "https://manpages.debian.org/bookworm/arpwatch/arpwatch.8.en.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0091",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which control stops an attacker on one access port from filling the switch's MAC table with fake source addresses?",
+    "options": [
+      "Static ARP entries on the default gateway",
+      "Dynamic ARP Inspection on the access VLAN",
+      "DNSSEC validation on the internal resolver",
+      "Port security that limits the number of MAC addresses on the port"
+    ],
+    "answer": 3,
+    "explanation": "MAC flooding abuses unlimited MAC learning; capping the MACs per port (port security or MAC limiting) removes it.",
+    "optionNotes": [
+      "Static ARP entries protect hosts' ARP caches, not the switch.",
+      "DAI checks ARP payloads; MAC flooding does not need ARP at all.",
+      "DNSSEC protects DNS answers, not the switch's MAC table.",
+      "Correct: once the limit is reached, frames from new MACs are dropped, and the violation is logged or the port is shut."
+    ],
+    "tags": ["port-security", "mac-flooding"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/port_security.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0092",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "A newly booted host sends an ARP packet in which the sender IP and the target IP are both its own address. How should a defender read it?",
+    "options": [
+      "A gratuitous ARP announcement, normal unless it claims an IP already used by another host",
+      "A sign of ARP poisoning in every case, since hosts should only answer ARP requests",
+      "A DHCP Discover sent over ARP because the host has not yet received a lease",
+      "A promiscuous-mode test from a sniffer detection tool running on that host"
+    ],
+    "answer": 0,
+    "explanation": "RFC 5227 defines this ARP Announcement. Gratuitous ARP is legitimate (address announcement, failover); it is a poisoning signature only when it claims someone else's IP.",
+    "optionNotes": [
+      "Correct: context decides whether it is benign.",
+      "Hosts legitimately announce their own address; the IP it claims is what matters.",
+      "DHCP runs over UDP, not ARP.",
+      "Promiscuous-mode tests send ARP requests to a fake MAC for another host's IP, not self-announcements."
+    ],
+    "tags": ["arp", "detection"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5227", "https://attack.mitre.org/techniques/T1557/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0093",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A capture shows two DHCP Offer messages for each client Discover: one from 10.0.0.2, the company DHCP server, and one from 10.0.0.77, a desktop on an access port. What should the defender conclude?",
+    "options": [
+      "A rogue DHCP server is running on the segment",
+      "The DHCP server is being starved of addresses",
+      "The switch's MAC table has been flooded",
+      "The desktop is relaying DHCP legitimately as a helper"
+    ],
+    "answer": 0,
+    "explanation": "Only authorized servers should send Offers. A second Offer from a host port is a rogue server trying to hand out its own gateway or DNS; DHCP snooping would drop it.",
+    "optionNotes": [
+      "Correct: server messages from an access port mean an unauthorized server.",
+      "Starvation shows many client requests and an empty pool, not a second server answering.",
+      "MAC flooding shows many new source MACs; it does not generate DHCP Offers.",
+      "A DHCP relay (helper) is configured on the router interface and forwards to the server; it does not answer with its own Offer."
+    ],
+    "tags": ["dhcp", "detection"],
+    "sources": ["https://attack.mitre.org/techniques/T1557/003/", "https://www.rfc-editor.org/rfc/rfc2131"],
+    "verify": false,
+    "rev": 1
   }
 ]

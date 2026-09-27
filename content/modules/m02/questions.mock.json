@@ -1,0 +1,954 @@
+[
+  {
+    "id": "m02-q-0082",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In MITRE ATT&CK, which Reconnaissance technique covers sending probes straight to the victim's infrastructure, as opposed to searching open websites or open technical databases?",
+    "options": [
+      "Search Open Websites/Domains (T1593)",
+      "Active Scanning (T1595)",
+      "Search Open Technical Databases (T1596)",
+      "Gather Victim Org Information (T1591)"
+    ],
+    "answer": 1,
+    "explanation": "ATT&CK separates techniques that query third-party sources (T1593, T1596, T1597) from Active Scanning (T1595), which interacts with the victim's own systems. The split mirrors passive versus active footprinting.",
+    "optionNotes": [
+      "T1593 covers social media, search engines and code repositories: no contact with the victim.",
+      "Correct: active scanning reaches the victim's infrastructure directly, so the victim may see it.",
+      "T1596 covers DNS and passive DNS, WHOIS, certificates, CDNs and scan databases such as Shodan.",
+      "T1591 describes what is gathered about the organization (locations, relationships, roles), not a direct probe."
+    ],
+    "tags": ["mitre-attack", "passive-active"],
+    "sources": ["https://attack.mitre.org/techniques/T1595/", "https://attack.mitre.org/tactics/TA0043/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0083",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "From public sources, a tester learns that the target's web servers run Microsoft IIS on Windows Server with a particular content management system. Which category of footprinting information is this?",
+    "options": ["System information", "Organization information", "Network information", "Physical security information"],
+    "answer": 0,
+    "explanation": "Footprinting sorts findings into organization, network and system information. Operating systems, server software and applications tell an attacker which weaknesses to look for later.",
+    "optionNotes": [
+      "Correct: operating systems, web servers and applications are system information.",
+      "Organization information is about people, roles, locations, partners and subsidiaries.",
+      "Network information covers domains, IP ranges, DNS servers and network paths.",
+      "Physical security is about buildings and access control, not software."
+    ],
+    "tags": ["objectives"],
+    "sources": ["https://attack.mitre.org/techniques/T1592/", "https://attack.mitre.org/techniques/T1591/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0084",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A tester first looks up the target's hostnames through a public recursive resolver, then sends the same queries directly to the target's authoritative name server. How are these two steps usually classified?",
+    "options": [
+      "Both are active, since every DNS lookup reaches the target",
+      "Both are passive, since DNS data is public anyway",
+      "The first is passive, the second is active",
+      "The first is active, the second is passive"
+    ],
+    "answer": 2,
+    "explanation": "The usual test is whether the tester's own traffic reaches the target's systems or people. Querying the target's name server directly (or attempting a zone transfer) does; asking a public resolver generally does not. Some sources draw the DNS line differently, so read the wording of the question.",
+    "optionNotes": [
+      "Through a public resolver, the query comes from the resolver (often answered from its cache), not from the tester.",
+      "Public data can still be collected actively: what matters is contact with the target's systems.",
+      "Correct: only the second step sends the tester's traffic to a server the target runs and may log.",
+      "This reverses the usual classification."
+    ],
+    "tags": ["passive-active", "dns"],
+    "sources": ["https://attack.mitre.org/tactics/TA0043/", "https://attack.mitre.org/techniques/T1596/", "https://attack.mitre.org/techniques/T1595/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0085",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which search operator returns only pages whose web address contains a given word, for example to find login or admin pages?",
+    "options": ["`site:`", "`intitle:`", "`intext:`", "`inurl:`"],
+    "answer": 3,
+    "explanation": "Combined with `site:`, as in `site:example.com inurl:admin`, it lists the administration or login pages a search engine has indexed for one domain.",
+    "optionNotes": [
+      "`site:` limits results to a domain or path, not to a word anywhere in the URL.",
+      "`intitle:` matches words in the page title.",
+      "`intext:` matches words in the page body.",
+      "Correct: `inurl:login` matches pages with login in the URL."
+    ],
+    "tags": ["google-operators"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md",
+      "https://www.exploit-db.com/google-hacking-database"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0086",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which Google operator, once used to open Google's stored copy of a page, was retired in 2024?",
+    "options": ["`filetype:`", "`intext:`", "`cache:`", "`inurl:`"],
+    "answer": 2,
+    "explanation": "Old copies of pages (removed staff lists, earlier versions of a site) now come mostly from web archives such as the Internet Archive's Wayback Machine.",
+    "optionNotes": [
+      "`filetype:` still filters results by file type.",
+      "`intext:` still matches words in the page body.",
+      "Correct: the Wayback Machine is now the usual source of old page copies.",
+      "`inurl:` still matches words in the URL."
+    ],
+    "tags": ["google-operators", "archives"],
+    "sources": [
+      "https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site",
+      "https://web.archive.org/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0087",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Who maintains the Google Hacking Database (GHDB)?",
+    "options": ["MITRE, alongside ATT&CK", "Google Search Central", "The OWASP Foundation", "Exploit-DB, run by OffSec"],
+    "answer": 3,
+    "explanation": "The GHDB groups search queries (dorks) by category, such as files containing passwords, sensitive directories or vulnerable servers. Defenders can run the relevant ones against their own domains.",
+    "optionNotes": [
+      "MITRE maintains ATT&CK, CVE and CWE, not the GHDB.",
+      "Google documents its operators but does not publish a catalog of queries for sensitive data.",
+      "OWASP's testing guide describes search engine reconnaissance but does not host the GHDB.",
+      "Correct: the GHDB is part of the Exploit Database archive."
+    ],
+    "tags": ["ghdb", "google-hacking"],
+    "sources": [
+      "https://www.exploit-db.com/google-hacking-database",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0088",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "What does the query `site:example.com filetype:docx \"internal use only\"` return?",
+    "options": [
+      "Word documents on example.com whose title contains the words internal, use and only",
+      "Word documents on example.com that contain the exact phrase internal use only",
+      "Pages anywhere on the web that link to Word documents hosted on example.com",
+      "Word documents on example.com that do not contain the phrase internal use only"
+    ],
+    "answer": 1,
+    "explanation": "Each operator narrows the results; together they find labelled internal documents published by mistake. A defender who gets hits should remove the files and ask for their removal from the index.",
+    "optionNotes": [
+      "Title matching needs `intitle:`; a quoted phrase alone matches anywhere in the indexed text.",
+      "Correct: quotes force the exact phrase; `site:` and `filetype:` narrow the domain and the format.",
+      "`site:` restricts where the result is hosted, not who links to it.",
+      "Excluding a term needs the `-` operator."
+    ],
+    "tags": ["google-operators", "google-hacking"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md",
+      "https://support.google.com/websearch/answer/2466433"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0089",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A defender searches Shodan for `org:\"Example Corp\" port:3389`. What will the results list?",
+    "options": [
+      "Internet-facing hosts attributed to Example Corp with a service on port 3389 (RDP)",
+      "Pages on Example Corp's website that mention Remote Desktop",
+      "Example Corp employees who hold remote-access accounts",
+      "Certificates issued to Example Corp for its remote-access portals"
+    ],
+    "answer": 0,
+    "explanation": "Exposed RDP is a common way in. Finding it on your own ranges in Shodan is a reason to close the port or put it behind a VPN.",
+    "optionNotes": [
+      "Correct: Shodan indexes service banners by IP address; `org:` and `port:` filter them.",
+      "Shodan indexes devices and service banners, not website text like a search engine.",
+      "Shodan does not list user accounts.",
+      "Certificate issuance is tracked in CT logs such as crt.sh; this query filters on a port."
+    ],
+    "tags": ["shodan"],
+    "sources": ["https://help.shodan.io/the-basics/search-query-fundamentals", "https://attack.mitre.org/techniques/T1596/005/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0090",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Besides Shodan, which search service indexes internet-facing hosts and TLS certificates and is often used to review an organization's external attack surface?",
+    "options": ["Sherlock", "Censys", "HTTrack", "SEC EDGAR"],
+    "answer": 1,
+    "explanation": "Censys and Shodan both collect scan data about internet-facing services, which ATT&CK files under scan databases (T1596.005).",
+    "optionNotes": [
+      "Sherlock checks one username across social networks.",
+      "Correct: Censys offers host and certificate search similar to Shodan.",
+      "HTTrack mirrors a website for offline review.",
+      "SEC EDGAR holds company filings, not host data."
+    ],
+    "tags": ["tools", "shodan"],
+    "sources": ["https://docs.censys.com/", "https://attack.mitre.org/techniques/T1596/005/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0091",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A threat intelligence analyst finds a post on a Tor onion forum offering a list of the company's VPN usernames and passwords. Which footprinting source is this?",
+    "options": ["Certificate transparency monitoring", "Competitive intelligence", "Dark web footprinting", "Search engine footprinting"],
+    "answer": 2,
+    "explanation": "The right response is to reset the exposed credentials, enforce MFA on the VPN and check logs for their use. ATT&CK tracks obtaining such data from closed sources under T1597.",
+    "optionNotes": [
+      "CT logs list issued certificates, not credentials.",
+      "Competitive intelligence uses legitimate business sources such as filings, news and job ads.",
+      "Correct: onion services and breach dumps are where leaked credentials and access are traded.",
+      "Onion services are not indexed by ordinary search engines."
+    ],
+    "tags": ["dark-web", "breach"],
+    "sources": ["https://attack.mitre.org/techniques/T1597/", "https://support.torproject.org/about/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0092",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why can certificate transparency logs reveal hostnames such as `vpn-test.example.com` that are not linked from the company website or easy to find in DNS?",
+    "options": [
+      "Publicly trusted certificates are logged, and each lists every hostname it covers in its Subject Alternative Name field",
+      "Certificate authorities copy the company's full DNS zone into the log when they issue a certificate",
+      "Browsers report every hostname their users visit to the CT log operators",
+      "CT logs are built by crawling the web for TLS-enabled sites, like a search engine does"
+    ],
+    "answer": 0,
+    "explanation": "CT exists so that misissued certificates can be spotted, but it also exposes test and internal names. Wildcard certificates, or a private CA for internal hosts, limit what the logs show.",
+    "optionNotes": [
+      "Correct: once a public CA issues a certificate for a test or internal name, that name is public in the log.",
+      "CAs submit the certificate, not the DNS zone.",
+      "Browsers check logging proofs; they do not upload browsing history to logs.",
+      "Logs are append-only records of submitted certificates, not the output of a crawl."
+    ],
+    "tags": ["certificate-transparency", "subdomains"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9162", "https://www.rfc-editor.org/rfc/rfc5280", "https://attack.mitre.org/techniques/T1596/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0093",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Why does an attacker note an employee's hobbies, sports club and former university from public profiles?",
+    "options": [
+      "To find out which registrar holds the company's domain",
+      "To map the IP address ranges the company owns",
+      "To learn which services the company exposes online",
+      "To build a more convincing, personal pretext for phishing or calls"
+    ],
+    "answer": 3,
+    "explanation": "Personal details make a lure feel genuine (\"fellow alumni\", \"your club's event\"). Training staff on what they share publicly reduces this raw material.",
+    "optionNotes": [
+      "The registrar comes from a WHOIS or RDAP lookup.",
+      "IP ranges come from RIR databases, not personal profiles.",
+      "Exposed services come from scan databases such as Shodan or Censys.",
+      "Correct: personal interests make spear phishing and pretexts believable."
+    ],
+    "tags": ["social-media", "pretexting"],
+    "sources": ["https://attack.mitre.org/techniques/T1593/001/", "https://attack.mitre.org/techniques/T1589/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0094",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An executive posts that she will spend the next week at a conference abroad. How can an attacker use this?",
+    "options": [
+      "Obtain the company's internal IP address ranges",
+      "Locate the company's authoritative name servers from the post",
+      "Learn which e-mail security filters the company has deployed",
+      "Time a fake urgent request in her name, knowing she is hard to reach to confirm it"
+    ],
+    "answer": 3,
+    "explanation": "Travel, events and absences help attackers time business e-mail compromise and vishing. Staff training and a verification rule for payment or access requests (call back on a known number) blunt it.",
+    "optionNotes": [
+      "Internal ranges are not disclosed by a post about travel.",
+      "Name servers come from DNS and registration data, not travel posts.",
+      "A travel post says nothing about mail filtering.",
+      "Correct: an absence makes verification harder and gives a reason for urgency."
+    ],
+    "tags": ["social-media", "roles"],
+    "sources": ["https://attack.mitre.org/techniques/T1593/001/", "https://www.ncsc.gov.uk/guidance/social-media-how-to-use-it-safely"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0095",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which ATT&CK technique covers collecting employee names, e-mail addresses and credentials of a victim organization?",
+    "options": [
+      "Gather Victim Identity Information (T1589)",
+      "Gather Victim Network Information (T1590)",
+      "Gather Victim Host Information (T1592)",
+      "Gather Victim Org Information (T1591)"
+    ],
+    "answer": 0,
+    "explanation": "Social networking sites feed T1589: profiles give names, and a few public addresses reveal the e-mail format for everyone else.",
+    "optionNotes": [
+      "Correct: its sub-techniques cover credentials, e-mail addresses and employee names.",
+      "T1590 is about domains, DNS, IP ranges and network topology.",
+      "T1592 is about the hardware, software and firmware of hosts.",
+      "T1591 is about locations, relationships, business tempo and roles."
+    ],
+    "tags": ["mitre-attack", "social-media"],
+    "sources": ["https://attack.mitre.org/techniques/T1589/", "https://attack.mitre.org/techniques/T1589/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0096",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In what form does an RDAP server return registration data?",
+    "options": ["Signed XML over SMTP", "Free-form plain text over TCP 43", "Structured JSON over HTTPS", "Binary DNS records over UDP 53"],
+    "answer": 2,
+    "explanation": "RDAP queries are URLs (RFC 9082) and answers are JSON objects (RFC 9083), which tools can parse without guessing each registry's text layout.",
+    "optionNotes": [
+      "Neither XML nor e-mail is used by RDAP.",
+      "That is the classic WHOIS protocol.",
+      "Correct.",
+      "DNS carries resolution data, not registration records."
+    ],
+    "tags": ["rdap"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9083", "https://www.rfc-editor.org/rfc/rfc9082", "https://www.icann.org/rdap"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0097",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What changed on 28 January 2025 for gTLD registries and registrars?",
+    "options": [
+      "They must publish full registrant contact details again, as before the GDPR",
+      "They must offer RDAP and, with a few exceptions, no longer have to run WHOIS",
+      "They must move their WHOIS service from TCP port 43 to TCP port 443",
+      "They must hand every domain lookup over to the five Regional Internet Registries"
+    ],
+    "answer": 1,
+    "explanation": "RDAP is now the reference service for gTLD registration data. Tools and habits built around port 43 still work for some registries, but RDAP is where to look first.",
+    "optionNotes": [
+      "Personal data remains redacted in most records, as it has been since the GDPR.",
+      "Correct: ICANN requires RDAP under the gTLD RDAP Profile; WHOIS is no longer required.",
+      "WHOIS did not move ports; RDAP is a different protocol over HTTPS.",
+      "RIRs handle IP addresses and AS numbers, not domain names."
+    ],
+    "tags": ["rdap", "whois"],
+    "sources": ["https://www.icann.org/rdap", "https://www.rfc-editor.org/rfc/rfc9082"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0098",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A registration lookup for a target domain shows `Name Server: ADA.NS.CLOUDFLARE.COM` and `Name Server: BOB.NS.CLOUDFLARE.COM`. What does this tell the analyst?",
+    "options": [
+      "The domain's authoritative DNS is hosted by Cloudflare",
+      "The domain was bought through Cloudflare as its registrar",
+      "The company's web servers sit in Cloudflare's own offices",
+      "Cloudflare holds the registrant's contact details"
+    ],
+    "answer": 0,
+    "explanation": "Name servers show where the zone's records live: the next step is querying them for A, MX and TXT records. A DNS or CDN provider in front of a site can also hide the origin server's address.",
+    "optionNotes": [
+      "Correct: NS entries point to the provider that answers DNS queries for the zone.",
+      "The registrar is a separate field; any registrar can delegate a domain to these name servers.",
+      "Name servers say who answers DNS queries, not where the web servers are.",
+      "Contact data is held by the registrar (and is usually redacted)."
+    ],
+    "tags": ["whois", "dns"],
+    "sources": ["https://lookup.icann.org/", "https://www.cloudflare.com/learning/dns/dns-records/", "https://www.rfc-editor.org/rfc/rfc1034"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0099",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "An analyst queries ARIN for an address seen in a phishing header and gets `NetType: Allocated to RIPE NCC`, with a comment that the current holder is listed in the RIPE database. What should the analyst do next?",
+    "options": [
+      "Conclude that the RIPE NCC itself sent the phishing e-mail",
+      "Report the address to ARIN, since ARIN answered the query",
+      "Query the RIPE Database for the specific assignment and its abuse contact",
+      "Request a zone transfer from ARIN's name servers to find the owner"
+    ],
+    "answer": 2,
+    "explanation": "Each of the five RIRs manages its own region. A lookup often starts at one RIR and follows a referral to the one holding the detailed record, with the network range, holder and abuse contact.",
+    "optionNotes": [
+      "The organization shown is the RIR, not the address holder: the comment says so.",
+      "ARIN's record describes RIPE NCC's allocation, not the current holder.",
+      "Correct: ARIN only shows the block it passed to another RIR; the holder is registered at RIPE NCC.",
+      "Zone transfers copy DNS zones; they do not return address ownership."
+    ],
+    "tags": ["rir", "network-range"],
+    "sources": ["https://www.arin.net/resources/registry/whois/", "https://www.ripe.net/manage-ips-and-asns/db/", "https://www.nro.net/about/rirs/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0100",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "`shop.example.com` is a CNAME pointing to a hostname at a cloud hosting provider. What does this reveal to someone footprinting the company?",
+    "options": [
+      "The IP address range the company owns and runs in its own data center",
+      "Which third-party service hosts the site, and a takeover risk if that resource is deleted",
+      "The administrator mailbox and serial number of the whole DNS zone",
+      "The complete list of hostnames in the zone, including internal ones"
+    ],
+    "answer": 1,
+    "explanation": "CNAMEs map out the SaaS and cloud platforms a company relies on. Removing DNS records when a cloud resource is decommissioned prevents subdomain takeover.",
+    "optionNotes": [
+      "A CNAME points to another name, usually on addresses the provider owns.",
+      "Correct: a CNAME left pointing to a released cloud resource can be claimed by someone else.",
+      "The administrator mailbox and serial come from the SOA record, not a CNAME.",
+      "Only a zone transfer (or zone walking) lists every name."
+    ],
+    "tags": ["dns", "records", "subdomains"],
+    "sources": [
+      "https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/",
+      "https://developer.mozilla.org/en-US/docs/Web/Security/Subdomain_takeovers"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0101",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Querying a domain's TXT records returns `google-site-verification=3fA9...` and `MS=ms12345678`. What can an analyst infer?",
+    "options": [
+      "Mail claiming to come from the domain is rejected unless it passes DKIM",
+      "The domain's zone is signed with DNSSEC by Google and Microsoft",
+      "Zone transfers of the domain are allowed to Google and Microsoft servers",
+      "The company proved domain ownership to Google and Microsoft services it likely uses"
+    ],
+    "answer": 3,
+    "explanation": "Providers ask domain owners to publish a token in a TXT record to prove control. Left in place, the tokens form a list of services in use, which helps an attacker pick a convincing phishing lure.",
+    "optionNotes": [
+      "A reject policy would be in the `_dmarc` TXT record.",
+      "DNSSEC uses DNSKEY and RRSIG records, not TXT tokens.",
+      "Transfer permissions are server configuration, not published records.",
+      "Correct: verification tokens show which cloud and SaaS services were set up for the domain."
+    ],
+    "tags": ["dns", "records"],
+    "sources": [
+      "https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/",
+      "https://support.google.com/webmasters/answer/9008080",
+      "https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0102",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "In an interactive `nslookup` session, which command makes the following lookups return a domain's mail server records?",
+    "options": ["`server mx`", "`set type=ptr`", "`set type=mx`", "`ls -d mx`"],
+    "answer": 2,
+    "explanation": "`set type=` (or `set querytype=`) chooses the record type for later queries: mx, ns, soa, txt, a and so on.",
+    "optionNotes": [
+      "`server` switches to another DNS server; it does not change the record type.",
+      "PTR records map IP addresses back to names.",
+      "Correct.",
+      "`ls -d` asks for a listing of a whole domain (a zone transfer), which most servers refuse."
+    ],
+    "tags": ["dns", "commands"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-type",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0103",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "What does NSEC3 change compared with NSEC in a DNSSEC-signed zone?",
+    "options": [
+      "It replaces owner names with hashes, so following the chain no longer lists names in clear text",
+      "It encrypts every record so that only resolvers holding the key can read the zone",
+      "It stops the server from answering zone transfer requests over TCP",
+      "It removes authenticated denial of existence from the zone"
+    ],
+    "answer": 0,
+    "explanation": "With NSEC3 an attacker walking the chain collects hashes and must guess names offline to recover them: harder, not impossible. Zone transfers are a separate control (allow-transfer, TSIG).",
+    "optionNotes": [
+      "Correct: this makes zone walking much harder.",
+      "DNSSEC signs data; it never encrypts it.",
+      "Zone transfer control is separate server configuration.",
+      "NSEC3 still proves that a name does not exist; it only hides which names do."
+    ],
+    "tags": ["dnssec"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5155", "https://www.rfc-editor.org/rfc/rfc4034"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0104",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does each router along a path do to the TTL field of an IP packet it forwards?",
+    "options": ["It leaves the value unchanged", "It resets the value to 64", "It increases the value by one", "It decreases the value by one"],
+    "answer": 3,
+    "explanation": "Traceroute relies on this: probes sent with TTL 1, 2, 3 and so on expire one hop further each time, and the router that drops each one reveals its address with ICMP Time Exceeded.",
+    "optionNotes": [
+      "If routers left it unchanged, traceroute could not work.",
+      "64 is a common starting value set by the sender, not by routers.",
+      "The value only ever goes down in transit.",
+      "Correct: at zero the router drops the packet and reports Time Exceeded."
+    ],
+    "tags": ["traceroute"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc791", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0105",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A traceroute ends when the destination host replies with ICMP Destination Unreachable (Port Unreachable). Which kind of probe was most likely used?",
+    "options": [
+      "ICMP Echo Requests, as Windows tracert sends by default",
+      "UDP datagrams to an unused high port, as Linux traceroute sends by default",
+      "TCP SYN segments to port 443 of the host",
+      "ICMP Timestamp Requests sent to the host"
+    ],
+    "answer": 1,
+    "explanation": "The final reply depends on the probe type: Port Unreachable for UDP to a closed port, Echo Reply for ICMP Echo, SYN-ACK or RST for TCP SYN.",
+    "optionNotes": [
+      "An ICMP Echo probe ends with an Echo Reply.",
+      "Correct: no service listens on the high port, so the host answers Port Unreachable.",
+      "A TCP SYN probe ends with a SYN-ACK or a RST from the host.",
+      "A Timestamp Request would get a Timestamp Reply, and traceroute does not use it."
+    ],
+    "tags": ["traceroute", "icmp"],
+    "sources": ["https://man7.org/linux/man-pages/man8/traceroute.8.html", "https://www.rfc-editor.org/rfc/rfc792"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0106",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which header, added by some webmail and mail services, may show the IP address of the client that submitted a message?",
+    "options": ["`X-Originating-IP`", "`Message-ID`", "`Return-Path`", "`Authentication-Results`"],
+    "answer": 0,
+    "explanation": "When present, it can point to the sender's own network or rough location. It is not standard and many providers leave it out, so the Received lines remain the main trail.",
+    "optionNotes": [
+      "Correct: a non-standard field some services add at submission.",
+      "Message-ID is a unique identifier; it does not carry the client address.",
+      "Return-Path is the address that bounces go to.",
+      "Authentication-Results records the SPF, DKIM and DMARC verdicts."
+    ],
+    "tags": ["email-headers"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5322", "https://support.google.com/mail/answer/29436"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0107",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A domain publishes `_dmarc.example.com TXT \"v=DMARC1; p=reject; rua=mailto:dmarc@example.com\"`. What does `p=reject` ask receiving servers to do?",
+    "options": [
+      "Send a copy of each failing message to dmarc@example.com",
+      "Reject every message without a DKIM signature, whatever SPF says",
+      "Deliver failing messages to the recipient's spam folder",
+      "Reject mail that claims to come from example.com but fails DMARC"
+    ],
+    "answer": 3,
+    "explanation": "DMARC passes when SPF or DKIM passes and aligns with the From domain. The policy (none, quarantine, reject) says what to do with failures, and `rua` asks for aggregate reports.",
+    "optionNotes": [
+      "`rua` requests aggregate reports, not copies of messages.",
+      "A message can pass DMARC through aligned SPF even without DKIM.",
+      "That is `p=quarantine`.",
+      "Correct: reject is the strictest DMARC policy."
+    ],
+    "tags": ["dmarc"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0108",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "An attacker phones the finance team posing as the CFO's executive assistant, a real role in the company, to ask who approves wire transfers. Which term describes posing as that role?",
+    "options": ["Tailgating", "Impersonation", "Baiting", "Quid pro quo"],
+    "answer": 1,
+    "explanation": "Impersonation is pretending to be a specific person or role; pretexting is the invented story that justifies the request. Done by phone, it is also vishing. A call-back rule on a known number stops it.",
+    "optionNotes": [
+      "Tailgating is following an authorized person through a controlled door.",
+      "Correct.",
+      "Baiting leaves something tempting, such as a USB stick, for a victim to pick up.",
+      "Quid pro quo offers a service or favour in exchange for information."
+    ],
+    "tags": ["social-engineering", "vishing", "ec-council-specific"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://attack.mitre.org/techniques/T1598/004/",
+      "https://csrc.nist.gov/glossary/term/social_engineering"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0109",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Printed network diagrams and sticky notes with passwords are left on desks after hours, when cleaners and visitors pass by. Which control addresses this most directly?",
+    "options": ["A registrar privacy service", "Split-horizon DNS", "A clean-desk policy", "Remote-image blocking in e-mail"],
+    "answer": 2,
+    "explanation": "Documents left in view are easy pickings for anyone on site. Clearing desks, locking screens and shredding papers leave little to read or take.",
+    "optionNotes": [
+      "Registrar privacy hides contact details in registration records.",
+      "Split-horizon DNS hides internal names from the internet, not papers on desks.",
+      "Correct.",
+      "Blocking remote images defeats e-mail tracking."
+    ],
+    "tags": ["social-engineering", "countermeasures"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://csrc.nist.gov/glossary/term/social_engineering"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0110",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "What do shoulder surfing and dumpster diving have in common as information-gathering techniques?",
+    "options": [
+      "Both leave the target's staff and property completely untouched",
+      "Both rely on persuading an employee to hand over information",
+      "Both require the attacker to be physically near the target's people or premises",
+      "Both work entirely from public online sources"
+    ],
+    "answer": 2,
+    "explanation": "They are close-in techniques: watching a screen or keypad, or going through discarded paper and media on or near the site. Privacy screens, clean desks, shredding and media sanitization counter them.",
+    "optionNotes": [
+      "Dumpster diving goes through the target's own waste, and both happen on or near its premises.",
+      "Neither needs persuasion; they collect what people expose or throw away.",
+      "Correct: both need physical presence.",
+      "Online OSINT needs no presence; these two do."
+    ],
+    "tags": ["social-engineering", "dumpster-diving", "ec-council-specific"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://csrc.nist.gov/glossary/term/social_engineering"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0111",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "ExifTool run on a photo from the company's careers page prints `GPS Position: 48 deg 51' 29.2\" N, 2 deg 17' 40.2\" E`. What has leaked?",
+    "options": [
+      "The IP address of the web server hosting the photo",
+      "The location where the photo was taken",
+      "The password of the employee who took it",
+      "The name servers of the company's domain"
+    ],
+    "answer": 1,
+    "explanation": "Cameras and phones write location, device model and time into image metadata. Stripping metadata before publishing removes it.",
+    "optionNotes": [
+      "Server addresses come from DNS, not the image file.",
+      "Correct: GPS tags give the coordinates where the picture was taken.",
+      "Image metadata does not hold passwords.",
+      "Name servers come from DNS and registration data."
+    ],
+    "tags": ["metadata"],
+    "sources": ["https://exiftool.org/", "https://www.kali.org/tools/libimage-exiftool-perl/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0112",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool crawls a website and extracts its URLs, e-mail addresses, files and secrets such as API keys found in the pages?",
+    "options": ["DNSRecon", "HTTrack", "Sherlock", "Photon"],
+    "answer": 3,
+    "explanation": "Photon is a fast OSINT crawler that sorts what it finds (URLs, e-mails, files, keys, JavaScript) into separate outputs.",
+    "optionNotes": [
+      "DNSRecon enumerates DNS records.",
+      "HTTrack mirrors a site for offline browsing but does not sort out e-mails and keys.",
+      "Sherlock looks up one username across social sites.",
+      "Correct."
+    ],
+    "tags": ["tools"],
+    "sources": ["https://github.com/s0md3v/Photon", "https://www.httrack.com/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0113",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "During an authorized engagement, a tester wants to paste the names, roles and e-mail addresses collected about client staff into a public AI chatbot to summarize them. What is the main concern?",
+    "options": [
+      "The personal data leaves the engagement's control and may be kept or reused by the AI provider",
+      "AI chatbots cannot process lists of names and e-mail addresses",
+      "Summarizing OSINT results is always out of scope for footprinting",
+      "The chatbot will contact the client's mail server to verify the addresses"
+    ],
+    "answer": 0,
+    "explanation": "AI speeds up sorting and summarizing OSINT, but the rules of engagement and data protection still apply: use approved tools, keep personal data to a minimum, and verify every AI output before it reaches a report.",
+    "optionNotes": [
+      "Correct: collected personal data must stay within the handling rules agreed for the engagement.",
+      "They can; the issue is where the data goes, not whether the tool can read it.",
+      "Summarizing is a legitimate AI use in footprinting when data handling is agreed.",
+      "A chatbot does not contact the client's mail server."
+    ],
+    "tags": ["ai", "ethics", "ec-council-specific"],
+    "sources": ["https://genai.owasp.org/llm-top-10/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0114",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A web server shows an automatic list of files whenever a folder has no index page. Which change stops this at the source?",
+    "options": [
+      "Move the domain to split-horizon DNS",
+      "Add those folders to robots.txt",
+      "Disable automatic directory listing on the server",
+      "Publish a DMARC reject policy"
+    ],
+    "answer": 2,
+    "explanation": "In Apache this is `Options -Indexes`; in nginx, `autoindex off` (its default). Listings expose backups, scripts and old files that search engines then index.",
+    "optionNotes": [
+      "Split-horizon DNS separates internal and external names; it does not change web server output.",
+      "robots.txt is public and only asks crawlers to stay away; the listing stays open.",
+      "Correct: without the listing, the files are no longer browsable or crawlable from the folder page.",
+      "DMARC protects against spoofed mail, not web exposure."
+    ],
+    "tags": ["directory-listing", "countermeasures"],
+    "sources": ["https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html", "https://nginx.org/en/docs/http/ngx_http_autoindex_module.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0115",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A confidential PDF on the company's website already appears in search results. Which response actually fixes the exposure?",
+    "options": [
+      "Add a `Disallow` line for the file to robots.txt and wait for the next crawl",
+      "Remove the file or put it behind authentication, then ask the search engine to drop the result",
+      "Change the link text pointing to the file so it no longer matches searches",
+      "Tell staff not to search for the document or share its link"
+    ],
+    "answer": 1,
+    "explanation": "The file must stop being publicly reachable; a removal request then clears the search result sooner. robots.txt only controls crawling by well-behaved bots.",
+    "optionNotes": [
+      "A blocked URL can stay in results, and anyone can still download the file (and read its path in robots.txt).",
+      "Correct: the fix is at the source, and removal tools clean up what was already indexed.",
+      "The file is still at the same URL and indexed by its content.",
+      "Anyone outside the company can still find and download it."
+    ],
+    "tags": ["robots-txt", "countermeasures"],
+    "sources": [
+      "https://developers.google.com/search/docs/crawling-indexing/remove-information",
+      "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+      "https://www.rfc-editor.org/rfc/rfc9309"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0116",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "HR wants job ads that still attract qualified network engineers but tell attackers less. Which change fits best?",
+    "options": [
+      "Describe skills generically, such as enterprise firewalls, instead of naming exact products and versions",
+      "Stop advertising online and recruit only through printed flyers in the lobby",
+      "List every product in use so unqualified applicants filter themselves out",
+      "Publish the ads only on the company's own careers page"
+    ],
+    "answer": 0,
+    "explanation": "Job ads are public by design, so the aim is to leak less, not to stop recruiting. Exact product names and versions tell an attacker which vulnerabilities and lures to prepare.",
+    "optionNotes": [
+      "Correct: the ad still attracts the right skills without naming the stack.",
+      "It cuts the exposure but also most applicants: not a workable fix.",
+      "That gives away the whole technology stack.",
+      "A careers page is just as public as a job board."
+    ],
+    "tags": ["job-postings", "countermeasures"],
+    "sources": ["https://attack.mitre.org/mitigations/M1056/", "https://attack.mitre.org/techniques/T1591/"],
+    "verify": false,
+    "rev": 1
+  }
+]

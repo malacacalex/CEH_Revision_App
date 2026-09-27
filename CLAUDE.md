@@ -120,12 +120,12 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 |---|---|---|
 | M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
 | M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
-| M2 Footprinting and Reconnaissance | built | 50/10/71/0, 18 verify; mock pool deferred (blocked) |
+| M2 Footprinting and Reconnaissance | built | 50/10/71/35, 24 verify; mock pool built on the 2026-09-27 retry |
 | M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice; full build deferred (blocked, defensive retry blocked too) |
 | M4 Enumeration | stub | deferred (blocked, defensive retry blocked too) |
 | M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 19 mock, 14 verify |
 | M6 System Hacking | stub | deferred (blocked, defensive retry blocked too) |
-| M8 Sniffing | sample | 46 cards, 10 pretest, 56 practice, 18 mock, 8 verify; notes and Sniffing Techniques practice deferred (blocked) |
+| M8 Sniffing | built | 46 cards, 10 pretest, 65 practice, 18 mock, 9 verify; notes and Sniffing Techniques built on the 2026-09-27 retry |
 | M9 Social Engineering | built | 31 cards, 10 pretest, 54 practice, 11 mock, 28 verify |
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
 | M11 Session Hijacking | built | 39/10/46/11, 14 verify |
@@ -136,7 +136,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M15 SQL Injection | stub | full build deferred (blocked, defensive retry blocked too) |
 | M16 Hacking Wireless Networks | stub | full build deferred (blocked, defensive retry blocked too) |
 | M17 Hacking Mobile Platforms | built | 40 cards, 10 pretest, 54 practice, 20 mock, 8 verify |
-| M18 IoT and OT Hacking | sample | 44/10/32/20, 4 verify; notes and OT practice done, IoT practice deferred (3 IoT sections short) |
+| M18 IoT and OT Hacking | built | 44/10/48/20, 5 verify; IoT practice built on the 2026-09-27 retry |
 | M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
 | M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
@@ -150,7 +150,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   review export, `.claude/commands`.
 - [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
   in-app content-pack update. Released as v0.3.0.
-- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 12/21 built,
+- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 14/21 built,
   the rest listed in research/deferred.md and on the Self-study page.
 - [x] **M5**: analytics page, half/full mocks, Phase 3 and exam-ready gates on the dashboard.
   - Mocks (`domain/quiz/mock.ts`) draw fresh held-out mock items by blueprint quota. The pool has 264/500

@@ -25,11 +25,6 @@
     "what": "Not in the app. Learn the four phases (gaining access, escalating privileges, maintaining access, clearing logs): password attack types, privilege escalation, rootkits and backdoors, covering tracks, and the defence for each."
   },
   {
-    "topic": "Sniffing",
-    "modules": [8],
-    "what": "The flashcards and questions are in the app, but not the notes. Read up on sniffing concepts, MAC flooding, DHCP and ARP attacks, spoofing and DNS poisoning, Wireshark filters, and switch-level countermeasures."
-  },
-  {
     "topic": "IDS and firewall evasion",
     "modules": [12],
     "what": "Not in the app. Learn the evasion technique families (fragmentation, insertion and evasion, obfuscation, tunnelling, spoofing, decoys) and how defenders detect each one."
@@ -53,10 +48,5 @@
     "topic": "Wireless",
     "modules": [16],
     "what": "Not in the app. Learn the 802.11 standards, WEP, WPA, WPA2 and WPA3 and their weaknesses, wireless threats (rogue AP, evil twin), the wireless hacking methodology, the aircrack-ng suite, and the countermeasures."
-  },
-  {
-    "topic": "IoT attacks",
-    "modules": [18],
-    "what": "The notes and flashcards are in the app, but there are few IoT practice questions. Drill IoT attack types, the IoT hacking methodology and IoT countermeasures."
   }
 ]

@@ -3,7 +3,7 @@
   "title": "Sniffing",
   "domain": "D4",
   "effortUnits": 1.25,
-  "status": "sample",
+  "status": "built",
   "sections": [
     "Sniffing Concepts",
     "Sniffing Techniques",
