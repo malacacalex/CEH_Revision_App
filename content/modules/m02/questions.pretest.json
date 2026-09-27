@@ -1,0 +1,229 @@
+[
+  {
+    "id": "m02-q-0001",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does the term OSINT stand for in footprinting?",
+    "options": ["Open-source intelligence", "Operational security intelligence", "Online system inspection", "Outbound signal interception"],
+    "answer": 0,
+    "explanation": "OSINT is intelligence gathered from public sources such as websites, registries and social media. Most footprinting is OSINT.",
+    "optionNotes": [
+      "Correct: intelligence built from publicly available sources.",
+      "Operational security is OPSEC, a different idea.",
+      "Not a standard term.",
+      "Interception is signals intelligence, not public sources."
+    ],
+    "tags": ["osint"],
+    "sources": ["https://attack.mitre.org/techniques/T1593/", "https://attack.mitre.org/techniques/T1596/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0002",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which search operator limits results to a single domain?",
+    "options": ["`filetype:`", "`intitle:`", "`site:`", "`inurl:`"],
+    "answer": 2,
+    "explanation": "`site:example.com` returns only pages from that domain (or path prefix).",
+    "optionNotes": ["Matches a file type.", "Matches words in the page title.", "Correct.", "Matches words in the URL, on any domain."],
+    "tags": ["google-operators"],
+    "sources": [
+      "https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site",
+      "https://support.google.com/websearch/answer/2466433"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0003",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which service indexes the banners of internet-facing devices such as webcams, routers and industrial controllers?",
+    "options": ["Sherlock", "Wayback Machine", "SEC EDGAR", "Shodan"],
+    "answer": 3,
+    "explanation": "Shodan (and Censys) scan the internet and index service banners, so they answer questions about exposed devices without touching the target.",
+    "optionNotes": [
+      "Looks up usernames across social networks.",
+      "Archives old versions of web pages.",
+      "Holds US company financial filings.",
+      "Correct: a search engine for devices and services."
+    ],
+    "tags": ["shodan"],
+    "sources": ["https://help.shodan.io/the-basics/search-query-fundamentals", "https://attack.mitre.org/techniques/T1596/005/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0004",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A tester wants to know on which social networks one employee's public username appears. Which tool fits?",
+    "options": ["Maltego transforms on a DNS record", "Sherlock", "dnsenum", "HTTrack"],
+    "answer": 1,
+    "explanation": "Sherlock takes a username and reports the sites where an account with that name exists.",
+    "optionNotes": [
+      "A DNS record transform does not look up social usernames.",
+      "Correct: it checks one username across many sites.",
+      "Enumerates DNS names.",
+      "Mirrors websites."
+    ],
+    "tags": ["sherlock"],
+    "sources": ["https://github.com/sherlock-project/sherlock", "https://www.kali.org/tools/sherlock/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0005",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which port does the classic WHOIS protocol use?",
+    "options": ["TCP 389", "UDP 53", "TCP 43", "TCP 443"],
+    "answer": 2,
+    "explanation": "WHOIS is plain text over TCP 43. Its successor RDAP runs over HTTPS and returns JSON.",
+    "optionNotes": ["LDAP.", "DNS queries.", "Correct (RFC 3912).", "HTTPS, which is what RDAP uses."],
+    "tags": ["whois", "ports"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc3912", "https://www.kali.org/tools/whois/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0006",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which DNS record type lists a domain's mail servers?",
+    "options": ["CNAME", "PTR", "SOA", "MX"],
+    "answer": 3,
+    "explanation": "MX records name the mail servers and their preference, which also reveals the mail provider.",
+    "optionNotes": [
+      "Defines an alias.",
+      "Maps an IP address back to a name.",
+      "Describes the zone's authority (primary server, admin mailbox, serial).",
+      "Correct: mail exchanger."
+    ],
+    "tags": ["dns", "records"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc1035", "https://www.cloudflare.com/learning/dns/dns-records/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0007",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "By default, what kind of probe does the Windows `tracert` command send?",
+    "options": ["ICMP Echo Request", "UDP datagrams to high ports", "TCP SYN to port 80", "ARP requests"],
+    "answer": 0,
+    "explanation": "Windows `tracert` uses ICMP Echo; Linux `traceroute` uses UDP by default. Both rely on ICMP Time Exceeded replies from routers.",
+    "optionNotes": [
+      "Correct.",
+      "That is the Linux `traceroute` default.",
+      "Available in Linux `traceroute -T`, not the `tracert` default.",
+      "ARP stays on the local link and cannot trace a path."
+    ],
+    "tags": ["traceroute"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert",
+      "https://man7.org/linux/man-pages/man8/traceroute.8.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0008",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Someone searches an office's discarded paper and old media for useful information. What is this technique called?",
+    "options": ["Shoulder surfing", "Dumpster diving", "Eavesdropping", "Tailgating"],
+    "answer": 1,
+    "explanation": "Dumpster diving recovers org charts, notes and media from trash. Shredding and media sanitization counter it.",
+    "optionNotes": ["Watching a screen or keyboard.", "Correct.", "Listening to conversations.", "Following someone through a controlled door."],
+    "tags": ["social-engineering", "dumpster-diving"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://csrc.nist.gov/pubs/sp/800/88/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0009",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool uses transforms to expand entities such as domains and e-mail addresses into a relationship graph?",
+    "options": ["Maltego", "Recon-ng", "ExifTool", "traceroute"],
+    "answer": 0,
+    "explanation": "Maltego's key words are entities, transforms and graph.",
+    "optionNotes": ["Correct.", "A modular console framework with workspaces, not a graph tool.", "Reads file metadata.", "Maps a network path."],
+    "tags": ["maltego"],
+    "sources": ["https://docs.maltego.com/", "https://www.kali.org/tools/maltego/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0010",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why is listing sensitive directories in robots.txt a poor way to protect them?",
+    "options": [
+      "Search engines ignore robots.txt completely",
+      "The file is public, so it advertises those paths to anyone",
+      "robots.txt encrypts the listed paths",
+      "robots.txt is only read by browsers, not crawlers"
+    ],
+    "answer": 1,
+    "explanation": "robots.txt (RFC 9309) is advisory and readable by all. Protect sensitive paths with authentication.",
+    "optionNotes": [
+      "Well-behaved crawlers do follow it.",
+      "Correct: it is a request to crawlers, not access control.",
+      "It encrypts nothing.",
+      "It is aimed at crawlers."
+    ],
+    "tags": ["robots-txt", "countermeasures"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9309",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -118,7 +118,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 |---|---|---|
 | M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
 | M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
-| M2 Footprinting and Reconnaissance | stub + notes | notes and research/m02.md written; cards and questions deferred (research/deferred.md) |
+| M2 Footprinting and Reconnaissance | built | 50/10/71/0, 18 verify; mock pool deferred (blocked) |
 | M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice; full build deferred (blocked, defensive retry blocked too) |
 | M4 Enumeration | stub | deferred (blocked, defensive retry blocked too) |
 | M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 19 mock, 14 verify |

@@ -1,0 +1,967 @@
+[
+  {
+    "id": "m02-c-0001",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Footprinting (reconnaissance)",
+    "back": "Collecting information about a target organization **before** any attack or test: people, network, systems.\n\nIn MITRE ATT&CK it is the **Reconnaissance** tactic (TA0043). For defenders, it shows what the outside world can already see.",
+    "tags": [
+      "footprinting",
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/tactics/TA0043/",
+      "https://csrc.nist.gov/pubs/sp/800/115/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0002",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Passive vs active footprinting",
+    "back": "- **Passive**: no contact with the target's systems or people (search engines, WHOIS/RDAP, CT logs, archives, social media).\n- **Active**: direct interaction (querying the target's own DNS servers, traceroute to its hosts, calling staff).\n\nTest question: *does it touch the target?*",
+    "tags": [
+      "footprinting",
+      "passive-active"
+    ],
+    "sources": [
+      "https://attack.mitre.org/tactics/TA0043/",
+      "https://attack.mitre.org/techniques/T1595/",
+      "https://attack.mitre.org/techniques/T1593/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0003",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "kind": "list",
+    "front": "Three kinds of information footprinting looks for",
+    "back": "- **Organization**: staff names and roles, e-mail format, locations, partners, subsidiaries.\n- **Network**: domains, subdomains, IP ranges, ASN, DNS and mail servers.\n- **Systems**: operating systems, web servers, frameworks, cloud providers, exposed services.\n\nATT&CK: T1591 (org), T1590 (network), T1592 (host).",
+    "tags": [
+      "footprinting",
+      "objectives"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1591/",
+      "https://attack.mitre.org/techniques/T1590/",
+      "https://attack.mitre.org/techniques/T1592/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0004",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "kind": "term",
+    "front": "OSINT",
+    "back": "**Open-source intelligence**: intelligence built from **publicly available** sources (websites, search engines, registries, social media, public records).\n\nMost footprinting is OSINT. ATT&CK: T1593 (open websites/domains), T1596 (open technical databases).",
+    "tags": [
+      "osint"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1593/",
+      "https://attack.mitre.org/techniques/T1596/",
+      "https://osintframework.com/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0005",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Where footprinting sits in the CEH hacking phases",
+    "back": "**Phase 1: Reconnaissance** (footprinting), then scanning, gaining access, maintaining access, clearing tracks.\n\nIf nothing has been sent to the target's network yet, it is still footprinting. The five-phase list is EC-Council framing.",
+    "tags": [
+      "hacking-phases",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/tactics/TA0043/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0006",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "kind": "list",
+    "front": "Google advanced operators",
+    "back": "- `site:` results from one domain or path\n- `filetype:` (or `ext:`) one file type\n- `intitle:` word in the page title\n- `inurl:` word in the URL\n- `intext:` word in the body\n- `\"...\"` exact phrase, `-` exclude",
+    "tags": [
+      "google-operators"
+    ],
+    "sources": [
+      "https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site",
+      "https://support.google.com/websearch/answer/2466433"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0007",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Google hacking (dorking)",
+    "back": "Combining search operators to surface content that should not be public: exposed documents, directory listings, login portals, error messages, configuration files.\n\nIt is passive for the target: the search engine's crawler did the contact.",
+    "tags": [
+      "google-hacking"
+    ],
+    "sources": [
+      "https://www.exploit-db.com/google-hacking-database",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0008",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "GHDB (Google Hacking Database)",
+    "back": "A catalog of search queries, kept by **Exploit-DB**, grouped by category (files with sensitive data, login portals, error messages, vulnerable servers...).\n\nDefenders run the relevant categories against their **own** domain to find leaks.",
+    "tags": [
+      "google-hacking",
+      "ghdb"
+    ],
+    "sources": [
+      "https://www.exploit-db.com/google-hacking-database",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0009",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "kind": "command",
+    "front": "`site:example.com -www`",
+    "back": "Results from example.com **excluding** pages whose URL contains `www`: a quick way to spot **other subdomains** that the search engine has indexed.",
+    "tags": [
+      "google-operators",
+      "subdomains"
+    ],
+    "sources": [
+      "https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site",
+      "https://support.google.com/websearch/answer/2466433"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0010",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Cached and archived pages",
+    "back": "Google retired its `cache:` operator in 2024. Old copies of pages (removed staff lists, old files) now come mainly from the **Wayback Machine** (web.archive.org).\n\nThe retirement date is not in an official operator list, hence the verify flag.",
+    "tags": [
+      "archives",
+      "wayback"
+    ],
+    "sources": [
+      "https://web.archive.org/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0011",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "Shodan",
+    "back": "Search engine for **internet-facing devices and services**: it indexes service banners, not web pages.\n\nFilters: `port:`, `org:`, `country:`, `city:`, `hostname:`, `net:` (CIDR). Censys is a similar host and certificate search. Defenders use both to find their own exposed services.",
+    "tags": [
+      "shodan",
+      "iot"
+    ],
+    "sources": [
+      "https://help.shodan.io/the-basics/search-query-fundamentals",
+      "https://attack.mitre.org/techniques/T1596/005/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0012",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Certificate Transparency (CT) logs",
+    "back": "Public, append-only logs of issued TLS certificates (RFC 6962, RFC 9162). Every hostname in a certificate becomes public, so CT search **reveals subdomains** even when zone transfers are blocked.\n\nATT&CK T1596.003 (digital certificates).",
+    "tags": [
+      "certificate-transparency",
+      "subdomains"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6962",
+      "https://www.rfc-editor.org/rfc/rfc9162",
+      "https://attack.mitre.org/techniques/T1596/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0013",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "kind": "list",
+    "front": "What internet research services reveal",
+    "back": "- **Netcraft** site report: hosting, IP history, technologies\n- **Wayback Machine**: old pages and files\n- **Job sites**: technology stack in job ads\n- **Financial filings** (SEC EDGAR): subsidiaries, executives, acquisitions\n- **People search**: names, addresses, phone numbers",
+    "tags": [
+      "competitive-intelligence"
+    ],
+    "sources": [
+      "https://sitereport.netcraft.com/",
+      "https://www.sec.gov/edgar/search/",
+      "https://attack.mitre.org/techniques/T1591/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0014",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Competitive intelligence",
+    "back": "The business name for gathering public information about a company: what it does, where, with whom, which technologies it uses, its finances and plans.\n\nSame sources as footprinting (websites, filings, job ads, news), used for business decisions.",
+    "tags": [
+      "competitive-intelligence",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1591/",
+      "https://www.sec.gov/edgar/search/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0015",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Dark web footprinting",
+    "back": "Looking in Tor onion services and breach dumps for **leaked credentials**, data or access offered for sale about the organization.\n\nDefender side: breach notification services such as **Have I Been Pwned** alert you when your domain's addresses appear in a breach.",
+    "tags": [
+      "dark-web",
+      "breach"
+    ],
+    "sources": [
+      "https://haveibeenpwned.com/About",
+      "https://support.torproject.org/about/",
+      "https://attack.mitre.org/techniques/T1597/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0016",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "kind": "list",
+    "front": "What social networking sites leak",
+    "back": "- Names, job titles, reporting lines\n- The **e-mail format** (first.last@...)\n- Technologies and projects\n- Locations, badges, office photos, travel\n- Personal interests (pretext material)\n\nATT&CK: T1593.001 social media, T1589 identity, T1591.004 roles.",
+    "tags": [
+      "social-media"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1593/001/",
+      "https://attack.mitre.org/techniques/T1589/",
+      "https://attack.mitre.org/techniques/T1591/004/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0017",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "theHarvester",
+    "back": "Gathers **e-mail addresses, names, subdomains, IPs and URLs** about a domain from public sources (search engines, CT logs, public APIs).\n\nOptions to recognize: `-d` domain, `-b` data source, `-l` result limit.",
+    "tags": [
+      "theharvester",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/laramies/theHarvester",
+      "https://www.kali.org/tools/theharvester/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0018",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "Sherlock",
+    "back": "Checks whether **one username** exists across hundreds of social networks and sites.\n\nRecognize it by the question: *where else does this handle appear?*",
+    "tags": [
+      "sherlock",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/sherlock-project/sherlock",
+      "https://www.kali.org/tools/sherlock/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0019",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "kind": "countermeasure",
+    "front": "Reducing social media exposure",
+    "back": "- A **social media policy** (what staff may post about work)\n- Training: no badges, screens, org charts or travel plans in posts\n- Privacy settings on personal profiles\n- Generic role accounts on corporate pages\n\nATT&CK M1056 notes that pre-compromise data is hard to control: limit it.",
+    "tags": [
+      "social-media",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.ncsc.gov.uk/guidance/social-media-how-to-use-it-safely",
+      "https://attack.mitre.org/mitigations/M1056/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0020",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "kind": "term",
+    "front": "E-mail format discovery",
+    "back": "A few public addresses (press releases, profiles, papers) show the pattern, such as `first.last@company.com`. With a staff list from social media, attackers can then derive every employee's address for phishing.\n\nATT&CK T1589.002 (email addresses).",
+    "tags": [
+      "social-media",
+      "email"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1589/002/",
+      "https://github.com/laramies/theHarvester"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0021",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "kind": "port",
+    "front": "WHOIS",
+    "back": "Query/response protocol in **plain text over TCP port 43** (RFC 3912).\n\nReturns registrar, creation and expiry dates, name servers, status and, where not redacted, contacts.",
+    "tags": [
+      "whois",
+      "ports"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc3912",
+      "https://www.kali.org/tools/whois/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0022",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "RDAP",
+    "back": "**Registration Data Access Protocol**: the successor to WHOIS. Queries over **HTTPS**, structured **JSON** answers (RFC 9082/9083), supports access control.\n\nSince 28 January 2025, gTLD registries and registrars are no longer required to run WHOIS.",
+    "tags": [
+      "rdap",
+      "whois"
+    ],
+    "sources": [
+      "https://www.icann.org/rdap",
+      "https://www.rfc-editor.org/rfc/rfc9082",
+      "https://www.rfc-editor.org/rfc/rfc9083"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0023",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "kind": "list",
+    "front": "The five Regional Internet Registries (RIRs)",
+    "back": "- **ARIN**: North America\n- **RIPE NCC**: Europe, Middle East, Central Asia\n- **APNIC**: Asia-Pacific\n- **LACNIC**: Latin America and Caribbean\n- **AFRINIC**: Africa\n\nThey hold IP block and ASN ownership: the organization's **network range**.",
+    "tags": [
+      "rir",
+      "whois"
+    ],
+    "sources": [
+      "https://www.nro.net/about/rirs/",
+      "https://www.arin.net/resources/registry/whois/",
+      "https://www.ripe.net/manage-ips-and-asns/db/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0024",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Thick vs thin WHOIS",
+    "back": "- **Thick**: the registry stores full registration data, contacts included.\n- **Thin**: the registry stores only domain and registrar data and points to the registrar's WHOIS for the rest.",
+    "tags": [
+      "whois",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.icann.org/resources/pages/gtld-registration-data-specs-en",
+      "https://www.rfc-editor.org/rfc/rfc3912"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0025",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "kind": "countermeasure",
+    "front": "Limiting WHOIS exposure",
+    "back": "- Registrar **privacy/proxy** service\n- **Role** addresses (hostmaster@) instead of named people\n- Keep records accurate (a stale contact is a social engineering lever)\n\nSince the GDPR (2018) most personal contact data in gTLD records is already redacted.",
+    "tags": [
+      "whois",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.icann.org/resources/pages/gtld-registration-data-specs-en",
+      "https://www.icann.org/rdap"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0026",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "kind": "list",
+    "front": "DNS records and what they reveal",
+    "back": "- **A / AAAA**: host addresses\n- **MX**: mail servers (mail provider)\n- **NS**: authoritative name servers\n- **CNAME**: aliases (cloud services)\n- **SOA**: primary name server, admin mailbox, serial\n- **PTR**: IP to name\n- **TXT**: SPF, DMARC, verification tokens (SaaS in use)\n- **SRV**: service location (`_ldap._tcp`, `_sip._tcp`)\n- **HINFO**: CPU and OS (rare)",
+    "tags": [
+      "dns",
+      "records"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc1035",
+      "https://www.cloudflare.com/learning/dns/dns-records/",
+      "https://www.rfc-editor.org/rfc/rfc2782"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0027",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Zone transfer (AXFR)",
+    "back": "Replication of a **whole zone** from primary to secondary name servers, over **TCP 53** (RFC 5936).\n\nIf a server answers anyone, one request hands out every name and address in the zone. Fix: allow transfers only to known secondaries, authenticated with **TSIG** (RFC 8945).",
+    "tags": [
+      "dns",
+      "zone-transfer"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5936",
+      "https://www.rfc-editor.org/rfc/rfc8945"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0028",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "kind": "command",
+    "front": "`dig axfr @ns1.example.com example.com`",
+    "back": "Asks the name server `ns1.example.com` for a **full zone transfer** of `example.com`.\n\nOn a correctly configured server the answer is `Transfer failed.` Related: `dig example.com mx` (one record type), `dig -x 203.0.113.5` (reverse lookup).",
+    "tags": [
+      "dns",
+      "dig",
+      "zone-transfer"
+    ],
+    "sources": [
+      "https://bind9.readthedocs.io/en/latest/manpages.html",
+      "https://www.rfc-editor.org/rfc/rfc5936"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0029",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "DNSRecon and dnsenum",
+    "back": "DNS enumeration tools: standard record lookups, zone transfer **tests**, subdomain brute force from a wordlist, reverse lookups over a range.\n\nDNSRecon `-t` types to recognize: `std` (standard records), `axfr` (test all NS for transfer), `brt` (brute force), `crt` (crt.sh search).",
+    "tags": [
+      "dns",
+      "tools"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/dnsrecon/",
+      "https://www.kali.org/tools/dnsenum/",
+      "https://github.com/darkoperator/dnsrecon"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0030",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "DNSSEC zone walking",
+    "back": "**NSEC** records prove a name does not exist by naming the next existing name, so the whole zone can be listed by following the chain.\n\n**NSEC3** (RFC 5155) hashes the names to make this harder.",
+    "tags": [
+      "dns",
+      "dnssec"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4034",
+      "https://www.rfc-editor.org/rfc/rfc5155"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0031",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "kind": "countermeasure",
+    "front": "DNS footprinting countermeasures",
+    "back": "- Restrict **zone transfers** to secondaries, with **TSIG**\n- **Split-horizon** DNS: internal names never on the public server\n- No HINFO or revealing hostnames\n- Answer `ANY` minimally (RFC 8482)\n- Monitor CT logs for your own names",
+    "tags": [
+      "dns",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5936",
+      "https://www.rfc-editor.org/rfc/rfc8945",
+      "https://www.rfc-editor.org/rfc/rfc8482"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0032",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "How traceroute reveals the path",
+    "back": "Probes are sent with TTL 1, 2, 3... Each router that drops a probe at TTL 0 returns **ICMP Time Exceeded** (type 11), revealing its address. The destination answers with Echo Reply (ICMP probes) or Port Unreachable (UDP probes).\n\n`* * *` = no reply for that hop.",
+    "tags": [
+      "traceroute"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc792",
+      "https://man7.org/linux/man-pages/man8/traceroute.8.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0033",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "kind": "command",
+    "front": "`tracert` vs `traceroute`",
+    "back": "- Windows **`tracert`**: ICMP Echo probes.\n- Linux **`traceroute`**: **UDP** to high ports (from 33434) by default; `-I` uses ICMP Echo, `-T` uses TCP SYN.\n\nTCP to port 80/443 often passes firewalls that drop ICMP or UDP.",
+    "tags": [
+      "traceroute",
+      "commands"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert",
+      "https://man7.org/linux/man-pages/man8/traceroute.8.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0034",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Reading e-mail headers",
+    "back": "- Each relay adds a **Received:** line on **top**: read them **bottom-up** to follow the path from the sender.\n- **Return-Path**, **Message-ID**, **Date** help identify the origin.\n- **Authentication-Results** shows SPF, DKIM and DMARC verdicts (RFC 8601).",
+    "tags": [
+      "email-headers"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5321",
+      "https://www.rfc-editor.org/rfc/rfc8601",
+      "https://support.google.com/mail/answer/29436"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0035",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "kind": "list",
+    "front": "SPF, DKIM, DMARC",
+    "back": "- **SPF** (RFC 7208): TXT record listing servers allowed to send for the domain\n- **DKIM** (RFC 6376): cryptographic signature on the message\n- **DMARC** (RFC 7489): policy and reporting when SPF/DKIM fail\n\nFootprinting angle: these public TXT records reveal which mail providers the organization uses.",
+    "tags": [
+      "email",
+      "spf",
+      "dkim",
+      "dmarc"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc7208",
+      "https://www.rfc-editor.org/rfc/rfc6376",
+      "https://www.rfc-editor.org/rfc/rfc7489",
+      "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0036",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "kind": "term",
+    "front": "E-mail tracking",
+    "back": "A unique hidden image or link in a message reports **when** it was opened, from which **IP** (rough location) and with which **client**.\n\nCountermeasure: block remote images by default.",
+    "tags": [
+      "email-tracking",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1598/",
+      "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0037",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Social engineering",
+    "back": "Manipulating people into revealing information or taking actions, using trust, helpfulness, urgency and authority.\n\nIn footprinting, the goal is **information**: names, internal processes, software in use.",
+    "tags": [
+      "social-engineering"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/social_engineering",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0038",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "kind": "list",
+    "front": "Social engineering techniques used for footprinting",
+    "back": "- **Eavesdropping**: listening to conversations not meant for you\n- **Shoulder surfing**: watching screens or keyboards\n- **Dumpster diving**: searching discarded documents and media\n- **Impersonation / pretexting**: posing as IT, a vendor, a new hire\n- **Vishing**: phone pretexts\n- **Phishing for information**: e-mails asking for details",
+    "tags": [
+      "social-engineering",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://attack.mitre.org/techniques/T1598/",
+      "https://attack.mitre.org/techniques/T1598/004/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0039",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Pretexting vs impersonation",
+    "back": "- **Pretexting**: inventing a scenario that justifies the request (\"we are migrating your mailbox\").\n- **Impersonation**: pretending to be a specific role or person (help desk, auditor).\n\nThey are usually combined.",
+    "tags": [
+      "social-engineering",
+      "pretexting"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://csrc.nist.gov/glossary/term/social_engineering"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0040",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "kind": "countermeasure",
+    "front": "Countering information-gathering social engineering",
+    "back": "- Security **awareness training**\n- **Verification**: call back on a known number before giving information\n- **Clean-desk** policy\n- **Shredding** and media sanitization before disposal (NIST SP 800-88)\n- Screen privacy filters",
+    "tags": [
+      "social-engineering",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://csrc.nist.gov/pubs/sp/800/88/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0041",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "Maltego",
+    "back": "**Link-analysis** tool. **Transforms** expand one entity (domain, e-mail, person, IP) into related entities and draw everything as a **graph**.\n\nKey words: *entities, transforms, graph*.",
+    "tags": [
+      "maltego",
+      "tools"
+    ],
+    "sources": [
+      "https://docs.maltego.com/",
+      "https://www.kali.org/tools/maltego/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0042",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "Recon-ng",
+    "back": "Modular **web-reconnaissance framework** with a Metasploit-like console, **workspaces**, a module **marketplace** and a database of findings.\n\nIt does reconnaissance only, no exploitation.",
+    "tags": [
+      "recon-ng",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/lanmaster53/recon-ng",
+      "https://www.kali.org/tools/recon-ng/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0043",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "SpiderFoot",
+    "back": "Automated OSINT tool with hundreds of modules that query public sources and correlate the results (IPs, domains, e-mails, names, leaks).\n\nOffers use cases ranging from passive-only to active investigation.",
+    "tags": [
+      "spiderfoot",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/smicallef/spiderfoot",
+      "https://www.kali.org/tools/spiderfoot/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0044",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "FOCA and ExifTool",
+    "back": "Extract **metadata** from documents and images: author and usernames, software versions, internal paths, printers, GPS coordinates.\n\nFOCA finds and downloads an organization's public documents first; ExifTool reads or writes metadata in a single file.",
+    "tags": [
+      "metadata",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/ElevenPaths/FOCA",
+      "https://exiftool.org/",
+      "https://www.kali.org/tools/libimage-exiftool-perl/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0045",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "kind": "tool",
+    "front": "HTTrack, `wget -m`, Photon",
+    "back": "- **HTTrack** and **`wget -m`** (mirror): copy a website for offline review of pages, comments and files.\n- **Photon**: fast crawler that extracts URLs, e-mails, files and keys from a site.",
+    "tags": [
+      "mirroring",
+      "tools"
+    ],
+    "sources": [
+      "https://www.httrack.com/",
+      "https://manpages.debian.org/bookworm/wget/wget.1.en.html",
+      "https://github.com/s0md3v/Photon"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0046",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "kind": "term",
+    "front": "AI-assisted footprinting (CEH v13)",
+    "back": "AI assistants draft search operator combinations, summarize large result sets, extract names and e-mail formats, and help chain OSINT tools.\n\nLimits: models invent facts (verify everything), collected personal data must stay inside the engagement, and scope still applies.",
+    "tags": [
+      "ai",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://genai.owasp.org/llm-top-10/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0047",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "kind": "term",
+    "front": "robots.txt is not access control",
+    "back": "robots.txt (RFC 9309) only asks well-behaved crawlers to skip paths. The file itself is **public**, so listing secret paths advertises them.\n\nProtect sensitive paths with authentication instead.",
+    "tags": [
+      "robots-txt",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9309",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0048",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "kind": "list",
+    "front": "Footprinting countermeasures by exposure",
+    "back": "- Search results: remove files, request removal, require authentication\n- Metadata: strip before publishing\n- WHOIS: privacy/proxy, role accounts\n- DNS: restrict AXFR (TSIG), split-horizon\n- Web: generic errors, minimal banners, no directory listing\n- Staff: social media policy, training",
+    "tags": [
+      "countermeasures"
+    ],
+    "sources": [
+      "https://attack.mitre.org/mitigations/M1056/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Web_Page_Content_for_Information_Leakage.md",
+      "https://www.rfc-editor.org/rfc/rfc5936"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0049",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "kind": "countermeasure",
+    "front": "Footprint yourself",
+    "back": "Run OSINT on your own organization regularly: search engine dorks on your domains, Shodan/Censys for exposed services, CT logs for unknown subdomains, breach services for leaked addresses.\n\nYou cannot stop footprinting, but you can know and shrink what it finds.",
+    "tags": [
+      "countermeasures",
+      "monitoring"
+    ],
+    "sources": [
+      "https://help.shodan.io/",
+      "https://www.rfc-editor.org/rfc/rfc9162",
+      "https://haveibeenpwned.com/About"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-c-0050",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "kind": "term",
+    "front": "Split-horizon DNS",
+    "back": "Two views of the same zone: the **internal** server answers internal names; the **public** server only publishes what the internet needs (web, mail, VPN).\n\nInternal hostnames therefore never leak through public DNS.",
+    "tags": [
+      "dns",
+      "countermeasures",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://bind9.readthedocs.io/en/latest/reference.html",
+      "https://www.rfc-editor.org/rfc/rfc1034"
+    ],
+    "verify": true,
+    "rev": 1
+  }
+]

@@ -1,10 +1,5 @@
 [
   {
-    "topic": "Footprinting",
-    "modules": [2],
-    "what": "The notes are in the app, but there are no flashcards or quiz questions yet. Test yourself on the information sources (search engines, WHOIS, DNS, social networks, job sites, people search) and on what each one reveals."
-  },
-  {
     "topic": "Nmap",
     "modules": [3],
     "what": "The exam's main scanner. Know its scan types, how to read port states (open, closed, filtered), service, version and OS detection, timing templates, output formats and NSE scripts."

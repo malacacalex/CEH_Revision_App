@@ -3,7 +3,7 @@
   "title": "Footprinting and Reconnaissance",
   "domain": "D2",
   "effortUnits": 1.5,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Footprinting Concepts",
     "Footprinting through Search Engines",
@@ -16,8 +16,147 @@
     "Footprinting Tasks using Advanced Tools and AI",
     "Footprinting Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Tell passive from active footprinting and name the organization, network and system information it looks for",
+      "section": "Footprinting Concepts"
+    },
+    {
+      "text": "Recognize what search operators such as site:, filetype:, intitle: and inurl: return, and what the GHDB catalogs",
+      "section": "Footprinting through Search Engines"
+    },
+    {
+      "text": "Say what Shodan, certificate transparency logs, archives, job ads and financial filings reveal about an organization",
+      "section": "Footprinting through Internet Research Services"
+    },
+    {
+      "text": "Explain how social media exposes staff, roles and e-mail formats, and recognize theHarvester and Sherlock",
+      "section": "Footprinting through Social Networking Sites"
+    },
+    {
+      "text": "Read WHOIS and RDAP data, know TCP 43 and the five RIRs, and pick the right registry for domains and IP ranges",
+      "section": "Whois Footprinting"
+    },
+    {
+      "text": "Know what each DNS record type reveals, why open zone transfers are a problem and how TSIG and split-horizon DNS fix it",
+      "section": "DNS Footprinting"
+    },
+    {
+      "text": "Interpret traceroute output and e-mail headers (Received order, SPF, DKIM, DMARC results)",
+      "section": "Network and Email Footprinting"
+    },
+    {
+      "text": "Name the social engineering techniques used to gather information and the verification and disposal controls against them",
+      "section": "Footprinting through Social Engineering"
+    },
+    {
+      "text": "Match footprinting tools to their purpose (Maltego, Recon-ng, SpiderFoot, FOCA, ExifTool, HTTrack) and state the limits of AI-assisted OSINT",
+      "section": "Footprinting Tasks using Advanced Tools and AI"
+    },
+    {
+      "text": "Choose countermeasures for each exposure and explain why robots.txt is not access control",
+      "section": "Footprinting Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Footprinting Concepts",
+      "priority": "MUST",
+      "minutes": 15,
+      "why": "Passive versus active is the most tested distinction in the module."
+    },
+    {
+      "section": "Footprinting through Search Engines",
+      "priority": "MUST",
+      "minutes": 20,
+      "why": "Expect questions that show an operator combination and ask what it finds."
+    },
+    {
+      "section": "Footprinting through Internet Research Services",
+      "priority": "MUST",
+      "minutes": 20,
+      "why": "Shodan, CT logs and job postings each map to a typical question."
+    },
+    {
+      "section": "Footprinting through Social Networking Sites",
+      "priority": "SKIM",
+      "minutes": 10,
+      "why": "Know what staff profiles leak and the two tool names."
+    },
+    {
+      "section": "Whois Footprinting",
+      "priority": "MUST",
+      "minutes": 15,
+      "why": "Port 43, RDAP, the five RIRs and redaction are easy points."
+    },
+    {
+      "section": "DNS Footprinting",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Record types and zone transfers come up often, including command output."
+    },
+    {
+      "section": "Network and Email Footprinting",
+      "priority": "MUST",
+      "minutes": 20,
+      "why": "tracert versus traceroute defaults and reading Received headers are classic traps."
+    },
+    {
+      "section": "Footprinting through Social Engineering",
+      "priority": "SKIM",
+      "minutes": 10,
+      "why": "Mostly definitions; M9 covers social engineering in depth."
+    },
+    {
+      "section": "Footprinting Tasks using Advanced Tools and AI",
+      "priority": "MUST",
+      "minutes": 20,
+      "why": "Tool-to-purpose matching, plus the new v13 AI topic."
+    },
+    {
+      "section": "Footprinting Countermeasures",
+      "priority": "SKIM",
+      "minutes": 10,
+      "why": "Countermeasures follow from each exposure; remember the robots.txt trap."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Footprint your own domain from public sources",
+      "source": "free",
+      "where": "https://lookup.icann.org/",
+      "skill": "Looking up the registration data, name servers and certificate transparency entries of a domain you own, and listing what they expose",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Query DNS records of a domain you control",
+      "source": "free",
+      "where": "https://bind9.readthedocs.io/en/latest/manpages.html",
+      "skill": "Using dig and nslookup on your own domain to read A, MX, NS, SOA and TXT records, and confirming your server refuses zone transfers",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Read and strip metadata from your own documents",
+      "source": "free",
+      "where": "https://exiftool.org/",
+      "skill": "Running ExifTool on documents and photos you created to see author, software and GPS fields, then removing them before publishing",
+      "minutes": 20,
+      "verify": true
+    },
+    {
+      "name": "Trace the headers of a message in your own mailbox",
+      "source": "free",
+      "where": "https://support.google.com/mail/answer/29436",
+      "skill": "Opening the full headers of a message you received, reading the Received lines bottom-up and interpreting the SPF, DKIM and DMARC results",
+      "minutes": 20,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a small-business owner the difference between passive and active footprinting, and why most of what an attacker learns about them never shows up in their logs.",
+    "Explain why a DNS server that answers zone transfers to anyone is a problem, and how restricting transfers and split-horizon DNS reduce what the outside world sees.",
+    "Explain to a new colleague what WHOIS/RDAP records, certificate transparency logs and job postings each reveal about a company, and one countermeasure for each."
+  ]
 }
