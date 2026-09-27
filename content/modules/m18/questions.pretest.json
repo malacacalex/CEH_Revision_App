@@ -1,0 +1,254 @@
+[
+  {
+    "id": "m18-q-0001",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which TCP port does an MQTT broker use for connections protected with TLS?",
+    "options": ["502", "1883", "5683", "8883"],
+    "answer": 3,
+    "explanation": "MQTT uses 1883 in cleartext and 8883 over TLS. Brokers exposed on 1883 send credentials and data in the clear.",
+    "optionNotes": ["502 is Modbus/TCP.", "1883 is plain MQTT without TLS.", "5683 is CoAP over UDP.", "Correct: IANA registers 8883 as secure-mqtt."],
+    "tags": ["mqtt", "ports"],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0002",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the OWASP IoT Top 10 (2018), what is the first-ranked risk?",
+    "options": [
+      "Insecure network services",
+      "Weak, guessable, or hardcoded passwords",
+      "Lack of physical hardening",
+      "Insufficient privacy protection"
+    ],
+    "answer": 1,
+    "explanation": "I1 covers default, guessable and hardcoded credentials, including firmware backdoors: the weakness Mirai used.",
+    "optionNotes": ["That is I2.", "Correct: I1.", "That is I10.", "That is I6."],
+    "tags": ["owasp-iot-top-10"],
+    "sources": ["https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf", "https://owasp.org/www-project-internet-of-things/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0003",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Several battery sensors in a warehouse stop reporting at the same moment, and a spectrum check shows a strong noise signal across their channel. Which attack class fits best?",
+    "options": ["Jamming", "Sybil attack", "Replay attack", "Side-channel attack"],
+    "answer": 0,
+    "explanation": "Jamming floods the radio channel with noise so devices cannot communicate. Alert on lost heartbeats and have a wired or alternate-channel fallback.",
+    "optionNotes": [
+      "Correct: noise on the channel is a radio denial of service.",
+      "Sybil means one node posing as many.",
+      "Replay re-sends valid captured messages; it does not silence devices.",
+      "Side-channel leaks secrets through power or timing."
+    ],
+    "tags": ["jamming"],
+    "sources": ["https://csrc.nist.gov/glossary/term/jamming", "https://csrc.nist.gov/glossary/term/replay_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0004",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A product-security team wants to see which file systems and compressed blocks are packed inside a router's firmware image. Which tool is built for this?",
+    "options": ["Shodan", "KillerBee", "binwalk", "Ubertooth"],
+    "answer": 2,
+    "explanation": "binwalk signatures find file systems (such as SquashFS), compressed data and certificates inside firmware, where hardcoded secrets often hide.",
+    "optionNotes": [
+      "Shodan searches internet service banners.",
+      "KillerBee is a Zigbee / 802.15.4 framework.",
+      "Correct: binwalk identifies and extracts embedded content in firmware images.",
+      "Ubertooth monitors Bluetooth."
+    ],
+    "tags": ["binwalk", "firmware"],
+    "sources": ["https://www.kali.org/tools/binwalk/", "https://github.com/ReFirmLabs/binwalk"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0005",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which document defines a core baseline of six device cybersecurity capabilities for IoT products, including device identification and software update?",
+    "options": ["NIST SP 800-82r3", "NISTIR 8259A", "IEC 62443-3-3", "OWASP ISTG"],
+    "answer": 1,
+    "explanation": "NISTIR 8259A: device identification, device configuration, data protection, logical access to interfaces, software update, cybersecurity state awareness.",
+    "optionNotes": [
+      "SP 800-82r3 is the OT security guide.",
+      "Correct: the IoT device cybersecurity capability core baseline.",
+      "IEC 62443-3-3 lists industrial system requirements.",
+      "ISTG is a testing guide, not a capability baseline."
+    ],
+    "tags": ["nistir-8259a"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8259/a/final", "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259A.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0006",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the Purdue model, where do PLCs and RTUs sit?",
+    "options": ["Level 1, local controllers", "Level 0, field devices", "Level 3, site operations", "Level 4, business network"],
+    "answer": 0,
+    "explanation": "Level 0 senses and acts, Level 1 controls (PLC, RTU), Level 2 supervises (HMI), Level 3 runs the site, Levels 4-5 are business IT.",
+    "optionNotes": [
+      "Correct.",
+      "Level 0 holds sensors and actuators.",
+      "Level 3 holds historians and engineering workstations.",
+      "Level 4 is the corporate IT network."
+    ],
+    "tags": ["purdue"],
+    "sources": ["https://www.sans.org/blog/introduction-to-ics-security-part-2/", "https://csrc.nist.gov/pubs/sp/800/82/r3/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0007",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which incident targeted a Triconex safety instrumented system at a petrochemical plant?",
+    "options": ["Industroyer", "Stuxnet", "Mirai", "Triton (TRISIS)"],
+    "answer": 3,
+    "explanation": "Triton (2017) is the first well-known malware aimed at a safety system. Keep the SIS isolated and its key switch in RUN.",
+    "optionNotes": [
+      "Industroyer targeted power-grid protocols in Ukraine.",
+      "Stuxnet targeted Siemens S7 PLCs driving centrifuges.",
+      "Mirai was an IoT DDoS botnet.",
+      "Correct: CISA calls the malware HatMan."
+    ],
+    "tags": ["triton", "sis"],
+    "sources": [
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-083a",
+      "https://www.cisa.gov/sites/default/files/documents/MAR-17-352-01%20HatMan%20-%20Safety%20System%20Targeted%20Malware%20%28Update%20B%29.pdf",
+      "https://attack.mitre.org/software/S1009/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0008",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A monitoring team sees this line in an authorized scan report: `44818/tcp open EtherNet-IP-2 | enip-info: vendor: Rockwell Automation/Allen-Bradley`. What does it show?",
+    "options": [
+      "An MQTT broker allows anonymous clients",
+      "A Modbus server leaked its register map",
+      "A CIP device answered an EtherNet/IP identity request",
+      "A BACnet controller is broadcasting on UDP"
+    ],
+    "answer": 2,
+    "explanation": "Port 44818 is EtherNet/IP explicit messaging. Identity data (vendor, product, serial) helps attackers pick exploits, so keep it inside the control zone.",
+    "optionNotes": [
+      "MQTT is 1883/8883.",
+      "Modbus is port 502 (modbus-discover).",
+      "Correct: enip-info sends a List Identity request on 44818.",
+      "BACnet is 47808/udp."
+    ],
+    "tags": ["enip", "nmap"],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/enip-info.html",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0009",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A utility wants historian data to reach the business network while making it physically impossible for anything to flow back into the control network. What should it install?",
+    "options": [
+      "A network TAP feeding an IDS",
+      "A stateful firewall with an allow rule",
+      "A VPN concentrator",
+      "A data diode (unidirectional gateway)"
+    ],
+    "answer": 3,
+    "explanation": "A data diode physically enforces one direction. Firewalls rely on rules that can be misconfigured.",
+    "optionNotes": [
+      "A TAP copies traffic for monitoring; it does not transfer data between zones.",
+      "A firewall still allows return traffic.",
+      "A VPN creates a two-way tunnel.",
+      "Correct: hardware that enforces one-way flow."
+    ],
+    "tags": ["data-diode"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/data_diode",
+      "https://csrc.nist.gov/glossary/term/unidirectional_gateway",
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0010",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In ISA/IEC 62443, what is a conduit?",
+    "options": [
+      "The communication path between two zones, secured as a unit",
+      "A group of assets with the same security requirements",
+      "A security level target from SL 1 to SL 4",
+      "A safety system that trips the plant"
+    ],
+    "answer": 0,
+    "explanation": "Zones group assets by risk; conduits carry the traffic between zones and get their own controls.",
+    "optionNotes": ["Correct.", "That is a zone.", "That is SL-T.", "That is an SIS."],
+    "tags": ["iec-62443"],
+    "sources": [
+      "https://gca.isa.org/blog/how-to-define-zones-and-conduits",
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

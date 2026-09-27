@@ -131,7 +131,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M15 SQL Injection | stub | full build deferred (blocked, defensive retry blocked too) |
 | M16 Hacking Wireless Networks | stub | full build deferred (blocked, defensive retry blocked too) |
 | M17 Hacking Mobile Platforms | built | 40 cards, 10 pretest, 54 practice, 20 mock, 8 verify |
-| M18 IoT and OT Hacking | stub | full build deferred (blocked); research gathered |
+| M18 IoT and OT Hacking | sample | 44/10/32/20, 4 verify; notes and OT practice done, IoT practice deferred (3 IoT sections short) |
 | M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
 | M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |

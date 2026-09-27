@@ -1,0 +1,811 @@
+[
+  {
+    "id": "m18-q-0026",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which port does Modbus/TCP use?",
+    "options": ["20000", "44818", "102", "502"],
+    "answer": 3,
+    "explanation": "Classic Modbus/TCP listens on 502 with no authentication or encryption; the TLS-secured variant uses 802.",
+    "optionNotes": ["20000 is DNP3.", "44818 is EtherNet/IP explicit messaging.", "102 is Siemens S7comm over ISO-TSAP.", "Correct: IANA mbap."],
+    "tags": ["modbus", "ports"],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://www.modbus.org/modbus-specifications"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0027",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which protocol is most associated with electric and water utility telemetry between a master and outstations?",
+    "options": ["MQTT", "DNP3", "CoAP", "Zigbee"],
+    "answer": 1,
+    "explanation": "DNP3 is widely used in the electric and water sectors; its Secure Authentication extension adds challenge-response.",
+    "optionNotes": [
+      "MQTT is an IoT pub/sub protocol.",
+      "Correct: DNP3 (IEEE 1815), port 20000.",
+      "CoAP is a constrained IoT REST protocol.",
+      "Zigbee is a short-range IoT mesh radio."
+    ],
+    "tags": ["dnp3", "ports"],
+    "sources": ["https://www.dnp.org/About/Overview-of-DNP3-Protocol", "https://standards.ieee.org/ieee/1815/5414/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0028",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why is the classic Modbus protocol considered risky when a controller is reachable from an untrusted network?",
+    "options": [
+      "It has no authentication or encryption, so any reachable client can read or write registers",
+      "It uses a weak cipher that is easily broken",
+      "It only runs over Wi-Fi",
+      "It requires a password that is emailed in the clear"
+    ],
+    "answer": 0,
+    "explanation": "Modbus was built for trusted networks. Segmentation and allowlists, not the protocol, provide the security.",
+    "optionNotes": [
+      "Correct.",
+      "Classic Modbus has no cipher at all, not a weak one.",
+      "It runs over TCP or serial.",
+      "There is no built-in password mechanism."
+    ],
+    "tags": ["modbus"],
+    "sources": ["https://www.modbus.org/modbus-specifications", "https://csrc.nist.gov/pubs/sp/800/82/r3/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0029",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An operator's HMI keeps showing normal tank levels while the physical process is actually overflowing, because the controller reports were altered. Which ATT&CK for ICS effect is this?",
+    "options": ["Denial of Control", "Loss of Availability", "Manipulation of View", "Damage to Property"],
+    "answer": 2,
+    "explanation": "Manipulation of View feeds operators false data. Cross-check with independent instruments and out-of-band monitoring.",
+    "optionNotes": [
+      "Denial of Control is being unable to send commands.",
+      "Loss of Availability is losing the process or system, not a false reading.",
+      "Correct: the operator's view is falsified.",
+      "Damage to Property is the physical result, not the false display."
+    ],
+    "tags": ["attack-ics"],
+    "sources": ["https://attack.mitre.org/techniques/T0832/", "https://attack.mitre.org/matrices/ics/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0030",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the primary job of a safety instrumented system (SIS)?",
+    "options": [
+      "Route business email to the plant",
+      "Bring the process to a safe state when limits are exceeded",
+      "Display the process to operators",
+      "Store historical process values"
+    ],
+    "answer": 1,
+    "explanation": "An SIS is independent of normal control and trips the process to a safe state. Triton targeted an SIS.",
+    "optionNotes": ["That is IT infrastructure, unrelated to safety.", "Correct.", "That is an HMI.", "That is a data historian."],
+    "tags": ["sis"],
+    "sources": ["https://csrc.nist.gov/glossary/term/safety_instrumented_system", "https://csrc.nist.gov/pubs/sp/800/82/r3/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0031",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A worm reaches an isolated control network on a USB drive, then changes the speed commands sent to variable-frequency drives while hiding the change from the engineering software. Which historical incident does this match?",
+    "options": ["Stuxnet", "Mirai", "Industroyer", "Triton"],
+    "answer": 0,
+    "explanation": "Stuxnet crossed an air gap on removable media, altered drive parameters and used a rootkit to hide PLC changes.",
+    "optionNotes": [
+      "Correct: Stuxnet targeted Siemens S7 PLCs driving centrifuges.",
+      "Mirai was an IoT DDoS botnet over the internet.",
+      "Industroyer spoke power-grid protocols in Ukraine.",
+      "Triton targeted a safety controller."
+    ],
+    "tags": ["stuxnet"],
+    "sources": ["https://www.cisa.gov/news-events/ics-advisories/icsa-10-272-01", "https://attack.mitre.org/software/S0603/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0032",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which port identifies Siemens S7comm traffic to a PLC?",
+    "options": ["4840", "502", "2404", "102"],
+    "answer": 3,
+    "explanation": "Siemens S7 PLCs use ISO-TSAP on TCP 102; the Nmap s7-info script reads module and firmware details there.",
+    "optionNotes": ["4840 is OPC UA.", "502 is Modbus/TCP.", "2404 is IEC 60870-5-104.", "Correct: S7comm runs over ISO-TSAP on 102."],
+    "tags": ["s7", "ports"],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://nmap.org/nsedoc/scripts/s7-info.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0033",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "EC-Council lists attacks on the RF remote controllers of cranes and industrial machines. Which of these is such an attack?",
+    "options": [
+      "Phishing an operator's email",
+      "Injecting SQL into a plant database",
+      "Replaying a captured 'move' command to a crane's radio receiver",
+      "Cracking a Wi-Fi WPA2 handshake"
+    ],
+    "answer": 2,
+    "explanation": "Industrial RF remotes can be vulnerable to replay, command injection, e-stop abuse and malicious reprogramming.",
+    "optionNotes": [
+      "Phishing targets people, not the RF link.",
+      "SQL injection is a web/database attack.",
+      "Correct: capture-and-replay against the industrial radio link.",
+      "That is a wireless (Wi-Fi) attack, not an industrial RF remote attack."
+    ],
+    "tags": ["rf-remote", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/replay_attack"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0034",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why do defenders prefer passive monitoring over active scanning on OT networks?",
+    "options": [
+      "Passive monitoring encrypts the traffic",
+      "Passive monitoring is the only method that finds any devices",
+      "Active scanning is illegal on all networks",
+      "Active scanning can crash fragile controllers and disrupt the process"
+    ],
+    "answer": 3,
+    "explanation": "Old OT devices can hang under scan traffic, so SP 800-82r3 favors passive monitoring and coordinated, windowed active checks.",
+    "optionNotes": [
+      "Monitoring does not encrypt anything.",
+      "Active scanning also finds devices, but at higher risk.",
+      "Authorized active scanning is legal; the concern is operational risk.",
+      "Correct."
+    ],
+    "tags": ["methodology"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+      "https://www.cisa.gov/resources-tools/resources/foundations-ot-cybersecurity-asset-inventory-guidance-owners-and-operators"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0035",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "During an authorized assessment a report line reads `502/tcp open modbus | modbus-discover: sid 0x64: Slave ID data: ...`. What has the script done?",
+    "options": [
+      "Confirmed a Modbus server and read its slave ID / device identification",
+      "Uploaded new ladder logic to the PLC",
+      "Brute-forced the controller password",
+      "Decrypted the Modbus session"
+    ],
+    "answer": 0,
+    "explanation": "The Nmap modbus-discover script (intrusive category) enumerates slave IDs and reads device identification on 502.",
+    "optionNotes": [
+      "Correct: modbus-discover enumerates slave IDs and device info.",
+      "It does not write logic; it reads identification.",
+      "Modbus has no password to brute-force.",
+      "Classic Modbus is unencrypted, so there is nothing to decrypt."
+    ],
+    "tags": ["modbus", "nmap"],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/modbus-discover.html",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0036",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A blue team wants to build a picture of an OT network purely from captured traffic, without sending any packets to the devices. Which tool fits?",
+    "options": ["Hydra", "GRASSMARLIN", "Metasploit", "sqlmap"],
+    "answer": 1,
+    "explanation": "GRASSMARLIN and Zeek+ICSNPP analyze captured traffic to map assets and log ICS protocol commands without probing devices.",
+    "optionNotes": [
+      "Hydra is an online password guesser.",
+      "Correct: GRASSMARLIN passively maps OT networks.",
+      "Metasploit is an active exploitation framework.",
+      "sqlmap is a SQL injection tool."
+    ],
+    "tags": ["defense-tools"],
+    "sources": ["https://github.com/nsacyber/GRASSMARLIN", "https://github.com/cisagov/ICSNPP"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0037",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An internet-facing PLC on a small water system still uses the vendor's out-of-the-box password, and a report shows it was reachable from a device-search engine. Which two ATT&CK for ICS ideas are in play?",
+    "options": [
+      "Loss of Safety and Damage to Property",
+      "Data Historian and Program Upload",
+      "Internet Accessible Device and Default Credentials",
+      "Network Sniffing and Adversary-in-the-Middle"
+    ],
+    "answer": 2,
+    "explanation": "Exposed PLCs with default passwords are a recurring entry point (for example the 2023 Unitronics defacements).",
+    "optionNotes": [
+      "Those are impact effects, not the entry point.",
+      "Those are a component and a collection technique, not this exposure.",
+      "Correct.",
+      "Those need on-path access, not an exposed default login."
+    ],
+    "tags": ["entry-points"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T0883/",
+      "https://attack.mitre.org/techniques/T1694/001/",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-335a"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0038",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In ATT&CK for ICS, what does Program Upload refer to?",
+    "options": [
+      "Reading the control logic from a controller",
+      "Writing new logic to a controller",
+      "Rebooting the controller",
+      "Sniffing network traffic"
+    ],
+    "answer": 0,
+    "explanation": "Upload reads logic from the controller (collection); Download writes logic to it (can change the process).",
+    "optionNotes": [
+      "Correct: upload reads logic from the device.",
+      "That is Program Download.",
+      "That is Device Restart/Shutdown.",
+      "That is Network Sniffing."
+    ],
+    "tags": ["attack-ics"],
+    "sources": ["https://attack.mitre.org/techniques/T0845/", "https://attack.mitre.org/techniques/T0843/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0039",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In ISA/IEC 62443, what is a zone?",
+    "options": [
+      "The path that carries traffic between groups of assets",
+      "A one-way hardware data path",
+      "The achieved security level of a system",
+      "A group of assets that share the same security requirements"
+    ],
+    "answer": 3,
+    "explanation": "Zones group assets by risk and shared requirements; conduits connect zones and are secured as units.",
+    "optionNotes": ["That is a conduit.", "That is a data diode.", "That is SL-A.", "Correct."],
+    "tags": ["iec-62443"],
+    "sources": [
+      "https://gca.isa.org/blog/how-to-define-zones-and-conduits",
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0040",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A plant's business analysts need read-only access to production data, but the control network must stay protected. Which design best fits the Purdue model?",
+    "options": [
+      "Put the PLCs on the corporate VLAN",
+      "Give analysts direct Modbus access to the PLCs",
+      "Replicate the historian into an industrial DMZ that business users read from",
+      "Expose the HMI to the internet with a password"
+    ],
+    "answer": 2,
+    "explanation": "The industrial DMZ lets business users reach a replicated historian without any path into the control zone; Level 4 must not reach Levels 0-2.",
+    "optionNotes": [
+      "Flattening the network removes the protection.",
+      "Direct Level 4 to Level 1 access violates the model.",
+      "Correct: an industrial DMZ (Level 3.5) isolates control from business access.",
+      "Exposing the HMI is exactly what CISA warns against."
+    ],
+    "tags": ["purdue", "segmentation"],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf",
+      "https://www.sans.org/blog/introduction-to-ics-security-part-2/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0041",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which NIST publication is the 2023 Guide to Operational Technology (OT) Security?",
+    "options": ["SP 800-115", "SP 800-82r3", "NISTIR 8259A", "SP 800-53r5"],
+    "answer": 1,
+    "explanation": "SP 800-82r3 renamed the scope from ICS to OT and provides an OT overlay of SP 800-53 controls.",
+    "optionNotes": [
+      "SP 800-115 is the security testing guide.",
+      "Correct.",
+      "8259A is the IoT device baseline.",
+      "SP 800-53 is the general control catalog."
+    ],
+    "tags": ["nist-800-82"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/82/r3/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0042",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "After studying the Triton incident, a refinery wants to reduce the chance that malware can reach and reprogram its safety controllers. Which combination fits best?",
+    "options": [
+      "Isolate the SIS on its own network and keep the controller key switch in RUN",
+      "Move the SIS onto the business VLAN for easier patching",
+      "Give the SIS a public IP for remote support",
+      "Share credentials between the SIS and the control system"
+    ],
+    "answer": 0,
+    "explanation": "Triton reached a safety controller over the network; isolation, a RUN key switch and program-change alarms are the lessons.",
+    "optionNotes": [
+      "Correct.",
+      "Sharing a VLAN with business IT increases exposure.",
+      "A public IP is the opposite of isolation.",
+      "Shared credentials let one compromise spread."
+    ],
+    "tags": ["triton", "sis", "countermeasures"],
+    "sources": [
+      "https://www.cisa.gov/sites/default/files/documents/MAR-17-352-01%20HatMan%20-%20Safety%20System%20Targeted%20Malware%20%28Update%20B%29.pdf",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-083a"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0043",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does a data diode enforce that a firewall does not?",
+    "options": [
+      "Passwords are rotated automatically",
+      "Traffic can physically flow in only one direction",
+      "Traffic is encrypted end to end",
+      "Malware signatures are updated"
+    ],
+    "answer": 1,
+    "explanation": "A data diode is one-way by physics; a firewall filters two-way traffic by rules that can be misconfigured.",
+    "optionNotes": ["It does not manage passwords.", "Correct.", "A diode does not itself encrypt traffic.", "It is not an anti-malware product."],
+    "tags": ["data-diode"],
+    "sources": ["https://csrc.nist.gov/glossary/term/data_diode", "https://csrc.nist.gov/glossary/term/unidirectional_gateway"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0044",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "Which CISA recommendation most directly reduces the risk of OT devices being found by internet device-search engines?",
+    "options": [
+      "Rename the PLC tags",
+      "Increase the historian's disk size",
+      "Remove OT connections from the public internet",
+      "Disable the plant's email"
+    ],
+    "answer": 2,
+    "explanation": "CISA's first primary OT mitigation is to take OT off the public internet and reach it only through a VPN with phishing-resistant MFA.",
+    "optionNotes": [
+      "Renaming tags does not hide an exposed device.",
+      "Storage size does not affect exposure.",
+      "Correct.",
+      "Email is unrelated to OT exposure."
+    ],
+    "tags": ["cisa", "countermeasures"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/primary-mitigations-reduce-cyber-threats-operational-technology",
+      "https://www.cisa.gov/resources-tools/resources/principles-operational-technology-cyber-security"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0045",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which protocol lets IPv6 packets run over low-power IEEE 802.15.4 links?",
+    "options": ["LoRaWAN", "BACnet", "MQTT", "6LoWPAN"],
+    "answer": 3,
+    "explanation": "6LoWPAN compresses and adapts IPv6 for constrained 802.15.4 radios.",
+    "optionNotes": [
+      "LoRaWAN is a separate LPWAN, not IPv6-over-802.15.4.",
+      "BACnet is a building-automation protocol.",
+      "MQTT is an application protocol.",
+      "Correct: RFC 4944."
+    ],
+    "tags": ["6lowpan"],
+    "sources": ["https://datatracker.ietf.org/doc/html/rfc4944", "https://standards.ieee.org/ieee/802.15.4/7029/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0046",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A wearable and its phone pair using BLE 'Just Works', and a review flags that the link can be intercepted by an on-path attacker. Why?",
+    "options": [
+      "Just Works sends the PIN in the clear",
+      "Just Works provides no man-in-the-middle protection",
+      "Just Works disables all encryption permanently",
+      "Just Works uses expired certificates"
+    ],
+    "answer": 1,
+    "explanation": "BLE Just Works pairing is convenient but offers no MITM protection; Numeric Comparison, Passkey or OOB do.",
+    "optionNotes": [
+      "There is no PIN entry in Just Works.",
+      "Correct.",
+      "It still derives a link key; the gap is MITM protection.",
+      "It is not certificate-based."
+    ],
+    "tags": ["ble"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/121/r2/upd1/final",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-121r2-upd1.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0047",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which framework is used specifically for testing IEEE 802.15.4 / Zigbee networks?",
+    "options": ["sqlmap", "Ubertooth", "HackRF", "KillerBee"],
+    "answer": 3,
+    "explanation": "KillerBee is the go-to toolkit for Zigbee / 802.15.4 assessment.",
+    "optionNotes": ["sqlmap targets web SQL injection.", "Ubertooth is for Bluetooth.", "HackRF is a general SDR.", "Correct."],
+    "tags": ["zigbee", "tools"],
+    "sources": ["https://github.com/riverloopsec/killerbee", "https://standards.ieee.org/ieee/802.15.4/7029/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0048",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "NISTIR 8259 groups six manufacturer activities. How are they split?",
+    "options": [
+      "Two design and four marketing",
+      "Three technical and three legal",
+      "Four pre-market and two post-market",
+      "Five mandatory and one optional"
+    ],
+    "answer": 2,
+    "explanation": "Four activities apply before sale (identify customers, research needs, address them, plan support) and two after sale (how and what to communicate).",
+    "optionNotes": ["Not the split used.", "Not the split used.", "Correct.", "Not the split used."],
+    "tags": ["nistir-8259"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8259/final", "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0049",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A manufacturer wants devices to accept only firmware it has signed and to refuse older, vulnerable versions. Which two properties are needed?",
+    "options": [
+      "Signature verification and anti-rollback",
+      "Cleartext delivery and auto-install",
+      "Shared keys and open debug ports",
+      "No update mechanism and manual flashing"
+    ],
+    "answer": 0,
+    "explanation": "OWASP I4 and NIST SP 800-193 call for authenticated firmware and rollback protection.",
+    "optionNotes": [
+      "Correct: both are part of a secure update mechanism (OWASP I4).",
+      "Cleartext delivery is insecure.",
+      "Those weaken security.",
+      "That leaves devices unpatchable."
+    ],
+    "tags": ["secure-update"],
+    "sources": ["https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf", "https://csrc.nist.gov/pubs/sp/800/193/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0050",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which device provides the operator's screen for watching and commanding an industrial process?",
+    "options": ["RTU", "PLC", "Historian", "HMI"],
+    "answer": 3,
+    "explanation": "The HMI is the operator interface; compromising or falsifying it hides the true process state.",
+    "optionNotes": [
+      "An RTU is a remote field unit.",
+      "A PLC runs the control logic.",
+      "A historian stores process data.",
+      "Correct: human-machine interface."
+    ],
+    "tags": ["ot", "components"],
+    "sources": ["https://csrc.nist.gov/glossary/term/human_machine_interface", "https://csrc.nist.gov/pubs/sp/800/82/r3/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0051",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A grid operator reviews malware that reused IEC 60870-5-104 in a 2022 attack, echoing an earlier 2016 substation incident. Which malware pair is this?",
+    "options": ["Mirai and Bashlite", "Stuxnet and Duqu", "Industroyer and Industroyer2", "Triton and TRISIS"],
+    "answer": 2,
+    "explanation": "Industroyer2 (2022) reused IEC-104 against a Ukrainian substation, echoing Industroyer/CrashOverride in 2016.",
+    "optionNotes": [
+      "Those are IoT DDoS botnets.",
+      "Those targeted Siemens PLCs / were espionage tools.",
+      "Correct: Industroyer (2016) and Industroyer2 (2022).",
+      "Triton and TRISIS are two names for the same safety-system malware."
+    ],
+    "tags": ["industroyer"],
+    "sources": ["https://attack.mitre.org/software/S0604/", "https://attack.mitre.org/software/S1072/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0052",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which port is registered for DNP3?",
+    "options": ["20000", "502", "47808", "4840"],
+    "answer": 0,
+    "explanation": "DNP3 uses TCP/UDP 20000; its Secure Authentication extension adds challenge-response.",
+    "optionNotes": ["Correct.", "502 is Modbus/TCP.", "47808 is BACnet/IP.", "4840 is OPC UA."],
+    "tags": ["dnp3", "ports"],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://www.dnp.org/About/Overview-of-DNP3-Protocol"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0053",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which ATT&CK for ICS technique describes finding a PLC or HMI that answers directly from the internet?",
+    "options": ["Loss of View", "Internet Accessible Device", "Program Download", "Network Sniffing"],
+    "answer": 1,
+    "explanation": "Internet Accessible Device (Nmap/Shodan reachability) is a common OT reconnaissance and entry finding.",
+    "optionNotes": [
+      "Loss of View is an impact, not discovery.",
+      "Correct.",
+      "Program Download writes logic to a controller.",
+      "Sniffing captures traffic on a network."
+    ],
+    "tags": ["attack-ics"],
+    "sources": ["https://attack.mitre.org/techniques/T0883/", "https://attack.mitre.org/matrices/ics/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0054",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An authorized report shows `47808/udp open bacnet | bacnet-info: Vendor Name: ...; Firmware: ...`. Which service answered?",
+    "options": ["A Modbus PLC", "A BACnet/IP building-automation device", "An MQTT broker", "An OPC UA server"],
+    "answer": 1,
+    "explanation": "Port 47808/udp with bacnet-info output identifies a BACnet device and its vendor and firmware.",
+    "optionNotes": ["Modbus is 502.", "Correct: bacnet-info queries UDP 47808.", "MQTT is 1883/8883.", "OPC UA is 4840."],
+    "tags": ["bacnet", "nmap"],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/bacnet-info.html",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0055",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "How many foundational requirements (FRs) does ISA/IEC 62443 define?",
+    "options": ["Ten", "Four", "Seven", "Three"],
+    "answer": 2,
+    "explanation": "The seven FRs: identification/authentication control, use control, system integrity, data confidentiality, restricted data flow, timely response, resource availability.",
+    "optionNotes": ["Not correct.", "Four is the number of security levels, not FRs.", "Correct: FR1 to FR7.", "Not correct."],
+    "tags": ["iec-62443"],
+    "sources": [
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/",
+      "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0056",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A site wants to stop USB-borne malware from reaching engineering workstations, a lesson drawn from Stuxnet. Which controls fit best?",
+    "options": [
+      "Disabling all logging",
+      "Public IPs on every workstation",
+      "Sharing one login across engineers",
+      "Removable-media control and application allowlisting"
+    ],
+    "answer": 3,
+    "explanation": "Stuxnet spread by USB; media control, allowlisting and verifying PLC logic are the lessons.",
+    "optionNotes": ["Disabling logging removes detection.", "Public IPs increase exposure.", "Shared logins spread compromise.", "Correct."],
+    "tags": ["stuxnet", "countermeasures"],
+    "sources": ["https://www.cisa.gov/news-events/ics-advisories/icsa-10-238-01b", "https://attack.mitre.org/mitigations/M0942/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0057",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In the Purdue model, which boundary is commonly implemented as an industrial DMZ?",
+    "options": [
+      "Between the business network (Level 4) and site operations (Level 3)",
+      "Between two field sensors",
+      "Between the HMI and its monitor",
+      "Between the historian's disks"
+    ],
+    "answer": 0,
+    "explanation": "An industrial DMZ sits between IT (Level 4/5) and OT operations (Level 3) so business users never reach controllers directly.",
+    "optionNotes": [
+      "Correct: the IT/OT boundary, sometimes called Level 3.5.",
+      "Not a DMZ boundary.",
+      "Not a network boundary.",
+      "Not a network boundary."
+    ],
+    "tags": ["purdue", "segmentation"],
+    "sources": [
+      "https://www.sans.org/blog/introduction-to-ics-security-part-2/",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

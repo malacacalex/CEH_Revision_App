@@ -1,0 +1,478 @@
+[
+  {
+    "id": "m18-q-0058",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What role does a broker play in MQTT?",
+    "options": [
+      "It assigns IP addresses to sensors",
+      "It signs firmware updates",
+      "It receives published messages and delivers them to subscribers",
+      "It converts UDP to TCP"
+    ],
+    "answer": 2,
+    "explanation": "Clients publish to topics on a broker; other clients subscribe. An open broker exposes all topics.",
+    "optionNotes": [
+      "That is DHCP.",
+      "That is a code-signing service.",
+      "Correct: MQTT is broker-based publish/subscribe.",
+      "That is not a broker function."
+    ],
+    "tags": ["mqtt"],
+    "sources": ["https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html", "https://mqtt.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0059",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which IoT communication pattern has a local hub relay device traffic to the vendor cloud?",
+    "options": ["Device-to-device", "Device-to-gateway", "Device-to-cloud", "Back-end data sharing"],
+    "answer": 1,
+    "explanation": "RFC 7452's device-to-gateway pattern puts a hub or phone app between the device and the cloud.",
+    "optionNotes": [
+      "Device-to-device is a direct link between two devices.",
+      "Correct.",
+      "Device-to-cloud connects the device straight to the cloud.",
+      "Back-end data sharing is cloud-to-cloud."
+    ],
+    "tags": ["iot", "architecture"],
+    "sources": ["https://datatracker.ietf.org/doc/html/rfc7452"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0060",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A garage-door remote can be opened by capturing one press and sending the same radio frame later. What weakness allows this?",
+    "options": ["A cross-site scripting bug", "A weak TLS cipher suite", "An SQL injection flaw", "No protection against replay of a valid message"],
+    "answer": 3,
+    "explanation": "Fixed-code remotes are replayable; rolling codes and nonces defend against it.",
+    "optionNotes": [
+      "XSS is a web attack.",
+      "There is no TLS on the radio link.",
+      "SQL injection is a database attack.",
+      "Correct: replay of a captured valid frame."
+    ],
+    "tags": ["replay"],
+    "sources": ["https://csrc.nist.gov/glossary/term/replay_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0061",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A consumer router ships with the same admin password across the whole product line and it cannot be changed. Which two OWASP IoT categories apply?",
+    "options": [
+      "Weak/hardcoded passwords and Insecure default settings",
+      "Insufficient privacy and Lack of physical hardening",
+      "Insecure data transfer and Lack of device management",
+      "Insecure ecosystem interfaces and Outdated components"
+    ],
+    "answer": 0,
+    "explanation": "A shared, unchangeable password is both a hardcoded-credential problem (I1) and an insecure default (I9).",
+    "optionNotes": [
+      "Correct: I1 and I9.",
+      "Those concern personal data and physical access.",
+      "Those concern encryption and production management.",
+      "Those concern the cloud/API and old libraries."
+    ],
+    "tags": ["owasp-iot-top-10"],
+    "sources": ["https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf", "https://owasp.org/www-project-internet-of-things/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0062",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which search service would a defender use to find their organization's devices that are exposed on the internet?",
+    "options": ["Shodan", "Wireshark", "binwalk", "GNU Radio"],
+    "answer": 0,
+    "explanation": "Shodan indexes internet-facing service banners; defenders use it to find their own exposed assets.",
+    "optionNotes": ["Correct.", "Wireshark analyzes captured packets.", "binwalk analyzes firmware images.", "GNU Radio processes radio signals."],
+    "tags": ["shodan"],
+    "sources": ["https://help.shodan.io/the-basics/what-is-shodan"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0063",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which SDR device can both transmit and receive across a wide frequency range?",
+    "options": ["JTAGulator", "RTL-SDR dongle", "Ubertooth One", "HackRF One"],
+    "answer": 3,
+    "explanation": "HackRF One covers 1 MHz-6 GHz and can transmit; RTL-SDR only receives.",
+    "optionNotes": [
+      "JTAGulator finds debug pins, not radio.",
+      "RTL-SDR is receive-only.",
+      "Ubertooth is Bluetooth-specific.",
+      "Correct: HackRF is half-duplex transmit and receive."
+    ],
+    "tags": ["sdr"],
+    "sources": ["https://hackrf.readthedocs.io/en/latest/hackrf_one.html", "https://www.rtl-sdr.com/about-rtl-sdr/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0064",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "On an authorized scan, `nmap -p U:5683 -sU --script coap-resources <target>` lists several resource paths. What does that confirm?",
+    "options": [
+      "An MQTT broker allows anonymous access",
+      "A CoAP endpoint is reachable and its resources are discoverable",
+      "A Modbus PLC is exposed",
+      "A BACnet device answered"
+    ],
+    "answer": 1,
+    "explanation": "coap-resources reads the discoverable resources of a CoAP endpoint on UDP 5683.",
+    "optionNotes": ["MQTT uses 1883/8883.", "Correct: coap-resources queries /.well-known/core over UDP 5683.", "Modbus is 502.", "BACnet is 47808/udp."],
+    "tags": ["coap", "nmap"],
+    "sources": ["https://nmap.org/nsedoc/scripts/coap-resources.html", "https://datatracker.ietf.org/doc/html/rfc7252"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0065",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which of these is one of the first three provisions of ETSI EN 303 645 for consumer IoT?",
+    "options": ["A minimum 64-core processor", "Mandatory blockchain logging", "No universal default passwords", "Weekly physical inspection"],
+    "answer": 2,
+    "explanation": "ETSI EN 303 645 begins with no universal default passwords, vulnerability reporting and keeping software updated.",
+    "optionNotes": ["Not a requirement.", "Not part of the baseline.", "Correct.", "Not a requirement."],
+    "tags": ["etsi"],
+    "sources": [
+      "https://www.etsi.org/deliver/etsi_en/303600_303699/303645/03.01.03_60/en_303645v030103p.pdf",
+      "https://www.etsi.org/technologies/consumer-iot-security"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0066",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A network team wants each IoT device to be allowed only the connections it genuinely needs, enforced automatically by the network. Which mechanism is designed for this?",
+    "options": [
+      "UPnP automatic port forwarding",
+      "A wildcard firewall allow rule",
+      "Manufacturer Usage Description (MUD)",
+      "A shared VLAN for all devices"
+    ],
+    "answer": 2,
+    "explanation": "MUD lets a device declare its needed access so the network enforces a tight allowlist.",
+    "optionNotes": [
+      "UPnP opens ports without asking, the opposite goal.",
+      "A wildcard rule allows too much.",
+      "Correct: RFC 8520 MUD.",
+      "A shared VLAN removes isolation."
+    ],
+    "tags": ["mud"],
+    "sources": ["https://datatracker.ietf.org/doc/html/rfc8520"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0067",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which NISTIR 8259A capability covers the ability to apply verified firmware updates?",
+    "options": ["Software update", "Device identification", "Data protection", "Logical access to interfaces"],
+    "answer": 0,
+    "explanation": "Software update is one of the six core-baseline capabilities in NISTIR 8259A.",
+    "optionNotes": [
+      "Correct.",
+      "Identification is unique device ID.",
+      "Data protection secures stored/transmitted data.",
+      "Logical access controls who can use interfaces."
+    ],
+    "tags": ["nistir-8259a"],
+    "sources": ["https://csrc.nist.gov/pubs/ir/8259/a/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0068",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which port is registered for BACnet/IP?",
+    "options": ["4840/tcp", "502/tcp", "20000/tcp", "47808/udp"],
+    "answer": 3,
+    "explanation": "BACnet/IP building-automation traffic uses UDP 47808; the Nmap bacnet-info script reads device details there.",
+    "optionNotes": ["4840 is OPC UA.", "502 is Modbus/TCP.", "20000 is DNP3.", "Correct."],
+    "tags": ["bacnet", "ports"],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://nmap.org/nsedoc/scripts/bacnet-info.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0069",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Malware that operated breakers at a Ukrainian substation spoke IEC 60870-5-104, IEC 61850 and OPC. Which malware family is this?",
+    "options": ["Stuxnet", "Industroyer", "Triton", "Mirai"],
+    "answer": 1,
+    "explanation": "Industroyer abused legitimate grid protocols; Industroyer2 (2022) reused IEC-104.",
+    "optionNotes": [
+      "Stuxnet targeted Siemens PLCs and centrifuges.",
+      "Correct: Industroyer / CrashOverride.",
+      "Triton targeted a safety controller.",
+      "Mirai was an IoT DDoS botnet."
+    ],
+    "tags": ["industroyer"],
+    "sources": ["https://www.cisa.gov/news-events/alerts/2017/06/12/crashoverride-malware", "https://attack.mitre.org/software/S0604/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0070",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which statement best contrasts SCADA and DCS?",
+    "options": [
+      "SCADA supervises geographically dispersed sites; DCS controls one plant",
+      "SCADA is always wireless; DCS is always wired",
+      "SCADA has no HMI; DCS has no controllers",
+      "SCADA is newer than DCS by design"
+    ],
+    "answer": 0,
+    "explanation": "SCADA spans wide areas via RTUs; DCS handles process control inside a single facility.",
+    "optionNotes": ["Correct.", "Neither is defined by wireless vs wired.", "Both use HMIs and controllers.", "Age is not the distinction."],
+    "tags": ["scada", "dcs"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/supervisory_control_and_data_acquisition",
+      "https://csrc.nist.gov/glossary/term/distributed_control_system"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0071",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Which port set corresponds, in order, to EtherNet/IP explicit messaging, IEC 60870-5-104, and OPC UA?",
+    "options": ["1883, 5683, 47808", "502, 20000, 102", "44818, 2404, 4840", "102, 44818, 2404"],
+    "answer": 2,
+    "explanation": "EtherNet/IP explicit = 44818, IEC 60870-5-104 = 2404, OPC UA = 4840.",
+    "optionNotes": ["Those are MQTT, CoAP, BACnet.", "Those are Modbus, DNP3, S7.", "Correct.", "Those mix S7, EtherNet/IP and IEC-104 out of order."],
+    "tags": ["ports", "ot-protocols"],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://nmap.org/nsedoc/scripts/enip-info.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0072",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which CISA project provides Zeek parsers that log industrial protocol commands such as Modbus and DNP3?",
+    "options": ["Metasploit", "ICSNPP", "Nikto", "John the Ripper"],
+    "answer": 1,
+    "explanation": "ICSNPP extends Zeek to log ICS protocol activity for passive detection.",
+    "optionNotes": [
+      "Metasploit is exploitation.",
+      "Correct: ICSNPP (Industrial Control Systems Network Protocol Parsers).",
+      "Nikto scans web servers.",
+      "John the Ripper cracks password hashes."
+    ],
+    "tags": ["defense-tools"],
+    "sources": ["https://github.com/cisagov/ICSNPP", "https://github.com/cisagov/Malcolm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0073",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A blue team must inventory a brittle legacy OT segment without risking device crashes, and later confirm no unexpected hosts are issuing Modbus writes. Which approach fits both goals?",
+    "options": [
+      "Rebooting controllers to read their startup banners",
+      "An aggressive full-port active scan of every device",
+      "Fuzzing each controller's Modbus stack",
+      "Passive traffic capture and protocol-aware logging"
+    ],
+    "answer": 3,
+    "explanation": "Passive capture with tools like GRASSMARLIN and Zeek+ICSNPP builds inventory and flags writes from unexpected hosts without probing.",
+    "optionNotes": [
+      "Rebooting disrupts the process and is not an inventory method.",
+      "Aggressive scanning risks crashing legacy devices.",
+      "Fuzzing can crash controllers.",
+      "Correct: passive monitoring inventories safely and detects rogue writes."
+    ],
+    "tags": ["methodology", "defense-tools"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/82/r3/final", "https://github.com/nsacyber/GRASSMARLIN", "https://github.com/cisagov/ICSNPP"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0074",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In an OT assessment, reading a controller's logic off the device maps to which ATT&CK for ICS technique?",
+    "options": ["Device Restart/Shutdown", "Program Download", "Change Operating Mode", "Program Upload"],
+    "answer": 3,
+    "explanation": "Program Upload is reading logic from the controller; useful to attackers for reconnaissance.",
+    "optionNotes": ["That restarts the device.", "Download writes logic to the device.", "Change Operating Mode alters run/program state.", "Correct."],
+    "tags": ["attack-ics"],
+    "sources": ["https://attack.mitre.org/techniques/T0845/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0075",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which pairing correctly matches an ISA/IEC 62443 term to its meaning?",
+    "options": [
+      "SL-T = the target security level for a zone",
+      "Conduit = a group of assets sharing requirements",
+      "Zone = a one-way data path",
+      "FR = a physical field device"
+    ],
+    "answer": 0,
+    "explanation": "SL-T is the target security level; SL-A is what is achieved. Zones group assets, conduits connect them.",
+    "optionNotes": [
+      "Correct.",
+      "That defines a zone, not a conduit.",
+      "That defines a data diode, not a zone.",
+      "FR is a foundational requirement, not a device."
+    ],
+    "tags": ["iec-62443"],
+    "sources": [
+      "https://gca.isa.org/blog/how-to-define-zones-and-conduits",
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0076",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A regulator asks a water utility to show it can keep operating if its SCADA network is compromised. Which capability most directly answers this?",
+    "options": ["More HMI screens", "A larger historian database", "The ability to operate the process manually", "Faster corporate Wi-Fi"],
+    "answer": 2,
+    "explanation": "Being able to run the process manually is a core OT resilience control alongside segmentation and secure remote access.",
+    "optionNotes": [
+      "More screens do not provide a fallback.",
+      "Storage does not maintain operations under attack.",
+      "Correct: CISA lists manual operation among primary OT mitigations.",
+      "Corporate Wi-Fi is unrelated to OT resilience."
+    ],
+    "tags": ["countermeasures"],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/primary-mitigations-reduce-cyber-threats-operational-technology",
+      "https://www.cisa.gov/cross-sector-cybersecurity-performance-goals"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-q-0077",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which document is the ISA/IEC 62443 part that lists system security requirements and security levels?",
+    "options": ["62443-4-1", "62443-3-3", "62443-2-1", "62443-1-1"],
+    "answer": 1,
+    "explanation": "IEC 62443-3-3 defines system security requirements aligned to the seven FRs and capability security levels.",
+    "optionNotes": ["4-1 is the secure development lifecycle.", "Correct.", "2-1 is the asset-owner programme.", "1-1 defines concepts and models."],
+    "tags": ["iec-62443"],
+    "sources": [
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/",
+      "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

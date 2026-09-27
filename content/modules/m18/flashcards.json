@@ -1,0 +1,880 @@
+[
+  {
+    "id": "m18-c-0001",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "IoT device: why is it hard to secure?",
+    "back": "A device with at least one sensor or actuator plus a network interface.\n\nSecurity problems: little CPU and memory for crypto or agents, long life in the field, firmware rarely updated, and owners who often forget the device is there.",
+    "tags": [
+      "iot",
+      "definition"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/iot_device",
+      "https://csrc.nist.gov/pubs/ir/8228/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0002",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "The four IoT communication patterns (RFC 7452)",
+    "back": "- **Device-to-device** (Zigbee, BLE, Z-Wave)\n- **Device-to-cloud** (straight to the vendor service)\n- **Device-to-gateway** (hub or phone app relays)\n- **Back-end data sharing** (clouds share the data)",
+    "tags": [
+      "iot",
+      "architecture"
+    ],
+    "sources": [
+      "https://datatracker.ietf.org/doc/html/rfc7452",
+      "https://datatracker.ietf.org/doc/html/rfc8576"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0003",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "IoT architecture layers (EC-Council framing)",
+    "back": "Bottom to top:\n1. **Edge technology** (sensors, device hardware)\n2. **Access gateway**\n3. **Internet**\n4. **Middleware** (device and data management)\n5. **Application** (what the user sees)",
+    "tags": [
+      "iot",
+      "architecture",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://datatracker.ietf.org/doc/html/rfc7452"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0004",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "port",
+    "front": "MQTT at a glance",
+    "back": "- **Publish/subscribe** through a central **broker**\n- TCP **1883** plain, **8883** TLS\n- QoS 0 at most once, 1 at least once, 2 exactly once\n- Wildcards: `+` one level, `#` all levels\n\nRisk: an anonymous broker lets anyone subscribe to `#` and read every message.",
+    "tags": [
+      "mqtt",
+      "ports"
+    ],
+    "sources": [
+      "https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://mosquitto.org/man/mosquitto-conf-5.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0005",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "port",
+    "front": "CoAP at a glance",
+    "back": "- **Constrained Application Protocol** (RFC 7252): REST-like GET/POST/PUT/DELETE\n- **UDP 5683**; **5684** = `coaps` over **DTLS**\n- Discovery: `/.well-known/core`\n\nExposed CoAP on the internet can be abused for UDP amplification.",
+    "tags": [
+      "coap",
+      "ports"
+    ],
+    "sources": [
+      "https://datatracker.ietf.org/doc/html/rfc7252",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0006",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "IoT radios in one line each",
+    "back": "- **Zigbee**: mesh on **IEEE 802.15.4**, 2.4 GHz\n- **Z-Wave**: home mesh, sub-GHz\n- **BLE**: Bluetooth Low Energy, 2.4 GHz\n- **LoRaWAN**: long-range LPWAN through gateways\n- **6LoWPAN**: IPv6 over 802.15.4 (RFC 4944)\n- **Matter**: IP smart-home standard, BLE for commissioning",
+    "tags": [
+      "zigbee",
+      "ble",
+      "lorawan"
+    ],
+    "sources": [
+      "https://csa-iot.org/all-solutions/zigbee/",
+      "https://standards.ieee.org/ieee/802.15.4/7029/",
+      "https://lora-alliance.org/about-lorawan/",
+      "https://datatracker.ietf.org/doc/html/rfc4944",
+      "https://csa-iot.org/all-solutions/matter/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0007",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OWASP IoT Top 10 (2018)",
+    "back": "1. Weak, guessable or hardcoded passwords\n2. Insecure network services\n3. Insecure ecosystem interfaces\n4. Lack of secure update mechanism\n5. Use of insecure or outdated components\n6. Insufficient privacy protection\n7. Insecure data transfer and storage\n8. Lack of device management\n9. Insecure default settings\n10. Lack of physical hardening\n\nHook: *Please Never Expose Unpatched Cameras; Protect Data, Manage Defaults Physically.*",
+    "tags": [
+      "owasp-iot-top-10"
+    ],
+    "sources": [
+      "https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf",
+      "https://owasp.org/www-project-internet-of-things/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0008",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Mirai (2016)",
+    "back": "IoT botnet that scanned for Telnet (**23** and **2323**/TCP) and logged in with **62 default username/password pairs** (CISA). Used for record DDoS attacks (about 620 Gbps against KrebsOnSecurity).\n\nMemory-resident: a reboot clears it, but the device is reinfected unless the password is changed.",
+    "tags": [
+      "mirai",
+      "botnet",
+      "default-credentials"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0009",
+    "module": 18,
+    "section": "IoT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "Radio-level IoT attacks: what defenders see",
+    "back": "- **Jamming**: devices drop offline together, high noise floor\n- **Replay**: the same valid command seen again, out of sequence\n- **Sybil**: many \"new\" nodes that are really one attacker\n- **Side-channel**: secrets leak via power, timing or EM (needs physical access)\n\nDefenses: nonces and rolling codes, node authentication, heartbeat alerts.",
+    "tags": [
+      "jamming",
+      "replay",
+      "sybil"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/jamming",
+      "https://csrc.nist.gov/glossary/term/replay_attack",
+      "https://csrc.nist.gov/glossary/term/sybil_attack",
+      "https://csrc.nist.gov/glossary/term/side_channel_attack"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0010",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "list",
+    "front": "IoT hacking phases (EC-Council)",
+    "back": "1. Information gathering\n2. Vulnerability scanning\n3. Launch attacks\n4. Gain remote access\n5. Maintain access\n\nDefenders run phase 1 against their own devices first.",
+    "tags": [
+      "methodology",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://owasp.org/www-project-iot-security-testing-guide/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0011",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "Shodan",
+    "back": "Search engine for internet-connected devices: it indexes **service banners**. Filters such as `port:`, `product:`, `country:`, `org:`.\n\nDefensive use: find your own exposed cameras, PLCs and routers before someone else does. Censys is a similar service.",
+    "tags": [
+      "shodan",
+      "recon"
+    ],
+    "sources": [
+      "https://help.shodan.io/the-basics/what-is-shodan",
+      "https://help.shodan.io/the-basics/search-query-fundamentals",
+      "https://docs.censys.com/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0012",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "binwalk",
+    "back": "Identifies and extracts what is packed inside a **firmware image** (file systems such as SquashFS, compressed data, certificates).\n\nUsed by testers and product-security teams to find hardcoded passwords, private keys and outdated libraries (OWASP I1, I5).",
+    "tags": [
+      "firmware",
+      "binwalk"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/binwalk/",
+      "https://github.com/ReFirmLabs/binwalk",
+      "https://github.com/scriptingxss/owasp-fstm"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0013",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "HackRF One vs RTL-SDR vs GNU Radio",
+    "back": "- **HackRF One**: software-defined radio, **transmit and receive** (half duplex), 1 MHz to 6 GHz\n- **RTL-SDR**: cheap **receive-only** SDR dongle\n- **GNU Radio**: signal-processing framework used with both",
+    "tags": [
+      "sdr",
+      "radio"
+    ],
+    "sources": [
+      "https://hackrf.readthedocs.io/en/latest/hackrf_one.html",
+      "https://www.kali.org/tools/hackrf/",
+      "https://www.rtl-sdr.com/about-rtl-sdr/",
+      "https://www.gnuradio.org/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0014",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "KillerBee, Ubertooth, bettercap BLE",
+    "back": "- **KillerBee**: framework for **IEEE 802.15.4 / Zigbee** testing\n- **Ubertooth One**: open **Bluetooth** monitoring hardware\n- **bettercap** `ble.recon`: discovers BLE devices and their services",
+    "tags": [
+      "zigbee",
+      "bluetooth",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/riverloopsec/killerbee",
+      "https://github.com/greatscottgadgets/ubertooth",
+      "https://www.kali.org/tools/ubertooth/",
+      "https://www.bettercap.org/modules/ble/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0015",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "JTAGulator and ChipWhisperer",
+    "back": "- **JTAGulator**: finds on-chip debug pins (**JTAG**, **UART**) on a circuit board\n- **ChipWhisperer**: side-channel power analysis and fault-injection toolkit\n\nBoth concern OWASP I10 (lack of physical hardening).",
+    "tags": [
+      "hardware",
+      "tools"
+    ],
+    "sources": [
+      "https://github.com/grandideastudio/jtagulator",
+      "https://github.com/newaetech/chipwhisperer",
+      "https://owasp.org/www-project-iot-security-testing-guide/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0016",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OWASP IoT testing references",
+    "back": "- **ISTG**: IoT Security Testing Guide\n- **ISVS**: IoT Security Verification Standard\n- **FSTM**: Firmware Security Testing Methodology\n- **IoTGoat**: deliberately insecure firmware for practice",
+    "tags": [
+      "owasp",
+      "testing"
+    ],
+    "sources": [
+      "https://owasp.org/www-project-iot-security-testing-guide/",
+      "https://owasp.org/www-project-iot-security-verification-standard/",
+      "https://github.com/scriptingxss/owasp-fstm",
+      "https://github.com/OWASP/IoTGoat"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0017",
+    "module": 18,
+    "section": "IoT Hacking Methodology",
+    "domain": "D7",
+    "kind": "command",
+    "front": "`nmap -p 1883 --script mqtt-subscribe <target>`",
+    "back": "Connects to an MQTT broker and subscribes to topics, printing the latest payloads (for example `$SYS/broker/...`).\n\nIf it prints topics without credentials, the broker allows **anonymous** access: require passwords, ACLs and TLS.",
+    "tags": [
+      "mqtt",
+      "nmap"
+    ],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/mqtt-subscribe.html",
+      "https://mosquitto.org/man/mosquitto-conf-5.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0018",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "list",
+    "front": "NISTIR 8259A core baseline (6 capabilities)",
+    "back": "1. Device identification\n2. Device configuration\n3. Data protection\n4. Logical access to interfaces\n5. Software update\n6. Cybersecurity state awareness\n\nHook: *I Configure Data, Lock Updates, Stay Aware.*",
+    "tags": [
+      "nistir-8259a",
+      "baseline"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/ir/8259/a/final",
+      "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259A.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0019",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "NISTIR 8259: manufacturer activities",
+    "back": "Six foundational activities: **four pre-market** (identify customers and use cases, research their needs, decide how to meet them, plan support) and **two post-market** (how to communicate, what to communicate).",
+    "tags": [
+      "nistir-8259"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/ir/8259/final",
+      "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0020",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "ETSI EN 303 645",
+    "back": "European baseline for **consumer IoT** security. First three provisions: **no universal default passwords**, a way to **report vulnerabilities**, **keep software updated**. The UK PSTI regime turned these into law.",
+    "tags": [
+      "etsi",
+      "consumer-iot"
+    ],
+    "sources": [
+      "https://www.etsi.org/deliver/etsi_en/303600_303699/303645/03.01.03_60/en_303645v030103p.pdf",
+      "https://www.etsi.org/technologies/consumer-iot-security",
+      "https://www.gov.uk/government/publications/the-uk-product-security-and-telecommunications-infrastructure-product-security-regime"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0021",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Manufacturer Usage Description (MUD, RFC 8520)",
+    "back": "The device points to a **MUD file** that lists the network access it needs. The network (router, switch, controller) enforces it as an allowlist, so a compromised camera cannot talk to anything else.",
+    "tags": [
+      "mud",
+      "segmentation"
+    ],
+    "sources": [
+      "https://datatracker.ietf.org/doc/html/rfc8520",
+      "https://csrc.nist.gov/pubs/sp/800/213/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0022",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "Top IoT countermeasures",
+    "back": "- Unique passwords, no defaults (OWASP I1)\n- Disable Telnet, UPnP, debug ports (I2)\n- Signed updates with anti-rollback (I4)\n- IoT on its own VLAN/SSID, egress filtering\n- TLS/DTLS (MQTT 8883, CoAP 5684) (I7)\n- Inventory and monitoring (I8)",
+    "tags": [
+      "countermeasures"
+    ],
+    "sources": [
+      "https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf",
+      "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+      "https://www.etsi.org/deliver/etsi_en/303600_303699/303645/03.01.03_60/en_303645v030103p.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0023",
+    "module": 18,
+    "section": "IoT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Platform firmware resiliency (NIST SP 800-193)",
+    "back": "Three principles for firmware: **protect** (only authenticated updates), **detect** (notice corruption), **recover** (restore a known-good image).",
+    "tags": [
+      "firmware",
+      "secure-update"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/193/final",
+      "https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0024",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OT components",
+    "back": "- **PLC**: rugged controller running the logic\n- **RTU**: remote field unit (SCADA)\n- **IED**: smart device, e.g. protection relay\n- **HMI**: operator screen\n- **Historian**: process data over time\n- **SIS**: independent safety system that trips to a safe state",
+    "tags": [
+      "ot",
+      "components"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+      "https://csrc.nist.gov/glossary/term/programmable_logic_controller",
+      "https://csrc.nist.gov/glossary/term/remote_terminal_unit",
+      "https://csrc.nist.gov/glossary/term/human_machine_interface",
+      "https://csrc.nist.gov/glossary/term/safety_instrumented_system",
+      "https://csrc.nist.gov/glossary/term/data_historian"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0025",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "SCADA vs DCS",
+    "back": "**SCADA**: supervisory control over **wide areas** (pipelines, power grids, water networks), often via RTUs.\n**DCS**: process control **inside one plant** (refinery, chemical plant).",
+    "tags": [
+      "scada",
+      "dcs"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/supervisory_control_and_data_acquisition",
+      "https://csrc.nist.gov/glossary/term/distributed_control_system",
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0026",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "diagram",
+    "front": "Purdue model levels",
+    "back": "- **L5** Enterprise\n- **L4** Business network\n- **L3.5** Industrial DMZ (added in practice)\n- **L3** Site operations: historian, engineering workstations\n- **L2** Supervisory: HMI, alarm servers\n- **L1** Controllers: PLC, RTU\n- **L0** Field devices: sensors, actuators\n\nLevel 4 must not talk directly to Levels 0-2.",
+    "tags": [
+      "purdue"
+    ],
+    "sources": [
+      "https://www.sans.org/blog/introduction-to-ics-security-part-2/",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0027",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "port",
+    "front": "OT protocol ports",
+    "back": "| Protocol | Port |\n|---|---|\n| Modbus/TCP | **502** |\n| DNP3 | **20000** |\n| Siemens S7comm (ISO-TSAP) | **102** |\n| EtherNet/IP | **44818** (+2222 I/O) |\n| BACnet/IP | **47808**/udp |\n| IEC 60870-5-104 | **2404** |\n| OPC UA | **4840** |",
+    "tags": [
+      "ports",
+      "ot-protocols"
+    ],
+    "sources": [
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://nmap.org/nsedoc/scripts/modbus-discover.html",
+      "https://nmap.org/nsedoc/scripts/s7-info.html",
+      "https://nmap.org/nsedoc/scripts/enip-info.html",
+      "https://nmap.org/nsedoc/scripts/bacnet-info.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0028",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "IT vs OT priorities",
+    "back": "IT usually ranks **confidentiality** first. OT ranks **safety and availability** first: a stopped or unsafe process costs more than leaked data.\n\nConsequences: slow, planned patching; careful scanning; decades-old devices; many field protocols without authentication.",
+    "tags": [
+      "ot",
+      "priorities"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+      "https://www.cisa.gov/topics/industrial-control-systems"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0029",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "list",
+    "front": "ATT&CK for ICS impact techniques (view and control)",
+    "back": "- **Loss / Denial / Manipulation of View**: operators can't see, or see false values\n- **Loss / Denial / Manipulation of Control**: operators can't act, or the process does something else\n- **Loss of Safety**, **Damage to Property**, **Loss of Availability**",
+    "tags": [
+      "attack-ics",
+      "impact"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T0829/",
+      "https://attack.mitre.org/techniques/T0832/",
+      "https://attack.mitre.org/techniques/T0831/",
+      "https://attack.mitre.org/techniques/T0880/",
+      "https://attack.mitre.org/matrices/ics/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0030",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Stuxnet",
+    "back": "Found 2010. Windows worm spread by **USB** and network shares, several zero-days. Infected Siemens **STEP 7** and changed drive speeds on **S7-315/417 PLCs** while operators saw normal values; a rootkit hid the PLC changes.\n\nLesson: air gaps leak; control removable media; verify PLC logic.",
+    "tags": [
+      "stuxnet",
+      "case-study"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-10-272-01",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-10-238-01b",
+      "https://attack.mitre.org/software/S0603/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0031",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Triton / TRISIS / HatMan",
+    "back": "2017, petrochemical plant: malware targeting **Schneider Electric Triconex safety controllers (SIS)** over the TriStation protocol. A fault made the SIS trip the plant to a **safe shutdown**, which exposed the attack.\n\nLesson: SIS on its own network, key switch in **RUN**, alarm on program changes.",
+    "tags": [
+      "triton",
+      "sis",
+      "case-study"
+    ],
+    "sources": [
+      "https://www.cisa.gov/sites/default/files/documents/MAR-17-352-01%20HatMan%20-%20Safety%20System%20Targeted%20Malware%20%28Update%20B%29.pdf",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-083a",
+      "https://attack.mitre.org/software/S1009/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0032",
+    "module": 18,
+    "section": "OT Concepts and Attacks",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Industroyer / CrashOverride",
+    "back": "Dec 2016, Kyiv substation. Modular malware that spoke **IEC 60870-5-101, IEC 60870-5-104, IEC 61850 and OPC DA** to operate breakers: it used the protocols as designed. Industroyer2 (2022) used IEC-104.\n\nLesson: protocol-aware monitoring and allowlists.",
+    "tags": [
+      "industroyer",
+      "case-study"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/alerts/2017/06/12/crashoverride-malware",
+      "https://attack.mitre.org/software/S0604/",
+      "https://attack.mitre.org/software/S1072/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0033",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "kind": "list",
+    "front": "OT hacking phases (EC-Council)",
+    "back": "Same five as IoT: information gathering, vulnerability scanning, launch attacks, gain remote access, maintain access.\n\nDifference: in OT even discovery can crash fragile devices, so defenders prefer **passive** monitoring.",
+    "tags": [
+      "methodology",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0034",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "kind": "command",
+    "front": "NSE output: `102/tcp open Siemens S7 PLC | s7-info: Module Type: CPU 315-2 DP`",
+    "back": "The `s7-info` script identified a reachable **Siemens S7-300 PLC** (module, version, serial).\n\nDefender action: no ISO-TSAP (102) from outside the control zone; alert on S7 queries from non-engineering hosts.",
+    "tags": [
+      "s7",
+      "nmap"
+    ],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/s7-info.html",
+      "https://www.wireshark.org/docs/dfref/s/s7comm.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0035",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "Nmap NSE scripts for ICS discovery",
+    "back": "- `modbus-discover` (502, **intrusive** category)\n- `s7-info` (102)\n- `enip-info` (44818)\n- `bacnet-info` (47808/udp)\n- `iec-identify` (IEC-104)\n- `fox-info` (Niagara Fox 1911)\n- `omron-info` (FINS 9600)",
+    "tags": [
+      "nmap",
+      "ics-discovery"
+    ],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/modbus-discover.html",
+      "https://nmap.org/nsedoc/scripts/s7-info.html",
+      "https://nmap.org/nsedoc/scripts/enip-info.html",
+      "https://nmap.org/nsedoc/scripts/bacnet-info.html",
+      "https://nmap.org/nsedoc/scripts/iec-identify.html",
+      "https://nmap.org/nsedoc/scripts/fox-info.html",
+      "https://nmap.org/nsedoc/scripts/omron-info.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0036",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "kind": "tool",
+    "front": "Defender OT tools",
+    "back": "- **GRASSMARLIN** (NSA): passive OT network mapping\n- **Zeek + ICSNPP** (CISA): logs ICS protocol commands\n- **Malcolm** (CISA): traffic analysis suite\n- **CSET** (CISA): standards self-assessment",
+    "tags": [
+      "defense-tools"
+    ],
+    "sources": [
+      "https://github.com/nsacyber/GRASSMARLIN",
+      "https://github.com/cisagov/ICSNPP",
+      "https://github.com/cisagov/Malcolm",
+      "https://www.cisa.gov/resources-tools/services/cyber-security-evaluation-tool-cset"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0037",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Program Upload vs Program Download (ATT&CK for ICS)",
+    "back": "**Program Upload**: logic is read **from** the controller (collection).\n**Program Download**: logic is written **to** the controller (can change the process).\n\nDetection: controller change alarms, logic compared with a known-good copy.",
+    "tags": [
+      "attack-ics"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T0845/",
+      "https://attack.mitre.org/techniques/T0843/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0038",
+    "module": 18,
+    "section": "OT Hacking Methodology",
+    "domain": "D7",
+    "kind": "list",
+    "front": "Common OT entry points (CISA cases)",
+    "back": "- **Internet Accessible Device**: PLC/HMI found by Shodan\n- **Default Credentials**: vendor password unchanged (Unitronics PLCs, 2023)\n- **External Remote Services**: remote access tools and VPNs (Oldsmar water plant, 2021)\n- **Replication Through Removable Media**: USB (Stuxnet)",
+    "tags": [
+      "entry-points"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T0883/",
+      "https://attack.mitre.org/techniques/T1694/001/",
+      "https://attack.mitre.org/techniques/T0822/",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-335a",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-042a"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0039",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "IEC 62443 zones and conduits",
+    "back": "**Zone**: group of assets that share the same security requirements.\n**Conduit**: the communication path between zones, controlled as a unit.\n\nEach zone gets a target security level (**SL-T**, 1-4) compared with the achieved level (**SL-A**).",
+    "tags": [
+      "iec-62443",
+      "segmentation"
+    ],
+    "sources": [
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/",
+      "https://gca.isa.org/blog/how-to-define-zones-and-conduits",
+      "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0040",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "list",
+    "front": "IEC 62443 foundational requirements (FR1-FR7)",
+    "back": "1. Identification and authentication control\n2. Use control\n3. System integrity\n4. Data confidentiality\n5. Restricted data flow\n6. Timely response to events\n7. Resource availability",
+    "tags": [
+      "iec-62443"
+    ],
+    "sources": [
+      "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/",
+      "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0041",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "Data diode / unidirectional gateway",
+    "back": "Hardware that lets data flow in **one direction only**, for example historian data out of the control network. Nothing can come back in over that path, unlike a firewall which filters two-way traffic.",
+    "tags": [
+      "data-diode"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/data_diode",
+      "https://csrc.nist.gov/glossary/term/unidirectional_gateway",
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0042",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "list",
+    "front": "CISA primary OT mitigations",
+    "back": "- Remove OT connections to the **public internet**\n- Change **default passwords**\n- Secure remote access: private network, VPN, phishing-resistant **MFA**\n- **Segment** IT and OT\n- Be able to operate **manually**",
+    "tags": [
+      "cisa",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.cisa.gov/resources-tools/resources/primary-mitigations-reduce-cyber-threats-operational-technology",
+      "https://www.cisa.gov/cross-sector-cybersecurity-performance-goals"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0043",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "term",
+    "front": "NIST SP 800-82r3",
+    "back": "*Guide to Operational Technology (OT) Security* (2023). Covers OT risk management, defense-in-depth architecture, DMZs between IT and OT, separate credentials and an OT overlay of SP 800-53 controls. r3 renamed the scope from ICS to **OT**.",
+    "tags": [
+      "nist-800-82"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m18-c-0044",
+    "module": 18,
+    "section": "OT Attack Countermeasures",
+    "domain": "D7",
+    "kind": "countermeasure",
+    "front": "Lessons from Stuxnet and Triton as controls",
+    "back": "- Removable media control and application allowlisting on engineering workstations\n- Compare PLC logic with a known-good copy (ATT&CK Audit)\n- Controller key switch in RUN; Code Signing\n- SIS on its own network\n- Independent sensors or out-of-band channels to confirm what the HMI shows",
+    "tags": [
+      "lessons",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-10-238-01b",
+      "https://www.cisa.gov/sites/default/files/documents/MAR-17-352-01%20HatMan%20-%20Safety%20System%20Targeted%20Malware%20%28Update%20B%29.pdf",
+      "https://attack.mitre.org/mitigations/M0945/",
+      "https://attack.mitre.org/mitigations/M0947/",
+      "https://attack.mitre.org/mitigations/M0810/"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

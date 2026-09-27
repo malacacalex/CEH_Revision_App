@@ -3,7 +3,7 @@
   "title": "IoT and OT Hacking",
   "domain": "D7",
   "effortUnits": 1,
-  "status": "stub",
+  "status": "sample",
   "sections": [
     "IoT Concepts and Attacks",
     "IoT Hacking Methodology",
@@ -12,8 +12,145 @@
     "OT Hacking Methodology",
     "OT Attack Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Describe IoT communication patterns and name the ports and roles of MQTT, CoAP, UPnP and the main IoT radios (Zigbee on 802.15.4, BLE, LoRaWAN, Z-Wave)",
+      "section": "IoT Concepts and Attacks"
+    },
+    {
+      "text": "List the OWASP IoT Top 10 (2018) in order and match a finding (hardcoded password, open Telnet, unsigned update, open UART) to its category",
+      "section": "IoT Concepts and Attacks"
+    },
+    {
+      "text": "Recognize IoT threat classes (botnet DDoS, jamming, replay, Sybil, side-channel, firmware tampering) by what defenders see, and explain the Mirai case",
+      "section": "IoT Concepts and Attacks"
+    },
+    {
+      "text": "Match IoT tools (Shodan, Nmap NSE, binwalk, HackRF, RTL-SDR, KillerBee, Ubertooth, JTAGulator) to their purpose and read their key output lines",
+      "section": "IoT Hacking Methodology"
+    },
+    {
+      "text": "Apply NISTIR 8259/8259A, ETSI EN 303 645, MUD (RFC 8520) and network isolation to secure IoT devices",
+      "section": "IoT Attack Countermeasures"
+    },
+    {
+      "text": "Place OT components (PLC, RTU, HMI, historian, SIS) on the Purdue model and explain why OT ranks safety and availability first",
+      "section": "OT Concepts and Attacks"
+    },
+    {
+      "text": "Identify OT protocols by port (Modbus 502, DNP3 20000, S7 102, BACnet 47808, EtherNet/IP 44818, IEC-104 2404, OPC UA 4840) and explain their security weaknesses",
+      "section": "OT Concepts and Attacks"
+    },
+    {
+      "text": "Summarize Stuxnet, the 2015 Ukraine attack, Industroyer and Triton: target, technique class and lesson for defenders",
+      "section": "OT Concepts and Attacks"
+    },
+    {
+      "text": "Recognize OT discovery output and ATT&CK for ICS technique names, and explain why passive monitoring is preferred in OT",
+      "section": "OT Hacking Methodology"
+    },
+    {
+      "text": "Design OT defenses with NIST SP 800-82r3 and ISA/IEC 62443 zones, conduits and security levels, data diodes and CISA's primary OT mitigations",
+      "section": "OT Attack Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "IoT Concepts and Attacks",
+      "priority": "MUST",
+      "minutes": 40,
+      "why": "Protocol ports, the OWASP IoT Top 10 order and the Mirai case are frequent recall and scenario questions."
+    },
+    {
+      "section": "IoT Hacking Methodology",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Learn the five phase names and what each tool is for in one line; skip tool screenshots and walkthroughs."
+    },
+    {
+      "section": "IoT Attack Countermeasures",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Default passwords, updates and isolation answer most IoT defense questions; know the NIST and ETSI baselines by name."
+    },
+    {
+      "section": "OT Concepts and Attacks",
+      "priority": "MUST",
+      "minutes": 45,
+      "why": "Purdue levels, OT protocol ports and the famous incidents (Stuxnet, Triton, Industroyer) carry most OT questions."
+    },
+    {
+      "section": "OT Hacking Methodology",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Recognize ICS discovery tools and output and why active scanning is risky in OT; the phases mirror the IoT ones."
+    },
+    {
+      "section": "OT Attack Countermeasures",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Segmentation, IEC 62443 zones and conduits, data diodes and NIST SP 800-82r3 are classic defense questions."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Analyze the OWASP IoTGoat firmware",
+      "source": "free",
+      "where": "https://github.com/OWASP/IoTGoat",
+      "skill": "Using binwalk on a deliberately vulnerable firmware image to find hardcoded credentials and insecure services, mapped to the OWASP IoT Top 10",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Run and lock down a local Mosquitto broker",
+      "source": "free",
+      "where": "https://mosquitto.org/documentation/authentication-methods/",
+      "skill": "On your own machine: see what an anonymous client can read, then enable password files, ACLs and TLS on 8883",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Inspect ICS protocol captures with Malcolm",
+      "source": "free",
+      "where": "https://github.com/cisagov/Malcolm",
+      "skill": "Recognizing Modbus, DNP3 and S7comm traffic in public sample captures and spotting writes from unexpected hosts",
+      "minutes": 60,
+      "verify": true
+    },
+    {
+      "name": "Self-assess an OT network design with CISA CSET",
+      "source": "free",
+      "where": "https://github.com/cisagov/cset",
+      "skill": "Answering a standards-based questionnaire (for example IEC 62443 or NIST SP 800-82) for a small fictional plant and reading the gap report",
+      "minutes": 45,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a friend why a cheap smart camera can help take down a big website, and the three things the manufacturer and the owner should have done to prevent it.",
+    "Explain the Purdue model to a new plant engineer, and why the business network should never talk straight to a PLC.",
+    "Tell the story of Stuxnet or Triton in plain words: what was targeted, how operators were fooled or the safety system was touched, and which defenses would have helped."
+  ],
+  "resources": [
+    {
+      "name": "OWASP IoT Security Verification Standard",
+      "url": "https://owasp.org/www-project-iot-security-verification-standard/",
+      "covers": "IoT security requirements by layer."
+    },
+    {
+      "name": "NIST IR 8259: IoT device cybersecurity baseline",
+      "url": "https://csrc.nist.gov/pubs/ir/8259/final",
+      "covers": "What a secure IoT device should offer."
+    },
+    {
+      "name": "NIST SP 800-82r3: OT security guide",
+      "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf",
+      "covers": "OT architecture, risks and defenses."
+    },
+    {
+      "name": "MITRE ATT&CK for ICS",
+      "url": "https://attack.mitre.org/matrices/ics/",
+      "covers": "OT attack techniques and mitigations."
+    }
+  ]
 }
