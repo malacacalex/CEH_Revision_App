@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { content } from '../../content/bundle.ts';
-import { finishSession, recordAnswer, saveProfile, setMistakeCause, startSession } from '../../db/repo.ts';
+import { finishSession, recordAnswer, saveProfile, startSession } from '../../db/repo.ts';
 import type { Confidence } from '../../domain/fsrs/scheduler.ts';
 import { assembleQuiz, QUIZ_MODES, type QuizMode } from '../../domain/quiz/assemble.ts';
+import { openSession, sessionAnswers } from '../../domain/quiz/resume.ts';
 import { scoreQuiz, type AnswerRecord } from '../../domain/quiz/score.ts';
-import { MISTAKE_CAUSES, MISTAKE_CAUSE_LABELS, type MistakeCause, type QuizSession } from '../../schemas/progress.ts';
+import type { QuizSession } from '../../schemas/progress.ts';
 import type { DomainId, Question } from '../../schemas/content.ts';
 import { useSnapshot } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, Empty, PageHeader, pct, ProgressBar, UnverifiedBadge } from '../../ui/kit.tsx';
 import { Markdown } from '../../ui/Markdown.tsx';
+import { GlossaryText, glossaryTerms, Term } from '../../ui/GlossaryText.tsx';
 import { ReportError } from '../../ui/ReportError.tsx';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
@@ -27,18 +29,18 @@ interface Run {
 
 export function QuizRun() {
   const s = useSnapshot();
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const mode = (params.get('mode') ?? 'mixed') as QuizMode | 'retest';
   const module = params.get('module') === null ? undefined : Number(params.get('module'));
   const domain = (params.get('domain') ?? undefined) as DomainId | undefined;
   const idsParam = params.get('ids') ?? '';
+  const fresh = params.get('new') === '1';
 
   const [run, setRun] = useState<Run | null>(null);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState<AnswerRecord | null>(null);
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
-  const [cause, setCause] = useState<MistakeCause | null>(null);
   const [finished, setFinished] = useState(false);
   const started = useRef(false);
   const shownAt = useRef(0);
@@ -46,26 +48,58 @@ export function QuizRun() {
   useEffect(() => {
     if (!s || started.current) return;
     started.current = true;
-    const questions =
+    const retestIds =
       mode === 'retest'
-        ? idsParam.split(',').filter(Boolean).map((id) => content.questionById.get(id)).filter((q): q is Question => !!q && q.pool !== 'mock')
-        : assembleQuiz({
-            mode,
-            questions: content.questions,
-            blueprint: content.bundle.blueprint,
-            attempts: s.data.attempts,
-            module,
-            domain,
-            studiedModules: s.snap.startedModules,
-            dueQuestionIds: s.snap.dueQuestions,
-          });
-    void startSession({ profileId: s.profile.id, mode, module, domain, questionIds: questions.map((q) => q.id), total: questions.length }, new Date()).then(
-      (session) => {
-        setRun({ session, questions });
-        shownAt.current = performance.now();
-      },
-    );
-  }, [s, mode, module, domain, idsParam]);
+        ? idsParam.split(',').filter(Boolean).filter((id) => {
+            const q = content.questionById.get(id);
+            return !!q && q.pool !== 'mock';
+          })
+        : undefined;
+
+    // Coming back to a quiz left mid-way (another tab of the app, a reload): pick up where it stopped.
+    const open = fresh ? undefined : openSession(s.data.sessions, { mode, module, domain, ids: retestIds }, (id) => content.questionById.has(id));
+    const init = async (): Promise<{ run: Run; done: AnswerRecord[] }> => {
+      if (open) {
+        const questions = open.questionIds.map((id) => content.questionById.get(id)!);
+        return { run: { session: open, questions }, done: sessionAnswers(s.data.attempts, open.id).slice(0, questions.length) };
+      }
+      const questions =
+        retestIds !== undefined
+          ? retestIds.map((id) => content.questionById.get(id)!)
+          : assembleQuiz({
+              mode: mode as QuizMode,
+              questions: content.questions,
+              blueprint: content.bundle.blueprint,
+              attempts: s.data.attempts,
+              module,
+              domain,
+              studiedModules: s.snap.startedModules,
+              dueQuestionIds: s.snap.dueQuestions,
+            });
+      const session = await startSession(
+        { profileId: s.profile.id, mode, module, domain, questionIds: questions.map((q) => q.id), total: questions.length },
+        new Date(),
+      );
+      return { run: { session, questions }, done: [] };
+    };
+    if (fresh) {
+      const next = new URLSearchParams(params);
+      next.delete('new');
+      setParams(next, { replace: true });
+    }
+    void init().then(({ run, done }) => {
+      setRun(run);
+      setAnswers(done);
+      const last = done.at(-1);
+      if (last) {
+        // Show the last answered question again with its explanation; "Next" continues.
+        setIndex(done.length - 1);
+        setSelected(last.chosen);
+        setSubmitted(last);
+      }
+      shownAt.current = performance.now();
+    });
+  }, [s, mode, module, domain, idsParam, fresh, params, setParams]);
 
   const q = run?.questions[index];
 
@@ -75,7 +109,6 @@ export function QuizRun() {
       const rec: AnswerRecord = { questionId: q.id, chosen: selected, confidence };
       setSubmitted(rec);
       setAnswers((a) => [...a, rec]);
-      setCause(selected !== q.answer && confidence === 'guess' ? 'guessed' : null);
       await recordAnswer({
         profileId: s.profile.id,
         session: run.session,
@@ -102,7 +135,6 @@ export function QuizRun() {
       setIndex((i) => i + 1);
       setSelected(null);
       setSubmitted(null);
-      setCause(null);
       shownAt.current = performance.now();
     }
   }, [run, submitted, index, answers, mode, s]);
@@ -116,7 +148,7 @@ export function QuizRun() {
         if (i >= 0) setSelected(i);
         const c = CONFIDENCE.find((x) => x.key === k);
         if (c && selected !== null) void submit(c.value);
-      } else if (e.key === 'Enter' || k === 'n') {
+      } else if ((e.key === 'Enter' && !(e.target instanceof HTMLButtonElement)) || k === 'n') {
         e.preventDefault();
         void next();
       }
@@ -145,6 +177,10 @@ export function QuizRun() {
   if (finished) return <Summary run={run} answers={answers} mode={mode} module={module} />;
 
   const correct = submitted ? submitted.chosen === q!.answer : false;
+  // Terms in the stem are clickable in place; the ones only found in the options get chips (options are buttons).
+  const stemSeen = new Set<string>();
+  const stem = <GlossaryText text={q!.stem} seen={stemSeen} />;
+  const optionTerms = glossaryTerms(q!.options, stemSeen);
   return (
     <>
       <PageHeader title={title} subtitle={`Question ${index + 1} of ${run.questions.length}`} />
@@ -159,7 +195,15 @@ export function QuizRun() {
           {q!.tags.includes('ec-council-specific') && <Badge tone="accent">EC-Council framing</Badge>}
           {q!.verify && <UnverifiedBadge />}
         </div>
-        <p className="mb-4 font-serif text-lg leading-relaxed">{q!.stem}</p>
+        <p className="mb-4 font-serif text-lg leading-relaxed">{stem}</p>
+        {optionTerms.length > 0 && (
+          <div className="-mt-2 mb-4 flex flex-wrap items-center gap-2 text-sm text-muted">
+            <span>Terms:</span>
+            {optionTerms.map((e) => (
+              <Term key={e.term} entry={e} chip />
+            ))}
+          </div>
+        )}
 
         <div className="space-y-2" role="radiogroup" aria-label="Answer options">
           {q!.options.map((opt, i) => {
@@ -210,27 +254,6 @@ export function QuizRun() {
               {!correct && submitted.confidence === 'sure' && <span className="ml-2 text-sm font-semibold">· confidently wrong, fix this one first</span>}
             </p>
             <Markdown source={q!.explanation} />
-            {!correct && (
-              <div className="mt-3">
-                <p className="mb-1 text-sm font-semibold">Why did you miss it?</p>
-                <div className="flex flex-wrap gap-2">
-                  {MISTAKE_CAUSES.map((c) => (
-                    <button
-                      key={c}
-                      type="button"
-                      onClick={() => {
-                        setCause(c);
-                        void setMistakeCause(s.profile.id, q!.id, c);
-                      }}
-                      aria-pressed={cause === c}
-                      className={`min-h-9 rounded-full border px-3 text-sm ${cause === c ? 'border-chestnut bg-chestnut-soft font-semibold text-chestnut' : 'border-line'}`}
-                    >
-                      {MISTAKE_CAUSE_LABELS[c]}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
             <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm text-muted">
               <span>
                 {q!.id} · Sources:{' '}

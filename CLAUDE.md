@@ -128,8 +128,8 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 18 mock, 6 verify |
 | M14 Hacking Web Applications | stub + notes | research and notes written (defensive retry); cards and questions deferred (blocked) |
-| M15 SQL Injection | stub | full build deferred (blocked) |
-| M16 Hacking Wireless Networks | stub | full build deferred (blocked) |
+| M15 SQL Injection | stub | full build deferred (blocked, defensive retry blocked too) |
+| M16 Hacking Wireless Networks | stub | full build deferred (blocked, defensive retry blocked too) |
 | M17 Hacking Mobile Platforms | built | 40 cards, 10 pretest, 54 practice, 20 mock, 8 verify |
 | M18 IoT and OT Hacking | stub | full build deferred (blocked); research gathered |
 | M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |

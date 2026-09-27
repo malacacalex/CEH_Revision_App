@@ -91,6 +91,8 @@ export type ModuleMeta = z.infer<typeof ModuleMetaSchema>;
 export const GlossaryEntrySchema = z.strictObject({
   term: nonEmpty,
   definition: nonEmpty,
+  /** Other exact spellings that open this entry from question text (expansion, short form). */
+  aliases: z.array(nonEmpty).default([]),
   modules: z.array(z.number().int().min(0).max(20)),
   tags: z.array(nonEmpty).default([]),
   sources: z.array(url).min(1),

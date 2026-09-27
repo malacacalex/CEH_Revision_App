@@ -23,7 +23,7 @@ function Sources({ urls }: { urls: string[] }) {
 
 export function ReferencePage() {
   const [params, setParams] = useSearchParams();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(params.get('q') ?? '');
   const sheets = content.bundle.references;
   const tab: Tab = params.get('tab') === 'glossary' ? 'glossary' : 'sheets';
   const current = sheets.find((r) => r.id === params.get('sheet')) ?? sheets[0];

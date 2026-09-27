@@ -1,8 +1,11 @@
 import { useState, type ReactNode } from 'react';
 import { content } from '../../content/bundle.ts';
 import { assembleQuiz, QUIZ_MODES, type QuizMode } from '../../domain/quiz/assemble.ts';
+import { openSession, quizHref, quizzesInProgress, sessionAnswers } from '../../domain/quiz/resume.ts';
 import { useSnapshot } from '../../state/ProfileContext.tsx';
 import { Badge, ButtonLink, Card, inputClass, PageHeader } from '../../ui/kit.tsx';
+
+const exists = (id: string) => content.questionById.has(id);
 
 export function QuizHome() {
   const s = useSnapshot();
@@ -24,7 +27,17 @@ export function QuizHome() {
       ...extra,
     }).length;
 
-  const tile = (mode: QuizMode, href: string, n: number, extra?: ReactNode) => (
+  // A quiz left mid-way resumes from its tile; "Start over" opens a fresh one.
+  const resumeOf = (mode: QuizMode, key: { module?: number; domain?: string } = {}) => {
+    const open = openSession(data.sessions, { mode, ...key }, exists);
+    const answered = open ? sessionAnswers(data.attempts, open.id).length : 0;
+    return open && answered > 0 ? { answered, total: open.questionIds.length } : undefined;
+  };
+  const inProgress = quizzesInProgress(data.sessions, data.attempts, exists);
+
+  const tile = (mode: QuizMode, href: string, n: number, extra?: ReactNode, key: { module?: number; domain?: string } = {}) => {
+    const resume = resumeOf(mode, key);
+    return (
     <Card key={mode} className="flex flex-col">
       <div className="mb-1 flex items-center justify-between gap-2">
         <h2 className="font-bold">{QUIZ_MODES[mode].title}</h2>
@@ -32,17 +45,50 @@ export function QuizHome() {
       </div>
       <p className="mb-3 flex-1 text-sm text-muted">{QUIZ_MODES[mode].blurb}</p>
       {extra}
-      {n > 0 ? (
+      {resume ? (
+        <div className="flex flex-wrap gap-2">
+          <ButtonLink to={href} className="flex-1">
+            Resume ({resume.answered}/{resume.total})
+          </ButtonLink>
+          <ButtonLink to={`${href}&new=1`} variant="secondary">
+            Start over
+          </ButtonLink>
+        </div>
+      ) : n > 0 ? (
         <ButtonLink to={href}>Start</ButtonLink>
       ) : (
         <span className="rounded-lg bg-surface-2 p-2 text-center text-sm text-muted">Nothing to practise here yet</span>
       )}
     </Card>
-  );
+    );
+  };
 
   return (
     <>
       <PageHeader title="Quiz" subtitle="Rate your confidence before each answer is revealed. Every miss goes to your mistake log." />
+      {inProgress.length > 0 && (
+        <Card className="mb-4">
+          <h2 className="mb-2 font-bold">In progress</h2>
+          <ul className="space-y-2">
+            {inProgress.slice(0, 5).map(({ session, answered }) => (
+              <li key={session.id} className="flex flex-wrap items-center justify-between gap-2">
+                <span>
+                  {session.mode === 'retest' ? 'Re-test' : (QUIZ_MODES[session.mode as QuizMode]?.title ?? session.mode)}
+                  {session.module !== undefined && ` · M${session.module}`}
+                  {session.domain !== undefined && ` · ${session.domain}`}
+                  <span className="text-sm text-muted">
+                    {' '}
+                    · {answered}/{session.questionIds.length} answered
+                  </span>
+                </span>
+                <ButtonLink to={quizHref(session)} variant="secondary">
+                  Resume
+                </ButtonLink>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
       <div className="grid gap-3 sm:grid-cols-2">
         {tile(
           'module',
@@ -55,6 +101,7 @@ export function QuizHome() {
               </option>
             ))}
           </select>,
+          { module },
         )}
         {tile(
           'domain',
@@ -67,6 +114,7 @@ export function QuizHome() {
               </option>
             ))}
           </select>,
+          { domain },
         )}
         {tile('mixed', '/quiz/run?mode=mixed', count('mixed'))}
         {tile('weak', '/quiz/run?mode=weak', count('weak'))}
