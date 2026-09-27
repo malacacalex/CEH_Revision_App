@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { validateContent } from '../../src/content/validate.ts';
 import { assembleContent, parseFrontMatter } from '../../src/content/assemble.ts';
 import { loadContentFromDisk, readRawContent } from '../../scripts/load-content.ts';
+import { sectionGaps } from '../../src/domain/coverage.ts';
 
 describe('bundled content', () => {
   it('passes schema and validation rules', () => {
@@ -78,6 +79,20 @@ describe('M2 content rules', () => {
     files['modules/m00/questions.skipcheck.json'] = (files['modules/m00/questions.skipcheck.json'] as unknown[]).slice(0, 12);
     const { errors } = validateContent(assembleContent(files).bundle!);
     expect(errors.some((e) => e.includes('12 skip-check questions (expected 20)'))).toBe(true);
+  });
+
+  it('requires a self-study line for every module that is not built', () => {
+    const files = clone();
+    files['self-study.json'] = (files['self-study.json'] as { modules: number[] }[]).filter((s) => !s.modules.includes(4));
+    const { errors } = validateContent(assembleContent(files).bundle!);
+    expect(errors.some((e) => e.startsWith('self-study: M4 is stub'))).toBe(true);
+  });
+
+  it('lists the sections a partial module is missing', () => {
+    const m15 = loadContentFromDisk().bundle!.modules.find((m) => m.meta.module === 15)!;
+    const gaps = sectionGaps({ ...m15, notes: '## SQL Injection Concepts' });
+    expect(gaps[0]).toEqual({ section: 'SQL Injection Concepts', missing: ['flashcards', 'questions'] });
+    expect(gaps[1]!.missing).toEqual(['notes', 'flashcards', 'questions']);
   });
 
   it('checks reference sheet ids against their order', () => {

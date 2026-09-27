@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate, useParams, useSearchParams } from 'react-router';
+import { Link, Navigate, useParams, useSearchParams } from 'react-router';
 import { ETHICS_NOTICE } from '../../config.ts';
 import { content } from '../../content/bundle.ts';
 import { FEYNMAN_MIN_SENTENCES, sentenceCount } from '../../domain/gates.ts';
@@ -298,18 +298,23 @@ function Feynman({ n, mp, profileId, prompts }: { n: number; mp: ModuleProgress;
 
 /** Free official material; while the module isn't built it stands in for the missing in-app content. */
 function Resources({ meta }: { meta: ModuleMeta }) {
-  if (meta.resources.length === 0) return null;
   const partial = meta.status !== 'built';
+  if (meta.resources.length === 0 && !partial) return null;
+  const hasLinks = meta.resources.length > 0;
   return (
     <Card className={partial ? 'border-amber/50 bg-amber-soft' : ''}>
-      <h2 className="mb-1 text-lg font-bold">{partial ? 'Study it from these free resources' : 'Go further'}</h2>
+      <h2 className="mb-1 text-lg font-bold">{!partial ? 'Go further' : hasLinks ? 'Study it from these free resources' : 'Not fully in the app yet'}</h2>
       {partial && (
         <p className="mb-3 text-sm">
-          Part of this module isn't written in the app yet. Until it is, learn it from these official, free sources, then use the flashcards and
-          quizzes that exist.
+          Part of this module isn't written in the app yet.{' '}
+          {hasLinks ? 'Until it is, learn it from these official, free sources, then use the flashcards and quizzes that exist. ' : ''}
+          <Link to="/self-study" className="font-semibold text-chestnut underline">
+            Self-study
+          </Link>{' '}
+          lists what to cover on your own.
         </p>
       )}
-      <ResourceList resources={meta.resources} />
+      {hasLinks && <ResourceList resources={meta.resources} />}
     </Card>
   );
 }

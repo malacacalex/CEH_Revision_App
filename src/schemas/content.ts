@@ -104,6 +104,17 @@ export const GlossaryEntrySchema = z.strictObject({
 });
 export type GlossaryEntry = z.infer<typeof GlossaryEntrySchema>;
 
+/**
+ * A topic the app doesn't cover (or covers only in part), for the "Self-study" page: kept short and general
+ * so the learner knows what to study elsewhere. Every module that is not built must be named by one.
+ */
+export const SelfStudyItemSchema = z.strictObject({
+  topic: nonEmpty,
+  modules: z.array(z.number().int().min(0).max(20)).min(1),
+  what: nonEmpty,
+});
+export type SelfStudyItem = z.infer<typeof SelfStudyItemSchema>;
+
 /** A global reference sheet (§7.4): content/reference/NN-slug.md with a small front matter block. */
 export const ReferenceSheetSchema = z.strictObject({
   id: z.string().regex(/^ref-\d{2}$/, 'id must look like ref-01'),
@@ -159,6 +170,8 @@ export const ContentBundleSchema = z.strictObject({
     }),
   ),
   glossary: z.array(GlossaryEntrySchema),
+  /** Missing from older content packs. */
+  selfStudy: z.array(SelfStudyItemSchema).default([]),
   references: z.array(ReferenceSheetSchema),
 });
 export type ContentBundle = z.infer<typeof ContentBundleSchema>;

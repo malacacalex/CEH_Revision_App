@@ -1,0 +1,67 @@
+[
+  {
+    "topic": "Footprinting",
+    "modules": [2],
+    "what": "The notes are in the app, but there are no flashcards or quiz questions yet. Test yourself on the information sources (search engines, WHOIS, DNS, social networks, job sites, people search) and on what each one reveals."
+  },
+  {
+    "topic": "Nmap",
+    "modules": [3],
+    "what": "The exam's main scanner. Know its scan types, how to read port states (open, closed, filtered), service, version and OS detection, timing templates, output formats and NSE scripts."
+  },
+  {
+    "topic": "hping3",
+    "modules": [3],
+    "what": "Packet-crafting tool. Know what it is used for (probing hosts and firewalls with hand-made TCP, UDP or ICMP packets) and how to read its replies."
+  },
+  {
+    "topic": "Network scanning",
+    "modules": [3],
+    "what": "Only part of it is in the app. Review host discovery, TCP and UDP scan types, OS discovery and banner grabbing, scanning past IDS and firewalls, and scanning countermeasures."
+  },
+  {
+    "topic": "Enumeration",
+    "modules": [4],
+    "what": "Not in the app. For NetBIOS, SNMP, LDAP, NTP, NFS, SMTP and DNS, know the port, what the service reveals when enumerated, and the countermeasure."
+  },
+  {
+    "topic": "System hacking",
+    "modules": [6],
+    "what": "Not in the app. Learn the four phases (gaining access, escalating privileges, maintaining access, clearing logs): password attack types, privilege escalation, rootkits and backdoors, covering tracks, and the defence for each."
+  },
+  {
+    "topic": "Sniffing",
+    "modules": [8],
+    "what": "The flashcards and questions are in the app, but not the notes. Read up on sniffing concepts, MAC flooding, DHCP and ARP attacks, spoofing and DNS poisoning, Wireshark filters, and switch-level countermeasures."
+  },
+  {
+    "topic": "IDS and firewall evasion",
+    "modules": [12],
+    "what": "Not in the app. Learn the evasion technique families (fragmentation, insertion and evasion, obfuscation, tunnelling, spoofing, decoys) and how defenders detect each one."
+  },
+  {
+    "topic": "NAC and endpoint security evasion",
+    "modules": [12],
+    "what": "Not in the app. At concept level, learn how network access control and endpoint protection (antivirus, EDR) get bypassed, and the countermeasures."
+  },
+  {
+    "topic": "Web application hacking",
+    "modules": [14],
+    "what": "The notes are in the app, but there are no flashcards or questions. Test yourself on the OWASP Top 10, the web app hacking methodology, web API and webhook threats, and web app security controls."
+  },
+  {
+    "topic": "SQL injection",
+    "modules": [15],
+    "what": "Not in the app. Learn the SQLi types (in-band, blind, out-of-band), the methodology, the tools the exam names (such as sqlmap), filter-evasion ideas, and the countermeasures (parameterized queries, input validation, WAF)."
+  },
+  {
+    "topic": "Wireless",
+    "modules": [16],
+    "what": "Not in the app. Learn the 802.11 standards, WEP, WPA, WPA2 and WPA3 and their weaknesses, wireless threats (rogue AP, evil twin), the wireless hacking methodology, the aircrack-ng suite, and the countermeasures."
+  },
+  {
+    "topic": "IoT attacks",
+    "modules": [18],
+    "what": "The notes and flashcards are in the app, but there are few IoT practice questions. Drill IoT attack types, the IoT hacking methodology and IoT countermeasures."
+  }
+]

@@ -159,6 +159,16 @@ export function validateContent(bundle: ContentBundle): ValidationReport {
     for (const b of balanceIssues(diagnostic)) errors.push(`diagnostic: ${b} of answers (must be 20–30%)`);
   }
 
+  // Self-study list: every module that is not built is named, so the learner knows what the app leaves out.
+  const selfStudyModules = new Set(bundle.selfStudy.flatMap((s) => s.modules));
+  for (const { meta } of bundle.modules) {
+    if (meta.status !== 'built' && !selfStudyModules.has(meta.module))
+      errors.push(`self-study: M${meta.module} is ${meta.status}; add a line for it to content/self-study.json`);
+  }
+  for (const s of bundle.selfStudy)
+    for (const m of s.modules)
+      if (!bundle.modules.some((x) => x.meta.module === m)) errors.push(`self-study: "${s.topic}" names unknown module ${m}`);
+
   // Reference sheets (§7.4): unique ids matching their order, and at least one "## " section.
   const refIds = new Set<string>();
   for (const r of bundle.references) {

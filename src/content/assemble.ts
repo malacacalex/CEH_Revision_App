@@ -7,6 +7,7 @@ import {
   ModuleMetaSchema,
   QuestionSchema,
   ReferenceSheetSchema,
+  SelfStudyItemSchema,
   type ContentBundle,
   type Pool,
 } from '../schemas/content.ts';
@@ -88,6 +89,7 @@ export function assembleContent(files: RawContentFiles): { bundle: ContentBundle
   const version = parse('content-version.json', ContentVersionSchema);
   const blueprint = parse('config/blueprint.json', BlueprintSchema);
   const glossary = files['glossary.json'] === undefined ? [] : (parse('glossary.json', z.array(GlossaryEntrySchema)) ?? []);
+  const selfStudy = files['self-study.json'] === undefined ? [] : (parse('self-study.json', z.array(SelfStudyItemSchema)) ?? []);
 
   const references: ContentBundle['references'] = [];
   for (const file of Object.keys(files).filter((f) => /^reference\/[^/]+\.md$/.test(f)).sort()) {
@@ -134,7 +136,7 @@ export function assembleContent(files: RawContentFiles): { bundle: ContentBundle
   if (!version || !blueprint || issues.length > 0) return { bundle: null, issues };
 
   references.sort((a, b) => a.order - b.order);
-  const bundle = { format: 'shieldup-content' as const, version, blueprint, modules, glossary, references };
+  const bundle = { format: 'shieldup-content' as const, version, blueprint, modules, glossary, selfStudy, references };
   const final = ContentBundleSchema.safeParse(bundle);
   if (!final.success) {
     for (const i of final.error.issues) issues.push({ file: '(bundle)', message: `${i.path.join('.')}: ${i.message}` });

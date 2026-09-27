@@ -58,6 +58,7 @@ content/config/blueprint.json    domain weights, hours per unit, mock sizes, qui
 content/content-version.json     bump on every content change
 content/modules/mXX/             meta.json, notes.md, flashcards.json, questions.<pool>.json
 content/reference/NN-slug.md     reference sheets (front matter + `##` sections), content/glossary.json
+content/self-study.json          one short, general line per topic the app leaves out (Self-study page)
 research/                        mXX.md fact/source tables; deferred.md = content set aside (see below)
 .claude/commands/                /build-module /teach /weekly-review /mock-debrief /fact-check /triage-reports /release
 src/schemas/                     zod: content.ts (content), progress.ts (DB + export format)
@@ -88,6 +89,8 @@ tests/unit, tests/e2e
   Glossary entries: term, definition, modules, tags, sources, verify.
 - **Deferred content:** anything that cannot be written (blocked, no reliable source, set aside by the
   owner) goes as one row in `research/deferred.md`, never worked around; carry on with the rest.
+  The learner-facing side is `content/self-study.json` (Self-study page): every module that is not
+  built needs a line there (validator error otherwise); update it when a gap closes or opens.
   Currently: reference sheet 2 (Nmap / hping3).
 - Every item: `module`, `domain`, `section` (must be one of meta.sections), `sources[]`, `verify`, `rev`.
 - Questions: 4 distinct options, `optionNotes` explain each option, `answer` 0–3 balanced (20–30% each),
@@ -135,7 +138,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
 | M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
-| Reference | 4 / 18 | sheets 1, 3, 4 (verify), 5; sheet 2 deferred · glossary 43 terms |
+| Reference | 4 / 18 | sheets 1, 3, 4 (verify), 5; sheet 2 deferred · glossary 208 terms |
 
 ## Milestones
 
