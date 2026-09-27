@@ -45,9 +45,10 @@ describe('validator catches rule breaks', () => {
 
   it('enforces coverage and balance for built modules', () => {
     const files = clone();
-    (files['modules/m03/meta.json'] as { status: string }).status = 'built';
+    // M16 is a stub (blocked content): marking it built must fail coverage.
+    (files['modules/m16/meta.json'] as { status: string }).status = 'built';
     const { errors } = validateContent(assembleContent(files).bundle!);
-    expect(errors.some((e) => e.startsWith('m03: section'))).toBe(true);
+    expect(errors.some((e) => e.startsWith('m16: section'))).toBe(true);
     expect(errors.some((e) => e.includes('pretest questions'))).toBe(true);
   });
 });
