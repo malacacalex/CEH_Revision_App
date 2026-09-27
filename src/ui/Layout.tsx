@@ -8,6 +8,7 @@ const NAV = [
   { to: '/modules', label: 'Modules', icon: 'M4 4h7v16H4zM13 4h7v16h-7' },
   { to: '/cards', label: 'Cards', icon: 'M6 3h12v18H6zM9 8h6M9 12h6' },
   { to: '/quiz', label: 'Quiz', icon: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 17v.01M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1' },
+  { to: '/analytics', label: 'Analytics', icon: 'M4 20V10M10 20V4M16 20v-7M22 20H2' },
   { to: '/reference', label: 'Reference', icon: 'M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10' },
   { to: '/self-study', label: 'Self-study', icon: 'M5 21V4M5 4h11l-2 4 2 4H5' },
   { to: '/mistakes', label: 'Mistakes', icon: 'M12 4l9 16H3zM12 10v4M12 17v.01' },

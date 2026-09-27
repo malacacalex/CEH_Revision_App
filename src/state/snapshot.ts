@@ -1,6 +1,7 @@
 import type { ContentIndex } from '../content/bundle.ts';
 import { addDays, daysBetween, toISODate, type ISODate } from '../domain/dates.ts';
-import { moduleGate, type GateStatus } from '../domain/gates.ts';
+import { examReadyGate, moduleGate, phase3Gate, type GateStatus, type ReadinessItem } from '../domain/gates.ts';
+import { DOMAIN_FLOOR, MOCK_TARGET, mockOutcomes } from '../domain/quiz/mock.ts';
 import { buildPlan, examTarget, readinessTradeOff, type Plan, type PlannerProgress, type TradeOff } from '../domain/planner/planner.ts';
 import { predictScore, studyStreak, type Prediction } from '../domain/readiness/readiness.ts';
 import type { Attempt, CardReview, ModuleProgress, Profile, QuizSession, SrsRecord } from '../schemas/progress.ts';
@@ -29,6 +30,9 @@ export interface Snapshot {
   streak: number;
   /** Days left until the last acceptable exam date; caps FSRS intervals. */
   maxIntervalDays: number;
+  /** §5.5 gates: enter Phase 3, and exam-ready go/no-go. */
+  phase3Gate: ReadinessItem[];
+  examReadyGate: ReadinessItem[];
 }
 
 /** New flashcards per day scale with weekly hours (§5.4). */
@@ -78,6 +82,16 @@ export function computeSnapshot(profile: Profile, data: StudyData, content: Cont
   const dueQuestions = data.srs.filter((s) => s.kind === 'question' && s.due <= nowMs && content.questionById.has(s.itemId)).map((s) => s.itemId);
   const newCardsToday = data.srs.filter((s) => s.kind === 'card' && toISODate(new Date(s.introducedAt)) === today).length;
 
+  const dueMs = data.srs.filter((s) => s.due <= nowMs && (s.kind === 'card' ? content.cardById.has(s.itemId) : content.questionById.has(s.itemId))).map((s) => s.due);
+  const phase3 = phase3Gate({
+    modulesWithContent: content.modules.filter((m) => m.questions.length > 0 && m.meta.module > 0).map((m) => m.meta.module),
+    doneModules,
+    oldestDueMs: dueMs.length === 0 ? null : Math.min(...dueMs),
+    now: nowMs,
+  });
+  const fullMocks = mockOutcomes('full-mock', data.sessions, data.attempts, content.questionById);
+  const examReady = examReadyGate(fullMocks, profile.externalPractice ?? [], { target: MOCK_TARGET, floor: DOMAIN_FLOOR });
+
   const eventDays = new Set<string>([
     ...data.attempts.map((a) => toISODate(new Date(a.at))),
     ...data.cardReviews.map((r) => toISODate(new Date(r.at))),
@@ -98,5 +112,7 @@ export function computeSnapshot(profile: Profile, data: StudyData, content: Cont
     newCardLimit: newCardsPerDay(profile.hoursPerWeek),
     streak: studyStreak(eventDays, today, addDays),
     maxIntervalDays: Math.max(1, daysBetween(today, examTarget(profile.exam).deadline)),
+    phase3Gate: phase3,
+    examReadyGate: examReady,
   };
 }

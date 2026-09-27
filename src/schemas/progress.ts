@@ -32,6 +32,8 @@ export const ProfileSchema = z.strictObject({
   hasILabs: z.boolean(),
   foundationsSkipped: z.boolean(),
   phase0DoneAt: z.number().optional(),
+  /** Scores on practice exams taken outside the app (§5.5 go/no-go: at least one ≥ 80%). */
+  externalPractice: z.array(z.strictObject({ date: isoDate, source: z.string().trim().min(1).max(80), score: z.number().min(0).max(1) })).optional(),
   disclaimerAcceptedAt: z.number(),
   createdAt: z.number(),
 });
@@ -84,6 +86,14 @@ export const MistakeSchema = z.strictObject({
 });
 export type Mistake = z.infer<typeof MistakeSchema>;
 
+export const MockAnswerSchema = z.strictObject({
+  chosen: z.number().int().min(0).max(3).nullable(),
+  confidence: ConfidenceSchema.nullable(),
+  flagged: z.boolean(),
+  timeMs: z.number().min(0),
+});
+export type MockAnswer = z.infer<typeof MockAnswerSchema>;
+
 export const QuizSessionSchema = z.strictObject({
   id: z.string(),
   profileId: z.string(),
@@ -95,6 +105,12 @@ export const QuizSessionSchema = z.strictObject({
   finishedAt: z.number().optional(),
   correct: z.number().int().optional(),
   total: z.number().int(),
+  /** Mock exams: time allowed, active time used so far, and the answers given before submitting. */
+  timeLimitMs: z.number().optional(),
+  elapsedMs: z.number().optional(),
+  draft: z.record(z.string(), MockAnswerSchema).optional(),
+  /** Mock exams: where each domain's questions came from (see domain/quiz/mock.ts). */
+  composition: z.array(z.strictObject({ domain: z.string(), target: z.number().int(), mock: z.number().int(), practice: z.number().int(), extra: z.number().int() })).optional(),
 });
 export type QuizSession = z.infer<typeof QuizSessionSchema>;
 

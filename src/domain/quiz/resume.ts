@@ -43,7 +43,8 @@ export function quizzesInProgress(sessions: QuizSession[], attempts: Attempt[], 
     if (seen.some((x) => sameQuiz(x, key))) continue;
     seen.push(s);
     if (s.finishedAt !== undefined || !s.questionIds.every(exists)) continue;
-    const answered = attempts.filter((a) => a.sessionId === s.id).length;
+    // A mock keeps its answers on the session until it is submitted.
+    const answered = s.draft ? Object.values(s.draft).filter((d) => d.chosen !== null).length : attempts.filter((a) => a.sessionId === s.id).length;
     if (answered > 0) out.push({ session: s, answered });
   }
   return out;
@@ -55,6 +56,7 @@ export function keyOf(s: QuizSession): QuizKey {
 
 /** Route that reopens this quiz (QuizRun resumes the open session on its own). */
 export function quizHref(s: QuizSession): string {
+  if (s.mode === 'half-mock' || s.mode === 'full-mock') return `/mock/run?kind=${s.mode}`;
   const p = new URLSearchParams({ mode: s.mode });
   if (s.module !== undefined) p.set('module', String(s.module));
   if (s.domain !== undefined) p.set('domain', s.domain);

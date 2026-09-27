@@ -4,6 +4,25 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
+## [Unreleased]
+
+### Added
+- **Mock exams.** A half-mock (63 questions, 2 hours) and a full mock (125 questions, 4 hours) from questions
+  kept out of practice. Timed like the exam, with flag for review, a question grid, a review screen before
+  submitting and no feedback until the end. The clock pauses when you leave the page, and answers are kept
+  if you close it. The result page shows the score against the 85% target, each domain against 75%,
+  confidence, and a question-by-question debrief.
+- **Analytics** page: accuracy by module, domain, tag, difficulty and question type, time per question,
+  confidence calibration, a weekly trend and mock history. Computed on your device only.
+- **Go / no-go** on the dashboard: when you are ready for full mocks, and when you are ready to sit the
+  exam. You can record scores from practice exams taken outside the app.
+- **Self-study** page listing the exam topics the app does not cover yet, with what to study on your own.
+- Quizzes left half-way can be resumed. Glossary terms in questions open a short definition.
+
+### Changed
+- The mistake log no longer asks why you missed a question. Questions from mock exams are marked and can be
+  closed with "Mark as understood"; they never come back in re-tests, so later mocks stay honest.
+
 ## [0.3.0] - 2026-09-23
 
 ### Added

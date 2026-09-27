@@ -63,10 +63,12 @@ research/                        mXX.md fact/source tables; deferred.md = conten
 .claude/commands/                /build-module /teach /weekly-review /mock-debrief /fact-check /triage-reports /release
 src/schemas/                     zod: content.ts (content), progress.ts (DB + export format)
 src/content/                     assemble.ts (shared by app + scripts), validate.ts, bundle.ts (glob import)
-src/domain/                      pure logic: dates, fsrs/scheduler, planner, quiz (assemble/score), readiness, gates
+src/domain/                      pure logic: dates, fsrs/scheduler, planner, quiz (assemble/score/resume/mock), readiness,
+                                 gates (module + Phase 3 + exam-ready), analytics (local only), coverage, review
 src/db/                          Dexie schema (db.ts) + all writes (repo.ts)
 src/state/                       ProfileContext (live queries) + snapshot.ts (derived plan/gates/readiness)
-src/features/                    onboarding, dashboard, planner, modules, flashcards, quiz, mistakes, reference, settings
+src/features/                    onboarding, dashboard, planner, modules, flashcards, quiz, mock, analytics, mistakes,
+                                 reference, selfstudy, settings
                                  (Settings → "Export for Claude review" = src/domain/review.ts, used by /weekly-review)
 src/platform.ts                  web / tauri / android: external links, saving files (Save-as dialog, share sheet)
 src/content/updates.ts           user-triggered content-pack + GitHub release checks; stored pack loaded before render
@@ -148,8 +150,14 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   review export, `.claude/commands`.
 - [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
   in-app content-pack update. Released as v0.3.0.
-- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes.
-- [ ] **M5**: analytics, half/full mocks from the 500-q mock pool.
+- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 12/21 built,
+  the rest listed in research/deferred.md and on the Self-study page.
+- [x] **M5**: analytics page, half/full mocks, Phase 3 and exam-ready gates on the dashboard.
+  - Mocks (`domain/quiz/mock.ts`) draw fresh held-out mock items by blueprint quota. The pool has 264/500
+    items and none for D2/D6, so gaps fall back to unseen practice items of the domain, then fresh mock
+    items of other domains, then the mock items seen longest ago; the session stores `composition`.
+  - Mock items never enter SRS or re-tests (the mistake log closes them with "Mark as understood").
+  - The clock counts visible time only; draft answers and `elapsedMs` live on the session until submit.
 
 ## Release status
 
@@ -182,3 +190,6 @@ passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-pl
   first, quizzes resume their open session, glossary terms in quiz text open a definition (208 entries,
   `aliases`), the "Why did you miss it?" prompt is gone. After a classifier stop, drop what was written
   after it; don't keep reworded output.
+- 2026-09-27 — M5: mocks (exam-like runner, result debrief), analytics page (built by an agent), go/no-go
+  gates with external practice scores, Self-study page, M2 retry built (content 0.16.0). App changes wait
+  for the next release (owner: no tag yet).

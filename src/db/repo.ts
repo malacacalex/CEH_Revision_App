@@ -148,8 +148,9 @@ export async function recordAnswer(a: AnswerInput): Promise<Attempt> {
       await db.mistakes.put({ ...mistake, resolved: true });
     }
 
-    const srs = await db.srs.get(key);
-    if (srs || !correct) {
+    // Held-out mock items never enter spaced review: practising them would inflate later mocks.
+    const srs = a.question.pool === 'mock' ? undefined : await db.srs.get(key);
+    if (a.question.pool !== 'mock' && (srs || !correct)) {
       const next = reviewSrs(srs ?? newSrsState(a.now), gradeFromAnswer(correct, a.confidence), a.now, { maxIntervalDays: a.maxIntervalDays });
       await db.srs.put({
         profileId: a.profileId,
@@ -180,6 +181,11 @@ export async function finishSession(session: QuizSession, correct: number, now: 
   }
 }
 
+/** Mock exams keep their answers, flags and clock on the session until submit, so they survive leaving the page. */
+export async function saveMockProgress(sessionId: string, patch: Pick<QuizSession, 'draft' | 'elapsedMs'>): Promise<void> {
+  await db.quizSessions.update(sessionId, patch);
+}
+
 export async function attemptsFor(profileId: string): Promise<Attempt[]> {
   return db.attempts.where('profileId').equals(profileId).toArray();
 }
@@ -191,6 +197,12 @@ export async function sessionsFor(profileId: string): Promise<QuizSession[]> {
 export async function setMistakeCause(profileId: string, questionId: string, cause: MistakeCause | null, note?: string): Promise<void> {
   const m = await db.mistakes.get([profileId, questionId]);
   if (m) await db.mistakes.put({ ...m, cause, note: note ?? m.note });
+}
+
+/** Mock items can't be re-tested (they stay held out), so the learner closes them by hand after reading the debrief. */
+export async function resolveMistake(profileId: string, questionId: string): Promise<void> {
+  const m = await db.mistakes.get([profileId, questionId]);
+  if (m && !m.resolved) await db.mistakes.put({ ...m, resolved: true });
 }
 
 // ── Module progress ─────────────────────────────────────────────────────────

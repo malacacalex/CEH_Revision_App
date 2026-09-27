@@ -4,6 +4,7 @@ import { saveProfile } from '../../db/repo.ts';
 import { useSnapshot } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, PageHeader, pct, ProgressBar, Stat } from '../../ui/kit.tsx';
 import type { PlanStatus } from '../../domain/planner/planner.ts';
+import { ReadinessGates } from './ReadinessGates.tsx';
 
 const STATUS: Record<PlanStatus, { label: string; tone: 'good' | 'warn' | 'bad' }> = {
   'on-track': { label: 'On track', tone: 'good' },
@@ -91,6 +92,7 @@ export function Dashboard() {
                 {item.routine && item.routine.length > 0 && <p className="mt-1 text-sm text-muted">{item.routine.join(' · ')}</p>}
                 <div className="mt-2 flex flex-wrap gap-2">
                   {item.kind === 'module' && item.module !== undefined && <ButtonLink to={`/modules/${item.module}`}>Open M{item.module}</ButtonLink>}
+                  {(item.kind === 'half-mock' || item.kind === 'full-mock') && <ButtonLink to={`/mock/run?kind=${item.kind}`}>Start the {item.kind === 'full-mock' ? 'full mock' : 'half-mock'}</ButtonLink>}
                   {item.kind === 'diagnostic' && hasDiagnostic && <ButtonLink to="/quiz/run?mode=diagnostic">Start the diagnostic</ButtonLink>}
                   {(item.kind === 'diagnostic' || item.kind === 'setup') && (
                     <Button variant="secondary" onClick={() => void saveProfile({ ...profile, phase0DoneAt: Date.now() })}>
@@ -136,6 +138,8 @@ export function Dashboard() {
           Estimates start at 25% (random guessing) and move with your latest answer to each question. Confidently-wrong rate: {pct(prediction.confidentlyWrongRate)} (gate: under 5%).
         </p>
       </Card>
+
+      <ReadinessGates />
     </>
   );
 }

@@ -2,10 +2,10 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useState } from 'react';
 import { content } from '../../content/bundle.ts';
 import { db } from '../../db/db.ts';
-import { setMistakeCause } from '../../db/repo.ts';
+import { resolveMistake, setMistakeCause } from '../../db/repo.ts';
 import type { Mistake } from '../../schemas/progress.ts';
 import { useProfile } from '../../state/ProfileContext.tsx';
-import { Badge, ButtonLink, Card, Empty, inputClass, PageHeader } from '../../ui/kit.tsx';
+import { Badge, Button, ButtonLink, Card, Empty, inputClass, PageHeader } from '../../ui/kit.tsx';
 import { formatDate, toISODate } from '../../domain/dates.ts';
 
 type Filter = 'open' | 'resolved' | 'all';
@@ -22,7 +22,7 @@ export function MistakesPage() {
     // Confidently-wrong first (misconceptions), then most-missed, then most recent.
     .sort((a, b) => Number(b.confidentlyWrong) - Number(a.confidentlyWrong) || b.misses - a.misses || b.lastMissedAt - a.lastMissedAt);
   const open = known.filter((m) => !m.resolved);
-  const retestIds = shown.filter((m) => !m.resolved).slice(0, 20).map((m) => m.questionId);
+  const retestIds = shown.filter((m) => !m.resolved && content.questionById.get(m.questionId)!.pool !== 'mock').slice(0, 20).map((m) => m.questionId);
 
   return (
     <>
@@ -62,6 +62,7 @@ function MistakeRow({ m }: { m: Mistake }) {
         <div className="mb-2 flex flex-wrap items-center gap-2 text-sm text-muted">
           <span className="font-semibold text-chestnut">M{q.module}</span>
           <span>{q.section}</span>
+          {q.pool === 'mock' && <Badge tone="accent">mock</Badge>}
           {m.confidentlyWrong && <Badge tone="bad">confidently wrong</Badge>}
           {m.resolved && <Badge tone="good">fixed</Badge>}
           <span>
@@ -84,9 +85,17 @@ function MistakeRow({ m }: { m: Mistake }) {
           />
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
-          <ButtonLink to={`/quiz/run?mode=retest&ids=${q.id}`} variant="secondary">
-            Re-test this one
-          </ButtonLink>
+          {q.pool === 'mock' ? (
+            !m.resolved && (
+              <Button variant="secondary" onClick={() => void resolveMistake(m.profileId, m.questionId)} title="Mock questions stay out of re-tests so later mocks stay honest">
+                Mark as understood
+              </Button>
+            )
+          ) : (
+            <ButtonLink to={`/quiz/run?mode=retest&ids=${q.id}`} variant="secondary">
+              Re-test this one
+            </ButtonLink>
+          )}
           <ButtonLink to={`/modules/${q.module}?tab=notes`} variant="ghost">
             Open M{q.module} notes
           </ButtonLink>

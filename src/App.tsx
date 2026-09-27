@@ -9,6 +9,9 @@ import { ModulePage } from './features/modules/ModulePage.tsx';
 import { CardsPage } from './features/flashcards/CardsPage.tsx';
 import { QuizHome } from './features/quiz/QuizHome.tsx';
 import { QuizRun } from './features/quiz/QuizRun.tsx';
+import { MockRun } from './features/mock/MockRun.tsx';
+import { MockResult } from './features/mock/MockResult.tsx';
+import { AnalyticsPage } from './features/analytics/AnalyticsPage.tsx';
 import { ReferencePage } from './features/reference/ReferencePage.tsx';
 import { SelfStudyPage } from './features/selfstudy/SelfStudyPage.tsx';
 import { MistakesPage } from './features/mistakes/MistakesPage.tsx';
@@ -36,6 +39,9 @@ export function App() {
               <Route path="cards" element={<CardsPage />} />
               <Route path="quiz" element={<QuizHome />} />
               <Route path="quiz/run" element={<QuizRun />} />
+              <Route path="mock/run" element={<MockRun />} />
+              <Route path="mock/result/:id" element={<MockResult />} />
+              <Route path="analytics" element={<AnalyticsPage />} />
               <Route path="reference" element={<ReferencePage />} />
               <Route path="self-study" element={<SelfStudyPage />} />
               <Route path="mistakes" element={<MistakesPage />} />
