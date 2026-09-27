@@ -1,0 +1,301 @@
+[
+  {
+    "id": "m09-q-0065",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "An email carries a document with a malicious macro that runs when the user enables editing. Which ATT&CK technique does this map to?",
+    "options": ["T1566.001 Spearphishing Attachment", "T1598.003 Spearphishing Link", "T1534 Internal Spearphishing", "T1189 Drive-by Compromise"],
+    "answer": 0,
+    "explanation": "T1566 sub-techniques are named after the delivery: attachment (.001), link (.002), via service (.003), voice (.004). Mitigations include user training (M1017) and restricting web-based content (M1021).",
+    "optionNotes": [
+      "Correct: an attachment used to gain access or run code (Initial Access).",
+      "T1598.003 is a link used to gather information.",
+      "T1534 is phishing sent from an already compromised internal account.",
+      "T1189 infects visitors of a website."
+    ],
+    "tags": ["mitre-attack", "phishing"],
+    "sources": ["https://attack.mitre.org/techniques/T1566/001/", "https://attack.mitre.org/techniques/T1566/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0066",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A pop-up says: 'Only 5 free security upgrades left today, claim yours now.' Which lever is the main one?",
+    "options": ["Authority", "Scarcity", "Consensus", "Familiarity"],
+    "answer": 1,
+    "explanation": "Scarcity makes people act before thinking because the offer seems about to disappear. A pressure cue is a reason to slow down and check.",
+    "optionNotes": [
+      "No official or senior sender is claimed.",
+      "Correct: something limited that may run out.",
+      "It does not say that others already acted.",
+      "It does not rely on a known or liked person."
+    ],
+    "tags": ["persuasion"],
+    "sources": [
+      "https://www.ncsc.gov.uk/collection/phishing-scams/spot-scams",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0067",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A person in a high-visibility vest with a clipboard tells reception they must inspect the fire extinguishers in the server room today. What should reception do?",
+    "options": [
+      "Call the phone number printed on their clipboard",
+      "Let them in because the uniform shows they are contractors",
+      "Ask them to sign the visitor book and go in alone",
+      "Confirm the visit with facilities through a known contact and escort the visitor if it is genuine"
+    ],
+    "answer": 3,
+    "explanation": "Impersonation uses a plausible role (repair person, inspector, new employee). Visitor procedures should require pre-registration, independent confirmation and escort in restricted areas.",
+    "optionNotes": [
+      "A number supplied by the visitor may reach an accomplice.",
+      "Clothing and props are easy to fake in impersonation.",
+      "A signature does not verify identity or authorization.",
+      "Correct: verify through an independent channel, then escort."
+    ],
+    "tags": ["impersonation", "physical"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://attack.mitre.org/techniques/T1684/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0068",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "The help desk gets a call from someone who sounds exactly like a senior executive, asking to move their MFA to a new phone because they are travelling. What is the best control?",
+    "options": [
+      "Ask the caller a question found on the executive's public profile",
+      "Make the change because the voice is recognized",
+      "Follow an identity verification procedure, such as a callback to the number in the HR directory, before any MFA change",
+      "Send the new enrollment link to the email address the caller dictates"
+    ],
+    "answer": 2,
+    "explanation": "ATT&CK T1684 describes adversaries using voice, including AI voice, to get help desks to reset passwords or MFA. Resets of authentication factors need strong, independent identity checks.",
+    "optionNotes": [
+      "Public information is exactly what an impersonator will know.",
+      "Voices can be cloned with AI.",
+      "Correct: out-of-band verification before resetting authenticators.",
+      "The dictated address may belong to the attacker."
+    ],
+    "tags": ["help-desk", "ai", "impersonation"],
+    "sources": ["https://attack.mitre.org/techniques/T1684/", "https://www.ic3.gov/PSA/2024/PSA241203", "https://www.cisa.gov/MFA"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0069",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Customers who complain about a bank on social media get a reply from an account named like the bank's support team, asking them to share their login details in a direct message. What does EC-Council call this?",
+    "options": ["Spimming", "Whaling", "Angler phishing", "Pharming"],
+    "answer": 2,
+    "explanation": "Angler phishing impersonates customer support on social networks. Defense: official accounts are verified and never ask for passwords; customers should report the fake account.",
+    "optionNotes": [
+      "Spimming is spam over instant messaging.",
+      "Whaling targets executives.",
+      "Correct: a fake customer-support account fishing among complaints.",
+      "Pharming redirects traffic by DNS or hosts-file changes."
+    ],
+    "tags": ["social-networks", "phishing", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/news/staying-safe-social-networking-sites"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0070",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which community site lets users submit suspected phishing URLs and verify others' submissions, and is operated by Cisco Talos?",
+    "options": ["Gophish", "PhishTank", "urlscan.io", "Evilginx"],
+    "answer": 1,
+    "explanation": "PhishTank data feeds anti-phishing tools. Reporting suspected phishing URLs helps block them for everyone.",
+    "optionNotes": [
+      "Gophish runs simulated campaigns.",
+      "Correct: a shared database of phishing URLs.",
+      "urlscan.io scans and screenshots URLs; it is not the Talos community database.",
+      "Evilginx is an adversary-in-the-middle phishing proxy."
+    ],
+    "tags": ["tools", "anti-phishing"],
+    "sources": ["https://phishtank.org/", "https://www.netcraft.com/apps/browser/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0071",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A message shows `From: \"IT Service Desk\" <servicedesk@contoso.com>` and `Reply-To: contoso-servicedesk@freemail.example`. What does this suggest?",
+    "options": [
+      "Replies would go to an outside mailbox, a common sign of spoofing or BEC; report it",
+      "The message is internal because the From address is contoso.com",
+      "The mail server added the Reply-To for load balancing",
+      "The DKIM signature failed"
+    ],
+    "answer": 0,
+    "explanation": "Reading full headers shows where a message came from and where replies go. A display name and From that look internal but a Reply-To on another domain are a classic warning sign.",
+    "optionNotes": [
+      "Correct: the mismatch sends answers to someone outside the company.",
+      "The From header can be forged; the Reply-To reveals where answers really go.",
+      "Mail servers do not add Reply-To headers for load balancing.",
+      "No DKIM result appears in these headers."
+    ],
+    "tags": ["headers", "phishing-indicators"],
+    "sources": ["https://support.google.com/mail/answer/29436", "https://toolbox.googleapps.com/apps/messageheader/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0072",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An app named 'Security Cleaner Pro' in a third-party store says the phone is infected and asks for device administrator rights to 'fix' it. What is the best response?",
+    "options": [
+      "Disable Play Protect because it conflicts with the app",
+      "Grant device admin rights so it can remove the infection",
+      "Pay for the premium version to unlock full cleaning",
+      "Treat it as a fake security app: do not grant the rights, remove it and install apps only from the official store with Play Protect on"
+    ],
+    "answer": 3,
+    "explanation": "EC-Council lists fake security apps and repackaged apps among mobile techniques; ATT&CK Mobile T1655 covers apps masquerading as legitimate ones. Official stores and Play Protect reduce exposure.",
+    "optionNotes": [
+      "Turning off Play Protect removes a key defense.",
+      "Device admin rights make the app harder to remove.",
+      "Paying rewards scareware.",
+      "Correct: fake security apps scare users into granting control."
+    ],
+    "tags": ["malicious-apps", "mobile", "ec-council-specific"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1655/",
+      "https://support.google.com/googleplay/answer/2812853",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0073",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A text claiming to be from your CEO asks you to buy gift cards urgently and send the codes. What is the right action?",
+    "options": [
+      "Verify with the CEO through a known channel and report the message",
+      "Buy the cards because the CEO is busy",
+      "Reply to the text to ask why",
+      "Forward the codes to your manager for approval afterwards"
+    ],
+    "answer": 0,
+    "explanation": "Smishing often combines authority and urgency. Requests for gift cards, payments or codes by text should always be confirmed through a separate known channel.",
+    "optionNotes": [
+      "Correct: impersonation by SMS; verify out of band and report.",
+      "Gift-card requests are a classic scam signal.",
+      "Replying reaches the attacker.",
+      "Buying first means the money is already lost."
+    ],
+    "tags": ["smishing", "impersonation"],
+    "sources": [
+      "https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages",
+      "https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0074",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which DMARC policy value instructs receivers to refuse mail that fails DMARC for the domain?",
+    "options": ["p=none", "p=quarantine", "p=reject", "sp=none"],
+    "answer": 2,
+    "explanation": "Domains usually move from p=none (collect reports) to p=quarantine and then p=reject once all legitimate senders pass SPF or DKIM with alignment.",
+    "optionNotes": [
+      "None is monitor-only.",
+      "Quarantine treats failing mail as suspicious but does not refuse it.",
+      "Correct: the strongest DMARC policy.",
+      "sp sets the policy for subdomains, and none is monitor-only."
+    ],
+    "tags": ["email-authentication", "dmarc"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0075",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "A victim's SSN appeared in a data breach. Which free measure most directly stops criminals opening new credit accounts in their name?",
+    "options": [
+      "Closing existing credit cards",
+      "An initial fraud alert",
+      "Changing the online banking password",
+      "A credit freeze at the credit bureaus"
+    ],
+    "answer": 3,
+    "explanation": "FTC: a credit freeze is free and restricts access to the credit report; fraud alerts ask businesses to verify identity. IdentityTheft.gov gives a recovery plan.",
+    "optionNotes": [
+      "Closing cards does not stop new accounts.",
+      "A fraud alert asks lenders to verify identity but does not block access.",
+      "Password changes protect existing accounts, not new ones.",
+      "Correct: a freeze blocks access to the credit report for new credit."
+    ],
+    "tags": ["identity-theft", "response"],
+    "sources": ["https://consumer.ftc.gov/articles/credit-freezes-and-fraud-alerts", "https://www.identitytheft.gov/"],
+    "verify": false,
+    "rev": 1
+  }
+]

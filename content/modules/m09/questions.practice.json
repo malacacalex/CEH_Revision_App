@@ -1,0 +1,1478 @@
+[
+  {
+    "id": "m09-q-0011",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In MITRE ATT&CK, under which tactic does T1598 Phishing for Information sit?",
+    "options": ["Execution", "Initial Access", "Reconnaissance", "Credential Access"],
+    "answer": 2,
+    "explanation": "ATT&CK splits phishing by goal: T1598 gathers information such as credentials (Reconnaissance); T1566 aims at access or code execution (Initial Access).",
+    "optionNotes": [
+      "Execution covers running code, for example T1204 User Execution.",
+      "Initial Access holds T1566 Phishing, whose goal is access or code execution.",
+      "Correct: T1598 collects information before the intrusion.",
+      "Credential Access covers stealing credentials from systems already reached, not pre-attack information gathering."
+    ],
+    "tags": ["mitre-attack", "phishing"],
+    "sources": ["https://attack.mitre.org/techniques/T1598/", "https://attack.mitre.org/techniques/T1566/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0012",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A message tells staff: 'Most of your colleagues in finance have already confirmed their details on this portal.' Which persuasion lever is it relying on?",
+    "options": ["Authority", "Consensus (social proof)", "Scarcity", "Intimidation"],
+    "answer": 1,
+    "explanation": "Consensus or social proof makes a request feel safe because others supposedly complied. Recognizing the lever is the cue to stop and verify through a known channel.",
+    "optionNotes": [
+      "No senior or official sender is invoked.",
+      "Correct: it pushes the target to follow what 'everyone else' did.",
+      "Nothing is presented as rare or running out.",
+      "There is no threat of punishment."
+    ],
+    "tags": ["persuasion", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.ncsc.gov.uk/collection/phishing-scams/spot-scams"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0013",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's four phases of a social engineering attack, which phase comes directly after selecting a target person?",
+    "options": ["Develop a relationship", "Research the target company", "Exploit the relationship", "Cover tracks"],
+    "answer": 0,
+    "explanation": "EC-Council order: research the company, select a target, develop a relationship, exploit the relationship. Early phases leave traces defenders can spot: unusual questions and contact attempts.",
+    "optionNotes": [
+      "Correct: research, select, develop the relationship, exploit.",
+      "Research comes first, before a person is selected.",
+      "Exploitation is the last phase, after trust exists.",
+      "Covering tracks belongs to the system hacking life cycle, not these four phases."
+    ],
+    "tags": ["phases", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0014",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Several receptionists and junior staff each answered one 'harmless' question from different callers. Why does CISA warn that this is dangerous?",
+    "options": [
+      "Each answer alone gives the attacker network access",
+      "Receptionists hold administrator passwords",
+      "Phone calls cannot be logged, so no evidence remains",
+      "An attacker can combine small pieces from several people and use each one to gain credibility with the next"
+    ],
+    "answer": 3,
+    "explanation": "CISA notes that an attacker may contact several people in one organization and use what one said to sound credible to the next. Staff should not share internal details with unverified callers and should report odd questions.",
+    "optionNotes": [
+      "Single answers look harmless; the danger comes from combining them.",
+      "The risk is the aggregation of facts, not a single password held by one person.",
+      "Calls can be logged and reported; the problem is the leak itself.",
+      "Correct: information is chained across people in the same organization."
+    ],
+    "tags": ["social-engineering", "reconnaissance"],
+    "sources": ["https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks", "https://attack.mitre.org/techniques/T1598/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0015",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "Staff in one division cannot tell whether a caller really works in another division, so they usually trust anyone who names an internal project. Which EC-Council vulnerability factor does this match?",
+    "options": ["Several organizational units", "Insufficient security training", "Unregulated access to information", "Lack of security policies"],
+    "answer": 0,
+    "explanation": "EC-Council lists insufficient training, unregulated access to information, several organizational units and missing security policies as reasons companies are vulnerable. Defense: a directory or callback procedure to confirm identities across units.",
+    "optionNotes": [
+      "Correct: many units make it hard to know who is legitimate.",
+      "Training may help, but the scenario describes an organizational structure problem.",
+      "The issue is not who can open which files.",
+      "A policy could help, but the described cause is the split into many units."
+    ],
+    "tags": ["vulnerability-factors", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.ncsc.gov.uk/guidance/phishing"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0016",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the most typical direct impact of a successful business email compromise (BEC) on an organization?",
+    "options": [
+      "Physical damage to servers",
+      "Financial loss through fraudulent payments or wire transfers",
+      "Loss of Wi-Fi coverage",
+      "Expired TLS certificates"
+    ],
+    "answer": 1,
+    "explanation": "BEC impersonates an executive or supplier to get payments or data sent to the attacker; the losses are mainly financial, plus data and reputation damage.",
+    "optionNotes": [
+      "BEC is an email fraud, not a physical attack.",
+      "Correct: BEC aims at payments or sensitive data.",
+      "It has nothing to do with wireless coverage.",
+      "Certificate expiry is an operations issue, not a BEC result."
+    ],
+    "tags": ["bec", "impact"],
+    "sources": [
+      "https://www.fbi.gov/how-we-can-help-you/scams-and-safety/common-frauds-and-scams/business-email-compromise",
+      "https://attack.mitre.org/techniques/T1684/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0017",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "An adversary phones an employee and talks them into reading out their VPN credentials; no malware is used. Which ATT&CK technique fits best?",
+    "options": [
+      "T1091 Replication Through Removable Media",
+      "T1566.001 Spearphishing Attachment",
+      "T1189 Drive-by Compromise",
+      "T1598.004 Spearphishing Voice (Phishing for Information)"
+    ],
+    "answer": 3,
+    "explanation": "Voice phishing appears in both families: T1598.004 when the goal is information such as credentials, T1566.004 when the call leads to access or code execution. Here the caller only collects credentials.",
+    "optionNotes": [
+      "No removable media is involved.",
+      "No attachment is sent.",
+      "No website is compromised or visited.",
+      "Correct: a voice call whose goal is to collect information."
+    ],
+    "tags": ["mitre-attack", "vishing"],
+    "sources": ["https://attack.mitre.org/techniques/T1598/004/", "https://attack.mitre.org/techniques/T1566/004/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0018",
+    "module": 9,
+    "section": "Social Engineering Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A fake support chat window on a website asks visitors for their account password. In EC-Council's three families, which kind of social engineering is this?",
+    "options": ["Mobile-based", "Human-based", "Computer-based", "Physical-based"],
+    "answer": 2,
+    "explanation": "EC-Council groups social engineering as human-based, computer-based and mobile-based. Web pages, emails, pop-ups and chat are computer-based.",
+    "optionNotes": [
+      "Mobile-based uses SMS, mobile apps or QR codes.",
+      "Human-based means in person or by phone.",
+      "Correct: delivered through a computer interface (web, email, chat).",
+      "There is no fourth 'physical-based' family in this grouping."
+    ],
+    "tags": ["families", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1566/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0019",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Camera footage shows a visitor closely following an employee through a badge-controlled door before it closes; the employee never noticed. Using EC-Council's distinction, what is this?",
+    "options": ["Shoulder surfing", "Piggybacking", "Tailgating", "Eavesdropping"],
+    "answer": 2,
+    "explanation": "EC-Council separates the two by consent: piggybacking = the insider knowingly holds the door; tailgating = the attacker slips in unnoticed. Many other sources treat the words as synonyms.",
+    "optionNotes": [
+      "Shoulder surfing is watching someone type or read.",
+      "EC-Council uses piggybacking when the authorized person knowingly lets the attacker in.",
+      "Correct: entry behind someone without their knowledge or consent.",
+      "Eavesdropping is listening in on conversations."
+    ],
+    "tags": ["tailgating", "physical", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation/defining-insider-threats"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0020",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which control most directly stops people from following staff through a secure door?",
+    "options": [
+      "Full-disk encryption on laptops",
+      "A stronger password policy",
+      "A DMARC record with p=reject",
+      "An access control vestibule (mantrap) or one-person turnstile"
+    ],
+    "answer": 3,
+    "explanation": "Physical countermeasures against tailgating and piggybacking: vestibules, turnstiles, visible badges, visitor escort and a culture where staff challenge or report unbadged people.",
+    "optionNotes": [
+      "Encryption protects data at rest, not doors.",
+      "Passwords do not control physical entry.",
+      "DMARC protects email domains.",
+      "Correct: it lets only one authenticated person through at a time."
+    ],
+    "tags": ["physical", "countermeasures"],
+    "sources": ["https://www.cisa.gov/topics/physical-security", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0021",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A pop-up tells users their PC is infected and to call a support number; the 'technician' then asks to install remote-access software. Which EC-Council technique is this, and what sets it apart?",
+    "options": [
+      "Reverse social engineering: the attacker creates the problem so the victim initiates contact",
+      "Quid pro quo: the attacker cold-calls offering help in exchange for access",
+      "Pretexting: the attacker calls the victim posing as an auditor",
+      "Dumpster diving: the attacker collects discarded documents"
+    ],
+    "answer": 0,
+    "explanation": "In reverse social engineering the attacker sabotages or fakes a problem, advertises as the helper and waits for the call. Response: close the pop-up, never call numbers shown in it, and report to the real IT desk.",
+    "optionNotes": [
+      "Correct: the victim calls the attacker, which makes the attacker look trustworthy.",
+      "In quid pro quo the attacker makes the first contact.",
+      "Here the victim makes the first contact after a staged problem.",
+      "No physical rubbish is involved."
+    ],
+    "tags": ["reverse-social-engineering", "ec-council-specific"],
+    "sources": [
+      "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-tech-support-scams",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0022",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which control best reduces the risk of shoulder surfing in an open-plan office or on public transport?",
+    "options": ["An SPF record", "Privacy screen filters and awareness of who can see the screen", "Code signing", "VLAN segmentation"],
+    "answer": 1,
+    "explanation": "Shoulder surfing captures PINs, passwords and data by watching. Countermeasures: privacy filters, shielding keypads, locking screens and being aware of surroundings.",
+    "optionNotes": [
+      "SPF authenticates mail servers.",
+      "Correct: it narrows the viewing angle of the display.",
+      "Code signing proves software origin.",
+      "VLANs separate network traffic, not what bystanders can see."
+    ],
+    "tags": ["shoulder-surfing", "countermeasures"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0023",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "In CISA's insider threat categories, which category covers contractors, vendors and consultants who were granted access?",
+    "options": ["Third-party threats", "Collusive threats", "Unintentional threats", "Intentional threats"],
+    "answer": 0,
+    "explanation": "CISA types: unintentional (negligent, accidental), intentional (malicious), collusive and third-party. Third-party access needs the same least-privilege and monitoring as staff access.",
+    "optionNotes": [
+      "Correct: people outside the organization with legitimate access.",
+      "Collusive means an insider working with an outside attacker.",
+      "Unintentional describes intent (negligent or accidental), not the person's relationship.",
+      "Intentional describes deliberate harm, not the relationship."
+    ],
+    "tags": ["insider-threat"],
+    "sources": [
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation/defining-insider-threats",
+      "https://www.cisa.gov/resources-tools/resources/insider-threat-mitigation-guide"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0024",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A database administrator is found passing customer records to an outside criminal group in exchange for payment. Which insider threat type is this?",
+    "options": ["Accidental insider", "Negligent insider", "Collusive threat", "Third-party threat"],
+    "answer": 2,
+    "explanation": "CISA defines collusive threats as insiders collaborating with outside actors to compromise the organization, for example for fraud or data theft.",
+    "optionNotes": [
+      "Accidental insiders make mistakes.",
+      "Negligent insiders ignore policy without intent to harm.",
+      "Correct: an insider deliberately cooperating with an external actor.",
+      "The administrator is an employee, not a contractor."
+    ],
+    "tags": ["insider-threat"],
+    "sources": [
+      "https://www.cisa.gov/topics/physical-security/insider-threat-mitigation/defining-insider-threats",
+      "https://csrc.nist.gov/glossary/term/insider_threat"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0025",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Which observation is the strongest early indicator that should be passed to the insider threat program?",
+    "options": [
+      "A manager attends mandatory security awareness training",
+      "An employee asks HR about the holiday policy",
+      "A developer uses the approved password manager",
+      "An engineer passed over for promotion starts downloading large volumes of unrelated project files at odd hours"
+    ],
+    "answer": 3,
+    "explanation": "SEI CERT and CISA note that most insiders do not start out malicious; stressors build over time. Behavioral changes plus technical signs (unusual access, bulk downloads) should be reported so the program can detect, assess and manage the risk.",
+    "optionNotes": [
+      "Attending training is expected behavior.",
+      "Routine HR questions are normal.",
+      "Using approved tools is good practice.",
+      "Correct: a stressor combined with unusual data access is a classic concerning pattern."
+    ],
+    "tags": ["insider-threat", "indicators"],
+    "sources": ["https://insights.sei.cmu.edu/insider-threat/", "https://www.cisa.gov/resources-tools/resources/insider-threat-mitigation-guide"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0026",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "The CFO joins a video call where the 'CEO', with a matching face and voice, asks for an urgent confidential transfer. What is the best response?",
+    "options": [
+      "Pay quickly because the video proves the caller's identity",
+      "End the call and confirm through a known number or the normal approval process before any payment",
+      "Ask the caller to repeat the request on the same video call",
+      "Reply to the meeting invitation to ask whether it is genuine"
+    ],
+    "answer": 1,
+    "explanation": "FBI IC3 and NSA/FBI/CISA warn that AI can clone voices and faces. Process controls still work: verify through a separate known channel, use an agreed code word, and require a second approver for payments.",
+    "optionNotes": [
+      "Deepfake video and cloned voices can match a real person.",
+      "Correct: out-of-band verification and dual approval beat deepfakes.",
+      "Staying in the same channel lets the attacker keep control.",
+      "The invitation came from the attacker; replying reaches the attacker."
+    ],
+    "tags": ["ai", "deepfake", "impersonation"],
+    "sources": [
+      "https://www.ic3.gov/PSA/2024/PSA241203",
+      "https://media.defense.gov/2023/Sep/12/2003298925/-1/-1/0/CSI-DEEPFAKE-THREATS.PDF",
+      "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0027",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "At a trade show, a friendly stranger steers casual conversation until an engineer mentions the company's firewall vendor and VPN product, without ever asking directly. Which technique is this?",
+    "options": ["Baiting", "Elicitation", "Diversion theft", "Quid pro quo"],
+    "answer": 1,
+    "explanation": "Elicitation gathers information without direct questions, using flattery, false statements to correct or shared interests. Awareness training should cover what not to discuss outside work.",
+    "optionNotes": [
+      "Baiting leaves a lure such as a USB drive.",
+      "Correct: extracting facts through guided conversation.",
+      "Diversion theft redirects a delivery or shipment.",
+      "Nothing is offered in exchange."
+    ],
+    "tags": ["elicitation", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0028",
+    "module": 9,
+    "section": "Human-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Several USB drives labeled 'Salaries 2026' are found in the company car park. What should an employee who finds one do?",
+    "options": [
+      "Format it and keep it",
+      "Plug it into a lab PC to find the owner",
+      "Open it on a personal laptop, which is not on the corporate network",
+      "Hand it to the security team without plugging it in"
+    ],
+    "answer": 3,
+    "explanation": "Baiting leaves tempting media for victims to use; ATT&CK T1091 relies on users connecting removable media. Countermeasures: report found media, block or control USB ports, and train staff.",
+    "optionNotes": [
+      "Formatting still requires plugging it in, and the incident goes unreported.",
+      "Any PC that mounts it may be infected.",
+      "A personal device can still be infected and may later connect to work systems.",
+      "Correct: this is baiting; the device may carry malware."
+    ],
+    "tags": ["baiting", "ec-council-specific"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1091/",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0029",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Users who type the correct bank address into their browser land on a fake login page because their DNS resolver was poisoned. What is this?",
+    "options": ["Pharming", "Spear phishing", "Whaling", "Vishing"],
+    "answer": 0,
+    "explanation": "Pharming redirects users through DNS or hosts-file manipulation. Defenses: protect DNS resolvers and the hosts file, and check the address bar and certificate before logging in.",
+    "optionNotes": [
+      "Correct: technical redirection, no bad link needs to be clicked.",
+      "Spear phishing relies on a targeted message the user acts on.",
+      "Whaling targets executives with messages.",
+      "Vishing uses voice calls."
+    ],
+    "tags": ["pharming"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/pharming",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0030",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Attackers compromise an industry association website that engineers at the target company visit regularly, so visitors' browsers get malicious code. What is this?",
+    "options": ["Business email compromise", "Pharming", "Watering hole attack (drive-by compromise)", "Spimming"],
+    "answer": 2,
+    "explanation": "A watering hole waits at a site the target group visits instead of sending messages. Defenses: patched browsers, script and content filtering, and endpoint detection.",
+    "optionNotes": [
+      "BEC uses email to request payments or data.",
+      "Pharming redirects traffic to a fake site; here the real site is infected.",
+      "Correct: ATT&CK T1189 through a site the group already trusts.",
+      "Spimming is spam over instant messaging."
+    ],
+    "tags": ["watering-hole"],
+    "sources": ["https://csrc.nist.gov/glossary/term/watering_hole_attack", "https://attack.mitre.org/techniques/T1189/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0031",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An email shows the link text `https://www.example-bank.com/login`, but hovering reveals `https://www.example-bank.com.account-verify.co/login`. Which registered domain will actually receive the request?",
+    "options": ["login.account-verify", "example-bank.com", "www.example-bank.com", "account-verify.co"],
+    "answer": 3,
+    "explanation": "Link text can say anything; only the real target counts. In the host, the rightmost labels (here account-verify.co) are the domain that answers. Look-alike subdomains are a common phishing indicator.",
+    "optionNotes": [
+      "login is part of the path, not the host.",
+      "example-bank.com appears only as subdomain labels.",
+      "www.example-bank.com is also just the start of the host name.",
+      "Correct: read the host right to left; the registered domain sits just before the TLD."
+    ],
+    "tags": ["url-analysis", "phishing-indicators"],
+    "sources": [
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://attack.mitre.org/techniques/T1583/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0032",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An invoice arrives from `billing@c0ntoso.com` while the real supplier uses contoso.com. What does this indicate?",
+    "options": [
+      "A valid subdomain of contoso.com",
+      "A look-alike domain using a character substitution",
+      "A DKIM selector record",
+      "A pharming attack on the recipient's DNS"
+    ],
+    "answer": 1,
+    "explanation": "Adversaries register domains that look like legitimate ones (ATT&CK T1583.001): swapped letters, homoglyphs or another TLD. Mail gateways can flag look-alike and newly registered domains.",
+    "optionNotes": [
+      "A subdomain would end in .contoso.com.",
+      "Correct: zero replaces the letter o.",
+      "DKIM selectors appear in DNS names like selector._domainkey, not the sender address.",
+      "The recipient's DNS is not involved; the sender registered a similar name."
+    ],
+    "tags": ["look-alike-domain"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1583/001/",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0033",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Accounts payable gets an email from a known supplier's real mailbox saying the bank details have changed. SPF, DKIM and DMARC all pass. What is the best control?",
+    "options": [
+      "Reply to the email asking for confirmation",
+      "Pay, because all authentication checks passed",
+      "Confirm the change by calling the supplier on the number already on file",
+      "Block the supplier's domain"
+    ],
+    "answer": 2,
+    "explanation": "BEC can come from a genuinely compromised supplier account, so email authentication passes. Payment changes must be verified by a separate, known channel, with dual approval.",
+    "optionNotes": [
+      "A reply goes to the mailbox the attacker controls.",
+      "Passing checks only proves the mail came from that domain, which may itself be compromised.",
+      "Correct: out-of-band verification defeats compromised mailboxes.",
+      "Blocking a real supplier disrupts business and does not verify anything."
+    ],
+    "tags": ["bec", "verification"],
+    "sources": [
+      "https://www.fbi.gov/how-we-can-help-you/scams-and-safety/common-frauds-and-scams/business-email-compromise",
+      "https://attack.mitre.org/techniques/T1684/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0034",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "A penetration tester's report mentions `setoolkit`. Which tool is this?",
+    "options": [
+      "The Social-Engineer Toolkit (SET) by TrustedSec",
+      "The Gophish web dashboard",
+      "A Metasploit post-exploitation module",
+      "A Wireshark display filter"
+    ],
+    "answer": 0,
+    "explanation": "`setoolkit` launches the Social-Engineer Toolkit, packaged in Kali, used in authorized assessments to test staff awareness.",
+    "optionNotes": [
+      "Correct: an open-source framework for authorized social engineering tests.",
+      "Gophish is a separate phishing simulation platform.",
+      "SET is a standalone toolkit, not a Metasploit module.",
+      "Wireshark filters are expressions, not a program name."
+    ],
+    "tags": ["tools", "set"],
+    "sources": ["https://github.com/trustedsec/social-engineer-toolkit", "https://www.kali.org/tools/set/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0035",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 3,
+    "stem": "An adversary-in-the-middle phishing proxy such as Evilginx relays the real login page. Why can it defeat one-time codes, and which control stops it?",
+    "options": [
+      "It installs malware on the phone; antivirus stops it",
+      "It cracks the one-time code offline; longer codes stop it",
+      "It captures the session cookie after the user completes MFA; FIDO2/WebAuthn binds the login to the real site's origin",
+      "It exploits TLS 1.3; disabling TLS stops it"
+    ],
+    "answer": 2,
+    "explanation": "AiTM proxies (ATT&CK T1557) sit between the user and the real site. OTP and push are not phishing-resistant; FIDO2/WebAuthn authenticators sign for the real origin, so a proxy domain cannot use them.",
+    "optionNotes": [
+      "No mobile malware is needed.",
+      "The code is relayed live, not cracked.",
+      "Correct: the user completes a real login through the proxy and the session token is taken.",
+      "It uses its own valid certificate for its own domain; disabling TLS would make things worse."
+    ],
+    "tags": ["tools", "evilginx", "mfa"],
+    "sources": [
+      "https://github.com/kgretzky/evilginx2",
+      "https://attack.mitre.org/techniques/T1557/",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0036",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "In Microsoft Defender for Office 365 Attack Simulation Training, which simulation technique measures whether users grant permissions to a rogue application?",
+    "options": ["OAuth consent grant", "Credential harvest", "Malware attachment", "Drive-by URL"],
+    "answer": 0,
+    "explanation": "Simulation platforms offer several techniques so awareness training matches real threats; consent-grant phishing asks for app permissions instead of a password.",
+    "optionNotes": [
+      "Correct: it tests whether users approve an app's permission request.",
+      "Credential harvest tests entering credentials on a page.",
+      "Malware attachment tests opening a file.",
+      "Drive-by URL tests visiting a page that runs code."
+    ],
+    "tags": ["tools", "simulation"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-get-started",
+      "https://attack.mitre.org/mitigations/M1017/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0037",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Someone uses another person's health insurance number to get medical treatment and prescriptions. Which kind of identity theft is this?",
+    "options": ["Synthetic identity fraud", "Medical identity theft", "Tax identity theft", "Child identity theft"],
+    "answer": 1,
+    "explanation": "The FTC describes medical identity theft as using personal data to obtain care or insurance benefits; signs are bills or statements for services never received.",
+    "optionNotes": [
+      "Synthetic fraud builds a new fake person from mixed data.",
+      "Correct: using someone's data to get care, drugs or insurance payments.",
+      "Tax identity theft files returns with a stolen SSN.",
+      "Child identity theft uses a minor's data."
+    ],
+    "tags": ["identity-theft"],
+    "sources": ["https://consumer.ftc.gov/articles/what-know-about-medical-identity-theft", "https://www.identitytheft.gov/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0038",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which type of fraud combines a real identifier, such as a Social Security number, with a fake name and date of birth to create a new identity?",
+    "options": ["Pharming", "Medical identity theft", "Account takeover", "Synthetic identity fraud"],
+    "answer": 3,
+    "explanation": "Synthetic identities are hard to spot because no single real person sees all the activity, so the fraud can grow for a long time before it is detected.",
+    "optionNotes": [
+      "Pharming is a web redirection attack.",
+      "Medical identity theft uses a real person's full identity for care.",
+      "Account takeover hijacks an existing account.",
+      "Correct: real and fabricated PII blended into a new person."
+    ],
+    "tags": ["identity-theft", "synthetic"],
+    "sources": [
+      "https://fedpaymentsimprovement.org/strategic-initiatives/payments-security/synthetic-identity-payments-fraud/",
+      "https://www.identitytheft.gov/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0039",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A new social media 'recruiter' profile with few connections contacts engineers about a job and sends a document through personal webmail. What is the best response?",
+    "options": [
+      "Accept the connection so the profile gains credibility",
+      "Open the document on a work laptop to check if it is genuine",
+      "Send a CV with a detailed list of current projects",
+      "Verify the recruiter through the company's official site and report the profile before opening anything"
+    ],
+    "answer": 3,
+    "explanation": "This matches spearphishing via service (T1566.003) using a fake persona (T1585.001): delivery through channels with weaker enterprise controls. Verify identities independently and report suspicious profiles.",
+    "optionNotes": [
+      "Connections make fake profiles look more trustworthy to others.",
+      "Opening the file is exactly what the lure wants.",
+      "This hands over sensitive information.",
+      "Correct: verify out of band and report fake personas."
+    ],
+    "tags": ["social-networks", "impersonation"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1566/003/",
+      "https://attack.mitre.org/techniques/T1585/001/",
+      "https://www.cisa.gov/news-events/news/staying-safe-social-networking-sites"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0040",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council terms, what is spimming?",
+    "options": ["Spoofing caller ID on VoIP", "Phishing through SMS", "Spam sent over instant messaging", "Poisoning DNS to redirect users"],
+    "answer": 2,
+    "explanation": "Spim is unsolicited messaging over chat or IM platforms, often carrying phishing links. Filtering and reporting in the chat platform are the controls.",
+    "optionNotes": [
+      "That is caller ID spoofing, often used in vishing.",
+      "That is smishing.",
+      "Correct: SPam over Instant Messaging.",
+      "That is pharming."
+    ],
+    "tags": ["spim", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/spam"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0041",
+    "module": 9,
+    "section": "Computer-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An analyst wants to see where a suspicious link leads, including redirects, a screenshot and contacted domains, without opening it in their own browser. Which service fits?",
+    "options": ["Gophish", "urlscan.io", "Social-Engineer Toolkit", "John the Ripper"],
+    "answer": 1,
+    "explanation": "Sandboxed URL scanners let defenders inspect a link safely during triage; results support blocking the domain and warning users.",
+    "optionNotes": [
+      "Gophish runs awareness simulations.",
+      "Correct: it scans a submitted URL and reports what the page loads.",
+      "SET is an assessment toolkit, not a URL analyzer.",
+      "John the Ripper cracks password hashes."
+    ],
+    "tags": ["tools", "url-analysis"],
+    "sources": ["https://urlscan.io/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0042",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A text says a parcel is on hold and asks for a small fee through a link. What is the best response?",
+    "options": [
+      "Do not tap the link; report it by forwarding it to 7726 (SPAM) and delete it",
+      "Tap the link to check whether the site looks real",
+      "Reply STOP to unsubscribe",
+      "Pay the fee because the amount is small"
+    ],
+    "answer": 0,
+    "explanation": "Smishing uses urgency and small payments. The FTC advises not to click, to report by forwarding to 7726 (SPAM) and to delete the message.",
+    "optionNotes": [
+      "Correct: report the smishing message, then delete it.",
+      "The site may harvest data or install malware.",
+      "Replying confirms the number is active.",
+      "Small fees are a common lure to capture card details."
+    ],
+    "tags": ["smishing", "reporting"],
+    "sources": [
+      "https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0043",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A user receives dozens of MFA push prompts at night and finally approves one to make them stop. Which technique is this?",
+    "options": ["Bluejacking", "SIM swapping", "Quishing", "MFA fatigue (push bombing)"],
+    "answer": 3,
+    "explanation": "MFA fatigue floods a user who already lost their password with prompts. Users should deny unexpected prompts and report them.",
+    "optionNotes": [
+      "Bluejacking sends unsolicited Bluetooth messages.",
+      "SIM swapping moves the phone number to another SIM.",
+      "Quishing uses QR codes.",
+      "Correct: ATT&CK T1621 Multi-Factor Authentication Request Generation."
+    ],
+    "tags": ["mfa-fatigue"],
+    "sources": ["https://attack.mitre.org/techniques/T1621/", "https://www.cisa.gov/MFA"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0044",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which change best reduces the risk of MFA push bombing?",
+    "options": [
+      "Switching to SMS codes",
+      "Sending more prompts so users become used to them",
+      "Number matching on push prompts, or moving to phishing-resistant MFA such as FIDO2",
+      "Removing MFA for mobile users"
+    ],
+    "answer": 2,
+    "explanation": "CISA recommends number matching as an interim step and phishing-resistant MFA as the goal; alert on bursts of denied prompts too.",
+    "optionNotes": [
+      "SMS is weaker and exposed to SIM swapping.",
+      "More prompts make fatigue worse.",
+      "Correct: the user must type a number shown on the login screen, so blind approval fails.",
+      "Removing MFA removes the defense entirely."
+    ],
+    "tags": ["mfa-fatigue", "countermeasures"],
+    "sources": ["https://www.cisa.gov/MFA", "https://attack.mitre.org/techniques/T1621/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0045",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A banking app found on a third-party download site has the real name and icon but a different signing certificate, and it asks for SMS permissions. What is it most likely to be?",
+    "options": [
+      "A repackaged or masquerading malicious app",
+      "The official app published through a mirror",
+      "A beta build signed by the bank",
+      "A progressive web app"
+    ],
+    "answer": 0,
+    "explanation": "Malicious apps masquerade with legitimate names and icons (ATT&CK Mobile T1655). Countermeasures: install only from official stores, keep Google Play Protect on, and use app integrity checks.",
+    "optionNotes": [
+      "Correct: same look, different signer, excessive permissions.",
+      "The official app is signed with the publisher's certificate.",
+      "The bank's builds would carry its own signing key.",
+      "A progressive web app is not installed as a signed package."
+    ],
+    "tags": ["malicious-apps", "ec-council-specific"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1655/",
+      "https://support.google.com/googleplay/answer/2812853",
+      "https://mas.owasp.org/MASVS/11-MASVS-RESILIENCE/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0046",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which combination best protects accounts against SIM swap takeovers?",
+    "options": [
+      "A longer phone PIN code for the screen lock",
+      "A carrier account PIN or port-out lock plus non-SMS MFA such as an authenticator app or security key",
+      "Switching off Wi-Fi when not in use",
+      "Using SMS codes for every account"
+    ],
+    "answer": 1,
+    "explanation": "In a SIM swap the attacker impersonates the victim to the carrier (T1451). Carrier locks stop the swap; non-SMS MFA removes the payoff.",
+    "optionNotes": [
+      "The screen lock does not stop the carrier moving the number.",
+      "Correct: lock the number at the carrier and stop relying on SMS.",
+      "Wi-Fi is unrelated to the carrier's number porting.",
+      "SMS codes are exactly what the attacker receives after a swap."
+    ],
+    "tags": ["sim-swap", "countermeasures"],
+    "sources": ["https://consumer.ftc.gov/consumer-alerts/2019/10/sim-swap-scams-how-protect-yourself", "https://attack.mitre.org/techniques/T1451/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0047",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A phone suddenly shows 'No service' in an area with good coverage, and soon after the owner gets emails about password resets they did not request. What is the most likely cause, and the first step?",
+    "options": [
+      "A dead battery; charge the phone",
+      "A SIM swap; contact the mobile carrier immediately and then secure the accounts",
+      "An app update; reinstall the email app",
+      "Quishing; delete saved QR codes"
+    ],
+    "answer": 1,
+    "explanation": "The FTC lists sudden loss of service as a warning sign. Call the carrier to regain the number, then change passwords and move MFA away from SMS.",
+    "optionNotes": [
+      "A dead battery would switch the phone off, not show no service.",
+      "Correct: loss of service plus reset emails is a classic SIM swap sign.",
+      "App updates do not remove cellular service.",
+      "QR codes are unrelated to losing the number."
+    ],
+    "tags": ["sim-swap", "indicators"],
+    "sources": ["https://consumer.ftc.gov/consumer-alerts/2019/10/sim-swap-scams-how-protect-yourself", "https://attack.mitre.org/techniques/T1451/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0048",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Caller ID shows your bank's real phone number, and the caller asks you to confirm a one-time code 'to block a fraudulent payment'. What should you do?",
+    "options": [
+      "Ask the caller for their employee ID and continue",
+      "Read out the code, because the number matches the bank",
+      "Hang up and call the number printed on your card, because caller ID can be spoofed",
+      "Call back the number shown on your phone's call log"
+    ],
+    "answer": 2,
+    "explanation": "The FTC warns that scammers can make any name or number appear on caller ID (spoofing); vishers use it to borrow trust. Never share one-time codes; end the call and use the number on the card or statement.",
+    "optionNotes": [
+      "An attacker can invent any employee ID.",
+      "Caller ID can be falsified; banks do not ask for one-time codes.",
+      "Correct: verify through a channel you already trust.",
+      "Calling back a spoofed display number may not reach the bank, and the caller controls the conversation until you hang up."
+    ],
+    "tags": ["vishing", "caller-id-spoofing"],
+    "sources": [
+      "https://consumer.ftc.gov/articles/phone-scams",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0049",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Before following a QR code on a flyer or parking meter, what is the safest habit?",
+    "options": [
+      "Enter your details quickly before the page times out",
+      "Scan it with a second phone for a second opinion",
+      "Trust it if the sticker looks professionally printed",
+      "Check the URL preview and, for payments or logins, go to the known site or app directly"
+    ],
+    "answer": 3,
+    "explanation": "The FTC warns that scammers hide harmful links in QR codes, including stickers over real ones. Inspect the URL and use the official app or typed address.",
+    "optionNotes": [
+      "Urgency is a pressure cue, not a reason to trust.",
+      "A second phone opens the same malicious link.",
+      "Professional-looking stickers are common in quishing.",
+      "Correct: inspect the destination and prefer a known route."
+    ],
+    "tags": ["quishing", "countermeasures"],
+    "sources": [
+      "https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information",
+      "https://attack.mitre.org/techniques/T1660/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0050",
+    "module": 9,
+    "section": "Mobile-based Techniques",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "What does Google Play Protect do on an Android phone?",
+    "options": [
+      "Checks apps from Google Play and on the device for harmful behavior and can warn about or disable them",
+      "Encrypts SMS messages end to end",
+      "Blocks SIM swaps at the carrier",
+      "Filters phishing emails in any mail app"
+    ],
+    "answer": 0,
+    "explanation": "Keeping Play Protect on and installing only from the official store are the standard defenses against malicious and repackaged apps (ATT&CK Mobile T1655).",
+    "optionNotes": [
+      "Correct: an on-device app safety scanner.",
+      "It does not encrypt messages.",
+      "SIM swaps happen at the carrier, outside the phone.",
+      "It scans apps, not email content."
+    ],
+    "tags": ["tools", "malicious-apps"],
+    "sources": ["https://support.google.com/googleplay/answer/2812853", "https://attack.mitre.org/techniques/T1655/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0051",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does an SPF record published in DNS tell receiving mail servers?",
+    "options": [
+      "The public key used to verify message signatures",
+      "Which hosts are authorized to send mail for the domain",
+      "What to do with mail that fails alignment",
+      "Which server receives mail for the domain"
+    ],
+    "answer": 1,
+    "explanation": "SPF checks the envelope sender domain against the list of authorized sending IPs; on its own it does not protect the visible From address, which is why DMARC adds alignment.",
+    "optionNotes": ["That is DKIM (RFC 6376).", "Correct: RFC 7208 authorizes sending hosts.", "That is DMARC policy (RFC 7489).", "That is an MX record."],
+    "tags": ["email-authentication", "spf"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7208", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0052",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "How does a receiving server verify a DKIM signature?",
+    "options": [
+      "It compares the message with a hash list from a certificate authority",
+      "It checks that the sending IP appears in the domain's SPF record",
+      "It asks the sender's server to confirm the message by callback",
+      "It fetches the signing domain's public key from DNS using the selector and checks the signature over headers and body"
+    ],
+    "answer": 3,
+    "explanation": "DKIM (RFC 6376) lets a domain sign messages; a valid signature shows the signed parts were not changed and that the signing domain took responsibility.",
+    "optionNotes": [
+      "DKIM keys are published in DNS, not issued by a CA.",
+      "That is SPF.",
+      "DKIM uses no callback.",
+      "Correct: the key is published at selector._domainkey.domain."
+    ],
+    "tags": ["email-authentication", "dkim"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6376", "https://csrc.nist.gov/pubs/sp/800/177/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0053",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A domain publishes `v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@example.com`. What does this record ask receivers to do?",
+    "options": [
+      "Deliver everything normally and only send forensic copies",
+      "Reject all mail from example.com",
+      "Treat mail that fails DMARC as suspicious (for example spam folder) and send aggregate reports to that address",
+      "Sign every outgoing message with DKIM"
+    ],
+    "answer": 2,
+    "explanation": "DMARC policies escalate from p=none (monitor) to p=quarantine to p=reject. rua receives aggregate reports that show who sends mail as the domain.",
+    "optionNotes": [
+      "Monitor-only is p=none; rua is aggregate, not forensic (ruf).",
+      "Rejection is p=reject, and only failing mail is affected.",
+      "Correct: p=quarantine plus rua for aggregate reports.",
+      "DMARC publishes a policy; signing is done by the sender's DKIM setup."
+    ],
+    "tags": ["email-authentication", "dmarc"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0054",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A domain's SPF record is `v=spf1 ip4:192.0.2.0/24 include:_spf.example.net -all`. What does `-all` mean?",
+    "options": [
+      "Mail from any host not listed should fail SPF (hard fail)",
+      "All hosts are allowed to send (pass)",
+      "The result for unlisted hosts is neutral",
+      "Unlisted hosts get a soft fail and are accepted but marked"
+    ],
+    "answer": 0,
+    "explanation": "SPF qualifiers: + pass, - fail, ~ softfail, ? neutral. A final -all tells receivers that anything outside the listed sources is not authorized.",
+    "optionNotes": ["Correct: the minus qualifier means fail.", "Pass would be +all, which makes SPF useless.", "Neutral is ?all.", "Soft fail is ~all."],
+    "tags": ["email-authentication", "spf"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7208", "https://csrc.nist.gov/pubs/sp/800/177/r1/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0055",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A BEC email comes from `ceo@contoso-group.co`, a look-alike domain the attacker registered, and passes SPF, DKIM and DMARC. Why, and what helps?",
+    "options": [
+      "The checks authenticate the attacker's own domain; use external-sender tagging, look-alike domain detection and training",
+      "The checks are broken; disable DMARC for the company",
+      "DMARC p=reject on contoso.com would have blocked it",
+      "SPF only fails for attachments, so strip attachments"
+    ],
+    "answer": 0,
+    "explanation": "SPF, DKIM and DMARC stop exact-domain spoofing. Look-alike domains need other layers: impersonation protection in the mail gateway, external-sender banners, domain monitoring and user verification habits.",
+    "optionNotes": [
+      "Correct: authentication proves which domain sent the mail, not that it is the right one.",
+      "The checks worked as designed.",
+      "Your DMARC policy only protects your own domain name, not different look-alike names.",
+      "SPF has nothing to do with attachments."
+    ],
+    "tags": ["email-authentication", "bec", "look-alike-domain"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-protection-about"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0056",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which authenticator is considered phishing-resistant?",
+    "options": [
+      "A code sent by SMS",
+      "A FIDO2 security key or passkey",
+      "A six-digit TOTP authenticator code",
+      "A push notification with an Approve button"
+    ],
+    "answer": 1,
+    "explanation": "NIST SP 800-63B and CISA describe phishing resistance as binding the authentication output to the verifier; FIDO2/WebAuthn is the widely available option.",
+    "optionNotes": [
+      "SMS codes can be phished and intercepted.",
+      "Correct: it binds the response to the real site's origin.",
+      "A TOTP code typed by the user can be relayed by a fake site.",
+      "Push approvals can be tricked or bombed."
+    ],
+    "tags": ["mfa", "phishing-resistant"],
+    "sources": [
+      "https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html",
+      "https://fidoalliance.org/passkeys/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0057",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company's only anti-phishing measure is annual training. What does the NCSC recommend instead?",
+    "options": [
+      "Block all external email",
+      "Double the training time and punish staff who click",
+      "Multiple layers: make it hard to reach users, help them spot and report, limit the effect of a click, respond quickly",
+      "Rely on antivirus alone"
+    ],
+    "answer": 2,
+    "explanation": "NCSC and CISA both argue that users cannot catch every phish. Combine email filtering and authentication, training and easy reporting, endpoint protection and strong MFA, and a fast incident response.",
+    "optionNotes": [
+      "Blocking all external mail is not workable for a business.",
+      "Blame reduces reporting; NCSC warns against it.",
+      "Correct: NCSC's four-layer approach.",
+      "One technical control is not a layered defense."
+    ],
+    "tags": ["defense-in-depth", "phishing"],
+    "sources": [
+      "https://www.ncsc.gov.uk/guidance/phishing",
+      "https://www.cisa.gov/resources-tools/resources/phishing-guidance-stopping-attack-cycle-phase-one"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0058",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "After six months of phishing simulations, which trend best shows the awareness program is working?",
+    "options": [
+      "Fewer staff open any email at all",
+      "The number of employees disciplined rises",
+      "The simulations become impossible for anyone to spot",
+      "The share of staff who report the simulation rises and reports arrive faster"
+    ],
+    "answer": 3,
+    "explanation": "NIST SP 800-50r1 treats awareness as a life cycle with metrics; NCSC stresses a positive reporting culture. Report rate and time to report matter alongside click rate.",
+    "optionNotes": [
+      "Avoiding email is not a realistic goal.",
+      "Punishment discourages reporting.",
+      "Unfair tests measure nothing useful.",
+      "Correct: reporting is the behavior that lets defenders respond."
+    ],
+    "tags": ["awareness", "metrics"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/50/r1/final", "https://www.ncsc.gov.uk/guidance/phishing"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0059",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Under US rules, how long does an extended fraud alert last, and what does it require?",
+    "options": [
+      "One year, with no report needed",
+      "Seven years, and it requires an identity theft report",
+      "Ninety days, renewable by phone",
+      "Permanent, requested by the bank"
+    ],
+    "answer": 1,
+    "explanation": "FTC: an initial fraud alert lasts one year; an extended fraud alert lasts seven years and needs an identity theft report (for example from IdentityTheft.gov). A credit freeze blocks new credit and is free.",
+    "optionNotes": [
+      "That describes the initial fraud alert.",
+      "Correct: extended alerts are for confirmed identity theft victims.",
+      "The initial alert used to be 90 days; it is now one year.",
+      "Consumers request fraud alerts, not banks, and none is permanent."
+    ],
+    "tags": ["identity-theft", "response"],
+    "sources": ["https://consumer.ftc.gov/articles/credit-freezes-and-fraud-alerts", "https://www.identitytheft.gov/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0060",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which is a browser extension that blocks known phishing sites and lets users report suspicious URLs?",
+    "options": ["Gophish", "Wireshark", "Netcraft Extension", "Social-Engineer Toolkit"],
+    "answer": 2,
+    "explanation": "Anti-phishing toolbars and reputation feeds (Netcraft, PhishTank, Google Safe Browsing) warn users before a known phishing page loads.",
+    "optionNotes": [
+      "Gophish runs simulated campaigns for awareness testing.",
+      "Wireshark is a packet analyzer.",
+      "Correct: an anti-phishing toolbar and reporting tool.",
+      "SET is a social engineering assessment toolkit."
+    ],
+    "tags": ["tools", "anti-phishing"],
+    "sources": ["https://www.netcraft.com/apps/browser/", "https://phishtank.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0061",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A policy requires two different people to approve any payment above a threshold. Which principle does this apply?",
+    "options": ["Security through obscurity", "Least functionality", "Defense in depth", "Separation of duties"],
+    "answer": 3,
+    "explanation": "Separation of duties and dual approval stop both insiders and BEC or deepfake requests from moving money on one person's decision.",
+    "optionNotes": [
+      "Obscurity is not a control.",
+      "Least functionality limits system features.",
+      "Defense in depth is layering controls in general.",
+      "Correct: no single person can complete a sensitive task alone."
+    ],
+    "tags": ["insider-threat", "separation-of-duties"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/separation_of_duty",
+      "https://www.cisa.gov/resources-tools/resources/insider-threat-mitigation-guide"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0062",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An employee realizes they entered their password on a fake login page ten minutes ago. What should they do first?",
+    "options": [
+      "Report it to the security team at once and change the password so sessions can be revoked",
+      "Wait to see whether anything unusual happens",
+      "Delete the email so nobody notices",
+      "Log in again through the same link to check the account"
+    ],
+    "answer": 0,
+    "explanation": "NCSC's fourth layer is responding quickly; a blame-free reporting culture makes staff report mistakes early, so credentials and sessions can be reset.",
+    "optionNotes": [
+      "Correct: fast reporting limits the damage.",
+      "Waiting gives the attacker time.",
+      "Deleting evidence slows the response.",
+      "The link leads back to the attacker's page."
+    ],
+    "tags": ["reporting", "incident-response"],
+    "sources": ["https://www.ncsc.gov.uk/guidance/phishing", "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0063",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which free tool analyzes a pasted email header and shows the delivery hops, delays and SPF, DKIM and DMARC results?",
+    "options": ["Gophish", "Netcraft Extension", "PhishTank", "Google Admin Toolbox Messageheader"],
+    "answer": 3,
+    "explanation": "Header analysis is a first triage step for a reported email: the Received chain shows the real path and Authentication-Results show whether the domain was authenticated.",
+    "optionNotes": [
+      "Gophish runs simulated campaigns.",
+      "Netcraft blocks known phishing sites in the browser.",
+      "PhishTank is a phishing URL database.",
+      "Correct: a header analyzer."
+    ],
+    "tags": ["tools", "headers"],
+    "sources": ["https://toolbox.googleapps.com/apps/messageheader/", "https://support.google.com/mail/answer/29436"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m09-q-0064",
+    "module": 9,
+    "section": "Social Engineering Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A header reads `Authentication-Results: mx.example.net; spf=pass smtp.mailfrom=bulkmailer.example; dkim=pass header.d=bulkmailer.example; dmarc=fail header.from=contoso.com`. Why did DMARC fail?",
+    "options": [
+      "The receiving server does not support DMARC",
+      "SPF and DKIM both failed",
+      "The domains that passed SPF and DKIM do not align with the From domain contoso.com",
+      "DMARC always fails when a third-party mailer is used"
+    ],
+    "answer": 2,
+    "explanation": "DMARC (RFC 7489) adds alignment: SPF or DKIM must pass for the same organizational domain as the visible From. Passes for an unrelated domain do not count, which is how DMARC catches From-header spoofing.",
+    "optionNotes": [
+      "The header shows a DMARC result, so the receiver supports it.",
+      "Both show pass, but for bulkmailer.example.",
+      "Correct: DMARC needs a pass from a domain aligned with header.from.",
+      "Third-party senders pass when they sign with, or send as, an aligned domain."
+    ],
+    "tags": ["email-authentication", "dmarc", "headers"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://www.rfc-editor.org/rfc/rfc8601"],
+    "verify": false,
+    "rev": 1
+  }
+]
