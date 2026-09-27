@@ -161,6 +161,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 
 ## Release status
 
+**v0.4.0 released 2026-09-27** (content 0.16.0): mocks, analytics, go/no-go, Self-study, quiz resume, glossary popovers.
 **v0.3.0 released 2026-09-23** (content 0.2.0): Windows exe/msi, macOS universal dmg (ad-hoc signed),
 Linux AppImage/deb, Android apk/aab signed with the release key. Nothing else is code-signed.
 Android key: PKCS12 made with OpenSSL, kept by the owner outside the repo (`C:\Users\malac\ShieldUp-keys`),

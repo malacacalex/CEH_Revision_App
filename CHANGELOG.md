@@ -4,7 +4,9 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
-## [Unreleased]
+## [0.4.0] - 2026-09-27
+
+Ships with content 0.16.0: 12 of 21 modules fully built, 1316 questions, 632 flashcards and a 208-term glossary.
 
 ### Added
 - **Mock exams.** A half-mock (63 questions, 2 hours) and a full mock (125 questions, 4 hours) from questions
