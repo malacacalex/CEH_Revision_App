@@ -1,0 +1,300 @@
+[
+  {
+    "id": "m11-q-0057",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement about MFA and session hijacking is true?",
+    "options": [
+      "MFA forces the server to issue a new session ID for each request",
+      "MFA makes session cookies impossible to steal",
+      "MFA encrypts the session cookie with the user's second factor",
+      "MFA protects the login step, so a stolen session cookie can still be used without an MFA prompt"
+    ],
+    "answer": 3,
+    "explanation": "Once a session is authenticated, the cookie is the credential. Phishing-resistant MFA, device-bound sessions and anomaly detection close the gap.",
+    "optionNotes": [
+      "MFA has nothing to do with per-request IDs.",
+      "Cookies can still be stolen through XSS, malware or proxies.",
+      "MFA does not change how cookies are protected.",
+      "Correct: MITRE T1550.004 notes that cookie reuse can bypass MFA."
+    ],
+    "tags": ["mfa", "mitre-attack"],
+    "sources": ["https://attack.mitre.org/techniques/T1550/004/", "https://attack.mitre.org/techniques/T1539/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0058",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Malware on a user's workstation injects into the running browser and uses its already-authenticated sessions to browse internal web apps as that user. Which ATT&CK technique matches?",
+    "options": ["T1557.002 ARP Cache Poisoning", "T1563.001 SSH Hijacking", "T1185 Browser Session Hijacking", "T1040 Network Sniffing"],
+    "answer": 2,
+    "explanation": "Browser session hijacking works at the endpoint, after TLS. Endpoint detection and least privilege are the defenses, not transport encryption.",
+    "optionNotes": [
+      "No LAN interception is involved.",
+      "No SSH session is involved.",
+      "Correct: abusing the victim's own browser and its sessions.",
+      "Nothing is captured off the wire."
+    ],
+    "tags": ["mitre-attack", "mitb"],
+    "sources": ["https://attack.mitre.org/techniques/T1185/", "https://owasp.org/www-community/attacks/Man-in-the-browser_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0059",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A phishing email links to a company's genuine login page, but the link already contains a session ID parameter chosen by the sender. What is the attacker hoping for, and what stops it?",
+    "options": [
+      "Session fixation; the application must issue a fresh session ID after login and refuse client-chosen IDs",
+      "Session prediction; use longer passwords",
+      "Clickjacking; send X-Frame-Options",
+      "CRIME; disable TLS compression"
+    ],
+    "answer": 0,
+    "explanation": "A planted ID only works on a permissive application that keeps it across authentication.",
+    "optionNotes": [
+      "Correct.",
+      "The ID is supplied, not guessed; passwords do not matter here.",
+      "Nothing is being framed.",
+      "No compression side channel is involved."
+    ],
+    "tags": ["session-fixation"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_fixation",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/384.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0060",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A web analytics provider's logs contain valid session IDs from a customer's site because the IDs appear in the page URLs. What fix removes the leak?",
+    "options": [
+      "Make the session ID longer",
+      "Carry the session ID in a cookie instead of the URL",
+      "Add the HttpOnly flag to the URL",
+      "Switch the site to HTTP/2"
+    ],
+    "answer": 1,
+    "explanation": "URL-borne IDs leak through the Referer header, history and logs (CWE-598). A Referrer-Policy reduces the leak, but moving the ID to a cookie removes it.",
+    "optionNotes": [
+      "A longer ID still leaks.",
+      "Correct: cookies are not copied into the Referer header or logs.",
+      "HttpOnly is a cookie attribute.",
+      "The protocol version does not change the URL."
+    ],
+    "tags": ["exposure"],
+    "sources": [
+      "https://cwe.mitre.org/data/definitions/598.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/04-Exposed_Session_Variables.md",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0061",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Which change removes the risk of the CRIME attack at the TLS layer?",
+    "options": [
+      "Enable HSTS preload",
+      "Disable TLS-level compression; TLS 1.3 no longer has it",
+      "Use 4096-bit RSA certificates",
+      "Set SameSite=Strict on the session cookie"
+    ],
+    "answer": 1,
+    "explanation": "CRIME (CVE-2012-4929) recovers cookies from compressed TLS records. BREACH targets HTTP compression and needs application-side measures.",
+    "optionNotes": [
+      "HSTS stops downgrades, not compression leaks.",
+      "Correct.",
+      "Key size does not affect a compression side channel.",
+      "SameSite does not change what TLS compresses."
+    ],
+    "tags": ["crime", "tls"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7457", "https://www.rfc-editor.org/rfc/rfc8446"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0062",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which RFC hardened TCP against blind RST and data injection by requiring challenge ACKs for in-window but inexact sequence numbers?",
+    "options": ["RFC 6265", "RFC 6797", "RFC 5961", "RFC 2827"],
+    "answer": 2,
+    "explanation": "With RFC 5961, a blind attacker must hit the exact next sequence number instead of anything in the window.",
+    "optionNotes": ["RFC 6265 defines HTTP cookies.", "RFC 6797 defines HSTS.", "Correct.", "RFC 2827 (BCP 38) is about ingress filtering."],
+    "tags": ["tcp", "rst"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5961", "https://www.rfc-editor.org/rfc/rfc4953"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0063",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A SOC analyst finds bettercap installed on a marketing workstation. What is this tool built for?",
+    "options": [
+      "Managing HSTS preload submissions",
+      "Measuring the randomness of session tokens",
+      "Monitoring IP/MAC pairs and alerting on changes",
+      "Network sniffing, spoofing and man-in-the-middle attacks"
+    ],
+    "answer": 3,
+    "explanation": "Recognizing MITM frameworks (bettercap, Ettercap) in an inventory or process list is a detection clue.",
+    "optionNotes": [
+      "That is hstspreload.org.",
+      "That is Burp Sequencer.",
+      "That is arpwatch.",
+      "Correct: a modular MITM framework, which warrants an investigation here."
+    ],
+    "tags": ["bettercap", "tools"],
+    "sources": ["https://www.kali.org/tools/bettercap/", "https://www.bettercap.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0064",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A DNS resolver always sends queries from the same source port with sequential query IDs, and some users are sent to fake sites. Which network-level weakness is being abused and what fixes it?",
+    "options": [
+      "Forged UDP replies win the race; randomize source ports and query IDs (RFC 5452) and validate with DNSSEC",
+      "TCP sequence prediction; apply RFC 6528",
+      "Session fixation; regenerate session IDs",
+      "ARP spoofing; enable HSTS"
+    ],
+    "answer": 0,
+    "explanation": "UDP hijacking races the real server with a forged reply. The defense lives in the application protocol: unpredictable ports and IDs, plus cryptographic validation.",
+    "optionNotes": [
+      "Correct: UDP has no sequence numbers, so guessable ports and IDs are all that protects the reply.",
+      "DNS queries here use UDP, not TCP.",
+      "Fixation is an HTTP session issue.",
+      "HSTS does not affect DNS."
+    ],
+    "tags": ["udp", "dns"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5452", "https://www.rfc-editor.org/rfc/rfc768"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0065",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "During a rollback, an admin sets `Strict-Transport-Security: max-age=0` on the site. What happens in browsers that receive it over HTTPS?",
+    "options": [
+      "They delete their stored HSTS policy for the site",
+      "They keep HTTPS-only for one year",
+      "They block the site entirely",
+      "They add the site to the preload list"
+    ],
+    "answer": 0,
+    "explanation": "Removing HSTS re-opens the door to SSL stripping. Preload needs max-age of at least one year plus includeSubDomains.",
+    "optionNotes": [
+      "Correct: RFC 6797 treats max-age=0 as removing the policy.",
+      "Only a positive max-age keeps the policy.",
+      "HSTS never blocks a site outright.",
+      "Preload is a separate submission with strict requirements."
+    ],
+    "tags": ["hsts"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0066",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Staff often work from café Wi-Fi. Which combination best protects their web sessions from being sniffed and replayed?",
+    "options": [
+      "Longer passwords and password expiry",
+      "HTTPS on every page, Secure session cookies and HSTS",
+      "Session IDs in URLs over HTTP",
+      "A persistent cookie with a one-year Max-Age"
+    ],
+    "answer": 1,
+    "explanation": "Sniffing (sidejacking) needs a cleartext cookie. TLS everywhere, the Secure flag and HSTS remove it.",
+    "optionNotes": [
+      "Passwords do not protect a live session token.",
+      "Correct: the cookie never travels in cleartext.",
+      "That exposes the ID.",
+      "A long-lived cookie increases exposure."
+    ],
+    "tags": ["sniffing", "tls"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/09-Session_Hijacking.md",
+      "https://owasp.org/www-community/controls/SecureCookieAttribute",
+      "https://www.rfc-editor.org/rfc/rfc6797"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0067",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which open-source tool keeps a database of IP-to-MAC pairings on a LAN and reports when a pairing changes?",
+    "options": ["hamster", "sslstrip", "arpwatch", "Burp Sequencer"],
+    "answer": 2,
+    "explanation": "arpwatch is a simple detector for ARP spoofing, the usual way to gain a LAN MITM position for network-level hijacking.",
+    "optionNotes": ["hamster replays sniffed cookies.", "sslstrip downgrades HTTPS links.", "Correct.", "Sequencer analyzes token randomness."],
+    "tags": ["arpwatch", "detection"],
+    "sources": ["https://www.kali.org/tools/arpwatch/", "https://manpages.debian.org/testing/arpwatch/arpwatch.8.en.html"],
+    "verify": false,
+    "rev": 1
+  }
+]

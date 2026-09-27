@@ -123,9 +123,9 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M8 Sniffing | sample | 46 cards, 10 pretest, 56 practice, 18 mock, 8 verify; notes and Sniffing Techniques practice deferred (blocked) |
 | M9 Social Engineering | built | 31 cards, 10 pretest, 54 practice, 11 mock, 28 verify |
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
-| M11 Session Hijacking | stub + notes | research + notes; cards and questions deferred (blocked) |
+| M11 Session Hijacking | built | 39/10/46/11, 14 verify |
 | M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 24 verify |
-| M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred |
+| M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred (retry blocked too) |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 18 mock, 6 verify |
 | M14 Hacking Web Applications | stub + notes | research and notes written (defensive retry); cards and questions deferred (blocked) |
 | M15 SQL Injection | stub | full build deferred (blocked, defensive retry blocked too) |
@@ -173,3 +173,9 @@ passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-pl
 - 2026-09-24 — M4 wave 2: M7, M13, M17, M19, M20 built, M12 sample (content 0.5.0 → 0.10.0); Mermaid label
   rendering fixed (DOMPurify foreignObject integration point + label CSS). M14, M15, M16, M18 blocked and
   deferred. Every remaining M4 gap is a safety-layer block listed in research/deferred.md.
+- 2026-09-27 — M4 wave 3 (defensive, recognition-level retry): M9 and M11 built, M18 sample, M8 items,
+  M14 notes (content 0.11.0 → 0.14.0). M3, M4, M6, M12 evasion, M15, M16 blocked again; module meta
+  `resources` lists free official links shown on the module page meanwhile. App: planner puts built modules
+  first, quizzes resume their open session, glossary terms in quiz text open a definition (208 entries,
+  `aliases`), the "Why did you miss it?" prompt is gone. After a classifier stop, drop what was written
+  after it; don't keep reworded output.

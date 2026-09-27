@@ -3,15 +3,110 @@
   "title": "Session Hijacking",
   "domain": "D4",
   "effortUnits": 0.75,
-  "status": "stub",
+  "status": "built",
   "sections": [
     "Session Hijacking Concepts",
     "Application-Level Session Hijacking",
     "Network-Level Session Hijacking",
     "Session Hijacking Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Explain why a stolen or guessed session token lets an attacker act as the user without the password or MFA",
+      "section": "Session Hijacking Concepts"
+    },
+    {
+      "text": "Tell hijacking from spoofing, active from passive hijacking, and map cases to ATT&CK T1539, T1550.004, T1185 and T1563",
+      "section": "Session Hijacking Concepts"
+    },
+    {
+      "text": "Recognize session fixation, session prediction, cookie theft through XSS, sidejacking, man-in-the-browser and CRIME/BREACH from their symptoms",
+      "section": "Application-Level Session Hijacking"
+    },
+    {
+      "text": "Read tool output that points to weak sessions: ZAP cookie alerts and Burp Sequencer effective entropy",
+      "section": "Application-Level Session Hijacking"
+    },
+    {
+      "text": "Explain why TCP hijacking depends on sequence numbers, and how random ISNs (RFC 6528) and challenge ACKs (RFC 5961) defend against blind, RST and injection attacks",
+      "section": "Network-Level Session Hijacking"
+    },
+    {
+      "text": "Spot ARP spoofing, ICMP redirect and UDP race attacks from arpwatch or Wireshark clues, and name the matching defense",
+      "section": "Network-Level Session Hijacking"
+    },
+    {
+      "text": "Pick the right control for each attack: Secure, HttpOnly and SameSite cookies, a new ID at login, timeouts, server-side logout, HSTS, IPsec",
+      "section": "Session Hijacking Countermeasures"
+    },
+    {
+      "text": "Describe how to detect hijacking: session binding and logging, WAF and IDS rules, manual versus automatic methods",
+      "section": "Session Hijacking Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Session Hijacking Concepts",
+      "priority": "SKIM",
+      "minutes": 15,
+      "why": "Learn the definitions, the two levels and the hijacking-vs-spoofing contrast; the ATT&CK table helps with scenario questions."
+    },
+    {
+      "section": "Application-Level Session Hijacking",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Most questions describe a web session weakness and ask for its name or fix: fixation, prediction, XSS theft, sniffing."
+    },
+    {
+      "section": "Network-Level Session Hijacking",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Know why sequence numbers matter, what blind, RST and UDP hijacking mean, and how ARP spoofing shows up in logs."
+    },
+    {
+      "section": "Session Hijacking Countermeasures",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Matching each attack to its control (cookie flags, ID renewal, timeouts, HSTS, IPsec) is the most tested skill here."
+    }
+  ],
+  "labs": [
+    {
+      "name": "OWASP WebGoat session management lessons",
+      "source": "free",
+      "where": "https://owasp.org/www-project-webgoat/",
+      "skill": "Running WebGoat locally and working through its session lessons to see why weak session IDs and cookies fail",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Audit cookie attributes with an OWASP ZAP passive scan",
+      "source": "free",
+      "where": "https://owasp.org/www-project-juice-shop/",
+      "skill": "Running OWASP Juice Shop in your own lab, proxying it through ZAP and reading the HttpOnly, Secure and SameSite cookie alerts",
+      "minutes": 40,
+      "verify": true
+    },
+    {
+      "name": "Watch ARP pairings on your own lab network",
+      "source": "free",
+      "where": "https://manpages.debian.org/testing/arpwatch/arpwatch.8.en.html",
+      "skill": "Running arpwatch and Wireshark on a lab network you own and reading new station, changed ethernet address and flip flop reports",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Check HSTS and cookie settings of a site you run",
+      "source": "free",
+      "where": "https://developer.mozilla.org/en-US/observatory",
+      "skill": "Scanning your own site with the HTTP Observatory and fixing its HSTS header and session cookie attributes",
+      "minutes": 20,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a web developer why an attacker holding someone's session cookie does not need their password or MFA code, and which three cookie attributes limit the damage.",
+    "Explain session fixation to a friend: why keeping the same session ID across login is the bug, and why issuing a new ID at login fixes it.",
+    "Explain why taking over a TCP connection used to be about guessing sequence numbers, and why randomized ISNs and encryption (TLS, SSH, IPsec) make it fail today."
+  ]
 }

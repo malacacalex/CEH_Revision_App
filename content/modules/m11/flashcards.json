@@ -1,0 +1,753 @@
+[
+  {
+    "id": "m11-c-0001",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Session hijacking",
+    "back": "Taking over a user's **existing, authenticated session** by stealing or guessing its session token. HTTP is stateless, so the server trusts whoever presents the token.\n\nThe attacker needs neither the password nor, usually, the MFA code.",
+    "tags": [
+      "session-hijacking"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_hijacking_attack",
+      "https://csrc.nist.gov/glossary/term/session_hijack_attack"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0002",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "How a session token gets compromised (OWASP)",
+    "back": "- **Predictable** token\n- **Session sniffing** (cleartext traffic)\n- **Client-side attacks**: XSS, malicious JavaScript, trojans\n- **Man-in-the-middle**\n- **Man-in-the-browser**",
+    "tags": [
+      "session-hijacking"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_hijacking_attack",
+      "https://attack.mitre.org/techniques/T1539/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0003",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Hijacking vs spoofing",
+    "back": "- **Spoofing**: starts a **new** session by pretending to be someone else.\n- **Hijacking**: takes over a session that **already exists**.\n\nMITRE T1563 makes the same distinction for remote sessions.",
+    "tags": [
+      "session-hijacking",
+      "spoofing",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1563/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0004",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Active vs passive session hijacking",
+    "back": "- **Passive**: watch and record the session traffic (sniffing).\n- **Active**: take the session over and act in it, often pushing the real user off.\n\nEC-Council framing.",
+    "tags": [
+      "session-hijacking",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/techniques/T1040/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0005",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Two levels of session hijacking",
+    "back": "- **Application level**: the HTTP session token (theft via XSS or sniffing, fixation, prediction, replay, MITB).\n- **Network level**: the TCP or UDP flow (TCP/IP, blind, RST and UDP hijacking; MITM through ARP spoofing or ICMP redirects).\n\nThe two-level split is EC-Council framing.",
+    "tags": [
+      "levels",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://owasp.org/www-community/attacks/Session_hijacking_attack",
+      "https://www.rfc-editor.org/rfc/rfc5961"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0006",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "ATT&CK T1539 vs T1550.004",
+    "back": "- **T1539 Steal Web Session Cookie** (Credential Access): *getting* the cookie from disk, memory or traffic.\n- **T1550.004 Web Session Cookie** (Lateral Movement): *using* the stolen cookie to act as the user and skip MFA.",
+    "tags": [
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1539/",
+      "https://attack.mitre.org/techniques/T1550/004/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0007",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "ATT&CK T1563 Remote Service Session Hijacking",
+    "back": "Taking over an existing remote session instead of logging in:\n- **.001 SSH hijacking** (abusing an SSH agent socket or agent forwarding)\n- **.002 RDP hijacking** (reconnecting another user's session with SYSTEM rights, `tscon`)\n\nMitigations: disable agent forwarding, limit admin rights, segment networks.",
+    "tags": [
+      "mitre-attack",
+      "ssh",
+      "rdp"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1563/",
+      "https://attack.mitre.org/techniques/T1563/001/",
+      "https://attack.mitre.org/techniques/T1563/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0008",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Why sessions are hijackable",
+    "back": "- Tokens sent in cleartext\n- Predictable or low-entropy IDs\n- IDs in URLs\n- No new ID at login\n- No idle or absolute timeout\n- Logout that does not kill the server-side session\n- Missing cookie attributes (Secure, HttpOnly, SameSite)",
+    "tags": [
+      "weaknesses"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/04-Exposed_Session_Variables.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0009",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Session fixation",
+    "back": "The attacker gets the victim to log in with a session ID the attacker **already knows**. If the app keeps the same ID after login, the attacker reuses it.\n\n**Recognize**: the session cookie value is identical before and after authentication.\n**Fix**: issue a new ID at login and reject IDs the server never issued (CWE-384).",
+    "tags": [
+      "session-fixation"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_fixation",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/03-Session_Fixation.md",
+      "https://cwe.mitre.org/data/definitions/384.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0010",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Permissive vs strict session management",
+    "back": "- **Permissive**: the app accepts any session ID the client offers and creates a session for it. This is what makes fixation possible.\n- **Strict**: the app only accepts IDs it generated itself.\n\nOWASP: never accept a session ID the app did not generate.",
+    "tags": [
+      "session-fixation"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://owasp.org/www-community/attacks/Session_fixation"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0011",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Session prediction",
+    "back": "Guessing valid session IDs because they are **sequential, time-based or low-entropy** (CWE-330/331).\n\n**Recognize**: IDs from consecutive logins differ only in a counter or timestamp.\n**Fix**: framework session IDs from a CSPRNG, at least **64 bits of entropy**, meaningless content.",
+    "tags": [
+      "session-prediction"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_Prediction",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/331.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0012",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Cookie theft through XSS: recognize and defend",
+    "back": "**Recognize**: an injected script reads `document.cookie` and sends it elsewhere; the session is then used from another IP.\n\n**Defend**: fix the XSS (output encoding, input validation), add CSP, and set `HttpOnly` so scripts cannot read the cookie.\n\n`HttpOnly` limits the damage; it does not fix the XSS.",
+    "tags": [
+      "xss",
+      "httponly"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_hijacking_attack",
+      "https://owasp.org/www-community/HttpOnly",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0013",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Session sniffing (sidejacking)",
+    "back": "The session cookie is captured from **unencrypted HTTP** traffic and replayed. Kali's **ferret** extracts cookies from traffic and **hamster** is a proxy that swaps them in.\n\n**Fix**: HTTPS on every page, `Secure` cookies, HSTS.",
+    "tags": [
+      "sniffing",
+      "sidejacking"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/ferret-sidejack/",
+      "https://www.kali.org/tools/hamster-sidejack/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/09-Session_Hijacking.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0014",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Man-in-the-browser (MITB)",
+    "back": "Malware inside the browser (banking trojan, malicious extension) changes pages and transactions **after** TLS has decrypted them, so HTTPS does not help.\n\n**Defend**: endpoint protection, out-of-band transaction confirmation. ATT&CK T1185 Browser Session Hijacking.",
+    "tags": [
+      "mitb"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Man-in-the-browser_attack",
+      "https://attack.mitre.org/techniques/T1185/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0015",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "CSRF vs session hijacking",
+    "back": "**CSRF** rides the victim's session: the browser attaches the cookie automatically, so the attacker never sees the token.\n\n**Hijacking** gets the token itself.\n\nCSRF defenses: anti-CSRF tokens plus `SameSite` cookies.",
+    "tags": [
+      "csrf"
+    ],
+    "sources": [
+      "https://owasp.org/www-community/attacks/csrf",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/352.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0016",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "CRIME and BREACH",
+    "back": "Attacks that recover secrets such as session cookies from the **length of compressed, encrypted data**.\n- **CRIME** (CVE-2012-4929): TLS-level compression\n- **BREACH**: HTTP body compression\n\n**Fix**: disable TLS compression (TLS 1.3 removed it); keep secrets out of compressed bodies.",
+    "tags": [
+      "crime",
+      "breach",
+      "tls"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc7457",
+      "https://www.breachattack.com/",
+      "https://www.rfc-editor.org/rfc/rfc8446"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0017",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Session replay",
+    "back": "A captured token or authenticated request is sent again later (CWE-294).\n\n**Defend**: TLS, short token lifetimes, one-time nonces, server-side invalidation at logout.",
+    "tags": [
+      "replay"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/replay_attack",
+      "https://cwe.mitre.org/data/definitions/294.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0018",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Burp Sequencer",
+    "back": "Burp Suite tool that collects a sample of tokens (session IDs, anti-CSRF tokens, reset tokens) and runs statistical randomness tests.\n\nThe result is reported as **effective entropy** in bits. Few bits = predictable IDs.",
+    "tags": [
+      "burp",
+      "session-prediction"
+    ],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/sequencer",
+      "https://portswigger.net/burp/documentation/desktop/tools/sequencer/results"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0019",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "OWASP ZAP session alerts",
+    "back": "- **10010** Cookie No HttpOnly Flag (CWE-1004)\n- **10011** Cookie Without Secure Flag (CWE-614)\n- **10054** Cookie without SameSite Attribute\n- **40013** (active) Session Fixation rule\n\nPassive alerts flag missing cookie attributes in responses.",
+    "tags": [
+      "zap",
+      "cookies"
+    ],
+    "sources": [
+      "https://www.zaproxy.org/docs/alerts/10010/",
+      "https://www.zaproxy.org/docs/alerts/10011/",
+      "https://www.zaproxy.org/docs/alerts/10054/",
+      "https://www.zaproxy.org/docs/alerts/40013/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0020",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Adversary-in-the-middle phishing",
+    "back": "A phishing reverse proxy (MITRE names Evilginx2 and Muraena) relays the real login page and captures the **session cookie after the user completes MFA**.\n\n**Defend**: phishing-resistant MFA (FIDO keys bound to the real domain), alerts on impossible travel.",
+    "tags": [
+      "aitm",
+      "mfa"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1539/",
+      "https://attack.mitre.org/techniques/T1557/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0021",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "TCP segment acceptance",
+    "back": "A TCP receiver accepts a segment only if its **sequence number falls inside the receive window** for that 4-tuple (two IPs, two ports). Sequence and ACK numbers are **32-bit** fields.\n\nThat is why network-level hijacking is about sequence numbers.",
+    "tags": [
+      "tcp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://www.rfc-editor.org/rfc/rfc5961"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0022",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Blind hijacking",
+    "back": "The attacker **cannot see the replies**, so has to predict sequence numbers.\n\n**Defend**: random ISNs (RFC 6528) make prediction impractical; encryption (TLS, SSH, IPsec) makes injected bytes fail integrity checks.",
+    "tags": [
+      "blind-hijacking",
+      "tcp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6528",
+      "https://www.rfc-editor.org/rfc/rfc5961"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0023",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "RFC 6528 initial sequence numbers",
+    "back": "ISN = **M + F(localip, localport, remoteip, remoteport, secretkey)**\n- M: a timer ticking every 4 µs\n- F: a keyed pseudo-random function (hash)\n\nOne connection's ISN tells an outsider nothing about another's. Replaced RFC 1948.",
+    "tags": [
+      "tcp",
+      "isn"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6528",
+      "https://www.rfc-editor.org/rfc/rfc1948"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0024",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "RST hijacking and RFC 5961",
+    "back": "A forged **RST** with an in-window sequence number tears a connection down.\n\nRFC 5961: reset only if the sequence number **exactly matches** the next expected one; an in-window but inexact RST gets a **challenge ACK** instead. Same idea for SYN and data injection.",
+    "tags": [
+      "rst",
+      "tcp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5961",
+      "https://www.rfc-editor.org/rfc/rfc4953"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0025",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "UDP hijacking",
+    "back": "UDP has **no handshake and no sequence numbers**, so a forged reply that arrives before the real one is accepted.\n\n**Defend** at the application layer: DNS source-port and ID randomization (RFC 5452), DNSSEC, DTLS.",
+    "tags": [
+      "udp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc768",
+      "https://www.rfc-editor.org/rfc/rfc5452"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0026",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "term",
+    "front": "ACK storm (desynchronization)",
+    "back": "After injected data, client and server disagree on sequence numbers and keep sending ACKs to correct each other. RFC 5961 notes similar RST/ACK wars.\n\n**Detection clue**: bursts of duplicate ACKs on one connection. \"ACK storm\" is EC-Council's term.",
+    "tags": [
+      "desync",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5961",
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0027",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council TCP hijacking sequence",
+    "back": "1. Sniff\n2. Monitor\n3. Desynchronize the connection\n4. Predict sequence numbers\n5. Take over (inject)\n\nEncryption breaks the last step; random ISNs break step 4.",
+    "tags": [
+      "tcp",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.rfc-editor.org/rfc/rfc5961"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0028",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "ARP spoofing MITM: recognize and defend",
+    "back": "**Recognize**: the gateway's IP suddenly maps to a different MAC; arpwatch reports `changed ethernet address` or `flip flop`; Wireshark flags *Duplicate IP address configured*.\n\n**Defend**: Dynamic ARP Inspection, static ARP entries for critical hosts, encrypted protocols. ATT&CK T1557.002.",
+    "tags": [
+      "arp",
+      "mitm"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/002/",
+      "https://manpages.debian.org/testing/arpwatch/arpwatch.8.en.html",
+      "https://www.wireshark.org/docs/dfref/a/arp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0029",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "ICMP redirects and source routing",
+    "back": "- **Forged ICMP redirect**: tells a host to route through the attacker. Hosts should ignore redirects (Linux `accept_redirects = 0`).\n- **IP source routing** (LSRR/SSRR): pulls replies back to a spoofer. RFC 7126: drop such packets by default.\n- **BCP 38** (RFC 2827) ingress filtering blocks spoofed sources.",
+    "tags": [
+      "icmp",
+      "source-routing"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc792",
+      "https://docs.kernel.org/networking/ip-sysctl.html",
+      "https://www.rfc-editor.org/rfc/rfc7126",
+      "https://www.rfc-editor.org/rfc/rfc2827"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0030",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Network MITM tools to recognize",
+    "back": "- **Ettercap**: sniffer and interceptor for switched LANs; can inject into an established connection while keeping it synchronized.\n- **bettercap**: modular framework for sniffing, spoofing and MITM.\n- **sslstrip**: rewrites HTTPS links into HTTP from a MITM position (defeated by HSTS).",
+    "tags": [
+      "ettercap",
+      "bettercap",
+      "sslstrip"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/ettercap/",
+      "https://www.kali.org/tools/bettercap/",
+      "https://www.kali.org/tools/sslstrip/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0031",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Session cookie attributes",
+    "back": "| Attribute | Stops |\n|---|---|\n| `Secure` | sending over plain HTTP (sniffing) |\n| `HttpOnly` | script access (XSS cookie theft) |\n| `SameSite=Strict/Lax` | cross-site sending (CSRF, defense in depth) |\n| `__Host-` prefix | subdomain injection: needs Secure, no Domain, `Path=/` |\n\nOWASP example: `Set-Cookie: __Host-SessionID=…; Secure; HttpOnly; SameSite=Strict; Path=/`",
+    "tags": [
+      "cookies"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+      "https://www.rfc-editor.org/rfc/rfc6265"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0032",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Session ID life cycle rules",
+    "back": "- Framework IDs from a CSPRNG, **≥ 64 bits of entropy**\n- Meaningless value; rename default names (PHPSESSID, JSESSIONID)\n- **New ID at login** and at every privilege change\n- Strict: accept only server-issued IDs\n- Idle + absolute timeouts, enforced **on the server**\n- Logout invalidates the server-side session\n- `Cache-Control: no-store` on responses with session IDs",
+    "tags": [
+      "lifecycle"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/03-Session_Fixation.md",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/07-Session_Timeout.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0033",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Session timeouts (OWASP and NIST)",
+    "back": "- OWASP idle: **2–5 min** high-value apps, **15–30 min** low-risk apps\n- OWASP absolute: **4–8 h** for an office-day app\n- NIST SP 800-63B-4 AAL2: overall ≤ **24 h**, inactivity ≤ **1 h**\n- AAL3: overall ≤ **12 h**, inactivity ≤ **15 min**\n\nAn idle timeout alone does not stop an attacker who keeps the session busy.",
+    "tags": [
+      "timeouts"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/07-Session_Timeout.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0034",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "HSTS",
+    "back": "`Strict-Transport-Security: max-age=…; includeSubDomains` (RFC 6797) makes the browser use HTTPS only, which defeats **SSL stripping**.\n- Honored only when received over HTTPS\n- First visit is exposed; the **preload list** fixes that (max-age ≥ 1 year + includeSubDomains)\n- `max-age=0` removes the policy",
+    "tags": [
+      "hsts",
+      "tls"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security",
+      "https://hstspreload.org/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0035",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "IPsec against network-level hijacking",
+    "back": "- **ESP**: confidentiality, integrity, origin authentication, anti-replay\n- **AH**: integrity and origin authentication only, **no encryption**\n\nInjected packets fail the integrity check, so a TCP takeover gets nowhere.",
+    "tags": [
+      "ipsec"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4303",
+      "https://www.rfc-editor.org/rfc/rfc4302",
+      "https://csrc.nist.gov/pubs/sp/800/77/r1/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0036",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Detecting session hijacking",
+    "back": "- Session log shows one ID used from **two IPs or User-Agents** (OWASP binding, MITRE impossible travel)\n- Many requests with different IDs from one source = guessing\n- IDS/IPS (Snort, Suricata) and WAF (ModSecurity + CRS)\n- Wireshark: ACK bursts, unexpected RSTs\n- arpwatch: IP/MAC pair changes\n\nEC-Council groups detection into **manual** (sniffer analysis) and **automatic** (IDS/IPS).",
+    "tags": [
+      "detection",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://attack.mitre.org/techniques/T1539/",
+      "https://coreruleset.org/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0037",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Binding and reauthentication",
+    "back": "- **Bind** the session to client properties (IP, User-Agent, client certificate) and treat a mid-session change as a hijack indicator.\n- **Reauthenticate** for risky events: password change, new device, sensitive transaction.\n- **Renewal timeout**: rotate the ID periodically during a long session.",
+    "tags": [
+      "binding",
+      "reauthentication"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0038",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Device-bound sessions and token binding",
+    "back": "Tie the session to a **private key held on the device** so a copied cookie is useless elsewhere.\n- Chrome **DBSC** (Device Bound Session Credentials)\n- Earlier: Token Binding (RFC 8471)\n- Microsoft Entra **Token Protection**\n\nEmerging, platform-specific.",
+    "tags": [
+      "dbsc",
+      "token-binding"
+    ],
+    "sources": [
+      "https://developer.chrome.com/docs/web-platform/device-bound-session-credentials",
+      "https://www.rfc-editor.org/rfc/rfc8471",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-token-protection"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-c-0039",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Mnemonic: SHORT",
+    "back": "- **S**ecure and HttpOnly flags\n- **H**STS and HTTPS everywhere\n- **O**ne new ID at login\n- **R**andom IDs (≥ 64 bits)\n- **T**imeouts plus server-side logout",
+    "tags": [
+      "mnemonic"
+    ],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://www.rfc-editor.org/rfc/rfc6797"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

@@ -1,0 +1,273 @@
+[
+  {
+    "id": "m11-q-0001",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why can an attacker who holds a valid session cookie act as the user without knowing the password?",
+    "options": [
+      "The session cookie contains the user's password in encrypted form",
+      "The server trusts whoever presents a valid session token, because HTTP itself keeps no state",
+      "Browsers send the password again with every request",
+      "The attacker's browser downloads the password hash from the server"
+    ],
+    "answer": 1,
+    "explanation": "HTTP is stateless, so the session token stands in for the login on every request. Whoever holds it is treated as the user.",
+    "optionNotes": [
+      "A well-designed session ID is a meaningless random value, not a password.",
+      "Correct: the token is the proof of login for every later request.",
+      "Passwords are sent once, at login; later requests carry only the token.",
+      "The server never sends password hashes to clients."
+    ],
+    "tags": ["session-hijacking"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_hijacking_attack",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0002",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "In EC-Council's terms, an attacker only records a victim's session traffic and does not interact with the session. What kind of hijacking is this?",
+    "options": ["Session fixation", "Active session hijacking", "Blind session hijacking", "Passive session hijacking"],
+    "answer": 3,
+    "explanation": "Passive = observe; active = take over and act. Detection differs: passive leaves few traces on the server, active shows the session used from somewhere new.",
+    "optionNotes": [
+      "Fixation plants a known session ID before login.",
+      "Active hijacking takes over the session and acts in it.",
+      "Blind hijacking injects into a session without seeing the replies.",
+      "Correct: watching and recording without taking over."
+    ],
+    "tags": ["session-hijacking", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1040/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0003",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester notes that a site's session cookie has exactly the same value before and after the user logs in. Which attack does this make possible?",
+    "options": ["CRIME", "Session prediction", "Session fixation", "RST hijacking"],
+    "answer": 2,
+    "explanation": "If the pre-login ID is kept after login, an attacker who planted that ID shares the authenticated session. The fix is a new ID at authentication.",
+    "optionNotes": [
+      "CRIME abuses TLS compression.",
+      "Prediction needs guessable ID values, not IDs that persist across login.",
+      "Correct: an ID that survives authentication can be planted in advance.",
+      "RST hijacking is a TCP-level attack."
+    ],
+    "tags": ["session-fixation"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/03-Session_Fixation.md",
+      "https://owasp.org/www-community/attacks/Session_fixation"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0004",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A tester wants to measure how random a web application's session tokens are from a sample of several thousand. Which tool is built for this?",
+    "options": ["Burp Sequencer", "arpwatch", "sslstrip", "Ettercap"],
+    "answer": 0,
+    "explanation": "Predictable tokens are found by analyzing many samples. Burp Sequencer reports how many bits of the token are effectively random.",
+    "optionNotes": [
+      "Correct: it runs statistical randomness tests and reports effective entropy.",
+      "arpwatch monitors IP/MAC pairs on a LAN.",
+      "sslstrip downgrades HTTPS links on a MITM position.",
+      "Ettercap is a LAN sniffing and interception suite."
+    ],
+    "tags": ["burp", "session-prediction"],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/sequencer",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/01-Session_Management_Schema.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0005",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does the HttpOnly cookie attribute do?",
+    "options": [
+      "It stops client-side scripts from reading the cookie",
+      "It sends the cookie only over HTTPS",
+      "It stops the cookie from being sent on cross-site requests",
+      "It deletes the cookie when the browser closes"
+    ],
+    "answer": 0,
+    "explanation": "HttpOnly limits cookie theft through XSS. It does not fix the XSS itself.",
+    "optionNotes": [
+      "Correct: `document.cookie` cannot see it.",
+      "That is the Secure attribute.",
+      "That is SameSite.",
+      "That is a session cookie with no Expires or Max-Age."
+    ],
+    "tags": ["httponly", "cookies"],
+    "sources": ["https://owasp.org/www-community/HttpOnly", "https://www.rfc-editor.org/rfc/rfc6265"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0006",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why is UDP session hijacking considered easier than TCP session hijacking?",
+    "options": [
+      "UDP traffic is always broadcast to every host on the LAN",
+      "UDP has no handshake or sequence numbers, so a forged reply that arrives first is accepted",
+      "UDP packets cannot be encrypted",
+      "UDP uses fixed, well-known source ports for every connection"
+    ],
+    "answer": 1,
+    "explanation": "Without sequence numbers, the attacker only has to win the race with the real server. Defenses live in the application: randomized ports and IDs, DNSSEC, DTLS.",
+    "optionNotes": [
+      "UDP is usually unicast.",
+      "Correct: nothing in UDP ties a reply to the request except addresses and ports.",
+      "DTLS and application-layer encryption protect UDP.",
+      "Source ports vary; DNS resolvers randomize them on purpose."
+    ],
+    "tags": ["udp"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc768", "https://www.rfc-editor.org/rfc/rfc5452"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0007",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "arpwatch on an office LAN reports that the default gateway's IP address is now paired with a different MAC address, and users report certificate warnings. What is the most likely cause?",
+    "options": ["Session fixation", "A TCP RST attack", "ARP spoofing to place a man-in-the-middle", "A BREACH attack"],
+    "answer": 2,
+    "explanation": "ARP spoofing (ATT&CK T1557.002) maps the gateway's IP to the attacker's MAC. Detect with arpwatch or IDS; prevent with Dynamic ARP Inspection.",
+    "optionNotes": [
+      "Fixation happens in the web application, not in ARP.",
+      "A RST attack tears connections down; it does not change ARP mappings.",
+      "Correct: a changed IP/MAC pair for the gateway is the classic ARP spoofing sign.",
+      "BREACH is a compression side channel on HTTPS responses."
+    ],
+    "tags": ["arp", "mitm"],
+    "sources": ["https://attack.mitre.org/techniques/T1557/002/", "https://manpages.debian.org/testing/arpwatch/arpwatch.8.en.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0008",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Under RFC 5961, what does a TCP stack do when it receives a RST whose sequence number is inside the window but is not exactly the next expected number?",
+    "options": [
+      "It closes the connection after a two-minute wait",
+      "It resets the connection immediately",
+      "It forwards the RST to the application for a decision",
+      "It sends a challenge ACK and drops the RST"
+    ],
+    "answer": 3,
+    "explanation": "RFC 5961 makes blind RST and data injection much harder: an off-path attacker would need the exact sequence number, not just any value in the window.",
+    "optionNotes": [
+      "That describes nothing in RFC 5961.",
+      "Only an exact match on the next expected sequence number resets the connection.",
+      "TCP handles RST processing itself.",
+      "Correct: only the real peer can answer the challenge correctly."
+    ],
+    "tags": ["rst", "tcp"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5961", "https://www.rfc-editor.org/rfc/rfc4953"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0009",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A site returns `Strict-Transport-Security: max-age=31536000; includeSubDomains` over HTTPS. Which attack does this header mainly defend against?",
+    "options": ["Session ID prediction", "SSL stripping (HTTPS downgrade) on later visits", "Cross-site scripting", "TCP sequence prediction"],
+    "answer": 1,
+    "explanation": "HSTS (RFC 6797) forces HTTPS in the browser. The very first visit is still exposed unless the domain is on the preload list.",
+    "optionNotes": [
+      "Randomness of IDs is a separate control.",
+      "Correct: the browser will refuse plain HTTP for this host and its subdomains for a year.",
+      "HSTS does nothing against script injection.",
+      "That is handled by random ISNs and encryption."
+    ],
+    "tags": ["hsts"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0010",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A user clicks Logout, the app deletes the session cookie in the browser, but a copy of the old cookie still works from another machine. What is the fix?",
+    "options": [
+      "Make the session ID longer",
+      "Add the HttpOnly attribute to the cookie",
+      "Invalidate the session on the server at logout",
+      "Store the session ID in localStorage instead"
+    ],
+    "answer": 2,
+    "explanation": "Logout and expiry must destroy the session on the server. Deleting the client cookie alone leaves every stolen copy usable (CWE-613).",
+    "optionNotes": [
+      "Length does not matter once the ID is already known.",
+      "HttpOnly hides the cookie from scripts; the stolen copy stays valid.",
+      "Correct: the server must stop honoring that ID.",
+      "Any script on the origin can read localStorage, which is worse."
+    ],
+    "tags": ["logout"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/06-Logout_Functionality.md",
+      "https://cwe.mitre.org/data/definitions/613.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

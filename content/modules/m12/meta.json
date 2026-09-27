@@ -114,5 +114,22 @@
     "Explain to a colleague the difference between signature-based and anomaly-based detection, and why each one misses a different kind of attack.",
     "Explain why a network IDS must reassemble traffic the same way the destination host does, and what Snort frag3 or Suricata host-os-policy do to achieve that.",
     "Explain why a honeypot's alerts have very few false positives, and what a defender does to keep a decoy credible."
+  ],
+  "resources": [
+    {
+      "name": "Snort 3: inspection overview",
+      "url": "https://docs.snort.org/start/inspection",
+      "covers": "How an IDS normalizes and inspects traffic."
+    },
+    {
+      "name": "Suricata user guide: suricata.yaml",
+      "url": "https://docs.suricata.io/en/latest/configuration/suricata-yaml.html",
+      "covers": "Stream, defrag and host OS policy settings."
+    },
+    {
+      "name": "Microsoft Defender: tamper protection",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/prevent-changes-to-security-settings-with-tamper-protection",
+      "covers": "Keeping endpoint security from being turned off."
+    }
   ]
 }

@@ -1,0 +1,1241 @@
+[
+  {
+    "id": "m11-q-0011",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement best defines session hijacking?",
+    "options": [
+      "Flooding a server until it drops all sessions",
+      "Starting a new session with a forged identity",
+      "Taking over an existing authenticated session by stealing or guessing its token",
+      "Cracking a user's password offline"
+    ],
+    "answer": 2,
+    "explanation": "Hijacking needs a session that already exists. The attacker skips authentication by reusing its token.",
+    "optionNotes": [
+      "That is a denial of service.",
+      "That is spoofing: a new session, not an existing one.",
+      "Correct.",
+      "Password cracking targets credentials, not a live session."
+    ],
+    "tags": ["session-hijacking"],
+    "sources": ["https://owasp.org/www-community/attacks/Session_hijacking_attack", "https://csrc.nist.gov/glossary/term/session_hijack_attack"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0012",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An employee's account shows activity from another country ten minutes after they logged in from the office with MFA. No failed logins and no MFA prompts were logged for the foreign activity. What is the most likely explanation?",
+    "options": [
+      "A brute-force login attack",
+      "The attacker cracked the password offline",
+      "An MFA fatigue attack succeeded",
+      "A stolen session cookie is being reused"
+    ],
+    "answer": 3,
+    "explanation": "Cookie reuse (ATT&CK T1550.004) produces no new authentication events. Impossible travel on an existing session is the signal to look for.",
+    "optionNotes": [
+      "Brute force leaves failed logins.",
+      "A password alone would still trigger the MFA step.",
+      "MFA fatigue leaves a trail of MFA prompts.",
+      "Correct: a live session token skips both password and MFA."
+    ],
+    "tags": ["mitre-attack", "detection"],
+    "sources": ["https://attack.mitre.org/techniques/T1550/004/", "https://attack.mitre.org/techniques/T1539/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0013",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "In MITRE ATT&CK, which technique covers *stealing* a web session cookie, as opposed to using it?",
+    "options": [
+      "T1550.004 Web Session Cookie",
+      "T1539 Steal Web Session Cookie",
+      "T1563 Remote Service Session Hijacking",
+      "T1557 Adversary-in-the-Middle"
+    ],
+    "answer": 1,
+    "explanation": "ATT&CK splits theft (T1539) from use (T1550.004). Exam questions often test that split.",
+    "optionNotes": [
+      "T1550.004 is about using the stolen cookie (Lateral Movement / Defense Evasion).",
+      "Correct: Credential Access tactic.",
+      "T1563 covers SSH and RDP session takeover.",
+      "T1557 is the position used to intercept traffic, not the cookie theft itself."
+    ],
+    "tags": ["mitre-attack"],
+    "sources": ["https://attack.mitre.org/techniques/T1539/", "https://attack.mitre.org/techniques/T1550/004/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0014",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "On a jump server, an administrator with SYSTEM rights connects to a disconnected RDP session that belongs to another user, without that user's password. Which ATT&CK technique is this?",
+    "options": ["T1563.002 RDP Hijacking", "T1539 Steal Web Session Cookie", "T1557.002 ARP Cache Poisoning", "T1185 Browser Session Hijacking"],
+    "answer": 0,
+    "explanation": "Remote Service Session Hijacking covers SSH (.001) and RDP (.002). Mitigate by limiting who has SYSTEM rights, logging off idle sessions and auditing Remote Desktop Users.",
+    "optionNotes": [
+      "Correct: taking over an existing RDP session.",
+      "No web cookie is involved.",
+      "No ARP manipulation is described.",
+      "T1185 abuses the victim's browser."
+    ],
+    "tags": ["mitre-attack", "rdp"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1563/002/",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tscon"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0015",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does spoofing do that hijacking does not?",
+    "options": [
+      "It takes over an existing session",
+      "It starts a new session under a false identity",
+      "It always needs a man-in-the-middle position",
+      "It only works over UDP"
+    ],
+    "answer": 1,
+    "explanation": "Spoofing = new session, fake identity. Hijacking = existing session, stolen control.",
+    "optionNotes": ["That is hijacking.", "Correct.", "Spoofing can be done without being on the path.", "Spoofing exists at many layers and protocols."],
+    "tags": ["spoofing", "ec-council-specific"],
+    "sources": ["https://attack.mitre.org/techniques/T1563/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0016",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "EC-Council splits session hijacking into two levels. Which pair is it?",
+    "options": [
+      "Application level and network level",
+      "Kernel level and user level",
+      "Physical level and logical level",
+      "Client level and cloud level"
+    ],
+    "answer": 0,
+    "explanation": "Application level attacks the session token (fixation, prediction, XSS theft). Network level attacks the transport flow (TCP/IP, RST, UDP hijacking, MITM).",
+    "optionNotes": [
+      "Correct: the HTTP token versus the TCP/UDP flow.",
+      "Not an EC-Council hijacking split.",
+      "Not used for hijacking.",
+      "Not used for hijacking."
+    ],
+    "tags": ["levels", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://owasp.org/www-community/attacks/Session_hijacking_attack"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0017",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which weakness does NOT by itself make a session easier to hijack?",
+    "options": ["No new session ID after login", "Session IDs placed in URLs", "A long password policy", "Session cookies sent over plain HTTP"],
+    "answer": 2,
+    "explanation": "Hijacking bypasses the login, so password strength is irrelevant to it. The weaknesses that matter are in how the token is created, carried, renewed and expired.",
+    "optionNotes": [
+      "This enables session fixation.",
+      "URL-borne IDs leak through history, logs and the Referer header.",
+      "Correct: password strength does not protect a session that already exists.",
+      "Cleartext cookies can be sniffed."
+    ],
+    "tags": ["weaknesses"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/04-Exposed_Session_Variables.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0018",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An attacker who got a foothold on a Linux bastion host uses another administrator's forwarded SSH agent socket to open sessions to internal servers. Which mitigation targets this most directly?",
+    "options": [
+      "Randomize TCP initial sequence numbers",
+      "Enable HSTS on the internal web servers",
+      "Set the HttpOnly flag on all cookies",
+      "Disable SSH agent forwarding where it is not needed"
+    ],
+    "answer": 3,
+    "explanation": "SSH hijacking (T1563.001) abuses an existing agent connection. `AllowAgentForwarding no` in sshd_config and limiting root access on jump hosts are the controls.",
+    "optionNotes": [
+      "Modern stacks already do this; it does not stop agent socket abuse.",
+      "HSTS protects browser-to-web traffic.",
+      "Cookie flags do not affect SSH.",
+      "Correct: MITRE T1563.001 lists this mitigation."
+    ],
+    "tags": ["mitre-attack", "ssh"],
+    "sources": ["https://attack.mitre.org/techniques/T1563/001/", "https://man.openbsd.org/sshd_config"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0019",
+    "module": 11,
+    "section": "Session Hijacking Concepts",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which item is the most common carrier of a web session token?",
+    "options": ["The DNS TTL", "The TCP window size", "The TLS certificate", "A cookie"],
+    "answer": 3,
+    "explanation": "Tokens can also travel in URLs, hidden fields or headers, but cookies are the norm and the easiest to protect with attributes.",
+    "optionNotes": [
+      "DNS caching value, unrelated.",
+      "A TCP value, not an application token.",
+      "Certificates identify the server, not the session.",
+      "Correct: set with Set-Cookie and returned by the browser."
+    ],
+    "tags": ["cookies"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0020",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester finds that a login page accepts a `sessionid` value supplied in the URL and keeps using it after authentication. Which control fixes the root cause?",
+    "options": [
+      "Generate a new session ID at authentication and ignore IDs the server did not issue",
+      "Set a shorter absolute timeout",
+      "Add SameSite=Strict to the cookie",
+      "Enable TLS 1.3"
+    ],
+    "answer": 0,
+    "explanation": "Fixation needs two things: the app accepts a client-chosen ID and keeps it across login. Remove both.",
+    "optionNotes": [
+      "Correct: this is the session fixation fix (strict session management).",
+      "A shorter lifetime narrows the window but leaves the flaw.",
+      "SameSite limits cross-site sending, not a planted ID.",
+      "Encryption does not stop the server from accepting a planted ID."
+    ],
+    "tags": ["session-fixation"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Session_fixation",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/384.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0021",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "According to OWASP, how much entropy should a session ID have at minimum?",
+    "options": ["32 bits", "16 bits", "64 bits", "8 bits"],
+    "answer": 2,
+    "explanation": "Entropy, not length, is what counts. In hex, 64 bits needs at least 16 characters. NIST SP 800-63B-4 also asks for at least 64 bits.",
+    "optionNotes": ["Too little.", "Far too little: easily brute-forced.", "Correct: at least 64 bits of entropy, from a CSPRNG.", "Too little."],
+    "tags": ["session-prediction", "entropy"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html", "https://pages.nist.gov/800-63-4/sp800-63b.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0022",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Three logins in a row receive session IDs `A1001`, `A1002` and `A1003`. What is the risk and the fix?",
+    "options": [
+      "Session fixation; regenerate the ID at login",
+      "Session prediction; use framework IDs from a CSPRNG with at least 64 bits of entropy",
+      "CSRF; add anti-CSRF tokens",
+      "Cookie theft through XSS; set HttpOnly"
+    ],
+    "answer": 1,
+    "explanation": "Sequential or time-based IDs are CWE-330. Use the session manager of the framework, which draws IDs from a CSPRNG.",
+    "optionNotes": [
+      "The IDs change on each login, so fixation is not the issue.",
+      "Correct: sequential IDs let an attacker guess other users' sessions.",
+      "CSRF does not depend on the ID's format.",
+      "HttpOnly does not make IDs harder to guess."
+    ],
+    "tags": ["session-prediction"],
+    "sources": ["https://owasp.org/www-community/attacks/Session_Prediction", "https://cwe.mitre.org/data/definitions/330.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0023",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A web app sets HttpOnly on its session cookie, but a stored XSS flaw still lets an attacker perform actions as the victim. Why?",
+    "options": [
+      "HttpOnly only applies to HTTPS pages",
+      "The injected script can send requests from the victim's browser, which attaches the cookie automatically",
+      "HttpOnly is ignored by all modern browsers",
+      "The attacker reads the cookie from localStorage"
+    ],
+    "answer": 1,
+    "explanation": "HttpOnly limits damage; the fix is to remove the XSS (output encoding, CSP). OWASP notes that the cookie is still sent with script-made requests.",
+    "optionNotes": [
+      "HttpOnly works on HTTP and HTTPS; Secure is the HTTPS-only flag.",
+      "Correct: HttpOnly protects the cookie's secrecy, not the session.",
+      "All major browsers support HttpOnly.",
+      "The session cookie is not in localStorage."
+    ],
+    "tags": ["xss", "httponly"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://owasp.org/www-community/HttpOnly",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0024",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which attack captures session cookies from unencrypted HTTP traffic and replays them, a technique called sidejacking?",
+    "options": ["Session puzzling", "Session fixation", "Session sniffing", "Session prediction"],
+    "answer": 2,
+    "explanation": "The cure is to keep the cookie off plain HTTP: HTTPS everywhere, the Secure flag and HSTS.",
+    "optionNotes": [
+      "Puzzling reuses a session variable across flows.",
+      "Fixation plants an ID; it does not sniff one.",
+      "Correct.",
+      "Prediction guesses IDs."
+    ],
+    "tags": ["sniffing", "sidejacking"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/09-Session_Hijacking.md",
+      "https://www.kali.org/tools/ferret-sidejack/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0025",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which pair of Kali tools is described as sniffing session cookies from traffic and then replaying them through a local proxy (\"sidejacking\")?",
+    "options": ["ferret and hamster", "arpwatch and snort", "hashcat and john", "nmap and hping3"],
+    "answer": 0,
+    "explanation": "Recognizing the pair tells you the root problem: session cookies travelling over plain HTTP. The fix is HTTPS with Secure cookies.",
+    "optionNotes": [
+      "Correct: ferret extracts cookies, hamster swaps them in.",
+      "Those are detection tools.",
+      "Those are password crackers.",
+      "Those are scanners and packet crafters."
+    ],
+    "tags": ["sidejacking", "tools"],
+    "sources": ["https://www.kali.org/tools/hamster-sidejack/", "https://www.kali.org/tools/ferret-sidejack/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0026",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A bank's customers confirm a transfer on a genuine HTTPS page, yet the bank receives a different payee and amount. The customers' PCs run a trojan that hooks the browser. What is this, and which defense helps?",
+    "options": [
+      "CRIME; disable TLS compression",
+      "Session fixation; regenerate the session ID",
+      "SSL stripping; enable HSTS",
+      "Man-in-the-browser; out-of-band transaction confirmation"
+    ],
+    "answer": 3,
+    "explanation": "MITB malware sits at the endpoint, so TLS cannot help. Confirming the transaction details over a separate channel exposes the change.",
+    "optionNotes": [
+      "CRIME recovers secrets; it does not rewrite transactions.",
+      "Nothing about the session ID is involved.",
+      "The page really was HTTPS.",
+      "Correct: the change happens inside the browser, after TLS."
+    ],
+    "tags": ["mitb"],
+    "sources": ["https://owasp.org/www-community/attacks/Man-in-the-browser_attack", "https://attack.mitre.org/techniques/T1185/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0027",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What makes CSRF different from session hijacking?",
+    "options": [
+      "CSRF only works against sessions carried in URLs",
+      "CSRF requires the attacker to sniff the session cookie first",
+      "CSRF makes the victim's browser send a request with its cookie; the attacker never obtains the token",
+      "CSRF targets TCP sequence numbers"
+    ],
+    "answer": 2,
+    "explanation": "CSRF rides the session. Defend with anti-CSRF tokens and SameSite cookies; HttpOnly does not help against it.",
+    "optionNotes": ["Cookie-based sessions are the usual target.", "No token theft is needed.", "Correct.", "CSRF is an application-layer attack."],
+    "tags": ["csrf"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/csrf",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0028",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "CRIME and BREACH can recover a session cookie from HTTPS traffic. What do they exploit?",
+    "options": [
+      "Compression: the size of the encrypted output leaks information about the secret",
+      "Weak random numbers in the TLS handshake",
+      "Missing HttpOnly flags",
+      "Predictable TCP initial sequence numbers"
+    ],
+    "answer": 0,
+    "explanation": "Fix CRIME by disabling TLS-level compression (TLS 1.3 removed it). BREACH needs application measures, such as keeping secrets out of compressed responses that also reflect user input.",
+    "optionNotes": [
+      "Correct: CRIME uses TLS compression, BREACH HTTP body compression.",
+      "Not the mechanism of these attacks.",
+      "HttpOnly is unrelated to encrypted-length leaks.",
+      "Unrelated to TLS content."
+    ],
+    "tags": ["crime", "breach"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7457", "https://www.breachattack.com/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0029",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "An OWASP ZAP passive scan raises alert 10011 on a login response. What should the developers change?",
+    "options": [
+      "Regenerate the session ID at login",
+      "Add the HttpOnly attribute to the cookie",
+      "Add a SameSite attribute to the cookie",
+      "Add the Secure attribute to the cookie"
+    ],
+    "answer": 3,
+    "explanation": "Knowing the ZAP alert names helps map a finding to its fix: 10010 HttpOnly, 10011 Secure, 10054 SameSite.",
+    "optionNotes": [
+      "Session fixation is checked by active rule 40013.",
+      "Missing HttpOnly is alert 10010.",
+      "Missing SameSite is alert 10054.",
+      "Correct: 10011 is Cookie Without Secure Flag (CWE-614)."
+    ],
+    "tags": ["zap", "cookies"],
+    "sources": ["https://www.zaproxy.org/docs/alerts/10011/", "https://cwe.mitre.org/data/definitions/614.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0030",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Users are phished through a page that relays the real login site, one-time-code MFA step included. After login, attackers use the victims' sessions without any MFA prompt. Which control defeats this attack pattern best?",
+    "options": [
+      "A longer password policy",
+      "Phishing-resistant MFA such as FIDO2 security keys bound to the real domain",
+      "Setting SameSite=Lax on the session cookie",
+      "Moving the session ID from a cookie into the URL"
+    ],
+    "answer": 1,
+    "explanation": "Adversary-in-the-middle phishing kits (MITRE names Evilginx2) capture the cookie after MFA. MITRE T1539 recommends hardware keys and watching for impossible travel.",
+    "optionNotes": [
+      "The password is relayed along with everything else.",
+      "Correct: the key will not sign for the proxy's domain, so the login fails.",
+      "The cookie was captured by the proxy, not sent cross-site.",
+      "That makes leakage worse."
+    ],
+    "tags": ["aitm", "mfa"],
+    "sources": ["https://attack.mitre.org/techniques/T1539/", "https://attack.mitre.org/techniques/T1557/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0031",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why is placing the session ID in the URL a weakness?",
+    "options": [
+      "URLs leak through browser history, server and proxy logs, and the Referer header",
+      "URLs cannot carry more than 32 characters",
+      "URL parameters are always sent over plain HTTP",
+      "Browsers refuse to cache URLs that contain IDs"
+    ],
+    "answer": 0,
+    "explanation": "Keep session IDs in cookies with proper attributes. A URL ID is also easy to plant, which helps fixation.",
+    "optionNotes": ["Correct (CWE-598).", "URLs can be much longer.", "HTTPS encrypts the URL path and query.", "Unrelated to caching rules."],
+    "tags": ["exposure"],
+    "sources": [
+      "https://cwe.mitre.org/data/definitions/598.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/04-Exposed_Session_Variables.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0032",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Burp Sequencer reports an overall result of `effective entropy: 11 bits` for a sample of session tokens. What should you conclude?",
+    "options": [
+      "The tokens are safe because they are long",
+      "The tokens are well above the OWASP minimum",
+      "The tokens are predictable enough to guess; replace the generator",
+      "The cookie is missing the Secure flag"
+    ],
+    "answer": 2,
+    "explanation": "Effective entropy is the number of bits that pass the randomness tests. Low values mean session prediction is realistic.",
+    "optionNotes": [
+      "Length does not equal entropy.",
+      "The OWASP minimum is 64 bits.",
+      "Correct: 11 bits is far below the 64-bit minimum.",
+      "Sequencer measures randomness, not cookie attributes."
+    ],
+    "tags": ["burp", "session-prediction"],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/sequencer/results",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0033",
+    "module": 11,
+    "section": "Application-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "What is session puzzling (session variable overloading)?",
+    "options": [
+      "Two users are given the same session ID by a weak generator",
+      "One session variable is used for more than one purpose, so a value set in one flow is trusted in another",
+      "An attacker splits a cookie across several requests",
+      "A session ID is encrypted twice"
+    ],
+    "answer": 1,
+    "explanation": "Example: a password-reset flow stores the username in the session, and another page treats that same variable as proof of login. Fix: separate variables per purpose, set only after the right checks.",
+    "optionNotes": ["That is a collision from weak generation.", "Correct (WSTG-SESS-08).", "Not a recognized technique.", "Not a recognized technique."],
+    "tags": ["session-puzzling"],
+    "sources": ["https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/08-Session_Puzzling.md"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0034",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "For an established TCP connection, when does the receiver accept an incoming segment?",
+    "options": [
+      "When its TTL is higher than the previous segment's",
+      "Whenever the source IP address matches the peer",
+      "Only when the segment carries the PSH flag",
+      "When its sequence number falls within the current receive window"
+    ],
+    "answer": 3,
+    "explanation": "This check is why network-level hijacking revolves around sequence numbers, and why random ISNs and encryption are the defenses.",
+    "optionNotes": [
+      "TTL plays no role in TCP acceptance.",
+      "Addresses and ports must match, but the sequence number is checked too.",
+      "PSH is about delivery to the application, not acceptance.",
+      "Correct (RFC 9293 segment acceptability)."
+    ],
+    "tags": ["tcp"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9293", "https://www.rfc-editor.org/rfc/rfc5961"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0035",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the security purpose of the RFC 6528 initial sequence number algorithm?",
+    "options": [
+      "To authenticate both endpoints with certificates",
+      "To encrypt TCP payloads between hosts",
+      "To make one connection's ISN useless for predicting another's, using a keyed hash of the connection's addresses and ports",
+      "To slow down SYN floods with cookies"
+    ],
+    "answer": 2,
+    "explanation": "Predictable ISNs allowed off-path (blind) injection. RFC 6528, which replaced RFC 1948, makes the ISN depend on a secret per host.",
+    "optionNotes": [
+      "Certificates belong to TLS, not TCP.",
+      "TCP sequence numbers do not encrypt anything.",
+      "Correct: ISN = M + F(4-tuple, secret key).",
+      "SYN cookies are a separate mechanism."
+    ],
+    "tags": ["isn", "tcp"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6528", "https://www.rfc-editor.org/rfc/rfc1948"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0036",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An attacker who is not on the network path tries to inject commands into a TCP session and never sees any of the server's replies. What is this called?",
+    "options": ["Passive hijacking", "Blind hijacking", "Man-in-the-browser", "Session fixation"],
+    "answer": 1,
+    "explanation": "Blind hijacking depends on predicting sequence numbers, which random ISNs and RFC 5961 checks make impractical.",
+    "optionNotes": [
+      "Passive hijacking only observes.",
+      "Correct: injection without seeing responses.",
+      "MITB runs inside the victim's browser.",
+      "Fixation is an application-level attack on session IDs."
+    ],
+    "tags": ["blind-hijacking"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5961", "https://www.rfc-editor.org/rfc/rfc6528"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0037",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which tool is described by its documentation as a sniffer and interceptor for switched LANs that can inject data into an established connection while keeping it synchronized?",
+    "options": ["hstspreload.org", "arpwatch", "Burp Sequencer", "Ettercap"],
+    "answer": 3,
+    "explanation": "Seeing Ettercap in a scenario points to a LAN MITM (usually ARP-based). Defenses: Dynamic ARP Inspection and encrypted protocols.",
+    "optionNotes": [
+      "A preload list service for HSTS.",
+      "arpwatch only watches IP/MAC pairs and alerts.",
+      "Sequencer analyzes token randomness.",
+      "Correct."
+    ],
+    "tags": ["ettercap", "tools"],
+    "sources": ["https://www.kali.org/tools/ettercap/", "https://www.ettercap-project.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0038",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Users on a hotel Wi-Fi reach a bank's login page over plain HTTP, although the bank serves HTTPS. A MITM tool is rewriting HTTPS links into HTTP. Which tool fits, and which header stops it?",
+    "options": [
+      "sslstrip; Strict-Transport-Security",
+      "hamster; Content-Security-Policy",
+      "arpwatch; X-Frame-Options",
+      "Burp Sequencer; Referrer-Policy"
+    ],
+    "answer": 0,
+    "explanation": "SSL stripping works only while the browser is willing to use HTTP. HSTS (preloaded, to cover the first visit) removes that option.",
+    "optionNotes": [
+      "Correct: HSTS makes the browser refuse plain HTTP for the site.",
+      "hamster replays sniffed cookies; CSP limits scripts.",
+      "arpwatch is a detector; X-Frame-Options stops framing.",
+      "Sequencer tests randomness; Referrer-Policy limits the Referer header."
+    ],
+    "tags": ["sslstrip", "hsts"],
+    "sources": ["https://www.kali.org/tools/sslstrip/", "https://www.rfc-editor.org/rfc/rfc6797", "https://www.rfc-editor.org/rfc/rfc7457"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0039",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An arpwatch report reads `flip flop 192.168.1.1 00:11:22:33:44:55 (aa:bb:cc:dd:ee:ff)`. What does it tell the defender?",
+    "options": [
+      "The gateway's IP keeps switching between two MAC addresses, a typical ARP spoofing sign",
+      "A new host joined the network for the first time",
+      "The gateway's TCP sequence numbers are predictable",
+      "A session cookie was sent without the Secure flag"
+    ],
+    "answer": 0,
+    "explanation": "arpwatch keeps an IP/MAC database and reports `new station`, `changed ethernet address` and `flip flop`. A flapping gateway MAC calls for Dynamic ARP Inspection and an investigation of the second MAC.",
+    "optionNotes": [
+      "Correct: flip flop = back to the second most recently seen MAC.",
+      "That is the `new station` report.",
+      "arpwatch does not look at TCP.",
+      "arpwatch does not see cookies."
+    ],
+    "tags": ["arp", "arpwatch"],
+    "sources": [
+      "https://manpages.debian.org/testing/arpwatch/arpwatch.8.en.html",
+      "https://www.kali.org/tools/arpwatch/",
+      "https://attack.mitre.org/techniques/T1557/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0040",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Wireshark shows the expert message `Duplicate IP address configured (10.0.0.1)` on ARP replies from two different MAC addresses. What is the likely cause and defense?",
+    "options": [
+      "CRIME; disable TLS compression",
+      "A TCP RST attack; apply RFC 5961",
+      "Session fixation; regenerate IDs at login",
+      "ARP spoofing for a MITM position; enable Dynamic ARP Inspection on the switch"
+    ],
+    "answer": 3,
+    "explanation": "Wireshark's ARP dissector flags duplicate address use. ATT&CK T1557.002 lists ARP cache poisoning; DAI and static entries for key hosts prevent it.",
+    "optionNotes": [
+      "CRIME is a TLS compression issue.",
+      "RST attacks do not change ARP answers.",
+      "Fixation is a web-application issue.",
+      "Correct: two MACs claiming one IP is the ARP spoofing signature."
+    ],
+    "tags": ["arp", "wireshark"],
+    "sources": ["https://www.wireshark.org/docs/dfref/a/arp.html", "https://attack.mitre.org/techniques/T1557/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0041",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A capture of a Telnet session shows an unexpected data segment from the client's address, then a long burst of duplicate ACKs between client and server, and the real user's keystrokes stop working. What does this pattern suggest, and what is the lasting fix?",
+    "options": [
+      "A SYN flood; enable SYN cookies",
+      "Injected data desynchronized the connection (a hijack); replace Telnet with SSH or another encrypted protocol",
+      "Normal TCP slow start; no action needed",
+      "An XSS attack; set HttpOnly on cookies"
+    ],
+    "answer": 1,
+    "explanation": "Cleartext protocols let an on-path attacker inject in-window data. Encryption with integrity checks (SSH, TLS, IPsec) makes injected bytes fail.",
+    "optionNotes": [
+      "A SYN flood shows half-open connections, not an ACK storm inside one session.",
+      "Correct: the ACK burst is the desynchronization, EC-Council's \"ACK storm\".",
+      "Slow start does not produce duplicate ACK storms or lock the user out.",
+      "Telnet has no cookies."
+    ],
+    "tags": ["desync", "tcp"],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html",
+      "https://www.rfc-editor.org/rfc/rfc5961",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0042",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "How should hosts be configured against man-in-the-middle attacks that use forged ICMP redirect messages?",
+    "options": [
+      "Increase the TCP window size",
+      "Block all ICMP echo requests",
+      "Ignore ICMP redirects (for example Linux `accept_redirects = 0`)",
+      "Enable IP source routing"
+    ],
+    "answer": 2,
+    "explanation": "A redirect changes where a host sends traffic. End hosts rarely need them, so disabling acceptance removes the attack.",
+    "optionNotes": [
+      "Unrelated to routing decisions.",
+      "Echo (ping) is unrelated to redirects.",
+      "Correct.",
+      "Source routing helps attackers; it should be dropped."
+    ],
+    "tags": ["icmp"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc792", "https://docs.kernel.org/networking/ip-sysctl.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0043",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "ec-council-term",
+    "difficulty": 2,
+    "stem": "In EC-Council's generic TCP hijacking sequence (sniff, monitor, desynchronize, ..., take over), which step comes just before the takeover?",
+    "options": ["Predict the sequence numbers", "Crack the user's password", "Run a vulnerability scan", "Send a SYN flood"],
+    "answer": 0,
+    "explanation": "Knowing the order helps you see where each defense bites: random ISNs stop prediction, encryption stops the takeover.",
+    "optionNotes": ["Correct.", "Hijacking skips authentication.", "Not part of this sequence.", "Not part of this sequence."],
+    "tags": ["tcp", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.rfc-editor.org/rfc/rfc5961"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0044",
+    "module": 11,
+    "section": "Network-Level Session Hijacking",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A border firewall logs inbound IPv4 packets with the Loose Source Record Route option, all claiming internal source addresses. What should the policy be?",
+    "options": [
+      "Allow them, since source routing is needed for normal routing",
+      "Drop them: source-routed packets and spoofed internal sources should not enter",
+      "Allow them but strip the TCP flags",
+      "Forward them to the web server's HTTPS port only"
+    ],
+    "answer": 1,
+    "explanation": "Source routing lets a spoofer pull replies back through itself. Drop the options and apply ingress filtering (RFC 2827).",
+    "optionNotes": [
+      "Normal routing does not rely on source routing.",
+      "Correct: RFC 7126 recommends dropping LSRR/SSRR by default, and BCP 38 filters spoofed sources.",
+      "Not a defense.",
+      "Not a defense."
+    ],
+    "tags": ["source-routing", "spoofing"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7126", "https://www.rfc-editor.org/rfc/rfc2827"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0045",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which cookie attribute makes the browser send the cookie only over encrypted connections?",
+    "options": ["Path", "HttpOnly", "SameSite", "Secure"],
+    "answer": 3,
+    "explanation": "Secure keeps the session cookie off plain HTTP, which blocks sniffing. Pair it with HSTS so the browser never makes the plain HTTP request at all.",
+    "optionNotes": ["Path limits which URLs receive it.", "HttpOnly hides the cookie from scripts.", "SameSite controls cross-site sending.", "Correct."],
+    "tags": ["cookies", "secure"],
+    "sources": ["https://owasp.org/www-community/controls/SecureCookieAttribute", "https://www.rfc-editor.org/rfc/rfc6265"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0046",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the main purpose of the SameSite cookie attribute?",
+    "options": [
+      "Stop scripts from reading the cookie",
+      "Encrypt the cookie value",
+      "Limit sending the cookie on cross-site requests, as defense in depth against CSRF",
+      "Bind the cookie to the client's IP address"
+    ],
+    "answer": 2,
+    "explanation": "Strict omits the cookie on all cross-site requests; Lax allows top-level safe navigations; None requires Secure.",
+    "optionNotes": [
+      "That is HttpOnly.",
+      "Cookies are not encrypted by attributes.",
+      "Correct: OWASP treats it as defense in depth, not a replacement for anti-CSRF tokens.",
+      "No cookie attribute binds to an IP."
+    ],
+    "tags": ["samesite", "csrf"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://owasp.org/www-community/SameSite",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0047",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A login response contains `Set-Cookie: SESSIONID=8f3a...; Path=/; HttpOnly`. The site is HTTPS-only. Which attributes are still missing for a strong session cookie?",
+    "options": ["Expires and Domain", "HttpOnly and Path", "Secure and SameSite", "Max-Age and Priority"],
+    "answer": 2,
+    "explanation": "OWASP's reference cookie: `__Host-SessionID=…; Secure; HttpOnly; SameSite=Strict; Path=/`.",
+    "optionNotes": [
+      "A session cookie should not be persistent, and a Domain widens exposure.",
+      "Both are already present.",
+      "Correct: without Secure the cookie can leak over HTTP; without SameSite it is sent cross-site.",
+      "Persistence is not wanted; Priority is not a security control."
+    ],
+    "tags": ["cookies"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0048",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A browser ignores `Set-Cookie: __Host-sid=4b1c...; Secure; Path=/; Domain=example.com`. Why?",
+    "options": [
+      "The `__Host-` prefix forbids Path=/",
+      "The `__Host-` prefix forbids a Domain attribute",
+      "The `__Host-` prefix forbids the Secure attribute",
+      "The `__Host-` prefix only works on HTTP"
+    ],
+    "answer": 1,
+    "explanation": "The prefix locks the cookie to one host, which blocks subdomains from overwriting it (a route to session fixation).",
+    "optionNotes": [
+      "Path=/ is required, not forbidden.",
+      "Correct: __Host- cookies must be Secure, set from HTTPS, have no Domain and use Path=/.",
+      "Secure is required.",
+      "It needs HTTPS."
+    ],
+    "tags": ["cookies", "prefix"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0049",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A payroll application handles high-value data. Following OWASP guidance, which idle timeout range is most appropriate?",
+    "options": ["2 to 5 minutes", "15 to 30 minutes", "4 to 8 hours", "24 hours"],
+    "answer": 0,
+    "explanation": "Idle and absolute timeouts limit how long a stolen ID stays useful. Enforce both on the server.",
+    "optionNotes": [
+      "Correct: OWASP's common range for high-value applications.",
+      "OWASP's range for low-risk applications.",
+      "OWASP's absolute-timeout range for an office-day app.",
+      "Far too long for an idle timeout."
+    ],
+    "tags": ["timeouts"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/07-Session_Timeout.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0050",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Under NIST SP 800-63B-4, what should the inactivity timeout be at AAL3?",
+    "options": ["No more than 30 seconds", "No more than 1 hour", "No more than 12 hours", "No more than 15 minutes"],
+    "answer": 3,
+    "explanation": "AAL2: overall ≤ 24 h, inactivity ≤ 1 h. AAL3: overall ≤ 12 h, inactivity ≤ 15 min.",
+    "optionNotes": [
+      "Not a NIST value.",
+      "That is the AAL2 inactivity guidance.",
+      "That is the AAL3 overall timeout.",
+      "Correct; the AAL3 overall reauthentication limit is 12 hours."
+    ],
+    "tags": ["timeouts", "nist"],
+    "sources": ["https://pages.nist.gov/800-63-4/sp800-63b.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0051",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A company wants to stop TCP session takeover between two branch offices and needs the traffic kept confidential. Which IPsec protocol should it choose?",
+    "options": ["ESP", "AH alone", "GRE", "L2TP without IPsec"],
+    "answer": 0,
+    "explanation": "Encrypted and integrity-protected tunnels make injected packets fail verification, which ends network-level hijacking.",
+    "optionNotes": [
+      "Correct: ESP gives confidentiality plus integrity and anti-replay.",
+      "AH authenticates but does not encrypt.",
+      "GRE encapsulates without protection.",
+      "L2TP alone provides no encryption."
+    ],
+    "tags": ["ipsec"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc4303", "https://www.rfc-editor.org/rfc/rfc4302", "https://csrc.nist.gov/glossary/term/ipsec"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0052",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An application log shows `sid=7Q2x... login ok ip=198.51.100.7 ua=Firefox/128` then, four minutes later, `sid=7Q2x... GET /account ip=203.0.113.50 ua=curl/8.5`. What should the application do?",
+    "options": [
+      "Extend the session timeout for the new IP",
+      "Nothing: IP changes are always normal",
+      "Treat it as a likely hijack: end the session and require reauthentication",
+      "Issue the same session ID to both clients"
+    ],
+    "answer": 2,
+    "explanation": "OWASP: a change in IP or User-Agent in the middle of a session is a very good hijack indicator. Log the session life cycle to spot it.",
+    "optionNotes": [
+      "That helps the attacker.",
+      "IPs can change, but a different IP and tool within minutes is a strong indicator.",
+      "Correct: OWASP recommends binding the session to client properties and reacting to changes.",
+      "That shares the session with the attacker."
+    ],
+    "tags": ["detection", "binding"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html", "https://attack.mitre.org/techniques/T1539/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0053",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "An old web application's code cannot be changed, but it needs Secure and HttpOnly on its cookies and protection against session fixation. What does the OWASP cheat sheet suggest?",
+    "options": [
+      "Replace HTTPS with HTTP to simplify cookies",
+      "Put a WAF such as ModSecurity with the OWASP Core Rule Set in front of it",
+      "Store the session ID in localStorage",
+      "Run arpwatch on the web server"
+    ],
+    "answer": 1,
+    "explanation": "WAFs can add cookie attributes, renew IDs on privilege change and enforce sticky sessions when the application itself cannot be fixed.",
+    "optionNotes": [
+      "That removes protection.",
+      "Correct: a WAF can rewrite Set-Cookie headers and track sessions.",
+      "Scripts can read localStorage.",
+      "arpwatch watches ARP, not HTTP sessions."
+    ],
+    "tags": ["waf"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html", "https://coreruleset.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0054",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A user switches from a normal role to an administrator role inside the same session. What should the application do with the session ID?",
+    "options": [
+      "Make the ID persistent with a long Max-Age",
+      "Keep the same ID to avoid logging the user out",
+      "Put the ID in the URL",
+      "Issue a new session ID"
+    ],
+    "answer": 3,
+    "explanation": "OWASP: renew the session ID at login and after every privilege change (password change, role switch).",
+    "optionNotes": [
+      "Persistence increases exposure.",
+      "Keeping it lets a previously known ID gain admin rights.",
+      "That leaks the ID.",
+      "Correct: renew the ID after any privilege level change."
+    ],
+    "tags": ["lifecycle"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/03-Session_Fixation.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0055",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Why is localStorage a poor place to keep a session token?",
+    "options": [
+      "It is limited to 16 bytes",
+      "It is sent with every request to every site",
+      "Any script running on the origin can read it, so one XSS flaw exposes the token",
+      "It is cleared on every page load"
+    ],
+    "answer": 2,
+    "explanation": "Use HttpOnly; Secure; SameSite cookies (or a backend-for-frontend) for session tokens.",
+    "optionNotes": [
+      "Storage is several megabytes.",
+      "Web Storage is not sent automatically at all.",
+      "Correct: OWASP warns against keeping tokens in Web Storage.",
+      "localStorage persists across sessions."
+    ],
+    "tags": ["storage"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m11-q-0056",
+    "module": 11,
+    "section": "Session Hijacking Countermeasures",
+    "domain": "D4",
+    "pool": "practice",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A web server sees thousands of requests from one IP address, each carrying a different, non-existent session ID. What is most likely happening and what should the application do?",
+    "options": [
+      "Session ID guessing; detect the pattern and alert or block the source",
+      "Session fixation; set SameSite=Strict",
+      "A normal crawler; nothing",
+      "ARP spoofing; enable DAI"
+    ],
+    "answer": 0,
+    "explanation": "Guessing or sampling IDs requires many requests; the application or a WAF should count invalid IDs per source and respond.",
+    "optionNotes": [
+      "Correct: OWASP describes this as brute-force detection.",
+      "Fixation uses one planted ID, not thousands.",
+      "Crawlers do not invent session IDs.",
+      "ARP spoofing is a LAN issue."
+    ],
+    "tags": ["detection"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html", "https://owasp.org/www-project-appsensor/"],
+    "verify": false,
+    "rev": 1
+  }
+]
