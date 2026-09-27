@@ -1,0 +1,950 @@
+[
+  {
+    "id": "m14-q-0105",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A server answers `405` to a `PUT` request on `/profile`. What does the code mean?",
+    "options": [
+      "The client must log in before the request works",
+      "The resource exists but does not allow that method",
+      "The client has sent too many requests too quickly",
+      "The server hit an internal error during the update"
+    ],
+    "answer": 1,
+    "explanation": "Returning 405 for unused verbs is the recommended REST behavior, and it also blocks HTTP verb tampering.",
+    "optionNotes": ["That is 401.", "Correct: Method Not Allowed.", "That is 429.", "That is 500."],
+    "tags": ["http", "status-codes"],
+    "sources": ["https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/405", "https://www.rfc-editor.org/rfc/rfc9110"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0106",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A page at `https://app.example` runs a script that tries to read a response from `https://app.example:8443/data`. What does the same-origin policy decide?",
+    "options": [
+      "Different origin only because the two paths are different",
+      "Same origin, because the host name in both URLs is the same",
+      "Same origin, because both URLs use the HTTPS scheme",
+      "Different origin, because the port differs; CORS must allow the read"
+    ],
+    "answer": 3,
+    "explanation": "Origin = scheme + host + port. Any difference makes it cross-origin.",
+    "optionNotes": [
+      "Paths are not part of the origin.",
+      "Host alone is not enough.",
+      "The scheme matches, but the port does not.",
+      "Correct: 443 and 8443 are different ports."
+    ],
+    "tags": ["sop"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6454", "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0107",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does the `__Host-` prefix on a cookie name guarantee?",
+    "options": [
+      "It is shared automatically with all subdomains of the site",
+      "It can be read only by JavaScript running on the same page",
+      "It was set with Secure, over HTTPS, with no Domain and Path=/",
+      "It is encrypted by the browser before being stored on disk"
+    ],
+    "answer": 2,
+    "explanation": "OWASP recommends `__Host-` for session cookies so a subdomain cannot overwrite them.",
+    "optionNotes": [
+      "The prefix forbids a Domain attribute, so subdomains do not get it.",
+      "Script access is controlled by HttpOnly.",
+      "Correct: it is locked to the exact host.",
+      "Browsers do not encrypt cookies because of a prefix."
+    ],
+    "tags": ["cookies"],
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0108",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A request carries `Authorization: Basic YWRtaW46UGFzc3cwcmQ=`. What should a tester conclude?",
+    "options": [
+      "The credentials are only Base64-encoded, so TLS is essential",
+      "The password has been hashed with SHA-1 by the browser",
+      "The header holds a signed JWT issued by the login server",
+      "The credentials are encrypted with the server's public key"
+    ],
+    "answer": 0,
+    "explanation": "Basic authentication sends `user:password` Base64-encoded. Without TLS it is effectively cleartext.",
+    "optionNotes": [
+      "Correct: anyone who sees the header can decode it.",
+      "Base64 is not a hash.",
+      "A JWT has three dot-separated parts and uses the Bearer scheme.",
+      "No key is involved in Base64."
+    ],
+    "tags": ["encoding", "authentication"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc4648", "https://developer.mozilla.org/en-US/docs/Glossary/Base64"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0109",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "What does PKCE protect in an OAuth 2.0 flow?",
+    "options": [
+      "The authorization code of public clients such as mobile apps",
+      "The refresh token that the authorization server stores",
+      "The TLS session between the browser and the API server",
+      "The signature of the ID token in OpenID Connect flows"
+    ],
+    "answer": 0,
+    "explanation": "RFC 7636 binds the code to a secret verifier the client created, which a thief who only saw the code does not have.",
+    "optionNotes": [
+      "Correct: a stolen code is useless without the verifier.",
+      "PKCE works on the code exchange, not refresh tokens.",
+      "TLS protects transport.",
+      "ID token signatures are checked separately."
+    ],
+    "tags": ["oauth"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7636", "https://www.rfc-editor.org/rfc/rfc6749"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0110",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which statement about hidden form fields is correct from a security point of view?",
+    "options": [
+      "Browsers encrypt them with the session key before they are sent",
+      "Users can change them in a proxy, so the server must not trust them",
+      "Only administrators can see them when they view the page source",
+      "They are removed from the form data when the site uses HTTPS"
+    ],
+    "answer": 1,
+    "explanation": "Hidden does not mean protected. Validate and authorize on the server.",
+    "optionNotes": [
+      "Browsers send them as plain form data.",
+      "Correct (CWE-602).",
+      "Anyone can view the page source.",
+      "HTTPS protects them in transit, not from the user."
+    ],
+    "tags": ["client-side"],
+    "sources": ["https://cwe.mitre.org/data/definitions/602.html", "https://owasp.org/www-community/attacks/Web_Parameter_Tampering"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0111",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Browsing to `/files/` shows a clickable list of every file in the folder, and error pages print full stack traces. Which OWASP 2025 category fits?",
+    "options": ["A06 Insecure Design", "A03 Software Supply Chain Failures", "A02 Security Misconfiguration", "A07 Authentication Failures"],
+    "answer": 2,
+    "explanation": "Use a repeatable hardening baseline, turn off listing, and show generic error pages (CWE-548, CWE-209).",
+    "optionNotes": [
+      "The design may be fine; the deployment is not hardened.",
+      "No third-party component is described.",
+      "Correct: directory listing and verbose errors are hardening gaps.",
+      "Logins are not involved."
+    ],
+    "tags": ["owasp-top10", "misconfiguration"],
+    "sources": ["https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/", "https://cwe.mitre.org/data/definitions/548.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0112",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A login endpoint receives thousands of attempts, each with a different username and password pair taken from an old breach, from many IP addresses. Which category and control fit?",
+    "options": [
+      "A02 Misconfiguration; turn off directory listing on the site",
+      "A05 Injection; parameterized queries on the login endpoint",
+      "A08 Integrity Failures; code signing for the login service",
+      "A07 Authentication Failures; MFA and breached-password checks"
+    ],
+    "answer": 3,
+    "explanation": "OWASP's Credential Stuffing cheat sheet adds MFA, device fingerprinting and throttling by account as well as by IP.",
+    "optionNotes": [
+      "Listing is unrelated to logins.",
+      "No input is interpreted as code.",
+      "Signing does not stop reused passwords.",
+      "Correct: this is credential stuffing."
+    ],
+    "tags": ["owasp-top10", "credential-stuffing"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A07_2025-Authentication_Failures/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0113",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A product review containing script markup is saved, and from then on every customer who opens the product page runs it. Which XSS type is this?",
+    "options": ["Reflected XSS", "Stored XSS", "DOM-based XSS", "Self-XSS"],
+    "answer": 1,
+    "explanation": "Encode on output and sanitize rich text with a vetted library; CSP limits the impact.",
+    "optionNotes": [
+      "Reflected XSS needs a crafted request for each victim.",
+      "Correct: persistent, served to every visitor.",
+      "DOM XSS happens in client-side code.",
+      "Self-XSS only affects the person who pastes it."
+    ],
+    "tags": ["xss"],
+    "sources": ["https://owasp.org/www-community/Types_of_Cross-Site_Scripting", "https://cwe.mitre.org/data/definitions/79.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0114",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why can a CSRF attack change a victim's email address but not read their account page?",
+    "options": [
+      "HTTPS hides every response from all scripts running in the browser",
+      "CSRF needs the victim's password before it can read any account page",
+      "The same-origin policy stops the attacker's page from reading the response",
+      "Servers never return any data in answer to cross-site POST requests"
+    ],
+    "answer": 2,
+    "explanation": "CSRF is a one-way attack on state-changing actions. XSS is more dangerous because script on the page can read everything.",
+    "optionNotes": [
+      "HTTPS does not decide which scripts can read responses.",
+      "CSRF never needs the password.",
+      "Correct.",
+      "Servers do return data; the attacker simply cannot read it."
+    ],
+    "tags": ["csrf", "sop"],
+    "sources": ["https://owasp.org/www-community/attacks/csrf", "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0115",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An image upload accepts SVG files. The server-side thumbnail tool parses them as XML and one upload makes the server read a local file. Which weakness and fix fit?",
+    "options": [
+      "SSTI; switch to a logic-less template engine",
+      "Stored XSS; add a strict Content Security Policy",
+      "Path traversal; rename every uploaded file on arrival",
+      "XXE; disable DTDs and external entities in the parser"
+    ],
+    "answer": 3,
+    "explanation": "SOAP bodies, SVG and Office files are all XML. Harden every parser, not just the obvious endpoints.",
+    "optionNotes": [
+      "No template engine is described.",
+      "CSP acts in the browser, not in the server-side parser.",
+      "Renaming does not stop entity resolution.",
+      "Correct: SVG is XML, so the parser is the target."
+    ],
+    "tags": ["xxe", "file-upload"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+      "https://portswigger.net/web-security/xxe"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0116",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A cookie decodes to `O:4:\"User\":2:{s:4:\"name\";s:3:\"bob\";s:5:\"admin\";b:0;}`. What should the tester suspect?",
+    "options": [
+      "The server unserializes a PHP object sent by the client",
+      "The cookie is a JWT signed with a weak shared secret",
+      "The cookie is a Base64-encoded bcrypt password hash",
+      "The cookie holds a cached GraphQL introspection result"
+    ],
+    "answer": 0,
+    "explanation": "Do not rebuild objects from client data; use JSON with a schema or sign the value and check the signature.",
+    "optionNotes": [
+      "Correct: the `O:` prefix marks a serialized PHP object.",
+      "A JWT has three dot-separated Base64url parts.",
+      "This is a structured object, not a hash.",
+      "Introspection returns JSON."
+    ],
+    "tags": ["deserialization"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html", "https://cwe.mitre.org/data/definitions/502.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0117",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Web logs show a steady trickle of POST requests to `/images/thumb.php`, a file no page links to, each from an unusual user agent. What should the analyst check first?",
+    "options": [
+      "Whether robots.txt lists the file, which would explain why crawlers call it",
+      "Whether the site's images need compressing because of the heavy upload traffic",
+      "Whether HSTS is enabled, since the POSTs might be arriving over plain HTTP",
+      "Whether it is a web shell: compare with a known-good copy, check spawned processes"
+    ],
+    "answer": 3,
+    "explanation": "NSA/ASD guidance: file integrity monitoring, known-good comparison and process anomaly detection on web servers.",
+    "optionNotes": [
+      "robots.txt protects nothing.",
+      "Image size is irrelevant.",
+      "Transport settings do not explain the traffic.",
+      "Correct: unlinked scripts receiving POSTs are a classic web shell sign."
+    ],
+    "tags": ["web-shell", "detection"],
+    "sources": ["https://github.com/nsacyber/Mitigating-Web-Shells", "https://attack.mitre.org/techniques/T1505/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0118",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Entering an odd expression in a name field returns an error message that names a template engine and a line number. What is the likely class of flaw?",
+    "options": [
+      "Clickjacking of the profile form",
+      "Open redirect through the name field",
+      "Server-side template injection",
+      "Session fixation during sign-up"
+    ],
+    "answer": 2,
+    "explanation": "Input must be passed to templates as data, never as template code; verbose errors also point to A10.",
+    "optionNotes": [
+      "No framing is involved.",
+      "No redirect is involved.",
+      "Correct: errors naming the engine are an SSTI indicator.",
+      "No session ID is involved."
+    ],
+    "tags": ["ssti"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/07-Injection/18-Server-side_Template_Injection.md",
+      "https://portswigger.net/web-security/server-side-template-injection"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0119",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "Which OWASP Top 10 edition does the public CEH v13 course page name, which is why learners should know both lists?",
+    "options": ["2021", "2017", "2025", "2013"],
+    "answer": 0,
+    "explanation": "Map between them: SSRF A10:2021 → A01:2025; Vulnerable Components A06:2021 → A03:2025.",
+    "optionNotes": [
+      "Correct: the course outline predates the 2025 release.",
+      "2017 is two editions old.",
+      "OWASP's current list is 2025, but the course page names 2021.",
+      "2013 is long outdated."
+    ],
+    "tags": ["owasp-top10", "ec-council-specific"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://owasp.org/Top10/2021/",
+      "https://owasp.org/Top10/2025/0x00_2025-Introduction/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0120",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool looks for undocumented request parameters that an endpoint accepts?",
+    "options": ["HTTrack", "Arjun", "WhatWeb", "CeWL"],
+    "answer": 1,
+    "explanation": "Hidden parameters (debug flags, role fields) are a frequent source of mass assignment and access-control findings.",
+    "optionNotes": ["HTTrack mirrors a site offline.", "Correct.", "WhatWeb fingerprints technologies.", "CeWL builds wordlists."],
+    "tags": ["tools", "discovery"],
+    "sources": ["https://www.kali.org/tools/arjun/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0121",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Burp tool converts data between URL encoding, Base64, HTML entities and hex?",
+    "options": ["Sequencer", "Decoder", "Intruder", "Collaborator"],
+    "answer": 1,
+    "explanation": "Decoder is how testers read encoded cookies and parameters, which is why encoding never protects a value.",
+    "optionNotes": [
+      "Sequencer tests token randomness.",
+      "Correct.",
+      "Intruder sends automated requests.",
+      "Collaborator catches out-of-band interactions."
+    ],
+    "tags": ["burp", "encoding"],
+    "sources": ["https://portswigger.net/burp/documentation/desktop/tools/decoder"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0122",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 3,
+    "stem": "A tester has a list of usernames and a matching list of their default passwords and wants to try row 1 with row 1, row 2 with row 2, and so on. Which Intruder attack type fits?",
+    "options": ["Pitchfork", "Cluster bomb", "Sniper", "Battering ram"],
+    "answer": 0,
+    "explanation": "Pitchfork = matched pairs; Cluster bomb = the full cross product.",
+    "optionNotes": [
+      "Correct: parallel lists stepped together.",
+      "Cluster bomb tries every combination.",
+      "Sniper uses one list.",
+      "Battering ram places one value in all positions."
+    ],
+    "tags": ["burp", "intruder"],
+    "sources": ["https://portswigger.net/burp/documentation/desktop/tools/intruder/configure-attack/attack-types"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0123",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool is built to detect and test OS command injection in web parameters?",
+    "options": ["JoomScan", "WPScan", "wafw00f", "commix"],
+    "answer": 3,
+    "explanation": "Defenders see its runs as bursts of shell metacharacters and time-delay probes in one parameter.",
+    "optionNotes": ["JoomScan is for Joomla.", "WPScan is for WordPress.", "wafw00f detects WAFs.", "Correct."],
+    "tags": ["tools", "command-injection"],
+    "sources": ["https://www.kali.org/tools/commix/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0124",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "An Nmap run with the `http-enum` script lists `/admin/`, `/phpmyadmin/` and `/backup/` as found. What has the script done?",
+    "options": [
+      "Detected which web application firewall protects the server",
+      "Cracked the administrator password for the phpMyAdmin login page",
+      "Checked a list of common paths and reported those the server answered",
+      "Tested the TLS versions and cipher suites the server accepts"
+    ],
+    "answer": 2,
+    "explanation": "Remove or protect admin tools and backups; alert on requests for known admin paths.",
+    "optionNotes": ["That is http-waf-detect.", "http-enum does not guess passwords.", "Correct.", "TLS checks use ssl-* scripts."],
+    "tags": ["nmap", "discovery"],
+    "sources": ["https://nmap.org/nsedoc/scripts/http-enum.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0125",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which list matches testing categories in the OWASP Web Security Testing Guide?",
+    "options": [
+      "Planning, discovery, attack and reporting, as a generic four-stage penetration test outline",
+      "Reconnaissance, weaponization, delivery, exploitation, installation, command and control, actions",
+      "Identify, protect, detect, respond and recover, with govern added across all of them in 2024",
+      "Information gathering, authentication, authorization, session management, input validation, business logic"
+    ],
+    "answer": 3,
+    "explanation": "The WSTG is the open reference for how to test each part of a web application.",
+    "optionNotes": ["That is a generic pen test outline, not the WSTG.", "That is the Cyber Kill Chain.", "Those are NIST CSF functions.", "Correct."],
+    "tags": ["methodology", "wstg"],
+    "sources": ["https://owasp.org/www-project-web-security-testing-guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0126",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A team wants a scheduled scan in its CI pipeline that spiders the staging app and reports passive findings only. Which ZAP option fits?",
+    "options": ["An active scan in ATTACK mode", "The ZAP baseline scan", "The ZAP fuzzer", "A manual Burp Repeater session"],
+    "answer": 1,
+    "explanation": "The baseline scan runs the spider for a short time, then passive rules, and returns warnings or failures for CI.",
+    "optionNotes": [
+      "Active scanning sends attacks and takes longer.",
+      "Correct.",
+      "Fuzzing needs chosen inputs and sends many requests.",
+      "Repeater is manual."
+    ],
+    "tags": ["zap", "sdlc"],
+    "sources": ["https://www.zaproxy.org/docs/docker/baseline-scan/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0127",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An API switched from sequential order IDs to random UUIDs and declared its BOLA problem fixed. Why is that not enough?",
+    "options": [
+      "Random IDs only slow guessing; the server must still check ownership",
+      "UUIDs are always encrypted, so nobody can read or reuse them",
+      "BOLA only affects GraphQL APIs, not REST APIs with UUIDs",
+      "UUIDs in URLs break HTTPS, so the change creates a new flaw"
+    ],
+    "answer": 0,
+    "explanation": "OWASP lists random IDs as defense in depth only; the real fix is an authorization check per object.",
+    "optionNotes": [
+      "Correct: leaked or shared IDs still work without an ownership check.",
+      "UUIDs are identifiers, not encryption.",
+      "BOLA affects any API that takes object IDs.",
+      "IDs have nothing to do with TLS."
+    ],
+    "tags": ["api-top10", "bola"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0128",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A GraphQL query nests `friends { friends { friends { ... } } }` twenty levels deep and makes the server run out of memory. Which risk and control fit?",
+    "options": [
+      "API9 Improper Inventory Management; retire old versions",
+      "API1 BOLA; add object ownership checks",
+      "API4 Unrestricted Resource Consumption; limit query depth and cost",
+      "API10 Unsafe Consumption; validate partner data"
+    ],
+    "answer": 2,
+    "explanation": "The OWASP GraphQL cheat sheet recommends depth limits, cost analysis, batching limits and timeouts.",
+    "optionNotes": ["No forgotten version is involved.", "No other user's object is the issue.", "Correct.", "No third-party API is involved."],
+    "tags": ["graphql", "api-top10"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html",
+      "https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0129",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An API returns detailed stack traces, allows every HTTP verb and sends a permissive CORS policy. Which API risk groups these?",
+    "options": [
+      "API8 Security Misconfiguration",
+      "API6 Unrestricted Access to Sensitive Business Flows",
+      "API3 Broken Object Property Level Authorization",
+      "API2 Broken Authentication"
+    ],
+    "answer": 0,
+    "explanation": "Harden every layer: generic errors, method allowlists, strict CORS, TLS and security headers.",
+    "optionNotes": ["Correct.", "No business flow is automated.", "No property-level issue is described.", "Authentication is not described."],
+    "tags": ["api-top10", "misconfiguration"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa8-security-misconfiguration/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0130",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "Why should a webhook receiver compare signatures with a constant-time function?",
+    "options": [
+      "It removes the need to keep the shared webhook secret on the server",
+      "Constant-time functions encrypt the signature before comparing it",
+      "It makes the comparison run faster when the server is under load",
+      "A normal compare can leak through timing how many characters matched"
+    ],
+    "answer": 3,
+    "explanation": "GitHub's validation guide uses a constant-time compare such as `hmac.compare_digest` or `crypto.timingSafeEqual`.",
+    "optionNotes": [
+      "The secret is still required.",
+      "Comparison does not encrypt anything.",
+      "The goal is uniform timing, not speed.",
+      "Correct: timing differences can help forge a signature byte by byte."
+    ],
+    "tags": ["webhooks", "hmac"],
+    "sources": ["https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0131",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A receiver parses the webhook JSON, re-serializes it and then computes the HMAC. Valid deliveries keep failing verification. What is the likely cause?",
+    "options": [
+      "HMAC cannot be used with JSON bodies, only with form data",
+      "The shared secret must be sent in the webhook URL as well",
+      "The HMAC must be computed over the raw body bytes as received",
+      "The provider must switch the webhook from HTTPS to HTTP"
+    ],
+    "answer": 2,
+    "explanation": "Stripe and GitHub both require the raw payload for signature checks.",
+    "optionNotes": [
+      "HMAC works on any bytes.",
+      "Secrets must never go in URLs.",
+      "Correct: re-serializing changes spacing and key order.",
+      "Dropping TLS would make things worse."
+    ],
+    "tags": ["webhooks"],
+    "sources": ["https://docs.stripe.com/webhooks/signature", "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0132",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "How does a webhook differ from polling an API?",
+    "options": [
+      "Webhooks always use SOAP messages, while polling always uses REST calls",
+      "The provider pushes events to your URL instead of you asking again and again",
+      "Polling is always encrypted with TLS, while webhooks are never encrypted",
+      "Webhooks only work inside one private network and never over the internet"
+    ],
+    "answer": 1,
+    "explanation": "Because anyone can POST to your endpoint, webhook receivers must verify signatures and timestamps.",
+    "optionNotes": ["Both can use any format.", "Correct: push versus pull.", "Both should use HTTPS.", "Webhooks are commonly sent across the internet."],
+    "tags": ["webhooks"],
+    "sources": ["https://docs.github.com/en/webhooks/about-webhooks", "https://www.standardwebhooks.com/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0133",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which ZAP option imports an OpenAPI, SOAP or GraphQL definition and scans the API it describes?",
+    "options": ["Forced browsing", "The AJAX Spider", "The passive scanner alone", "The ZAP API scan"],
+    "answer": 3,
+    "explanation": "Scanning from the definition reaches endpoints a crawler would never find, including ones missing from the UI.",
+    "optionNotes": [
+      "Forced browsing guesses paths from a wordlist.",
+      "The AJAX Spider crawls browser-rendered pages.",
+      "Passive scanning does not import definitions.",
+      "Correct."
+    ],
+    "tags": ["zap", "api"],
+    "sources": ["https://www.zaproxy.org/docs/docker/api-scan/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0134",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which anti-framing control does OWASP now prefer, and why?",
+    "options": [
+      "CSP frame-ancestors, a standard that can list several parents",
+      "X-Frame-Options ALLOW-FROM, supported by every modern browser",
+      "Frame-busting JavaScript, because attackers cannot disable it",
+      "HSTS, because it blocks framing of any page served over HTTP"
+    ],
+    "answer": 0,
+    "explanation": "X-Frame-Options DENY or SAMEORIGIN is still fine as a legacy fallback.",
+    "optionNotes": [
+      "Correct.",
+      "ALLOW-FROM is obsolete and ignored by modern browsers.",
+      "Frame-busting scripts can be defeated.",
+      "HSTS has nothing to do with framing."
+    ],
+    "tags": ["clickjacking", "headers"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0135",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A site sends `Content-Security-Policy: script-src 'self' 'unsafe-inline'`. What is the main weakness of this policy?",
+    "options": [
+      "External images are blocked, which breaks most of the site's pages",
+      "Inline scripts are allowed, so most injected script tags still run",
+      "The page cannot be framed by any site, including its own origin",
+      "Session cookies are sent over plain HTTP because of this directive"
+    ],
+    "answer": 1,
+    "explanation": "Use nonces or hashes instead of `unsafe-inline`, as the OWASP CSP cheat sheet recommends.",
+    "optionNotes": [
+      "This directive only covers scripts.",
+      "Correct: `unsafe-inline` undoes most of CSP's XSS protection.",
+      "Framing is set by frame-ancestors.",
+      "CSP does not control cookie transport."
+    ],
+    "tags": ["csp", "xss"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0136",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which testing approach puts an agent inside the running application to watch code paths while tests run?",
+    "options": ["SCA", "SAST", "IAST", "Threat modeling"],
+    "answer": 2,
+    "explanation": "IAST combines some of the code insight of SAST with the runtime view of DAST.",
+    "optionNotes": [
+      "SCA inventories third-party components.",
+      "SAST reads code without running it.",
+      "Correct: interactive testing.",
+      "Threat modeling happens at design time."
+    ],
+    "tags": ["sdlc", "testing"],
+    "sources": [
+      "https://owasp.org/www-community/Source_Code_Analysis_Tools",
+      "https://csrc.nist.gov/glossary/term/dynamic_application_security_testing"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0137",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which list gives the five business functions of OWASP SAMM?",
+    "options": [
+      "Plan, Build, Test, Release, Monitor, Improve",
+      "Identify, Protect, Detect, Respond, Recover",
+      "Prepare, Protect, Produce, Respond, Retire",
+      "Governance, Design, Implementation, Verification, Operations"
+    ],
+    "answer": 3,
+    "explanation": "SAMM measures and improves the maturity of a software security program.",
+    "optionNotes": ["That is a generic DevOps cycle.", "Those are NIST CSF functions.", "That mixes up the SSDF groups.", "Correct."],
+    "tags": ["sdlc", "owasp"],
+    "sources": ["https://owaspsamm.org/model/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0138",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An attacker types a username containing a line break followed by a fake 'login succeeded for admin' entry, and it appears in the log as its own line. Which control prevents this?",
+    "options": [
+      "Encode or strip line breaks and control characters before logging",
+      "Enable HSTS on the login page and the logging endpoint",
+      "Rotate the log files every day and compress the old ones",
+      "Store the logs on the web server's own local disk only"
+    ],
+    "answer": 0,
+    "explanation": "The OWASP Logging cheat sheet also asks for central, tamper-resistant log storage.",
+    "optionNotes": [
+      "Correct: this is log injection (CWE-117).",
+      "HSTS is a transport control.",
+      "Rotation does not stop forged lines.",
+      "Storage location does not stop the forgery."
+    ],
+    "tags": ["logging"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html", "https://cwe.mitre.org/data/definitions/117.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0139",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "Which control is best suited to detect a new web shell dropped into a website's folder?",
+    "options": [
+      "Output encoding in every template of the application",
+      "A longer session timeout for the site's administrators",
+      "File integrity monitoring on the web directories",
+      "A strict Referrer-Policy header on every page"
+    ],
+    "answer": 2,
+    "explanation": "Pair it with process monitoring (web server spawning shells) and no execute rights on upload folders.",
+    "optionNotes": [
+      "Encoding prevents XSS, not file drops.",
+      "Session length does not reveal new files.",
+      "Correct: it alerts on new or changed script files.",
+      "Referrer-Policy limits URL leakage."
+    ],
+    "tags": ["web-shell", "fim"],
+    "sources": ["https://github.com/nsacyber/Mitigating-Web-Shells", "https://attack.mitre.org/techniques/T1505/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0140",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What do CISA's Secure by Design alerts ask software makers to do about classes such as XSS, OS command injection and directory traversal?",
+    "options": [
+      "Leave these classes to their customers' WAF rules to block",
+      "Eliminate whole classes through safe frameworks and APIs",
+      "Report them publicly only after they have been exploited",
+      "Hide them behind generic error messages in production"
+    ],
+    "answer": 1,
+    "explanation": "Examples: templating that encodes by default, APIs that never call a shell, path handling that cannot leave a base folder.",
+    "optionNotes": [
+      "CISA puts the burden on the maker, not the customer.",
+      "Correct.",
+      "The aim is prevention, not disclosure timing.",
+      "Hiding errors does not remove flaws."
+    ],
+    "tags": ["secure-by-design", "sdlc"],
+    "sources": ["https://www.cisa.gov/securebydesign"],
+    "verify": false,
+    "rev": 1
+  }
+]

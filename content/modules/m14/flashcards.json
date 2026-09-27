@@ -1,0 +1,1126 @@
+[
+  {
+    "id": "m14-c-0001",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Web application (three tiers)",
+    "back": "A program that runs on servers and is used through a browser or app.\n\n- **Presentation**: browser, HTML, JavaScript, cookies\n- **Logic**: application server, business rules, authentication, authorization\n- **Data**: database, files, caches\n\nMost attacks abuse input the server trusts, a session it trusts, or a check it forgot.",
+    "tags": ["architecture"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/10-Map_Application_Architecture.md",
+      "https://www.rfc-editor.org/rfc/rfc9110"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0002",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "list",
+    "front": "HTTP methods and what they do",
+    "back": "- **GET** read · **HEAD** headers only\n- **POST** submit · **PUT** replace · **PATCH** modify · **DELETE** remove\n- **OPTIONS** which methods are allowed\n- **TRACE** echo the request back (disable it)\n- **CONNECT** open a tunnel\n\nSafe methods (RFC 9110): GET, HEAD, OPTIONS, TRACE.",
+    "tags": ["http"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9110", "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0003",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "list",
+    "front": "HTTP status codes to know for web testing",
+    "back": "- **200** OK · **301/302** redirect (`Location` header)\n- **401** not authenticated (log in)\n- **403** refused, whoever you are\n- **404** not found · **405** method not allowed\n- **429** too many requests (rate limit, may carry `Retry-After`)\n- **500** server error",
+    "tags": ["http", "status-codes"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9110",
+      "https://www.rfc-editor.org/rfc/rfc6585",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0004",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "401 vs 403",
+    "back": "- **401 Unauthorized**: the request has no valid credentials; the server asks you to authenticate (`WWW-Authenticate`).\n- **403 Forbidden**: the server understood who you are (or does not care) and still refuses.\n\nIn access-control testing, a 403 on another user's object is the right answer; a 200 is a finding.",
+    "tags": ["http", "status-codes"],
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0005",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Session ID",
+    "back": "HTTP is stateless, so the server issues a random **session ID**, usually in a cookie. Whoever presents a valid ID is treated as that user.\n\nIt must be long, random, sent only over HTTPS and renewed at login.",
+    "tags": ["session"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0006",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Cookie attributes and what they protect",
+    "back": "- `Secure`: sent over HTTPS only\n- `HttpOnly`: JavaScript cannot read it (limits XSS cookie theft)\n- `SameSite=Strict|Lax|None`: sent on cross-site requests or not (`None` needs `Secure`)\n- `__Host-` prefix: Secure, no `Domain`, `Path=/`\n- `Expires` / `Max-Age`: lifetime",
+    "tags": ["cookies", "session"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6265",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0007",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Same-origin policy (SOP)",
+    "back": "Browser rule: a script from one **origin** cannot read responses from another.\n\nOrigin = **scheme + host + port**. `https://a.com` and `http://a.com` are different origins; so are ports 443 and 8443.",
+    "tags": ["sop", "browser"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6454", "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0008",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "CORS (Cross-Origin Resource Sharing)",
+    "back": "Response headers that **relax** the same-origin policy: `Access-Control-Allow-Origin`, `-Allow-Credentials`, `-Allow-Methods`.\n\n- `*` can never be combined with credentials.\n- Reflecting any `Origin` with credentials allowed is a misconfiguration (CWE-942).",
+    "tags": ["cors", "misconfiguration"],
+    "sources": ["https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS", "https://cwe.mitre.org/data/definitions/942.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0009",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "list",
+    "front": "SOAP vs REST vs GraphQL vs gRPC",
+    "back": "- **SOAP**: XML envelope, described by a **WSDL** file\n- **REST**: resources + HTTP verbs, usually JSON, stateless\n- **GraphQL**: one endpoint, client picks the fields, schema visible through **introspection**\n- **gRPC**: HTTP/2 + Protocol Buffers",
+    "tags": ["web-services", "api"],
+    "sources": [
+      "https://www.w3.org/TR/soap12/",
+      "https://www.w3.org/TR/wsdl20/",
+      "https://developer.mozilla.org/en-US/docs/Glossary/REST",
+      "https://graphql.org/learn/introspection/",
+      "https://grpc.io/docs/what-is-grpc/introduction/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0010",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Encoding schemes you must recognize",
+    "back": "- **URL (percent)**: `%2F`, `%3C`; double encoding `%252F`\n- **HTML entities**: `&lt;` `&gt;` `&quot;`\n- **Base64 / Base64url**: `dXNlcg==` (JWTs, Basic auth)\n- **Unicode / UTF-8**: alternate forms of the same character\n- **Hex**: `0x3c`, `\\x3c`\n\nRule: canonicalize first, then validate; encode on output.",
+    "tags": ["encoding"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc3986",
+      "https://www.rfc-editor.org/rfc/rfc4648",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+      "https://capec.mitre.org/data/definitions/267.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0011",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Encoding vs encryption vs hashing",
+    "back": "- **Encoding**: reversible by anyone, no key (Base64, URL encoding). Hides nothing.\n- **Encryption**: reversible only with a key.\n- **Hashing**: one-way digest.\n\nA Base64 cookie that decodes to `user=bob;role=user` is a tampering target, not a protected value.",
+    "tags": ["encoding", "exam-trap"],
+    "sources": ["https://developer.mozilla.org/en-US/docs/Glossary/Base64", "https://www.rfc-editor.org/rfc/rfc4648"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0012",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "JSON Web Token (JWT)",
+    "back": "`header.payload.signature`, each part Base64url.\n\n- Anyone can **read** the payload; only the signature proves it genuine.\n- The server must verify the signature and pin the algorithm (reject `alg: none`).\n- Do not put secrets in the payload.",
+    "tags": ["jwt", "tokens"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc7519",
+      "https://www.rfc-editor.org/rfc/rfc8725",
+      "https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0013",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "OAuth 2.0 vs OpenID Connect",
+    "back": "- **OAuth 2.0**: delegated **authorization**; the app gets an access token to call an API on the user's behalf.\n- **OpenID Connect**: identity layer on OAuth that adds **authentication** (ID token).\n- **PKCE** protects the authorization code for public clients (mobile, SPA).",
+    "tags": ["oauth", "oidc"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6749",
+      "https://openid.net/specs/openid-connect-core-1_0.html",
+      "https://www.rfc-editor.org/rfc/rfc7636"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0014",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Client-side controls",
+    "back": "Hidden form fields, disabled buttons, `maxlength` and JavaScript validation run in the user's browser.\n\nThey are **not security controls**: a proxy changes any value. Every check must be repeated on the server (CWE-602).",
+    "tags": ["client-side", "exam-trap"],
+    "sources": ["https://cwe.mitre.org/data/definitions/602.html", "https://owasp.org/www-community/attacks/Web_Parameter_Tampering"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0015",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP Top 10:2025 (A01–A10)",
+    "back": "1. Broken Access Control\n2. Security Misconfiguration\n3. Software Supply Chain Failures\n4. Cryptographic Failures\n5. Injection\n6. Insecure Design\n7. Authentication Failures\n8. Software or Data Integrity Failures\n9. Security Logging and Alerting Failures\n10. Mishandling of Exceptional Conditions",
+    "tags": ["owasp-top10"],
+    "sources": ["https://owasp.org/Top10/2025/0x00_2025-Introduction/", "https://owasp.org/Top10/2025/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0016",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP Top 10: what changed from 2021 to 2025",
+    "back": "- **SSRF** (A10:2021) merged into **A01 Broken Access Control**\n- A06:2021 *Vulnerable and Outdated Components* widened into **A03 Software Supply Chain Failures**\n- **A10 Mishandling of Exceptional Conditions** is new\n- Misconfiguration moved up to **A02**\n\nThe CEH v13 course page still names the 2021 list: learn both.",
+    "tags": ["owasp-top10", "ec-council-specific"],
+    "sources": [
+      "https://owasp.org/Top10/2025/0x00_2025-Introduction/",
+      "https://owasp.org/Top10/2021/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0017",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "A01 Broken Access Control",
+    "back": "Users act outside their permissions: IDOR, forced browsing to admin pages, missing function checks, CORS misconfiguration, and since 2025 **SSRF**.\n\n**Clue:** 200 OK for another user's ID or an admin URL.\n**Fix:** deny by default, check ownership and role on the server for every request, log failures.",
+    "tags": ["owasp-top10", "access-control"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0018",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP 2025 A02, A03, A04, A07: clue → fix",
+    "back": "- **A02 Misconfiguration**: default accounts, directory listing, stack traces, missing headers → hardening baseline, automated checks\n- **A03 Supply Chain**: outdated or tampered libraries, unsigned builds → SBOM, SCA, signed artifacts\n- **A04 Cryptographic Failures**: HTTP logins, MD5 password hashes → TLS + HSTS, Argon2id/bcrypt\n- **A07 Authentication Failures**: credential stuffing allowed, no lockout → MFA, throttling, breached-password checks",
+    "tags": ["owasp-top10"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/",
+      "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+      "https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/",
+      "https://owasp.org/Top10/2025/A07_2025-Authentication_Failures/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0019",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP 2025 A06, A08, A09, A10: clue → fix",
+    "back": "- **A06 Insecure Design**: the flaw is in the plan (no limit on a sensitive flow) → threat modeling, abuse cases\n- **A08 Integrity Failures**: unsigned updates, CDN scripts without SRI, untrusted deserialization → signatures, SRI\n- **A09 Logging and Alerting Failures**: a customer finds the breach first → log auth and access failures, alert on them\n- **A10 Exceptional Conditions**: verbose errors, a failure that grants access (**fail open**) → fail closed, generic errors",
+    "tags": ["owasp-top10"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A06_2025-Insecure_Design/",
+      "https://owasp.org/Top10/2025/A08_2025-Software_or_Data_Integrity_Failures/",
+      "https://owasp.org/Top10/2025/A09_2025-Security_Logging_and_Alerting_Failures/",
+      "https://owasp.org/Top10/2025/A10_2025-Mishandling_of_Exceptional_Conditions/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0020",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "A05 Injection",
+    "back": "Untrusted data is interpreted as code or a command: SQL, NoSQL, OS command, LDAP, XPath, template injection, and **XSS**.\n\n**Fix:** parameterized APIs, contextual output encoding, allowlist validation.",
+    "tags": ["owasp-top10", "injection"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A05_2025-Injection/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0021",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Three types of XSS",
+    "back": "- **Reflected**: markup in a parameter comes back unencoded in the same response (a crafted link)\n- **Stored**: script saved in a comment or profile runs for every visitor\n- **DOM-based**: client JavaScript writes attacker-controlled data (often the `#fragment`) into a sink such as `innerHTML`; the server response is clean",
+    "tags": ["xss"],
+    "sources": [
+      "https://owasp.org/www-community/Types_of_Cross-Site_Scripting",
+      "https://cwe.mitre.org/data/definitions/79.html",
+      "https://portswigger.net/web-security/cross-site-scripting"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0022",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "countermeasure",
+    "front": "XSS countermeasures",
+    "back": "- **Contextual output encoding** (HTML body, attribute, JavaScript, URL, CSS)\n- Safe sinks (`textContent`), framework auto-escaping, **Trusted Types** for DOM XSS\n- Sanitize rich text with a vetted library\n- **CSP** as defense in depth\n- `HttpOnly` limits cookie theft",
+    "tags": ["xss", "countermeasure"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0023",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Cross-site request forgery (CSRF, CWE-352)",
+    "back": "A foreign site makes the victim's browser send a **state-changing** request; the browser attaches the victim's cookies automatically.\n\n**Clue:** valid session cookie, but a foreign `Origin`/`Referer` and no valid token.\n**Fix:** synchronizer token, `SameSite` cookies, Origin check, re-authentication for sensitive actions.\n\nCSRF cannot read the response.",
+    "tags": ["csrf"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/csrf",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/352.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0024",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Server-side request forgery (SSRF, CWE-918)",
+    "back": "The server fetches a URL the user chose and reaches internal services or cloud metadata (`169.254.169.254`).\n\n**Clue:** URL-valued parameter (image import, webhook, PDF render); app servers calling internal IPs.\n**Fix:** allowlist destinations, block redirects and private ranges, segment the network.\n\nOWASP: inside **A01:2025**, still **API7:2023**.",
+    "tags": ["ssrf"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/918.html",
+      "https://owasp.org/API-Security/editions/2023/en/0xa7-server-side-request-forgery/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0025",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Path traversal and file inclusion",
+    "back": "- **Path traversal** (CWE-22): `../` or `%2e%2e%2f` in a file parameter reads files outside the web folder.\n- **LFI**: the app includes a local file; **RFI**: it loads a remote file (PHP `allow_url_include` is off by default).\n\n**Fix:** no user input in paths, map IDs to files, canonicalize and check the base directory.",
+    "tags": ["path-traversal", "lfi", "rfi"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Path_Traversal",
+      "https://cwe.mitre.org/data/definitions/22.html",
+      "https://cwe.mitre.org/data/definitions/98.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/07-Injection/11.1-File_Inclusion.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0026",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "OS command injection (CWE-78)",
+    "back": "Input reaches a system shell.\n\n**Clue:** `;`, `|`, `&&`, backticks in a parameter; responses delayed on purpose; the web process spawning shells.\n**Fix:** call a library API instead of a shell; if unavoidable, parameterize and allowlist.",
+    "tags": ["command-injection"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/Command_Injection",
+      "https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/78.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0027",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "XML external entity (XXE, CWE-611)",
+    "back": "An XML parser resolves an external entity declared in a `<!DOCTYPE>`, then reads local files or makes network requests.\n\n**Clue:** `<!DOCTYPE` with `<!ENTITY ... SYSTEM` in an XML body (SOAP, SVG, DOCX uploads).\n**Fix:** disable DTDs and external entities in the parser.",
+    "tags": ["xxe"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/611.html",
+      "https://portswigger.net/web-security/xxe"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0028",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Insecure deserialization (CWE-502)",
+    "back": "The server rebuilds objects from untrusted serialized data, which can trigger code during rebuilding.\n\n**Clues:** Java streams start `AC ED 00 05` (Base64 `rO0`), PHP `O:` objects, Python pickle.\n**Fix:** do not deserialize untrusted data natively; use JSON with schemas, sign data, allowlist classes. OWASP places it under **A08**.",
+    "tags": ["deserialization"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/502.html",
+      "https://owasp.org/Top10/2025/A08_2025-Software_or_Data_Integrity_Failures/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0029",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Server-side template injection (SSTI, CWE-1336)",
+    "back": "User input is evaluated by a template engine instead of treated as data.\n\n**Classic indicator:** a math expression in input comes back **computed**; errors name the engine.\n**Fix:** never build templates from input; logic-less or sandboxed templates.",
+    "tags": ["ssti", "injection"],
+    "sources": [
+      "https://cwe.mitre.org/data/definitions/1336.html",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/07-Injection/18-Server-side_Template_Injection.md",
+      "https://portswigger.net/web-security/server-side-template-injection"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0030",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Clickjacking (CWE-1021)",
+    "back": "The target page is loaded in an invisible frame over a decoy, so the user clicks buttons they cannot see.\n\n**Fix:** CSP `frame-ancestors 'none'` or `'self'`; legacy `X-Frame-Options: DENY` or `SAMEORIGIN`.",
+    "tags": ["clickjacking"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/1021.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0031",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Open redirect, session fixation, parameter tampering: one clue each",
+    "back": "- **Open redirect** (CWE-601): `?next=https://other.site` sends users anywhere; fix: map or allowlist destinations\n- **Session fixation** (CWE-384): session ID unchanged before and after login; fix: new ID at authentication\n- **Parameter tampering / HPP**: price or role changed in a hidden field, duplicate parameter names; fix: server-side validation and authorization",
+    "tags": ["open-redirect", "session-fixation", "tampering"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/601.html",
+      "https://owasp.org/www-community/attacks/Session_fixation",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/07-Injection/04-HTTP_Parameter_Pollution.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0032",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Unrestricted file upload (CWE-434)",
+    "back": "The app accepts a script (`.php`, `.aspx`, double extension `photo.jpg.php`) and stores it where the web server executes it.\n\n**Fix:** allowlist extensions, check content, rename files, store outside the web root with no execute permission, size limits, malware scan.",
+    "tags": ["file-upload"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/434.html",
+      "https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0033",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Web shell (ATT&CK T1505.003)",
+    "back": "A small script left on a web server that runs commands sent over HTTP; a **persistence** technique.\n\n**Signs:** new `.php`/`.aspx`/`.jsp` in the web root; `w3wp.exe`, `httpd` or `php-fpm` spawning `cmd.exe`, `powershell.exe` or `/bin/sh`; POSTs to a page nobody links to.\n**Defenses:** file integrity monitoring, known-good comparison, least privilege, no execute on upload folders, patching.",
+    "tags": ["web-shell", "mitre-attack"],
+    "sources": ["https://attack.mitre.org/techniques/T1505/003/", "https://github.com/nsacyber/Mitigating-Web-Shells"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0034",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Web application testing phases (exam order)",
+    "back": "1. Footprint the infrastructure\n2. Analyze the application\n3. Client-side controls\n4. Authentication\n5. Authorization and access control\n6. Session management\n7. Injection and input handling\n8. Logic, clients and web services\n9. Report and fix\n\nMnemonic: **Find All Clients' Authentic Access Sessions, Inject Last**. Only with written permission and scope.",
+    "tags": ["methodology", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://owasp.org/www-project-web-security-testing-guide/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0035",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP WSTG test categories",
+    "back": "Information gathering · configuration and deployment · identity management · authentication · authorization · session management · input validation · error handling · weak cryptography · business logic · client-side · API testing",
+    "tags": ["methodology", "wstg"],
+    "sources": ["https://owasp.org/www-project-web-security-testing-guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0036",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Footprinting tools: what each identifies",
+    "back": "- **WhatWeb**, **Wappalyzer**: technologies (CMS, framework, server)\n- **wafw00f**, Nmap `http-waf-detect`: whether a WAF is in front\n- Nmap `http-enum`: common paths; `http-methods`: allowed verbs\n- **Nikto**: web **server** misconfigurations and outdated software\n- Metafiles: `robots.txt`, `sitemap.xml`, `security.txt`",
+    "tags": ["tools", "footprinting"],
+    "sources": [
+      "https://www.kali.org/tools/whatweb/",
+      "https://www.kali.org/tools/wafw00f/",
+      "https://nmap.org/nsedoc/scripts/http-waf-detect.html",
+      "https://www.kali.org/tools/nikto/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0037",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "term",
+    "front": "robots.txt in a test",
+    "back": "Tells crawlers which paths not to index (RFC 9309). It is **advisory only**: it protects nothing and may reveal hidden paths such as `/admin/`.\n\nTesters read it early; defenders never rely on it for access control.",
+    "tags": ["footprinting", "exam-trap"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9309",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0038",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Spidering vs forced browsing",
+    "back": "- **Spider / crawler**: follows links the app shows (ZAP Spider, ZAP AJAX Spider for JavaScript apps, Burp site map, katana).\n- **Forced browsing**: guesses paths that are **not linked** from a wordlist (gobuster, ffuf, dirb, feroxbuster).\n\nDefenders see forced browsing as a burst of 404s from one client.",
+    "tags": ["tools", "discovery"],
+    "sources": [
+      "https://www.zaproxy.org/docs/desktop/addons/spider/",
+      "https://www.zaproxy.org/docs/desktop/addons/ajax-spider/",
+      "https://owasp.org/www-community/attacks/Forced_browsing"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0039",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "tool",
+    "front": "gobuster and ffuf",
+    "back": "- **gobuster** modes: `dir` (paths), `dns` (subdomains), `vhost` (virtual hosts).\n- **ffuf**: the keyword `FUZZ` marks the position being replaced (path, parameter, header).\n\nBoth read a wordlist and report status codes and response sizes.",
+    "tags": ["tools", "discovery"],
+    "sources": ["https://www.kali.org/tools/gobuster/", "https://www.kali.org/tools/ffuf/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0040",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Burp Suite tools",
+    "back": "- **Proxy**: intercept and edit traffic\n- **Repeater**: resend one request **by hand**\n- **Intruder**: **automated** customized requests\n- **Sequencer**: randomness of session tokens\n- **Decoder**: encode and decode (URL, Base64, HTML)\n- **Comparer**: diff two responses\n- **Collaborator**: detect out-of-band interactions (blind SSRF, blind injection)",
+    "tags": ["tools", "burp"],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/proxy",
+      "https://portswigger.net/burp/documentation/desktop/tools/repeater",
+      "https://portswigger.net/burp/documentation/desktop/tools/intruder",
+      "https://portswigger.net/burp/documentation/desktop/tools/sequencer",
+      "https://portswigger.net/burp/documentation/collaborator"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0041",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Burp Intruder attack types",
+    "back": "- **Sniper**: one list, one position at a time\n- **Battering ram**: the same value in every position at once\n- **Pitchfork**: several lists stepped in parallel (row 1 with row 1)\n- **Cluster bomb**: every combination of several lists",
+    "tags": ["tools", "burp"],
+    "sources": ["https://portswigger.net/burp/documentation/desktop/tools/intruder/configure-attack/attack-types"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0042",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "ZAP scans and modes",
+    "back": "- **Passive scan**: reads traffic only, sends nothing new: safe on production\n- **Active scan**: sends attack requests: only with permission\n- **Baseline scan**: spider + passive scan, for CI\n- **API scan**: imports OpenAPI, SOAP or GraphQL definitions\n- Modes: **Safe**, **Protected** (attacks only in scope), **Standard**, **ATTACK**",
+    "tags": ["tools", "zap"],
+    "sources": [
+      "https://www.zaproxy.org/docs/desktop/start/features/pscan/",
+      "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
+      "https://www.zaproxy.org/docs/docker/baseline-scan/",
+      "https://www.zaproxy.org/docs/desktop/start/features/modes/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0043",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Fuzz testing",
+    "back": "Sending many unexpected or malformed inputs and watching for different **status codes, response lengths or timing**, errors and crashes.\n\nTools: Burp Intruder, ZAP Fuzzer, ffuf, wfuzz.",
+    "tags": ["fuzzing"],
+    "sources": ["https://owasp.org/www-community/Fuzzing", "https://www.zaproxy.org/docs/desktop/addons/fuzzer/", "https://www.kali.org/tools/wfuzz/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0044",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Specialized web scanners",
+    "back": "- **WPScan**: WordPress only · **JoomScan**: Joomla\n- **commix**: command injection · **sqlmap**: SQL injection (M15)\n- **XSSer**, XSStrike, Dalfox: XSS\n- **Nuclei**: template-based checks\n- **Arjun**: hidden parameter discovery\n- **HTTrack**: mirror a site offline · **CeWL**: wordlist from site text",
+    "tags": ["tools"],
+    "sources": [
+      "https://www.kali.org/tools/wpscan/",
+      "https://www.kali.org/tools/joomscan/",
+      "https://www.kali.org/tools/commix/",
+      "https://www.kali.org/tools/xsser/",
+      "https://www.kali.org/tools/nuclei/",
+      "https://www.kali.org/tools/arjun/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0045",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "kind": "list",
+    "front": "What each test phase looks like to defenders",
+    "back": "- Footprinting: fingerprint requests, scanner user agents\n- Discovery: bursts of 404s, crawling patterns\n- Authentication: many failed logins, lockouts\n- Authorization: 200 responses to other users' IDs\n- Injection: WAF alerts, error spikes\n- APIs: calls to undocumented endpoints",
+    "tags": ["detection", "methodology"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html", "https://owasp.org/www-project-web-security-testing-guide/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0046",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP API Security Top 10 (2023)",
+    "back": "1. Broken Object Level Authorization (BOLA)\n2. Broken Authentication\n3. Broken Object Property Level Authorization\n4. Unrestricted Resource Consumption\n5. Broken Function Level Authorization (BFLA)\n6. Unrestricted Access to Sensitive Business Flows\n7. Server-Side Request Forgery\n8. Security Misconfiguration\n9. Improper Inventory Management\n10. Unsafe Consumption of APIs",
+    "tags": ["api-top10"],
+    "sources": ["https://owasp.org/API-Security/editions/2023/en/0x11-t10/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0047",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "term",
+    "front": "API1 BOLA",
+    "back": "The API does not check that the caller may access the **object** whose ID is in the path, query or body.\n\n**Clue:** `/api/orders/1002` returns another customer's order with 200.\n**Fix:** per-object ownership check from the session user; random IDs only as defense in depth. Same flaw as IDOR.",
+    "tags": ["api-top10", "bola", "idor"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/12-API_Testing/02-API_Broken_Object_Level_Authorization.md",
+      "https://cwe.mitre.org/data/definitions/639.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0048",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "term",
+    "front": "BOLA vs BFLA",
+    "back": "- **BOLA (API1)**: the wrong **object**: someone else's record through an ID.\n- **BFLA (API5)**: the wrong **function**: a normal user calls an admin action (`DELETE`, `/api/admin/...`).\n\nFix both with server-side authorization, deny by default.",
+    "tags": ["api-top10", "bola", "bfla"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+      "https://owasp.org/API-Security/editions/2023/en/0xa5-broken-function-level-authorization/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0049",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "term",
+    "front": "API3 Broken Object Property Level Authorization",
+    "back": "Merges the 2019 items **excessive data exposure** and **mass assignment**.\n\n- Response shows properties the user should not see (`passwordHash`).\n- Request sets properties the user should not set (`\"isAdmin\": true`).\n\n**Fix:** response schemas, allowlist the fields a client may bind.",
+    "tags": ["api-top10", "mass-assignment"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html",
+      "https://cwe.mitre.org/data/definitions/915.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0050",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "term",
+    "front": "API4 Unrestricted Resource Consumption",
+    "back": "No limits on request rate, payload size, page size, GraphQL depth or batching, or paid third-party calls.\n\n**Clue:** `limit=1000000` accepted; a 429 is never returned.\n**Fix:** rate limits, quotas, size and depth limits, timeouts.",
+    "tags": ["api-top10", "rate-limiting"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0051",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "list",
+    "front": "API6, API9, API10 in one line each",
+    "back": "- **API6 Sensitive Business Flows**: bots automate a legitimate flow (buying all stock, mass sign-ups) → detect automation, flow limits\n- **API9 Improper Inventory Management**: `/v1/` or a staging host still live (shadow and zombie APIs) → inventory, OpenAPI docs, retire old versions\n- **API10 Unsafe Consumption of APIs**: trusting data from a partner API → validate it like user input",
+    "tags": ["api-top10"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows/",
+      "https://owasp.org/API-Security/editions/2023/en/0xa9-improper-inventory-management/",
+      "https://owasp.org/API-Security/editions/2023/en/0xaa-unsafe-consumption-of-apis/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0052",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "list",
+    "front": "API reconnaissance clues",
+    "back": "- OpenAPI / Swagger documents: `swagger.json`, `openapi.json`\n- **WSDL** files for SOAP\n- GraphQL **introspection** queries (`__schema`)\n- Version prefixes (`/v1/`, `/v2/`), JavaScript files naming endpoints\n\nTools: Postman, Kiterunner, Arjun, ZAP API scan.",
+    "tags": ["api", "recon"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/12-API_Testing/01-API_Reconnaissance.md",
+      "https://graphql.org/learn/introspection/",
+      "https://www.zaproxy.org/docs/docker/api-scan/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0053",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "countermeasure",
+    "front": "GraphQL hardening",
+    "back": "- Disable introspection in production if clients do not need it\n- Limit query **depth**, cost and batching\n- Authorize **each field and object**, not just the endpoint\n- Timeouts and pagination limits",
+    "tags": ["graphql", "countermeasure"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html",
+      "https://graphql.org/learn/security/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/12-API_Testing/99-GraphQL.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0054",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Webhook",
+    "back": "An HTTP callback: when an event happens, the **provider** sends an HTTP POST with a payload to a URL the subscriber registered.\n\nIt is **push** (provider → you); polling an API is **pull**.",
+    "tags": ["webhooks"],
+    "sources": ["https://docs.github.com/en/webhooks/about-webhooks", "https://docs.stripe.com/webhooks"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0055",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "countermeasure",
+    "front": "Verifying a webhook delivery",
+    "back": "1. Recompute an **HMAC-SHA256** of the **raw body** with the shared secret (GitHub header `X-Hub-Signature-256`).\n2. Compare in **constant time**.\n3. Check the signed **timestamp** is inside the tolerance (Stripe default 5 minutes).\n4. Reject a **delivery ID** already processed (`X-GitHub-Delivery`, `webhook-id`).",
+    "tags": ["webhooks", "hmac"],
+    "sources": [
+      "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+      "https://docs.stripe.com/webhooks/signature",
+      "https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md",
+      "https://www.rfc-editor.org/rfc/rfc2104"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0056",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Webhook risks and fixes",
+    "back": "- **Forged delivery** → HMAC signature check\n- **Replay** → timestamp tolerance + stored delivery IDs\n- **SSRF on the provider** (users register internal URLs) → validate destinations, block private ranges\n- **Slow receiver** → reply 2xx fast, process asynchronously (GitHub expects a reply within 10 s)\n- Subscribe only to the events you need; HTTPS endpoint",
+    "tags": ["webhooks"],
+    "sources": [
+      "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+      "https://docs.github.com/en/webhooks/using-webhooks/handling-webhook-deliveries",
+      "https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0057",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "kind": "countermeasure",
+    "front": "REST API security basics",
+    "back": "- HTTPS only, authorization on **every** endpoint\n- Allowlist HTTP methods, answer **405** to others\n- Validate content type (**415** for unexpected ones)\n- No secrets or tokens in URLs\n- Security headers, rate limiting, generic errors",
+    "tags": ["api", "countermeasure"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html",
+      "https://owasp.org/API-Security/editions/2023/en/0xa8-security-misconfiguration/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0058",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Attack → primary control",
+    "back": "- Injection → **parameterized queries / safe APIs**\n- XSS → **contextual output encoding** + CSP\n- CSRF → **anti-CSRF token** + SameSite\n- Clickjacking → CSP `frame-ancestors`\n- IDOR / BOLA / BFLA → **server-side authorization** on every request\n- Brute force, API4 → **rate limiting** (429)\n- Web shells → **file integrity monitoring**",
+    "tags": ["countermeasure"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0059",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Content Security Policy (CSP)",
+    "back": "Response header that tells the browser which sources of script, style, frames and more are allowed.\n\n- Blocks inline and foreign scripts → limits XSS impact\n- `frame-ancestors` → clickjacking defense\n- Defense in depth: it does **not** replace output encoding\n- `X-XSS-Protection` is obsolete; CSP is the current answer.",
+    "tags": ["csp", "headers"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-XSS-Protection"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0060",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "term",
+    "front": "HSTS (Strict-Transport-Security)",
+    "back": "Tells the browser to use HTTPS only for this host for `max-age` seconds; `includeSubDomains` extends it; `preload` asks browsers to ship the host in a built-in list.\n\nStops SSL stripping on later visits; the **preload list** protects the first visit. Turn it on only after HTTPS works everywhere.",
+    "tags": ["hsts", "headers"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0061",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "list",
+    "front": "Other security headers",
+    "back": "- `X-Content-Type-Options: nosniff`: no MIME sniffing\n- `X-Frame-Options: DENY|SAMEORIGIN`: legacy framing control\n- `Referrer-Policy`: limits what the Referer header leaks\n- `Permissions-Policy`: turns off browser features\n- Remove version detail from `Server` and `X-Powered-By`",
+    "tags": ["headers"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Referrer-Policy"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0062",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Web application firewall (WAF)",
+    "back": "Filters HTTP at layer 7 and blocks requests that match attack rules (XSS, injection).\n\nForms: appliance, server module (**ModSecurity**), cloud service (Azure WAF, AWS WAF).\n\nIt is **defense in depth**: it does not remove the flaw from the code.",
+    "tags": ["waf"],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/web_application_firewall",
+      "https://owasp.org/www-community/Web_Application_Firewall",
+      "https://learn.microsoft.com/en-us/azure/web-application-firewall/overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0063",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "list",
+    "front": "WAF models and modes",
+    "back": "- **Negative model**: block known-bad patterns (signatures, deny list)\n- **Positive model**: allow only known-good input (allow list)\n- **Detection-only**: log, do not block (ModSecurity `SecRuleEngine DetectionOnly`)\n- **Blocking**: drop matching requests (`SecRuleEngine On`)",
+    "tags": ["waf", "modsecurity"],
+    "sources": ["https://owasp.org/www-community/Web_Application_Firewall", "https://github.com/owasp-modsecurity/ModSecurity"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0064",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "term",
+    "front": "OWASP CRS: anomaly scoring and paranoia levels",
+    "back": "- **Anomaly scoring**: each matching rule adds points; the request is blocked when the total passes a threshold.\n- **Paranoia level** (1–4): higher = more rules, stricter, more false positives.",
+    "tags": ["waf", "crs"],
+    "sources": [
+      "https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/",
+      "https://coreruleset.org/docs/2-how-crs-works/2-2-paranoia_levels/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0065",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "term",
+    "front": "Virtual patching",
+    "back": "A WAF or proxy rule that blocks exploitation of a **known** flaw until the code is fixed.\n\nIt buys time; the real fix still goes into the code.",
+    "tags": ["waf", "virtual-patching"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Virtual_Patching_Cheat_Sheet.html", "https://coreruleset.org/docs/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0066",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "list",
+    "front": "NIST SSDF (SP 800-218) practice groups",
+    "back": "- **PO**: Prepare the Organization\n- **PS**: Protect the Software\n- **PW**: Produce Well-Secured Software\n- **RV**: Respond to Vulnerabilities",
+    "tags": ["sdlc", "nist"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/218/final"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0067",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "list",
+    "front": "OWASP SAMM and ASVS",
+    "back": "- **SAMM** (maturity model) business functions: Governance, Design, Implementation, Verification, Operations\n- **ASVS**: verification requirements for web apps in **three levels**; used as security requirements and test criteria",
+    "tags": ["sdlc", "owasp"],
+    "sources": ["https://owaspsamm.org/model/", "https://owasp.org/www-project-application-security-verification-standard/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0068",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "list",
+    "front": "SAST vs DAST vs IAST vs SCA",
+    "back": "- **SAST**: reads source code (white box), no running app needed\n- **DAST**: attacks the running app from outside (black box)\n- **IAST**: agent inside the running app watches code paths during tests\n- **SCA**: finds known-vulnerable third-party components\n- **SBOM** (CycloneDX, SPDX): the component inventory",
+    "tags": ["sdlc", "testing"],
+    "sources": [
+      "https://owasp.org/www-community/Source_Code_Analysis_Tools",
+      "https://csrc.nist.gov/glossary/term/dynamic_application_security_testing",
+      "https://csrc.nist.gov/glossary/term/software_bill_of_materials",
+      "https://cyclonedx.org/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0069",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "countermeasure",
+    "front": "Logging for web apps (A09)",
+    "back": "- Log login successes and failures, access-control failures, input-validation failures\n- Never log passwords, full session IDs or tokens\n- Encode log data to stop **log injection** (CWE-117)\n- Send to central monitoring and **alert** on patterns",
+    "tags": ["logging", "a09"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+      "https://owasp.org/Top10/2025/A09_2025-Security_Logging_and_Alerting_Failures/",
+      "https://cwe.mitre.org/data/definitions/117.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-c-0070",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "kind": "term",
+    "front": "LLM-integrated web apps: two OWASP risks",
+    "back": "- **LLM01 Prompt injection**: text overrides the app's instructions to the model\n- **LLM05 Improper output handling**: model output rendered as HTML becomes XSS, or passed to a shell becomes injection\n\nTreat model output as untrusted input, least privilege for LLM tools, human approval for risky actions.",
+    "tags": ["llm", "ai"],
+    "sources": [
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

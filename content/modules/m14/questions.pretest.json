@@ -1,0 +1,257 @@
+[
+  {
+    "id": "m14-q-0001",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which three parts define a web origin under the same-origin policy?",
+    "options": ["Scheme, host and port", "Host, path and query string", "IP address, port and cookie name", "Domain, user agent and scheme"],
+    "answer": 0,
+    "explanation": "RFC 6454 defines an origin as scheme, host and port. `https://shop.example` and `https://shop.example:8443` are different origins.",
+    "optionNotes": [
+      "Correct: change any one of them and it is a different origin.",
+      "The path and query do not count.",
+      "Cookies are not part of an origin, and the host is a name, not only an IP.",
+      "The user agent has nothing to do with origins."
+    ],
+    "tags": ["sop"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc6454", "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0002",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A cookie holds `dXNlcj1ib2I7cm9sZT11c2Vy`. A tester decodes it to `user=bob;role=user` without any key. What does this show?",
+    "options": [
+      "It is strongly encrypted with a server-side key",
+      "It is only Base64-encoded, which hides nothing",
+      "It is a salted password hash stored by the site",
+      "It is signed, so the server would reject any change"
+    ],
+    "answer": 1,
+    "explanation": "Encoding is not encryption. A role stored in a client-side value must be protected by a server-side session or a verified signature.",
+    "optionNotes": [
+      "Encryption would need a key to reverse.",
+      "Correct: encoding is reversible by anyone.",
+      "A hash cannot be reversed to readable text.",
+      "Nothing here proves a signature; an unsigned role value invites tampering."
+    ],
+    "tags": ["encoding"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc4648", "https://developer.mozilla.org/en-US/docs/Glossary/Base64"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0003",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which category is A01 in the OWASP Top 10:2025?",
+    "options": ["Security Misconfiguration", "Injection", "Broken Access Control", "Cryptographic Failures"],
+    "answer": 2,
+    "explanation": "Broken Access Control is A01 in both the 2021 and 2025 lists; in 2025 it also absorbs SSRF.",
+    "optionNotes": [
+      "Security Misconfiguration moved up to A02.",
+      "Injection is A05 in 2025.",
+      "Correct: it keeps first place from 2021.",
+      "Cryptographic Failures is A04 in 2025."
+    ],
+    "tags": ["owasp-top10"],
+    "sources": ["https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/", "https://owasp.org/Top10/2025/0x00_2025-Introduction/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0004",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A logged-in user visits a forum page that silently submits a hidden form to their bank's transfer URL. The bank sees a valid session cookie but an `Origin` header from the forum. What attack is this?",
+    "options": ["Session fixation", "Stored cross-site scripting", "Server-side request forgery", "Cross-site request forgery (CSRF)"],
+    "answer": 3,
+    "explanation": "CSRF abuses the browser's habit of attaching cookies. An anti-CSRF token, SameSite cookies and an Origin check stop it.",
+    "optionNotes": [
+      "Fixation plants a known session ID before login.",
+      "No script runs on the bank's own pages.",
+      "SSRF makes the server, not the browser, send the request.",
+      "Correct: a forged cross-site request rides the victim's cookies."
+    ],
+    "tags": ["csrf"],
+    "sources": [
+      "https://owasp.org/www-community/attacks/csrf",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0005",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Burp Suite tool lets a tester resend a single captured request by hand, change it and compare the responses?",
+    "options": ["Intruder", "Repeater", "Sequencer", "Collaborator"],
+    "answer": 1,
+    "explanation": "Repeater is the manual tool; Intruder is the automated one. The exam likes that split.",
+    "optionNotes": [
+      "Intruder automates many requests from payload lists.",
+      "Correct: manual, one request at a time.",
+      "Sequencer measures the randomness of tokens.",
+      "Collaborator detects out-of-band interactions."
+    ],
+    "tags": ["burp", "tools"],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/repeater",
+      "https://portswigger.net/burp/documentation/desktop/tools/intruder"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0006",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the difference between spidering and forced browsing?",
+    "options": [
+      "Spidering needs valid credentials; forced browsing sends no requests",
+      "Spidering guesses unlinked paths; forced browsing follows the links shown",
+      "Both only read robots.txt and sitemap.xml to list the site's pages",
+      "Spidering follows links the app shows; forced browsing guesses unlinked paths"
+    ],
+    "answer": 3,
+    "explanation": "Crawlers such as ZAP Spider map linked content. Tools such as gobuster and ffuf find content nobody links to, which shows up as bursts of 404s.",
+    "optionNotes": ["Neither statement is true.", "This reverses the two terms.", "robots.txt is one input, not the whole technique.", "Correct."],
+    "tags": ["discovery"],
+    "sources": ["https://www.zaproxy.org/docs/desktop/addons/spider/", "https://owasp.org/www-community/attacks/Forced_browsing"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0007",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which risk is API1 in the OWASP API Security Top 10 (2023)?",
+    "options": ["Server-Side Request Forgery", "Broken Authentication", "Broken Object Level Authorization", "Improper Inventory Management"],
+    "answer": 2,
+    "explanation": "BOLA is the most common API flaw: the API does not check that the caller may access the object whose ID it received.",
+    "optionNotes": ["That is API7.", "That is API2.", "Correct.", "That is API9."],
+    "tags": ["api-top10"],
+    "sources": [
+      "https://owasp.org/API-Security/editions/2023/en/0x11-t10/",
+      "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0008",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Your service receives payment events by webhook. How do you confirm that a delivery really came from the provider?",
+    "options": [
+      "Recompute the HMAC of the raw body with the shared secret and compare it",
+      "Check that the request arrived over HTTPS with a valid certificate",
+      "Check that the User-Agent header names the payment provider",
+      "Reply 200 at once and trust the event type in the JSON payload"
+    ],
+    "answer": 0,
+    "explanation": "GitHub signs deliveries with HMAC-SHA256 in `X-Hub-Signature-256`; Stripe signs a timestamp plus the body. Compare in constant time.",
+    "optionNotes": [
+      "Correct: only a holder of the secret can produce a valid signature.",
+      "TLS protects the channel but does not identify the sender.",
+      "Any client can set any User-Agent.",
+      "Trusting the payload is exactly what forged deliveries exploit."
+    ],
+    "tags": ["webhooks", "hmac"],
+    "sources": ["https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries", "https://docs.stripe.com/webhooks/signature"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0009",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "A penetration test report says an XSS bug could let an attacker copy the session cookie through `document.cookie`. Which attribute on that cookie closes this particular path?",
+    "options": ["Path=/", "Secure", "SameSite=Lax", "HttpOnly"],
+    "answer": 3,
+    "explanation": "HttpOnly limits the damage of XSS by keeping the session cookie out of `document.cookie`. It does not stop XSS itself.",
+    "optionNotes": [
+      "Path limits which URLs receive the cookie.",
+      "Secure only limits the cookie to HTTPS.",
+      "SameSite controls cross-site sending, not script access.",
+      "Correct."
+    ],
+    "tags": ["cookies"],
+    "sources": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0010",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A code review finds user input concatenated into a database query. The team proposes adding a WAF rule. What is the best fix?",
+    "options": [
+      "Hide the database error messages from users on every page",
+      "Rely on the WAF rule alone, since it blocks the known patterns",
+      "Use parameterized statements; keep the WAF rule only as a stopgap",
+      "Move the database to a separate server behind a firewall"
+    ],
+    "answer": 2,
+    "explanation": "OWASP's primary injection defense is parameterized APIs. A WAF rule is defense in depth or virtual patching until the code is fixed.",
+    "optionNotes": [
+      "Hiding errors only makes the flaw harder to see.",
+      "A WAF blocks known patterns but leaves the flaw in the code.",
+      "Correct: parameterization removes the flaw; the rule is virtual patching.",
+      "Moving the database changes nothing about the query."
+    ],
+    "tags": ["injection", "waf"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Virtual_Patching_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

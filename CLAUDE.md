@@ -132,7 +132,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 24 verify |
 | M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred (retry blocked too) |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 18 mock, 6 verify |
-| M14 Hacking Web Applications | stub + notes | research and notes written (defensive retry); cards and questions deferred (blocked) |
+| M14 Hacking Web Applications | built | 70/10/94/36, 5 verify; cards and questions built on the 2026-09-27 retry |
 | M15 SQL Injection | stub | full build deferred (blocked, defensive retry blocked too) |
 | M16 Hacking Wireless Networks | stub | full build deferred (blocked, defensive retry blocked too) |
 | M17 Hacking Mobile Platforms | built | 40 cards, 10 pretest, 54 practice, 20 mock, 8 verify |
@@ -150,7 +150,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   review export, `.claude/commands`.
 - [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
   in-app content-pack update. Released as v0.3.0.
-- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 14/21 built,
+- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 15/21 built,
   the rest listed in research/deferred.md and on the Self-study page.
 - [x] **M5**: analytics page, half/full mocks, Phase 3 and exam-ready gates on the dashboard.
   - Mocks (`domain/quiz/mock.ts`) draw fresh held-out mock items by blueprint quota. The pool has 264/500

@@ -35,11 +35,6 @@
     "what": "Not in the app. At concept level, learn how network access control and endpoint protection (antivirus, EDR) get bypassed, and the countermeasures."
   },
   {
-    "topic": "Web application hacking",
-    "modules": [14],
-    "what": "The notes are in the app, but there are no flashcards or questions. Test yourself on the OWASP Top 10, the web app hacking methodology, web API and webhook threats, and web app security controls."
-  },
-  {
     "topic": "SQL injection",
     "modules": [15],
     "what": "Not in the app. Learn the SQLi types (in-band, blind, out-of-band), the methodology, the tools the exam names (such as sqlmap), filter-evasion ideas, and the countermeasures (parameterized queries, input validation, WAF)."
