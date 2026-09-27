@@ -3,7 +3,7 @@
   "title": "Scanning Networks",
   "domain": "D2",
   "effortUnits": 2,
-  "status": "sample",
+  "status": "built",
   "sections": [
     "Network Scanning Concepts",
     "Host Discovery",
@@ -14,27 +14,35 @@
   ],
   "objectives": [
     {
-      "text": "Describe the TCP handshake and how each scan type uses it",
+      "text": "Explain how scanning follows footprinting and map it to ATT&CK T1595 and T1046",
       "section": "Network Scanning Concepts"
     },
     {
-      "text": "Choose a host discovery method for a given network situation",
+      "text": "Describe the TCP three-way handshake, the six TCP flags and the ICMP types used in scanning",
+      "section": "Network Scanning Concepts"
+    },
+    {
+      "text": "Match each host discovery probe (ARP, ICMP, TCP, UDP) with the reply that proves a host is up",
       "section": "Host Discovery"
     },
     {
-      "text": "Interpret open/closed/filtered responses for each Nmap scan type",
+      "text": "Interpret open, closed, filtered, unfiltered, open|filtered and closed|filtered for each Nmap scan type",
       "section": "Port and Service Discovery"
     },
     {
-      "text": "Identify an OS from TTL and window-size clues and from Nmap -O",
+      "text": "Recognise Nmap, hping3 and other scanners by name, purpose and output",
+      "section": "Port and Service Discovery"
+    },
+    {
+      "text": "Tell active from passive OS fingerprinting and read TTL and banner clues",
       "section": "OS Discovery"
     },
     {
-      "text": "Pick the right evasion technique (fragmentation, decoys, idle scan, timing)",
+      "text": "Recognise the evasion concept classes (fragmentation, decoys, spoofing, idle scan, slow timing) and how each is detected",
       "section": "Scanning Beyond IDS and Firewall"
     },
     {
-      "text": "Pair each scanning technique with its countermeasure",
+      "text": "Pair each scanning technique with its countermeasure and its detection signal",
       "section": "Network Scanning Countermeasures"
     }
   ],
@@ -43,51 +51,51 @@
       "section": "Network Scanning Concepts",
       "priority": "SKIM",
       "minutes": 30,
-      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+      "why": "Handshake, flags, ICMP types and port ranges underpin every other question; know the step order and ATT&CK names."
     },
     {
       "section": "Host Discovery",
       "priority": "SKIM",
       "minutes": 30,
-      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+      "why": "Know which probe each option sends and what reply means 'up'; -sn vs -Pn is a classic."
     },
     {
       "section": "Port and Service Discovery",
       "priority": "MUST",
       "minutes": 60,
-      "why": "Scan types and flag responses are the single most tested topic of the module."
+      "why": "Scan types and the reply behind each port state are the single most tested topic of the module."
     },
     {
       "section": "OS Discovery",
       "priority": "SKIM",
       "minutes": 30,
-      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+      "why": "Active vs passive, TTL rounding and banners; skip the fingerprint format details."
     },
     {
       "section": "Scanning Beyond IDS and Firewall",
       "priority": "MUST",
       "minutes": 30,
-      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+      "why": "Recognise each concept class and what it hides; the defender's detection is what matters."
     },
     {
       "section": "Network Scanning Countermeasures",
       "priority": "MUST",
       "minutes": 30,
-      "why": "Know the options and the one-line purpose of each tool; skip the screenshots."
+      "why": "Match each technique to its countermeasure and detection; scenario questions come from here."
     }
   ],
   "labs": [
     {
       "name": "Nmap: host discovery and scan types",
       "source": "iLabs",
-      "skill": "Running and reading SYN/connect/UDP/Xmas scans",
+      "skill": "Reading SYN, connect, UDP and Xmas scan results and their port states",
       "minutes": 60
     },
     {
       "name": "TryHackMe: Nmap room",
       "source": "free",
       "where": "https://tryhackme.com/room/furthernmap",
-      "skill": "Running and reading SYN/connect/UDP/Xmas scans",
+      "skill": "Reading Nmap scan types and output on a practice target",
       "minutes": 90,
       "verify": true
     },
@@ -95,14 +103,31 @@
       "name": "Local lab: scan Metasploitable 2 from Kali, capture it in Wireshark",
       "source": "free",
       "where": "https://docs.rapid7.com/metasploit/metasploitable-2/",
-      "skill": "Seeing each scan flag exchange on the wire",
+      "skill": "Seeing each scan's flag exchange on the wire, and what an IDS would log",
       "minutes": 60,
       "verify": true
     }
   ],
   "feynmanPrompts": [
-    "Explain why a SYN scan is called half-open and why it is stealthier than a connect scan.",
-    "Explain how an idle scan learns a port state without ever sending your IP.",
-    "Explain why NULL/FIN/Xmas scans return open|filtered instead of open."
+    "Explain why a SYN scan is called half-open, and which logs still see it.",
+    "Explain how an idle scan learns a port state without ever sending your IP, and what a defender changes to stop it.",
+    "Explain why NULL/FIN/Xmas scans return open|filtered instead of open, and why they fail against Windows."
+  ],
+  "resources": [
+    {
+      "name": "Nmap Reference Guide",
+      "url": "https://nmap.org/book/man.html",
+      "covers": "Host discovery, scan types, port states, version and OS detection, output"
+    },
+    {
+      "name": "NIST SP 800-115, Technical Guide to Information Security Testing and Assessment",
+      "url": "https://csrc.nist.gov/pubs/sp/800/115/final",
+      "covers": "Network discovery, port and service identification, their place in an assessment"
+    },
+    {
+      "name": "MITRE ATT&CK T1046 Network Service Discovery",
+      "url": "https://attack.mitre.org/techniques/T1046/",
+      "covers": "Scanning from inside a network: detection and mitigations"
+    }
   ]
 }

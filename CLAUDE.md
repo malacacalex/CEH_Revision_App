@@ -121,7 +121,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
 | M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
 | M2 Footprinting and Reconnaissance | built | 50/10/71/35, 24 verify; mock pool built on the 2026-09-27 retry |
-| M3 Scanning Networks | sample | 8 cards, 3 pretest, 12 practice; full build deferred (blocked, defensive retry blocked too) |
+| M3 Scanning Networks | built | 63/10/90/47, 15 verify; built on the 2026-09-27 retry (evasion as concept classes) |
 | M4 Enumeration | stub | deferred (blocked, defensive retry blocked too) |
 | M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 19 mock, 14 verify |
 | M6 System Hacking | stub | deferred (blocked, defensive retry blocked too) |
@@ -150,7 +150,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   review export, `.claude/commands`.
 - [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
   in-app content-pack update. Released as v0.3.0.
-- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 15/21 built,
+- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 16/21 built,
   the rest listed in research/deferred.md and on the Self-study page.
 - [x] **M5**: analytics page, half/full mocks, Phase 3 and exam-ready gates on the dashboard.
   - Mocks (`domain/quiz/mock.ts`) draw fresh held-out mock items by blueprint quota. The pool has 264/500

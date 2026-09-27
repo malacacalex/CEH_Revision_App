@@ -8,13 +8,13 @@
     "type": "tool",
     "difficulty": 1,
     "stem": "Which Nmap option performs a TCP SYN (half-open) scan?",
-    "options": ["-sT", "-sS", "-sU", "-sA"],
-    "answer": 1,
+    "options": ["-sT", "-sU", "-sS", "-sA"],
+    "answer": 2,
     "explanation": "-sS sends a SYN and, if the port answers SYN/ACK, resets the connection instead of completing it. It is Nmap's default scan when run with raw-packet privileges.",
     "optionNotes": [
       "-sT is the TCP connect scan, which completes the full handshake.",
-      "Correct: -sS is the SYN (stealth, half-open) scan.",
       "-sU is the UDP scan.",
+      "Correct: -sS is the SYN (stealth, half-open) scan.",
       "-sA is the ACK scan, used to map firewall rules."
     ],
     "tags": ["nmap", "syn-scan", "sample"],
@@ -54,17 +54,196 @@
     "type": "scenario",
     "difficulty": 2,
     "stem": "A tester is on the same Ethernet segment as the targets and wants the fastest, most reliable host discovery, one that local firewalls blocking ICMP cannot defeat. Which Nmap option fits BEST?",
-    "options": ["-sL", "-PE", "-PR", "-PS443"],
-    "answer": 2,
+    "options": ["-sL", "-PR", "-PE", "-PS443"],
+    "answer": 1,
     "explanation": "-PR (ARP ping) asks for each IP's MAC address with ARP. Hosts must answer ARP to communicate at all on a LAN, so filtering ICMP does not hide them. Nmap uses ARP by default on local Ethernet networks.",
     "optionNotes": [
       "-sL only lists targets (with reverse DNS); it sends no probes to the hosts.",
-      "-PE uses ICMP echo, which is often blocked by host firewalls.",
       "Correct: ARP ping is the most reliable method on a local segment.",
+      "-PE uses ICMP echo, which is often blocked by host firewalls.",
       "-PS443 sends TCP SYN probes; it works but can be filtered and is slower than ARP on a LAN."
     ],
     "tags": ["nmap", "host-discovery", "arp", "sample"],
     "sources": ["https://nmap.org/book/man-host-discovery.html", "https://nmap.org/book/host-discovery-techniques.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0016",
+    "module": 3,
+    "section": "Network Scanning Concepts",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which port range does IANA define as the well-known (system) ports?",
+    "options": ["0–65535", "1024–49151", "49152–65535", "0–1023"],
+    "answer": 3,
+    "explanation": "RFC 6335 splits the port space into system ports (0–1023), user ports (1024–49151) and dynamic/private ports (49152–65535).",
+    "optionNotes": [
+      "This is the whole port space, not one range.",
+      "1024–49151 are the user (registered) ports.",
+      "49152–65535 are the dynamic or private ports.",
+      "Correct: 0–1023 are the system (well-known) ports."
+    ],
+    "tags": ["ports", "iana"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6335",
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0017",
+    "module": 3,
+    "section": "Host Discovery",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Nmap option skips host discovery and treats every target as online?",
+    "options": ["-PE", "-sn", "-sL", "-Pn"],
+    "answer": 3,
+    "explanation": "-Pn is used when targets block discovery probes: Nmap scans every address as if it were up, which is slower but misses fewer hosts.",
+    "optionNotes": [
+      "-PE is an ICMP echo host discovery probe.",
+      "-sn is the opposite: host discovery only, no port scan.",
+      "-sL only lists the targets without sending them packets.",
+      "Correct: -Pn means no ping; every address is port-scanned."
+    ],
+    "tags": ["nmap", "host-discovery"],
+    "sources": ["https://nmap.org/book/man-host-discovery.html", "https://nmap.org/book/host-discovery-controls.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0018",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 1,
+    "stem": "An Nmap SYN scan prints `443/tcp filtered https`. What did the target most likely do with the probe to port 443?",
+    "options": [
+      "It answered with RST",
+      "It answered with SYN/ACK",
+      "It sent no reply, or an ICMP unreachable error came back",
+      "It completed the full three-way handshake"
+    ],
+    "answer": 2,
+    "explanation": "In a SYN scan, filtered means the probe got no answer after retransmission, or an ICMP unreachable error (type 3, codes 0, 1, 2, 3, 9, 10 or 13).",
+    "optionNotes": [
+      "RST makes the port closed.",
+      "SYN/ACK makes the port open.",
+      "Correct: silence or an ICMP unreachable error means a filter is in the way.",
+      "A SYN scan never completes the handshake; that is the connect scan."
+    ],
+    "tags": ["nmap", "syn-scan", "port-states"],
+    "sources": ["https://nmap.org/book/synscan.html", "https://nmap.org/book/man-port-scanning-basics.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0019",
+    "module": 3,
+    "section": "Port and Service Discovery",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which Nmap port state is reported ONLY by the ACK scan?",
+    "options": ["closed|filtered", "unfiltered", "open|filtered", "filtered"],
+    "answer": 1,
+    "explanation": "An ACK gets a RST from both open and closed ports, so the ACK scan can only say whether the port is reachable (unfiltered) or blocked (filtered).",
+    "optionNotes": [
+      "closed|filtered comes only from the idle scan.",
+      "Correct: unfiltered means the probe reached the port but Nmap can't say open or closed.",
+      "open|filtered comes from UDP, FIN, NULL, Xmas and IP protocol scans.",
+      "Filtered can come from almost every scan type."
+    ],
+    "tags": ["nmap", "ack-scan", "port-states"],
+    "sources": ["https://nmap.org/book/man-port-scanning-basics.html", "https://nmap.org/book/scan-methods-ack-scan.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0020",
+    "module": 3,
+    "section": "OS Discovery",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What distinguishes passive OS fingerprinting from active OS fingerprinting?",
+    "options": [
+      "It sends no probes and only reads traffic the host sends anyway",
+      "It needs one open and one closed port on the target",
+      "It relies on crafted probes with unusual flag combinations",
+      "It only works against hosts on the same subnet"
+    ],
+    "answer": 0,
+    "explanation": "Passive fingerprinting reads the TTL, window size, TCP options and similar fields of packets the host sends on its own, so the target sees nothing unusual.",
+    "optionNotes": [
+      "Correct: passive fingerprinting (for example p0f) only observes.",
+      "That requirement belongs to Nmap's active OS detection.",
+      "Crafted probes are what active fingerprinting sends.",
+      "Passive fingerprinting works on any traffic it can observe, local or routed."
+    ],
+    "tags": ["os-fingerprinting", "p0f"],
+    "sources": ["https://lcamtuf.coredump.cx/p0f3/", "https://nmap.org/book/man-os-detection.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0021",
+    "module": 3,
+    "section": "Scanning Beyond IDS and Firewall",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An IDS shows the same port scan arriving from twelve different source addresses at once, but only one of those addresses later receives follow-up traffic. Which evasion class does this pattern suggest?",
+    "options": ["Packet fragmentation", "Decoy scanning", "Slow timing", "Source port manipulation"],
+    "answer": 1,
+    "explanation": "In a decoy scan the real scanner's probes are sent along with forged ones, so the logs show many sources. The real one is the address that receives replies and acts on them.",
+    "optionNotes": [
+      "Fragmentation splits probes into small pieces; it does not multiply sources.",
+      "Correct: decoys mix forged sources with the real one, which is the one that keeps talking.",
+      "Slow timing spreads probes over time from one source.",
+      "Source port manipulation changes the sending port, not the address."
+    ],
+    "tags": ["decoy", "evasion", "detection"],
+    "sources": ["https://nmap.org/book/man-bypass-firewalls-ids.html", "https://nmap.org/book/subvert-ids.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m03-q-0022",
+    "module": 3,
+    "section": "Network Scanning Countermeasures",
+    "domain": "D2",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An administrator wants to reduce what a port scan of a server can reveal. Which action has the MOST effect?",
+    "options": [
+      "Raise the server's default TTL to 255",
+      "Change the server's hostname to something generic",
+      "Move SSH from port 22 to port 2222",
+      "Disable services that are not needed and close their ports"
+    ],
+    "answer": 3,
+    "explanation": "Reducing the attack surface comes first: each open port is an avenue for attack. Filtering and monitoring then protect what must stay open.",
+    "optionNotes": [
+      "The TTL affects OS guesses, not which ports are open.",
+      "The hostname doesn't change which ports answer.",
+      "A full port scan still finds SSH on 2222.",
+      "Correct: a service that isn't running can't be found or attacked."
+    ],
+    "tags": ["countermeasures", "hardening"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/123/final", "https://nmap.org/book/nmap-defenses-proactive-scanning.html"],
     "verify": false,
     "rev": 1
   }

@@ -2,17 +2,7 @@
   {
     "topic": "Nmap",
     "modules": [3],
-    "what": "The exam's main scanner. Know its scan types, how to read port states (open, closed, filtered), service, version and OS detection, timing templates, output formats and NSE scripts."
-  },
-  {
-    "topic": "hping3",
-    "modules": [3],
-    "what": "Packet-crafting tool. Know what it is used for (probing hosts and firewalls with hand-made TCP, UDP or ICMP packets) and how to read its replies."
-  },
-  {
-    "topic": "Network scanning",
-    "modules": [3],
-    "what": "Only part of it is in the app. Review host discovery, TCP and UDP scan types, OS discovery and banner grabbing, scanning past IDS and firewalls, and scanning countermeasures."
+    "what": "The M3 notes explain scan types, port states and what Nmap output means, but the app has no command cheat sheet. Practise Nmap hands-on in a lab: its main options, timing templates, output formats and NSE scripts."
   },
   {
     "topic": "Enumeration",
