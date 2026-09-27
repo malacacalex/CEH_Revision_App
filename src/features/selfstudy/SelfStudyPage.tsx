@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { content } from '../../content/bundle.ts';
-import { sectionGaps } from '../../domain/coverage.ts';
+import { sectionGaps, type SectionGap } from '../../domain/coverage.ts';
 import { Card, Empty, PageHeader } from '../../ui/kit.tsx';
 
 export function SelfStudyPage() {
@@ -50,11 +50,17 @@ export function SelfStudyPage() {
                     M{m.meta.module} · {m.meta.title}
                   </Link>
                   <ul className="mt-1 space-y-0.5 text-sm">
-                    {gaps.map((g) => (
-                      <li key={g.section}>
-                        {g.section}: <span className="text-muted">no {g.missing.join(', no ')}</span>
+                    {sameEverywhere(m.meta.sections.length, gaps) ? (
+                      <li>
+                        All {gaps.length} sections: <span className="text-muted">{missingText(gaps[0]!.missing)}</span>
                       </li>
-                    ))}
+                    ) : (
+                      gaps.map((g) => (
+                        <li key={g.section}>
+                          {g.section}: <span className="text-muted">{missingText(g.missing)}</span>
+                        </li>
+                      ))
+                    )}
                   </ul>
                 </div>
               ))}
@@ -64,4 +70,11 @@ export function SelfStudyPage() {
       )}
     </>
   );
+}
+
+const missingText = (missing: SectionGap['missing']) => `no ${missing.join(', no ')}`;
+
+/** Every section lacks the same things (a stub, typically): one line says it. */
+function sameEverywhere(sectionCount: number, gaps: SectionGap[]): boolean {
+  return gaps.length === sectionCount && gaps.length > 1 && gaps.every((g) => g.missing.join() === gaps[0]!.missing.join());
 }
