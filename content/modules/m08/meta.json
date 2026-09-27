@@ -3,15 +3,98 @@
   "title": "Sniffing",
   "domain": "D4",
   "effortUnits": 1.25,
-  "status": "stub",
+  "status": "sample",
   "sections": [
     "Sniffing Concepts",
     "Sniffing Techniques",
     "Sniffing Tools",
     "Sniffing Countermeasures"
   ],
-  "objectives": [],
-  "readingMap": [],
-  "labs": [],
-  "feynmanPrompts": []
+  "objectives": [
+    {
+      "text": "Explain why a switch limits what a sniffer sees, and tell passive sniffing on a hub from active sniffing on a switch",
+      "section": "Sniffing Concepts"
+    },
+    {
+      "text": "Compare SPAN port mirroring and network TAPs as legitimate capture points, and name the clear-text protocols that expose credentials",
+      "section": "Sniffing Concepts"
+    },
+    {
+      "text": "Recognize MAC flooding, DHCP starvation, rogue DHCP, ARP poisoning, MAC spoofing and DNS poisoning from a short description, log line or packet pattern",
+      "section": "Sniffing Techniques"
+    },
+    {
+      "text": "Tell Wireshark display filters from capture (BPF) filters and write simple examples of each",
+      "section": "Sniffing Tools"
+    },
+    {
+      "text": "Read a tcpdump or Wireshark output line (ARP who-has / is-at, TCP flags, duplicate IP warning) and say what it shows",
+      "section": "Sniffing Tools"
+    },
+    {
+      "text": "Match each attack class to the switch or network defence that stops it: port security, DHCP snooping, Dynamic ARP Inspection, IP Source Guard, 802.1X, DNSSEC and encryption",
+      "section": "Sniffing Countermeasures"
+    },
+    {
+      "text": "Describe how defenders detect a sniffer or an ARP poisoning attempt (promiscuous-mode checks, arpwatch, IDS, Wireshark Expert Information)",
+      "section": "Sniffing Countermeasures"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Sniffing Concepts",
+      "priority": "SKIM",
+      "minutes": 20,
+      "why": "Know hub vs switch, promiscuous vs monitor mode, SPAN vs TAP and which protocols are clear text."
+    },
+    {
+      "section": "Sniffing Techniques",
+      "priority": "MUST",
+      "minutes": 40,
+      "why": "Most questions describe a layer-2 attack by its symptom and ask for its name or the feature that stops it."
+    },
+    {
+      "section": "Sniffing Tools",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Filter syntax (display vs capture) and reading an output line are tested directly."
+    },
+    {
+      "section": "Sniffing Countermeasures",
+      "priority": "MUST",
+      "minutes": 35,
+      "why": "Matching attack to defence (port security, DHCP snooping, DAI, IPSG, 802.1X, DNSSEC, encryption) is the core of the module."
+    }
+  ],
+  "labs": [
+    {
+      "name": "Wireshark filter practice on public sample captures",
+      "source": "free",
+      "where": "https://wiki.wireshark.org/SampleCaptures",
+      "skill": "Opening published capture files and applying display filters such as arp, dhcp, dns and ip.addr to find each protocol",
+      "minutes": 45,
+      "verify": true
+    },
+    {
+      "name": "Capture your own traffic with tcpdump",
+      "source": "free",
+      "where": "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "skill": "Capturing on your own machine with a capture filter, writing to a file with -w and reading it back with -r and -e",
+      "minutes": 30,
+      "verify": true
+    },
+    {
+      "name": "Watch ARP pairings on your home lab with arpwatch",
+      "source": "free",
+      "where": "https://www.kali.org/tools/arpwatch/",
+      "skill": "Running arpwatch on a lab network you own and reading its new station / changed ethernet address / flip flop reports",
+      "minutes": 30,
+      "verify": true
+    }
+  ],
+  "feynmanPrompts": [
+    "Explain to a new colleague why plugging a laptop into a switch port does not let it read everyone's traffic, while a hub or an open Wi-Fi channel would.",
+    "Pick one layer-2 attack (MAC flooding, rogue DHCP or ARP poisoning) and explain what lie it tells to which device, what a defender would see in the logs, and which switch feature stops it.",
+    "Explain the difference between a Wireshark display filter and a capture filter, and why choosing the wrong one can lose evidence."
+  ]
 }

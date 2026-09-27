@@ -1,0 +1,878 @@
+[
+  {
+    "id": "m08-c-0001",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Sniffer",
+    "back": "Software or hardware that observes and records network traffic.\n\nMITRE ATT&CK **T1040 Network Sniffing**: often used to collect credentials sent over unencrypted protocols.",
+    "tags": [
+      "sniffing"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/sniffer",
+      "https://attack.mitre.org/techniques/T1040/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0002",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Passive vs active wiretapping (RFC 4949)",
+    "back": "- **Passive**: only observes the traffic (\"sniffing\" is slang for this)\n- **Active**: alters data or changes the flow\n\nA man-in-the-middle is a form of active wiretapping.",
+    "tags": [
+      "sniffing",
+      "mitm"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4949",
+      "https://csrc.nist.gov/glossary/term/passive_wiretapping"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0003",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Passive vs active sniffing (EC-Council labels)",
+    "back": "- **Passive**: on a **hub** or shared medium, just listen; nothing is sent\n- **Active**: on a **switch**, the sniffer must inject traffic (MAC flooding, ARP poisoning, rogue DHCP...) to get frames sent its way\n\nActive sniffing leaves traces that defenders can detect.",
+    "tags": [
+      "sniffing",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0004",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Hub vs switch",
+    "back": "- **Hub**: repeats every frame to every port\n- **Switch**: learns source MACs in its **MAC (CAM) table** and forwards a unicast frame only to the port of the destination MAC\n\nBroadcasts and unknown destinations are still flooded by a switch.",
+    "tags": [
+      "switching"
+    ],
+    "sources": [
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/port_security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0005",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Promiscuous mode vs monitor mode",
+    "back": "- **Promiscuous**: the NIC passes up frames not addressed to it (wired or Wi-Fi once associated)\n- **Monitor** (Wi-Fi): capture all 802.11 frames on a channel, including management frames, without joining a network\n\ntcpdump: promiscuous by default, `-p` to disable, `-I` for monitor mode.",
+    "tags": [
+      "promiscuous",
+      "wireless"
+    ],
+    "sources": [
+      "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "https://wiki.wireshark.org/CaptureSetup/WLAN"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0006",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "SPAN / port mirroring",
+    "back": "A switch feature that **copies** the traffic of source ports or VLANs to a destination port for analysis, without affecting normal switching.\n\n**RSPAN** carries the copy over a VLAN to another switch.",
+    "tags": [
+      "span"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/nmgmt/b_179_nmgmt_9300_cg/configuring_span_and_rspan.html",
+      "https://www.cisco.com/c/en/us/support/docs/switches/catalyst-6500-series-switches/10570-41.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0007",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Network TAP",
+    "back": "A hardware device inserted in a link that copies everything on the wire to a monitoring port.\n\nVs SPAN: a TAP sees every frame (including errors) and does not load the switch; SPAN is free to configure but can drop frames under load.",
+    "tags": [
+      "tap",
+      "span"
+    ],
+    "sources": [
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/nmgmt/b_179_nmgmt_9300_cg/configuring_span_and_rspan.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0008",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Clear-text protocols a sniffer can read",
+    "back": "- **Telnet** 23, **rlogin**\n- **FTP** 21 (`USER` / `PASS`)\n- **HTTP** 80 (Basic auth is base64, not encryption)\n- **POP3** 110, **IMAP** 143, **SMTP** 25\n- **SNMPv1/v2c** 161 (community string)\n- **TFTP** 69 (no authentication)",
+    "tags": [
+      "cleartext"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/dsniff/dsniff.8.en.html",
+      "https://www.rfc-editor.org/rfc/rfc7617",
+      "https://www.rfc-editor.org/rfc/rfc1157"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0009",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Lawful interception",
+    "back": "Interception of communications **authorized by law**, carried out by service providers for law enforcement.\n\nUS law **CALEA** requires carriers to be able to support it.",
+    "tags": [
+      "lawful-interception"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc3924",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0010",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "kind": "term",
+    "front": "What sniffing shows on encrypted traffic",
+    "back": "Only **metadata**: IP addresses, ports, sizes, timing, and for TLS the server name in the handshake unless it is protected.\n\nThe content (passwords, cookies) stays protected: this is why encryption is the main countermeasure.",
+    "tags": [
+      "encryption"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1040/",
+      "https://attack.mitre.org/mitigations/M1041/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0011",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Wireshark",
+    "back": "Graphical protocol analyzer: captures live (through libpcap / **Npcap** on Windows) or opens capture files and decodes hundreds of protocols.\n\nKey features: display filters, Follow TCP Stream, Export Objects, Statistics > Conversations, Expert Information.",
+    "tags": [
+      "wireshark"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/wireshark/",
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0012",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Display filter vs capture filter",
+    "back": "- **Capture filter**: BPF syntax (`host 10.0.0.5`, `port 53`, `arp`), set **before** capture; non-matching packets are **never saved**\n- **Display filter**: Wireshark field syntax (`ip.addr == 10.0.0.5`, `dns`), applied **after** capture; hides packets, loses nothing",
+    "tags": [
+      "wireshark",
+      "filters"
+    ],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html",
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html",
+      "https://wiki.wireshark.org/CaptureFilters"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0013",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "command",
+    "front": "Wireshark display filter operators",
+    "back": "- `==` / `eq`, `!=` / `ne`, `>` `<`\n- `contains \"text\"`, `matches` (regex)\n- `in {80 443}` sets\n- `&&` / `and`, `||` / `or`, `!` / `not`\n\nExample: `ip.addr == 10.0.0.5 && tcp.port in {80 443}`",
+    "tags": [
+      "wireshark",
+      "filters"
+    ],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html",
+      "https://www.wireshark.org/docs/man-pages/wireshark-filter.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0014",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "command",
+    "front": "Useful Wireshark field names",
+    "back": "- `eth.addr`, `ip.src`, `ip.dst`, `ip.addr`\n- `tcp.port`, `tcp.flags.syn`, `udp.port`\n- `arp.opcode` (1 request, 2 reply), `arp.duplicate-address-detected`\n- `dhcp.option.dhcp` (message type), `dns.flags.response`, `dns.qry.name`\n- `http.request`",
+    "tags": [
+      "wireshark",
+      "filters"
+    ],
+    "sources": [
+      "https://www.wireshark.org/docs/dfref/a/arp.html",
+      "https://www.wireshark.org/docs/dfref/d/dhcp.html",
+      "https://www.wireshark.org/docs/dfref/d/dns.html",
+      "https://www.wireshark.org/docs/dfref/t/tcp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0015",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "command",
+    "front": "tcpdump options",
+    "back": "- `-i` interface, `-D` list interfaces\n- `-n` no name resolution\n- `-w file` write raw packets, `-r file` read them\n- `-c N` stop after N packets\n- `-e` print the link-level (MAC) header\n- `-A` ASCII, `-X` hex + ASCII\n- `-p` no promiscuous mode, `-I` monitor mode",
+    "tags": [
+      "tcpdump"
+    ],
+    "sources": [
+      "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "https://www.kali.org/tools/tcpdump/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0016",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "command",
+    "front": "Reading tcpdump TCP flags",
+    "back": "`S` SYN, `F` FIN, `P` PUSH, `R` RST, `U` URG, `.` ACK.\n\n- `Flags [S]` = SYN\n- `Flags [S.]` = SYN-ACK\n- `Flags [R.]` = RST-ACK\n- `Flags [P.]` = data with ACK",
+    "tags": [
+      "tcpdump",
+      "output"
+    ],
+    "sources": [
+      "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "https://www.wireshark.org/docs/dfref/t/tcp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0017",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "command",
+    "front": "Reading tcpdump ARP lines",
+    "back": "- `ARP, Request who-has 10.0.0.1 tell 10.0.0.23` = 10.0.0.23 asks for the MAC of 10.0.0.1\n- `ARP, Reply 10.0.0.1 is-at aa:bb:cc:dd:ee:ff` = the answer\n\nWith `-e` you also see the Ethernet header: the request goes to broadcast, the reply is unicast.",
+    "tags": [
+      "tcpdump",
+      "arp",
+      "output"
+    ],
+    "sources": [
+      "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "https://www.rfc-editor.org/rfc/rfc826"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0018",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "TShark and dumpcap",
+    "back": "- **TShark**: Wireshark's command-line version. `-i` interface, `-f` capture filter, `-Y` display filter, `-r` read, `-w` write\n- **dumpcap**: the capture engine used by both",
+    "tags": [
+      "tshark"
+    ],
+    "sources": [
+      "https://www.wireshark.org/docs/man-pages/tshark.html",
+      "https://www.wireshark.org/docs/man-pages/dumpcap.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0019",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Wireshark Expert Information",
+    "back": "Panel that flags anomalies found while dissecting: for example **\"Duplicate IP address configured\"** when two MACs claim one IP (a classic sign of ARP poisoning), retransmissions, malformed packets.",
+    "tags": [
+      "wireshark",
+      "arp"
+    ],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvExpert.html",
+      "https://www.wireshark.org/docs/dfref/a/arp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0020",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Follow TCP Stream / Export Objects",
+    "back": "- **Follow TCP Stream**: rebuilds one conversation as the application saw it (shows clear-text logins)\n- **Export Objects**: saves files carried over HTTP, SMB and other protocols from a capture",
+    "tags": [
+      "wireshark"
+    ],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowStreamSection.html",
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChIOExportSection.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0021",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Sniffing-related tools to recognize by name",
+    "back": "- **Ettercap**, **Bettercap**: LAN man-in-the-middle suites\n- **dsniff** suite: dsniff (password sniffer), arpspoof, macof, dnsspoof\n- **Yersinia**: layer-2 protocol attack framework (STP, DTP, DHCP, CDP...)\n- **Responder**: LLMNR / NBT-NS / mDNS poisoner\n- **macchanger**: change a MAC address\n- **dhcpig**: DHCP exhaustion",
+    "tags": [
+      "tools"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/ettercap/",
+      "https://www.kali.org/tools/bettercap/",
+      "https://www.kali.org/tools/dsniff/",
+      "https://www.kali.org/tools/yersinia/",
+      "https://www.kali.org/tools/responder/",
+      "https://www.kali.org/tools/macchanger/",
+      "https://www.kali.org/tools/dhcpig/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0022",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "arpwatch",
+    "back": "Keeps a database of Ethernet/IP pairings seen on the LAN and reports changes by e-mail and syslog:\n- **new station**: MAC never seen before\n- **changed ethernet address**: an IP moved to a new MAC\n- **flip flop**: an IP went back to the MAC seen before\n\nA flip flop on the gateway IP is a strong ARP poisoning signal.",
+    "tags": [
+      "arpwatch",
+      "detection"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/arpwatch/arpwatch.8.en.html",
+      "https://www.kali.org/tools/arpwatch/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0023",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "kind": "tool",
+    "front": "Nmap sniffer-detect",
+    "back": "NSE script that checks whether a host on the **local Ethernet** has its NIC in **promiscuous mode**, by sending ARP requests with unusual destination MACs that a normal NIC would drop.\n\nOutput example: `Likely in promiscuous mode`.",
+    "tags": [
+      "nmap",
+      "detection"
+    ],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/sniffer-detect.html",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0024",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "MAC flooding",
+    "back": "**What**: filling a switch's MAC (CAM) table with many fake source MACs; a full table can make the switch flood frames to all ports.\n\n**Signature**: thousands of new source MACs on one port in seconds.\n\n**Tool name**: macof.\n\n**Stops it**: port security / MAC limiting.",
+    "tags": [
+      "mac-flooding"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/dsniff/macof.8.en.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/port_security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0025",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "DHCP starvation",
+    "back": "**What**: exhausting the DHCP server's address pool with requests from many spoofed client MACs; real clients get no address.\n\n**Signature**: burst of DHCP DISCOVERs, each with a different client MAC; pool at 100%.\n\n**Tool names**: dhcpig, Yersinia.\n\n**Stops it**: DHCP snooping rate limit, port security.",
+    "tags": [
+      "dhcp"
+    ],
+    "sources": [
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html",
+      "https://attack.mitre.org/techniques/T1557/003/",
+      "https://www.kali.org/tools/dhcpig/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0026",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Rogue DHCP server",
+    "back": "**What**: an unauthorized DHCP server hands clients its own gateway or DNS server address, which puts it in the traffic path.\n\n**Signature**: DHCP OFFER/ACK from a server that is not the authorized one; clients with an unexpected gateway or DNS.\n\n**Stops it**: DHCP snooping (server messages only on trusted ports).",
+    "tags": [
+      "dhcp",
+      "mitm"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/003/",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/ip/b_179_ip_9300_cg/configuring_dhcp.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/port-security-trusted-dhcp-server.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0027",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "ARP poisoning (ARP spoofing)",
+    "back": "**What**: sending forged ARP replies so hosts map another host's IP (usually the gateway) to the attacker's MAC. Works because ARP has **no authentication** and hosts accept unsolicited replies.\n\n**Signature**: one MAC claiming several IPs, the gateway IP changing MAC, frequent unsolicited replies.\n\n**Stops it**: Dynamic ARP Inspection, static ARP for key hosts.",
+    "tags": [
+      "arp"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/002/",
+      "https://www.rfc-editor.org/rfc/rfc826",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0028",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Gratuitous ARP",
+    "back": "An ARP packet in which the sender announces **its own** IP-to-MAC mapping (sender and target IP are the same), sent without anyone asking.\n\nLegitimate use: address announcement and conflict detection (RFC 5227). ARP poisoning abuses the fact that hosts update their cache from such packets.",
+    "tags": [
+      "arp"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5227",
+      "https://attack.mitre.org/techniques/T1557/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0029",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "MAC spoofing",
+    "back": "**What**: changing a NIC's MAC address to impersonate an allowed device (to get past MAC filtering or port security).\n\n**Signature**: the same MAC seen on two ports, or moving between ports (MAC move / flap).\n\n**Tool name**: macchanger.\n\n**Stops it**: 802.1X authentication; MAC move limiting.",
+    "tags": [
+      "mac-spoofing"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/macchanger/macchanger.1.en.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_ieee_802_1x_port_based_authentication.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0030",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "DNS poisoning",
+    "back": "**What**: making a resolver or client accept a **forged DNS answer**, so a name resolves to an address the attacker chose.\n\nVariants: cache poisoning of a resolver (Kaminsky 2008), forged replies on the LAN by a man-in-the-middle.\n\n**Stops it**: DNSSEC validation, source-port and ID randomization, encrypted DNS.",
+    "tags": [
+      "dns"
+    ],
+    "sources": [
+      "https://capec.mitre.org/data/definitions/142.html",
+      "https://www.kb.cert.org/vuls/id/800113",
+      "https://www.rfc-editor.org/rfc/rfc5452"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0031",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "list",
+    "front": "EC-Council DNS poisoning variants",
+    "back": "- **Intranet** DNS spoofing (on the LAN)\n- **Internet** DNS spoofing (changing the victim's DNS server)\n- **Proxy server** DNS poisoning (malicious proxy settings)\n- **DNS cache** poisoning (of a resolver)\n\nEC-Council list; learn the names.",
+    "tags": [
+      "dns",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://capec.mitre.org/data/definitions/142.html"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0032",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "Switch port stealing",
+    "back": "Frames sent with the **victim's MAC as source** make the switch move that MAC to another port, so the victim's traffic briefly goes there.\n\n**Signature**: the same MAC flapping between ports.\n\n**Stops it**: port security with static or sticky MACs.",
+    "tags": [
+      "switching",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/ettercap-common/ettercap.8.en.html",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0033",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "LLMNR / NBT-NS poisoning",
+    "back": "When DNS fails, Windows asks the local network by multicast/broadcast (LLMNR, NBT-NS); a rogue host can answer and collect NTLM authentication attempts.\n\n**Tool name**: Responder (ATT&CK T1557.001).\n\n**Stops it**: disable LLMNR and NetBIOS name service, SMB signing.",
+    "tags": [
+      "llmnr"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/001/",
+      "https://www.rfc-editor.org/rfc/rfc4795",
+      "https://www.kali.org/tools/responder/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0034",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "kind": "term",
+    "front": "VLAN hopping and STP attacks (recognize)",
+    "back": "- **Switch spoofing**: an access port negotiates a trunk with DTP. Fix: `switchport mode access`, `switchport nonegotiate`\n- **Double tagging**: two 802.1Q tags on the native VLAN. Fix: unused native VLAN\n- **STP attack**: rogue switch claims root bridge with superior BPDUs. Fix: BPDU guard, root guard",
+    "tags": [
+      "vlan",
+      "stp"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/vlan/b_179_vlan_9300_cg/configuring_vlan_trunks.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/lyr2/b_179_lyr2_9300_cg/configuring_optional_spanning_tree_features.html",
+      "https://www.kali.org/tools/yersinia/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0035",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Port security",
+    "back": "Limits the MAC addresses allowed on a switch port (static, dynamic or **sticky** learned).\n\nViolation modes:\n- **protect**: drop unknown sources silently\n- **restrict**: drop + SNMP trap + syslog + counter\n- **shutdown** (default): err-disable the port\n\nStops MAC flooding and unknown devices.",
+    "tags": [
+      "port-security"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/port_security.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/configuring-mac-limiting.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0036",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "DHCP snooping",
+    "back": "Ports are **trusted** (toward real DHCP servers / uplinks) or **untrusted** (hosts). Server messages (OFFER, ACK, NAK) arriving on untrusted ports are **dropped**.\n\nBuilds the **binding table** (MAC, IP, lease, VLAN, port) that DAI and IP Source Guard use. Rate limiting helps against starvation.",
+    "tags": [
+      "dhcp-snooping"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/ip/b_179_ip_9300_cg/configuring_dhcp.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/port-security-trusted-dhcp-server.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0037",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Dynamic ARP Inspection (DAI)",
+    "back": "Intercepts ARP packets on **untrusted** ports and drops those whose IP-to-MAC binding is not in the DHCP snooping table (or an ARP ACL for static hosts).\n\nCisco default rate limit: **15 ARP packets per second** on untrusted ports.\n\nStops ARP poisoning.",
+    "tags": [
+      "dai",
+      "arp"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/understanding-and-using-dai.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0038",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "IP Source Guard",
+    "back": "Filters IP traffic on untrusted ports so the **source IP** (optionally also the MAC) must match the DHCP snooping binding; until a binding exists only DHCP passes.\n\nStops IP spoofing from an access port.",
+    "tags": [
+      "ipsg"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_ip_source_guard.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0039",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "802.1X port-based authentication",
+    "back": "Keeps unauthenticated devices off a switch port.\n\n- **Supplicant**: the client\n- **Authenticator**: the switch\n- **Authentication server**: RADIUS\n\nDefeats MAC spoofing that only fools MAC filtering.",
+    "tags": [
+      "8021x"
+    ],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_ieee_802_1x_port_based_authentication.html",
+      "https://1.ieee802.org/security/802-1x/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0040",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "DNSSEC",
+    "back": "Signs DNS data so a validating resolver can check **origin and integrity** of answers; forged answers fail validation.\n\nIt gives **no confidentiality**: queries are still readable. DoT (TCP 853) and DoH encrypt the query path.",
+    "tags": [
+      "dnssec",
+      "dns"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc4033",
+      "https://learn.microsoft.com/en-us/windows-server/networking/dns/dnssec-overview",
+      "https://www.rfc-editor.org/rfc/rfc7858"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0041",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Encryption replaces clear-text protocols",
+    "back": "- Telnet / rlogin → **SSH**\n- FTP → **SFTP** or FTPS\n- HTTP → **HTTPS** (TLS), plus **HSTS**\n- POP3/IMAP/SMTP → TLS versions\n- SNMPv1/v2c → **SNMPv3** (auth + privacy)\n- Any IP traffic → **IPsec**; a switch link → **MACsec** (802.1AE)",
+    "tags": [
+      "encryption"
+    ],
+    "sources": [
+      "https://attack.mitre.org/mitigations/M1041/",
+      "https://www.rfc-editor.org/rfc/rfc4253",
+      "https://www.rfc-editor.org/rfc/rfc3414",
+      "https://www.rfc-editor.org/rfc/rfc8314",
+      "https://1.ieee802.org/security/802-1ae/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0042",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "Static ARP entries",
+    "back": "Permanent IP-to-MAC entries on key hosts (gateway, servers) that forged ARP replies cannot overwrite.\n\nStrong but does not scale; DAI is the network-wide answer.",
+    "tags": [
+      "arp"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/iproute2/ip-neighbour.8.en.html",
+      "https://attack.mitre.org/mitigations/M1035/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0043",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "countermeasure",
+    "front": "HSTS",
+    "back": "HTTP Strict Transport Security: the site tells the browser to use **HTTPS only** for a set time, so a man-in-the-middle cannot downgrade links to HTTP (SSL stripping).\n\nThe **preload list** also protects the very first visit.",
+    "tags": [
+      "hsts",
+      "tls"
+    ],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0044",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Detecting a sniffer (promiscuous NIC)",
+    "back": "- **ARP method**: send an ARP request to a non-broadcast fake MAC; only a promiscuous NIC answers (Nmap sniffer-detect)\n- **DNS method**: watch for hosts doing reverse lookups on addresses they should not know\n- **Ping / latency methods**: wrong-MAC ping, response time under load\n\nMethod names are EC-Council's.",
+    "tags": [
+      "detection",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://nmap.org/nsedoc/scripts/sniffer-detect.html",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0045",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Detecting ARP poisoning",
+    "back": "- **arpwatch**: `changed ethernet address`, `flip flop` reports\n- **Wireshark** Expert Info: *Duplicate IP address configured* (`arp.duplicate-address-detected`)\n- **IDS** rules on ARP anomalies\n- **DAI** drop logs on the switch",
+    "tags": [
+      "detection",
+      "arp"
+    ],
+    "sources": [
+      "https://manpages.debian.org/bookworm/arpwatch/arpwatch.8.en.html",
+      "https://www.wireshark.org/docs/dfref/a/arp.html",
+      "https://csrc.nist.gov/pubs/sp/800/94/final",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-c-0046",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "kind": "list",
+    "front": "Mnemonic: one lie, one guard",
+    "back": "- CAM table lie (MAC flooding) → **Port security**\n- DHCP lie (starvation / rogue server) → **DHCP snooping**\n- ARP lie → **DAI**\n- Source IP lie → **IP Source Guard**\n- Identity lie (MAC spoofing) → **802.1X**\n- DNS lie → **DNSSEC**\n- Whatever gets through → **encryption**",
+    "tags": [
+      "mnemonic"
+    ],
+    "sources": [
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_ip_source_guard.html",
+      "https://www.rfc-editor.org/rfc/rfc4033"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

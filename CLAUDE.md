@@ -120,7 +120,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M4 Enumeration | stub | deferred (blocked, defensive retry blocked too) |
 | M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 19 mock, 14 verify |
 | M6 System Hacking | stub | deferred (blocked, defensive retry blocked too) |
-| M8 Sniffing | stub | research/m08.md only; notes and items deferred (blocked) |
+| M8 Sniffing | sample | 46 cards, 10 pretest, 56 practice, 18 mock, 8 verify; notes and Sniffing Techniques practice deferred (blocked) |
 | M9 Social Engineering | sample | notes, 31 cards, 10 pretest, 12 verify; practice + mock deferred (blocked) |
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
 | M11 Session Hijacking | stub + notes | research + notes; cards and questions deferred (blocked) |

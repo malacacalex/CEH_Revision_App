@@ -1,0 +1,447 @@
+[
+  {
+    "id": "m08-q-0067",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An old office still uses a hub. A workstation's NIC is set to promiscuous mode. What can it capture without sending anything?",
+    "options": [
+      "Only frames addressed to its own MAC",
+      "All frames exchanged by every host on the hub",
+      "Only broadcast frames",
+      "Only frames from the default gateway"
+    ],
+    "answer": 1,
+    "explanation": "On a shared medium, listening is enough: this is passive sniffing.",
+    "optionNotes": [
+      "That is what a NIC sees without promiscuous mode.",
+      "Correct: a hub repeats every frame to every port.",
+      "It sees much more than broadcasts on a hub.",
+      "The gateway is not special here."
+    ],
+    "tags": ["sniffing", "hub"],
+    "sources": ["https://wiki.wireshark.org/CaptureSetup/Ethernet", "https://www.tcpdump.org/manpages/tcpdump.1.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0068",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which of these protocols sends its login credentials in clear text by default?",
+    "options": ["SSH on port 22", "IMAPS on port 993", "POP3 on port 110", "HTTPS on port 443"],
+    "answer": 2,
+    "explanation": "Plain POP3, IMAP, SMTP, FTP, Telnet and HTTP expose credentials; their TLS versions do not.",
+    "optionNotes": ["SSH is encrypted.", "IMAPS runs inside TLS.", "Correct: USER and PASS travel unencrypted.", "HTTPS runs inside TLS."],
+    "tags": ["cleartext"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc1939", "https://www.rfc-editor.org/rfc/rfc8314"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0069",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which is a drawback of a SPAN port compared with a hardware TAP?",
+    "options": [
+      "It can drop frames when the switch is busy and may not forward errored frames",
+      "It must be physically inserted into the cable",
+      "It cannot copy more than one source port",
+      "It works only on hubs"
+    ],
+    "answer": 0,
+    "explanation": "SPAN is free and flexible but best effort; a TAP copies everything on the wire.",
+    "optionNotes": ["Correct.", "That describes a TAP.", "SPAN can copy several ports or whole VLANs.", "SPAN is a switch feature."],
+    "tags": ["span", "tap"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/nmgmt/b_179_nmgmt_9300_cg/configuring_span_and_rspan.html",
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0070",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A network uses only switches, and a host there captures the unicast traffic of several colleagues. What does that imply?",
+    "options": [
+      "Its NIC is in monitor mode",
+      "Switches always copy unicast to all ports",
+      "The colleagues use HTTPS",
+      "Something is redirecting frames to it, such as an active attack or a mirror session"
+    ],
+    "answer": 3,
+    "explanation": "On a switch, seeing others' unicast needs active redirection or a configured mirror; both leave evidence.",
+    "optionNotes": [
+      "Monitor mode is for Wi-Fi.",
+      "Switches forward unicast by MAC table.",
+      "HTTPS would hide content but not change delivery.",
+      "Correct: a switch does not deliver other hosts' unicast by itself."
+    ],
+    "tags": ["switching", "detection"],
+    "sources": [
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/nmgmt/b_179_nmgmt_9300_cg/configuring_span_and_rspan.html",
+      "https://attack.mitre.org/techniques/T1557/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0071",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "ec-council-term",
+    "difficulty": 1,
+    "stem": "What does EC-Council call sniffing that requires injecting packets into a switched network?",
+    "options": ["Promiscuous detection", "Passive sniffing", "Lawful interception", "Active sniffing"],
+    "answer": 3,
+    "explanation": "Active sniffing is detectable because it sends traffic.",
+    "optionNotes": [
+      "Promiscuous detection is a defensive check.",
+      "Passive sniffing only listens.",
+      "Lawful interception is legally authorized monitoring.",
+      "Correct."
+    ],
+    "tags": ["sniffing", "ec-council-specific"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.rfc-editor.org/rfc/rfc4949"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0072",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Wireshark display filter shows every packet sent from 172.16.5.9?",
+    "options": ["ip.src == 172.16.5.9", "src host 172.16.5.9", "ip.addr = 172.16.5.9 from", "source:172.16.5.9"],
+    "answer": 0,
+    "explanation": "ip.src and ip.dst give direction; ip.addr matches either.",
+    "optionNotes": ["Correct.", "BPF (capture-filter) syntax.", "Invalid syntax.", "Not Wireshark syntax."],
+    "tags": ["wireshark", "filters"],
+    "sources": ["https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html", "https://wiki.wireshark.org/DisplayFilters"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0073",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which BPF capture filter excludes SSH so the analyst's own remote session does not flood the capture?",
+    "options": ["tcp.port != 22", "!tcp.port == 22", "not port 22", "exclude ssh"],
+    "answer": 2,
+    "explanation": "Capture filters use pcap-filter primitives with not / and / or.",
+    "optionNotes": ["Display-filter syntax.", "Display-filter style.", "Correct.", "Not valid BPF."],
+    "tags": ["tcpdump", "filters"],
+    "sources": ["https://www.tcpdump.org/manpages/pcap-filter.7.html", "https://wiki.wireshark.org/CaptureFilters"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0074",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "tcpdump shows `IP 10.1.1.20.52110 > 10.1.1.5.22: Flags [R.], seq 0, ack 1, win 0`. What does the flag field mean?",
+    "options": ["A SYN with the ACK bit set", "A reset with the ACK bit set", "Data pushed with ACK", "A normal FIN close"],
+    "answer": 1,
+    "explanation": "Learn the letters: S SYN, F FIN, R RST, P PUSH, U URG, dot ACK.",
+    "optionNotes": ["A SYN-ACK prints `[S.]`.", "Correct: R is RST and the dot is ACK.", "Data with ACK prints `[P.]`.", "A FIN prints `F`."],
+    "tags": ["tcpdump", "output"],
+    "sources": ["https://www.tcpdump.org/manpages/tcpdump.1.html", "https://www.wireshark.org/docs/dfref/t/tcp.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0075",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "With `tcpdump -e`, an analyst sees `00:0c:29:aa:bb:cc > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806) ... Reply 10.0.0.1 is-at 00:0c:29:aa:bb:cc`. Why is this line suspicious?",
+    "options": [
+      "ARP replies must use EtherType 0x0800",
+      "An ARP reply is normally unicast to the asker, and this one is broadcast to announce itself for the gateway IP",
+      "Broadcast MAC addresses are invalid in Ethernet",
+      "tcpdump cannot print ARP with -e"
+    ],
+    "answer": 1,
+    "explanation": "Normal replies go back to the requester; repeated unsolicited replies for the gateway point to ARP poisoning.",
+    "optionNotes": [
+      "0x0806 is the correct EtherType for ARP.",
+      "Correct: an unsolicited broadcast reply for the gateway IP is worth checking against the real gateway MAC.",
+      "ff:ff:ff:ff:ff:ff is the valid broadcast address.",
+      "-e works for any link-layer frame."
+    ],
+    "tags": ["tcpdump", "arp", "output"],
+    "sources": [
+      "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "https://www.rfc-editor.org/rfc/rfc826",
+      "https://attack.mitre.org/techniques/T1557/002/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0076",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which Wireshark feature saves the files carried in a capture's HTTP or SMB traffic?",
+    "options": ["File > Export Objects", "Follow UDP Stream", "Capture > Options", "View > Time Display Format"],
+    "answer": 0,
+    "explanation": "Export Objects lists and saves objects such as downloaded files, useful in investigations.",
+    "optionNotes": [
+      "Correct.",
+      "Following a stream shows the conversation, not saved files.",
+      "Options configure capture.",
+      "Only changes how timestamps look."
+    ],
+    "tags": ["wireshark"],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChIOExportSection.html",
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowStreamSection.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0077",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "An analyst needs to capture on a Linux server with no graphical interface, using the same display filters as Wireshark. Which tool fits?",
+    "options": ["arpwatch", "Wireshark GUI", "TShark", "macchanger"],
+    "answer": 2,
+    "explanation": "TShark accepts -f capture filters and -Y display filters.",
+    "optionNotes": ["Only tracks ARP pairings.", "Needs a graphical session.", "Correct: Wireshark's command-line version.", "Changes MAC addresses."],
+    "tags": ["tshark"],
+    "sources": ["https://www.wireshark.org/docs/man-pages/tshark.html", "https://www.kali.org/tools/wireshark/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0078",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A switch should accept only the one PC already connected to each office port and alert when another device appears, without disabling the port. Which configuration fits?",
+    "options": [
+      "Root guard on every office port",
+      "DHCP snooping trust on every office port",
+      "SPAN on every office port",
+      "Port security, maximum 1, sticky learning, violation mode restrict"
+    ],
+    "answer": 3,
+    "explanation": "Sticky learns the current PC; restrict drops others and alerts; shutdown would disable the port.",
+    "optionNotes": [
+      "Root guard protects STP, not device identity.",
+      "Trusting office ports would let rogue DHCP servers through.",
+      "SPAN copies traffic; it does not restrict it.",
+      "Correct."
+    ],
+    "tags": ["port-security"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/port_security.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0079",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which feature must be enabled before Dynamic ARP Inspection can check dynamic clients?",
+    "options": ["SNMPv3", "Spanning Tree PortFast", "DHCP snooping", "HSTS"],
+    "answer": 2,
+    "explanation": "DHCP snooping builds the bindings; DAI and IP Source Guard enforce them.",
+    "optionNotes": [
+      "SNMPv3 secures management traffic.",
+      "PortFast only speeds port startup.",
+      "Correct: DAI checks ARP against the snooping binding table.",
+      "HSTS is a browser policy."
+    ],
+    "tags": ["dai", "dhcp-snooping"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/ip/b_179_ip_9300_cg/configuring_dhcp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0080",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A switch err-disables an access port after DAI drops more than 15 ARP packets per second from it. The port serves an ordinary laptop. What is the best reading of this event?",
+    "options": [
+      "The switch's MAC table is full",
+      "DAI is misconfigured because laptops never send ARP",
+      "The port should be made trusted to stop the alerts",
+      "The laptop sent an unusual ARP burst, which may be an attack or a misbehaving host, and should be investigated"
+    ],
+    "answer": 3,
+    "explanation": "The DAI rate limit catches ARP floods on untrusted ports; investigate before re-enabling.",
+    "optionNotes": [
+      "A MAC table overflow is a different alarm.",
+      "Laptops send ARP normally, just not at that rate.",
+      "Trusting a host port removes the protection.",
+      "Correct."
+    ],
+    "tags": ["dai", "detection"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/understanding-and-using-dai.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0081",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which protocol encrypts traffic between two directly connected switches at layer 2?",
+    "options": ["802.1Q", "MACsec (IEEE 802.1AE)", "STP", "LLDP"],
+    "answer": 1,
+    "explanation": "MACsec gives confidentiality and integrity hop by hop on Ethernet links.",
+    "optionNotes": ["802.1Q adds VLAN tags.", "Correct.", "STP prevents loops.", "LLDP advertises device information."],
+    "tags": ["macsec", "encryption"],
+    "sources": [
+      "https://1.ieee802.org/security/802-1ae/",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/macsec_encryption.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0082",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which pair protects the confidentiality of DNS queries between a client and its resolver?",
+    "options": ["DNS over TLS (TCP 853) and DNS over HTTPS", "DNSSEC and TSIG", "DHCP snooping and DAI", "SPAN and RSPAN"],
+    "answer": 0,
+    "explanation": "DoT and DoH hide queries from on-path observers; DNSSEC proves answers are genuine.",
+    "optionNotes": [
+      "Correct.",
+      "DNSSEC signs data but does not encrypt it; TSIG authenticates server-to-server messages.",
+      "Layer-2 features, not DNS encryption.",
+      "Mirroring features."
+    ],
+    "tags": ["dns", "encryption"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7858", "https://www.rfc-editor.org/rfc/rfc8484"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0083",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A guest Wi-Fi user reports a certificate warning when opening the company intranet over HTTPS. What should the user be told?",
+    "options": [
+      "Do not continue: the warning may mean someone is intercepting the connection",
+      "Click through: warnings are normal on guest networks",
+      "Switch to the HTTP version of the site",
+      "Clear the ARP cache and continue"
+    ],
+    "answer": 0,
+    "explanation": "TLS protects against interception only if certificate warnings are respected; HSTS makes browsers refuse to bypass them.",
+    "optionNotes": [
+      "Correct.",
+      "Accepting the warning defeats TLS protection.",
+      "HTTP removes encryption entirely.",
+      "Clearing the cache does not validate the certificate."
+    ],
+    "tags": ["tls", "hsts"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html", "https://www.rfc-editor.org/rfc/rfc6797"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0084",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Which MITRE ATT&CK mitigation is limiting what a single compromised host can observe by splitting the network into zones?",
+    "options": [
+      "M1031 Network Intrusion Prevention",
+      "M1041 Encrypt Sensitive Information",
+      "M1035 Limit Access to Resource Over Network",
+      "M1030 Network Segmentation"
+    ],
+    "answer": 3,
+    "explanation": "Segmentation limits the blast radius of any sniffer; encryption protects what it still sees.",
+    "optionNotes": [
+      "M1031 blocks traffic patterns with an IPS.",
+      "M1041 protects content, not reach.",
+      "M1035 restricts access to specific resources.",
+      "Correct."
+    ],
+    "tags": ["segmentation"],
+    "sources": ["https://attack.mitre.org/mitigations/M1030/", "https://attack.mitre.org/techniques/T1040/"],
+    "verify": false,
+    "rev": 1
+  }
+]

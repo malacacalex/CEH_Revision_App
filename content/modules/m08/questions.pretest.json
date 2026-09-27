@@ -1,0 +1,250 @@
+[
+  {
+    "id": "m08-q-0001",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What does a network card in promiscuous mode do?",
+    "options": [
+      "Passes up every frame it receives, even those not addressed to it",
+      "Encrypts every frame it sends",
+      "Joins every VLAN on the switch",
+      "Refuses frames from unknown MAC addresses"
+    ],
+    "answer": 0,
+    "explanation": "A NIC normally drops frames for other MACs; promiscuous mode keeps them so a sniffer can read them.",
+    "optionNotes": [
+      "Correct.",
+      "Promiscuous mode has nothing to do with encryption.",
+      "VLAN membership is set by the switch port, not the NIC mode.",
+      "That is closer to port security, a switch feature."
+    ],
+    "tags": ["promiscuous"],
+    "sources": ["https://www.tcpdump.org/manpages/tcpdump.1.html", "https://manpages.debian.org/bookworm/iproute2/ip-link.8.en.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0002",
+    "module": 8,
+    "section": "Sniffing Concepts",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which switch feature copies the traffic of chosen ports or VLANs to one port where an analyzer is connected?",
+    "options": ["DHCP snooping", "Port security", "Spanning Tree Protocol", "SPAN (port mirroring)"],
+    "answer": 3,
+    "explanation": "SPAN copies source ports or VLANs to a destination port without changing normal switching.",
+    "optionNotes": ["DHCP snooping filters DHCP server messages.", "Port security limits MACs per port.", "STP prevents switching loops.", "Correct."],
+    "tags": ["span"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/nmgmt/b_179_nmgmt_9300_cg/configuring_span_and_rspan.html",
+      "https://www.cisco.com/c/en/us/support/docs/switches/catalyst-6500-series-switches/10570-41.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0003",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 1,
+    "stem": "A switch log shows thousands of new source MAC addresses learned on one access port within seconds. Which attack does this suggest?",
+    "options": ["DHCP starvation", "DNS cache poisoning", "MAC flooding", "LLMNR poisoning"],
+    "answer": 2,
+    "explanation": "Mass MAC learning on one port is the MAC flooding signature; port security limits it.",
+    "optionNotes": [
+      "Starvation shows up as many DHCP requests, not only as MACs learned.",
+      "DNS poisoning works at the name-resolution level, not the MAC table.",
+      "Correct: the goal is to fill the MAC (CAM) table.",
+      "LLMNR poisoning answers name queries."
+    ],
+    "tags": ["mac-flooding"],
+    "sources": [
+      "https://manpages.debian.org/bookworm/dsniff/macof.8.en.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/overview-port-security.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0004",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "Why can ARP poisoning work on an ordinary LAN?",
+    "options": [
+      "ARP messages are encrypted with a shared key that is easy to guess",
+      "ARP has no authentication, and hosts update their cache from replies they did not ask for",
+      "Switches forward ARP only to the default gateway",
+      "ARP uses TCP, whose handshake can be spoofed"
+    ],
+    "answer": 1,
+    "explanation": "RFC 826 ARP trusts any reply; this is why a forged reply can change a host's IP-to-MAC mapping.",
+    "optionNotes": [
+      "ARP has no encryption at all.",
+      "Correct.",
+      "ARP requests are broadcast to every host.",
+      "ARP runs directly over Ethernet, not over TCP."
+    ],
+    "tags": ["arp"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc826", "https://attack.mitre.org/techniques/T1557/002/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0005",
+    "module": 8,
+    "section": "Sniffing Techniques",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Several laptops receive a lease whose default gateway and DNS server point to an unknown host on the same VLAN. What is the most likely cause?",
+    "options": ["An expired DNSSEC signature", "MAC flooding", "A duplicate SSID", "A rogue DHCP server"],
+    "answer": 3,
+    "explanation": "A rogue DHCP server hands out addresses that put it in the path; DHCP snooping blocks it.",
+    "optionNotes": [
+      "DNSSEC signatures do not set a client's gateway.",
+      "MAC flooding does not change lease contents.",
+      "SSIDs concern Wi-Fi association, not DHCP options.",
+      "Correct: an unauthorized server handed out its own gateway and DNS."
+    ],
+    "tags": ["dhcp"],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1557/003/",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/ip/b_179_ip_9300_cg/configuring_dhcp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0006",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 1,
+    "stem": "Which Wireshark display filter shows only ARP traffic?",
+    "options": ["arp", "port 0806", "ether proto arp only", "arp.show == true"],
+    "answer": 0,
+    "explanation": "Display filters use protocol and field names; `arp` alone matches every ARP packet.",
+    "optionNotes": [
+      "Correct: a protocol name alone is a valid display filter.",
+      "Not valid display-filter syntax; 0x0806 is the EtherType.",
+      "Not valid syntax.",
+      "No such field."
+    ],
+    "tags": ["wireshark", "filters"],
+    "sources": [
+      "https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html",
+      "https://www.wireshark.org/docs/dfref/a/arp.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0007",
+    "module": 8,
+    "section": "Sniffing Tools",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A tcpdump line shows `IP 10.0.0.8.443 > 10.0.0.23.51514: Flags [S.], seq 1200, ack 3301`. What is this packet?",
+    "options": ["A reset from 10.0.0.23", "A SYN-ACK from the server at 10.0.0.8", "A FIN closing the connection", "A plain ACK carrying data"],
+    "answer": 1,
+    "explanation": "tcpdump prints SYN as S, FIN as F, RST as R, PUSH as P and ACK as a dot.",
+    "optionNotes": [
+      "A reset would show `R`.",
+      "Correct: `S` is SYN and `.` is ACK.",
+      "A FIN would show `F`.",
+      "A data packet would show `P.` or only `.`."
+    ],
+    "tags": ["tcpdump", "output"],
+    "sources": ["https://www.tcpdump.org/manpages/tcpdump.1.html", "https://www.wireshark.org/docs/dfref/t/tcp.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0008",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which switch feature drops DHCP OFFER and ACK messages that arrive on untrusted ports?",
+    "options": ["Storm control", "Root guard", "DHCP snooping", "SPAN"],
+    "answer": 2,
+    "explanation": "DHCP snooping lets server messages in only on trusted ports and builds the binding table.",
+    "optionNotes": ["Storm control limits broadcast/multicast rates.", "Root guard protects the STP root bridge.", "Correct.", "SPAN mirrors traffic."],
+    "tags": ["dhcp-snooping"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/ip/b_179_ip_9300_cg/configuring_dhcp.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/security-services/topics/topic-map/port-security-trusted-dhcp-server.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0009",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An auditor finds that anyone can plug a laptop with a copied MAC address into a meeting-room port and get on the network. Which control fixes this best?",
+    "options": ["Changing the native VLAN", "802.1X port-based authentication", "Enabling SPAN on the port", "Turning off DNSSEC"],
+    "answer": 1,
+    "explanation": "A MAC address is easy to change; 802.1X ties port access to real credentials checked by RADIUS.",
+    "optionNotes": [
+      "The native VLAN matters for trunk attacks, not for device identity.",
+      "Correct: the device must authenticate, not just show an allowed MAC.",
+      "SPAN copies traffic; it grants nothing.",
+      "Turning DNSSEC off weakens DNS and does not touch port access."
+    ],
+    "tags": ["8021x", "mac-spoofing"],
+    "sources": [
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_ieee_802_1x_port_based_authentication.html",
+      "https://1.ieee802.org/security/802-1x/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m08-q-0010",
+    "module": 8,
+    "section": "Sniffing Countermeasures",
+    "domain": "D4",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does DNSSEC protect in DNS answers?",
+    "options": ["Origin authenticity and integrity", "Confidentiality of the query", "Availability of the resolver", "The anonymity of the client"],
+    "answer": 0,
+    "explanation": "DNSSEC answers the forged-answer problem but leaves queries readable.",
+    "optionNotes": [
+      "Correct: signatures let a resolver check who produced the data and that it was not changed.",
+      "DNSSEC does not encrypt; DoT or DoH do.",
+      "It does not add capacity.",
+      "It does nothing for client anonymity."
+    ],
+    "tags": ["dnssec"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc4033", "https://learn.microsoft.com/en-us/windows-server/networking/dns/dnssec-overview"],
+    "verify": false,
+    "rev": 1
+  }
+]
