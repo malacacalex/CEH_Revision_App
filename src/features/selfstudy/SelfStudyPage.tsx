@@ -52,12 +52,12 @@ export function SelfStudyPage() {
                   <ul className="mt-1 space-y-0.5 text-sm">
                     {sameEverywhere(m.meta.sections.length, gaps) ? (
                       <li>
-                        All {gaps.length} sections: <span className="text-muted">{missingText(gaps[0]!.missing)}</span>
+                        All {gaps.length} sections: <span className="text-muted">{missingText(gaps[0]!)}</span>
                       </li>
                     ) : (
                       gaps.map((g) => (
                         <li key={g.section}>
-                          {g.section}: <span className="text-muted">{missingText(g.missing)}</span>
+                          {g.section}: <span className="text-muted">{missingText(g)}</span>
                         </li>
                       ))
                     )}
@@ -72,9 +72,9 @@ export function SelfStudyPage() {
   );
 }
 
-const missingText = (missing: SectionGap['missing']) => `no ${missing.join(', no ')}`;
+const missingText = (g: SectionGap) => g.missing.map((k) => `${(g.few as string[]).includes(k) ? 'few' : 'no'} ${k}`).join(', ');
 
 /** Every section lacks the same things (a stub, typically): one line says it. */
 function sameEverywhere(sectionCount: number, gaps: SectionGap[]): boolean {
-  return gaps.length === sectionCount && gaps.length > 1 && gaps.every((g) => g.missing.join() === gaps[0]!.missing.join());
+  return gaps.length === sectionCount && gaps.length > 1 && gaps.every((g) => missingText(g) === missingText(gaps[0]!));
 }

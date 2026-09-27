@@ -91,7 +91,7 @@ describe('M2 content rules', () => {
   it('lists the sections a partial module is missing', () => {
     const m15 = loadContentFromDisk().bundle!.modules.find((m) => m.meta.module === 15)!;
     const gaps = sectionGaps({ ...m15, notes: '## SQL Injection Concepts' });
-    expect(gaps[0]).toEqual({ section: 'SQL Injection Concepts', missing: ['flashcards', 'questions'] });
+    expect(gaps[0]).toEqual({ section: 'SQL Injection Concepts', missing: ['flashcards', 'questions'], few: [] });
     expect(gaps[1]!.missing).toEqual(['notes', 'flashcards', 'questions']);
   });
 
