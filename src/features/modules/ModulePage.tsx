@@ -7,6 +7,7 @@ import { getModuleProgress, updateModuleProgress } from '../../db/repo.ts';
 import { useSnapshot } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, Empty, inputClass, PageHeader } from '../../ui/kit.tsx';
 import { Markdown } from '../../ui/Markdown.tsx';
+import type { ModuleMeta } from '../../schemas/content.ts';
 import type { ModuleProgress } from '../../schemas/progress.ts';
 import { useLiveQuery } from 'dexie-react-hooks';
 
@@ -122,6 +123,7 @@ export function ModulePage() {
               )}
             </div>
           </Card>
+          <Resources meta={m.meta} />
           <Card>
             <h2 className="mb-2 text-lg font-bold">Objectives</h2>
             {m.meta.objectives.length === 0 ? (
@@ -149,7 +151,14 @@ export function ModulePage() {
 
       {tab === 'notes' && (
         <Card>
-          {m.notes.trim() ? <Markdown source={m.notes} /> : <Empty>Notes arrive when this module is built.</Empty>}
+          {m.notes.trim() ? (
+            <Markdown source={m.notes} />
+          ) : (
+            <>
+              <Empty>Notes arrive when this module is built.</Empty>
+              {m.meta.resources.length > 0 && <ResourceList resources={m.meta.resources} />}
+            </>
+          )}
           <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-line pt-4">
             {mp.notesReviewedAt ? (
               <Badge tone="good">Notes reviewed</Badge>
@@ -284,5 +293,38 @@ function Feynman({ n, mp, profileId, prompts }: { n: number; mp: ModuleProgress;
         </Button>
       </div>
     </Card>
+  );
+}
+
+/** Free official material; while the module isn't built it stands in for the missing in-app content. */
+function Resources({ meta }: { meta: ModuleMeta }) {
+  if (meta.resources.length === 0) return null;
+  const partial = meta.status !== 'built';
+  return (
+    <Card className={partial ? 'border-amber/50 bg-amber-soft' : ''}>
+      <h2 className="mb-1 text-lg font-bold">{partial ? 'Study it from these free resources' : 'Go further'}</h2>
+      {partial && (
+        <p className="mb-3 text-sm">
+          Part of this module isn't written in the app yet. Until it is, learn it from these official, free sources, then use the flashcards and
+          quizzes that exist.
+        </p>
+      )}
+      <ResourceList resources={meta.resources} />
+    </Card>
+  );
+}
+
+function ResourceList({ resources }: { resources: ModuleMeta['resources'] }) {
+  return (
+    <ul className="space-y-2">
+      {resources.map((r) => (
+        <li key={r.url}>
+          <a href={r.url} target="_blank" rel="noreferrer" className="font-semibold text-chestnut underline">
+            {r.name}
+          </a>
+          <span className="block text-sm text-muted">{r.covers}</span>
+        </li>
+      ))}
+    </ul>
   );
 }

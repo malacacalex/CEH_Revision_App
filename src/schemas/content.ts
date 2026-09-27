@@ -85,6 +85,10 @@ export const ModuleMetaSchema = z.strictObject({
     }),
   ),
   feynmanPrompts: z.array(nonEmpty),
+  /** Free official material to study from, shown on the module page (most useful while a module isn't built). */
+  resources: z
+    .array(z.strictObject({ name: nonEmpty, url, covers: nonEmpty }))
+    .default([]),
 });
 export type ModuleMeta = z.infer<typeof ModuleMetaSchema>;
 

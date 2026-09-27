@@ -14,5 +14,22 @@
   "objectives": [],
   "readingMap": [],
   "labs": [],
-  "feynmanPrompts": []
+  "feynmanPrompts": [],
+  "resources": [
+    {
+      "name": "NIST SP 800-153: Guidelines for Securing WLANs",
+      "url": "https://csrc.nist.gov/pubs/sp/800/153/final",
+      "covers": "WLAN security configuration and monitoring."
+    },
+    {
+      "name": "NIST SP 800-97: Establishing Wireless Robust Security Networks",
+      "url": "https://csrc.nist.gov/pubs/sp/800/97/final",
+      "covers": "802.11i, WPA2 and 802.1X/EAP."
+    },
+    {
+      "name": "NIST SP 800-121r2: Guide to Bluetooth Security",
+      "url": "https://csrc.nist.gov/pubs/sp/800/121/r2/upd1/final",
+      "covers": "Bluetooth threats and countermeasures."
+    }
+  ]
 }

@@ -96,5 +96,12 @@
     "Explain to a new colleague why plugging a laptop into a switch port does not let it read everyone's traffic, while a hub or an open Wi-Fi channel would.",
     "Pick one layer-2 attack (MAC flooding, rogue DHCP or ARP poisoning) and explain what lie it tells to which device, what a defender would see in the logs, and which switch feature stops it.",
     "Explain the difference between a Wireshark display filter and a capture filter, and why choosing the wrong one can lose evidence."
+  ],
+  "resources": [
+    {
+      "name": "Wireshark User's Guide",
+      "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+      "covers": "Capture and display filters, reading packet details."
+    }
   ]
 }

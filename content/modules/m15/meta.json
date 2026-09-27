@@ -14,5 +14,17 @@
   "objectives": [],
   "readingMap": [],
   "labs": [],
-  "feynmanPrompts": []
+  "feynmanPrompts": [],
+  "resources": [
+    {
+      "name": "OWASP SQL Injection Prevention Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+      "covers": "Parameterized queries and the other defenses."
+    },
+    {
+      "name": "PortSwigger Web Security Academy: SQL injection",
+      "url": "https://portswigger.net/web-security/sql-injection",
+      "covers": "Free lessons and legal practice labs."
+    }
+  ]
 }

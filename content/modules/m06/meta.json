@@ -13,5 +13,27 @@
   "objectives": [],
   "readingMap": [],
   "labs": [],
-  "feynmanPrompts": []
+  "feynmanPrompts": [],
+  "resources": [
+    {
+      "name": "MITRE ATT&CK Enterprise matrix",
+      "url": "https://attack.mitre.org/matrices/enterprise/",
+      "covers": "Each technique page ends with its detections and mitigations."
+    },
+    {
+      "name": "NIST SP 800-63B: authentication and authenticator management",
+      "url": "https://pages.nist.gov/800-63-4/sp800-63b.html",
+      "covers": "Password and MFA rules used as countermeasures."
+    },
+    {
+      "name": "OWASP Password Storage Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "covers": "Hashing, salting and work factors."
+    },
+    {
+      "name": "NIST SP 800-92: Guide to Computer Security Log Management",
+      "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+      "covers": "Central logging and log integrity."
+    }
+  ]
 }

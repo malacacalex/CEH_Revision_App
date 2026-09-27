@@ -119,5 +119,22 @@
     "Explain to a new developer why changing /api/orders/1001 to /api/orders/1002 should return 403, which OWASP lists call this flaw, and what single check in the code prevents it.",
     "Tell the difference between reflected XSS, stored XSS and CSRF using one short story each, and say which control stops each one.",
     "Your team receives payment events by webhook. Explain how you make sure a delivery really came from the provider, is not a replay, and cannot be abused to reach your internal network."
+  ],
+  "resources": [
+    {
+      "name": "OWASP Top 10:2025",
+      "url": "https://owasp.org/Top10/",
+      "covers": "The web risk categories and their prevention sections."
+    },
+    {
+      "name": "OWASP API Security Top 10 (2023)",
+      "url": "https://owasp.org/API-Security/editions/2023/en/0x11-t10/",
+      "covers": "API risk categories."
+    },
+    {
+      "name": "PortSwigger Web Security Academy",
+      "url": "https://portswigger.net/web-security/all-topics",
+      "covers": "Free lessons and legal practice labs for each web vulnerability class."
+    }
   ]
 }
