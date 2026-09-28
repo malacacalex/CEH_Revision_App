@@ -233,7 +233,7 @@
       "TLS 1.3 uses (EC)DHE or PSK."
     ],
     "tags": ["key-escrow", "ec-council-specific"],
-    "sources": ["https://csrc.nist.gov/glossary/term/key_escrow", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": ["https://csrc.nist.gov/glossary/term/key_escrow", "https://www.rfc-editor.org/rfc/rfc4949.html", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
     "rev": 1
   }

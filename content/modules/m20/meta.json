@@ -77,7 +77,7 @@
       "where": "https://docs.openssl.org/master/man1/openssl-enc/",
       "skill": "Symmetric file encryption with a password-derived key, hashing, and GPG key pairs, encryption and signatures on your own machine",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Create a self-signed certificate and inspect a real certificate chain",
@@ -85,7 +85,7 @@
       "where": "https://docs.openssl.org/master/man1/openssl-req/",
       "skill": "openssl req -x509, openssl x509 -text and openssl s_client to read issuer, subject, SAN and validity",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Audit the TLS configuration of your own test server",
@@ -93,15 +93,15 @@
       "where": "https://testssl.sh/",
       "skill": "Listing protocol versions, cipher suites and known TLS weaknesses with testssl.sh and Nmap ssl-enum-ciphers",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Explore classical and modern ciphers in CrypTool Online",
       "source": "free",
       "where": "https://www.cryptool.org/en/cto/",
-      "skill": "Frequency analysis on a substitution cipher and seeing why ECB leaks patterns",
+      "skill": "Frequency analysis on a substitution cipher, then RSA key generation and encryption step by step",
       "minutes": 30,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

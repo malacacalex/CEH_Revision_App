@@ -170,7 +170,7 @@
       "Correct: XML signature wrapping targets web-service message validation."
     ],
     "tags": ["cloud-attacks", "xml", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html"],
     "verify": true,
     "rev": 1
   },
@@ -741,9 +741,10 @@
     "tags": ["kubernetes", "defense-in-depth"],
     "sources": [
       "https://web.archive.org/web/20230127212146/https://kubernetes.io/docs/concepts/security/overview/",
-      "https://kubernetes.io/docs/concepts/security/overview/"
+      "https://github.com/cncf/curriculum/blob/master/KCSA%20Curriculum.pdf",
+      "https://www.trendaisecurity.com/en-us/resources-insights/deep-research/securing-the-4-cs-of-cloud-native-systems-cloud-cluster-container-and-code"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

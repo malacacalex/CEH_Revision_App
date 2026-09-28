@@ -109,7 +109,7 @@
       "where": "http://flaws.cloud/",
       "skill": "Recognizing common AWS misconfigurations (public buckets, leaked keys, metadata exposure) in a hosted, legal environment",
       "minutes": 90,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Deploy a CloudGoat scenario in your own AWS account, then audit it with Prowler or ScoutSuite",
@@ -117,7 +117,7 @@
       "where": "https://github.com/RhinoSecurityLabs/cloudgoat",
       "skill": "Reading posture findings and IAM policies on a vulnerable-by-design lab you own; tear it down afterwards",
       "minutes": 90,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Scan images with Trivy and a local cluster with kube-bench",
@@ -125,7 +125,7 @@
       "where": "https://github.com/aquasecurity/trivy",
       "skill": "Finding image CVEs, secrets and CIS Kubernetes Benchmark failures on your own kind or minikube cluster",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Kubernetes Goat scenarios on a local cluster",
@@ -133,7 +133,7 @@
       "where": "https://github.com/madhuakula/kubernetes-goat",
       "skill": "Seeing RBAC, secret and privileged-pod weaknesses in an intentionally vulnerable cluster you run yourself",
       "minutes": 90,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

@@ -83,7 +83,7 @@
       "where": "https://docs.snort.org/",
       "skill": "Building a rule header and options (msg, sid, content, flow) and confirming it alerts on the intended traffic",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Run Suricata on a captured pcap and read the eve.json alerts",
@@ -91,15 +91,15 @@
       "where": "https://docs.suricata.io/en/latest/",
       "skill": "Replaying traffic through Suricata and interpreting alert, flow and http records in EVE JSON",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
-      "name": "Deploy a low-interaction honeypot (Cowrie) in an isolated VM and review the captured session log",
+      "name": "Deploy a medium-interaction honeypot (Cowrie) in an isolated VM and review the captured session log",
       "source": "free",
       "where": "https://github.com/cowrie/cowrie",
       "skill": "Standing up an SSH/Telnet decoy and reading the attacker's commands, with no production system attached",
       "minutes": 40,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Create a canary token and observe the alert when it is triggered",
@@ -107,7 +107,7 @@
       "where": "https://docs.canarytokens.org/guide/",
       "skill": "Placing a decoy credential/file/URL as a high-signal tripwire and confirming the alert fires on use",
       "minutes": 25,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

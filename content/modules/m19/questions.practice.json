@@ -377,9 +377,11 @@
     "tags": ["cloud-attacks", "firmware", "ec-council-specific"],
     "sources": [
       "https://eclypsium.com/research/the-missing-security-primer-for-bare-metal-cloud-services/",
+      "https://www.csoonline.com/article/566943/bare-metal-cloud-servers-vulnerable-to-cloudborne-flaw.html",
+      "https://www.darkreading.com/cloud-security/-cloudborne-bare-metal-cloud-servers-vulnerable-to-attack",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

@@ -971,21 +971,24 @@
       "Use AI-written cryptographic code in production without review"
     ],
     "answer": 1,
-    "explanation": "EC-Council's v13 AI lab uses assistants to produce encryption and hashing commands. Treat the output as a draft to verify, and keep keys and client data out of public AI tools.",
+    "explanation": "The CEH v13 Cryptography module includes a lab named Perform Cryptography using AI. Treat the output as a draft to verify, and keep keys and client data out of public AI tools.",
     "optionNotes": [
-      "Assistants often suggest ECB, MD5 or passwords used directly as keys.",
-      "Correct: assistants invent flags and suggest weak modes; secrets must stay private.",
+      "A Stanford user study found AI-assisted encryption code less secure (weak ciphers, no authentication).",
+      "Correct: assistants can invent options and pick weak settings; secrets must stay private.",
       "Sharing a private key with a public service is a key compromise.",
       "Unreviewed crypto code is a classic source of vulnerabilities."
     ],
     "tags": ["ai", "v13-new", "ec-council-specific"],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "https://arxiv.org/abs/2211.03622",
       "https://genai.owasp.org/llm-top-10/",
       "https://docs.openssl.org/master/man1/openssl-enc/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m20-q-0048",
@@ -1263,7 +1266,7 @@
       "That is a replay attack."
     ],
     "tags": ["rubber-hose", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://cacr.uwaterloo.ca/hac/about/chap1.pdf"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://veracrypt.io/en/Hidden%20Volume.html"],
     "verify": true,
     "rev": 1
   },

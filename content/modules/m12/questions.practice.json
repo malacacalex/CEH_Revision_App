@@ -639,8 +639,8 @@
       "Correct: emulated, historyless systems are how attackers fingerprint honeypots."
     ],
     "tags": ["honeypot", "fingerprint"],
-    "sources": ["https://d3fend.mitre.org/technique/d3f:DecoyEnvironment/", "https://www.honeynet.org/"],
-    "verify": true,
+    "sources": ["https://d3fend.mitre.org/technique/d3f:DecoyEnvironment/", "https://www.usenix.org/conference/woot18/presentation/vetterl", "https://attack.mitre.org/techniques/T1497/002/", "https://attack.mitre.org/techniques/T1497/003/", "https://www.honeynet.org/"],
+    "verify": false,
     "rev": 1
   },
   {

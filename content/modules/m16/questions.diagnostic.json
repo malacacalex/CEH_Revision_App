@@ -41,8 +41,8 @@
       "Correct: resists offline dictionary attacks on a captured handshake."
     ],
     "tags": ["wpa3", "diagnostic"],
-    "sources": ["https://www.wi-fi.org/discover-wi-fi/security", "https://www.rfc-editor.org/rfc/rfc7664"],
-    "verify": true,
+    "sources": ["https://www.wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-wpa3-security", "https://www.cisco.com/c/en/us/products/collateral/wireless/catalyst-9100ax-access-points/wpa3-dep-guide-og.html", "https://eprint.iacr.org/2019/383", "https://docs.zebra.com/us/en/mobile-computers/software/zebra-wpa3-ig-cisco-wlan-infrastructure/c-about-wpa3/c-wpa3-personal-sae.html", "https://www.wi-fi.org/security", "https://www.rfc-editor.org/rfc/rfc7664.html"],
+    "verify": false,
     "rev": 1
   },
   {

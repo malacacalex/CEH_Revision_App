@@ -130,15 +130,15 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 14 verify |
 | M11 Session Hijacking | built | 39/10/46/11, 5 verify |
 | M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 15 verify (all ec-council-specific) |
-| M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred (retry blocked too) |
+| M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 0 verify; 2 evasion sections deferred (retry blocked too) |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 30 mock, 2 verify (+1 lab) |
 | M14 Hacking Web Applications | built | 70/10/94/51, 2 verify; cards and questions built on the 2026-09-27 retry |
 | M15 SQL Injection | stub | full build deferred (blocked, defensive retry blocked too) |
 | M16 Hacking Wireless Networks | stub | full build deferred (blocked, defensive retry blocked too) |
 | M17 Hacking Mobile Platforms | built | 40 cards, 10 pretest, 54 practice, 20 mock, 6 verify |
 | M18 IoT and OT Hacking | built | 44/10/48/20, 5 verify; IoT practice built on the 2026-09-27 retry |
-| M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
-| M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
+| M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 6 verify |
+| M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 4 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
 | Reference | 15 / 18 | sheets 1, 3–6, 8–13, 15–18 (9 and 12 partial, 13 without SQLi); sheet 2 deferred, 7 and 14 wait on blocked M4 and M16 · glossary 208 terms |
 
@@ -161,9 +161,11 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 - [x] **M6**: lab tracker (§6.3 feature 9). `/labs` page and the module Labs tab: status (to do, in progress,
   done, skipped), time spent and notes per lab, stored on `moduleProgress.labs` keyed by lab name
   (`domain/labs.ts`). Lab totals and touched labs go into the review export. Labs are practice, not a gate.
+  Lab names are the log keys: once a release ships the tracker, renaming a lab loses its logs unless a
+  migration maps the old name (one rename before that: the M12 Cowrie lab, low → medium-interaction).
 - [ ] **M7**: fact-check pass over the `verify: true` items, module by module (`/fact-check`); items confirmed
   on primary sources lose the flag, wrong ones are fixed with a `rev` bump.
-  Done: M0, M1, M2, M6, M7, M8, M9, M10, M11, M13, M14, M17, M18. Items left flagged are mostly `ec-council-specific` framing no public EC-Council page states.
+  Done: every module except M3 and M5. Items left flagged are mostly `ec-council-specific` framing no public EC-Council page states.
 
 ## Release status
 

@@ -485,7 +485,9 @@
     ],
     "tags": ["blockchain", "eclipse", "ec-council-specific"],
     "sources": [
-      "https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/attack-and-defense/",
+      "https://ethereum.org/developers/docs/consensus-mechanisms/pos/attack-and-defense/",
+      "https://www.usenix.org/conference/usenixsecurity15/technical-sessions/presentation/heilman",
+      "https://eprint.iacr.org/2018/236",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
     "verify": true,

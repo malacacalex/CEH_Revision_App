@@ -536,7 +536,7 @@
     "domain": "D9",
     "kind": "list",
     "front": "Using AI for cryptography tasks (v13 lab theme)",
-    "back": "1. **Check every command** against official docs: assistants suggest ECB, MD5 or raw passwords as keys\n2. **Never paste real keys**, passwords or client data into a public AI service\n3. Prefer vetted libraries over AI-written crypto code",
+    "back": "1. **Check every command** against official docs: assistants can invent options, pick weak ciphers or skip authentication\n2. **Never paste real keys**, passwords or client data into a public AI service\n3. Prefer vetted libraries over AI-written crypto code",
     "tags": [
       "ai",
       "v13-new",
@@ -544,11 +544,14 @@
     ],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "https://arxiv.org/abs/2211.03622",
       "https://genai.owasp.org/llm-top-10/",
       "https://docs.openssl.org/master/man1/openssl-enc/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m20-c-0028",
@@ -583,10 +586,12 @@
     ],
     "sources": [
       "https://cacr.uwaterloo.ca/hac/about/chap7.pdf",
+      "https://www.engr.mun.ca/~howard/PAPERS/ldc_tutorial.pdf",
       "https://csrc.nist.gov/glossary/term/cryptanalysis",
+      "https://www.eccouncil.org/train-certify/ec-council-certified-encryption-specialist-eces/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -701,12 +706,16 @@
       "ec-council-specific"
     ],
     "sources": [
-      "https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/",
-      "https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/attack-and-defense/",
+      "https://ethereum.org/developers/docs/consensus-mechanisms/pow/",
+      "https://ethereum.org/developers/docs/consensus-mechanisms/pos/attack-and-defense/",
+      "https://nvlpubs.nist.gov/nistpubs/ir/2018/NIST.IR.8202.pdf",
+      "https://www.microsoft.com/en-us/research/publication/the-sybil-attack/",
+      "https://www.usenix.org/conference/usenixsecurity15/technical-sessions/presentation/heilman",
+      "https://eprint.iacr.org/2018/236",
       "https://swcregistry.io/docs/SWC-107/",
       "https://owasp.org/www-project-smart-contract-top-10/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

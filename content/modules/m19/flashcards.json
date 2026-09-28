@@ -265,6 +265,7 @@
       "https://attack.mitre.org/groups/G0045/",
       "https://eclypsium.com/research/the-missing-security-primer-for-bare-metal-cloud-services/",
       "https://attack.mitre.org/techniques/T1550/001/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
     "verify": true,
@@ -793,10 +794,13 @@
     ],
     "sources": [
       "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html",
+      "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction",
+      "https://www.paloaltonetworks.com/cyberpedia/what-is-cwpp-cloud-workload-protection-platform",
       "https://csrc.nist.gov/glossary/term/cloud_access_security_broker",
-      "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html"
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-215.pdf"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
