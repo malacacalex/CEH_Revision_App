@@ -84,7 +84,7 @@
       "where": "https://www.eicar.org/download-anti-malware-testfile/",
       "skill": "Static analysis basics on the EICAR test file in your own VM: SHA-256 hash, VirusTotal hash lookup, Strings, and watching your antivirus react",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Write and test a YARA rule against your own files",
@@ -92,7 +92,7 @@
       "where": "https://yara.readthedocs.io/en/stable/writingrules.html",
       "skill": "Rule structure (meta, strings, condition) and matching a family by stable features instead of a hash",
       "minutes": 40,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Baseline autostarts and process activity with Sysinternals on your own PC",
@@ -100,7 +100,7 @@
       "where": "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns",
       "skill": "Reading Autoruns, Process Monitor and TCPView output the way a dynamic analysis does, on a clean system",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Map a #StopRansomware advisory to ATT&CK and pick the countermeasures",
@@ -108,7 +108,7 @@
       "where": "https://www.cisa.gov/stopransomware",
       "skill": "Turning a real ransomware report into techniques (T1486, T1490, T1566) and matching controls",
       "minutes": 40,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

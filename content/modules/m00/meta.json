@@ -56,7 +56,7 @@
       "where": "https://docs.rapid7.com/metasploit/metasploitable-2/",
       "skill": "Building an isolated lab, taking snapshots, a first ping and nmap from Kali",
       "minutes": 90,
-      "verify": true
+      "verify": false
     },
     {
       "name": "OverTheWire Bandit, levels 0–10",
@@ -64,13 +64,13 @@
       "where": "https://overthewire.org/wargames/bandit/",
       "skill": "Linux command line: files, permissions, find, grep, SSH",
       "minutes": 120,
-      "verify": true
+      "verify": false
     },
     {
       "name": "TryHackMe Pre Security path (free rooms)",
       "source": "free",
       "where": "https://tryhackme.com/path/outline/presecurity",
-      "skill": "Networking basics, how the web works, Linux and Windows fundamentals",
+      "skill": "Computer and OS basics, networking, how the web works, security awareness",
       "minutes": 180,
       "verify": true
     },
@@ -80,7 +80,7 @@
       "where": "https://www.wireshark.org/docs/wsug_html_chunked/",
       "skill": "Seeing SYN, SYN/ACK, ACK and a UDP DNS query on the wire",
       "minutes": 45,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

@@ -503,6 +503,7 @@
     ],
     "sources": [
       "https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters",
+      "https://learn.microsoft.com/en-us/powershell/module/nettcpip/set-netipv4protocol",
       "https://docs.kernel.org/networking/ip-sysctl.html"
     ],
     "verify": true,
@@ -705,9 +706,11 @@
     ],
     "sources": [
       "https://www.virtualbox.org/manual/topics/networkingdetails.html",
+      "https://csrc.nist.gov/pubs/sp/800/125/final",
+      "https://sourceforge.net/projects/metasploitable/",
       "https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -717,17 +720,18 @@
     "domain": "D0",
     "kind": "term",
     "front": "Snapshot",
-    "back": "Saved state of a VM that you can roll back to after breaking it. It is **not a backup**: it lives on the same disk as the VM.",
+    "back": "Saved state of a VM that you can roll back to after breaking it. It is **not a backup**: it only stores the changes and still depends on the VM's original disk.",
     "tags": [
       "virtualization",
       "lab"
     ],
     "sources": [
       "https://www.virtualbox.org/manual/topics/Introduction.html",
-      "https://csrc.nist.gov/pubs/sp/800/125/final"
+      "https://www.virtualbox.org/manual/topics/storage.html",
+      "https://knowledge.broadcom.com/external/article/318825/best-practices-for-using-vmware-snapshot.html"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m00-c-0040",
@@ -743,9 +747,11 @@
     ],
     "sources": [
       "https://www.kali.org/docs/introduction/default-credentials/",
+      "https://www.kali.org/blog/kali-linux-2020-1-release/",
+      "https://www.kali.org/docs/introduction/what-is-kali-linux/",
       "https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -762,9 +768,10 @@
     ],
     "sources": [
       "https://docs.rapid7.com/metasploit/metasploitable-2/",
+      "https://sourceforge.net/projects/metasploitable/",
       "https://www.virtualbox.org/manual/topics/networkingdetails.html"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

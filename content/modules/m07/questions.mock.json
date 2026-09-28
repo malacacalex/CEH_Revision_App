@@ -334,9 +334,11 @@
     "tags": ["ai", "v13-new", "evasion"],
     "sources": [
       "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/the-state-of-criminal-ai",
+      "https://research.splunk.com/stories/promptflux/",
       "https://attack.mitre.org/techniques/T1027/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -363,8 +365,8 @@
       "A chatbot is not a replacement for layered detection."
     ],
     "tags": ["ai", "v13-new", "soc"],
-    "sources": ["https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html", "https://genai.owasp.org/llm-top-10/"],
-    "verify": true,
+    "sources": ["https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html", "https://genai.owasp.org/llm-top-10/", "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot"],
+    "verify": false,
     "rev": 1
   },
   {

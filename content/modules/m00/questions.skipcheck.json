@@ -389,8 +389,8 @@
     "explanation": "Keep vulnerable targets on host-only or internal networks.",
     "optionNotes": ["Kali can reach it, and so can everyone else.", "Performance is not the issue.", "Correct.", "No such effect."],
     "tags": ["lab"],
-    "sources": ["https://docs.rapid7.com/metasploit/metasploitable-2/", "https://www.virtualbox.org/manual/topics/networkingdetails.html"],
-    "verify": true,
+    "sources": ["https://docs.rapid7.com/metasploit/metasploitable-2/", "https://www.virtualbox.org/manual/topics/networkingdetails.html", "https://sourceforge.net/projects/metasploitable/"],
+    "verify": false,
     "rev": 1
   },
   {

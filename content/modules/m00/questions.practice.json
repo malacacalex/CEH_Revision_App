@@ -772,7 +772,8 @@
     "tags": ["os-fingerprinting", "ttl"],
     "sources": [
       "https://docs.kernel.org/networking/ip-sysctl.html",
-      "https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters"
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters",
+      "https://learn.microsoft.com/en-us/powershell/module/nettcpip/set-netipv4protocol"
     ],
     "verify": true,
     "rev": 1
@@ -1113,8 +1114,8 @@
       "Kali could not reach the target."
     ],
     "tags": ["lab", "virtualization"],
-    "sources": ["https://www.virtualbox.org/manual/topics/networkingdetails.html", "https://docs.rapid7.com/metasploit/metasploitable-2/"],
-    "verify": true,
+    "sources": ["https://www.virtualbox.org/manual/topics/networkingdetails.html", "https://docs.rapid7.com/metasploit/metasploitable-2/", "https://sourceforge.net/projects/metasploitable/", "https://csrc.nist.gov/pubs/sp/800/125/final"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1132,7 +1133,7 @@
     "optionNotes": ["NAT hides the VM behind the host.", "Host-only is limited to host and VMs.", "Internal is VMs only.", "Correct."],
     "tags": ["lab", "virtualization"],
     "sources": ["https://www.virtualbox.org/manual/topics/networkingdetails.html", "https://csrc.nist.gov/pubs/sp/800/125/final"],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -1154,14 +1155,14 @@
     "explanation": "Take snapshots before each exercise.",
     "optionNotes": [
       "Snapshots do not encrypt anything.",
-      "A snapshot lives on the same storage, so it is not a backup.",
+      "A snapshot depends on the VM's original disk, so it is not a backup.",
       "Correct.",
       "That is an export, not a snapshot."
     ],
     "tags": ["lab", "virtualization"],
-    "sources": ["https://www.virtualbox.org/manual/topics/Introduction.html", "https://csrc.nist.gov/pubs/sp/800/125/final"],
-    "verify": true,
-    "rev": 1
+    "sources": ["https://www.virtualbox.org/manual/topics/Introduction.html", "https://www.virtualbox.org/manual/topics/storage.html", "https://knowledge.broadcom.com/external/article/318825/best-practices-for-using-vmware-snapshot.html"],
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m00-q-0064",
@@ -1177,8 +1178,8 @@
     "explanation": "Kali moved to a non-root default user in 2020.1. Change the password immediately.",
     "optionNotes": ["There is one: kali/kali.", "root/toor was the old default, before 2020.1.", "Not a Kali default.", "Correct."],
     "tags": ["kali", "lab"],
-    "sources": ["https://www.kali.org/docs/introduction/default-credentials/", "https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"],
-    "verify": true,
+    "sources": ["https://www.kali.org/docs/introduction/default-credentials/", "https://www.kali.org/blog/kali-linux-2020-1-release/", "https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1200,8 +1201,8 @@
     "explanation": "Rapid7 publishes it as a practice target for Metasploit and scanning labs.",
     "optionNotes": ["Scanners like Nessus are different tools.", "Correct.", "It is the opposite of hardened.", "It is a target, not an exploit kit."],
     "tags": ["lab", "metasploitable"],
-    "sources": ["https://docs.rapid7.com/metasploit/metasploitable-2/", "https://www.virtualbox.org/manual/topics/networkingdetails.html"],
-    "verify": true,
+    "sources": ["https://docs.rapid7.com/metasploit/metasploitable-2/", "https://sourceforge.net/projects/metasploitable/", "https://www.virtualbox.org/manual/topics/networkingdetails.html"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1292,8 +1293,8 @@
     "explanation": "Each Bandit level hides the password for the next one, which forces you to learn core commands.",
     "optionNotes": ["It is free and not a certification.", "Correct.", "It uses Linux, and it is a game, not a framework.", "It is not a tool."],
     "tags": ["lab", "linux"],
-    "sources": ["https://overthewire.org/wargames/bandit/", "https://tryhackme.com/path/outline/presecurity"],
-    "verify": true,
+    "sources": ["https://overthewire.org/wargames/bandit/", "https://overthewire.org/wargames/bandit/bandit1.html", "https://tryhackme.com/path/outline/presecurity"],
+    "verify": false,
     "rev": 1
   },
   {

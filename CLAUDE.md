@@ -118,7 +118,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 
 | Module | Status | Notes |
 |---|---|---|
-| M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 14 verify |
+| M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 2 verify (+1 lab) |
 | M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
 | M2 Footprinting and Reconnaissance | built | 50/10/71/47, 26 verify; mock pool built on the 2026-09-27 retry |
 | M3 Scanning Networks | built | 63/10/90/47, 15 verify; built on the 2026-09-27 retry (evasion as concept classes) |
@@ -129,7 +129,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M9 Social Engineering | built | 31 cards, 10 pretest, 54 practice, 11 mock, 28 verify |
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
 | M11 Session Hijacking | built | 39/10/46/11, 14 verify |
-| M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 24 verify |
+| M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 15 verify (all ec-council-specific) |
 | M12 Evading IDS, Firewalls, and Honeypots | sample | 40 cards, 10 pretest, 38 practice, 18 mock, 1 verify; 2 evasion sections deferred (retry blocked too) |
 | M13 Hacking Web Servers | built | 38 cards, 10 pretest, 48 practice, 30 mock, 6 verify |
 | M14 Hacking Web Applications | built | 70/10/94/51, 5 verify; cards and questions built on the 2026-09-27 retry |
@@ -163,6 +163,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   (`domain/labs.ts`). Lab totals and touched labs go into the review export. Labs are practice, not a gate.
 - [ ] **M7**: fact-check pass over the `verify: true` items, module by module (`/fact-check`); items confirmed
   on primary sources lose the flag, wrong ones are fixed with a `rev` bump.
+  Done: M0, M7. Items left flagged are mostly `ec-council-specific` framing no public EC-Council page states.
 
 ## Release status
 

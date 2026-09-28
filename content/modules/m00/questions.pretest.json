@@ -213,8 +213,8 @@
       "Then Kali cannot reach it either."
     ],
     "tags": ["lab", "virtualization"],
-    "sources": ["https://www.virtualbox.org/manual/topics/networkingdetails.html", "https://docs.rapid7.com/metasploit/metasploitable-2/"],
-    "verify": true,
+    "sources": ["https://www.virtualbox.org/manual/topics/networkingdetails.html", "https://docs.rapid7.com/metasploit/metasploitable-2/", "https://sourceforge.net/projects/metasploitable/", "https://csrc.nist.gov/pubs/sp/800/125/final"],
+    "verify": false,
     "rev": 1
   }
 ]

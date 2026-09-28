@@ -300,5 +300,5 @@ flowchart LR
 
 - **Type 1 = bare metal**; VirtualBox is type 2.
 - **Bridged puts the VM on your real LAN.** It is the wrong choice for vulnerable targets.
-- **A snapshot is not a backup.** It lives on the same disk as the VM.
+- **A snapshot is not a backup.** It only stores the changes and still depends on the VM's original disk.
 - **Scope and written authorization come first** in every ethical-hacking engagement.

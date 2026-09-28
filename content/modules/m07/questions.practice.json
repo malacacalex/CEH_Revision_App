@@ -346,7 +346,7 @@
     "tags": ["apt", "ec-council-specific"],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
-      "https://www.cisa.gov/topics/cyber-threats-and-advisories/advanced-persistent-threats"
+      "https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors"
     ],
     "verify": true,
     "rev": 1
@@ -970,9 +970,10 @@
     "tags": ["ai", "v13-new", "evasion"],
     "sources": [
       "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/the-state-of-criminal-ai",
       "https://attack.mitre.org/techniques/T1027/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -1045,8 +1046,8 @@
       "Correct: an LLM-based explanation of the uploaded code in VirusTotal."
     ],
     "tags": ["ai", "v13-new", "tools"],
-    "sources": ["https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html", "https://docs.virustotal.com/docs/how-it-works"],
-    "verify": true,
+    "sources": ["https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html", "https://docs.virustotal.com/docs/codeinsight-supported-files", "https://docs.virustotal.com/docs/how-it-works"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1107,9 +1108,10 @@
     "tags": ["ai", "v13-new", "ransomware"],
     "sources": [
       "https://www.welivesecurity.com/en/ransomware/first-known-ai-powered-ransomware-uncovered-eset-research/",
-      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools"
+      "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/the-state-of-criminal-ai"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

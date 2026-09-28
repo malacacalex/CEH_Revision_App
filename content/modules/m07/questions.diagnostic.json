@@ -47,7 +47,7 @@
     ],
     "tags": ["fileless", "malware", "diagnostic"],
     "sources": ["https://attack.mitre.org/techniques/T1059/001/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/fileless-threats"],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

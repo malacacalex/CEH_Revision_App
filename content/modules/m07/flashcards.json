@@ -521,9 +521,10 @@
     "sources": [
       "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
       "https://www.welivesecurity.com/en/ransomware/first-known-ai-powered-ransomware-uncovered-eset-research/",
-      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat"
+      "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat",
+      "https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/the-state-of-criminal-ai"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -541,9 +542,10 @@
     ],
     "sources": [
       "https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools",
+      "https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/the-state-of-criminal-ai",
       "https://attack.mitre.org/techniques/T1027/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -601,9 +603,10 @@
     "sources": [
       "https://learn.microsoft.com/en-us/defender-endpoint/cloud-protection-microsoft-defender-antivirus",
       "https://blog.virustotal.com/2023/04/introducing-virustotal-code-insight.html",
+      "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
