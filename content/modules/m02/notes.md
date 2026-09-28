@@ -66,7 +66,7 @@ Other engines matter too: Bing and DuckDuckGo index different pages, and special
 |---|---|---|
 | Device search engines | internet-facing services, banners, versions | **Shodan** (`port:`, `org:`, `country:`, `hostname:`, `net:`), **Censys** |
 | Certificate Transparency | every issued TLS certificate, so subdomains | crt.sh |
-| Website profilers | hosting, IP history, technologies | Netcraft site report |
+| Website profilers | hosting company, netblock owner, technologies | Netcraft site report |
 | Archives | old pages, former staff lists, removed files | Wayback Machine (archive.org) |
 | People search | names, addresses, phone numbers, relatives | people search sites |
 | Job sites | technologies in use ("experience with Cisco ASA and SAP") | company job ads |

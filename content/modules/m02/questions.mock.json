@@ -124,11 +124,13 @@
     ],
     "tags": ["google-operators", "archives"],
     "sources": [
+      "https://developers.google.com/search/updates",
+      "https://blog.archive.org/2024/09/11/new-feature-alert-access-archived-webpages-directly-through-google-search/",
       "https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site",
       "https://web.archive.org/",
       "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -537,11 +539,12 @@
     ],
     "tags": ["dns", "records"],
     "sources": [
-      "https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/",
       "https://support.google.com/webmasters/answer/9008080",
+      "https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/information-for-dns-records",
+      "https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/",
       "https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -668,7 +671,7 @@
       "Authentication-Results records the SPF, DKIM and DMARC verdicts."
     ],
     "tags": ["email-headers"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc5322", "https://support.google.com/mail/answer/29436"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5322", "https://www.iana.org/assignments/message-headers/message-headers.xhtml", "https://support.google.com/mail/answer/29436"],
     "verify": true,
     "rev": 1
   },
@@ -747,10 +750,12 @@
     ],
     "tags": ["social-engineering", "countermeasures"],
     "sources": [
+      "https://www.cisa.gov/sites/default/files/publications/FCC%20Cybersecurity%20Planning%20Guide.pdf",
+      "https://www.ftc.gov/system/files/attachments/cybersecurity-small-business/cybersecuirty_sb_factsheets_all.pdf",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
       "https://csrc.nist.gov/glossary/term/social_engineering"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -859,8 +864,8 @@
       "A chatbot does not contact the client's mail server."
     ],
     "tags": ["ai", "ethics", "ec-council-specific"],
-    "sources": ["https://genai.owasp.org/llm-top-10/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/", "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf", "https://genai.owasp.org/llm-top-10/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1197,8 +1202,8 @@
       "SPF checks the sending server of incoming mail; it reports nothing to the sender."
     ],
     "tags": ["email-tracking"],
-    "sources": ["https://attack.mitre.org/techniques/T1598/", "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"],
-    "verify": true,
+    "sources": ["https://support.apple.com/guide/mail/protect-email-privacy-mlhlp1205/mac", "https://support.google.com/mail/answer/145919", "https://attack.mitre.org/techniques/T1598/", "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1256,8 +1261,8 @@
       "Deleting results afterwards does not undo traffic already sent out of scope."
     ],
     "tags": ["spiderfoot", "passive-active"],
-    "sources": ["https://github.com/smicallef/spiderfoot", "https://www.kali.org/tools/spiderfoot/"],
-    "verify": true,
+    "sources": ["https://github.com/smicallef/spiderfoot", "https://github.com/smicallef/spiderfoot/blob/master/spiderfoot/templates/newscan.tmpl", "https://www.kali.org/tools/spiderfoot/"],
+    "verify": false,
     "rev": 1
   },
   {

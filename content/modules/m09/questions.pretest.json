@@ -76,10 +76,12 @@
     ],
     "tags": ["human-based", "ec-council-specific"],
     "sources": [
+      "https://www.cyber.gc.ca/en/guidance/social-engineering-itsap00166",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/understanding-preventing-social-engineering-attacks/",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -124,16 +126,19 @@
       "Bulk phishing sent to millions of addresses"
     ],
     "answer": 0,
-    "explanation": "Whaling targets 'big fish' such as the CEO or CFO, usually with legal, board or finance themes.",
+    "explanation": "Whaling targets 'big fish' such as the CEO or CFO, chosen for their authority and access to funds or sensitive information.",
     "optionNotes": ["Correct.", "That is smishing.", "That is pharming.", "That is untargeted mass phishing."],
     "tags": ["phishing", "whaling"],
     "sources": [
+      "https://www.cyber.gc.ca/en/guidance/dont-take-bait-recognize-and-avoid-phishing-attacks",
+      "https://www.cyber.gc.ca/en/guidance/social-engineering-itsap00166",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-spear-phishing-examples-types-prevention/",
       "https://attack.mitre.org/techniques/T1566/",
       "https://attack.mitre.org/techniques/T1684/001/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m09-q-0006",

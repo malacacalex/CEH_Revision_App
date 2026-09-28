@@ -30,9 +30,11 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-ethical-hacking/",
+      "https://www.eccouncil.org/cybersecurity-exchange/cyber-talks/learn-the-5-phases-of-ethical-hacking/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -65,10 +67,13 @@
       "hacker-classes"
     ],
     "sources": [
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-343a",
+      "https://www.cyber.gc.ca/en/guidance/introduction-cyber-threat-environment",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/",
       "https://csrc.nist.gov/glossary/term/hacker",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -272,10 +277,12 @@
       "hacker-classes"
     ],
     "sources": [
+      "https://www.kaspersky.com/resource-center/definitions/hacker-hat-types",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/unveiling-grey-hat-hacking-exploring-ethical-dilemmas-practices-and-implications/",
       "https://csrc.nist.gov/glossary/term/hacker",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -285,16 +292,18 @@
     "domain": "D1",
     "kind": "term",
     "front": "Script kiddie",
-    "back": "An unskilled attacker who runs tools and scripts written by others without understanding how they work. Noisy and opportunistic; relies on known exploits.",
+    "back": "An unskilled attacker who runs tools and scripts written by others without understanding how they work. Opportunistic; relies on ready-made exploit kits and known exploits.",
     "tags": [
       "hacker-classes"
     ],
     "sources": [
+      "https://encyclopedia.kaspersky.com/glossary/script-kiddie/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/certified-ethical-hacker-system-hacking-tips/",
       "https://csrc.nist.gov/glossary/term/hacker",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m01-c-0017",
@@ -345,11 +354,14 @@
       "hacker-classes"
     ],
     "sources": [
+      "https://www.cyber.gc.ca/en/guidance/introduction-cyber-threat-environment",
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-343a",
+      "https://www.congress.gov/crs-product/R43955",
       "https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors",
       "https://attack.mitre.org/groups/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -478,10 +490,13 @@
     ],
     "sources": [
       "https://genai.owasp.org/llm-top-10/",
+      "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
       "https://www.nist.gov/itl/ai-risk-management-framework",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -491,7 +506,7 @@
     "domain": "D1",
     "kind": "tool",
     "front": "ShellGPT and PentestGPT",
-    "back": "- **ShellGPT**: command-line assistant that turns plain-English requests into shell commands\n- **PentestGPT**: LLM assistant that suggests the next step of a penetration test from the results you give it\n\nBoth need a human to check each step and stay inside scope.",
+    "back": "- **ShellGPT**: command-line assistant that turns plain-English requests into shell commands\n- **PentestGPT**: LLM penetration-testing tool; its original interactive mode suggests the next step from the results you give it (v1.0 adds an autonomous agent mode)\n\nBoth need a human to check each step and stay inside scope.",
     "tags": [
       "ai",
       "v13-new",
@@ -500,10 +515,12 @@
     "sources": [
       "https://github.com/TheR1D/shell_gpt",
       "https://github.com/GreyDGL/PentestGPT",
+      "https://www.usenix.org/conference/usenixsecurity24/presentation/deng",
+      "https://eccouncil.zendesk.com/hc/en-us/articles/38674475390093-3-Set-Up-and-Use-ShellGPT-in-the-CEHv13-Parrot-Security-VM",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m01-c-0028",
@@ -592,10 +609,12 @@
       "threat-intelligence"
     ],
     "sources": [
+      "https://www.intelligence.gov/how-the-ic-works",
+      "https://www.eccouncil.org/cybersecurity-exchange/threat-intelligence/what-is-cyber-threat-intelligence/",
       "https://csrc.nist.gov/glossary/term/threat_intelligence",
       "https://csrc.nist.gov/pubs/sp/800/150/final"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

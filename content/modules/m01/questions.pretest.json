@@ -41,8 +41,8 @@
       "Clearing tracks is the last phase (phase 5)."
     ],
     "tags": ["hacking-phases", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-ethical-hacking/", "https://www.eccouncil.org/cybersecurity-exchange/cyber-talks/learn-the-5-phases-of-ethical-hacking/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -64,8 +64,8 @@
       "Gray hats act without authorization but usually without a political agenda, for example reporting flaws they found."
     ],
     "tags": ["hacker-classes"],
-    "sources": ["https://attack.mitre.org/groups/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-343a", "https://www.cyber.gc.ca/en/guidance/introduction-cyber-threat-environment", "https://attack.mitre.org/groups/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -87,8 +87,8 @@
       "Correct: helpful intent, but the testing had no permission."
     ],
     "tags": ["hacker-classes"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://www.kaspersky.com/resource-center/definitions/hacker-hat-types", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/unveiling-grey-hat-hacking-exploring-ethical-dilemmas-practices-and-implications/", "https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {

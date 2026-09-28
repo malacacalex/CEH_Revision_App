@@ -90,10 +90,12 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-ethical-hacking/",
+      "https://www.eccouncil.org/cybersecurity-exchange/cyber-talks/learn-the-5-phases-of-ethical-hacking/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
       "https://attack.mitre.org/tactics/TA0043/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -177,17 +179,19 @@
     "domain": "D2",
     "kind": "term",
     "front": "Cached and archived pages",
-    "back": "Google retired its `cache:` operator in 2024. Old copies of pages (removed staff lists, old files) now come mainly from the **Wayback Machine** (web.archive.org).\n\nThe retirement date is not in an official operator list, hence the verify flag.",
+    "back": "Google retired its `cache:` operator in 2024. Old copies of pages (removed staff lists, old files) now come mainly from the **Wayback Machine** (web.archive.org).\n\nSince September 2024, Google Search links to the Wayback Machine from its \"About this result\" panel.",
     "tags": [
       "archives",
       "wayback"
     ],
     "sources": [
+      "https://developers.google.com/search/updates",
+      "https://blog.archive.org/2024/09/11/new-feature-alert-access-archived-webpages-directly-through-google-search/",
       "https://web.archive.org/",
       "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m02-c-0011",
@@ -235,17 +239,24 @@
     "domain": "D2",
     "kind": "list",
     "front": "What internet research services reveal",
-    "back": "- **Netcraft** site report: hosting, IP history, technologies\n- **Wayback Machine**: old pages and files\n- **Job sites**: technology stack in job ads\n- **Financial filings** (SEC EDGAR): subsidiaries, executives, acquisitions\n- **People search**: names, addresses, phone numbers",
+    "back": "- **Netcraft** site report: hosting company, netblock owner, technologies\n- **Wayback Machine**: old pages and files\n- **Job sites**: technology stack in job ads\n- **Financial filings** (SEC EDGAR): subsidiaries, executives, acquisitions\n- **People search**: names, addresses, phone numbers",
     "tags": [
       "competitive-intelligence"
     ],
     "sources": [
       "https://sitereport.netcraft.com/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md",
+      "https://web.archive.org/",
+      "https://attack.mitre.org/techniques/T1592/002/",
+      "https://attack.mitre.org/techniques/T1593/",
       "https://www.sec.gov/edgar/search/",
+      "https://www.sec.gov/resources-for-investors/investor-alerts-bulletins/how-read-10-k10-q",
+      "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/how-read-8",
+      "https://consumer.ftc.gov/articles/what-know-about-people-search-sites-sell-your-information",
       "https://attack.mitre.org/techniques/T1591/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m02-c-0014",
@@ -260,6 +271,7 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
       "https://attack.mitre.org/techniques/T1591/",
       "https://www.sec.gov/edgar/search/"
     ],
@@ -453,10 +465,12 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.icann.org/resources/pages/thick-whois-2016-06-27-en",
+      "https://www.verisign.com/resources/disclosure-requests/",
       "https://www.icann.org/resources/pages/gtld-registration-data-specs-en",
       "https://www.rfc-editor.org/rfc/rfc3912"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -688,10 +702,12 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://support.apple.com/guide/mail/protect-email-privacy-mlhlp1205/mac",
+      "https://support.google.com/mail/answer/145919",
       "https://attack.mitre.org/techniques/T1598/",
       "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -726,6 +742,7 @@
     ],
     "sources": [
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+      "https://www.cyber.gc.ca/en/guidance/social-engineering-itsap00166",
       "https://attack.mitre.org/techniques/T1598/",
       "https://attack.mitre.org/techniques/T1598/004/"
     ],
@@ -881,7 +898,10 @@
     ],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
-      "https://genai.owasp.org/llm-top-10/"
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/ceh-learning-framework/",
+      "https://genai.owasp.org/llm-top-10/",
+      "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
     ],
     "verify": true,
     "rev": 1
@@ -958,10 +978,11 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9499",
       "https://bind9.readthedocs.io/en/latest/reference.html",
       "https://www.rfc-editor.org/rfc/rfc1034"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   }
 ]

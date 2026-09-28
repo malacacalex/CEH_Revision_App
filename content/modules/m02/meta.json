@@ -127,7 +127,7 @@
       "where": "https://lookup.icann.org/",
       "skill": "Looking up the registration data, name servers and certificate transparency entries of a domain you own, and listing what they expose",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Query DNS records of a domain you control",
@@ -135,7 +135,7 @@
       "where": "https://bind9.readthedocs.io/en/latest/manpages.html",
       "skill": "Using dig and nslookup on your own domain to read A, MX, NS, SOA and TXT records, and confirming your server refuses zone transfers",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Read and strip metadata from your own documents",
@@ -143,7 +143,7 @@
       "where": "https://exiftool.org/",
       "skill": "Running ExifTool on documents and photos you created to see author, software and GPS fields, then removing them before publishing",
       "minutes": 20,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Trace the headers of a message in your own mailbox",
@@ -151,7 +151,7 @@
       "where": "https://support.google.com/mail/answer/29436",
       "skill": "Opening the full headers of a message you received, reading the Received lines bottom-up and interpreting the SPF, DKIM and DMARC results",
       "minutes": 20,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

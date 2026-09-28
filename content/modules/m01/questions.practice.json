@@ -64,8 +64,8 @@
       "Cyber terrorists are defined by an ideological motive to cause fear or large-scale disruption."
     ],
     "tags": ["hacker-classes"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://encyclopedia.kaspersky.com/glossary/script-kiddie/", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/certified-ethical-hacker-system-hacking-tips/", "https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -540,8 +540,8 @@
       "Organized crime wants money."
     ],
     "tags": ["hacker-classes", "nation-state"],
-    "sources": ["https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors", "https://attack.mitre.org/groups/"],
-    "verify": true,
+    "sources": ["https://www.cyber.gc.ca/en/guidance/introduction-cyber-threat-environment", "https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors", "https://attack.mitre.org/groups/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -586,8 +586,8 @@
       "Nothing links the teenager to a government."
     ],
     "tags": ["hacker-classes"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://encyclopedia.kaspersky.com/glossary/script-kiddie/", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/certified-ethical-hacker-system-hacking-tips/", "https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -614,8 +614,8 @@
       "Gray hats often do report what they find."
     ],
     "tags": ["hacker-classes"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://www.kaspersky.com/resource-center/definitions/hacker-hat-types", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/unveiling-grey-hat-hacking-exploring-ethical-dilemmas-practices-and-implications/", "https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -739,8 +739,8 @@
       "John the Ripper cracks password hashes."
     ],
     "tags": ["ai", "v13-new", "tools"],
-    "sources": ["https://github.com/TheR1D/shell_gpt", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://github.com/TheR1D/shell_gpt", "https://eccouncil.zendesk.com/hc/en-us/articles/38674475390093-3-Set-Up-and-Use-ShellGPT-in-the-CEHv13-Parrot-Security-VM", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {

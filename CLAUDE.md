@@ -119,14 +119,14 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | Module | Status | Notes |
 |---|---|---|
 | M0 Foundations | built | 42 cards, 10 pretest, 60 practice, 20 skip-check, 2 verify (+1 lab) |
-| M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 30 verify |
-| M2 Footprinting and Reconnaissance | built | 50/10/71/47, 26 verify; mock pool built on the 2026-09-27 retry |
+| M1 Intro to Ethical Hacking | built | 45 cards, 10 pretest, 57 practice, 30 mock, 9 verify |
+| M2 Footprinting and Reconnaissance | built | 50/10/71/47, 7 verify; mock pool built on the 2026-09-27 retry |
 | M3 Scanning Networks | built | 63/10/90/47, 15 verify; built on the 2026-09-27 retry (evasion as concept classes) |
 | M4 Enumeration | stub | deferred (blocked, defensive retry blocked too) |
 | M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 30 mock, 14 verify |
 | M6 System Hacking | sample | 45/10/58/28, 1 verify; research and notes complete; Gaining Access items deferred (blocked) |
 | M8 Sniffing | built | 46 cards, 10 pretest, 65 practice, 18 mock, 9 verify; notes and Sniffing Techniques built on the 2026-09-27 retry |
-| M9 Social Engineering | built | 31 cards, 10 pretest, 54 practice, 11 mock, 28 verify |
+| M9 Social Engineering | built | 31 cards, 10 pretest, 54 practice, 11 mock, 16 verify |
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
 | M11 Session Hijacking | built | 39/10/46/11, 5 verify |
 | M7 Malware Threats | built | 52 cards, 10 pretest, 72 practice, 28 mock, 15 verify (all ec-council-specific) |
@@ -163,7 +163,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   (`domain/labs.ts`). Lab totals and touched labs go into the review export. Labs are practice, not a gate.
 - [ ] **M7**: fact-check pass over the `verify: true` items, module by module (`/fact-check`); items confirmed
   on primary sources lose the flag, wrong ones are fixed with a `rev` bump.
-  Done: M0, M6, M7, M11. Items left flagged are mostly `ec-council-specific` framing no public EC-Council page states.
+  Done: M0, M1, M2, M6, M7, M9, M11. Items left flagged are mostly `ec-council-specific` framing no public EC-Council page states.
 
 ## Release status
 

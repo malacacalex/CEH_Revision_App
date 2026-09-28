@@ -95,7 +95,7 @@
       "where": "https://attack.mitre.org/",
       "skill": "Turning a narrative into kill chain stages and ATT&CK tactics and techniques",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Color an ATT&CK Navigator layer for one threat group",
@@ -103,7 +103,7 @@
       "where": "https://mitre-attack.github.io/attack-navigator/",
       "skill": "Reading the ATT&CK matrix and comparing a group's techniques with your own detections",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Draft rules of engagement and a scope for a mock penetration test",
@@ -111,15 +111,15 @@
       "where": "https://www.ncsc.gov.uk/guidance/penetration-testing",
       "skill": "Authorization, scope, time windows, contacts and forbidden actions before any testing",
       "minutes": 40,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Threat model a small web app with OWASP Threat Dragon",
       "source": "free",
-      "where": "https://owasp.org/www-project-threat-dragon/",
+      "where": "https://owasp.org/projects/threat-dragon",
       "skill": "Drawing data flows and listing threats per component at design time",
       "minutes": 45,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

@@ -148,10 +148,11 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://aware.eccouncil.org/what-is-reverse-social-engineering.html",
       "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-tech-support-scams",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -245,11 +246,14 @@
       "phishing"
     ],
     "sources": [
+      "https://www.cyber.gc.ca/en/guidance/dont-take-bait-recognize-and-avoid-phishing-attacks",
+      "https://www.cyber.gc.ca/en/guidance/social-engineering-itsap00166",
+      "https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise",
       "https://attack.mitre.org/techniques/T1566/",
       "https://attack.mitre.org/techniques/T1684/001/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

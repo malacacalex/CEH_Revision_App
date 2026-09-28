@@ -116,10 +116,13 @@
     ],
     "tags": ["hacker-classes"],
     "sources": [
+      "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-343a",
+      "https://www.cyber.gc.ca/en/guidance/introduction-cyber-threat-environment",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
       "https://www.cisa.gov/topics/cyber-threats-and-advisories/nation-state-cyber-actors"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -200,8 +203,8 @@
       "Correct: unauthorized testing with mixed motives."
     ],
     "tags": ["hacker-classes"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://www.kaspersky.com/resource-center/definitions/hacker-hat-types", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/unveiling-grey-hat-hacking-exploring-ethical-dilemmas-practices-and-implications/", "https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -218,8 +221,8 @@
     "explanation": "White hats are authorized: ethical hackers and penetration testers.",
     "optionNotes": ["Hacktivists act for a cause.", "Gray hats act without permission.", "Black hats act maliciously.", "Correct."],
     "tags": ["hacker-classes"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://www.kaspersky.com/resource-center/definitions/hacker-hat-types", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/unveiling-grey-hat-hacking-exploring-ethical-dilemmas-practices-and-implications/", "https://csrc.nist.gov/glossary/term/hacker", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -287,7 +290,7 @@
     "stem": "A tester wants an LLM-based assistant that suggests the next step of a penetration test from the results pasted into it. Which tool is designed for this?",
     "options": ["ShellGPT", "PentestGPT", "Nessus", "Burp Suite"],
     "answer": 1,
-    "explanation": "PentestGPT is one of the AI helpers covered in v13. The tester still decides and stays inside scope.",
+    "explanation": "PentestGPT is an LLM-powered penetration testing tool; its interactive mode guides the test step by step from the results you give it. The tester still decides and stays inside scope.",
     "optionNotes": [
       "ShellGPT turns requests into shell commands; it does not plan a test.",
       "Correct: it guides a test step by step.",
@@ -295,9 +298,9 @@
       "Burp Suite is a web proxy for testing applications."
     ],
     "tags": ["ai", "v13-new", "tools"],
-    "sources": ["https://github.com/GreyDGL/PentestGPT", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
-    "rev": 1
+    "sources": ["https://github.com/GreyDGL/PentestGPT", "https://www.usenix.org/conference/usenixsecurity24/presentation/deng", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/ai-pen-testing-ethical-hacking/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m01-q-0080",
@@ -478,8 +481,8 @@
       "Correct: it sits between collection and analysis."
     ],
     "tags": ["threat-intelligence"],
-    "sources": ["https://csrc.nist.gov/glossary/term/threat_intelligence", "https://csrc.nist.gov/pubs/sp/800/150/final"],
-    "verify": true,
+    "sources": ["https://www.intelligence.gov/how-the-ic-works", "https://www.eccouncil.org/cybersecurity-exchange/threat-intelligence/what-is-cyber-threat-intelligence/", "https://csrc.nist.gov/glossary/term/threat_intelligence", "https://csrc.nist.gov/pubs/sp/800/150/final"],
+    "verify": false,
     "rev": 1
   },
   {

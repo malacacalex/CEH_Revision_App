@@ -127,10 +127,12 @@
     ],
     "tags": ["social-networks", "phishing", "ec-council-specific"],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-spear-phishing-examples-types-prevention/",
+      "https://www.cyber.gc.ca/en/guidance/dont-take-bait-recognize-and-avoid-phishing-attacks",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
       "https://www.cisa.gov/news-events/news/staying-safe-social-networking-sites"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -180,8 +182,8 @@
       "No DKIM result appears in these headers."
     ],
     "tags": ["headers", "phishing-indicators"],
-    "sources": ["https://support.google.com/mail/answer/29436", "https://toolbox.googleapps.com/apps/messageheader/"],
-    "verify": true,
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5322.html", "https://www.ic3.gov/PSA/2017/PSA170504", "https://support.google.com/mail/answer/29436", "https://toolbox.googleapps.com/apps/messageheader/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -200,7 +202,7 @@
       "Treat it as a fake security app: do not grant the rights, remove it and install apps only from the official store with Play Protect on"
     ],
     "answer": 3,
-    "explanation": "EC-Council lists fake security apps and repackaged apps among mobile techniques; ATT&CK Mobile T1655 covers apps masquerading as legitimate ones. Official stores and Play Protect reduce exposure.",
+    "explanation": "Fake security apps scare users into granting control. ATT&CK Mobile T1655 covers apps masquerading as legitimate ones, and T1626.001 covers abuse of device administrator rights, which can make an app harder to uninstall. Official stores and Play Protect reduce exposure.",
     "optionNotes": [
       "Turning off Play Protect removes a key defense.",
       "Device admin rights make the app harder to remove.",
@@ -210,11 +212,13 @@
     "tags": ["malicious-apps", "mobile", "ec-council-specific"],
     "sources": [
       "https://attack.mitre.org/techniques/T1655/",
+      "https://attack.mitre.org/techniques/T1626/001/",
       "https://support.google.com/googleplay/answer/2812853",
+      "https://www.kaspersky.com/resource-center/definitions/scareware",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m09-q-0073",

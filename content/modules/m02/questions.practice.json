@@ -143,8 +143,8 @@
     "explanation": "Reconnaissance (footprinting) comes first, then scanning, gaining access, maintaining access and clearing tracks.",
     "optionNotes": ["Correct: phase 1.", "Phase 2, which sends probes to the target.", "Phase 3.", "Phase 4."],
     "tags": ["hacking-phases", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/tactics/TA0043/"],
-    "verify": true,
+    "sources": ["https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-ethical-hacking/", "https://www.eccouncil.org/cybersecurity-exchange/cyber-talks/learn-the-5-phases-of-ethical-hacking/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/tactics/TA0043/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -456,18 +456,18 @@
     "difficulty": 1,
     "stem": "What can the Netcraft site report show about a website?",
     "options": [
-      "Hosting provider, IP history and technologies used",
+      "Hosting provider, netblock owner and technologies used",
       "The passwords of site administrators",
       "The site's internal network diagram",
       "The contents of the site's databases"
     ],
     "answer": 0,
-    "explanation": "Website profilers such as Netcraft reveal hosting, netblock owner, IP history and technologies without touching the target.",
+    "explanation": "Website profilers such as Netcraft reveal the hosting company, netblock owner, name servers and technologies of a site from their own data, without touching the target.",
     "optionNotes": ["Correct.", "Never public.", "Not visible from outside.", "Not visible from outside."],
     "tags": ["netcraft"],
-    "sources": ["https://sitereport.netcraft.com/", "https://attack.mitre.org/techniques/T1596/"],
-    "verify": true,
-    "rev": 1
+    "sources": ["https://sitereport.netcraft.com/", "https://www.netcraft.com/tools/", "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md", "https://attack.mitre.org/techniques/T1596/"],
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m02-q-0029",
@@ -534,7 +534,7 @@
     "explanation": "Competitive intelligence uses the same public sources as footprinting, from a business angle.",
     "optionNotes": ["Correct.", "Looks for weaknesses in systems.", "Searches one's own network for hidden threats.", "Authorized attack simulation."],
     "tags": ["competitive-intelligence", "ec-council-specific"],
-    "sources": ["https://attack.mitre.org/techniques/T1591/", "https://www.sec.gov/edgar/search/"],
+    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1591/", "https://www.sec.gov/edgar/search/"],
     "verify": true,
     "rev": 1
   },
@@ -827,8 +827,8 @@
       "Reverse WHOIS searches domains by registrant."
     ],
     "tags": ["whois", "ec-council-specific"],
-    "sources": ["https://www.icann.org/resources/pages/gtld-registration-data-specs-en", "https://www.rfc-editor.org/rfc/rfc3912"],
-    "verify": true,
+    "sources": ["https://www.icann.org/resources/pages/thick-whois-2016-06-27-en", "https://www.verisign.com/resources/disclosure-requests/", "https://www.icann.org/resources/pages/gtld-registration-data-specs-en", "https://www.rfc-editor.org/rfc/rfc3912"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1212,8 +1212,8 @@
     "explanation": "Tracking pixels report open time, IP and client when loaded. Blocking remote content stops that signal.",
     "optionNotes": ["A DNS matter.", "Correct: the tracking pixel never loads.", "Shodan does not rely on e-mail.", "Unrelated to e-mail."],
     "tags": ["email-tracking", "countermeasures"],
-    "sources": ["https://attack.mitre.org/techniques/T1598/", "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"],
-    "verify": true,
+    "sources": ["https://support.apple.com/guide/mail/protect-email-privacy-mlhlp1205/mac", "https://support.google.com/mail/answer/145919", "https://attack.mitre.org/techniques/T1598/", "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1358,6 +1358,8 @@
     ],
     "tags": ["pretexting", "ec-council-specific"],
     "sources": [
+      "https://www.cyber.gc.ca/en/guidance/social-engineering-itsap00166",
+      "https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/how-penetration-tests-can-prevent-social-engineering-attacks-ec-council/",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
       "https://csrc.nist.gov/glossary/term/social_engineering"
     ],
@@ -1547,8 +1549,8 @@
       "Models do not have hidden DNS access."
     ],
     "tags": ["ai", "ec-council-specific"],
-    "sources": ["https://genai.owasp.org/llm-top-10/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://genai.owasp.org/llmrisk/llm092025-misinformation/", "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf", "https://genai.owasp.org/llm-top-10/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1570,8 +1572,8 @@
     "explanation": "The OSINT Framework (osintframework.com) organizes resources by category: usernames, e-mail, domains, public records.",
     "optionNotes": ["Correct.", "ATT&CK's tactic is Reconnaissance.", "RDAP is defined by RFCs; the OSINT Framework is not one.", "It scans nothing."],
     "tags": ["osint", "ec-council-specific"],
-    "sources": ["https://osintframework.com/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://osintframework.com/", "https://github.com/lockfale/OSINT-Framework", "https://www.eccouncil.org/cybersecurity-exchange/penetration-testing/osint-for-penetration-testers/", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1700,8 +1702,8 @@
     "explanation": "Split-horizon DNS keeps internal hostnames out of public answers.",
     "optionNotes": ["Automatic updates of changing addresses.", "A way to enumerate DNSSEC zones.", "Load distribution across addresses.", "Correct."],
     "tags": ["dns", "countermeasures", "ec-council-specific"],
-    "sources": ["https://bind9.readthedocs.io/en/latest/reference.html", "https://www.rfc-editor.org/rfc/rfc1034"],
-    "verify": true,
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9499", "https://bind9.readthedocs.io/en/latest/reference.html", "https://www.rfc-editor.org/rfc/rfc1034"],
+    "verify": false,
     "rev": 1
   },
   {

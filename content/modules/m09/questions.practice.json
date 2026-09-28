@@ -257,8 +257,8 @@
       "Correct: it lets only one authenticated person through at a time."
     ],
     "tags": ["physical", "countermeasures"],
-    "sources": ["https://www.cisa.gov/topics/physical-security", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final", "https://www.sentinelone.com/cybersecurity-101/identity-security/tailgating-attack/", "https://www.cisa.gov/topics/physical-security", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -286,10 +286,11 @@
     ],
     "tags": ["reverse-social-engineering", "ec-council-specific"],
     "sources": [
+      "https://aware.eccouncil.org/what-is-reverse-social-engineering.html",
       "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-tech-support-scams",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -482,10 +483,12 @@
     "tags": ["baiting", "ec-council-specific"],
     "sources": [
       "https://attack.mitre.org/techniques/T1091/",
+      "https://www.cyber.gc.ca/en/guidance/social-engineering-itsap00166",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/understanding-preventing-social-engineering-attacks/",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -834,8 +837,8 @@
       "John the Ripper cracks password hashes."
     ],
     "tags": ["tools", "url-analysis"],
-    "sources": ["https://urlscan.io/"],
-    "verify": true,
+    "sources": ["https://urlscan.io/about/", "https://bellingcat.gitbook.io/toolkit/more/all-tools/urlscan", "https://urlscan.io/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -941,16 +944,18 @@
       "Correct: same look, different signer, excessive permissions.",
       "The official app is signed with the publisher's certificate.",
       "The bank's builds would carry its own signing key.",
-      "A progressive web app is not installed as a signed package."
+      "A progressive web app is installed from the website in the browser, not downloaded as an app file from a third-party site."
     ],
     "tags": ["malicious-apps", "ec-council-specific"],
     "sources": [
       "https://attack.mitre.org/techniques/T1655/",
+      "https://attack.mitre.org/techniques/T1655/001/",
+      "https://source.android.com/docs/security/features/apksigning",
       "https://support.google.com/googleplay/answer/2812853",
       "https://mas.owasp.org/MASVS/11-MASVS-RESILIENCE/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m09-q-0046",
