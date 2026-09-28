@@ -163,9 +163,13 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   (`domain/labs.ts`). Lab totals and touched labs go into the review export. Labs are practice, not a gate.
   Lab names are the log keys: once a release ships the tracker, renaming a lab loses its logs unless a
   migration maps the old name (one rename before that: the M12 Cowrie lab, low → medium-interaction).
-- [ ] **M7**: fact-check pass over the `verify: true` items, module by module (`/fact-check`); items confirmed
-  on primary sources lose the flag, wrong ones are fixed with a `rev` bump.
-  Done: every module (2026-09-28, 264 → 109 flagged). Next: the reference sheets flagged verify. Items left flagged are mostly `ec-council-specific` framing no public EC-Council page states.
+- [x] **M7**: fact-check pass over the `verify: true` items, module by module (`/fact-check`); items confirmed
+  on primary sources lose the flag, wrong ones are fixed with a `rev` bump. Done 2026-09-28 (content 0.24.0 →
+  0.33.0): 264 → 109 flagged items, about 30 fixed; reference sheets 06 and 12 cleared, the other 10 keep a
+  narrowed flag line. What stays flagged is EC-Council framing (named lists, phase orders) that no public
+  EC-Council page states; public infographics under eccouncil.org/wp-content/uploads count, courseware does not.
+  Standards moved in 2026 and were aligned: ATT&CK (T1562 → T1685, ICS renames), BOD 26-04, OWASP Top 10:2025,
+  DMARC RFC 9989, NVD enrichment priorities.
 
 ## Release status
 
