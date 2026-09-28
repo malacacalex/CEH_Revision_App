@@ -161,7 +161,7 @@ flowchart LR
 | Emergency mitigation | temporary fix before a patch exists | WAF rule, feature disabled |
 | Unpatchable assets | isolate or protect otherwise | legacy appliance behind a proxy |
 
-Prioritize with CISA's **Known Exploited Vulnerabilities** catalog: US federal agencies must fix listed flaws by the due dates set under BOD 22-01, and everyone else can use the same list.
+Prioritize with CISA's **Known Exploited Vulnerabilities** catalog: US federal agencies must fix listed flaws by the due dates set under BOD 26-04 (which replaced BOD 22-01 in 2026), and everyone else can use the same list.
 
 ### Exam traps
 

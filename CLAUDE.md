@@ -140,7 +140,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M19 Cloud Computing | built | 44 cards, 10 pretest, 60 practice, 30 mock, 9 verify |
 | M20 Cryptography | built | 42 cards, 10 pretest, 61 practice, 30 mock, 8 verify |
 | Diagnostic | done | 60 questions, 3 per module M1–M20 |
-| Reference | 9 / 18 | sheets 1, 3, 4, 5, 9 (partial), 11, 12 (partial), 13 (no SQLi), 15; sheet 2 deferred · glossary 208 terms |
+| Reference | 15 / 18 | sheets 1, 3–6, 8–13, 15–18 (9 and 12 partial, 13 without SQLi); sheet 2 deferred, 7 and 14 wait on blocked M4 and M16 · glossary 208 terms |
 
 ## Milestones
 

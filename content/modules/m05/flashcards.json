@@ -258,7 +258,7 @@
     "domain": "D3",
     "kind": "term",
     "front": "CISA KEV catalog",
-    "back": "**Known Exploited Vulnerabilities**: CVEs with reliable evidence of **active exploitation in the wild**.\nEntry criteria: an assigned CVE ID, evidence of exploitation, a clear remediation action.\nUnder **BOD 22-01** US federal civilian agencies must fix them by the listed due date; everyone else can use it to patch first.",
+    "back": "**Known Exploited Vulnerabilities**: CVEs with reliable evidence of **active exploitation in the wild**.\nEntry criteria: an assigned CVE ID, evidence of exploitation, a clear remediation action.\nUnder **BOD 26-04** (2026, which replaced BOD 22-01) US federal civilian agencies must fix them by the listed due date; everyone else can use it to patch first.",
     "tags": [
       "kev",
       "prioritization"
@@ -266,10 +266,10 @@
     "sources": [
       "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "https://www.cisa.gov/known-exploited-vulnerabilities",
-      "https://www.cisa.gov/news-events/directives/bod-22-01-reducing-significant-risk-known-exploited-vulnerabilities"
+      "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m05-c-0015",
