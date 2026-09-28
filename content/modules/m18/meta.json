@@ -99,7 +99,7 @@
       "where": "https://github.com/OWASP/IoTGoat",
       "skill": "Using binwalk on a deliberately vulnerable firmware image to find hardcoded credentials and insecure services, mapped to the OWASP IoT Top 10",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Run and lock down a local Mosquitto broker",
@@ -107,7 +107,7 @@
       "where": "https://mosquitto.org/documentation/authentication-methods/",
       "skill": "On your own machine: see what an anonymous client can read, then enable password files, ACLs and TLS on 8883",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Inspect ICS protocol captures with Malcolm",
@@ -115,7 +115,7 @@
       "where": "https://github.com/cisagov/Malcolm",
       "skill": "Recognizing Modbus, DNP3 and S7comm traffic in public sample captures and spotting writes from unexpected hosts",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Self-assess an OT network design with CISA CSET",
@@ -123,7 +123,7 @@
       "where": "https://github.com/cisagov/cset",
       "skill": "Answering a standards-based questionnaire (for example IEC 62443 or NIST SP 800-82) for a small fictional plant and reading the gap report",
       "minutes": 45,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

@@ -254,9 +254,10 @@
     "tags": ["extortion"],
     "sources": [
       "https://www.cloudflare.com/learning/ddos/ransom-ddos-attack/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/",
       "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -279,10 +280,12 @@
     ],
     "tags": ["categories", "ec-council-specific"],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/",
+      "https://www.imperva.com/learn/ddos/ddos-attacks/",
       "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -512,8 +515,8 @@
       "Correct (CVE-1999-0016)."
     ],
     "tags": ["land"],
-    "sources": ["https://nvd.nist.gov/vuln/detail/CVE-1999-0016", "https://www.rfc-editor.org/rfc/rfc2827"],
-    "verify": true,
+    "sources": ["https://www.sei.cmu.edu/library/1997-cert-advisories/", "https://www.juniper.net/documentation/us/en/software/junos/denial-of-service/topics/topic-map/security-network-dos-attack.html", "https://nvd.nist.gov/vuln/detail/CVE-1999-0016", "https://www.rfc-editor.org/rfc/rfc2827"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -561,8 +564,8 @@
       "Correct: High Orbit Ion Cannon."
     ],
     "tags": ["tools", "hoic"],
-    "sources": ["https://www.imperva.com/learn/ddos/high-orbit-ion-cannon/", "https://www.imperva.com/learn/ddos/low-orbit-ion-cannon/"],
-    "verify": true,
+    "sources": ["https://www.imperva.com/learn/ddos/high-orbit-ion-cannon/", "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/high-orbit-ion-cannon-hoic/", "https://www.imperva.com/learn/ddos/low-orbit-ion-cannon/"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -579,8 +582,8 @@
     "explanation": "Slowloris is slow in the headers, R.U.D.Y. is slow in the body. Both are stopped by request timeouts and minimum data rates.",
     "optionNotes": ["HOIC floods at high rate.", "LOIC floods at high rate.", "Correct: R-U-Dead-Yet.", "Wireshark analyzes captures."],
     "tags": ["tools", "slow-attack"],
-    "sources": ["https://www.cloudflare.com/learning/ddos/ddos-low-and-slow-attack/", "https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html"],
-    "verify": true,
+    "sources": ["https://www.imperva.com/learn/ddos/rudy-r-u-dead-yet/", "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/r-u-dead-yet-rudy/", "https://www.cloudflare.com/learning/ddos/ddos-low-and-slow-attack/", "https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -681,6 +684,7 @@
     "tags": ["multi-vector", "ec-council-specific"],
     "sources": [
       "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/",
+      "https://www.netscout.com/what-is-ddos/multi-vector-ddos-attacks",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
     "verify": true,
@@ -878,7 +882,7 @@
     "pool": "practice",
     "type": "command-output",
     "difficulty": 2,
-    "stem": "A Linux server's kernel log shows `TCP: request_sock_TCP: Possible SYN flooding on port 443. Sending cookies.` What does the message tell you?",
+    "stem": "A Linux server's kernel log shows `TCP: request_sock_TCP: Possible SYN flooding on port 0.0.0.0:443. Sending cookies.` What does the message tell you?",
     "options": [
       "The web server crashed and restarted",
       "The SYN backlog for port 443 overflowed and the kernel switched to SYN cookies",
@@ -894,9 +898,9 @@
       "The port is open; the kernel is protecting it."
     ],
     "tags": ["syn-flood", "linux", "detection"],
-    "sources": ["https://docs.kernel.org/networking/ip-sysctl.html", "https://blog.cloudflare.com/syn-packet-handling-in-the-wild/"],
-    "verify": true,
-    "rev": 1
+    "sources": ["https://docs.kernel.org/networking/ip-sysctl.html", "https://github.com/torvalds/linux/blob/master/net/ipv4/tcp_input.c", "https://blog.cloudflare.com/syn-packet-handling-in-the-wild/"],
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m10-q-0046",

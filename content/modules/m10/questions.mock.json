@@ -52,10 +52,11 @@
     ],
     "tags": ["motives"],
     "sources": [
-      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks",
-      "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/"
+      "https://www.occ.gov/news-issuances/bulletins/2014/bulletin-2014-14a.pdf",
+      "https://www.kaspersky.com/about/press-releases/research-reveals-hacker-tactics-cybercriminals-use-ddos-as-smokescreen-for-other-attacks-on-business",
+      "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -96,13 +97,13 @@
     "optionNotes": [
       "TCP needs a handshake, which a broadcast cannot complete.",
       "ICMP is used by smurf itself.",
-      "Correct: UDP echo or chargen sent to a broadcast address.",
+      "Correct: UDP echo requests sent to a broadcast address.",
       "ARP is not routed across networks."
     ],
     "tags": ["fraggle", "ec-council-specific"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc2644", "https://www.cloudflare.com/learning/ddos/smurf-ddos-attack/"],
-    "verify": true,
-    "rev": 1
+    "sources": ["https://www.cisco.com/c/en/us/support/docs/security-vpn/kerberos/13609-22.html", "https://www.fortinet.com/resources/cyberglossary/smurf-attack", "https://www.rfc-editor.org/rfc/rfc2644", "https://www.cloudflare.com/learning/ddos/smurf-ddos-attack/"],
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m10-q-0060",

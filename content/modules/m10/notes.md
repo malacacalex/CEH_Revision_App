@@ -95,7 +95,7 @@ Mnemonic for the top three: **"Many Nasty Chars"** (Memcached, NTP, CharGEN).
 |---|---|---|
 | **ICMP (ping) flood** | echo requests use up bandwidth and reply work | rate-limit ICMP at the edge |
 | **Smurf** | ICMP echo to a **directed broadcast** address with the victim's spoofed source; every host on that subnet replies to the victim | routers drop directed broadcasts (RFC 2644, the default since 1999) |
-| **Fraggle** | same idea with UDP (echo, chargen) instead of ICMP | disable those small UDP services, block directed broadcasts |
+| **Fraggle** | same idea with UDP echo instead of ICMP | disable small UDP services such as echo, block directed broadcasts |
 | **Ping of death** | fragments that reassemble into an IP packet above the **65,535-byte** limit crash old stacks | patched stacks (1990s) |
 | **Teardrop** | **overlapping** fragment offsets the stack cannot reassemble | patched stacks, fragment inspection |
 | **Land** | same **source and destination** IP and port, the host replies to itself | patched stacks, anti-spoofing filters |

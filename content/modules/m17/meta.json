@@ -84,7 +84,7 @@
       "where": "https://mas.owasp.org/MASTG/apps/",
       "skill": "Reading a static analysis report: manifest flags, hardcoded secrets, network settings, mapped to MASVS",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Solve a beginner MAS crackme in the Android emulator",
@@ -92,7 +92,7 @@
       "where": "https://mas.owasp.org/crackmes/",
       "skill": "Decompiling a practice app with jadx and apktool to see why client-side checks and hardcoded secrets fail",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Harden your own Android phone and review its app permissions",
@@ -100,7 +100,7 @@
       "where": "https://support.google.com/googleplay/answer/2812853",
       "skill": "Play Protect, updates, unknown-sources settings, runtime permissions and developer options, as a user and as an MDM would",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Map a mobile malware report to ATT&CK for Mobile in the Navigator",
@@ -108,7 +108,7 @@
       "where": "https://mitre-attack.github.io/attack-navigator/",
       "skill": "Turning a mobile threat write-up into tactics, techniques and mitigations (attestation, enterprise policy)",
       "minutes": 40,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

@@ -50,10 +50,12 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/",
+      "https://www.imperva.com/learn/ddos/ddos-attacks/",
       "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -165,9 +167,10 @@
     ],
     "sources": [
       "https://www.cloudflare.com/learning/ddos/ransom-ddos-attack/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/",
       "https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -273,18 +276,21 @@
     "domain": "D4",
     "kind": "term",
     "front": "Smurf vs Fraggle",
-    "back": "**Smurf**: ICMP echo requests to a **directed broadcast** address with the victim's spoofed source; every host replies to the victim.\n**Fraggle**: the same with **UDP** (echo, chargen).\n\nFix: routers drop directed broadcasts (RFC 2644).",
+    "back": "**Smurf**: ICMP echo requests to a **directed broadcast** address with the victim's spoofed source; every host replies to the victim.\n**Fraggle**: the same with **UDP** echo requests instead of ICMP.\n\nFix: routers drop directed broadcasts (RFC 2644).",
     "tags": [
       "smurf",
       "fraggle"
     ],
     "sources": [
-      "https://www.cloudflare.com/learning/ddos/smurf-ddos-attack/",
+      "https://www.cisco.com/c/en/us/support/docs/security-vpn/kerberos/13609-22.html",
+      "https://www.sei.cmu.edu/documents/505/1998_019_001_496180.pdf",
       "https://www.rfc-editor.org/rfc/rfc2644",
+      "https://www.fortinet.com/resources/cyberglossary/smurf-attack",
+      "https://www.cloudflare.com/learning/ddos/smurf-ddos-attack/",
       "https://www.imperva.com/learn/ddos/smurf-attack-ddos/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m10-c-0016",
@@ -381,6 +387,7 @@
     ],
     "sources": [
       "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/low-orbit-ion-cannon-loic/",
+      "https://www.cloudflare.com/learning/ddos/ddos-attack-tools/high-orbit-ion-cannon-hoic/",
       "https://www.imperva.com/learn/ddos/low-orbit-ion-cannon/",
       "https://www.imperva.com/learn/ddos/high-orbit-ion-cannon/"
     ],

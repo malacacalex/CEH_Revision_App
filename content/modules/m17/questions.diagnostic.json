@@ -18,8 +18,8 @@
       "That is about unvalidated input."
     ],
     "tags": ["mobile", "owasp-mobile", "diagnostic"],
-    "sources": ["https://owasp.org/www-project-mobile-top-10/", "https://csrc.nist.gov/pubs/sp/800/163/r1/final"],
-    "verify": true,
+    "sources": ["https://owasp.org/www-project-mobile-top-10/", "https://owasp.org/www-project-mobile-top-10/2023-risks/m9-insecure-data-storage", "https://mas.owasp.org/MASVS/05-MASVS-STORAGE/", "https://csrc.nist.gov/pubs/sp/800/163/r1/final"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -41,8 +41,8 @@
     "explanation": "Sideloaded apps skip store vetting, a common malware path. MDM policies can block unknown sources.",
     "optionNotes": ["Unrelated.", "Correct.", "Rooting gains root access; it is a different step.", "Unrelated."],
     "tags": ["android", "sideloading", "diagnostic"],
-    "sources": ["https://developer.android.com/distribute/marketing-tools/alternative-distribution", "https://csrc.nist.gov/pubs/sp/800/163/r1/final"],
-    "verify": true,
+    "sources": ["https://developer.android.com/distribute/marketing-tools/alternative-distribution", "https://csrc.nist.gov/pubs/sp/800/124/r2/final", "https://csrc.nist.gov/pubs/sp/800/163/r1/final"],
+    "verify": false,
     "rev": 1
   },
   {

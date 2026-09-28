@@ -185,7 +185,7 @@
       "That is a wireless (Wi-Fi) attack, not an industrial RF remote attack."
     ],
     "tags": ["rf-remote", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://csrc.nist.gov/glossary/term/replay_attack"],
+    "sources": ["https://www.cisa.gov/news-events/ics-advisories/icsa-18-296-03", "https://www.trendmicro.com/en_us/research/19/a/demonstrating-command-injection-and-e-stop-abuse-against-industrial-radio-remote-controllers.html", "https://csrc.nist.gov/glossary/term/replay_attack", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
     "verify": true,
     "rev": 1
   },
