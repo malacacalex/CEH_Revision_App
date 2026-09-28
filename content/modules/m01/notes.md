@@ -162,7 +162,7 @@ Defenders answer each stage with one of six actions: **detect, deny, disrupt, de
 
 ### MITRE ATT&CK
 
-A knowledge base of real adversary behavior. **Tactic** = the goal (*why*: Persistence, Credential Access). **Technique** = how (*Create Account*, *Phishing*). **Procedure** = a specific group's implementation. The Enterprise matrix has **14 tactics**, from Reconnaissance and Resource Development to Exfiltration and Impact. Together these are **TTPs**. TTPs are harder for attackers to change than **indicators of compromise (IoCs)** such as hashes and IP addresses.
+A knowledge base of real adversary behavior. **Tactic** = the goal (*why*: Persistence, Credential Access). **Technique** = how (*Create Account*, *Phishing*). **Procedure** = a specific group's implementation. The Enterprise matrix has **15 tactics**, from Reconnaissance and Resource Development to Exfiltration and Impact. In April 2026 ATT&CK renamed *Defense Evasion* to **Stealth** and added **Defense Impairment** (disabling or tampering with security tools and logs); exam material written before then still says Defense Evasion and 14 tactics. Together these are **TTPs**. TTPs are harder for attackers to change than **indicators of compromise (IoCs)** such as hashes and IP addresses.
 
 ### Diamond Model
 

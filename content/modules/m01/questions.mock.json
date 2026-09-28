@@ -447,7 +447,7 @@
     "stem": "In MITRE ATT&CK, what are \"Credential Access\" and \"Lateral Movement\"?",
     "options": ["Tactics", "Techniques", "Procedures", "Indicators of compromise"],
     "answer": 0,
-    "explanation": "The Enterprise matrix has 14 tactics; each groups many techniques.",
+    "explanation": "Tactics are the adversary's goals. The Enterprise matrix has 15 tactics since April 2026 (14 before); each groups many techniques.",
     "optionNotes": [
       "Correct: they are adversary goals (the why).",
       "Techniques are the how, such as OS Credential Dumping.",
@@ -457,7 +457,7 @@
     "tags": ["mitre-attack", "ttp"],
     "sources": ["https://attack.mitre.org/tactics/enterprise/", "https://attack.mitre.org/resources/"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m01-q-0086",

@@ -73,7 +73,7 @@
     "answer": 1,
     "explanation": "ATT&CK splits theft (T1539) from use (T1550.004). Exam questions often test that split.",
     "optionNotes": [
-      "T1550.004 is about using the stolen cookie (Lateral Movement / Defense Evasion).",
+      "T1550.004 is about using the stolen cookie (Lateral Movement).",
       "Correct: Credential Access tactic.",
       "T1563 covers SSH and RDP session takeover.",
       "T1557 is the position used to intercept traffic, not the cookie theft itself."
@@ -81,7 +81,7 @@
     "tags": ["mitre-attack"],
     "sources": ["https://attack.mitre.org/techniques/T1539/", "https://attack.mitre.org/techniques/T1550/004/"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m11-q-0014",

@@ -3,7 +3,7 @@ id: ref-04
 title: Methodologies and frameworks
 order: 4
 modules: [1, 2, 3, 4, 5, 6, 7]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf
@@ -47,13 +47,16 @@ A **tactic** is the adversary's goal (the *why*); a **technique** is how they re
 
 | # | Tactic | # | Tactic |
 |---|---|---|---|
-| 1 | Reconnaissance | 8 | Credential Access |
-| 2 | Resource Development | 9 | Discovery |
-| 3 | Initial Access | 10 | Lateral Movement |
-| 4 | Execution | 11 | Collection |
-| 5 | Persistence | 12 | Command and Control |
-| 6 | Privilege Escalation | 13 | Exfiltration |
-| 7 | Defense Evasion | 14 | Impact |
+| 1 | Reconnaissance | 9 | Credential Access |
+| 2 | Resource Development | 10 | Discovery |
+| 3 | Initial Access | 11 | Lateral Movement |
+| 4 | Execution | 12 | Collection |
+| 5 | Persistence | 13 | Command and Control |
+| 6 | Privilege Escalation | 14 | Exfiltration |
+| 7 | Stealth (was Defense Evasion) | 15 | Impact |
+| 8 | Defense Impairment (new) | | |
+
+ATT&CK changed in April 2026: TA0005 *Defense Evasion* became **Stealth**, and the new **Defense Impairment** (TA0112) holds disabling security tools and clearing logs. Older exam material still says Defense Evasion and 14 tactics.
 
 ## Diamond Model of Intrusion Analysis
 

@@ -906,9 +906,9 @@
     "type": "command-output",
     "difficulty": 3,
     "stem": "An attacker's Linux session ends with `history -c && rm ~/.bash_history`. Which MITRE ATT&CK tactic does this belong to?",
-    "options": ["Discovery", "Persistence", "Defense Evasion", "Exfiltration"],
+    "options": ["Discovery", "Persistence", "Stealth (Defense Evasion)", "Exfiltration"],
     "answer": 2,
-    "explanation": "Indicator removal techniques, including clearing command history, sit under the Defense Evasion tactic.",
+    "explanation": "Indicator removal techniques, including clearing command history, sit under the Stealth tactic (TA0005), called Defense Evasion before April 2026.",
     "optionNotes": [
       "Discovery learns about the system.",
       "Persistence keeps access; this removes evidence.",
@@ -916,9 +916,9 @@
       "Exfiltration moves data out."
     ],
     "tags": ["clearing-tracks", "mitre-attack"],
-    "sources": ["https://attack.mitre.org/techniques/T1070/003/", "https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html"],
+    "sources": ["https://attack.mitre.org/techniques/T1070/003/", "https://attack.mitre.org/tactics/TA0005/", "https://www.gnu.org/software/bash/manual/html_node/Bash-History-Builtins.html"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m01-q-0048",
