@@ -612,7 +612,10 @@
       "War driving is wireless reconnaissance."
     ],
     "tags": ["attack-list", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/Hacking-Webservers.pdf"
+    ],
     "verify": true,
     "rev": 1
   },
@@ -905,8 +908,11 @@
     "explanation": "Order: information gathering, footprinting/banner grabbing, mirroring, vulnerability scanning, session hijacking, password hacking.",
     "optionNotes": ["Password hacking is the last step.", "Information gathering is the first step.", "Correct.", "Footprinting comes before mirroring."],
     "tags": ["methodology", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/Hacking-Webservers.pdf",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": false,
     "rev": 1
   },
   {

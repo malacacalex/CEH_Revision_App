@@ -334,8 +334,12 @@
       "Password hacking is the last step."
     ],
     "tags": ["methodology", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.kali.org/tools/nikto/"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/Hacking-Webservers.pdf",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.kali.org/tools/nikto/"
+    ],
+    "verify": false,
     "rev": 1
   },
   {

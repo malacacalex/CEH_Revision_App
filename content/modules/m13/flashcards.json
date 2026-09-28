@@ -391,6 +391,7 @@
     ],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/Hacking-Webservers.pdf",
       "https://attack.mitre.org/techniques/T1190/"
     ],
     "verify": true,
@@ -409,10 +410,12 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/Hacking-Webservers.pdf",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server/",
       "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

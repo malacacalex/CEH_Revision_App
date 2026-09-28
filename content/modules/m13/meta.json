@@ -77,7 +77,7 @@
       "where": "https://github.com/digininja/DVWA",
       "skill": "Banner grabbing with curl and Nmap, running Nikto and http-methods against a server you own, then fixing what they report",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Harden Apache or nginx and re-test",
@@ -85,12 +85,12 @@
       "where": "https://httpd.apache.org/docs/2.4/misc/security_tips.html",
       "skill": "ServerTokens/server_tokens, TraceEnable, directory listing, status pages, request timeouts; compare scan results before and after",
       "minutes": 40,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Check a TLS configuration against the Mozilla guideline",
       "source": "free",
-      "where": "https://ssl-config.mozilla.org/",
+      "where": "https://configurator.tlsref.org/",
       "skill": "Generating a modern TLS config and verifying protocols, ciphers and HSTS with testssl.sh on your own server",
       "minutes": 30,
       "verify": true
@@ -101,7 +101,7 @@
       "where": "https://portswigger.net/web-security/all-labs",
       "skill": "Recognizing traversal and information-leak responses in a legal training environment",
       "minutes": 45,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

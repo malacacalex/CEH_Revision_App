@@ -48,9 +48,10 @@
     "tags": ["recon", "robots-txt", "diagnostic"],
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc9309",
+      "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage/",
       "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

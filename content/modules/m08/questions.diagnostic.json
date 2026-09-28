@@ -66,9 +66,10 @@
     "tags": ["arp-spoofing", "countermeasures", "diagnostic"],
     "sources": [
       "https://attack.mitre.org/techniques/T1557/002/",
-      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html"
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/configuring_dynamic_arp_inspection.html",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/arp-poisoning/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   }
 ]

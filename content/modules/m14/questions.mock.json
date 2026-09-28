@@ -412,7 +412,7 @@
       "https://owasp.org/Top10/2021/",
       "https://owasp.org/Top10/2025/0x00_2025-Introduction/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

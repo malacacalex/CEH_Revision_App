@@ -49,10 +49,12 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/ethical-hacking-password-sniffing/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-are-sniffing-attacks/",
       "https://wiki.wireshark.org/CaptureSetup/Ethernet",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -601,9 +603,10 @@
     ],
     "sources": [
       "https://manpages.debian.org/bookworm/ettercap-common/ettercap.8.en.html",
+      "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-9/configuration_guide/sec/b_179_sec_9300_cg/port_security.html",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

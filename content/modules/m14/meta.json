@@ -88,7 +88,7 @@
       "where": "https://owasp.org/www-project-juice-shop/",
       "skill": "Running a deliberately vulnerable app locally, proxying it through ZAP or Burp and recognizing access control, XSS and misconfiguration findings; reading the official companion guide for the fixes",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "PortSwigger Web Security Academy topic labs",
@@ -96,7 +96,7 @@
       "where": "https://portswigger.net/web-security/all-labs",
       "skill": "Recognizing XSS, CSRF, SSRF, access control and API flaws in legal training labs, then writing the matching OWASP countermeasure",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Map the API Top 10 in OWASP crAPI",
@@ -104,7 +104,7 @@
       "where": "https://github.com/OWASP/crAPI",
       "skill": "Mapping each OWASP API Security Top 10 (2023) risk to an endpoint in a local, intentionally broken API",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Baseline-scan and harden a local app",
@@ -112,7 +112,7 @@
       "where": "https://www.zaproxy.org/docs/docker/baseline-scan/",
       "skill": "Running the ZAP baseline (passive) scan against an app you own, then adding CSP, HSTS, nosniff and cookie flags and re-scanning",
       "minutes": 40,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

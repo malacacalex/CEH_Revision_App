@@ -122,8 +122,13 @@
       "Correct."
     ],
     "tags": ["sniffing", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.rfc-editor.org/rfc/rfc4949"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/ethical-hacking-password-sniffing/",
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.rfc-editor.org/rfc/rfc4949"
+    ],
+    "verify": false,
     "rev": 1
   },
   {

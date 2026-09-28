@@ -1075,9 +1075,10 @@
     "tags": ["tampering", "ec-council-specific"],
     "sources": [
       "https://owasp.org/www-community/attacks/Web_Parameter_Tampering",
+      "https://ilabs.eccouncil.org/hacking-web-applications/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

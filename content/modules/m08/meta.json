@@ -73,7 +73,7 @@
       "where": "https://wiki.wireshark.org/SampleCaptures",
       "skill": "Opening published capture files and applying display filters such as arp, dhcp, dns and ip.addr to find each protocol",
       "minutes": 45,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Capture your own traffic with tcpdump",
@@ -81,7 +81,7 @@
       "where": "https://www.tcpdump.org/manpages/tcpdump.1.html",
       "skill": "Capturing on your own machine with a capture filter, writing to a file with -w and reading it back with -r and -e",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Watch ARP pairings on your home lab with arpwatch",
@@ -89,7 +89,7 @@
       "where": "https://www.kali.org/tools/arpwatch/",
       "skill": "Running arpwatch on a lab network you own and reading its new station / changed ethernet address / flip flop reports",
       "minutes": 30,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

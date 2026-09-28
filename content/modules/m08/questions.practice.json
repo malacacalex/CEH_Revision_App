@@ -95,8 +95,14 @@
       "Lawful interception is legally authorized monitoring."
     ],
     "tags": ["sniffing", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://wiki.wireshark.org/CaptureSetup/Ethernet"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/ethical-hacking-password-sniffing/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-are-sniffing-attacks/",
+      "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "https://manpages.debian.org/bookworm/ettercap-common/ettercap.8.en.html",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1316,8 +1322,12 @@
       "Correct: for example AWS Traffic Mirroring, GCP Packet Mirroring, Azure vTap."
     ],
     "tags": ["cloud", "span"],
-    "sources": ["https://attack.mitre.org/techniques/T1040/"],
-    "verify": true,
+    "sources": [
+      "https://attack.mitre.org/techniques/T1040/",
+      "https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html",
+      "https://cloud.google.com/vpc/docs/packet-mirroring"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
