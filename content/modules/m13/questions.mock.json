@@ -379,7 +379,7 @@
       "The vendor's end-of-life date",
       "The CVSS score alone",
       "The next annual audit",
-      "BOD 22-01, which sets due dates for fixing vulnerabilities listed in KEV"
+      "BOD 26-04, which sets due dates for fixing vulnerabilities listed in KEV"
     ],
     "answer": 3,
     "explanation": "Everyone can use KEV to prioritize patching: known exploitation means the risk is real now.",
@@ -391,11 +391,11 @@
     ],
     "tags": ["patch-management", "kev"],
     "sources": [
-      "https://www.cisa.gov/news-events/directives/bod-22-01-reducing-significant-risk-known-exploited-vulnerabilities",
+      "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk",
       "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m13-q-0074",
@@ -469,6 +469,352 @@
       "https://csrc.nist.gov/pubs/sp/800/52/r2/final",
       "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
     ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0077",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Two company sites, shop.example and blog.example, run on one Apache server with a single IP address. How does the server decide which site's content to return for a request?",
+    "options": [
+      "It reads the Host header and picks the matching name-based virtual host",
+      "It checks the client's source IP address against a per-site allow list",
+      "It serves whichever site's document root was configured most recently",
+      "It asks the DNS server which site the client looked up before connecting"
+    ],
+    "answer": 0,
+    "explanation": "Virtual hosting lets one server answer for many sites. With name-based virtual hosts, the site is picked from the Host header, so several names can share one IP address.",
+    "optionNotes": [
+      "Correct: name-based virtual hosts select the site from the Host header of each request.",
+      "Source addresses are not how virtual hosts are chosen; both sites share the same clients.",
+      "Apache matches the request to a virtual host; configuration order only sets the default one.",
+      "The web server never sees the client's DNS lookup; it only has the HTTP request."
+    ],
+    "tags": ["apache", "virtual-hosts"],
+    "sources": ["https://httpd.apache.org/docs/2.4/vhosts/", "https://www.rfc-editor.org/rfc/rfc9110"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0078",
+    "module": 13,
+    "section": "Web Server Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "Apache's own error pages end with the line `Apache/2.4.58 (Ubuntu) Server at www.example.com Port 443`. Which directive removes this footer line?",
+    "options": ["TraceEnable Off", "ServerTokens Prod", "ServerSignature Off", "Options -Indexes -FollowSymLinks"],
+    "answer": 2,
+    "explanation": "Apache has two banner controls: ServerTokens sets how much the Server header says, and ServerSignature adds or removes the footer on pages the server generates itself, such as error pages and listings.",
+    "optionNotes": [
+      "TraceEnable controls the TRACE method, not error page content.",
+      "ServerTokens trims the Server response header, not the footer line.",
+      "Correct: ServerSignature controls the footer on server-generated pages.",
+      "This turns off directory listings and symbolic link following, not the footer."
+    ],
+    "tags": ["apache", "banner"],
+    "sources": ["https://httpd.apache.org/docs/2.4/mod/core.html", "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0079",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An Apache server stops answering, yet its bandwidth use stays low. A few addresses each hold hundreds of open connections and send one more header line every several seconds. What attack is this?",
+    "options": [
+      "A DNS amplification flood from open resolvers",
+      "A slow HTTP attack of the Slowloris kind",
+      "An HTTP request smuggling attack on the proxy",
+      "A volumetric flood that saturates the uplink"
+    ],
+    "answer": 1,
+    "explanation": "Slowloris-style attacks need little bandwidth: they open many connections and never finish the headers, so the server's workers wait. Apache's mod_reqtimeout and per-IP connection limits counter it.",
+    "optionNotes": [
+      "Amplification sends large volumes of DNS answers, which would raise bandwidth use.",
+      "Correct: slow partial headers keep connections open until the server's pool is full.",
+      "Smuggling exploits a parsing mismatch between two tiers; it does not hold connections open.",
+      "A volumetric flood fills the link, but bandwidth here is low."
+    ],
+    "tags": ["dos", "slowloris"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html",
+      "https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0080",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Administrators manage a web server through a control panel served over plain HTTP, often from the office guest Wi-Fi. Which risk does this create, and what fixes it?",
+    "options": [
+      "Admin credentials can be captured in transit; use TLS with HSTS",
+      "The panel can be mirrored with HTTrack; add a robots.txt rule",
+      "The server may be used for DNS amplification; close recursion",
+      "The panel's banner reveals its version; set ServerTokens to Prod"
+    ],
+    "answer": 0,
+    "explanation": "Plain HTTP exposes logins and session cookies to anyone who can see the traffic, an adversary-in-the-middle risk. TLS encrypts the session and HSTS stops browsers from falling back to HTTP; limiting the panel to a management network helps further.",
+    "optionNotes": [
+      "Correct: unencrypted admin traffic can be sniffed or intercepted; TLS and HSTS protect it.",
+      "Mirroring is not the risk here, and robots.txt is not access control.",
+      "Amplification abuses open DNS resolvers, not an HTTP admin panel.",
+      "Hiding the version does nothing for credentials sent in clear text."
+    ],
+    "tags": ["mitm", "tls"],
+    "sources": ["https://attack.mitre.org/techniques/T1557/", "https://www.rfc-editor.org/rfc/rfc6797"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0081",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "An incident report says the attacker first exploited a flaw in the company's public CMS to get in, then placed a script in a web folder to come back later. Which pair of ATT&CK techniques fits, in order?",
+    "options": [
+      "Network Denial of Service, then Endpoint Denial of Service on the CMS",
+      "Active Scanning, then Compromise Infrastructure: DNS Server hijacking",
+      "Brute Force: Password Guessing, then Defacement: External Defacement of the site",
+      "Exploit Public-Facing Application, then Server Software Component: Web Shell"
+    ],
+    "answer": 3,
+    "explanation": "Exploit Public-Facing Application describes getting in through a flaw in an internet-facing system. A web shell, under Server Software Component, is the script left behind for persistence. Least privilege and file integrity monitoring limit and reveal it.",
+    "optionNotes": [
+      "Denial of service stops the site; this attacker wanted access and a way back.",
+      "Scanning finds targets and DNS compromise redirects users; neither matches exploiting the CMS and leaving a script.",
+      "No password guessing is described, and nothing visible was changed on the site.",
+      "Correct: the first covers exploiting an internet-facing application; the second covers a web shell kept for persistence."
+    ],
+    "tags": ["mitre", "web-shell"],
+    "sources": ["https://attack.mitre.org/techniques/T1190/", "https://attack.mitre.org/techniques/T1505/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0082",
+    "module": 13,
+    "section": "Web Server Attacks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "recall",
+    "difficulty": 3,
+    "stem": "How are HTTP response splitting and web cache poisoning related?",
+    "options": [
+      "Cache poisoning is the injection step; splitting then spreads its result",
+      "They are two names for one attack on the same unkeyed header",
+      "Splitting is one injection technique that can poison a shared cache",
+      "Splitting targets DNS resolvers and poisoning targets browsers"
+    ],
+    "answer": 2,
+    "explanation": "Response splitting injects CR/LF into data placed in a header, letting the attacker shape an extra response. If a shared cache stores that response, everyone who requests the page gets it: that spread is cache poisoning.",
+    "optionNotes": [
+      "It is the other way round: splitting injects, the cache spreads the harmful response.",
+      "Cache poisoning can also come from unkeyed inputs without any header injection.",
+      "Correct: an injected second response can be stored by a proxy or CDN and served to many users.",
+      "Both involve HTTP responses and shared web caches, not DNS resolvers."
+    ],
+    "tags": ["response-splitting", "cache-poisoning"],
+    "sources": ["https://owasp.org/www-community/attacks/HTTP_Response_Splitting", "https://owasp.org/www-community/attacks/Cache_Poisoning"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0083",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "This week, a tester's written authorization allows only passive information gathering on a client's web servers. Which activity fits?",
+    "options": [
+      "Sending an OPTIONS request with the Nmap http-methods script",
+      "Running Nikto against the web server to list outdated components",
+      "Brute forcing hidden directories on the site with Gobuster",
+      "Reading the Netcraft site report and Shodan data for the domain"
+    ],
+    "answer": 3,
+    "explanation": "Passive gathering uses third-party data about the target, such as Netcraft reports or Shodan's stored banners. Scanners, directory brute forcers and method checks all send traffic to the server.",
+    "optionNotes": [
+      "Any request sent to the server is active, even a single OPTIONS.",
+      "Nikto sends thousands of requests to the server: active and noisy.",
+      "Gobuster requests every path in a wordlist from the server: active.",
+      "Correct: both services already hold the data, so no packet reaches the client."
+    ],
+    "tags": ["footprinting", "passive-active"],
+    "sources": ["https://sitereport.netcraft.com/", "https://www.shodan.io/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0084",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A tester mirrored a whole site with HTTrack and reviewed it offline, but a readable `/old-backup/` folder was found only later. Why did the mirror miss it?",
+    "options": [
+      "Mirroring follows links, and nothing on the site linked to that folder",
+      "HTTrack skips folders whose names contain the word backup by default",
+      "Mirroring copies only HTML pages and never saves folder contents",
+      "The folder was hidden by robots.txt, a file HTTrack is unable to ever read"
+    ],
+    "answer": 0,
+    "explanation": "Mirroring tools crawl the links a site exposes. Unlinked content, such as a forgotten backup folder, is found by directory brute forcing (Gobuster, dirb) or by reading metafiles. Defenders keep backups outside the document root.",
+    "optionNotes": [
+      "Correct: unlinked paths are found by forced browsing with a wordlist, not by crawling.",
+      "HTTrack has no such built-in exclusion.",
+      "Mirroring saves linked files of many types, not only HTML.",
+      "robots.txt is advice to crawlers and would in fact list the path."
+    ],
+    "tags": ["mirroring", "enumeration"],
+    "sources": [
+      "https://www.httrack.com/",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0085",
+    "module": 13,
+    "section": "Web Server Attack Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A server sends no Server header at all, yet a tester's report still identifies it as nginx. What most likely gave it away?",
+    "options": [
+      "The site's DNS A record, which stores the web server's product name",
+      "Header order, default error pages and replies to malformed requests",
+      "The TLS certificate, which lists the server software in its subject",
+      "The robots.txt file, which crawlers use to state the server's software"
+    ],
+    "answer": 1,
+    "explanation": "Removing the banner hides the easy clue, but fingerprinting also compares header order, default error pages, cookies and responses to malformed requests with known servers. That is why banner removal is obscurity, not a fix.",
+    "optionNotes": [
+      "An A record holds an IP address, not a product name.",
+      "Correct: servers differ in header order, error page content and how they answer odd requests.",
+      "Certificate subjects name the domain or organization, not the server software.",
+      "robots.txt gives crawler rules; it does not declare the server."
+    ],
+    "tags": ["fingerprinting", "banner"],
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md",
+      "https://www.kali.org/tools/whatweb/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0086",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A flaw in the company's web server software is added to CISA's KEV catalog, and the vendor has already released a patch. Which NIST SP 800-40 Rev. 4 maintenance plan applies?",
+    "options": [
+      "Routine patching, applied in the next monthly maintenance window",
+      "Emergency mitigation, since no patch has been released for it yet",
+      "Emergency patching, since the flaw is exploited and a fix exists",
+      "Unpatchable asset handling, isolating the server from the network"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-40 Rev. 4 describes maintenance plans: routine patching, emergency patching, emergency mitigation and handling unpatchable assets. A known-exploited flaw with a patch available goes through emergency patching.",
+    "optionNotes": [
+      "Waiting for the monthly window leaves a known-exploited flaw open.",
+      "Emergency mitigation is for flaws that have no patch yet; here one exists.",
+      "Correct: active exploitation with an available patch calls for patching now.",
+      "The server can be patched, so the unpatchable plan does not apply."
+    ],
+    "tags": ["patch-management", "kev"],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0087",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A web server's administration interface is reachable from the whole internet. Which change best follows NIST SP 800-44 guidance?",
+    "options": [
+      "Allow admin access only from a management network or listed hosts",
+      "Move the admin interface to an unusual port number on the server",
+      "Add the admin path to robots.txt so that search engines skip it",
+      "Replace the admin page's title with a generic, harmless-looking one"
+    ],
+    "answer": 0,
+    "explanation": "NIST SP 800-44 advises restricting remote administration to authorized hosts on trusted networks and protecting it with strong authentication and encryption. Obscurity measures do not stop a determined attacker.",
+    "optionNotes": [
+      "Correct: remote administration should be limited to trusted hosts or networks, with strong authentication.",
+      "A new port is found by any port scan; it only hides the interface.",
+      "robots.txt is public and advertises the path it lists.",
+      "A different title does not stop anyone who finds the page."
+    ],
+    "tags": ["hardening", "remote-admin"],
+    "sources": [
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management/05-Enumerate_Infrastructure_and_Application_Admin_Interfaces.md"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m13-q-0088",
+    "module": 13,
+    "section": "Web Server Attack Countermeasures",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team wants a consensus-based, published configuration baseline to audit its Apache, nginx and IIS servers against. Which resource fits?",
+    "options": [
+      "The OWASP Top 10 list of web application risks",
+      "The CISA Known Exploited Vulnerabilities list",
+      "The CVSS specification published by FIRST",
+      "The CIS Benchmarks for each web server"
+    ],
+    "answer": 3,
+    "explanation": "CIS Benchmarks give product-specific, consensus configuration recommendations that can be audited, and they exist for Apache, nginx and IIS. They complement NIST SP 800-44's general hardening advice.",
+    "optionNotes": [
+      "The OWASP Top 10 ranks application risk categories, not server settings.",
+      "KEV lists exploited vulnerabilities to patch, not configuration settings.",
+      "CVSS scores the severity of flaws; it holds no configuration guidance.",
+      "Correct: CIS Benchmarks are consensus hardening baselines for specific products, including these three servers."
+    ],
+    "tags": ["hardening", "cis"],
+    "sources": ["https://www.cisecurity.org/cis-benchmarks", "https://www.cisecurity.org/benchmark/apache_http_server"],
     "verify": false,
     "rev": 1
   }

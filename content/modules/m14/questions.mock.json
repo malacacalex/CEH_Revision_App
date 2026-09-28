@@ -946,5 +946,442 @@
     "sources": ["https://www.cisa.gov/securebydesign"],
     "verify": false,
     "rev": 1
+  },
+  {
+    "id": "m14-q-0141",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester Base64url-decodes the middle part of a JWT issued by an application and reads the user's email address, role and account number in clear text. What should the report say?",
+    "options": [
+      "The token is broken, since a JWT payload is always encrypted with a key",
+      "JWT payloads are only encoded, so they must not carry confidential data",
+      "The signature is invalid, since a signed payload cannot be read by anyone",
+      "The token has expired, since only expired JWTs can be decoded like this"
+    ],
+    "answer": 1,
+    "explanation": "A JWT is header.payload.signature in Base64url. Decoding is not a flaw in itself, but it means the payload is public: no secrets or unnecessary personal data belong there, and the server must verify the signature and pin the algorithm.",
+    "optionNotes": [
+      "A signed JWT (JWS) is not encrypted; only a JWE hides its content.",
+      "Correct: anyone can decode the payload; the signature only proves it was not changed.",
+      "Signing protects integrity, not confidentiality, so a valid token is still readable.",
+      "Expiry has nothing to do with whether the payload can be decoded."
+    ],
+    "tags": ["jwt", "encoding"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc7519", "https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0142",
+    "module": 14,
+    "section": "Web Application Concepts",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A file download filter rejects `../`, yet requests with `%252e%252e%252f` still return files outside the download folder. Which design fix addresses the root cause?",
+    "options": [
+      "Encode every response as HTML entities before sending it to the client",
+      "Add `%252e` to the filter's deny list, right next to the plain `../` sequence",
+      "Decode input to its canonical form before validating, and avoid raw paths",
+      "Move the download feature behind a CAPTCHA to slow automated requests"
+    ],
+    "answer": 2,
+    "explanation": "Double encoding survives a filter that checks input before it is fully decoded. The fix is to canonicalize, then validate against an allowlist, and never build file paths from raw user input.",
+    "optionNotes": [
+      "Output encoding protects pages against XSS, not file access on the server.",
+      "A deny list chases one spelling at a time; the next encoding gets through.",
+      "Correct: canonicalize first, then validate; better still, map requests to an allowlist of files.",
+      "A CAPTCHA slows automation but leaves the traversal flaw in place."
+    ],
+    "tags": ["encoding", "path-traversal"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+      "https://owasp.org/www-community/attacks/Path_Traversal"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0143",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A password reset flow is coded without bugs, but it lets anyone reset an account by answering security questions such as the user's home town, which staff often post publicly. Which OWASP Top 10:2025 category fits best?",
+    "options": [
+      "A06 Insecure Design: the flaw is in the plan, not the code",
+      "A05 Injection: the answers are passed to an interpreter unsafely",
+      "A02 Security Misconfiguration: a default setting was left enabled",
+      "A04 Cryptographic Failures: the answers are stored without hashing"
+    ],
+    "answer": 0,
+    "explanation": "Insecure Design covers controls that are missing or weak by design, even when the code is correct. OWASP advises against relying on security questions for resets; a reset token sent to a verified channel is the usual design.",
+    "optionNotes": [
+      "Correct: guessable knowledge-based answers are a design weakness; threat modeling should catch it.",
+      "Nothing suggests the answers are interpreted as code or commands.",
+      "The weakness is the chosen recovery method, not a leftover default.",
+      "Hashing the answers would not help: attackers can still find them."
+    ],
+    "tags": ["owasp-top10", "insecure-design"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A06_2025-Insecure_Design/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0144",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A user's valid session cookie is captured from traffic on an open Wi-Fi network and replayed from another device, which then acts as that user. Which attack is this, and which controls reduce it?",
+    "options": [
+      "Clickjacking; a frame-ancestors directive in the site's CSP response header",
+      "Session fixation; issue a fresh session ID each time the user logs in",
+      "Cross-site request forgery; anti-CSRF tokens and SameSite cookies",
+      "Session hijacking; HTTPS everywhere, HSTS and the cookie's Secure flag"
+    ],
+    "answer": 3,
+    "explanation": "Session hijacking reuses a stolen, valid session ID. Serving every page over HTTPS with HSTS and marking the cookie Secure keeps it from travelling in clear text; short lifetimes and re-authentication for sensitive actions limit the damage.",
+    "optionNotes": [
+      "Clickjacking tricks clicks through an invisible frame; it does not steal cookies.",
+      "Fixation plants a known ID before login; here an existing ID was stolen.",
+      "CSRF makes the victim's own browser send a request; no cookie is stolen.",
+      "Correct: stealing and reusing a valid ID is hijacking; encrypting all traffic keeps the cookie off the wire."
+    ],
+    "tags": ["session-hijacking", "cookies"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html", "https://attack.mitre.org/techniques/T1539/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0145",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Logged in as a customer, a tester changes `/invoices?id=1002` to `id=1003` and receives another customer's invoice. Which OWASP Top 10:2025 category and control fit?",
+    "options": [
+      "A05 Injection; use parameterized queries for the invoice database lookup",
+      "A07 Authentication Failures; add multi-factor authentication to logins",
+      "A01 Broken Access Control; check ownership of each object on the server",
+      "A09 Logging and Alerting Failures; log every invoice that is viewed"
+    ],
+    "answer": 2,
+    "explanation": "Changing only an object ID and getting someone else's data is IDOR, part of A01 Broken Access Control. The fix is a server-side authorization check on every request; random IDs are only defense in depth.",
+    "optionNotes": [
+      "The ID is a valid value used as intended; nothing is injected.",
+      "The tester is properly logged in; the failure is in authorization, not authentication.",
+      "Correct: this is an insecure direct object reference; the server must verify the caller owns the record.",
+      "Logging helps detect abuse but does not stop access to other customers' data."
+    ],
+    "tags": ["owasp-top10", "idor"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0146",
+    "module": 14,
+    "section": "Web Application Threats",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company's code did not change, but its build pulled a new release of an open-source library that had been tampered with in the public package registry. Which OWASP Top 10:2025 category and controls fit?",
+    "options": [
+      "A06 Insecure Design; threat modeling of the company's own internal business flows",
+      "A08 Data Integrity Failures; Subresource Integrity on every CDN script tag",
+      "A02 Security Misconfiguration; a hardened baseline for the build servers",
+      "A03 Software Supply Chain Failures; SBOM, SCA, pinned and verified packages"
+    ],
+    "answer": 3,
+    "explanation": "A03:2025 grew out of 2021's vulnerable components category and covers the whole chain of dependencies and build tools. Controls include an SBOM, composition analysis, trusted repositories, version pinning and signature checks.",
+    "optionNotes": [
+      "The company's own design is not at fault; a third-party component was altered.",
+      "SRI protects scripts loaded in the browser, not packages pulled into a build.",
+      "Hardening build servers helps, but the problem is trusting a tampered package.",
+      "Correct: tampered or vulnerable dependencies fall under supply chain failures."
+    ],
+    "tags": ["owasp-top10", "supply-chain"],
+    "sources": [
+      "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Vulnerable_Dependency_Management_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0147",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "A tester has saved two responses to the same request, one made as Alice and one as Bob, and wants the differences highlighted word by word. Which Burp Suite tool fits?",
+    "options": ["Comparer", "Sequencer", "Collaborator", "Intruder"],
+    "answer": 0,
+    "explanation": "Burp Comparer highlights the differences between two requests or responses. It is handy in authorization testing, where a small change in a response can show that one user sees another user's data.",
+    "optionNotes": [
+      "Correct: Comparer shows a word-level or byte-level diff of two items.",
+      "Sequencer measures how random session tokens are.",
+      "Collaborator detects out-of-band interactions from the server.",
+      "Intruder sends automated, customized requests."
+    ],
+    "tags": ["burp", "tools"],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/comparer",
+      "https://portswigger.net/burp/documentation/desktop/tools/intruder"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0148",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "tool",
+    "difficulty": 3,
+    "stem": "In an authorized test, one payload list must be placed into all marked positions of a request at the same time, with the same value in each. Which Burp Intruder attack type does this?",
+    "options": ["Sniper", "Battering ram", "Pitchfork", "Cluster bomb"],
+    "answer": 1,
+    "explanation": "Intruder's four attack types differ in how payloads fill positions: Sniper (one at a time), Battering ram (same value everywhere), Pitchfork (lists in parallel) and Cluster bomb (every combination).",
+    "optionNotes": [
+      "Sniper uses one list and fills one position at a time.",
+      "Correct: battering ram puts the same payload in every position at once.",
+      "Pitchfork walks several lists in parallel, one list per position.",
+      "Cluster bomb tries every combination of several lists."
+    ],
+    "tags": ["burp", "intruder"],
+    "sources": [
+      "https://portswigger.net/burp/documentation/desktop/tools/intruder/configure-attack/attack-types",
+      "https://portswigger.net/burp/documentation/desktop/tools/intruder"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0149",
+    "module": 14,
+    "section": "Web Application Hacking Methodology",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "During authorization testing, a normal user reaches another normal user's settings page, but no admin function. How is this privilege escalation classified?",
+    "options": [
+      "Horizontal: access to a peer's data at the same privilege level",
+      "Vertical: access to the functions of a more privileged role",
+      "Session fixation: reuse of an ID planted before login",
+      "Forced browsing: guessing paths that are not linked from any page"
+    ],
+    "answer": 0,
+    "explanation": "Access-control testing separates horizontal escalation (another user's data, same role) from vertical escalation (a higher role's functions). Both are fixed by server-side authorization checks on every request.",
+    "optionNotes": [
+      "Correct: moving sideways to another user with the same role is horizontal escalation.",
+      "Vertical escalation means reaching admin or other higher-privilege functions.",
+      "Fixation is a session attack, not a type of access-control failure.",
+      "Forced browsing finds unlinked content; the question is about whose data is reached."
+    ],
+    "tags": ["authorization", "privilege-escalation"],
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0150",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team says its webhook endpoint needs no signature check because it only accepts HTTPS. Why is this reasoning wrong?",
+    "options": [
+      "Webhook providers never send over HTTPS, so the endpoint gets plain HTTP",
+      "HTTPS certificates expire often, so deliveries fail without a signature",
+      "HTTPS protects the channel, but anyone can still POST to the endpoint URL",
+      "HTTPS only encrypts the headers, leaving the JSON body readable in transit"
+    ],
+    "answer": 2,
+    "explanation": "HTTPS encrypts the delivery and authenticates the receiver's server, not the sender. Receivers should compute an HMAC of the raw body with the shared secret, compare it in constant time and check timestamps.",
+    "optionNotes": [
+      "Providers such as GitHub and Stripe deliver over HTTPS.",
+      "Certificate renewal is unrelated to proving who sent a delivery.",
+      "Correct: TLS does not prove the sender; an HMAC with a shared secret does.",
+      "TLS encrypts the whole HTTP message, body included."
+    ],
+    "tags": ["webhooks", "hmac"],
+    "sources": ["https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries", "https://docs.stripe.com/webhooks/signature"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0151",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A REST endpoint that only handles JSON receives a request whose `Content-Type` is `application/xml`. What does the OWASP REST Security Cheat Sheet recommend?",
+    "options": [
+      "Redirect it with 302 to the XML version of the API documentation",
+      "Parse it with the XML library and then convert the result to JSON",
+      "Answer 200 with an empty body so the client does not learn anything",
+      "Reject it with 415 Unsupported Media Type instead of parsing it"
+    ],
+    "answer": 3,
+    "explanation": "REST services should accept only the content types they expect and answer 415 to anything else. Accepting other formats can bring in parsers the team never meant to expose, such as an XML parser that resolves external entities.",
+    "optionNotes": [
+      "A redirect does not refuse the request and has no security benefit.",
+      "Parsing unexpected formats widens the attack surface, for example to XXE.",
+      "Pretending success hides errors from legitimate clients and from monitoring.",
+      "Correct: validate the content type and refuse unexpected ones with 415."
+    ],
+    "tags": ["api", "rest"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html", "https://www.rfc-editor.org/rfc/rfc9110"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0152",
+    "module": 14,
+    "section": "Web API and Webhooks",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A team subscribes its webhook to every event type a provider offers, just in case, although it only uses two. Which best practice does this break?",
+    "options": [
+      "Answer each delivery with a 2xx status within the provider's time limit",
+      "Subscribe only to the events you need, to limit data sent and load",
+      "Store the webhook secret in a vault rather than in the source code",
+      "Check the delivery ID so that retried deliveries are processed once"
+    ],
+    "answer": 1,
+    "explanation": "GitHub's webhook best practices include subscribing to the minimum number of events. Each extra event sends more data to the endpoint and adds load and exposure without any benefit.",
+    "optionNotes": [
+      "Replying quickly is a separate practice; the question is about the subscription.",
+      "Correct: fewer events means less data leaving the provider and fewer requests to handle.",
+      "Secret storage matters, but it is not what this setup gets wrong.",
+      "Duplicate handling is a separate practice about retries."
+    ],
+    "tags": ["webhooks"],
+    "sources": [
+      "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+      "https://docs.github.com/en/webhooks/about-webhooks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0153",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Behind the OWASP Core Rule Set, a request matches three rules that each add a few points, and it is blocked although no single rule would block it alone. Why?",
+    "options": [
+      "Detection-only mode turns a match on three rules into a blocking rule",
+      "The paranoia level blocks any request that matches more than one rule",
+      "Anomaly scoring adds up rule points and blocks above a set threshold",
+      "The positive security model blocks all requests matching several rules"
+    ],
+    "answer": 2,
+    "explanation": "The Core Rule Set uses anomaly scoring: each matching rule adds points, and a blocking decision is made when the request's total reaches the inbound threshold. This reduces false positives from single weak matches.",
+    "optionNotes": [
+      "Detection-only mode logs and never blocks.",
+      "Paranoia levels decide which rules run, not how many matches are allowed.",
+      "Correct: CRS rules add to an anomaly score, and the request is blocked once the total passes the threshold.",
+      "CRS is mainly a negative model built on attack signatures, scored as anomalies."
+    ],
+    "tags": ["waf", "crs"],
+    "sources": ["https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/", "https://coreruleset.org/docs/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0154",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A site sends a correct HSTS header, yet a user's very first visit, typed as `http://`, can still be downgraded on hostile Wi-Fi. Which addition closes that gap?",
+    "options": [
+      "Setting a much longer max-age value in the HSTS header field",
+      "Getting the domain onto the browsers' HSTS preload list",
+      "Adding X-Frame-Options: DENY to every HTTPS response",
+      "Serving a 301 redirect from HTTP to HTTPS on every page"
+    ],
+    "answer": 1,
+    "explanation": "HSTS works only after the browser has received the header over HTTPS. Preloading puts the domain in a list built into browsers, so even the first request goes over HTTPS; it needs includeSubDomains and the preload directive.",
+    "optionNotes": [
+      "max-age only matters after the browser has seen the header once.",
+      "Correct: browsers ship with the preload list, so they use HTTPS even on the first visit.",
+      "X-Frame-Options stops framing; it does not force HTTPS.",
+      "The HTTP request before the redirect is exactly what can be intercepted."
+    ],
+    "tags": ["hsts", "headers"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html", "https://hstspreload.org/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m14-q-0155",
+    "module": 14,
+    "section": "Web Application Security",
+    "domain": "D5",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A support assistant built on a language model summarizes incoming customer e-mails. One e-mail contains hidden text telling the model to include other customers' tickets in its summary, and it does. Which OWASP LLM risk and control fit?",
+    "options": [
+      "Prompt injection; treat content as untrusted and limit the model's data access",
+      "Improper output handling; encode all of the model's output before showing it in HTML",
+      "Data and model poisoning; retrain the model on a curated, reviewed data set",
+      "Unbounded consumption; cap the number of tokens each request may consume"
+    ],
+    "answer": 0,
+    "explanation": "Indirect prompt injection hides instructions in content the model processes. Defenses include treating all external content as untrusted, separating instructions from data, and giving the model access only to the data the current user may see.",
+    "optionNotes": [
+      "Correct: instructions hidden in processed content override the app's intent; least privilege limits what they can reach.",
+      "Output handling is about rendering model output unsafely; here the model followed injected instructions.",
+      "Nothing suggests the training data was changed; the instruction arrived in an e-mail.",
+      "Nothing here exhausts resources; the model leaked data it should not reach."
+    ],
+    "tags": ["llm", "ai"],
+    "sources": [
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
+    ],
+    "verify": false,
+    "rev": 1
   }
 ]

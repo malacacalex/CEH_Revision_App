@@ -10,7 +10,7 @@
 |---|---|---|
 | **Misconfiguration** | directory listing on, verbose errors, unused services open | OWASP A05:2021 |
 | **Default or hard-coded credentials** | admin/admin on a switch console | CWE-1392, CWE-798 |
-| **Missing patches / outdated components** | web server release out of support | OWASP A06:2021, CWE-1395 |
+| **Missing patches / outdated components** | web server release out of support | OWASP A03:2025 Software Supply Chain Failures (A06:2021 before), CWE-1395 |
 | **Buffer overflow** | copying input without checking its size | CWE-120, CWE-787 |
 | **Design flaw** | protocol with no authentication by design | CWE-306 |
 | **Zero-day** | exploited before the vendor has a fix | NIST "zero day attack" |

@@ -51,15 +51,15 @@
     "stem": "Which agency maintains the Known Exploited Vulnerabilities (KEV) catalog?",
     "options": ["FIRST", "NIST", "CISA", "MITRE"],
     "answer": 2,
-    "explanation": "CISA's KEV catalog lists CVEs with reliable evidence of exploitation in the wild; BOD 22-01 makes federal civilian agencies fix them by a due date.",
+    "explanation": "CISA's KEV catalog lists CVEs with reliable evidence of exploitation in the wild; BOD 26-04 (which replaced BOD 22-01 in 2026) makes federal civilian agencies fix them by a due date.",
     "optionNotes": ["FIRST maintains CVSS and EPSS.", "NIST runs the NVD.", "Correct.", "MITRE operates the CVE Program and CWE."],
     "tags": ["kev"],
     "sources": [
       "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-      "https://www.cisa.gov/news-events/directives/bod-22-01-reducing-significant-risk-known-exploited-vulnerabilities"
+      "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m05-q-0067",
@@ -461,6 +461,309 @@
     ],
     "tags": ["monitoring"],
     "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0083",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A finding is scored `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H` (7.5 High). Which description matches this vector?",
+    "options": [
+      "Remote, needs an admin account, and changes data in other components",
+      "Local, needs a user to open a file, and exposes confidential data fully",
+      "Remote, needs no privileges or user action, and only hurts availability",
+      "Adjacent, needs a user click, and has a low impact on all three properties"
+    ],
+    "answer": 2,
+    "explanation": "Read the vector metric by metric: network attack vector, low complexity, no privileges, no user interaction, unchanged scope, and impact on availability only. That profile is typical of a remote denial-of-service flaw and scores 7.5.",
+    "optionNotes": [
+      "PR:N means no privileges, S:U means unchanged scope and I:N means no integrity impact.",
+      "AV:N means network, UI:N means no user action and C:N means no confidentiality impact.",
+      "Correct: AV:N remote, PR:N no account, UI:N no user action, only A:H is non-zero.",
+      "AV:N is network, not adjacent, and the impacts are None, None, High."
+    ],
+    "tags": ["cvss", "vector-string"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://www.first.org/cvss/calculator/3.1"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0084",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A flaw in a PDF reader is triggered only when a user on the workstation opens a crafted file that arrived by e-mail. Which CVSS v3.1 Attack Vector value applies?",
+    "options": [
+      "Adjacent (AV:A), because the mail server is nearby",
+      "Network (AV:N), because the file was delivered by e-mail",
+      "Local (AV:L), with User Interaction set to Required",
+      "Physical (AV:P), because a person opens the file"
+    ],
+    "answer": 2,
+    "explanation": "CVSS scores the path to the vulnerable component, not how the file was delivered. A document flaw that fires when a user opens the file is Local, and the need for the user to act is captured by User Interaction: Required.",
+    "optionNotes": [
+      "Adjacent needs a shared physical or logical network segment, not a nearby mail server.",
+      "Delivery over the network does not make the vulnerable component network-reachable.",
+      "Correct: the flaw is exploited on the local system through a user who opens a file, so AV:L with UI:R.",
+      "Physical means the attacker must touch or manipulate the device itself."
+    ],
+    "tags": ["cvss"],
+    "sources": ["https://www.first.org/cvss/v3.1/specification-document", "https://www.first.org/cvss/v3.1/user-guide"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0085",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "A flaw can only be exploited if the attacker wins a race condition on the target, a condition outside the attacker's control. Which CVSS v4.0 base metric records this?",
+    "options": [
+      "Exploit Maturity, set to Proof-of-Concept (E:P)",
+      "Attack Requirements, set to Present (AT:P)",
+      "User Interaction, set to Passive (UI:P)",
+      "Privileges Required, set to High (PR:H)"
+    ],
+    "answer": 1,
+    "explanation": "CVSS v4.0 added Attack Requirements to the base group. AT:P means exploitation depends on conditions of the vulnerable system, such as a race condition, that the attacker does not control.",
+    "optionNotes": [
+      "Exploit Maturity is a Threat metric about public exploit code, not about conditions on the target.",
+      "Correct: AT captures deployment and execution conditions, such as a race condition that must be won.",
+      "User Interaction is about what a human other than the attacker must do.",
+      "Privileges Required is the access the attacker needs before the attack."
+    ],
+    "tags": ["cvss", "cvss-v4"],
+    "sources": ["https://www.first.org/cvss/v4.0/specification-document", "https://www.first.org/cvss/calculator/4.0"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0086",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An asset inventory must name each product and version in a standard, machine-readable way so a scanner can match it against CVE records. Which standard fits?",
+    "options": [
+      "CPE, the standard naming scheme for products and platforms",
+      "CWE, the list of weakness types found in software and hardware",
+      "CAPEC, the catalog of attack patterns used against weaknesses",
+      "CVSS, the scoring system that rates how severe a flaw is"
+    ],
+    "answer": 0,
+    "explanation": "Common Platform Enumeration gives products and versions a structured name. The NVD attaches CPE applicability to each CVE, so an inventory in CPE form can be matched to the CVEs that affect it.",
+    "optionNotes": [
+      "Correct: CPE names vendor, product and version, and the NVD uses it to list affected products.",
+      "CWE describes the kind of mistake, not which product is installed.",
+      "CAPEC describes how attackers exploit weaknesses, not product names.",
+      "CVSS rates severity; it does not identify products."
+    ],
+    "tags": ["cpe", "vulnerability-research"],
+    "sources": ["https://csrc.nist.gov/glossary/term/common_platform_enumeration", "https://nvd.nist.gov/general"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0087",
+    "module": 5,
+    "section": "Vulnerability Assessment Concepts",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A vendor learns that attackers are already exploiting a flaw in its VPN appliance, and no patch exists yet. How is this vulnerability classified?",
+    "options": [
+      "A false positive reported by the vendor's scanner",
+      "A misconfiguration left by the administrators",
+      "A legacy platform that is past its end of life",
+      "A zero-day, exploited before a fix is available"
+    ],
+    "answer": 3,
+    "explanation": "A zero-day is a flaw attackers exploit before the vendor has released a fix. Until then, defenders rely on mitigations such as restricting access or disabling the affected feature.",
+    "optionNotes": [
+      "A false positive is a reported flaw that is not real; this one is being exploited.",
+      "The flaw is in the vendor's code, not in how the customer set the device up.",
+      "Nothing says the appliance is out of support; it simply has no patch yet.",
+      "Correct: exploitation before the vendor has a fix is what makes it a zero-day."
+    ],
+    "tags": ["vulnerability-classification"],
+    "sources": ["https://csrc.nist.gov/glossary/term/zero_day_attack", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0088",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Web logs show one address requesting thousands of paths such as `/phpinfo.php`, `/admin/` and old CGI scripts within minutes, with a User-Agent that mentions Nikto. What is the most likely activity?",
+    "options": [
+      "A web server scan checking for dangerous files and outdated software",
+      "A passive scan that only reads the traffic the site already sends",
+      "An agent-based scan run by software installed on the web server",
+      "A credentialed patch audit that logged in over SSH to read versions"
+    ],
+    "answer": 0,
+    "explanation": "Nikto is an open-source web server scanner. It sends thousands of requests for known risky files and scripts and checks server versions, so it shows up clearly in web logs.",
+    "optionNotes": [
+      "Correct: Nikto checks web servers for dangerous files, default content and outdated versions, and it is noisy.",
+      "A passive scan sends no requests, so it would not fill the logs.",
+      "An agent runs locally on the host; it does not request pages from outside.",
+      "A credentialed audit logs in to the host; it does not probe thousands of URLs."
+    ],
+    "tags": ["nikto", "detection"],
+    "sources": ["https://cirt.net/Nikto2", "https://www.kali.org/tools/nikto/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0089",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Before a full assessment, a team wants Nessus to list only which hosts are up and which ports they expose, without running vulnerability checks. Which template fits?",
+    "options": ["Credentialed Patch Audit", "Advanced Scan", "Host Discovery", "Basic Network Scan"],
+    "answer": 2,
+    "explanation": "Nessus ships scan templates for common jobs. Host Discovery is the light first pass that lists live hosts and open ports; the other templates add vulnerability checks.",
+    "optionNotes": [
+      "Credentialed Patch Audit logs in to hosts to enumerate missing updates.",
+      "Advanced Scan is fully configurable and normally runs vulnerability plugins.",
+      "Correct: Host Discovery finds live hosts and open ports without vulnerability plugins.",
+      "Basic Network Scan is a full vulnerability scan with the recommended settings."
+    ],
+    "tags": ["nessus"],
+    "sources": ["https://docs.tenable.com/nessus/Content/ScanAndPolicyTemplates.htm", "https://docs.tenable.com/nessus/Content/Plugins.htm"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0090",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "`nmap -sV --script vulners` lists twelve CVEs for the OpenSSH version detected on a server. What should the analyst do before reporting them?",
+    "options": [
+      "Rerun the scan without -sV, since version detection causes the matches",
+      "Report all twelve as confirmed, since Nmap has proven each one exists",
+      "Drop the list, since scripts cannot say anything about vulnerabilities",
+      "Confirm each one, since the script only matches the detected version"
+    ],
+    "answer": 3,
+    "explanation": "The vulners script takes the CPE that version detection found and lists CVEs recorded for that version. Distributions often backport fixes without changing the version string, so each match must be validated.",
+    "optionNotes": [
+      "vulners needs -sV: without version detection it has nothing to match.",
+      "The script does not test the flaws, so the list is a lead, not proof.",
+      "A version-to-CVE match is useful for prioritizing, as long as it is checked.",
+      "Correct: vulners maps the detected version (CPE) to CVEs; backported fixes or settings can make them false positives."
+    ],
+    "tags": ["nmap", "verification"],
+    "sources": ["https://nmap.org/nsedoc/scripts/vulners.html", "https://csrc.nist.gov/glossary/term/false_positive"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0091",
+    "module": 5,
+    "section": "Vulnerability Assessment Tools",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A development team wants its build to report which third-party Java libraries in the application have known CVEs. Which kind of tool fits best?",
+    "options": [
+      "A web server scanner such as Nikto run against the staging site",
+      "A software composition scanner such as OWASP Dependency-Check",
+      "A host hardening audit such as Lynis run on the build server",
+      "A network vulnerability scanner such as Nessus on the build subnet"
+    ],
+    "answer": 1,
+    "explanation": "Software composition analysis (SCA) tools such as OWASP Dependency-Check or Trivy list the components an application uses and flag those with known CVEs, which fits naturally into a build pipeline.",
+    "optionNotes": [
+      "Nikto checks web server files and versions, not the libraries inside an application.",
+      "Correct: dependency scanners identify libraries and match them with known vulnerabilities.",
+      "Lynis audits the operating system's hardening, not application dependencies.",
+      "A network scan sees services and banners, not the libraries bundled in a build."
+    ],
+    "tags": ["sca", "tools"],
+    "sources": ["https://owasp.org/www-project-dependency-check/", "https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0092",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Instead of patching an old file-transfer application that no business process uses any more, the company uninstalls it. Which risk response is this under NIST SP 800-40 Rev. 4?",
+    "options": [
+      "Transfer: another party takes on the remaining risk",
+      "Accept: the risk is documented and reviewed later on",
+      "Avoid: the software is removed, so the risk goes away",
+      "Mitigate: a compensating control lowers the remaining risk"
+    ],
+    "answer": 2,
+    "explanation": "SP 800-40 Rev. 4 lists four risk responses: accept, mitigate, transfer and avoid. Removing unneeded vulnerable software is avoidance, and like patching it removes the vulnerability rather than reducing its impact.",
+    "optionNotes": [
+      "Nobody else takes on the risk here; the software is simply gone.",
+      "Acceptance leaves the software and its flaw in place.",
+      "Correct: removing the vulnerable software avoids the risk entirely.",
+      "Nothing is added to reduce risk; the application is removed."
+    ],
+    "tags": ["risk-response"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m05-q-0093",
+    "module": 5,
+    "section": "Vulnerability Assessment Reports",
+    "domain": "D3",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Six weeks after an assessment, management asks which findings are fixed, who owns the rest and when each one is due. Which document should answer this?",
+    "options": [
+      "The rules of engagement signed before testing",
+      "The executive summary of the original report",
+      "The raw scanner export from the first scan",
+      "The plan of action and milestones (POA&M)"
+    ],
+    "answer": 3,
+    "explanation": "A POA&M lists the tasks needed to fix each weakness, the resources, the owner and the milestones. It is the living follow-up to a report and shows which findings are still open.",
+    "optionNotes": [
+      "The rules of engagement set scope and limits for testing, not remediation.",
+      "The summary gives the picture at report time; it does not track progress.",
+      "The export lists what the scanner saw once; it has no owners or deadlines.",
+      "Correct: a POA&M tracks each weakness with its owner, planned actions and due dates."
+    ],
+    "tags": ["reporting", "poam"],
+    "sources": ["https://csrc.nist.gov/glossary/term/plan_of_action_and_milestones", "https://csrc.nist.gov/pubs/sp/800/115/final"],
     "verify": false,
     "rev": 1
   }

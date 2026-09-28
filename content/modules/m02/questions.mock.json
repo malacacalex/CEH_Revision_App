@@ -950,5 +950,345 @@
     "sources": ["https://attack.mitre.org/mitigations/M1056/", "https://attack.mitre.org/techniques/T1591/"],
     "verify": false,
     "rev": 1
+  },
+  {
+    "id": "m02-q-0117",
+    "module": 2,
+    "section": "Footprinting Concepts",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "During a scoped test, a tester (1) reads the target's filings on SEC EDGAR, (2) sends DNS queries straight to the target's authoritative name server and (3) phones the help desk with a pretext. Which steps are active footprinting?",
+    "options": [
+      "None of them, because nothing has been exploited on the target yet",
+      "Step 1 only, because the filings were written by the target company",
+      "Step 3 only, because DNS queries are passive wherever they are sent",
+      "Steps 2 and 3, because both reach the target's own systems or staff"
+    ],
+    "answer": 3,
+    "explanation": "The test for active footprinting is contact: does the activity reach the target's systems or people? Querying its authoritative DNS server and phoning its help desk both do, so the target may log or notice them. Public filings are read from a third party.",
+    "optionNotes": [
+      "Active and passive depend on contact with the target, not on exploitation.",
+      "EDGAR is a third-party service: reading it never touches the target.",
+      "A lookup through a public resolver is usually passive, but a query sent straight to the target's name server is active.",
+      "Correct: querying the target's name server and calling its staff are direct contact; reading EDGAR is not."
+    ],
+    "tags": ["passive-active"],
+    "sources": ["https://attack.mitre.org/techniques/T1595/", "https://attack.mitre.org/tactics/TA0043/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0118",
+    "module": 2,
+    "section": "Footprinting through Search Engines",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A defender wants search results from any subdomain of example.com except the main www site, limited to pages whose title contains the word login. Which query fits?",
+    "options": [
+      "site:example.com -www intitle:login",
+      "site:www.example.com intext:login",
+      "inurl:example.com filetype:login -www",
+      "intitle:example.com -site:login"
+    ],
+    "answer": 0,
+    "explanation": "Operators combine: site: restricts results to a domain, a leading minus excludes a term, and intitle: matches words in the page title. Together they list login pages on subdomains other than www.",
+    "optionNotes": [
+      "Correct: site: sets the domain, -www drops the main site, intitle: filters on the page title.",
+      "This keeps only the www site and searches the page body, the opposite of the goal.",
+      "filetype: expects a file extension such as pdf, not a word such as login.",
+      "The operators are swapped: the domain belongs in site: and the word in intitle:."
+    ],
+    "tags": ["google-operators", "subdomains"],
+    "sources": [
+      "https://support.google.com/websearch/answer/2466433",
+      "https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0119",
+    "module": 2,
+    "section": "Footprinting through Internet Research Services",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A defender wants Shodan to list only the internet-facing services whose reverse DNS names end in the company's domain. Which filter fits?",
+    "options": ["net:example.com", "hostname:example.com", "org:example.com", "site:example.com"],
+    "answer": 1,
+    "explanation": "Shodan filters take the form name:value. hostname: searches the hostnames recorded for a service, net: takes a CIDR range, and org: matches the owner of the address block.",
+    "optionNotes": [
+      "net: expects an IP range in CIDR notation, not a domain name.",
+      "Correct: hostname: matches the hostnames Shodan recorded for each service.",
+      "org: matches the organization name that owns the IP block, not a hostname.",
+      "site: is a web search engine operator, not a Shodan filter."
+    ],
+    "tags": ["shodan"],
+    "sources": ["https://help.shodan.io/the-basics/search-query-fundamentals", "https://help.shodan.io/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0120",
+    "module": 2,
+    "section": "Footprinting through Social Networking Sites",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "OSINT shows that several finance employees mention on professional networks a new ERP rollout and its go-live date. Which follow-on step does this information prepare most directly?",
+    "options": [
+      "A WHOIS lookup that reveals which registrar the ERP vendor relies on",
+      "A zone transfer that lists the ERP server's internal hostnames",
+      "A traceroute that maps the network path to the finance subnet",
+      "A pretext posing as the ERP vendor's support team around go-live"
+    ],
+    "answer": 3,
+    "explanation": "Social media footprinting yields people, roles, projects and timing. Those details feed pretexts: a message from 'the vendor' about a go-live everyone expects is far more convincing than a generic lure.",
+    "optionNotes": [
+      "The vendor's registrar says nothing useful about the target's staff.",
+      "A zone transfer depends on the DNS server's settings, not on staff posts.",
+      "The path to a subnet comes from network footprinting, not from profiles.",
+      "Correct: a project name, a vendor and a date make a timely, believable pretext for phishing or vishing."
+    ],
+    "tags": ["social-media", "pretexting"],
+    "sources": ["https://attack.mitre.org/techniques/T1593/001/", "https://attack.mitre.org/techniques/T1591/004/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0121",
+    "module": 2,
+    "section": "Whois Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An analyst's workstation may only open outbound HTTPS connections. Which registration-data service can it still query?",
+    "options": [
+      "WHOIS, if the query is sent over UDP port 43",
+      "WHOIS, which runs over TCP port 443",
+      "RDAP, which sends its queries over HTTPS",
+      "Neither, since both use TCP port 43"
+    ],
+    "answer": 2,
+    "explanation": "Classic WHOIS is plain text over TCP port 43, which a proxy that only allows HTTPS blocks. RDAP, its successor, uses HTTPS and structured JSON answers, so it passes.",
+    "optionNotes": [
+      "WHOIS is defined over TCP, not UDP.",
+      "WHOIS uses TCP port 43, not 443.",
+      "Correct: RDAP is a RESTful service over HTTPS that returns JSON.",
+      "Only WHOIS uses port 43; RDAP was built on HTTPS."
+    ],
+    "tags": ["whois", "rdap"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc3912", "https://www.icann.org/rdap"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0122",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "`dig example.com soa` returns `example.com. 3600 IN SOA ns1.example.com. hostmaster.example.com. 2026092801 7200 3600 1209600 3600`. What does `hostmaster.example.com.` stand for?",
+    "options": [
+      "The mail server that accepts e-mail for example.com",
+      "The secondary name server that receives the zone transfers",
+      "The host that answers the zone's reverse (PTR) lookups",
+      "The zone administrator's mailbox, hostmaster@example.com"
+    ],
+    "answer": 3,
+    "explanation": "An SOA record holds the primary name server (MNAME), the responsible mailbox (RNAME, with the first dot standing for @), then the serial and timers. The mailbox gives footprinting a contact address.",
+    "optionNotes": [
+      "Mail servers are listed in MX records.",
+      "The SOA names the primary server (ns1 here); secondaries are listed in NS records.",
+      "Reverse lookups live in in-addr.arpa zones, not in this field.",
+      "Correct: the RNAME field writes the admin mailbox with a dot in place of the @."
+    ],
+    "tags": ["dns", "records", "commands"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc1035", "https://bind9.readthedocs.io/en/latest/reference.html"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0123",
+    "module": 2,
+    "section": "DNS Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "Normal lookups against a company's public DNS server return names such as `hr-db01.corp.example.com` with private 10.x addresses. Which change stops this leak?",
+    "options": [
+      "Serve internal names only from an internal view (split-horizon DNS)",
+      "Require TSIG keys for zone transfers to the secondary servers",
+      "Sign the zone with DNSSEC and switch from NSEC records to NSEC3 records",
+      "Answer ANY queries minimally, as RFC 8482 allows servers to do"
+    ],
+    "answer": 0,
+    "explanation": "Publishing internal hostnames and private addresses on a public server hands out a map of the internal network. Split-horizon DNS gives internal clients a full view and the internet a reduced one.",
+    "optionNotes": [
+      "Correct: internal records stay on the internal view, so the internet never sees them.",
+      "TSIG protects transfers; these names leak through ordinary queries.",
+      "NSEC3 slows zone walking but still answers direct queries for these names.",
+      "Minimal ANY answers do not hide records asked for one by one."
+    ],
+    "tags": ["dns", "countermeasures"],
+    "sources": ["https://bind9.readthedocs.io/en/latest/reference.html", "https://www.rfc-editor.org/rfc/rfc1034"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0124",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "command-output",
+    "difficulty": 3,
+    "stem": "A message's header shows, top to bottom: `Received: from mx2.corp.example by mail.corp.example` · `Received: from relay.isp.example by mx2.corp.example` · `Received: from [198.51.100.7] by relay.isp.example`. Where did the message enter the mail system?",
+    "options": [
+      "relay.isp.example handed it to mx2.corp.example",
+      "mx2.corp.example handed it to mail.corp.example",
+      "198.51.100.7 handed it to relay.isp.example",
+      "mail.corp.example handed it to 198.51.100.7"
+    ],
+    "answer": 2,
+    "explanation": "Each relay adds its Received line on top of the existing ones, so the header is read bottom-up. The lowest line records the first relay and the address that submitted the message.",
+    "optionNotes": [
+      "This is the middle hop, after the ISP relay had already accepted the message.",
+      "The top line is the newest hop, inside the recipient's own network.",
+      "Correct: the bottom Received line is the oldest, so it shows the first hop from the sender.",
+      "This reverses the direction written in the lines."
+    ],
+    "tags": ["email-headers"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc5321", "https://support.google.com/mail/answer/29436"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0125",
+    "module": 2,
+    "section": "Network and Email Footprinting",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A tester's report says a target employee opened a test e-mail at 09:14 from a given IP address with a given mail client, although nobody replied. How was this most likely recorded?",
+    "options": [
+      "The recipient's mail server returned a delivery status notification",
+      "A unique remote image in the message was fetched when it opened",
+      "The tester read the Received headers of the message that was sent",
+      "The SPF check on the recipient side reported the client's address"
+    ],
+    "answer": 1,
+    "explanation": "E-mail tracking tools embed a unique remote image or link. When the client loads it, the tracking server logs the time, IP address and user agent. Blocking remote images defeats most of them.",
+    "optionNotes": [
+      "A delivery notice says the message arrived, not when or where it was opened.",
+      "Correct: e-mail tracking hides a unique image or link and logs when, where and how it is fetched.",
+      "The sender's copy has no hops added on the recipient side and says nothing about opening.",
+      "SPF checks the sending server of incoming mail; it reports nothing to the sender."
+    ],
+    "tags": ["email-tracking"],
+    "sources": ["https://attack.mitre.org/techniques/T1598/", "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0126",
+    "module": 2,
+    "section": "Footprinting through Social Engineering",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A company sells its old laptops to a reseller. Which step best limits what an attacker who buys them can recover about the company?",
+    "options": [
+      "Delete the user profiles and empty each laptop's recycle bin first",
+      "Sanitize the drives with a method that matches NIST SP 800-88",
+      "Run a quick format of each drive before handing them over",
+      "Remove the asset tags and company stickers from the cases"
+    ],
+    "answer": 1,
+    "explanation": "Discarded media is the digital side of dumpster diving. NIST SP 800-88 describes clear, purge and destroy methods chosen by media type; deleting files or a quick format leaves data recoverable.",
+    "optionNotes": [
+      "Deleted files and profiles can usually be recovered with basic tools.",
+      "Correct: sanitization chosen for the media type makes recovery infeasible.",
+      "A quick format rewrites file system structures but leaves most data in place.",
+      "Removing labels hides the owner but leaves every file on the drive."
+    ],
+    "tags": ["dumpster-diving", "countermeasures"],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0127",
+    "module": 2,
+    "section": "Footprinting Tasks using Advanced Tools and AI",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 3,
+    "stem": "The rules of engagement forbid sending any traffic to the client's hosts during recon, but the tester wants automated OSINT across many sources. How should SpiderFoot be used?",
+    "options": [
+      "Do not use it: SpiderFoot always port-scans every host it discovers",
+      "Pick its footprint use case, which crawls and probes the client's hosts",
+      "Pick its passive use case, which only queries third-party sources",
+      "Run every module, then remove the active results from the final report"
+    ],
+    "answer": 2,
+    "explanation": "SpiderFoot offers use cases (such as passive, footprint and investigate) that select module sets. Passive keeps the scan to third-party sources, so nothing reaches the client's systems.",
+    "optionNotes": [
+      "SpiderFoot lets you choose modules or use cases; scanning is not automatic.",
+      "The footprint use case may contact the target, which the rules forbid.",
+      "Correct: the passive use case avoids modules that touch the target.",
+      "Deleting results afterwards does not undo traffic already sent out of scope."
+    ],
+    "tags": ["spiderfoot", "passive-active"],
+    "sources": ["https://github.com/smicallef/spiderfoot", "https://www.kali.org/tools/spiderfoot/"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m02-q-0128",
+    "module": 2,
+    "section": "Footprinting Countermeasures",
+    "domain": "D2",
+    "pool": "mock",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An audit finds `Disallow: /backup-2025/` in the website's robots.txt, and the folder can be read without logging in. What is the right fix?",
+    "options": [
+      "Protect or remove the folder; the robots.txt line only advertises it",
+      "Add a separate Disallow line for every file stored inside the folder",
+      "Rename robots.txt to a secret name so crawlers can no longer read it",
+      "Add a noindex tag to the listing page and leave the folder where it is"
+    ],
+    "answer": 0,
+    "explanation": "robots.txt is a public request to well-behaved crawlers, not a security control. Listing a backup folder tells attackers where to look; the fix is to remove the files or put them behind authentication.",
+    "optionNotes": [
+      "Correct: robots.txt is public and is not access control; the folder needs authentication or removal.",
+      "More lines only list more paths for anyone who reads the file.",
+      "Crawlers look for robots.txt at a fixed name; renaming it just removes the crawler rules.",
+      "noindex keeps pages out of results but anyone with the path can still read the files."
+    ],
+    "tags": ["robots-txt", "countermeasures"],
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc9309",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
+    ],
+    "verify": false,
+    "rev": 1
   }
 ]
