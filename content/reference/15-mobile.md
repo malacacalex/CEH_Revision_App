@@ -3,7 +3,7 @@ id: ref-15
 title: Mobile platforms
 order: 15
 modules: [17]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://owasp.org/projects/mobile-top-10
@@ -28,8 +28,24 @@ sources:
   - https://pages.nist.gov/800-63-4/sp800-63b.html
   - https://www.cisa.gov/resources-tools/resources/mobile-communications-best-practice-guidance
   - https://csrc.nist.gov/glossary/term/jailbreak
+  - https://source.android.com/docs/security/features/apksigning/v4
+  - https://developer.android.com/training/permissions/requesting
+  - https://developer.android.com/privacy-and-security/security-config
+  - https://developer.android.com/about/versions/12/behavior-changes-all
+  - https://developer.apple.com/documentation/security/preventing-insecure-network-connections
+  - https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity
+  - https://mas.owasp.org/MASTG/0x05a-Platform-Overview/
+  - https://mas.owasp.org/MASTG/0x06a-Platform-Overview/
+  - https://owasp.org/www-project-mobile-top-10/2023-risks/
+  - https://owasp.org/www-project-mobile-top-10/2016-risks/
+  - https://consumer.ftc.gov/articles/how-recognize-and-report-spam-text-messages
+  - https://theapplewiki.com/wiki/Jailbreak
+  - https://ios.cfw.guide/types-of-jailbreak/
+  - https://www.security.com/feature-stories/ios-trustjacking-dangerous-new-ios-vulnerability
+  - https://support.apple.com/en-us/109054
+  - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
 ---
-Platform security models, the OWASP Mobile Top 10 and enterprise controls for module 17. Flagged **verify** because the jailbreak types, the attack-surface split and trustjacking are EC-Council framing.
+Platform security models, the OWASP Mobile Top 10 and enterprise controls for module 17. Flagged **verify** because no public EC-Council page states the jailbreak-type list or the three parts of its anatomy of a mobile attack (the jailbreak definitions match community references).
 
 ## Android vs iOS security model
 
@@ -91,7 +107,7 @@ Changes from 2016: M1 Improper Platform Usage and M10 Extraneous Functionality d
 | **Overlay / tapjacking** | fake screen drawn over a real app | Android 12 blocks touches through untrusted overlays |
 | **Malicious or repackaged app** | clone of a real app from outside the store | official stores, Play Protect, MDM allowlist |
 | **Camera / mic spying** | sensors used in the background | OS indicators, permission review |
-| **Trustjacking** (EC-Council framing) | abuse of an old "Trust This Computer" pairing | review and reset trusted computers |
+| **Trustjacking** (Symantec, 2018) | abuse of an old "Trust This Computer" pairing | review and reset trusted computers |
 
 EC-Council's anatomy of a mobile attack: **device**, **network**, **data center / cloud**.
 

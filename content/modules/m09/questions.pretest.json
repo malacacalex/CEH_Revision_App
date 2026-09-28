@@ -227,13 +227,13 @@
     "optionNotes": [
       "DKIM signs messages.",
       "SPF lists allowed sending servers.",
-      "Correct: RFC 7489 policy and reporting.",
+      "Correct: RFC 9989 (DMARC) policy and reporting.",
       "MX records route incoming mail."
     ],
     "tags": ["email-authentication"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://csrc.nist.gov/pubs/sp/800/177/r1/final"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9989", "https://csrc.nist.gov/pubs/sp/800/177/r1/final"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m09-q-0010",
@@ -259,7 +259,7 @@
       "Correct: SPF fail, no DKIM and DMARC fail for the From domain."
     ],
     "tags": ["email-authentication", "headers"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc8601", "https://www.rfc-editor.org/rfc/rfc7489"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8601", "https://www.rfc-editor.org/rfc/rfc9989"],
     "verify": false,
     "rev": 1
   }

@@ -232,7 +232,7 @@ sequenceDiagram
 |---|---|---|
 | **SPF** (RFC 7208) | lists servers allowed to send for the domain; `-all` = fail, `~all` = softfail | TXT at the domain |
 | **DKIM** (RFC 6376) | signs headers and body with the domain's private key | TXT at `selector._domainkey` |
-| **DMARC** (RFC 7489) | checks that SPF or DKIM passes **and aligns** with the From domain; policy `p=none`, `quarantine` or `reject`; `rua=` for reports | TXT at `_dmarc` |
+| **DMARC** (RFC 9989, which replaced RFC 7489 in 2026) | checks that SPF or DKIM passes **and aligns** with the From domain; policy `p=none`, `quarantine` or `reject`; `rua=` for reports | TXT at `_dmarc` |
 
 Receivers record the results in an `Authentication-Results` header, for example `spf=fail dkim=none dmarc=fail`.
 

@@ -3,7 +3,7 @@ id: ref-13
 title: Web servers, web apps, APIs and LLM apps
 order: 13
 modules: [13, 14]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf
@@ -21,6 +21,8 @@ sources:
   - https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries
   - https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md
   - https://docs.stripe.com/webhooks/signature
+  - https://docs.stripe.com/webhooks
+  - https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks
   - https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
   - https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
   - https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html
@@ -29,8 +31,12 @@ sources:
   - https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html
   - https://genai.owasp.org/llm-top-10/
   - https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html
+  - https://www.eccouncil.org/wp-content/uploads/2023/03/Hacking-Webservers.pdf
+  - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
+  - https://csrc.nist.gov/pubs/sp/800/52/r2/final
+  - https://www.rfc-editor.org/rfc/rfc6797
 ---
-Recognition and the key control for each web risk in modules 13 and 14. Flagged **verify** because the web server methodology order is EC-Council framing.
+Recognition and the key control for each web risk in modules 13 and 14. Flagged **verify** because the CEH v13 page lists directory brute forcing but not mirroring or session hijacking, so the v13 web server methodology may differ from EC-Council's 2023 order below.
 
 SQL injection: see the Self-study tab.
 
@@ -48,8 +54,8 @@ SQL injection: see the Self-study tab.
 | **Misconfiguration leaks** | directory listing, backups in the web root, stack traces | disable listing, move backups, generic errors |
 | **DoS** | floods; Slowloris holds connections with slow headers | timeouts, per-IP limits, CDN / DDoS protection |
 
-- **T1190** Exploit Public-Facing Application is how they get in; **T1505.003** Web Shell is how they stay. Methodology (EC-Council framing): information gathering → footprinting / banner grabbing → mirroring → vulnerability scanning → session hijacking → password attacks.
-- Hardening (NIST SP 800-44): DMZ, single-purpose host, remove samples and unused modules, hide banners (obscurity only), TLS 1.2+, HSTS, patch.
+- **T1190** Exploit Public-Facing Application is how they get in; **T1505.003** Web Shell is how they stay. Methodology (EC-Council framing, 2023 infographic): information gathering → footprinting / banner grabbing → mirroring → vulnerability scanning → session hijacking → password attacks; the CEH v13 topics also name directory brute forcing.
+- Hardening (NIST SP 800-44): DMZ, single-purpose host, remove samples and unused modules, hide banners (obscurity only), patch. Transport: TLS 1.2+ (SP 800-52r2), HSTS (RFC 6797).
 
 ## OWASP Top 10:2025
 

@@ -3,7 +3,7 @@ id: ref-17
 title: Cloud security
 order: 17
 modules: [19]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://csrc.nist.gov/pubs/sp/800/145/final
@@ -13,7 +13,7 @@ sources:
   - https://cloud.google.com/architecture/framework/security/shared-responsibility-shared-fate
   - https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html
   - https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
-  - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-v2-how-it-works.html
+  - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html
   - https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
   - https://learn.microsoft.com/en-us/azure/virtual-machines/instance-metadata-service
   - https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview
@@ -35,8 +35,19 @@ sources:
   - https://cloudsecurityalliance.org/artifacts/top-threats-to-cloud-computing-2024
   - https://cloudsecurityalliance.org/research/cloud-controls-matrix
   - https://attack.mitre.org/matrices/enterprise/cloud/
+  - https://attack.mitre.org/techniques/T1685/002/
+  - https://attack.mitre.org/resources/updates/updates-april-2026/
+  - https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication500-292.pdf
+  - https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html
+  - https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html
+  - https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html
+  - https://cloud.google.com/iam/docs/principals-overview
+  - https://www.microsoft.com/en-us/security/business/security-101/what-is-cwpp
+  - https://www.paloaltonetworks.com/cyberpedia/what-is-cwpp-cloud-workload-protection-platform
+  - https://www.cisa.gov/news-events/alerts/2017/04/27/intrusions-affecting-multiple-victims-across-multiple-sectors
+  - https://eclypsium.com/research/the-missing-security-primer-for-bare-metal-cloud-services/
 ---
-Flagged **verify** because the attack names in the threats table and the CWPP label follow EC-Council or industry usage rather than a standard. Everything else comes from NIST and the providers' own documentation.
+Flagged **verify** because no public EC-Council page lists its cloud attack names (cloud hopping, Cloudborne, man-in-the-cloud, wrapping attack) or the multi-cloud label. Everything else comes from NIST, MITRE, CSA and the providers' own documentation.
 
 ## NIST model (SP 800-145)
 
@@ -89,7 +100,7 @@ Main metadata threat: **SSRF** makes an app fetch the VM role's credentials (ATT
 | Misconfigured public storage | T1530 | account-level public-access blocks, CSPM |
 | Stolen or leaked cloud credentials | T1078.004 | MFA, roles instead of long-term keys, rotation |
 | Cryptojacking, often in unused regions | T1496, T1535 | billing alerts, region guardrails |
-| Disabling cloud logs | T1562.008 | logs in a separate account, deny via guardrail |
+| Disabling cloud logs | T1685.002 | logs in a separate account, deny via guardrail |
 | Snapshot shared to attacker's account | T1537 | alert on sharing events |
 
 EC-Council names (EC-Council framing): **cloud hopping** (via a managed service provider), **Cloudborne** (BMC firmware implant surviving bare-metal reuse), **man-in-the-cloud** (stolen sync token), **wrapping attack** (XML signature wrapping in SOAP), cross-VM side channels.

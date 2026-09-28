@@ -3,8 +3,8 @@ id: ref-12
 title: IDS, firewalls, NAC, EDR and honeypots
 order: 12
 modules: [12]
-rev: 1
-verify: true
+rev: 2
+verify: false
 sources:
   - https://csrc.nist.gov/pubs/sp/800/94/final
   - https://csrc.nist.gov/pubs/sp/800/41/r1/final
@@ -37,8 +37,11 @@ sources:
   - https://github.com/cowrie/cowrie
   - https://github.com/skeeto/endlessh
   - https://docs.suricata.io/en/latest/rules/intro.html
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-are-honeypots-benefits-types/
+  - https://www.eccouncil.org/cybersecurity-exchange/threat-intelligence/active-defense-for-mitigating-security-threats-and-intrusions/
+  - https://manpages.ubuntu.com/manpages/jammy/man1/labrea.1.html
 ---
-The types of network and endpoint security controls, and how to tell them apart. Flagged **verify** for the EC-Council honeypot lists and the tarpit wording, which rest on project and vendor pages.
+The types of network and endpoint security controls, and how to tell them apart.
 
 Evasion techniques: see the Self-study tab.
 
@@ -127,7 +130,7 @@ Recognition: "records everything a laptop does and lets the analyst isolate it" 
 | **Tarpit** | a service that deliberately slows attackers down, holding connections open (e.g. an SSH tarpit such as Endlessh; LaBrea-style sticky honeypots answer unused addresses) | wastes the attacker's time; slows scanners and worms |
 
 - By purpose: **production** (beside real servers, detects intrusions) vs **research** (studies tools and trends).
-- (EC-Council framing) By deployment: malware, database, spam, email and spider honeypots, plus honeynets.
+- (EC-Council framing) By deployment: malware, database, email-trap (spam) and spider honeypots, plus honeynets.
 - A honeypot has **no legitimate users**, so it has very few false positives. It **detects and deceives, it does not block**, and it supplements, never replaces, IDS/IPS.
 
 ## Exam traps

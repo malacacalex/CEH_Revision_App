@@ -3,7 +3,7 @@ id: ref-18
 title: Cryptography
 order: 18
 modules: [20]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://csrc.nist.gov/pubs/fips/197/final
@@ -49,9 +49,15 @@ sources:
   - https://www.nist.gov/news-events/news/2025/03/nist-selects-hqc-fifth-algorithm-post-quantum-encryption
   - https://csrc.nist.gov/pubs/sp/800/208/final
   - https://csrc.nist.gov/pubs/ir/8547/ipd
-  - https://www.ncsc.gov.uk/whitepaper/quantum-security-technologies
+  - https://www.ncsc.gov.uk/paper/quantum-networking-technologies
+  - https://www.rfc-editor.org/rfc/rfc7568
+  - https://nvlpubs.nist.gov/nistpubs/ir/2024/NIST.IR.8547.ipd.pdf
+  - https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf
+  - https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf
+  - https://www.eccouncil.org/train-certify/ec-council-certified-encryption-specialist-eces/
+  - https://link.springer.com/chapter/10.1007/3-540-45661-9_9
 ---
-Flagged **verify** because a few attack names (integral cryptanalysis, rubber-hose, GAK) are EC-Council terms, and the NIST post-quantum timeline comes from a draft (IR 8547). Sizes are in bits.
+Flagged **verify** because no public EC-Council page lists rubber-hose among its cryptography attacks. Sizes are in bits.
 
 ## Symmetric algorithms
 
@@ -136,7 +142,7 @@ Lifecycle: key pair generated → **CSR** (PKCS #10: public key + subject) → R
 | Removed | — | compression, renegotiation, static RSA, custom DH groups |
 | Downgrade protection | Finished message check | adds a sentinel in ServerHello.random |
 
-SSL 3.0 and TLS 1.0 / 1.1 are deprecated (RFC 8996). NIST SP 800-52r2: support TLS 1.2 and 1.3.
+SSL 3.0 (RFC 7568) and TLS 1.0 / 1.1 (RFC 8996) are deprecated. NIST SP 800-52r2: support TLS 1.2 and 1.3.
 
 ## Disk and email encryption
 

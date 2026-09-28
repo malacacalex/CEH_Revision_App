@@ -699,7 +699,7 @@
       "Correct: reject is the strictest DMARC policy."
     ],
     "tags": ["dmarc"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9989", "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/"],
     "verify": false,
     "rev": 1
   },

@@ -184,8 +184,8 @@ Level 4 should never talk straight to Levels 0–2 (NIST SP 800-82r3). IT/OT con
 | Threat class | How it shows | Detection | Countermeasure |
 |---|---|---|---|
 | **Internet Accessible Device** | PLC/HMI answers from the internet | own Shodan checks, external scans | remove from internet, VPN with MFA |
-| **Default Credentials** | vendor password still works | login audit, failed-login alerts | change on install, password policy |
-| **Unauthorized Command Message** | valid-looking write from an unknown host | protocol-aware IDS (Zeek ICSNPP), allowlists | Communication Authenticity, Network Allowlists |
+| **Default Credentials** (Insecure Credentials) | vendor password still works | login audit, failed-login alerts | change on install, password policy |
+| **Unauthorized Message: Command Message** | valid-looking write from an unknown host | protocol-aware IDS (Zeek ICSNPP), allowlists | Communication Authenticity, Network Allowlists |
 | **Program Download / Modify Firmware** | logic or firmware changed outside a change window | compare logic to known-good, controller change alarms | key switch in RUN, Code Signing, Audit |
 | **Manipulation of View** | HMI shows normal values while the process is not | cross-check with independent sensors | Out-of-Band Communications Channel |
 | **Loss of Safety** | SIS disabled or reprogrammed | SIS program-change alarms | separate SIS network, key switch |
@@ -220,8 +220,8 @@ EC-Council also labels **HMI-based attacks**, **side-channel attacks**, **PLC ha
 | Information gathering | **Internet Accessible Device** | your PLC appears in Shodan | find it first, take it off the internet |
 | Information gathering | **Remote System Discovery**, **Remote System Information Discovery** | Nmap NSE `s7-info`, `modbus-discover`, `enip-info`, `bacnet-info` returning vendor, model, firmware | alert on ICS discovery from non-engineering hosts |
 | Vulnerability scanning | vulnerability scanning of controllers and HMIs | version banners matched to CISA ICS advisories | patch in maintenance windows, compensating controls |
-| Launch attacks | **Unauthorized Command Message**, **Modify Parameter**, **Program Download** | writes from unexpected hosts, logic changes | allowlists, change control, key switch |
-| Gain remote access | **External Remote Services**, **Default Credentials**, **Valid Accounts** | VPN or remote tool logins at odd hours | MFA, jump host, session recording |
+| Launch attacks | **Unauthorized Message: Command Message**, **Modify Parameter**, **Program Download** | writes from unexpected hosts, logic changes | allowlists, change control, key switch |
+| Gain remote access | **External Remote Services**, **Default Credentials** (Insecure Credentials), **Valid Accounts** | VPN or remote tool logins at odd hours | MFA, jump host, session recording |
 | Maintain access | **Modify Firmware**, persistence on engineering workstations | firmware hash differs from vendor image | code signing, firmware verification, backups |
 
 ### Reading NSE output

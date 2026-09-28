@@ -747,7 +747,7 @@
     "domain": "D7",
     "kind": "list",
     "front": "Common OT entry points (CISA cases)",
-    "back": "- **Internet Accessible Device**: PLC/HMI found by Shodan\n- **Default Credentials**: vendor password unchanged (Unitronics PLCs, 2023)\n- **External Remote Services**: remote access tools and VPNs (Oldsmar water plant, 2021)\n- **Replication Through Removable Media**: USB (Stuxnet)",
+    "back": "- **Internet Accessible Device**: PLC/HMI found by Shodan\n- **Default Credentials** (Insecure Credentials): vendor password unchanged (Unitronics PLCs, 2023)\n- **External Remote Services**: remote access tools and VPNs (Oldsmar water plant, 2021)\n- **Replication Through Removable Media**: USB (Stuxnet)",
     "tags": [
       "entry-points"
     ],
@@ -759,7 +759,7 @@
       "https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-042a"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m18-c-0039",

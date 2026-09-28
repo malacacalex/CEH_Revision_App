@@ -1166,7 +1166,7 @@
       "All three checks did not pass."
     ],
     "tags": ["email-headers", "spf", "dmarc"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc8601", "https://www.rfc-editor.org/rfc/rfc7489"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc8601", "https://www.rfc-editor.org/rfc/rfc9989"],
     "verify": false,
     "rev": 1
   },

@@ -1120,11 +1120,11 @@
     ],
     "answer": 1,
     "explanation": "SPF checks the envelope sender domain against the list of authorized sending IPs; on its own it does not protect the visible From address, which is why DMARC adds alignment.",
-    "optionNotes": ["That is DKIM (RFC 6376).", "Correct: RFC 7208 authorizes sending hosts.", "That is DMARC policy (RFC 7489).", "That is an MX record."],
+    "optionNotes": ["That is DKIM (RFC 6376).", "Correct: RFC 7208 authorizes sending hosts.", "That is DMARC policy (RFC 9989).", "That is an MX record."],
     "tags": ["email-authentication", "spf"],
     "sources": ["https://www.rfc-editor.org/rfc/rfc7208", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m09-q-0052",
@@ -1178,7 +1178,7 @@
       "DMARC publishes a policy; signing is done by the sender's DKIM setup."
     ],
     "tags": ["email-authentication", "dmarc"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9989", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
     "verify": false,
     "rev": 1
   },
@@ -1229,7 +1229,7 @@
       "SPF has nothing to do with attachments."
     ],
     "tags": ["email-authentication", "bec", "look-alike-domain"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-protection-about"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9989", "https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-protection-about"],
     "verify": false,
     "rev": 1
   },
@@ -1468,7 +1468,7 @@
       "DMARC always fails when a third-party mailer is used"
     ],
     "answer": 2,
-    "explanation": "DMARC (RFC 7489) adds alignment: SPF or DKIM must pass for the same organizational domain as the visible From. Passes for an unrelated domain do not count, which is how DMARC catches From-header spoofing.",
+    "explanation": "DMARC (RFC 9989) adds alignment: SPF or DKIM must pass for the same organizational domain as the visible From. Passes for an unrelated domain do not count, which is how DMARC catches From-header spoofing.",
     "optionNotes": [
       "The header shows a DMARC result, so the receiver supports it.",
       "Both show pass, but for bulkmailer.example.",
@@ -1476,8 +1476,8 @@
       "Third-party senders pass when they sign with, or send as, an aligned domain."
     ],
     "tags": ["email-authentication", "dmarc", "headers"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://www.rfc-editor.org/rfc/rfc8601"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9989", "https://www.rfc-editor.org/rfc/rfc8601"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   }
 ]

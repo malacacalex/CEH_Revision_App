@@ -337,7 +337,7 @@
     "domain": "D8",
     "kind": "term",
     "front": "MITRE ATT&CK Cloud matrix",
-    "back": "The ATT&CK view for IaaS, SaaS, Office Suite and Identity Provider platforms. Key techniques: **T1078.004** cloud accounts, **T1530** data from cloud storage, **T1552.005** metadata API, **T1580** infrastructure discovery, **T1562.008** disable cloud logs, **T1537** transfer data to another cloud account.",
+    "back": "The ATT&CK view for IaaS, SaaS, Office Suite and Identity Provider platforms. Key techniques: **T1078.004** cloud accounts, **T1530** data from cloud storage, **T1552.005** metadata API, **T1580** infrastructure discovery, **T1685.002** disable cloud logs, **T1537** transfer data to another cloud account.",
     "tags": [
       "mitre-attack"
     ],
@@ -346,7 +346,7 @@
       "https://attack.mitre.org/techniques/T1078/004/"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m19-c-0019",

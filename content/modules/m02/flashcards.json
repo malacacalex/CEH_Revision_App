@@ -673,7 +673,7 @@
     "domain": "D2",
     "kind": "list",
     "front": "SPF, DKIM, DMARC",
-    "back": "- **SPF** (RFC 7208): TXT record listing servers allowed to send for the domain\n- **DKIM** (RFC 6376): cryptographic signature on the message\n- **DMARC** (RFC 7489): policy and reporting when SPF/DKIM fail\n\nFootprinting angle: these public TXT records reveal which mail providers the organization uses.",
+    "back": "- **SPF** (RFC 7208): TXT record listing servers allowed to send for the domain\n- **DKIM** (RFC 6376): cryptographic signature on the message\n- **DMARC** (RFC 9989, which replaced RFC 9989 in 2026): policy and reporting when SPF/DKIM fail\n\nFootprinting angle: these public TXT records reveal which mail providers the organization uses.",
     "tags": [
       "email",
       "spf",
@@ -683,11 +683,11 @@
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc7208",
       "https://www.rfc-editor.org/rfc/rfc6376",
-      "https://www.rfc-editor.org/rfc/rfc7489",
+      "https://www.rfc-editor.org/rfc/rfc9989",
       "https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m02-c-0036",

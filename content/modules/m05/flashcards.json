@@ -109,16 +109,17 @@
     "domain": "D3",
     "kind": "term",
     "front": "NVD",
-    "back": "**National Vulnerability Database**, run by **NIST**. It enriches CVE records with a **CVSS base score**, **CWE** and **CPE** (affected products).\nNVD gives **base** metrics only; temporal/threat and environmental scoring is the user's job.",
+    "back": "**National Vulnerability Database**, run by **NIST**. It enriches CVE records with a **CVSS base score**, **CWE** and **CPE** (affected products).\nNVD gives **base** metrics only; temporal/threat and environmental scoring is the user's job.\nSince April 2026 NVD enriches mainly KEV, federal and critical-software CVEs, and no longer re-scores CVEs the CNA already scored.",
     "tags": [
       "nvd"
     ],
     "sources": [
       "https://nvd.nist.gov/vuln-metrics/cvss",
-      "https://nvd.nist.gov/general"
+      "https://nvd.nist.gov/general",
+      "https://www.nist.gov/news-events/news/2026/04/nist-updates-nvd-operations-address-record-cve-growth"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m05-c-0007",

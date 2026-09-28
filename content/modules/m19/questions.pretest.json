@@ -255,7 +255,7 @@
       "Enabling GuardDuty in every account"
     ],
     "answer": 1,
-    "explanation": "SCPs set the maximum permissions for member accounts; they grant nothing on their own. Denying cloudtrail:StopLogging and DeleteTrail keeps the audit trail on, which counters ATT&CK T1562.008.",
+    "explanation": "SCPs set the maximum permissions for member accounts; they grant nothing on their own. Denying cloudtrail:StopLogging and DeleteTrail keeps the audit trail on, which counters ATT&CK T1685.002.",
     "optionNotes": [
       "Account administrators could simply remove or change their own IAM policies.",
       "Correct: SCPs cap what any principal in member accounts can do, including administrators.",
@@ -265,10 +265,10 @@
     "tags": ["guardrails", "scp", "logging"],
     "sources": [
       "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
-      "https://attack.mitre.org/techniques/T1562/008/",
+      "https://attack.mitre.org/techniques/T1685/002/",
       "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   }
 ]

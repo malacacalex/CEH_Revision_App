@@ -869,7 +869,7 @@
     "answer": 2,
     "explanation": "T1588.007 covers attackers using LLMs for recon, scripting, social engineering and even payload development.",
     "optionNotes": [
-      "Disabling security tools is T1562.001.",
+      "Disabling security tools is T1685 (Disable or Modify Tools).",
       "Poisoning is an adversarial ML attack, covered by NIST AI 100-2 and MITRE ATLAS.",
       "Correct: Obtain Capabilities: Artificial Intelligence.",
       "Encryption for impact is T1486."
@@ -880,7 +880,7 @@
       "https://www.microsoft.com/en-us/security/blog/2024/02/14/staying-ahead-of-threat-actors-in-the-age-of-ai/"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m07-q-0044",

@@ -961,7 +961,7 @@
       "dns"
     ],
     "sources": [
-      "https://www.rfc-editor.org/rfc/rfc7489",
+      "https://www.rfc-editor.org/rfc/rfc9989",
       "https://dmarc.org/overview/"
     ],
     "verify": false

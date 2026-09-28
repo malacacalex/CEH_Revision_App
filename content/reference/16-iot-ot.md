@@ -3,7 +3,7 @@ id: ref-16
 title: IoT and OT security
 order: 16
 modules: [18]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
@@ -20,6 +20,7 @@ sources:
   - https://wiki.owasp.org/images/1/1c/OWASP-IoT-Top-10-2018-final.pdf
   - https://owasp.org/www-project-internet-of-things/
   - https://attack.mitre.org/matrices/ics/
+  - https://attack.mitre.org/resources/updates/updates-april-2026/
   - https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/
   - https://gca.isa.org/blog/how-to-define-zones-and-conduits
   - https://csrc.nist.gov/glossary/term/data_diode
@@ -30,8 +31,11 @@ sources:
   - https://www.cisa.gov/news-events/ics-advisories/icsa-10-272-01
   - https://www.cisa.gov/news-events/alerts/2017/06/12/crashoverride-malware
   - https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-083a
+  - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
+  - https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf
+  - https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-121r2-upd1.pdf
 ---
-Flagged **verify** because the IoT architecture layers and some attack labels follow EC-Council's own framing; ports come from the IANA registry and the protocol specifications.
+Flagged **verify** because no public EC-Council page gives all five IoT layers in order (a CEH v13 sample question names four of them), nor the HMI-based, PLC hacking and RF remote-controller attack labels; ports come from the IANA registry and the protocol specifications.
 
 ## IoT protocols and radios
 
@@ -107,8 +111,8 @@ Components to place: **PLC** (control logic), **RTU** (remote field unit), **IED
 | Threat (ATT&CK for ICS name) | How defenders see it | Countermeasure |
 |---|---|---|
 | Internet Accessible Device | own PLC or HMI appears in Shodan | take off the internet, VPN with MFA |
-| Default Credentials | vendor password still works | change at install |
-| Unauthorized Command Message | valid-looking write from an unknown host | protocol-aware IDS, allowlists |
+| Insecure Credentials: Default Credentials | vendor password still works | change at install |
+| Unauthorized Message: Command Message | valid-looking write from an unknown host | protocol-aware IDS, allowlists |
 | Program Download / Modify Firmware | logic changed outside a change window | key switch in RUN, compare to known-good |
 | Manipulation of View | HMI shows normal values, process is not | independent sensors, out-of-band checks |
 | Loss of Safety | SIS disabled or reprogrammed | separate SIS network, change alarms |

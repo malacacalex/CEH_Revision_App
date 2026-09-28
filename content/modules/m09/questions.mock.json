@@ -270,7 +270,7 @@
       "sp sets the policy for subdomains, and none is monitor-only."
     ],
     "tags": ["email-authentication", "dmarc"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc7489", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc9989", "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-about"],
     "verify": false,
     "rev": 1
   },

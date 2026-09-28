@@ -68,7 +68,7 @@ The **CSA Top Threats to Cloud Computing 2024** has 11 items, led by **misconfig
 | Leaked or stale credentials | attacker signs in as a valid user or key | T1078.004 | MFA, roles instead of long-term keys, access reviews |
 | Metadata-service abuse | SSRF makes an app fetch the VM role's credentials | T1552.005 | IMDSv2 / required headers, least-privilege roles, SSRF validation |
 | Cryptojacking | victim's compute mines coins, often in unused regions | T1496, T1535 | billing and quota alerts, region guardrails |
-| Log tampering | attacker stops or deletes cloud audit logs | T1562.008 | separate log account, guardrail that denies it |
+| Log tampering | attacker stops or deletes cloud audit logs | T1685.002 | separate log account, guardrail that denies it |
 | Exfiltration inside the provider | snapshot shared to attacker's account | T1537 | alert on sharing events, restrict sharing |
 | Insecure APIs | static keys in apps, no rate limits | T1190 | per-user auth, least privilege, rate limiting |
 | Side channels | co-tenant infers data from shared hardware | n/a | provider patching, dedicated hosts |

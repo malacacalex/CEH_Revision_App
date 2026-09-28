@@ -334,7 +334,7 @@
     "difficulty": 2,
     "stem": "After obtaining an administrator key, an intruder's first API calls stop the account's audit trail and delete its log bucket. Which ATT&CK behavior is this?",
     "options": [
-      "Impair Defenses: Disable or Modify Cloud Logs (T1562.008)",
+      "Disable or Modify Tools: Disable or Modify Cloud Log (T1685.002)",
       "Cloud Infrastructure Discovery (T1580)",
       "Transfer Data to Cloud Account (T1537)",
       "Additional Cloud Credentials (T1098.001)"
@@ -349,12 +349,12 @@
     ],
     "tags": ["logging", "defense-evasion"],
     "sources": [
-      "https://attack.mitre.org/techniques/T1562/008/",
+      "https://attack.mitre.org/techniques/T1685/002/",
       "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html",
       "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m19-q-0024",
@@ -623,7 +623,7 @@
     "stem": "Which platforms does the MITRE ATT&CK Cloud matrix cover?",
     "options": ["Only AWS, Azure and Google Cloud", "IaaS, SaaS, Office Suite and Identity Provider", "Windows, Linux and macOS", "Android and iOS"],
     "answer": 1,
-    "explanation": "The Cloud matrix is part of ATT&CK Enterprise. It is useful for mapping cloud detections, for example T1078.004, T1530, T1552.005 and T1562.008.",
+    "explanation": "The Cloud matrix is part of ATT&CK Enterprise. It is useful for mapping cloud detections, for example T1078.004, T1530, T1552.005 and T1685.002.",
     "optionNotes": [
       "ATT&CK is vendor-neutral; it does not split the matrix by provider.",
       "Correct: the cloud matrix groups these four platforms.",
@@ -633,7 +633,7 @@
     "tags": ["mitre-attack"],
     "sources": ["https://attack.mitre.org/matrices/enterprise/cloud/"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m19-q-0034",
@@ -1596,7 +1596,7 @@
     "sources": [
       "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html",
       "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html",
-      "https://attack.mitre.org/techniques/T1562/008/"
+      "https://attack.mitre.org/techniques/T1685/002/"
     ],
     "verify": false,
     "rev": 1
