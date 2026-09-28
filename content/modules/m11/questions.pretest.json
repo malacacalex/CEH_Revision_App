@@ -49,8 +49,13 @@
       "Correct: watching and recording without taking over."
     ],
     "tags": ["session-hijacking", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1040/"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-to-prevent-session-hijacking-attacks/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/techniques/T1040/",
+      "https://owasp.org/www-community/attacks/Session_fixation"
+    ],
+    "verify": false,
     "rev": 1
   },
   {

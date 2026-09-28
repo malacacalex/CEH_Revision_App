@@ -12,9 +12,12 @@
     ],
     "sources": [
       "https://attack.mitre.org/tactics/TA0004/",
+      "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation/",
+      "https://attack.mitre.org/tactics/TA0008/",
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf",
       "https://csrc.nist.gov/glossary/term/least_privilege"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -286,9 +289,10 @@
       "powershell"
     ],
     "sources": [
-      "https://attack.mitre.org/software/S0194/"
+      "https://attack.mitre.org/software/S0194/",
+      "https://github.com/PowerShellMafia/PowerSploit"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -366,11 +370,13 @@
     "sources": [
       "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4720",
       "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4732",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4738",
       "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697",
       "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4698",
-      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon"
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "https://research.splunk.com/sources/614dedc8-8a14-4393-ba9b-6f093cbcd293/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -482,9 +488,12 @@
     "sources": [
       "https://attack.mitre.org/techniques/T1014/",
       "https://attack.mitre.org/techniques/T1542/003/",
+      "https://attack.mitre.org/techniques/T1542/001/",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-147.pdf",
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf",
       "https://learn.microsoft.com/en-us/windows/security/operating-system-security/system-security/secure-the-windows-10-boot-process"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -501,10 +510,12 @@
     ],
     "sources": [
       "https://attack.mitre.org/techniques/T1014/",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/rootkit-revealer",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf",
       "https://www.kali.org/tools/chkrootkit/",
       "https://www.kali.org/tools/rkhunter/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -636,10 +647,12 @@
       "detection"
     ],
     "sources": [
+      "https://archives.fbi.gov/archives/about-us/lab/forensic-science-communications/fsc/july2004/research/2004_03_research01.htm",
+      "https://www.nist.gov/system/files/documents/2016/12/05/stegodb_an_image_dataset_for_benchmarking_steganography_detection_algorithms.pdf",
       "https://csrc.nist.gov/glossary/term/steganography",
       "https://attack.mitre.org/techniques/T1027/003/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -674,10 +687,12 @@
       "log-clearing"
     ],
     "sources": [
+      "https://car.mitre.org/analytics/CAR-2016-04-002/",
+      "https://research.splunk.com/endpoint/ad517544-aff9-4c96-bd99-d6eb43bfbb6a/",
       "https://attack.mitre.org/techniques/T1685/005/",
       "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -849,9 +864,10 @@
     ],
     "sources": [
       "https://www.cisecurity.org/controls/audit-log-management",
+      "https://cas.docs.cisecurity.org/en/latest/source/Controls8/",
       "https://www.cisecurity.org/controls/v8"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

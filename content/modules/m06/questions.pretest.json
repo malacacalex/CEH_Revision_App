@@ -41,8 +41,14 @@
       "Persistence is about keeping access over time."
     ],
     "tags": ["privilege-escalation"],
-    "sources": ["https://attack.mitre.org/tactics/TA0004/", "https://csrc.nist.gov/glossary/term/least_privilege"],
-    "verify": true,
+    "sources": [
+      "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation/",
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf",
+      "https://attack.mitre.org/tactics/TA0008/",
+      "https://attack.mitre.org/tactics/TA0004/",
+      "https://csrc.nist.gov/glossary/term/least_privilege"
+    ],
+    "verify": false,
     "rev": 1
   },
   {

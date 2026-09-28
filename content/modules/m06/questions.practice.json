@@ -41,8 +41,13 @@
       "Not a standard category."
     ],
     "tags": ["privilege-escalation"],
-    "sources": ["https://attack.mitre.org/tactics/TA0004/", "https://attack.mitre.org/techniques/T1068/"],
-    "verify": true,
+    "sources": [
+      "https://attack.mitre.org/tactics/TA0004/",
+      "https://attack.mitre.org/techniques/T1068/",
+      "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation/",
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -494,8 +499,8 @@
     "explanation": "PowerSploit is an open-source PowerShell penetration-testing framework; its PowerUp module checks for escalation misconfigurations.",
     "optionNotes": ["AIDE is file integrity monitoring.", "Sysmon is a logging driver.", "Correct.", "OpenStego is a steganography tool."],
     "tags": ["tools", "powershell"],
-    "sources": ["https://attack.mitre.org/software/S0194/"],
-    "verify": true,
+    "sources": ["https://attack.mitre.org/software/S0194/", "https://github.com/PowerShellMafia/PowerSploit"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -912,8 +917,13 @@
     "explanation": "Steganalysis looks for signs of hidden data: statistical anomalies, unexplained file size, differences from an original.",
     "optionNotes": ["Correct.", "That is encryption, a separate step.", "That is password cracking.", "That is log management."],
     "tags": ["steganography", "detection"],
-    "sources": ["https://csrc.nist.gov/glossary/term/steganography", "https://attack.mitre.org/techniques/T1027/003/"],
-    "verify": true,
+    "sources": [
+      "https://archives.fbi.gov/archives/about-us/lab/forensic-science-communications/fsc/july2004/research/2004_03_research01.htm",
+      "https://www.nist.gov/system/files/documents/2016/12/05/stegodb_an_image_dataset_for_benchmarking_steganography_detection_algorithms.pdf",
+      "https://csrc.nist.gov/glossary/term/steganography",
+      "https://attack.mitre.org/techniques/T1027/003/"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1042,10 +1052,12 @@
     "optionNotes": ["1102 is the Security log.", "Correct.", "4740 is account lockout.", "4732 is a group membership change."],
     "tags": ["windows-events"],
     "sources": [
+      "https://car.mitre.org/analytics/CAR-2016-04-002/",
+      "https://research.splunk.com/endpoint/ad517544-aff9-4c96-bd99-d6eb43bfbb6a/",
       "https://attack.mitre.org/techniques/T1685/005/",
       "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -1219,8 +1231,12 @@
     "explanation": "CIS Control 8 covers collecting, alerting on, reviewing and retaining audit logs, including centralising them.",
     "optionNotes": ["It does not disable MFA.", "File encryption is a different control.", "It does not ban remote access.", "Correct."],
     "tags": ["cis", "logging"],
-    "sources": ["https://www.cisecurity.org/controls/audit-log-management", "https://www.cisecurity.org/controls/v8"],
-    "verify": true,
+    "sources": [
+      "https://www.cisecurity.org/controls/audit-log-management",
+      "https://cas.docs.cisecurity.org/en/latest/source/Controls8/",
+      "https://www.cisecurity.org/controls/v8"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -1360,8 +1376,12 @@
     "explanation": "Covering tracks includes disabling auditing, clearing and manipulating logs, deleting history and hiding artifacts.",
     "optionNotes": ["Correct.", "Scanning is an earlier phase.", "Phishing is social engineering.", "Enumeration is reconnaissance."],
     "tags": ["ec-council-specific", "covering-tracks"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1070/"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/techniques/T1070/"
+    ],
+    "verify": false,
     "rev": 1
   }
 ]

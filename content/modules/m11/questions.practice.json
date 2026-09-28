@@ -158,9 +158,10 @@
     "tags": ["levels", "ec-council-specific"],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://ilabs.eccouncil.org/session-hijacking/",
       "https://owasp.org/www-community/attacks/Session_hijacking_attack"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -616,8 +617,11 @@
     "explanation": "Example: a password-reset flow stores the username in the session, and another page treats that same variable as proof of login. Fix: separate variables per purpose, set only after the right checks.",
     "optionNotes": ["That is a collision from weak generation.", "Correct (WSTG-SESS-08).", "Not a recognized technique.", "Not a recognized technique."],
     "tags": ["session-puzzling"],
-    "sources": ["https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/08-Session_Puzzling.md"],
-    "verify": true,
+    "sources": [
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/06-Session_Management/08-Session_Puzzling.md",
+      "https://community.owasp.org/vulnerabilities/Session_Variable_Overloading"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -829,7 +833,7 @@
     "explanation": "Cleartext protocols let an on-path attacker inject in-window data. Encryption with integrity checks (SSH, TLS, IPsec) makes injected bytes fail.",
     "optionNotes": [
       "A SYN flood shows half-open connections, not an ACK storm inside one session.",
-      "Correct: the ACK burst is the desynchronization, EC-Council's \"ACK storm\".",
+      "Correct: the ACK burst is the desynchronization \"ACK storm\".",
       "Slow start does not produce duplicate ACK storms or lock the user out.",
       "Telnet has no cookies."
     ],
@@ -837,10 +841,12 @@
     "sources": [
       "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html",
       "https://www.rfc-editor.org/rfc/rfc5961",
+      "https://www.usenix.org/legacy/publications/library/proceedings/security95/joncheray.html",
+      "https://www.rfc-editor.org/rfc/rfc4253",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m11-q-0042",
@@ -1206,8 +1212,12 @@
       "localStorage persists across sessions."
     ],
     "tags": ["storage"],
-    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"],
-    "verify": true,
+    "sources": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+    ],
+    "verify": false,
     "rev": 1
   },
   {

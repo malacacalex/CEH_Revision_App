@@ -177,20 +177,24 @@
     "pool": "mock",
     "type": "ec-council-term",
     "difficulty": 1,
-    "stem": "In the CEH lifecycle, which phase comes directly after gaining access?",
+    "stem": "In the CEH system hacking methodology, which step comes directly after gaining access?",
     "options": ["Clearing logs", "Escalating privileges", "Maintaining access", "Reconnaissance"],
     "answer": 1,
     "explanation": "CEH orders system hacking as gaining access, escalating privileges, maintaining access, clearing logs.",
     "optionNotes": [
-      "Clearing logs is the last phase.",
+      "Clearing logs is the last step.",
       "Correct.",
       "Maintaining access follows escalation.",
       "Reconnaissance comes before system hacking."
     ],
     "tags": ["lifecycle", "ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/tactics/TA0004/"],
-    "verify": true,
-    "rev": 1
+    "sources": [
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/tactics/TA0004/"
+    ],
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m06-q-0077",
@@ -306,9 +310,12 @@
     "tags": ["windows-events", "persistence"],
     "sources": [
       "https://attack.mitre.org/techniques/T1543/003/",
-      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697"
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697",
+      "https://research.splunk.com/endpoint/2032a95a-5165-11ec-a2c3-3e22fbd008af/",
+      "https://research.splunk.com/endpoint/429141be-8311-11eb-adb6-acde48001122/",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4771"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -369,8 +376,13 @@
     "explanation": "Statistical anomalies in LSBs and unexplained size are steganalysis indicators of hidden content.",
     "optionNotes": ["Correct.", "Spraying targets logins.", "Timestomping changes file times.", "Forwarding moves logs."],
     "tags": ["steganography", "detection"],
-    "sources": ["https://attack.mitre.org/techniques/T1027/003/", "https://csrc.nist.gov/glossary/term/steganography"],
-    "verify": true,
+    "sources": [
+      "https://archives.fbi.gov/archives/about-us/lab/forensic-science-communications/fsc/july2004/research/2004_03_research01.htm",
+      "https://www.nist.gov/system/files/documents/2016/12/05/stegodb_an_image_dataset_for_benchmarking_steganography_detection_algorithms.pdf",
+      "https://attack.mitre.org/techniques/T1027/003/",
+      "https://csrc.nist.gov/glossary/term/steganography"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -410,8 +422,12 @@
     "explanation": "EC-Council groups running tools such as keyloggers and spyware on the victim under \"executing applications\" in the maintaining-access phase.",
     "optionNotes": ["Correct.", "Footprinting is early reconnaissance.", "Scanning finds hosts and services.", "Enumeration lists resources."],
     "tags": ["ec-council-specific"],
-    "sources": ["https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://attack.mitre.org/techniques/T1056/001/"],
-    "verify": true,
+    "sources": [
+      "https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/techniques/T1056/001/"
+    ],
+    "verify": false,
     "rev": 1
   },
   {
@@ -610,10 +626,12 @@
     "optionNotes": ["Working-set changes are unrelated.", "That right is for service logons.", "Time zone changes are minor.", "Correct."],
     "tags": ["windows", "hardening"],
     "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/manage-auditing-and-security-log",
+      "https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants",
       "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor",
       "https://www.cisecurity.org/controls/audit-log-management"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   }
 ]

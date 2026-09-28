@@ -68,10 +68,11 @@
       "ec-council-specific"
     ],
     "sources": [
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-to-prevent-session-hijacking-attacks/",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
       "https://attack.mitre.org/techniques/T1040/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -88,10 +89,12 @@
     ],
     "sources": [
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://ilabs.eccouncil.org/session-hijacking/",
       "https://owasp.org/www-community/attacks/Session_hijacking_attack",
-      "https://www.rfc-editor.org/rfc/rfc5961"
+      "https://www.rfc-editor.org/rfc/rfc5961",
+      "https://attack.mitre.org/techniques/T1557/002/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -482,18 +485,18 @@
     "domain": "D4",
     "kind": "term",
     "front": "ACK storm (desynchronization)",
-    "back": "After injected data, client and server disagree on sequence numbers and keep sending ACKs to correct each other. RFC 5961 notes similar RST/ACK wars.\n\n**Detection clue**: bursts of duplicate ACKs on one connection. \"ACK storm\" is EC-Council's term.",
+    "back": "After injected data, client and server disagree on sequence numbers and keep sending ACKs to correct each other. RFC 5961 calls this an \"ACK war\".\n\n**Detection clue**: bursts of duplicate ACKs on one connection. The name \"ACK storm\" comes from Joncheray's 1995 USENIX paper on TCP hijacking.",
     "tags": [
-      "desync",
-      "ec-council-specific"
+      "desync"
     ],
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc5961",
+      "https://www.usenix.org/legacy/publications/library/proceedings/security95/joncheray.html",
       "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m11-c-0027",
@@ -729,7 +732,7 @@
       "https://www.rfc-editor.org/rfc/rfc8471",
       "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-token-protection"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
