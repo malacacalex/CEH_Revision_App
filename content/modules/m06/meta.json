@@ -3,17 +3,67 @@
   "title": "System Hacking",
   "domain": "D3",
   "effortUnits": 2,
-  "status": "stub",
+  "status": "sample",
   "sections": [
     "Gaining Access",
     "Escalating Privileges",
     "Maintaining Access",
     "Clearing Logs"
   ],
-  "objectives": [],
-  "readingMap": [],
+  "objectives": [
+    {
+      "text": "Name the four system hacking phases in order and map each to the ATT&CK tactic a defender monitors",
+      "section": "Gaining Access"
+    },
+    {
+      "text": "Tell horizontal from vertical privilege escalation and name the hardening that blocks each common category",
+      "section": "Escalating Privileges"
+    },
+    {
+      "text": "Recognise persistence and rootkit indicators (new services, scheduled tasks, Run keys, hidden files) and the controls that detect them",
+      "section": "Maintaining Access"
+    },
+    {
+      "text": "Explain steganography as a way to hide data, and name the signs and tools used to detect it (steganalysis)",
+      "section": "Maintaining Access"
+    },
+    {
+      "text": "Recognise log clearing from its events and explain why central log forwarding and write-once storage defeat it",
+      "section": "Clearing Logs"
+    }
+  ],
+  "readingMap": [
+    {
+      "section": "Gaining Access",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "The lifecycle and password-attack families are tested often; the app has notes only for this section, so study its details on your own (see Self-study)."
+    },
+    {
+      "section": "Escalating Privileges",
+      "priority": "MUST",
+      "minutes": 30,
+      "why": "Escalation categories and their hardening are frequent scenario questions."
+    },
+    {
+      "section": "Maintaining Access",
+      "priority": "MUST",
+      "minutes": 25,
+      "why": "Rootkit types, persistence locations and steganography appear as recall and tool questions."
+    },
+    {
+      "section": "Clearing Logs",
+      "priority": "MUST",
+      "minutes": 20,
+      "why": "Log-clearing events and the controls against them are short, reliable points."
+    }
+  ],
   "labs": [],
-  "feynmanPrompts": [],
+  "feynmanPrompts": [
+    "Explain the four system hacking phases to a colleague, and for each one say what a defender would see in the logs.",
+    "Explain the difference between a user-mode and a kernel-mode rootkit, and why secure boot and integrity monitoring help against the second.",
+    "Explain why forwarding logs to a central server as they are written makes clearing the local logs much less useful to an attacker."
+  ],
   "resources": [
     {
       "name": "MITRE ATT&CK Enterprise matrix",

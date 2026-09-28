@@ -10,9 +10,9 @@
     "what": "Not in the app. For NetBIOS, SNMP, LDAP, NTP, NFS, SMTP and DNS, know the port, what the service reveals when enumerated, and the countermeasure."
   },
   {
-    "topic": "System hacking",
+    "topic": "Password attacks",
     "modules": [6],
-    "what": "Not in the app. Learn the four phases (gaining access, escalating privileges, maintaining access, clearing logs): password attack types, privilege escalation, rootkits and backdoors, covering tracks, and the defence for each."
+    "what": "The M6 notes cover gaining access, but there are no flashcards or questions for it. Drill the password attack types (dictionary, brute force, spraying, rainbow tables, pass-the-hash), how Windows and Linux store password hashes, and the defences (MFA, lockout, salted slow hashing)."
   },
   {
     "topic": "IDS and firewall evasion",

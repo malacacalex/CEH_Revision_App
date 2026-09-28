@@ -1,0 +1,876 @@
+[
+  {
+    "id": "m06-c-0001",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Vertical vs horizontal privilege escalation",
+    "back": "**Vertical**: to a higher level (standard user to administrator, root or SYSTEM).\n**Horizontal**: to another account at the same level (another user's data or session).\n\nNot the same as **lateral movement**, which means moving to another host.",
+    "tags": [
+      "privilege-escalation"
+    ],
+    "sources": [
+      "https://attack.mitre.org/tactics/TA0004/",
+      "https://csrc.nist.gov/glossary/term/least_privilege"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0002",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Least privilege",
+    "back": "Give users and processes only the rights they need for their task, for as long as they need them. Every escalation technique exploits a gap in it.",
+    "tags": [
+      "least-privilege",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/least_privilege",
+      "https://attack.mitre.org/mitigations/M1026/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0003",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Main privilege-escalation categories (ATT&CK)",
+    "back": "- Exploitation for Privilege Escalation (software or kernel flaw)\n- Abuse Elevation Control Mechanism (UAC bypass, setuid/setgid, sudo)\n- Hijack Execution Flow (DLL, PATH, unquoted service path, weak service permissions)\n- Access Token Manipulation\n- Scheduled tasks and services that run with high rights\n- Escape to Host (containers)",
+    "tags": [
+      "privilege-escalation",
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/tactics/TA0004/",
+      "https://attack.mitre.org/techniques/T1548/",
+      "https://attack.mitre.org/techniques/T1574/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0004",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Controls against Exploitation for Privilege Escalation",
+    "back": "Patch the OS, drivers and software (Update Software), turn on exploit protection, use application control and block known vulnerable drivers.",
+    "tags": [
+      "patching",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1068/",
+      "https://attack.mitre.org/mitigations/M1051/",
+      "https://attack.mitre.org/mitigations/M1050/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0005",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "User Account Control (UAC)",
+    "back": "An administrator runs with a **standard-user token** until they approve elevation. Processes carry **integrity levels** (low, medium, high, system); a lower level cannot modify a higher one.\n\nHardening: prompt level \"always notify\", no local admin rights for daily accounts.",
+    "tags": [
+      "windows",
+      "uac"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/",
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/how-it-works",
+      "https://attack.mitre.org/mitigations/M1052/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0006",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Access token (Windows)",
+    "back": "Object describing the **security context** of a process or thread: user SID, groups and privileges. Access Token Manipulation means a process runs with another user's token, for example SYSTEM.",
+    "tags": [
+      "windows",
+      "tokens"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/secauthz/access-tokens",
+      "https://attack.mitre.org/techniques/T1134/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0007",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "setuid / setgid (Linux)",
+    "back": "A program with the setuid bit runs with the **file owner's** rights (setgid: the group's). An unnecessary or writable setuid-root program is an escalation path.\n\nHardening: audit setuid files, mount user-writable file systems `nosuid`, use narrow **capabilities** instead of full root.",
+    "tags": [
+      "linux",
+      "setuid"
+    ],
+    "sources": [
+      "https://man7.org/linux/man-pages/man2/setuid.2.html",
+      "https://attack.mitre.org/techniques/T1548/001/",
+      "https://man7.org/linux/man-pages/man8/mount.8.html",
+      "https://man7.org/linux/man-pages/man7/capabilities.7.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0008",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Safe sudo configuration",
+    "back": "Least-privilege sudoers rules: name exact commands, avoid giving editors, shells or interpreters as root, avoid NOPASSWD for broad rules, keep the credential cache timeout short, review sudoers regularly.",
+    "tags": [
+      "linux",
+      "sudo"
+    ],
+    "sources": [
+      "https://www.sudo.ws/docs/man/sudoers.man/",
+      "https://attack.mitre.org/techniques/T1548/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0009",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Unquoted service path",
+    "back": "A Windows service path that contains spaces and has no quotation marks can make Windows look for a program at a shorter path first. If a user can write there, their program runs with the service's rights.\n\nFix: quote service paths and restrict folder permissions.",
+    "tags": [
+      "windows",
+      "services",
+      "hijack-execution-flow"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1574/009/",
+      "https://attack.mitre.org/mitigations/M1022/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0010",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "term",
+    "front": "DLL hijacking (Hijack Execution Flow: DLL)",
+    "back": "A privileged program loads a DLL from a location an attacker can write to, because of the DLL search order. Signal: new DLLs in program or service folders.\n\nFix: correct folder permissions, application control, fully qualified DLL paths in code.",
+    "tags": [
+      "windows",
+      "dll",
+      "hijack-execution-flow"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1574/001/",
+      "https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0011",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Weak service permissions",
+    "back": "If a user can change a service's binary or configuration, the service runs their program with its own rights (often SYSTEM). Audit service ACLs and binary folder permissions; only administrators should modify services.",
+    "tags": [
+      "windows",
+      "services"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1574/010/",
+      "https://attack.mitre.org/mitigations/M1022/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0012",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Windows events that point to privilege escalation",
+    "back": "- **4672** special privileges assigned to a new logon\n- **4688** process created (Sysmon event 1)\n- **4732** member added to a local security group\n- **4697** service installed\n- **4698** scheduled task created",
+    "tags": [
+      "windows-events",
+      "detection"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4672",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4688",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4732",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4698"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0013",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "PEASS-ng (LinPEAS, WinPEAS)",
+    "back": "Privilege Escalation Awesome Scripts: search Linux, Windows and macOS hosts for likely local escalation paths. Defenders run them to find and fix weaknesses first.",
+    "tags": [
+      "tools",
+      "privilege-escalation"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/peass-ng/",
+      "https://github.com/peass-ng/PEASS-ng"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0014",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "BloodHound",
+    "back": "Active Directory reconnaissance tool that graphs relationships (groups, sessions, rights) and shows attack paths to privileged accounts. Defenders use it to cut those paths.",
+    "tags": [
+      "tools",
+      "active-directory"
+    ],
+    "sources": [
+      "https://attack.mitre.org/software/S0521/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0015",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "PowerSploit (PowerUp)",
+    "back": "Open-source PowerShell framework for penetration testing; its PowerUp part checks Windows for privilege-escalation misconfigurations such as weak service permissions.",
+    "tags": [
+      "tools",
+      "powershell"
+    ],
+    "sources": [
+      "https://attack.mitre.org/software/S0194/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0016",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Privileged account management",
+    "back": "Separate admin accounts from daily accounts, tiered administration, privileged access workstations, no local admin for users, unique local admin passwords (LAPS), just-enough and just-in-time admin rights.",
+    "tags": [
+      "privileged-access",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models",
+      "https://attack.mitre.org/mitigations/M1026/",
+      "https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0017",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Persistence (ATT&CK TA0003)",
+    "back": "Techniques that keep access across restarts, changed credentials and other interruptions: auto-start entries, tasks, services, accounts, web shells, boot-level implants.",
+    "tags": [
+      "persistence",
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/tactics/TA0003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0018",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Common Windows persistence locations",
+    "back": "- Registry Run / RunOnce keys and the Startup folder\n- Scheduled tasks\n- New or modified services\n- WMI event subscriptions\n- New accounts or added group membership\n- Web shells on web servers",
+    "tags": [
+      "persistence",
+      "windows"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1547/001/",
+      "https://attack.mitre.org/techniques/T1053/005/",
+      "https://attack.mitre.org/techniques/T1543/003/",
+      "https://attack.mitre.org/techniques/T1546/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0019",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Events that reveal persistence",
+    "back": "- **4720** user account created\n- **4732** member added to a local group\n- **4738** user account changed\n- **4697** service installed (System log: 7045)\n- **4698** scheduled task created\n- Sysmon **12/13** registry changes, **19-21** WMI subscriptions",
+    "tags": [
+      "windows-events",
+      "detection"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4720",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4732",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697",
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4698",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0020",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "Autoruns (Sysinternals)",
+    "back": "Shows every program configured to start at boot or logon: Run keys, services, scheduled tasks, drivers, Winlogon entries, shell extensions. Can hide signed Microsoft entries to surface the odd ones.",
+    "tags": [
+      "tools",
+      "detection"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0021",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Web shell",
+    "back": "A script placed on a web server that gives remote command access through the web application. Signals: new script files in the web root, the web server process starting shells.",
+    "tags": [
+      "persistence",
+      "web"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1505/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0022",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Linux persistence locations",
+    "back": "cron jobs, systemd service units, SSH `authorized_keys` files, new accounts. Watch them with file integrity monitoring and auditd rules.",
+    "tags": [
+      "persistence",
+      "linux"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1053/003/",
+      "https://attack.mitre.org/techniques/T1543/002/",
+      "https://attack.mitre.org/techniques/T1098/004/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0023",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "After a domain compromise with forged Kerberos tickets",
+    "back": "Reset the **krbtgt** account password **twice** (its password history keeps two values), waiting for tickets to expire between resets. Also limit \"Replicating Directory Changes\" rights and watch event 4662 for replication by non-DCs.",
+    "tags": [
+      "active-directory",
+      "kerberos"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-reset-the-krbtgt-password",
+      "https://attack.mitre.org/techniques/T1558/001/",
+      "https://attack.mitre.org/techniques/T1003/006/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0024",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Rootkit",
+    "back": "A set of tools installed after gaining root or admin access to **hide** the attacker's activity (files, processes, registry keys, connections) and keep privileged access by covert means.",
+    "tags": [
+      "rootkits"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/rootkit",
+      "https://attack.mitre.org/techniques/T1014/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0025",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Rootkit levels",
+    "back": "- **User mode** (application, library)\n- **Kernel mode** (drivers)\n- **Bootkit** (boot sector or boot loader; loads before the OS)\n- **Hypervisor** (the OS runs inside it)\n- **Firmware / hardware** (survives an OS reinstall)",
+    "tags": [
+      "rootkits",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1014/",
+      "https://attack.mitre.org/techniques/T1542/003/",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/system-security/secure-the-windows-10-boot-process"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0026",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Rootkit indicators and detection",
+    "back": "Indicators: things visible from outside the OS but not from inside, hooked system calls, unknown drivers, changed boot records.\nDetection: cross-view comparison, offline or boot-time scans, file integrity monitoring, EDR, scanners such as chkrootkit and rkhunter.\nConfirmed kernel or firmware rootkit: rebuild from known-good media.",
+    "tags": [
+      "rootkits",
+      "detection"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1014/",
+      "https://www.kali.org/tools/chkrootkit/",
+      "https://www.kali.org/tools/rkhunter/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0027",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Secure Boot, Trusted Boot, ELAM, Measured Boot",
+    "back": "- **Secure Boot**: firmware checks the signature of each boot component\n- **Trusted Boot**: Windows verifies the kernel and drivers\n- **ELAM**: the anti-malware driver loads before other drivers\n- **Measured Boot**: boot components are measured into the TPM for remote attestation",
+    "tags": [
+      "boot-integrity",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/oem-secure-boot",
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/system-security/secure-the-windows-10-boot-process",
+      "https://attack.mitre.org/mitigations/M1046/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0028",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "File integrity monitoring (AIDE, Tripwire, Wazuh)",
+    "back": "Records a baseline of file hashes and attributes, then reports any file that was added, changed or deleted. Finds replaced binaries, new web shells and changed configuration.",
+    "tags": [
+      "fim",
+      "detection"
+    ],
+    "sources": [
+      "https://aide.github.io/",
+      "https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0029",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Keylogger and spyware",
+    "back": "**Keylogger**: software or a hardware device that records keystrokes.\n**Spyware**: records user activity (screens, browsing, messages).\nControls: EDR, application control, MFA, checking physical ports.",
+    "tags": [
+      "keyloggers",
+      "spyware"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1056/001/",
+      "https://attack.mitre.org/mitigations/M1038/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0030",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "NTFS alternate data streams (ADS)",
+    "back": "A file can carry named streams besides its default unnamed `$DATA` stream. Data in a named stream does not change the size shown for the file. Detect with stream-aware tools, EDR and FIM.",
+    "tags": [
+      "ads",
+      "hiding-files"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/win32/fileio/file-streams",
+      "https://attack.mitre.org/techniques/T1564/004/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0031",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Steganography vs encryption",
+    "back": "**Steganography** hides the **existence** of a message inside an innocent carrier (image, audio, text, network traffic).\n**Encryption** hides the **meaning** of a message that is visibly there. They are often combined.",
+    "tags": [
+      "steganography"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/steganography",
+      "https://attack.mitre.org/techniques/T1027/003/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0032",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "tool",
+    "front": "Steganography tools",
+    "back": "- **Steghide**: hides data in the least significant bits of image or audio files\n- **OpenStego**: image steganography and watermarking\n- **SNOW / stegsnow**: hides messages as whitespace at the end of text lines",
+    "tags": [
+      "steganography",
+      "tools"
+    ],
+    "sources": [
+      "https://www.kali.org/tools/steghide/",
+      "https://www.openstego.com/",
+      "https://www.kali.org/tools/stegsnow/",
+      "https://darkside.com.au/snow/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0033",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Steganalysis",
+    "back": "Detecting hidden content: statistical anomalies in least significant bits, a file larger than its content explains, differences from the original file.",
+    "tags": [
+      "steganography",
+      "detection"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/glossary/term/steganography",
+      "https://attack.mitre.org/techniques/T1027/003/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0034",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Windows event 1102",
+    "back": "\"The audit log was cleared.\" Written to the **Security** log every time it is cleared, with the account that did it. Microsoft lists it as medium-to-high criticality.",
+    "tags": [
+      "windows-events",
+      "log-clearing"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0035",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Windows event 104",
+    "back": "The **System** log was cleared (source Eventlog). Alert on it together with 1102.",
+    "tags": [
+      "windows-events",
+      "log-clearing"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1685/005/",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0036",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Windows event 4719",
+    "back": "\"System audit policy was changed.\" A sign that someone is turning auditing off or down. Microsoft rates it high criticality.",
+    "tags": [
+      "windows-events",
+      "audit-policy"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4719",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor",
+      "https://attack.mitre.org/techniques/T1685/001/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0037",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Covering-tracks actions (EC-Council framing)",
+    "back": "- Disable auditing\n- Clear logs\n- Manipulate log entries\n- Delete files and command history\n- Hide artifacts\n- Timestomp\n- Use track-covering tools",
+    "tags": [
+      "covering-tracks",
+      "ec-council-specific"
+    ],
+    "sources": [
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://attack.mitre.org/techniques/T1070/"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0038",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Where log clearing sits in ATT&CK (2026)",
+    "back": "Clearing Windows event logs, clearing Linux/macOS system logs and disabling Windows event logging are sub-techniques of **Disable or Modify Tools** under the **Defense Impairment** tactic (TA0112). Timestomp, file deletion and clearing command history stay under **Indicator Removal** (Stealth, TA0005).",
+    "tags": [
+      "mitre-attack"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1685/",
+      "https://attack.mitre.org/tactics/TA0112/",
+      "https://attack.mitre.org/techniques/T1070/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0039",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "countermeasure",
+    "front": "Protecting logs from an attacker with admin rights",
+    "back": "1. Forward logs in near real time to a central collector or SIEM\n2. Keep the central copy on WORM / immutable storage\n3. Restrict who can clear logs or change audit policy\n4. Alert on 1102, 104, 4719 and on hosts that stop sending logs",
+    "tags": [
+      "logging",
+      "countermeasures"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection",
+      "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview",
+      "https://attack.mitre.org/mitigations/M1029/",
+      "https://csrc.nist.gov/pubs/sp/800/92/final"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0040",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "WORM storage",
+    "back": "Write once, read many: data can be written but not modified or deleted for the retention period, even by an administrator. Keeps a copy of the logs the attacker cannot erase.",
+    "tags": [
+      "logging",
+      "worm"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview",
+      "https://attack.mitre.org/mitigations/M1029/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0041",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Windows Event Forwarding (WEF)",
+    "back": "Built-in forwarding of chosen events from Windows hosts to a **Windows Event Collector** server through subscriptions (for example a baseline subscription for all devices and a suspect one for a few).",
+    "tags": [
+      "logging",
+      "windows"
+    ],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0042",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Timestomping",
+    "back": "Changing a file's timestamps so it blends in with older files. Sysmon **event 2** records a process changing a file creation time; compare times with other artifacts.",
+    "tags": [
+      "timestomp",
+      "detection"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1070/006/",
+      "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0043",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "list",
+    "front": "Linux logs attackers target",
+    "back": "- `/var/log/auth.log` or `/var/log/secure`: authentication\n- `utmp`, `wtmp`, `btmp`: current, past and failed logins\n- `/var/log/kern.log`, cron logs\n- shell history files\nControls: remote syslog, auditd, file integrity monitoring.",
+    "tags": [
+      "linux",
+      "logging"
+    ],
+    "sources": [
+      "https://attack.mitre.org/techniques/T1685/006/",
+      "https://man7.org/linux/man-pages/man5/utmp.5.html",
+      "https://man7.org/linux/man-pages/man8/auditd.8.html"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0044",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "CIS Control 8: Audit Log Management",
+    "back": "Collect, alert on, review and retain audit logs of events that could help detect, understand or recover from an attack; centralise them and keep them long enough to investigate.",
+    "tags": [
+      "cis",
+      "logging"
+    ],
+    "sources": [
+      "https://www.cisecurity.org/controls/audit-log-management",
+      "https://www.cisecurity.org/controls/v8"
+    ],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-c-0045",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "kind": "term",
+    "front": "Log management (NIST SP 800-92)",
+    "back": "Generating, transmitting, storing, analysing and disposing of log data, with central log servers, protected log integrity and defined retention.",
+    "tags": [
+      "nist",
+      "logging"
+    ],
+    "sources": [
+      "https://csrc.nist.gov/pubs/sp/800/92/final",
+      "https://csrc.nist.gov/glossary/term/log"
+    ],
+    "verify": false,
+    "rev": 1
+  }
+]

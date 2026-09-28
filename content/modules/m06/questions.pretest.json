@@ -1,0 +1,232 @@
+[
+  {
+    "id": "m06-q-0001",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which principle does almost every privilege-escalation path exploit a gap in?",
+    "options": ["Fail secure", "Defense in depth", "Separation of duties", "Least privilege"],
+    "answer": 3,
+    "explanation": "Least privilege limits users and processes to the rights their task needs; escalation exists because something has more rights than it should.",
+    "optionNotes": [
+      "Fail secure is about behaviour on failure.",
+      "Layered controls help, but the gap exploited is excess privilege.",
+      "Separation of duties splits tasks between people.",
+      "Correct: escalation turns excess rights or a flaw into higher rights."
+    ],
+    "tags": ["least-privilege"],
+    "sources": ["https://csrc.nist.gov/glossary/term/least_privilege", "https://attack.mitre.org/mitigations/M1026/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0002",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "A help-desk account starts reading files in another help-desk user's home folder, with no new rights gained. How is this escalation classified?",
+    "options": ["Lateral movement", "Vertical privilege escalation", "Horizontal privilege escalation", "Persistence"],
+    "answer": 2,
+    "explanation": "Acting as another account at the same privilege level is horizontal escalation.",
+    "optionNotes": [
+      "Lateral movement means moving to another host.",
+      "Vertical means reaching a higher level such as administrator.",
+      "Correct: same level, different account.",
+      "Persistence is about keeping access over time."
+    ],
+    "tags": ["privilege-escalation"],
+    "sources": ["https://attack.mitre.org/tactics/TA0004/", "https://csrc.nist.gov/glossary/term/least_privilege"],
+    "verify": true,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0003",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What does Windows User Account Control give an administrator until elevation is approved?",
+    "options": ["A SYSTEM access token", "A standard-user access token", "A guest account session", "A read-only file system"],
+    "answer": 1,
+    "explanation": "With UAC, administrators work with a standard-user token and get the full token only after approving elevation.",
+    "optionNotes": [
+      "SYSTEM is the local system account, not the admin's default.",
+      "Correct: the full administrator token is used only after consent.",
+      "Guest is a separate built-in account.",
+      "UAC does not change file-system mode."
+    ],
+    "tags": ["uac", "windows"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/",
+      "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/how-it-works"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0004",
+    "module": 6,
+    "section": "Escalating Privileges",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "tool",
+    "difficulty": 2,
+    "stem": "Which tool graphs Active Directory relationships to show paths to privileged accounts?",
+    "options": ["BloodHound", "Autoruns", "Steghide", "Hashcat"],
+    "answer": 0,
+    "explanation": "BloodHound maps AD groups, sessions and rights and shows attack paths; defenders use it to remove them.",
+    "optionNotes": [
+      "Correct: AD relationship graphing.",
+      "Autoruns lists auto-start entries.",
+      "Steghide hides data in files.",
+      "Hashcat is a password cracker."
+    ],
+    "tags": ["tools", "active-directory"],
+    "sources": ["https://attack.mitre.org/software/S0521/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0005",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "What is the goal of the Persistence tactic (ATT&CK TA0003)?",
+    "options": [
+      "Stealing passwords",
+      "Gaining higher privileges",
+      "Keeping access across restarts and credential changes",
+      "Hiding the existence of a message"
+    ],
+    "answer": 2,
+    "explanation": "Persistence keeps a foothold through reboots, password changes and other interruptions.",
+    "optionNotes": ["That is Credential Access.", "That is Privilege Escalation.", "Correct: maintaining the foothold.", "That describes steganography."],
+    "tags": ["persistence", "mitre-attack"],
+    "sources": ["https://attack.mitre.org/tactics/TA0003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0006",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "An investigator finds files and processes that a live scan on the host cannot see, but a boot-time scan and network capture reveal them. What does this indicate?",
+    "options": ["A rootkit hiding artifacts from the running OS", "A cleared event log", "A password-spraying attack", "An expired certificate"],
+    "answer": 0,
+    "explanation": "A gap between what the running OS shows and what an outside view shows is a classic rootkit indicator (cross-view).",
+    "optionNotes": [
+      "Correct: the OS view is being falsified.",
+      "Log clearing shows as event 1102.",
+      "Spraying is a logon pattern.",
+      "Certificates are unrelated."
+    ],
+    "tags": ["rootkits", "detection"],
+    "sources": ["https://attack.mitre.org/techniques/T1014/", "https://www.kali.org/tools/chkrootkit/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0007",
+    "module": 6,
+    "section": "Maintaining Access",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 2,
+    "stem": "What is the difference between steganography and encryption?",
+    "options": [
+      "They are the same thing",
+      "Steganography hides that a message exists; encryption hides its meaning",
+      "Steganography is only for images; encryption is only for text",
+      "Encryption hides the message; steganography deletes it"
+    ],
+    "answer": 1,
+    "explanation": "Steganography conceals the existence of the communication; encryption conceals the content. They are often combined.",
+    "optionNotes": ["They solve different problems.", "Correct.", "Both work on many carrier types.", "Steganography does not delete data."],
+    "tags": ["steganography"],
+    "sources": ["https://csrc.nist.gov/glossary/term/steganography", "https://attack.mitre.org/techniques/T1027/003/"],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0008",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "command-output",
+    "difficulty": 2,
+    "stem": "A SIEM alert reads: `Windows Security log EventID 1102`. What happened?",
+    "options": ["A Kerberos ticket was issued", "A user logged on successfully", "A service was installed", "The Security audit log was cleared"],
+    "answer": 3,
+    "explanation": "Event 1102 \"The audit log was cleared\" is written whenever the Security log is cleared.",
+    "optionNotes": ["Ticket issue is 4768/4769.", "Successful logon is 4624.", "Service install is 4697.", "Correct."],
+    "tags": ["windows-events", "log-clearing"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0009",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "scenario",
+    "difficulty": 2,
+    "stem": "Why should a SIEM hold its own copy of each server's events instead of relying on the local event log?",
+    "options": [
+      "Remote copies make the server boot faster",
+      "The SIEM copy uses less disk space than the local log",
+      "Local event logs cannot record logon events",
+      "An intruder with admin rights can erase local logs but not the remote copy"
+    ],
+    "answer": 3,
+    "explanation": "A copy the attacker cannot reach survives even if they clear the local logs; centralised logging also makes clearing detectable.",
+    "optionNotes": ["Boot time is unrelated.", "Disk usage is not the reason.", "Local logs do record logons (4624, 4625).", "Correct."],
+    "tags": ["logging", "countermeasures"],
+    "sources": [
+      "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection",
+      "https://csrc.nist.gov/pubs/sp/800/92/final",
+      "https://attack.mitre.org/mitigations/M1029/"
+    ],
+    "verify": false,
+    "rev": 1
+  },
+  {
+    "id": "m06-q-0010",
+    "module": 6,
+    "section": "Clearing Logs",
+    "domain": "D3",
+    "pool": "pretest",
+    "type": "recall",
+    "difficulty": 1,
+    "stem": "Which control makes a stored log copy impossible for even an administrator to modify or delete during retention?",
+    "options": ["A larger event log", "WORM (write once, read many) storage", "Faster log rotation", "A stronger login password"],
+    "answer": 1,
+    "explanation": "WORM/immutable storage prevents modification or deletion during the retention window.",
+    "optionNotes": ["Size does not prevent deletion.", "Correct.", "Rotation does not prevent deletion.", "Passwords are unrelated."],
+    "tags": ["logging", "worm"],
+    "sources": ["https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview", "https://attack.mitre.org/mitigations/M1029/"],
+    "verify": false,
+    "rev": 1
+  }
+]

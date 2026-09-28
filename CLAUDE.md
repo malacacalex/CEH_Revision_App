@@ -124,7 +124,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 | M3 Scanning Networks | built | 63/10/90/47, 15 verify; built on the 2026-09-27 retry (evasion as concept classes) |
 | M4 Enumeration | stub | deferred (blocked, defensive retry blocked too) |
 | M5 Vulnerability Analysis | built | 38 cards, 10 pretest, 53 practice, 19 mock, 14 verify |
-| M6 System Hacking | stub | deferred (blocked, defensive retry blocked too) |
+| M6 System Hacking | sample | 45/10/58/28, 21 verify; research and notes complete; Gaining Access items deferred (blocked) |
 | M8 Sniffing | built | 46 cards, 10 pretest, 65 practice, 18 mock, 9 verify; notes and Sniffing Techniques built on the 2026-09-27 retry |
 | M9 Social Engineering | built | 31 cards, 10 pretest, 54 practice, 11 mock, 28 verify |
 | M10 Denial-of-Service | built | 33 cards, 10 pretest, 45 practice, 11 mock, 25 verify |
