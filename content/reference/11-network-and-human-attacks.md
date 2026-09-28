@@ -3,7 +3,7 @@ id: ref-11
 title: Sniffing, social engineering, DoS and session hijacking
 order: 11
 modules: [8, 9, 10, 11]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://attack.mitre.org/techniques/T1040/
@@ -18,7 +18,7 @@ sources:
   - https://attack.mitre.org/techniques/T1566/
   - https://attack.mitre.org/techniques/T1660/
   - https://www.ncsc.gov.uk/guidance/phishing
-  - https://www.rfc-editor.org/rfc/rfc7489
+  - https://www.rfc-editor.org/rfc/rfc9989
   - https://pages.nist.gov/800-63-4/sp800-63b.html
   - https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks
   - https://www.cisa.gov/news-events/alerts/2014/01/17/udp-based-amplification-attacks
@@ -32,8 +32,29 @@ sources:
   - https://www.rfc-editor.org/rfc/rfc6528
   - https://attack.mitre.org/techniques/T1539/
   - https://www.rfc-editor.org/rfc/rfc6797
+  - https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-12/configuration_guide/sec/b_1712_sec_9300_cg/port_security.html
+  - https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/10588-74.html
+  - https://attack.mitre.org/techniques/T1557/001/
+  - https://nmap.org/nsedoc/scripts/sniffer-detect.html
+  - https://attack.mitre.org/techniques/T1598/
+  - https://attack.mitre.org/techniques/T1189/
+  - https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf
+  - https://www.rfc-editor.org/rfc/rfc3704
+  - https://www.rfc-editor.org/rfc/rfc5635
+  - https://attack.mitre.org/techniques/T1498/002/
+  - https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html
+  - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie
+  - https://attack.mitre.org/techniques/T1550/004/
+  - https://attack.mitre.org/techniques/T1563/
+  - https://www.usenix.org/legacy/publications/library/proceedings/security95/full_papers/joncheray.pdf
+  - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-are-sniffing-attacks/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/ethical-hacking-password-sniffing/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/
+  - https://aware.eccouncil.org/what-is-reverse-social-engineering.html
+  - https://ilabs.eccouncil.org/session-hijacking/
 ---
-Recognition and defense for modules 8 to 11. Match the symptom to the attack, then the attack to its control. Flagged **verify** because a few labels are EC-Council framing and are marked as such.
+Recognition and defense for modules 8 to 11. Match the symptom to the attack, then the attack to its control. Flagged **verify** for the EC-Council labels no public EC-Council page states: the sniffer-detection method list, the four social-engineering phases, the piggybacking definition, the bps unit for volumetric attacks and the TCP hijack sequence. Active vs passive sniffing, the pps and rps units and the application/network-level split are confirmed on EC-Council pages.
 
 ## Sniffing and spoofing on the LAN
 
@@ -117,7 +138,7 @@ Hijacking takes over a session that **already exists**; spoofing starts a new on
 - Cookie flags: `Secure` (HTTPS only), `HttpOnly` (no script access; limits XSS theft, does not fix XSS), `SameSite` (CSRF defense in depth), `__Host-` prefix.
 - Timeouts (OWASP): idle 2–5 min high-value, 15–30 min low-risk; **logout must invalidate the session on the server**.
 - **HSTS** (RFC 6797) defeats SSL stripping; the preload list covers the first visit.
-- EC-Council TCP hijack sequence: sniff → monitor → desynchronize → predict sequence numbers → take over. An **ACK storm** (EC-Council term) is a desync clue.
+- EC-Council TCP hijack sequence: sniff → monitor → desynchronize → predict sequence numbers → take over. An **ACK storm** (term from Joncheray 1995; RFC 5961 calls it an ACK war) is a desync clue.
 - ATT&CK: **T1539** steal web session cookie, **T1550.004** use it (bypasses MFA), **T1563** SSH / RDP session hijacking.
 
 ## Exam traps

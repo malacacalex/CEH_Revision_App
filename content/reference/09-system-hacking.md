@@ -3,7 +3,7 @@ id: ref-09
 title: System hacking (defender view)
 order: 9
 modules: [6]
-rev: 1
+rev: 2
 verify: true
 sources:
   - https://attack.mitre.org/tactics/TA0004/
@@ -54,8 +54,15 @@ sources:
   - https://www.kali.org/tools/steghide/
   - https://www.kali.org/tools/stegsnow/
   - https://www.openstego.com/
+  - https://github.com/AustralianCyberSecurityCentre/windows_event_logging
+  - https://github.com/nsacyber/Event-Forwarding-Guidance
+  - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor
+  - https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/system-hacking-definition-types-processes/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-steganography-guide-meaning-types-tools/
+  - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
 ---
-Privilege escalation, persistence, hidden data and log tampering, seen from the defender's side. Flagged **verify** for the EC-Council lists (horizontal/vertical labels, steganography types, steganalysis attacks) and event 104 / 7045, which rest on a single source.
+Privilege escalation, persistence, hidden data and log tampering, seen from the defender's side. Flagged **verify** for the steganography lists: the technical/linguistic split and the cover types appear on only one EC-Council page, and no public EC-Council page lists the steganalysis attacks.
 
 Password attacks, hash formats and Kerberos/AD attacks: see the Self-study tab.
 

@@ -3,17 +3,21 @@ id: ref-06
 title: Footprinting and OSINT
 order: 6
 modules: [2]
-rev: 1
-verify: true
+rev: 2
+verify: false
 sources:
   - https://attack.mitre.org/tactics/TA0043/
   - https://support.google.com/websearch/answer/2466433
+  - https://developers.google.com/search/docs/monitor-debug/search-operators
+  - https://developers.google.com/search/updates
+  - https://blog.archive.org/2024/09/11/new-feature-alert-access-archived-webpages-directly-through-google-search/
   - https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md
   - https://www.exploit-db.com/google-hacking-database
   - https://help.shodan.io/the-basics/search-query-fundamentals
   - https://www.rfc-editor.org/rfc/rfc9162
   - https://www.rfc-editor.org/rfc/rfc3912
   - https://www.icann.org/rdap
+  - https://www.icann.org/en/announcements/details/icann-update-launching-rdap-sunsetting-whois-27-01-2025-en
   - https://www.rfc-editor.org/rfc/rfc9083
   - https://www.icann.org/resources/pages/gtld-registration-data-specs-en
   - https://www.icann.org/resources/pages/epp-status-codes-2014-06-16-en
@@ -27,7 +31,7 @@ sources:
   - https://www.rfc-editor.org/rfc/rfc8659
   - https://www.rfc-editor.org/rfc/rfc7208
   - https://www.rfc-editor.org/rfc/rfc6376
-  - https://www.rfc-editor.org/rfc/rfc7489
+  - https://www.rfc-editor.org/rfc/rfc9989
   - https://www.rfc-editor.org/rfc/rfc5936
   - https://www.rfc-editor.org/rfc/rfc8945
   - https://www.rfc-editor.org/rfc/rfc5155
@@ -35,8 +39,10 @@ sources:
   - https://www.rfc-editor.org/rfc/rfc9309
   - https://attack.mitre.org/mitigations/M1056/
   - https://genai.owasp.org/llm-top-10/
+  - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
+  - https://github.com/smicallef/spiderfoot
 ---
-Flagged **verify**: Google documents only some of the operators below, and the AI-footprinting framing follows the v13 course topics. Footprinting = ATT&CK **Reconnaissance** (TA0043).
+Google documents only some of the operators below; the AI-footprinting section follows the v13 course topics. Footprinting = ATT&CK **Reconnaissance** (TA0043).
 
 ## Passive vs active
 
@@ -80,7 +86,7 @@ Test question: **does the activity touch the target's systems or people?** A loo
 
 ## WHOIS, RDAP and RIRs
 
-- **WHOIS**: plain text over **TCP 43**. **RDAP**: HTTPS + JSON, access control; gTLDs no longer have to run WHOIS since **28 Jan 2025**.
+- **WHOIS**: plain text over **TCP 43**. **RDAP**: HTTPS + JSON, access control; most gTLDs no longer have to run WHOIS since **28 Jan 2025**.
 - Since the **GDPR** (2018), personal contacts are usually **redacted**. Thick registries hold full records; thin ones point to the registrar.
 
 | Domain record field | What it tells you |
@@ -137,7 +143,7 @@ In mail headers, read `Received:` lines **bottom-up**; `Authentication-Results` 
 
 - AI assistants draft operator combinations, summarize large result sets, extract names and e-mail formats, chain OSINT tools and write the recon part of a report.
 - Risks: models invent subdomains and people (**verify every fact**), collected personal data must stay inside the engagement, and scope still applies.
-- Classic automation to recognize: **Maltego** (graph + transforms), **Recon-ng** (modules + workspaces), **SpiderFoot** (hundreds of OSINT modules), **theHarvester**.
+- Classic automation to recognize: **Maltego** (graph + transforms), **Recon-ng** (modules + workspaces), **SpiderFoot** (200+ OSINT modules), **theHarvester**.
 
 ## Countermeasures
 

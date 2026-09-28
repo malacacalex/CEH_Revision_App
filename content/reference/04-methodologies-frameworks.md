@@ -3,17 +3,26 @@ id: ref-04
 title: Methodologies and frameworks
 order: 4
 modules: [1, 2, 3, 4, 5, 6, 7]
-rev: 2
+rev: 3
 verify: true
 sources:
   - https://www.lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf
   - https://attack.mitre.org/tactics/enterprise/
-  - https://apps.dtic.mil/sti/citations/ADA586960
+  - https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf
   - https://csrc.nist.gov/pubs/sp/800/150/final
   - https://csrc.nist.gov/pubs/sp/800/115/final
   - https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/
+  - https://www.eccouncil.org/cybersecurity-exchange/cyber-talks/learn-the-5-phases-of-ethical-hacking/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-ethical-hacking/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/system-hacking-definition-types-processes/
+  - https://www.eccouncil.org/wp-content/uploads/2023/03/System-Hacking.pdf
+  - https://www.eccouncil.org/cybersecurity-exchange/threat-intelligence/cyber-kill-chain-seven-steps-cyberattack/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/diamond-model-intrusion-analysis/
+  - https://www.eccouncil.org/cybersecurity-exchange/threat-intelligence/what-is-cyber-threat-intelligence/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/unveiling-grey-hat-hacking-exploring-ethical-dilemmas-practices-and-implications/
+  - https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-a-dos-attack-denial-of-service/
 ---
-Flagged **verify** because the EC-Council-specific lists (five phases, hacker classes) follow the vendor's own wording, which we check against the official exam blueprint at each release.
+Flagged **verify** for the hacker classes beyond white, black, gray hat and hacktivist: no public EC-Council page lists the exam's full set. The five phases and the CEH methodology are confirmed on EC-Council pages.
 
 ## Five phases of hacking (EC-Council)
 
