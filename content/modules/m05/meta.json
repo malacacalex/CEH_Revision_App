@@ -74,7 +74,7 @@
       "where": "https://nvd.nist.gov/vuln/search",
       "skill": "Reading a CVSS vector and combining severity, exploitation probability and known exploitation into a priority",
       "minutes": 30,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Install Greenbone Community Edition on Kali and scan a Metasploitable 2 VM in your own isolated lab",
@@ -82,15 +82,15 @@
       "where": "https://greenbone.github.io/docs/latest/22.4/kali/index.html",
       "skill": "Setting up gvm, running a scan, reading results with QoD, separating true and false positives",
       "minutes": 90,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Compare an unauthenticated and a credentialed Nessus Essentials scan of your own lab VM",
       "source": "free",
       "where": "https://www.tenable.com/products/nessus/nessus-essentials",
-      "skill": "Seeing how credentials change findings, false positives and patch-level accuracy",
+      "skill": "Seeing how credentials change findings, false positives and patch-level accuracy (Essentials is now a free 30-day licence for up to 5 IPs)",
       "minutes": 60,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Scan DVWA in your own lab with Nikto, then with OWASP ZAP, and compare the findings",
@@ -98,7 +98,7 @@
       "where": "https://github.com/digininja/DVWA",
       "skill": "Telling web server findings (Nikto) apart from web application findings (ZAP) and reading Nikto tuning and output options",
       "minutes": 45,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

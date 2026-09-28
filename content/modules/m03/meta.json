@@ -97,7 +97,7 @@
       "where": "https://tryhackme.com/room/furthernmap",
       "skill": "Reading Nmap scan types and output on a practice target",
       "minutes": 90,
-      "verify": true
+      "verify": false
     },
     {
       "name": "Local lab: scan Metasploitable 2 from Kali, capture it in Wireshark",
@@ -105,7 +105,7 @@
       "where": "https://docs.rapid7.com/metasploit/metasploitable-2/",
       "skill": "Seeing each scan's flag exchange on the wire, and what an IDS would log",
       "minutes": 60,
-      "verify": true
+      "verify": false
     }
   ],
   "feynmanPrompts": [

@@ -192,7 +192,7 @@ A SYN probe answered with SYN/ACK marks an open port; RST/ACK marks a closed one
 |---|---|
 | 64 | Linux, most Unix-like systems, macOS |
 | 128 | Windows |
-| 255 | many network devices (Cisco IOS), Solaris |
+| 255 | many network devices (Cisco IOS) |
 
 The TTL you observe is the initial value **minus the hops** on the way, so round **up** to the nearest default: a TTL of 116 means 128 minus 12 hops, so Windows. Window sizes also differ by OS and version; EC-Council's table (for example Linux 5840, Windows 65,535 or 8,192) is a clue, not a rule.
 

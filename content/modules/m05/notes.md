@@ -8,7 +8,7 @@
 
 | Class | Example | Public reference |
 |---|---|---|
-| **Misconfiguration** | directory listing on, verbose errors, unused services open | OWASP A05:2021 |
+| **Misconfiguration** | directory listing on, verbose errors, unused services open | OWASP A02:2025 Security Misconfiguration (A05:2021 before) |
 | **Default or hard-coded credentials** | admin/admin on a switch console | CWE-1392, CWE-798 |
 | **Missing patches / outdated components** | web server release out of support | OWASP A03:2025 Software Supply Chain Failures (A06:2021 before), CWE-1395 |
 | **Buffer overflow** | copying input without checking its size | CWE-120, CWE-787 |

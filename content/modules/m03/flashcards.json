@@ -267,8 +267,8 @@
     "front": "Network diagram (scanning step)",
     "back": "A map of what scanning found: live hosts, subnets, gateways, firewalls and the hops traceroute revealed. Attackers use it to plan; defenders compare it with the documented topology to spot unknown hosts. Zenmap has a topology view.",
     "tags": ["network-diagram", "ec-council-specific"],
-    "sources": ["https://nmap.org/book/zenmap-topology.html", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://nmap.org/book/zenmap-topology.html", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://ilabs.eccouncil.org/scanning-networks/", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-ethical-hacking/", "https://csrc.nist.gov/pubs/sp/800/115/final"],
+    "verify": false,
     "rev": 1
   },
   {
@@ -629,14 +629,19 @@
     "domain": "D2",
     "kind": "list",
     "front": "Default initial TTL by OS family",
-    "back": "- **64**: Linux, most Unix-like systems, macOS\n- **128**: Windows\n- **255**: many network devices (Cisco IOS), Solaris\n\nObserved TTL = initial − hops, so **round up** (TTL 116 → 128 → Windows).",
+    "back": "- **64**: Linux, most Unix-like systems, macOS\n- **128**: Windows\n- **255**: many network devices (Cisco IOS)\n\nObserved TTL = initial − hops, so **round up** (TTL 116 → 128 → Windows).",
     "tags": ["ttl", "os-fingerprinting", "ec-council-specific"],
     "sources": [
       "https://docs.kernel.org/networking/ip-sysctl.html",
-      "https://www.netresec.com/?page=Blog&month=2011-11&post=Passive-OS-Fingerprinting"
+      "https://www.netresec.com/?page=Blog&month=2011-11&post=Passive-OS-Fingerprinting",
+      "https://learn.microsoft.com/en-us/powershell/module/nettcpip/set-netipv4protocol",
+      "https://nmap.org/book/osdetect-methods.html",
+      "https://sec.cloudapps.cisco.com/security/center/resources/ttl_expiry_attack.html",
+      "https://github.com/apple-oss-distributions/xnu/blob/main/bsd/netinet/ip.h",
+      "https://docs.oracle.com/en/operating-systems/solaris/oracle-solaris/11.4/tuning/_ipv4_ttl-parameter1.html"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m03-c-0048",
@@ -741,8 +746,8 @@
     "front": "Evasion concept classes a defender should recognise",
     "back": "- Packet fragmentation\n- Decoys and source address spoofing\n- Idle (zombie) scan\n- Source port manipulation\n- Slow timing (under IDS thresholds)\n- Randomised host/port order, padding, bad checksums\n- Crafted packets (hping3, Scapy, Colasoft Packet Builder)\n- MAC spoofing, source routing, proxies/anonymisers",
     "tags": ["evasion", "ec-council-specific"],
-    "sources": ["https://nmap.org/book/man-bypass-firewalls-ids.html", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
-    "verify": true,
+    "sources": ["https://nmap.org/book/man-bypass-firewalls-ids.html", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://nmap.org/book/man-performance.html", "https://nmap.org/book/idlescan.html", "https://manpages.debian.org/testing/hping3/hping3.8.en.html", "https://www.colasoft.com/packet_builder/"],
+    "verify": false,
     "rev": 1
   },
   {

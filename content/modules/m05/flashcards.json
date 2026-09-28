@@ -46,20 +46,24 @@
     "domain": "D3",
     "kind": "list",
     "front": "Common vulnerability classes (with CWE examples)",
-    "back": "- **Misconfiguration** / default settings (OWASP A05)\n- **Default or hard-coded credentials** (CWE-1392, CWE-798)\n- **Buffer overflow** (CWE-120, CWE-787)\n- **Missing authentication** for a critical function (CWE-306)\n- **Outdated or vulnerable components**, poor patching (OWASP A06, CWE-1395)\n- **Design flaws**, OS and application flaws, open unneeded services\n- **Zero-day**: no patch exists yet\n- **Legacy / end-of-life** platforms and **third-party** risks",
+    "back": "- **Misconfiguration** / default settings (OWASP A02:2025)\n- **Default or hard-coded credentials** (CWE-1392, CWE-798)\n- **Buffer overflow** (CWE-120, CWE-787)\n- **Missing authentication** for a critical function (CWE-306)\n- **Outdated or vulnerable components**, poor patching (OWASP A03:2025, CWE-1395)\n- **Design flaws**, OS and application flaws, open unneeded services\n- **Zero-day**: no patch exists yet\n- **Legacy / end-of-life** platforms and **third-party** risks",
     "tags": [
       "vulnerability-classification",
       "ec-council-specific"
     ],
     "sources": [
-      "https://owasp.org/Top10/A05_2021-Security_Misconfiguration/",
-      "https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/",
+      "https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/",
+      "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
       "https://cwe.mitre.org/data/definitions/1392.html",
       "https://cwe.mitre.org/data/definitions/120.html",
+      "https://cwe.mitre.org/data/definitions/306.html",
+      "https://csrc.nist.gov/glossary/term/zero_day_attack",
+      "https://www.ncsc.gov.uk/collection/vulnerability-management/understanding-vulnerabilities",
+      "https://www.cisa.gov/news-events/news/bad-practices-0",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
-    "rev": 1
+    "verify": false,
+    "rev": 2
   },
   {
     "id": "m05-c-0004",
@@ -322,9 +326,11 @@
     ],
     "sources": [
       "https://csrc.nist.gov/pubs/sp/800/115/final",
-      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/conduct-a-vulnerability-analysis/",
+      "https://egs.eccouncil.org/wp-content/uploads/2020/12/Risk-and-Vulnerability-Assessment-Do-You-Know-the-Other-Side.pdf"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -607,11 +613,18 @@
     ],
     "sources": [
       "https://www.first.org/epss/how-it-works",
+      "https://www.first.org/epss/research",
+      "https://arxiv.org/abs/2302.14172",
       "https://docs.tenable.com/nessus/Content/RiskMetrics.htm",
+      "https://docs.tenable.com/cyber-exposure-studies/ransomware/Content/PrioritizeUsingPrediction.htm",
       "https://github.com/TheR1D/shell_gpt",
-      "https://genai.owasp.org/llm-top-10/"
+      "https://eccouncil.zendesk.com/hc/en-us/articles/38674475390093-3-Set-Up-and-Use-ShellGPT-in-the-CEHv13-Parrot-Security-VM",
+      "https://genai.owasp.org/llm-top-10/",
+      "https://genai.owasp.org/llmrisk/llm092025-misinformation/",
+      "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {
@@ -647,9 +660,11 @@
     ],
     "sources": [
       "https://csrc.nist.gov/pubs/sp/800/115/final",
-      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
+      "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/how-to-write-vulnerability-assessment-report/",
+      "https://wstg.owasp.org/v4.2/5-Reporting/"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

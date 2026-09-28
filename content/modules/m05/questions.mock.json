@@ -136,7 +136,7 @@
     "stem": "A production file server has anonymous FTP enabled even though no business process uses FTP. What kind of weakness is this?",
     "options": ["Misconfiguration / unnecessary open service", "Zero-day", "Buffer overflow", "Design flaw in the FTP protocol"],
     "answer": 0,
-    "explanation": "Hardening removes unused services and default settings (OWASP A05). Every open service is attack surface.",
+    "explanation": "Hardening removes unused services and default settings (OWASP A02:2025 Security Misconfiguration). Every open service is attack surface.",
     "optionNotes": [
       "Correct: disable services that are not needed.",
       "The setting is well known, not an unknown flaw.",
@@ -144,9 +144,9 @@
       "The problem is how this server is configured, not the protocol's design."
     ],
     "tags": ["vulnerability-classification", "misconfiguration"],
-    "sources": ["https://owasp.org/Top10/A05_2021-Security_Misconfiguration/", "https://csrc.nist.gov/glossary/term/misconfiguration"],
+    "sources": ["https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/", "https://csrc.nist.gov/glossary/term/misconfiguration"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m05-q-0071",
@@ -325,8 +325,8 @@
       "The finding itself may be real; only the extra ID is in doubt."
     ],
     "tags": ["ai"],
-    "sources": ["https://genai.owasp.org/llm-top-10/", "https://www.cve.org/About/Overview"],
-    "verify": true,
+    "sources": ["https://genai.owasp.org/llm-top-10/", "https://www.cve.org/About/Overview", "https://genai.owasp.org/llmrisk/llm092025-misinformation/", "https://nvd.nist.gov/vuln/search"],
+    "verify": false,
     "rev": 1
   },
   {

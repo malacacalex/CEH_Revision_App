@@ -772,10 +772,12 @@
     "tags": ["os-fingerprinting", "ttl"],
     "sources": [
       "https://docs.kernel.org/networking/ip-sysctl.html",
+      "https://www.netresec.com/?page=Blog&month=2011-11&post=Passive-OS-Fingerprinting",
+      "https://sec.cloudapps.cisco.com/security/center/resources/ttl_expiry_attack.html",
       "https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters",
       "https://learn.microsoft.com/en-us/powershell/module/nettcpip/set-netipv4protocol"
     ],
-    "verify": true,
+    "verify": false,
     "rev": 1
   },
   {

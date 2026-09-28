@@ -449,7 +449,7 @@
     "stem": "An assessment finds a public web server still running a web server release that stopped receiving security updates years ago. Which vulnerability class best describes this?",
     "options": ["Outdated or unsupported software (patch management)", "Design flaw", "Default installation", "Zero-day"],
     "answer": 0,
-    "explanation": "OWASP A06 (vulnerable and outdated components): unsupported software accumulates known, unpatchable CVEs. The fix is to upgrade or replace it.",
+    "explanation": "OWASP A03:2025 Software Supply Chain Failures (A06:2021 Vulnerable and Outdated Components before): unsupported software accumulates known, unpatchable CVEs. The fix is to upgrade or replace it.",
     "optionNotes": [
       "Correct: an end-of-life component can no longer be patched.",
       "A design flaw is built into the architecture, whatever the version.",
@@ -457,9 +457,9 @@
       "The flaws in old versions are publicly known."
     ],
     "tags": ["vulnerability-classification", "patch-management"],
-    "sources": ["https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/", "https://cwe.mitre.org/data/definitions/1104.html"],
+    "sources": ["https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/", "https://cwe.mitre.org/data/definitions/1104.html"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m05-q-0030",
@@ -1239,8 +1239,8 @@
       "Correct: a report is a map of the organization's weaknesses."
     ],
     "tags": ["data-handling", "reporting"],
-    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.ncsc.gov.uk/collection/vulnerability-management"],
-    "verify": true,
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.ncsc.gov.uk/collection/vulnerability-management", "https://wstg.owasp.org/v4.2/5-Reporting/"],
+    "verify": false,
     "rev": 1
   },
   {
