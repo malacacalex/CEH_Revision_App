@@ -4,6 +4,7 @@ import {
   PROGRESS_SCHEMA_VERSION,
   ProgressExportSchema,
   type Attempt,
+  type LabLog,
   type MistakeCause,
   type ModuleProgress,
   type Profile,
@@ -12,6 +13,7 @@ import {
   type SrsRecord,
 } from '../schemas/progress.ts';
 import type { Flashcard, Question } from '../schemas/content.ts';
+import { EMPTY_LAB_LOG } from '../domain/labs.ts';
 import { gradeFromAnswer, newSrsState, reviewSrs, type Confidence, type Grade, type SrsState } from '../domain/fsrs/scheduler.ts';
 
 export function uid(): string {
@@ -215,6 +217,16 @@ export async function updateModuleProgress(profileId: string, module: number, pa
   await db.transaction('rw', db.moduleProgress, async () => {
     const cur = await getModuleProgress(profileId, module);
     await db.moduleProgress.put({ ...cur, startedAt: cur.startedAt ?? Date.now(), ...patch });
+  });
+}
+
+/** Merges a change into one lab's log (lab tracker). */
+export async function updateLabLog(profileId: string, module: number, lab: string, patch: Partial<Omit<LabLog, 'updatedAt'>>): Promise<void> {
+  await db.transaction('rw', db.moduleProgress, async () => {
+    const cur = await getModuleProgress(profileId, module);
+    const prev = cur.labs?.[lab] ?? EMPTY_LAB_LOG;
+    const next: LabLog = { ...prev, ...patch, updatedAt: Date.now() };
+    await db.moduleProgress.put({ ...cur, startedAt: cur.startedAt ?? Date.now(), labs: { ...cur.labs, [lab]: next } });
   });
 }
 

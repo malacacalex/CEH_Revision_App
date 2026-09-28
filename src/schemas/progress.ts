@@ -114,6 +114,19 @@ export const QuizSessionSchema = z.strictObject({
 });
 export type QuizSession = z.infer<typeof QuizSessionSchema>;
 
+/** Lab tracker (§6.3 feature 9): the learner's status, time and notes for one lab of a module. */
+export const LAB_STATUSES = ['todo', 'doing', 'done', 'skipped'] as const;
+export const LabStatusSchema = z.enum(LAB_STATUSES);
+export type LabStatus = z.infer<typeof LabStatusSchema>;
+export const LAB_STATUS_LABELS: Record<LabStatus, string> = { todo: 'To do', doing: 'In progress', done: 'Done', skipped: 'Skipped' };
+export const LabLogSchema = z.strictObject({
+  status: LabStatusSchema,
+  minutes: z.number().int().min(0).max(100_000),
+  note: z.string().max(4000),
+  updatedAt: z.number(),
+});
+export type LabLog = z.infer<typeof LabLogSchema>;
+
 export const ModuleProgressSchema = z.strictObject({
   profileId: z.string(),
   module: z.number().int(),
@@ -125,6 +138,8 @@ export const ModuleProgressSchema = z.strictObject({
   feynmanAt: z.number().optional(),
   moduleQuizPassedAt: z.number().optional(),
   bestModuleQuiz: z.number().optional(),
+  /** Lab logs keyed by lab name (names are unique within a module). */
+  labs: z.record(z.string(), LabLogSchema).optional(),
 });
 export type ModuleProgress = z.infer<typeof ModuleProgressSchema>;
 

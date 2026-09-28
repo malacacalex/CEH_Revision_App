@@ -19,6 +19,7 @@
 - **Flashcards** scheduled with FSRS, capped so nothing is scheduled past your exam.
 - **Quizzes**: module, domain, interleaved, weak spots, confidently-wrong and due reviews. Rate your confidence before each answer is revealed.
 - **Mock exams**: a half-mock (63 q, 2 h) and a full mock (125 q, 4 h) from questions kept out of practice, timed like the exam, with a full debrief.
+- **Lab tracker**: status, time spent and notes for every lab, with the time still needed.
 - **Mistake log** with notes; missed questions come back through spaced repetition.
 - **Readiness estimate** per exam domain, weighted by the blueprint, and a go/no-go checklist for booking the exam.
 - **Analytics**: accuracy by module, domain, topic and difficulty, time per question, confidence calibration and trends.

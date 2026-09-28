@@ -1,6 +1,7 @@
 import type { Blueprint, Question } from '../schemas/content.ts';
 import type { Attempt, CardReview, Mistake, ModuleProgress, Profile, QuizSession } from '../schemas/progress.ts';
 import { addDays, localMidnight, toISODate } from './dates.ts';
+import { labRows, labSummary, type Lab } from './labs.ts';
 import { lastAttempts } from './quiz/assemble.ts';
 import { predictScore, studyStreak } from './readiness/readiness.ts';
 
@@ -44,6 +45,15 @@ export interface ReviewExport {
   mistakeCauses: Record<string, number>;
   recentMistakes: { id: string; module: number; section: string; tags: string[]; stem: string; misses: number; cause: string | null; confidentlyWrong: boolean; note?: string }[];
   feynman: { module: number; date: string; text: string }[];
+  /** Lab tracker: totals, and every lab the learner has touched. */
+  labs: {
+    total: number;
+    done: number;
+    inProgress: number;
+    skipped: number;
+    minutesSpent: number;
+    logged: { module: number; lab: string; status: string; minutes: number; note?: string }[];
+  };
 }
 
 export interface ReviewInput {
@@ -55,6 +65,8 @@ export interface ReviewInput {
   sessions: QuizSession[];
   mistakes: Mistake[];
   progress: ModuleProgress[];
+  /** Each module's labs (content), for the lab tracker section. */
+  labModules?: { module: number; title: string; labs: Lab[] }[];
   appVersion: string;
   contentVersion: string;
   now: Date;
@@ -64,6 +76,7 @@ const WEAK_TAG_MIN = 3;
 const WEAK_TAG_LIMIT = 12;
 const MISTAKE_LIMIT = 15;
 const STEM_MAX = 180;
+const NOTE_MAX = 400;
 
 const round = (x: number) => Math.round(x * 1000) / 1000;
 const ratio = (ok: number, n: number) => (n === 0 ? null : round(ok / n));
@@ -73,6 +86,8 @@ export function buildReview(input: ReviewInput): ReviewExport {
   const { profile, questions, attempts, now } = input;
   const today = toISODate(now);
   const byId = new Map(questions.map((q) => [q.id, q]));
+  const labLog = labRows(input.labModules ?? [], input.progress, profile.hasILabs);
+  const labs = labSummary(labLog);
   const day = (t: number) => toISODate(new Date(t));
   const last7 = localMidnight(addDays(today, -6));
 
@@ -176,5 +191,15 @@ export function buildReview(input: ReviewInput): ReviewExport {
       .filter((p): p is ModuleProgress & { feynman: string } => !!p.feynman?.trim())
       .sort((a, b) => a.module - b.module)
       .map((p) => ({ module: p.module, date: p.feynmanAt ? day(p.feynmanAt) : today, text: p.feynman.trim() })),
+    labs: {
+      total: labs.total,
+      done: labs.byStatus.done,
+      inProgress: labs.byStatus.doing,
+      skipped: labs.byStatus.skipped,
+      minutesSpent: labs.minutesSpent,
+      logged: labLog
+        .filter((r) => r.log.updatedAt > 0)
+        .map((r) => ({ module: r.module, lab: r.lab.name, status: r.log.status, minutes: r.log.minutes, ...(r.log.note.trim() && { note: clip(r.log.note.trim(), NOTE_MAX) }) })),
+    },
   };
 }

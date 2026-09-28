@@ -158,6 +158,11 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
     items of other domains, then the mock items seen longest ago; the session stores `composition`.
   - Mock items never enter SRS or re-tests (the mistake log closes them with "Mark as understood").
   - The clock counts visible time only; draft answers and `elapsedMs` live on the session until submit.
+- [x] **M6**: lab tracker (§6.3 feature 9). `/labs` page and the module Labs tab: status (to do, in progress,
+  done, skipped), time spent and notes per lab, stored on `moduleProgress.labs` keyed by lab name
+  (`domain/labs.ts`). Lab totals and touched labs go into the review export. Labs are practice, not a gate.
+- [ ] **M7**: fact-check pass over the `verify: true` items, module by module (`/fact-check`); items confirmed
+  on primary sources lose the flag, wrong ones are fixed with a `rev` bump.
 
 ## Release status
 

@@ -9,6 +9,8 @@ const NAV = [
   { to: '/cards', label: 'Cards', icon: 'M6 3h12v18H6zM9 8h6M9 12h6' },
   { to: '/quiz', label: 'Quiz', icon: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 17v.01M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1' },
   { to: '/analytics', label: 'Analytics', icon: 'M4 20V10M10 20V4M16 20v-7M22 20H2' },
+  // No room in the phone header: on phones the Lab tracker is reached from Modules and each module's Labs tab.
+  { to: '/labs', label: 'Labs', icon: 'M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10', desktopOnly: true },
   { to: '/reference', label: 'Reference', icon: 'M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10' },
   { to: '/self-study', label: 'Self-study', icon: 'M5 21V4M5 4h11l-2 4 2 4H5' },
   { to: '/mistakes', label: 'Mistakes', icon: 'M12 4l9 16H3zM12 10v4M12 17v.01' },
@@ -62,11 +64,13 @@ export function Layout() {
             <span className="font-serif text-lg font-bold">{APP_NAME}</span>
           </div>
           <div className="flex items-center gap-1">
-            {NAV.slice(5).map((n) => (
-              <NavLink key={n.to} to={n.to} aria-label={n.label} className={({ isActive }) => `rounded-lg p-2 ${isActive ? 'text-chestnut' : 'text-muted'}`}>
-                <Icon d={n.icon} />
-              </NavLink>
-            ))}
+            {NAV.slice(5)
+              .filter((n) => !('desktopOnly' in n))
+              .map((n) => (
+                <NavLink key={n.to} to={n.to} aria-label={n.label} className={({ isActive }) => `rounded-lg p-2 ${isActive ? 'text-chestnut' : 'text-muted'}`}>
+                  <Icon d={n.icon} />
+                </NavLink>
+              ))}
           </div>
         </header>
         <main id="main" className="mx-auto w-full max-w-4xl px-4 pb-28 pt-5 md:px-8 md:pb-12 md:pt-8">

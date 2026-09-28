@@ -73,6 +73,7 @@ export function SettingsPage() {
       sessions: data.quizSessions,
       mistakes: data.mistakes,
       progress: data.moduleProgress,
+      labModules: content.modules.map((m) => ({ module: m.meta.module, title: m.meta.title, labs: m.meta.labs })),
       appVersion: APP_VERSION,
       contentVersion: content.bundle.version.version,
       now: new Date(),

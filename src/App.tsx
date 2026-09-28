@@ -12,6 +12,7 @@ import { QuizRun } from './features/quiz/QuizRun.tsx';
 import { MockRun } from './features/mock/MockRun.tsx';
 import { MockResult } from './features/mock/MockResult.tsx';
 import { AnalyticsPage } from './features/analytics/AnalyticsPage.tsx';
+import { LabsPage } from './features/labs/LabsPage.tsx';
 import { ReferencePage } from './features/reference/ReferencePage.tsx';
 import { SelfStudyPage } from './features/selfstudy/SelfStudyPage.tsx';
 import { MistakesPage } from './features/mistakes/MistakesPage.tsx';
@@ -42,6 +43,7 @@ export function App() {
               <Route path="mock/run" element={<MockRun />} />
               <Route path="mock/result/:id" element={<MockResult />} />
               <Route path="analytics" element={<AnalyticsPage />} />
+              <Route path="labs" element={<LabsPage />} />
               <Route path="reference" element={<ReferencePage />} />
               <Route path="self-study" element={<SelfStudyPage />} />
               <Route path="mistakes" element={<MistakesPage />} />

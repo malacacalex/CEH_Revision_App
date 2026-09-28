@@ -4,6 +4,14 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
+## [Unreleased]
+
+### Added
+- **Lab tracker** (Modules → Lab tracker, or the Labs tab of a module): mark each lab as to do, in progress,
+  done or skipped, log the time you spent and keep notes. The page shows labs done, time logged and an
+  estimate of the time left. Logging time on a lab you have not started marks it as in progress.
+- The review export includes lab totals and the labs you have logged.
+
 ## [0.4.0] - 2026-09-27
 
 Ships with content 0.16.0: 12 of 21 modules fully built, 1316 questions, 632 flashcards and a 208-term glossary.

@@ -13,9 +13,11 @@ If it is missing, ask for it. Answer in French.
 4. **Mistake causes and recent mistakes:** group them, find the root misconception, not the symptom.
    Also read `content/tutor-misses.json` if present.
 5. **Feynman summaries:** point out gaps or wrong statements.
-6. **Plan update:** adjust next week (modules, cards, quiz modes, hours), realistic for the busy period.
-7. **Write 20–30 new practice questions** aimed at the weak tags, following the item rules in `CLAUDE.md`
+6. **Labs:** from `labs`, hands-on time and labs left in progress; read the notes for what got stuck and
+   pick the next lab tied to the weak tags.
+7. **Plan update:** adjust next week (modules, cards, quiz modes, hours), realistic for the busy period.
+8. **Write 20–30 new practice questions** aimed at the weak tags, following the item rules in `CLAUDE.md`
    (sources, `verify`, balanced answers, no near-duplicates). Put them in the matching modules'
    `questions.practice.json` with new IDs, run `npm run content:balance -- <module>` and
    `npm run check`, bump the content version, commit and push.
-8. End with **5 lines** on next week's priorities.
+9. End with **5 lines** on next week's priorities.

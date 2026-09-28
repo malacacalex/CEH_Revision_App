@@ -3,6 +3,8 @@ import { Link, Navigate, useParams, useSearchParams } from 'react-router';
 import { ETHICS_NOTICE } from '../../config.ts';
 import { content } from '../../content/bundle.ts';
 import { FEYNMAN_MIN_SENTENCES, sentenceCount } from '../../domain/gates.ts';
+import { EMPTY_LAB_LOG, visibleLabs } from '../../domain/labs.ts';
+import { LabCard } from '../labs/LabCard.tsx';
 import { getModuleProgress, updateModuleProgress } from '../../db/repo.ts';
 import { useSnapshot } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, Empty, inputClass, PageHeader } from '../../ui/kit.tsx';
@@ -183,30 +185,18 @@ export function ModulePage() {
           <p className="rounded-lg border border-burgundy/40 bg-burgundy-soft p-3 text-sm text-burgundy">
             <strong>Ethics.</strong> {ETHICS_NOTICE}
           </p>
-          {m.meta.labs.filter((l) => l.source === 'free' || profile.hasILabs).length === 0 ? (
+          {visibleLabs(m.meta.labs, profile.hasILabs).length === 0 ? (
             <Empty>Labs arrive when this module is built.</Empty>
           ) : (
-            m.meta.labs
-              .filter((l) => l.source === 'free' || profile.hasILabs)
-              .map((l) => (
-                <Card key={l.name}>
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h3 className="font-semibold">{l.name}</h3>
-                    <span className="flex gap-1">
-                      <Badge tone={l.source === 'iLabs' ? 'accent' : 'good'}>{l.source === 'iLabs' ? 'iLabs' : 'free'}</Badge>
-                      {l.verify && <Badge tone="warn">link unverified</Badge>}
-                      <Badge>{l.minutes} min</Badge>
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted">Builds: {l.skill}</p>
-                  {l.where && (
-                    <a href={l.where} target="_blank" rel="noreferrer" className="mt-1 inline-block text-sm font-semibold text-chestnut underline">
-                      Open lab resource
-                    </a>
-                  )}
-                </Card>
-              ))
+            visibleLabs(m.meta.labs, profile.hasILabs).map((l) => <LabCard key={l.name} profileId={profile.id} module={n} lab={l} log={mp.labs?.[l.name] ?? EMPTY_LAB_LOG} />)
           )}
+          <p className="text-sm text-muted">
+            All modules' labs, with your totals, are in the{' '}
+            <Link to="/labs" className="font-semibold text-chestnut underline">
+              Lab tracker
+            </Link>
+            .
+          </p>
         </div>
       )}
 

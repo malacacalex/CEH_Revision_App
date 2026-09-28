@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { content } from '../../content/bundle.ts';
 import { useSnapshot } from '../../state/ProfileContext.tsx';
-import { Badge, Card, PageHeader, ProgressBar } from '../../ui/kit.tsx';
+import { Badge, ButtonLink, Card, PageHeader, ProgressBar } from '../../ui/kit.tsx';
 
 export function ModulesPage() {
   const s = useSnapshot();
@@ -11,7 +11,15 @@ export function ModulesPage() {
 
   return (
     <>
-      <PageHeader title="Modules" subtitle={`${snap.doneModules.filter((n) => n > 0).length} of 20 exam modules done`} />
+      <PageHeader
+        title="Modules"
+        subtitle={`${snap.doneModules.filter((n) => n > 0).length} of 20 exam modules done`}
+        actions={
+          <ButtonLink to="/labs" variant="secondary">
+            Lab tracker
+          </ButtonLink>
+        }
+      />
       <div className="space-y-6">
         {domains.map((d) => (
           <section key={d.id}>
