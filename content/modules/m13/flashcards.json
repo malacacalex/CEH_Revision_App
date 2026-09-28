@@ -127,18 +127,18 @@
     "domain": "D5",
     "kind": "list",
     "front": "Why web servers get compromised",
-    "back": "1. Internet-facing, always on\n2. Default installs: sample files, default accounts, extra modules\n3. Misconfiguration (listings, verbose errors, open admin pages)\n4. Unpatched server or components\n5. Weak remote admin and passwords\n6. Too many privileges for the server account\n\nOWASP: A05 Security Misconfiguration, A06 Vulnerable and Outdated Components.",
+    "back": "1. Internet-facing, always on\n2. Default installs: sample files, default accounts, extra modules\n3. Misconfiguration (listings, verbose errors, open admin pages)\n4. Unpatched server or components\n5. Weak remote admin and passwords\n6. Too many privileges for the server account\n\nOWASP Top 10:2025: A02 Security Misconfiguration, A03 Software Supply Chain Failures (A05 and A06 in 2021).",
     "tags": [
       "misconfiguration",
       "vulnerabilities"
     ],
     "sources": [
       "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf",
-      "https://owasp.org/Top10/A05_2021-Security_Misconfiguration/",
-      "https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/"
+      "https://top10.owasp.org/2025/A02_2025-Security_Misconfiguration/",
+      "https://top10.owasp.org/2025/A03_2025-Software_Supply_Chain_Failures/"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m13-c-0008",

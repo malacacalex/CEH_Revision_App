@@ -31,8 +31,8 @@ Each IIS application pool runs its worker process under its own low-privilege **
 ### Why web servers get compromised
 
 - Default installs: sample scripts, manuals, default accounts, unused modules (NIST SP 800-44 says remove them all).
-- Misconfiguration (OWASP A05): listings, verbose errors, open status or admin pages, risky methods such as `PUT` and `TRACE`.
-- Unpatched server or components (OWASP A06).
+- Misconfiguration (OWASP A02:2025, A05 in 2021): listings, verbose errors, open status or admin pages, risky methods such as `PUT` and `TRACE`.
+- Unpatched server or components (OWASP A03:2025 Software Supply Chain Failures, A06 in 2021).
 - Weak remote administration and passwords.
 - A server account with too many rights, so a small bug becomes full control.
 

@@ -213,17 +213,17 @@
     "explanation": "SP 800-44 says to remove or disable unnecessary services, applications and sample content before going live.",
     "optionNotes": [
       "Nothing unknown to the vendor is involved.",
-      "Correct: OWASP A05 and NIST SP 800-44 both call out sample and default content.",
+      "Correct: OWASP A02:2025 (Security Misconfiguration) and NIST SP 800-44 both call out sample and default content.",
       "The software may be current; the problem is what was left installed.",
       "Sample content is an information and exploitation risk, not mainly DoS."
     ],
     "tags": ["misconfiguration", "hardening"],
     "sources": [
-      "https://owasp.org/Top10/A05_2021-Security_Misconfiguration/",
+      "https://top10.owasp.org/2025/A02_2025-Security_Misconfiguration/",
       "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m13-q-0019",

@@ -707,7 +707,7 @@
       "A network scan sees services and banners, not the libraries bundled in a build."
     ],
     "tags": ["sca", "tools"],
-    "sources": ["https://owasp.org/www-project-dependency-check/", "https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/"],
+    "sources": ["https://owasp.org/www-project-dependency-check/", "https://top10.owasp.org/2025/A03_2025-Software_Supply_Chain_Failures/"],
     "verify": false,
     "rev": 1
   },

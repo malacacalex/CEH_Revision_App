@@ -434,7 +434,7 @@
       "The problem is the password, not encryption."
     ],
     "tags": ["vulnerability-classification", "default-credentials"],
-    "sources": ["https://cwe.mitre.org/data/definitions/1392.html", "https://owasp.org/Top10/A05_2021-Security_Misconfiguration/"],
+    "sources": ["https://cwe.mitre.org/data/definitions/1392.html", "https://top10.owasp.org/2025/A02_2025-Security_Misconfiguration/"],
     "verify": false,
     "rev": 1
   },
