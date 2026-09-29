@@ -618,7 +618,8 @@
     "tags": ["android", "tls", "network-security-config"],
     "sources": [
       "https://developer.android.com/privacy-and-security/security-config",
-      "https://developer.android.com/privacy-and-security/risks/cleartext-communications"
+      "https://developer.android.com/privacy-and-security/risks/cleartext-communications",
+      "https://mas.owasp.org/MASTG/knowledge/android/MASVS-NETWORK/MASTG-KNOW-0014/"
     ],
     "verify": false,
     "rev": 1

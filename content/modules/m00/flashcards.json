@@ -50,7 +50,8 @@
     ],
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc9293",
-      "https://www.rfc-editor.org/rfc/rfc1122"
+      "https://www.rfc-editor.org/rfc/rfc1122",
+      "https://nmap.org/book/man-port-scanning-techniques.html"
     ],
     "verify": false,
     "rev": 1
@@ -332,7 +333,9 @@
     ],
     "sources": [
       "https://man7.org/linux/man-pages/man7/inode.7.html",
-      "https://man7.org/linux/man-pages/man1/find.1.html"
+      "https://man7.org/linux/man-pages/man1/find.1.html",
+      "https://man7.org/linux/man-pages/man2/execve.2.html",
+      "https://www.gnu.org/software/coreutils/manual/html_node/What-information-is-listed.html"
     ],
     "verify": false,
     "rev": 1
@@ -555,7 +558,7 @@
     "domain": "D0",
     "kind": "list",
     "front": "AAA",
-    "back": "- **Authentication**: prove who you are\n- **Authorization**: what you may do\n- **Accounting**: record what you did\n\nProtocols: **RADIUS** (UDP, encrypts only the password) and **TACACS+** (TCP 49, encrypts the whole body).",
+    "back": "- **Authentication**: prove who you are\n- **Authorization**: what you may do\n- **Accounting**: record what you did\n\nProtocols: **RADIUS** (UDP, hides only the password) and **TACACS+** (TCP 49, obfuscates the whole body with a shared secret; RFC 8907 does not call it encryption).",
     "tags": [
       "aaa"
     ],
@@ -564,7 +567,7 @@
       "https://www.rfc-editor.org/rfc/rfc8907"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m00-c-0031",

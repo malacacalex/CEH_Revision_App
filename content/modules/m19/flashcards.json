@@ -676,7 +676,8 @@
     "sources": [
       "https://kubernetes.io/docs/reference/networking/ports-and-protocols/",
       "https://docs.docker.com/engine/security/protect-access/",
-      "https://docs.docker.com/engine/daemon/remote-access/"
+      "https://docs.docker.com/engine/daemon/remote-access/",
+      "https://docs.docker.com/reference/cli/dockerd/"
     ],
     "verify": false,
     "rev": 1
@@ -855,7 +856,8 @@
     "sources": [
       "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
       "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
-      "https://cloud.google.com/resource-manager/docs/organization-policy/overview"
+      "https://docs.cloud.google.com/organization-policy/overview",
+      "https://docs.cloud.google.com/organization-policy/reference/org-policy-constraints"
     ],
     "verify": false,
     "rev": 1

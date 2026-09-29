@@ -234,7 +234,8 @@
     "tags": ["ports", "kubernetes"],
     "sources": [
       "https://kubernetes.io/docs/reference/networking/ports-and-protocols/",
-      "https://kubernetes.io/docs/reference/access-authn-authz/kubelet-authn-authz/"
+      "https://kubernetes.io/docs/reference/access-authn-authz/kubelet-authn-authz/",
+      "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/"
     ],
     "verify": false,
     "rev": 1

@@ -347,7 +347,7 @@
       "John the Ripper cracks password hashes."
     ],
     "tags": ["defense-tools"],
-    "sources": ["https://github.com/cisagov/ICSNPP", "https://github.com/cisagov/Malcolm"],
+    "sources": ["https://github.com/cisagov/ICSNPP", "https://github.com/cisagov/Malcolm", "https://cisagov.github.io/Malcolm/docs/components.html"],
     "verify": false,
     "rev": 1
   },

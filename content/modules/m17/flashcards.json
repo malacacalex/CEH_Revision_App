@@ -12,6 +12,7 @@
     ],
     "sources": [
       "https://owasp.org/www-project-mobile-top-10/",
+      "https://owasp.org/www-project-mobile-top-10/2023-risks/",
       "https://github.com/OWASP/www-project-mobile-top-10"
     ],
     "verify": false,
@@ -105,8 +106,9 @@
       "vishing"
     ],
     "sources": [
-      "https://www.fcc.gov/spoofing",
-      "https://www.fcc.gov/call-authentication"
+      "https://www.fcc.gov/consumers/guides/spoofing",
+      "https://www.fcc.gov/call-authentication",
+      "https://www.rfc-editor.org/rfc/rfc8588"
     ],
     "verify": false,
     "rev": 1
@@ -196,17 +198,18 @@
     "domain": "D7",
     "kind": "term",
     "front": "Android application sandbox",
-    "back": "Each app gets a **unique Linux UID** and its own process: the kernel isolates apps (DAC).\n**SELinux** adds mandatory access control; since Android 9 each non-privileged app runs in its own SELinux sandbox.\n\nApps share data only through explicit IPC (intents, content providers).",
+    "back": "Each app gets a **unique Linux UID** and its own process: the kernel isolates apps (DAC).\n**SELinux** adds mandatory access control; since Android 9 each non-privileged app targeting API 28+ runs in its own SELinux sandbox.\n\nApps share data only through explicit IPC (intents, content providers).",
     "tags": [
       "android",
       "sandbox"
     ],
     "sources": [
       "https://source.android.com/docs/security/app-sandbox",
-      "https://source.android.com/docs/security/features/selinux"
+      "https://source.android.com/docs/security/features/selinux",
+      "https://mas.owasp.org/MASTG/0x05a-Platform-Overview/"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m17-c-0012",
@@ -468,7 +471,7 @@
     "domain": "D7",
     "kind": "term",
     "front": "App Transport Security (ATS) requirements",
-    "back": "Blocks app connections that are not:\n- **TLS 1.2+**\n- with **forward secrecy** (ECDHE)\n- certificate RSA ≥ 2048 or ECC ≥ 256, SHA-256+\n\nExceptions must be declared in Info.plist and justified.",
+    "back": "Blocks app connections that are not:\n- **TLS 1.2+**\n- with **forward secrecy** (ECDHE)\n- certificate RSA ≥ 2048 or ECC ≥ 256, SHA-256+\n\nExceptions are declared in Info.plist; some must be justified at App Store review.",
     "tags": [
       "ios",
       "ats",
@@ -476,10 +479,11 @@
     ],
     "sources": [
       "https://developer.apple.com/documentation/security/preventing-insecure-network-connections",
+      "https://mas.owasp.org/MASTG/knowledge/ios/MASVS-NETWORK/MASTG-KNOW-0071/",
       "https://mas.owasp.org/MASTG/0x04f-Testing-Network-Communication/"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m17-c-0026",
@@ -732,7 +736,8 @@
     ],
     "sources": [
       "https://attack.mitre.org/mitigations/mobile/",
-      "https://attack.mitre.org/mitigations/M1002/"
+      "https://attack.mitre.org/mitigations/M1002/",
+      "https://github.com/mitre-attack/attack-stix-data"
     ],
     "verify": false,
     "rev": 1

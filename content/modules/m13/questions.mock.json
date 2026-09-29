@@ -422,6 +422,7 @@
     "tags": ["iis", "dos"],
     "sources": [
       "https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/dynamicipsecurity/",
+      "https://learn.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-dynamic-ip-address-restrictions",
       "https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html"
     ],
     "verify": false,
@@ -696,6 +697,7 @@
     "tags": ["mirroring", "enumeration"],
     "sources": [
       "https://www.httrack.com/",
+      "https://www.httrack.com/html/fcguide.html",
       "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information.md"
     ],
     "verify": false,

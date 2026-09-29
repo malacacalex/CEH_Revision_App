@@ -270,7 +270,7 @@
       "sqlmap is a SQL injection tool."
     ],
     "tags": ["defense-tools"],
-    "sources": ["https://github.com/nsacyber/GRASSMARLIN", "https://github.com/cisagov/ICSNPP"],
+    "sources": ["https://github.com/nsacyber/GRASSMARLIN", "https://github.com/cisagov/ICSNPP", "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-205a"],
     "verify": false,
     "rev": 1
   },
@@ -1185,7 +1185,7 @@
       "A shared password means one leak unlocks every device."
     ],
     "tags": ["segmentation", "network-isolation"],
-    "sources": ["https://www.enisa.europa.eu/publications/baseline-security-recommendations-for-iot", "https://datatracker.ietf.org/doc/html/rfc8520"],
+    "sources": ["https://www.enisa.europa.eu/publications/baseline-security-recommendations-for-iot", "https://datatracker.ietf.org/doc/html/rfc8520", "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets"],
     "verify": false,
     "rev": 1
   },

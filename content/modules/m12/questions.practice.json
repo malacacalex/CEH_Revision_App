@@ -521,19 +521,19 @@
     "type": "ec-council-term",
     "difficulty": 2,
     "stem": "A hardened, single-purpose host placed in the DMZ to withstand attack is called a what?",
-    "options": ["Bastion host", "Jump box", "Honeypot", "Load balancer"],
+    "options": ["Bastion host", "Screened subnet", "Honeypot", "Load balancer"],
     "answer": 0,
     "explanation": "A bastion host is a special-purpose computer built and configured to withstand attack, typically exposed in the DMZ.",
     "optionNotes": [
       "Correct: a bastion host is a hardened, single-purpose exposed host.",
-      "A jump box is for admin access, a different role.",
+      "A screened subnet is the DMZ network segment itself, not a host in it.",
       "A honeypot is a decoy, not a production service host.",
       "A load balancer distributes traffic."
     ],
     "tags": ["bastion"],
-    "sources": ["https://csrc.nist.gov/glossary/term/bastion_host"],
+    "sources": ["https://csrc.nist.gov/glossary/term/bastion_host", "https://www.rfc-editor.org/rfc/rfc4949", "https://csrc.nist.gov/glossary/term/demilitarized_zone"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m12-q-0032",
@@ -897,7 +897,7 @@
       "Disabling logs removes the evidence."
     ],
     "tags": ["tunnelling", "detection"],
-    "sources": ["https://d3fend.mitre.org/technique/d3f:NetworkTrafficAnalysis/", "https://attack.mitre.org/mitigations/M1037/"],
+    "sources": ["https://d3fend.mitre.org/technique/d3f:NetworkTrafficAnalysis/", "https://attack.mitre.org/mitigations/M1037/", "https://attack.mitre.org/techniques/T1071/004/"],
     "verify": false,
     "rev": 1
   },

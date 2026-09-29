@@ -13,7 +13,7 @@
     "explanation": "FIPS 197: rounds depend on key length, 10 / 12 / 14 for 128 / 192 / 256-bit keys; the block stays 128 bits.",
     "optionNotes": ["10 rounds is AES-128.", "Correct: AES-256 uses 14 rounds.", "12 rounds is AES-192.", "16 rounds is DES."],
     "tags": ["aes"],
-    "sources": ["https://csrc.nist.gov/pubs/fips/197/final", "https://csrc.nist.gov/projects/block-cipher-techniques"],
+    "sources": ["https://csrc.nist.gov/pubs/fips/197/final", "https://csrc.nist.gov/projects/block-cipher-techniques", "https://csrc.nist.gov/pubs/fips/46-3/final"],
     "verify": false,
     "rev": 1
   },
@@ -164,7 +164,7 @@
       "A hash function is one-way and not a cipher."
     ],
     "tags": ["classical-ciphers"],
-    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://www.cryptool.org/en/"],
+    "sources": ["https://cacr.uwaterloo.ca/hac/about/chap1.pdf", "https://www.cryptool.org/en/", "https://www.cryptool.org/en/cto/transposition/"],
     "verify": false,
     "rev": 1
   },

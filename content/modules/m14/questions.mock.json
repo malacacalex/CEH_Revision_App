@@ -325,7 +325,7 @@
       "Introspection returns JSON."
     ],
     "tags": ["deserialization"],
-    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html", "https://cwe.mitre.org/data/definitions/502.html"],
+    "sources": ["https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html", "https://cwe.mitre.org/data/definitions/502.html", "https://portswigger.net/web-security/deserialization/exploiting", "https://www.php.net/manual/en/function.serialize.php"],
     "verify": false,
     "rev": 1
   },
@@ -857,11 +857,11 @@
     ],
     "answer": 3,
     "explanation": "SAMM measures and improves the maturity of a software security program.",
-    "optionNotes": ["That is a generic DevOps cycle.", "Those are NIST CSF functions.", "That mixes up the SSDF groups.", "Correct."],
+    "optionNotes": ["That is a generic DevOps cycle.", "Those are NIST CSF 1.1 functions (CSF 2.0 adds Govern).", "That mixes up the SSDF groups, which have no Retire.", "Correct."],
     "tags": ["sdlc", "owasp"],
-    "sources": ["https://owaspsamm.org/model/"],
+    "sources": ["https://owaspsamm.org/model/", "https://owaspsamm.org/about/", "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf", "https://csrc.nist.gov/pubs/sp/800/218/final"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m14-q-0138",
@@ -1001,7 +1001,9 @@
     "tags": ["encoding", "path-traversal"],
     "sources": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
-      "https://owasp.org/www-community/attacks/Path_Traversal"
+      "https://owasp.org/www-community/attacks/Path_Traversal",
+      "https://capec.mitre.org/data/definitions/120.html",
+      "https://cwe.mitre.org/data/definitions/22.html"
     ],
     "verify": false,
     "rev": 1
@@ -1205,7 +1207,9 @@
     "tags": ["authorization", "privilege-escalation"],
     "sources": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
-      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html",
+      "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation/",
+      "https://portswigger.net/web-security/access-control"
     ],
     "verify": false,
     "rev": 1
@@ -1321,7 +1325,7 @@
       "CRS is mainly a negative model built on attack signatures, scored as anomalies."
     ],
     "tags": ["waf", "crs"],
-    "sources": ["https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/", "https://coreruleset.org/docs/"],
+    "sources": ["https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/", "https://coreruleset.org/docs/", "https://coreruleset.org/", "https://github.com/owasp-modsecurity/ModSecurity/wiki/Reference-Manual-(v3.x)"],
     "verify": false,
     "rev": 1
   },

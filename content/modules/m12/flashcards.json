@@ -375,8 +375,9 @@
     "sources": [
       "https://www.snort.org/",
       "https://suricata.io/",
-      "https://docs.zeek.org/en/master/about.html",
+      "https://docs.zeek.org/en/master/about/what.html",
       "https://www.ossec.net/",
+      "https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html",
       "https://aide.github.io/"
     ],
     "verify": false,
@@ -396,7 +397,9 @@
     ],
     "sources": [
       "https://docs.snort.org/rules/headers/",
-      "https://docs.snort.org/rules/headers/actions"
+      "https://docs.snort.org/rules/headers/directions",
+      "https://docs.snort.org/rules/options/non_payload/flow",
+      "https://docs.suricata.io/en/latest/rules/intro.html"
     ],
     "verify": false,
     "rev": 1
@@ -473,7 +476,8 @@
     ],
     "sources": [
       "https://csrc.nist.gov/pubs/sp/800/94/final",
-      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf",
+      "https://www.enisa.europa.eu/sites/default/files/publications/ENISA_Honeypots_study.pdf"
     ],
     "verify": false,
     "rev": 1
@@ -609,7 +613,8 @@
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc2827",
       "https://www.rfc-editor.org/rfc/rfc3704",
-      "https://csrc.nist.gov/pubs/sp/800/41/r1/final"
+      "https://csrc.nist.gov/pubs/sp/800/41/r1/final",
+      "https://attack.mitre.org/mitigations/M1037/"
     ],
     "verify": false,
     "rev": 1
@@ -666,7 +671,9 @@
     "sources": [
       "https://d3fend.mitre.org/technique/d3f:NetworkTrafficAnalysis/",
       "https://attack.mitre.org/mitigations/M1037/",
-      "https://attack.mitre.org/mitigations/M1031/"
+      "https://attack.mitre.org/mitigations/M1031/",
+      "https://attack.mitre.org/techniques/T1572/",
+      "https://attack.mitre.org/techniques/T1071/004/"
     ],
     "verify": false,
     "rev": 1

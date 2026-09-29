@@ -666,7 +666,8 @@
     "sources": [
       "https://csrc.nist.gov/glossary/term/side_channel_attack",
       "https://csrc.nist.gov/glossary/term/differential_power_analysis",
-      "https://www.paulkocher.com/doc/TimingAttacks.pdf"
+      "https://www.paulkocher.com/doc/TimingAttacks.pdf",
+      "https://www.paulkocher.com/doc/DifferentialPowerAnalysis.pdf"
     ],
     "verify": false,
     "rev": 1
@@ -816,6 +817,7 @@
       "https://csrc.nist.gov/pubs/sp/800/52/r2/final",
       "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html",
       "https://www.rfc-editor.org/rfc/rfc6797",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html",
       "https://testssl.sh/"
     ],
     "verify": false,

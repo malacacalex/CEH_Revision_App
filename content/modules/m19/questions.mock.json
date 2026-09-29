@@ -195,7 +195,7 @@
     "tags": ["api-security", "csa-top-threats"],
     "sources": [
       "https://cloudsecurityalliance.org/artifacts/top-threats-to-cloud-computing-2024",
-      "https://cloudsecurityalliance.org/research/topics/top-threats"
+      "https://cloudsecurityalliance.org/press-releases/2024/08/06/cloud-security-alliance-releases-top-threats-to-cloud-computing-2024-report"
     ],
     "verify": false,
     "rev": 1
@@ -309,6 +309,7 @@
     "tags": ["iam", "aws-cli"],
     "sources": [
       "https://docs.aws.amazon.com/cli/latest/reference/iam/simulate-principal-policy.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html",
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html",
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html"
     ],
@@ -425,8 +426,9 @@
     ],
     "tags": ["imdsv2", "metadata-service"],
     "sources": [
-      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-v2-how-it-works.html",
-      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
+      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html",
+      "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html",
+      "https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html"
     ],
     "verify": false,
     "rev": 1
@@ -710,6 +712,7 @@
     "sources": [
       "https://docs.docker.com/reference/cli/docker/container/inspect/",
       "https://docs.docker.com/reference/cli/docker/container/run/",
+      "https://docs.docker.com/engine/containers/run/",
       "https://docs.docker.com/engine/security/rootless/"
     ],
     "verify": false,

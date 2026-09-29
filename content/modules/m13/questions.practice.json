@@ -1069,7 +1069,7 @@
     "explanation": "Patch management covers patches, hotfixes and service packs: notify, identify, deploy, install, verify.",
     "optionNotes": ["That is a service pack.", "Correct: from NIST SP 800-44.", "That is a mitigation, not a code fix.", "That is an upgrade."],
     "tags": ["patch-management"],
-    "sources": ["https://csrc.nist.gov/glossary/term/hotfix", "https://csrc.nist.gov/glossary/term/patch_management"],
+    "sources": ["https://csrc.nist.gov/glossary/term/hotfix", "https://csrc.nist.gov/glossary/term/patch_management", "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-44ver2.pdf", "https://learn.microsoft.com/en-us/troubleshoot/windows-client/installing-updates-features-roles/standard-terminology-software-updates"],
     "verify": false,
     "rev": 1
   },

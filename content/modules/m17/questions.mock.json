@@ -237,7 +237,7 @@
     "explanation": "dex2jar output can be read with a Java decompiler; jadx does the decompilation in one step.",
     "optionNotes": ["apksigner signs and verifies APKs.", "Correct.", "adb manages devices.", "Burp Suite intercepts web traffic."],
     "tags": ["android", "tools", "reverse-engineering"],
-    "sources": ["https://github.com/pxb1988/dex2jar", "https://www.kali.org/tools/dex2jar/"],
+    "sources": ["https://github.com/pxb1988/dex2jar", "https://www.kali.org/tools/dex2jar/", "https://github.com/skylot/jadx"],
     "verify": false,
     "rev": 1
   },

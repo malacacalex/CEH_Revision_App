@@ -319,6 +319,7 @@
     "tags": ["encoding", "path-traversal"],
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc3986",
+      "https://capec.mitre.org/data/definitions/120.html",
       "https://capec.mitre.org/data/definitions/267.html",
       "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
     ],
@@ -1211,7 +1212,7 @@
     "explanation": "gobuster modes: `dir` for paths, `dns` for subdomains, `vhost` for virtual hosts.",
     "optionNotes": ["Correct.", "That is `dir` mode.", "That is `vhost` mode.", "That is a job for Arjun."],
     "tags": ["tools", "gobuster"],
-    "sources": ["https://www.kali.org/tools/gobuster/"],
+    "sources": ["https://www.kali.org/tools/gobuster/", "https://github.com/OJ/gobuster", "https://github.com/s0md3v/Arjun"],
     "verify": false,
     "rev": 1
   },
@@ -1249,7 +1250,7 @@
     "stem": "A single-page JavaScript application builds its links at runtime, so a plain crawler finds almost nothing. Which ZAP feature maps it better?",
     "options": ["Fuzzer", "Passive scanner", "Baseline scan", "AJAX Spider"],
     "answer": 3,
-    "explanation": "The classic spider parses HTML links; the AJAX Spider runs the JavaScript to find dynamic content.",
+    "explanation": "The classic spider parses HTML links; the AJAX Spider runs the JavaScript in a browser to find dynamic content. Recent ZAP versions recommend the newer Client Spider for modern apps.",
     "optionNotes": [
       "The fuzzer injects payloads into known requests.",
       "Passive scan analyzes traffic; it does not discover pages.",
@@ -1257,9 +1258,9 @@
       "Correct: it drives a real browser."
     ],
     "tags": ["tools", "zap"],
-    "sources": ["https://www.zaproxy.org/docs/desktop/addons/ajax-spider/", "https://www.zaproxy.org/docs/desktop/addons/spider/"],
+    "sources": ["https://www.zaproxy.org/docs/desktop/addons/ajax-spider/", "https://www.zaproxy.org/docs/desktop/addons/spider/", "https://www.zaproxy.org/docs/desktop/addons/client-side-integration/spider/", "https://www.zaproxy.org/docs/docker/baseline-scan/"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m14-q-0059",
@@ -1770,7 +1771,7 @@
     "explanation": "APIs often fetch URLs the client supplies (webhooks, image imports), which is why SSRF keeps its own slot here.",
     "optionNotes": ["Correct.", "That is API8.", "That is API10.", "That is API2."],
     "tags": ["api-top10", "ssrf"],
-    "sources": ["https://owasp.org/API-Security/editions/2023/en/0xa7-server-side-request-forgery/"],
+    "sources": ["https://owasp.org/API-Security/editions/2023/en/0xa7-server-side-request-forgery/", "https://owasp.org/API-Security/editions/2023/en/0x11-t10/"],
     "verify": false,
     "rev": 1
   },
@@ -2245,7 +2246,8 @@
     "tags": ["waf", "crs"],
     "sources": [
       "https://coreruleset.org/docs/2-how-crs-works/2-2-paranoia_levels/",
-      "https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/"
+      "https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/",
+      "https://github.com/owasp-modsecurity/ModSecurity/wiki/Reference-Manual-(v3.x)"
     ],
     "verify": false,
     "rev": 1

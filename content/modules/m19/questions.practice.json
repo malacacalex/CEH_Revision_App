@@ -259,7 +259,7 @@
     "tags": ["csa-top-threats"],
     "sources": [
       "https://cloudsecurityalliance.org/artifacts/top-threats-to-cloud-computing-2024",
-      "https://cloudsecurityalliance.org/research/topics/top-threats"
+      "https://cloudsecurityalliance.org/press-releases/2024/08/06/cloud-security-alliance-releases-top-threats-to-cloud-computing-2024-report"
     ],
     "verify": false,
     "rev": 1
@@ -1004,7 +1004,7 @@
       "Pacu targets AWS."
     ],
     "tags": ["tools", "azure"],
-    "sources": ["https://github.com/SpecterOps/AzureHound", "https://github.com/dirkjanm/ROADtools"],
+    "sources": ["https://github.com/SpecterOps/AzureHound", "https://bloodhound.specterops.io/collect-data/ce-collection/azurehound", "https://github.com/dirkjanm/ROADtools"],
     "verify": false,
     "rev": 1
   },

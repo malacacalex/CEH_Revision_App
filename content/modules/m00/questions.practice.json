@@ -179,7 +179,8 @@
     "tags": ["ports"],
     "sources": [
       "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
-      "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements"
+      "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements",
+      "https://www.rfc-editor.org/rfc/rfc4253"
     ],
     "verify": false,
     "rev": 1
@@ -491,7 +492,7 @@
     "explanation": "Each octal digit is r=4 + w=2 + x=1 for user, group, others.",
     "optionNotes": ["7 would give rwx.", "Correct: 6 = rw-, 4 = r--, 0 = ---.", "That would be 660.", "That would be 440."],
     "tags": ["linux", "permissions"],
-    "sources": ["https://man7.org/linux/man-pages/man1/chmod.1.html", "https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html"],
+    "sources": ["https://man7.org/linux/man-pages/man1/chmod.1.html", "https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html", "https://www.gnu.org/software/coreutils/manual/html_node/Numeric-Modes.html"],
     "verify": false,
     "rev": 1
   },
@@ -898,10 +899,10 @@
     "pool": "practice",
     "type": "recall",
     "difficulty": 1,
-    "stem": "Which protocol is used for centralized AAA and encrypts the whole packet body over TCP 49?",
+    "stem": "Which centralized AAA protocol runs over TCP 49 and hides the whole packet body, not just the password?",
     "options": ["LDAP", "RADIUS", "TACACS+", "Kerberos"],
     "answer": 2,
-    "explanation": "TACACS+ separates the three A's and encrypts the body; RADIUS obfuscates only the password.",
+    "explanation": "TACACS+ separates the three A's and obfuscates the whole body with a shared secret (the original draft called this encryption; RFC 8907 says the method is too weak to be called that). RADIUS hides only the User-Password.",
     "optionNotes": [
       "LDAP is a directory protocol.",
       "RADIUS uses UDP and hides only the password.",
@@ -911,7 +912,7 @@
     "tags": ["aaa"],
     "sources": ["https://www.rfc-editor.org/rfc/rfc8907", "https://www.rfc-editor.org/rfc/rfc2865"],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m00-q-0053",
@@ -1001,7 +1002,7 @@
       "Compensating describes a substitute control, not the category."
     ],
     "tags": ["controls"],
-    "sources": ["https://csrc.nist.gov/pubs/sp/800/12/r1/final", "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/12/r1/final", "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final", "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-C/section-164.308"],
     "verify": false,
     "rev": 1
   },
@@ -1318,7 +1319,7 @@
     "explanation": "Practice platforms grant permission for their own targets only.",
     "optionNotes": ["Unauthorized access.", "Only with written, scoped authorization.", "Correct.", "Unauthorized access."],
     "tags": ["ethics", "lab"],
-    "sources": ["https://tryhackme.com/path/outline/presecurity", "https://www.law.cornell.edu/uscode/text/18/1030"],
+    "sources": ["https://tryhackme.com/legal/acceptable-use-policy", "https://www.law.cornell.edu/uscode/text/18/1030"],
     "verify": false,
     "rev": 1
   }

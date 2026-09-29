@@ -148,7 +148,7 @@
       "A hub does no filtering."
     ],
     "tags": ["stateful"],
-    "sources": ["https://csrc.nist.gov/glossary/term/stateful_inspection"],
+    "sources": ["https://csrc.nist.gov/glossary/term/stateful_inspection", "https://csrc.nist.gov/pubs/sp/800/41/r1/final", "https://www.paloaltonetworks.com/cyberpedia/what-is-a-stateful-firewall"],
     "verify": false,
     "rev": 1
   },

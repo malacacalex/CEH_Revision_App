@@ -144,7 +144,8 @@
     "tags": ["dhcp"],
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc2131",
-      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+      "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "https://attack.mitre.org/techniques/T1557/003/"
     ],
     "verify": false,
     "rev": 1
@@ -348,7 +349,7 @@
     "explanation": "Deterrents reduce the chance someone tries.",
     "optionNotes": ["Correct: it discourages misuse.", "The banner itself detects nothing.", "It fixes nothing.", "It restores nothing."],
     "tags": ["controls"],
-    "sources": ["https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final", "https://csrc.nist.gov/pubs/sp/800/12/r1/final"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final", "https://csrc.nist.gov/pubs/sp/800/12/r1/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1800-1.pdf", "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/interactive-logon-message-text-for-users-attempting-to-log-on"],
     "verify": false,
     "rev": 1
   },
@@ -366,7 +367,7 @@
     "explanation": "If one layer fails, the others still protect the asset.",
     "optionNotes": ["Not a principle.", "About access rights.", "About splitting tasks between people.", "Correct: independent layers."],
     "tags": ["principles"],
-    "sources": ["https://csrc.nist.gov/glossary/term/defense_in_depth", "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final"],
+    "sources": ["https://csrc.nist.gov/glossary/term/defense_in_depth", "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final", "https://csrc.nist.gov/pubs/sp/800/12/r1/final"],
     "verify": false,
     "rev": 1
   },

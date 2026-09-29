@@ -116,7 +116,7 @@
     "front": "CORS (Cross-Origin Resource Sharing)",
     "back": "Response headers that **relax** the same-origin policy: `Access-Control-Allow-Origin`, `-Allow-Credentials`, `-Allow-Methods`.\n\n- `*` can never be combined with credentials.\n- Reflecting any `Origin` with credentials allowed is a misconfiguration (CWE-942).",
     "tags": ["cors", "misconfiguration"],
-    "sources": ["https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS", "https://cwe.mitre.org/data/definitions/942.html"],
+    "sources": ["https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS", "https://cwe.mitre.org/data/definitions/942.html", "https://portswigger.net/web-security/cors"],
     "verify": false,
     "rev": 1
   },
@@ -572,10 +572,14 @@
     "tags": ["tools", "footprinting"],
     "sources": [
       "https://www.kali.org/tools/whatweb/",
+      "https://www.wappalyzer.com/",
       "https://www.kali.org/tools/wafw00f/",
       "https://nmap.org/nsedoc/scripts/http-waf-detect.html",
+      "https://nmap.org/nsedoc/scripts/http-enum.html",
+      "https://nmap.org/nsedoc/scripts/http-methods.html",
       "https://www.kali.org/tools/nikto/",
-      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server.md"
+      "https://github.com/sullo/nikto",
+      "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage.md"
     ],
     "verify": false,
     "rev": 1
@@ -654,7 +658,7 @@
     "front": "Burp Intruder attack types",
     "back": "- **Sniper**: one list, one position at a time\n- **Battering ram**: the same value in every position at once\n- **Pitchfork**: several lists stepped in parallel (row 1 with row 1)\n- **Cluster bomb**: every combination of several lists",
     "tags": ["tools", "burp"],
-    "sources": ["https://portswigger.net/burp/documentation/desktop/tools/intruder/configure-attack/attack-types"],
+    "sources": ["https://portswigger.net/burp/documentation/desktop/tools/intruder/configure-attack/attack-types", "https://portswigger.net/burp/documentation/desktop/testing-workflow/vulnerabilities/authentication-mechanisms/brute-forcing-logins"],
     "verify": false,
     "rev": 1
   },
@@ -981,7 +985,9 @@
     "sources": [
       "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
       "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Content-Type-Options",
-      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Referrer-Policy"
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Referrer-Policy",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Permissions-Policy"
     ],
     "verify": false,
     "rev": 1
