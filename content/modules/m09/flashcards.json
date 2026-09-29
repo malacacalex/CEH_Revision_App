@@ -476,7 +476,7 @@
     "domain": "D4",
     "kind": "list",
     "front": "SPF, DKIM, DMARC",
-    "back": "- **SPF** (RFC 7208): which servers may send for the domain\n- **DKIM** (RFC 6376): domain signature over headers and body\n- **DMARC** (RFC 9989, which replaced RFC 9989 in 2026): SPF or DKIM must pass **and align** with the From domain; policy `p=none | quarantine | reject`; `rua=` reports",
+    "back": "- **SPF** (RFC 7208): which servers may send for the domain\n- **DKIM** (RFC 6376): domain signature over headers and body\n- **DMARC** (RFC 9989, which replaced RFC 7489 in 2026): SPF or DKIM must pass **and align** with the From domain; policy `p=none | quarantine | reject`; `rua=` reports",
     "tags": [
       "email-authentication"
     ],
@@ -487,7 +487,7 @@
       "https://csrc.nist.gov/pubs/sp/800/177/r1/final"
     ],
     "verify": false,
-    "rev": 2
+    "rev": 3
   },
   {
     "id": "m09-c-0026",

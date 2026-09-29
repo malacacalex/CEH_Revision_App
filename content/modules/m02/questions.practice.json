@@ -488,7 +488,7 @@
       "Correct: filings describe business structure and leadership."
     ],
     "tags": ["competitive-intelligence"],
-    "sources": ["https://www.sec.gov/edgar/search/", "https://attack.mitre.org/techniques/T1591/"],
+    "sources": ["https://www.sec.gov/edgar/search/", "https://attack.mitre.org/techniques/T1591/", "https://www.sec.gov/files/reada10k.pdf"],
     "verify": false,
     "rev": 1
   },
@@ -1332,7 +1332,7 @@
     "optionNotes": ["robots.txt.", "DNS zone transfer.", "Technical security testing.", "Correct: Guidelines for Media Sanitization."],
     "tags": ["dumpster-diving", "countermeasures"],
     "sources": [
-      "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/88/r2/final",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
     ],
     "verify": false,

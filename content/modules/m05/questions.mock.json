@@ -381,7 +381,7 @@
       "Correct."
     ],
     "tags": ["verification"],
-    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/40/r4/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/vulnerability-analysis-explained-certified-ethical-hacker/"],
     "verify": false,
     "rev": 1
   },
@@ -600,7 +600,7 @@
       "Correct: exploitation before the vendor has a fix is what makes it a zero-day."
     ],
     "tags": ["vulnerability-classification"],
-    "sources": ["https://csrc.nist.gov/glossary/term/zero_day_attack", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"],
+    "sources": ["https://csrc.nist.gov/glossary/term/zero_day_attack", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog", "https://www.sans.org/security-resources/glossary-of-terms/zero-day-exploit"],
     "verify": false,
     "rev": 1
   },

@@ -720,7 +720,7 @@
     "front": "Source address spoofing: limit and defence",
     "back": "Forged source IPs hide the sender, but the replies go to the forged address, so the scanner sees nothing unless it can sniff the path.\n\n**Defence:** ingress/egress filtering (BCP 38, RFC 2827) drops packets whose source cannot come from that interface.",
     "tags": ["spoofing", "evasion"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc2827", "https://csrc.nist.gov/glossary/term/spoofing"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc2827", "https://csrc.nist.gov/glossary/term/spoofing", "https://nmap.org/book/man-bypass-firewalls-ids.html"],
     "verify": false,
     "rev": 1
   },

@@ -937,7 +937,7 @@
       "Exploitation is outside a vulnerability assessment's scope."
     ],
     "tags": ["scanning-impact"],
-    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/glossary/term/vulnerability_scanning"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://csrc.nist.gov/glossary/term/vulnerability_scanning", "https://docs.greenbone.net/GSM-Manual/gos-22.04/en/scanning.html"],
     "verify": false,
     "rev": 1
   },

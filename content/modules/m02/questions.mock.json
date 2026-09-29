@@ -99,7 +99,8 @@
     "tags": ["google-operators"],
     "sources": [
       "https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Reconnaissance_for_Information_Leakage.md",
-      "https://www.exploit-db.com/google-hacking-database"
+      "https://www.exploit-db.com/google-hacking-database",
+      "https://duckduckgo.com/duckduckgo-help-pages/results/syntax/"
     ],
     "verify": false,
     "rev": 1
@@ -1231,7 +1232,7 @@
     ],
     "tags": ["dumpster-diving", "countermeasures"],
     "sources": [
-      "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "https://csrc.nist.gov/pubs/sp/800/88/r2/final",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
     ],
     "verify": false,

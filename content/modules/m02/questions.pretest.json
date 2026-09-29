@@ -103,7 +103,7 @@
     "explanation": "WHOIS is plain text over TCP 43. Its successor RDAP runs over HTTPS and returns JSON.",
     "optionNotes": ["LDAP.", "DNS queries.", "Correct (RFC 3912).", "HTTPS, which is what RDAP uses."],
     "tags": ["whois", "ports"],
-    "sources": ["https://www.rfc-editor.org/rfc/rfc3912", "https://www.kali.org/tools/whois/"],
+    "sources": ["https://www.rfc-editor.org/rfc/rfc3912", "https://www.kali.org/tools/whois/", "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search=nicname"],
     "verify": false,
     "rev": 1
   },
@@ -172,7 +172,7 @@
     "tags": ["social-engineering", "dumpster-diving"],
     "sources": [
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
-      "https://csrc.nist.gov/pubs/sp/800/88/r1/final"
+      "https://csrc.nist.gov/pubs/sp/800/88/r2/final"
     ],
     "verify": false,
     "rev": 1

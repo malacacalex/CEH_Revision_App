@@ -240,7 +240,7 @@
       "Correct: it states risk and priorities in business terms."
     ],
     "tags": ["reporting"],
-    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"],
+    "sources": ["https://csrc.nist.gov/pubs/sp/800/115/final", "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/", "https://wstg.owasp.org/v4.2/5-Reporting/"],
     "verify": false,
     "rev": 1
   }
