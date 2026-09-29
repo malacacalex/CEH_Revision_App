@@ -4,13 +4,26 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
-## [Unreleased]
+## [0.5.0] - 2026-09-29
+
+Ships with content 0.33.0: 16 of 21 modules fully built, 1794 questions, 802 flashcards, 15 of 18 reference
+sheets and a 208-term glossary.
 
 ### Added
 - **Lab tracker** (Modules → Lab tracker, or the Labs tab of a module): mark each lab as to do, in progress,
   done or skipped, log the time you spent and keep notes. The page shows labs done, time logged and an
   estimate of the time left. Logging time on a lab you have not started marks it as in progress.
 - The review export includes lab totals and the labs you have logged.
+
+### Content (0.17.0 → 0.33.0, also reaches older apps through Check for updates)
+- Modules 3, 8, 14 and 18 fully built, module 2 mock questions, module 6 as a sample. The mock pool has 460
+  of the 500 questions it aims for.
+- Reference sheets for footprinting, vulnerability assessment, system hacking (partial), malware, network and
+  human attacks, security controls (partial), web, mobile, IoT/OT, cloud and cryptography.
+- Every item marked *unverified* was checked against two primary sources: 264 flags down to 109, about 30
+  items corrected. The ones still marked follow EC-Council's own wording, which no public EC-Council page states.
+- Standards that changed in 2026 are up to date: MITRE ATT&CK (Stealth, Defense Impairment, T1685), CISA
+  BOD 26-04, OWASP Top 10:2025, DMARC (RFC 9989) and the NVD's new enrichment priorities.
 
 ## [0.4.0] - 2026-09-27
 

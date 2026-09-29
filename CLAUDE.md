@@ -173,6 +173,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 
 ## Release status
 
+**v0.5.0 released 2026-09-29** (content 0.33.0): lab tracker, labs in the review export; content since v0.4.0.
 **v0.4.0 released 2026-09-27** (content 0.16.0): mocks, analytics, go/no-go, Self-study, quiz resume, glossary popovers.
 **v0.3.0 released 2026-09-23** (content 0.2.0): Windows exe/msi, macOS universal dmg (ad-hoc signed),
 Linux AppImage/deb, Android apk/aab signed with the release key. Nothing else is code-signed.
