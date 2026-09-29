@@ -33,8 +33,10 @@ Want to fix something yourself? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Status
 
-App 0.4.0 with content 0.16.0: M0 Foundations, the 60-question diagnostic, 4 reference sheets and 12 of the 21 modules
-are complete. The rest arrive as content updates; the Self-study page lists what is still missing. [CHANGELOG.md](CHANGELOG.md) lists the changes.
+App 1.0.0 with content 0.36.0: M0 Foundations, the 60-question diagnostic, 16 of the 21 modules fully built
+(6 and 12 partly), 15 of 18 reference sheets, mock exams, analytics and a lab tracker. Modules 4 (Enumeration),
+15 (SQL Injection) and 16 (Wireless) are not covered; the Self-study page lists what to study elsewhere.
+[CHANGELOG.md](CHANGELOG.md) lists the changes.
 
 ## Develop
 

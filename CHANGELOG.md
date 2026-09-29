@@ -4,12 +4,22 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
-## [Unreleased]
+## [1.0.0] - 2026-09-29
+
+The final version. Ships with content 0.36.0: 16 of 21 modules fully built and 2 partly built (6 and 12),
+1794 questions, 802 flashcards, 15 of 18 reference sheets and a 208-term glossary. Modules 4 (Enumeration),
+15 (SQL Injection) and 16 (Wireless) are not covered in the app: the Self-study page says what to study
+elsewhere, and their module pages link free official resources.
 
 ### Fixed
 
 - Printing from dark mode gave near-white text on white paper; print now always uses the light palette,
   prints tables in full and keeps diagrams readable.
+
+### Content (0.33.0 → 0.36.0, also reaches older apps through Check for updates)
+- A random 10% of every module was re-checked against primary sources: 248 items, 9 corrected (among them
+  DMARC's RFC history, TACACS+ obfuscation versus encryption, and a question with two defensible answers).
+- Sources updated where standards were withdrawn (NIST SP 800-88 r2) or pages moved.
 
 ## [0.5.0] - 2026-09-29
 
