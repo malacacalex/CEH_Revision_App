@@ -4,6 +4,14 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
+## [Unreleased]
+
+### Fixed
+- Android 15 and later draw the app under the status bar, which covered the phone header (Settings and the
+  other header icons could only be reached in landscape). The header, bottom bar and side menu now keep
+  clear of the system bars, and the status bar icons follow the app's theme.
+- The side menu scrolls when the window is too short for it (a phone in landscape).
+
 ## [1.0.0] - 2026-09-29
 
 The final version. Ships with content 0.36.0: 16 of 21 modules fully built and 2 partly built (6 and 12),

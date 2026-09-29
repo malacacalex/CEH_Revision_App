@@ -38,7 +38,7 @@ export function Layout() {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-surface focus:p-2">
         Skip to content
       </a>
-      <nav aria-label="Main" className="no-print sticky top-0 hidden h-dvh w-56 shrink-0 flex-col border-r border-line bg-surface p-3 md:flex">
+      <nav aria-label="Main" className="no-print safe-side sticky top-0 hidden h-dvh w-56 shrink-0 flex-col overflow-y-auto border-r border-line bg-surface p-3 md:flex">
         <div className="mb-4 flex items-center gap-2 px-2 pt-1">
           <img src="./favicon.svg" alt="" className="h-8 w-8" />
           <div>
@@ -58,7 +58,7 @@ export function Layout() {
       </nav>
 
       <div className="min-w-0 flex-1">
-        <header className="no-print sticky top-0 z-20 flex items-center justify-between border-b border-line bg-surface/95 px-4 py-2 backdrop-blur md:hidden">
+        <header className="no-print sticky top-0 z-20 flex items-center justify-between border-b border-line bg-surface/95 px-4 pb-2 safe-top backdrop-blur md:hidden">
           <div className="flex items-center gap-2">
             <img src="./favicon.svg" alt="" className="h-7 w-7" />
             <span className="font-serif text-lg font-bold">{APP_NAME}</span>
@@ -78,7 +78,7 @@ export function Layout() {
         </main>
       </div>
 
-      <nav aria-label="Main" className="no-print fixed inset-x-0 bottom-0 z-20 flex border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+      <nav aria-label="Main" className="no-print fixed inset-x-0 bottom-0 z-20 flex border-t border-line bg-surface/95 safe-bottom backdrop-blur md:hidden">
         {NAV.slice(0, 5).map((n) => (
           <NavLink key={n.to} to={n.to} end={n.to === '/'} className={tabClass}>
             <Icon d={n.icon} />

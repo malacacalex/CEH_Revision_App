@@ -10,12 +10,13 @@ import './index.css';
 import { registerSW } from 'virtual:pwa-register';
 import { App } from './App.tsx';
 import { loadStoredContent } from './content/updates.ts';
-import { isNative, routeExternalLinks } from './platform.ts';
+import { isNative, routeExternalLinks, syncSystemBars } from './platform.ts';
 
 // Offline cache for the website only: installed apps already ship every file, and a service worker
 // there would only risk serving stale files after an app update.
 if (!isNative()) registerSW({ immediate: true });
 routeExternalLinks();
+void syncSystemBars(document.documentElement.classList.contains('dark'));
 
 // A downloaded content pack (Settings → Check for updates) replaces the bundled content before first render.
 await loadStoredContent();

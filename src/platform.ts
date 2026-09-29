@@ -19,6 +19,16 @@ export function platform(): Platform {
 
 export const isNative = (): boolean => platform() !== 'web';
 
+/**
+ * Android draws the app under the status bar, whose icons follow the phone's theme by default: match them to
+ * the app's theme instead, so they stay readable when the two differ.
+ */
+export async function syncSystemBars(dark: boolean): Promise<void> {
+  if (platform() !== 'android') return;
+  const { SystemBars, SystemBarsStyle } = await import('@capacitor/core');
+  await SystemBars.setStyle({ style: dark ? SystemBarsStyle.Dark : SystemBarsStyle.Light });
+}
+
 /** Opens a web or mailto link outside the app (system browser / mail client). */
 export async function openExternal(url: string): Promise<void> {
   switch (platform()) {

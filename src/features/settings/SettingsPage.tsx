@@ -5,7 +5,7 @@ import { checkAppUpdate, checkContentUpdate } from '../../content/updates.ts';
 import { deleteProfile, exportProgress, importProgress, saveProfile, setActiveProfileId } from '../../db/repo.ts';
 import { toISODate } from '../../domain/dates.ts';
 import { buildReview } from '../../domain/review.ts';
-import { isNative, platform, saveTextFile } from '../../platform.ts';
+import { isNative, platform, saveTextFile, syncSystemBars } from '../../platform.ts';
 import { useProfile, useProfiles } from '../../state/ProfileContext.tsx';
 import { Badge, Button, ButtonLink, Card, PageHeader } from '../../ui/kit.tsx';
 import { ProfileForm } from '../onboarding/ProfileForm.tsx';
@@ -31,6 +31,7 @@ function applyTheme(t: Theme) {
   }
   const dark = t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.classList.toggle('dark', dark);
+  void syncSystemBars(dark);
 }
 
 type UpdateState =
