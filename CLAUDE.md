@@ -179,6 +179,7 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
 
 ## Release status
 
+**v1.0.1 released 2026-09-29**: Android 15+ status bar no longer covers the phone header.
 **v1.0.0 released 2026-09-29** (content 0.36.0), the final version the owner asked for: print fix, M9 sample.
 **v0.5.0 released 2026-09-29** (content 0.33.0): lab tracker, labs in the review export; content since v0.4.0.
 **v0.4.0 released 2026-09-27** (content 0.16.0): mocks, analytics, go/no-go, Self-study, quiz resume, glossary popovers.

@@ -4,7 +4,9 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
-## [Unreleased]
+## [1.0.1] - 2026-09-29
+
+Content unchanged (0.36.0).
 
 ### Fixed
 - Android 15 and later draw the app under the status bar, which covered the phone header (Settings and the

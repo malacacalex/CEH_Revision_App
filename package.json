@@ -1,7 +1,7 @@
 {
   "name": "shieldup",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ShieldUp — unofficial, local-first study app for the CEH v13 (312-50) exam. Not affiliated with or endorsed by EC-Council.",
   "license": "MIT",
   "type": "module",
