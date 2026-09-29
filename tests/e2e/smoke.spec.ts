@@ -68,3 +68,22 @@ test('onboarding → dashboard → pre-test → mistake log → flashcard → re
   const file = await download;
   expect(file.suggestedFilename()).toMatch(/^shieldup-smoke-\d{4}-\d{2}-\d{2}\.json$/);
 });
+
+test('printing in dark mode uses dark ink on white paper', async ({ page }) => {
+  await page.goto('./');
+  await page.getByLabel('Profile name').fill('Print');
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Build my plan' }).click();
+  await expect(page.getByRole('heading', { name: 'Hi Print' })).toBeVisible();
+
+  await page.evaluate(() => localStorage.setItem('shieldup-theme', 'dark'));
+  await page.goto('./#/reference');
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Ports and protocols' })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(true);
+
+  await page.emulateMedia({ media: 'print' });
+  const ink = await page.locator('article').first().evaluate((el) => getComputedStyle(el).color);
+  expect(ink).toBe('rgb(45, 34, 25)');
+  await expect(page.getByRole('button', { name: 'Print' })).toBeHidden();
+});
