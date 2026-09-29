@@ -482,7 +482,8 @@
     "tags": ["windows-events"],
     "sources": [
       "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
-      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor"
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor",
+      "https://car.mitre.org/analytics/CAR-2016-04-002/"
     ],
     "verify": false,
     "rev": 1
@@ -570,6 +571,7 @@
     "tags": ["detection", "logging"],
     "sources": [
       "https://attack.mitre.org/techniques/T1685/001/",
+      "https://attack.mitre.org/techniques/T1685/",
       "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection"
     ],
     "verify": false,

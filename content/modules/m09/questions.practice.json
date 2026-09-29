@@ -287,6 +287,7 @@
     "tags": ["reverse-social-engineering", "ec-council-specific"],
     "sources": [
       "https://aware.eccouncil.org/what-is-reverse-social-engineering.html",
+      "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/understanding-preventing-social-engineering-attacks/",
       "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-tech-support-scams",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
@@ -512,6 +513,7 @@
     "tags": ["pharming"],
     "sources": [
       "https://csrc.nist.gov/glossary/term/pharming",
+      "https://capec.mitre.org/data/definitions/142.html",
       "https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks"
     ],
     "verify": false,

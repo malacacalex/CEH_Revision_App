@@ -1136,7 +1136,8 @@
     "tags": ["botnet", "iot"],
     "sources": [
       "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
-      "https://www.cloudflare.com/learning/ddos/glossary/mirai-botnet/"
+      "https://www.cloudflare.com/learning/ddos/glossary/mirai-botnet/",
+      "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis"
     ],
     "verify": false,
     "rev": 1

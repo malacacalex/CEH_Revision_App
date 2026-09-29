@@ -1074,7 +1074,7 @@
       "Correct; the AAL3 overall reauthentication limit is 12 hours."
     ],
     "tags": ["timeouts", "nist"],
-    "sources": ["https://pages.nist.gov/800-63-4/sp800-63b.html"],
+    "sources": ["https://pages.nist.gov/800-63-4/sp800-63b.html", "https://csrc.nist.gov/pubs/sp/800/63/b/4/final", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63B-4.pdf"],
     "verify": false,
     "rev": 1
   },

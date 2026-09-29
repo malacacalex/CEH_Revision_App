@@ -145,7 +145,8 @@
     "sources": [
       "https://manpages.debian.org/bookworm/dsniff/dsniff.8.en.html",
       "https://www.rfc-editor.org/rfc/rfc7617",
-      "https://www.rfc-editor.org/rfc/rfc1157"
+      "https://www.rfc-editor.org/rfc/rfc1157",
+      "https://www.rfc-editor.org/rfc/rfc1350"
     ],
     "verify": false,
     "rev": 1
@@ -432,6 +433,7 @@
     ],
     "sources": [
       "https://nmap.org/nsedoc/scripts/sniffer-detect.html",
+      "https://svn.nmap.org/nmap/scripts/sniffer-detect.nse",
       "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/"
     ],
     "verify": false,

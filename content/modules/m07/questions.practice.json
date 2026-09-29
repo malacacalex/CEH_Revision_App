@@ -123,7 +123,7 @@
       "Self-spreading over the network describes a worm."
     ],
     "tags": ["trojan", "malware-types"],
-    "sources": ["https://csrc.nist.gov/glossary/term/trojan_horse", "https://learn.microsoft.com/en-us/defender-endpoint/malware/trojans-malware"],
+    "sources": ["https://csrc.nist.gov/glossary/term/trojan_horse", "https://learn.microsoft.com/en-us/defender-endpoint/malware/trojans-malware", "https://csrc.nist.gov/pubs/sp/800/83/r1/final"],
     "verify": false,
     "rev": 1
   },
@@ -272,7 +272,7 @@
       "A logic bomb waits for a condition."
     ],
     "tags": ["malware-components"],
-    "sources": ["https://attack.mitre.org/techniques/T1105/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/understanding-malware"],
+    "sources": ["https://attack.mitre.org/techniques/T1105/", "https://encyclopedia.kaspersky.com/knowledge/trojan-downloader/", "https://encyclopedia.kaspersky.com/knowledge/trojan-dropper/", "https://learn.microsoft.com/en-us/defender-endpoint/malware/understanding-malware"],
     "verify": false,
     "rev": 1
   },
@@ -1532,7 +1532,7 @@
       "Domains are simple to change."
     ],
     "tags": ["ioc", "threat-intelligence"],
-    "sources": ["https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html", "https://csrc.nist.gov/glossary/term/indicator"],
+    "sources": ["https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html", "https://center-for-threat-informed-defense.github.io/summiting-the-pyramid/overview/stp-overview/", "https://csrc.nist.gov/glossary/term/indicator"],
     "verify": false,
     "rev": 1
   },

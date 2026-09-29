@@ -94,6 +94,7 @@
     "sources": [
       "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/",
       "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/how-it-works",
+      "https://learn.microsoft.com/en-us/windows/win32/secauthz/mandatory-integrity-control",
       "https://attack.mitre.org/mitigations/M1052/"
     ],
     "verify": false,
@@ -845,6 +846,7 @@
     "sources": [
       "https://attack.mitre.org/techniques/T1685/006/",
       "https://man7.org/linux/man-pages/man5/utmp.5.html",
+      "https://manpages.debian.org/bookworm/util-linux/lastb.1.en.html",
       "https://man7.org/linux/man-pages/man8/auditd.8.html"
     ],
     "verify": false,

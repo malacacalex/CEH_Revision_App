@@ -545,7 +545,7 @@
       "VirusTotal aggregates scanner results."
     ],
     "tags": ["reverse-engineering", "tools"],
-    "sources": ["https://x64dbg.com/", "https://attack.mitre.org/techniques/T1027/002/"],
+    "sources": ["https://x64dbg.com/", "https://github.com/x64dbg/x64dbg", "https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview", "https://ssdeep-project.github.io/ssdeep/", "https://attack.mitre.org/techniques/T1027/002/"],
     "verify": false,
     "rev": 1
   },

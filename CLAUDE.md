@@ -173,7 +173,9 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   DMARC RFC 9989, NVD enrichment priorities.
 - [x] **M8**: print (§6.3 feature 10). Reference sheets and notes print with the light palette in dark mode,
   tables in full, dark Mermaid diagrams inverted; e2e covers the dark print.
-- [ ] **M9**: §9 fact-check sample, 10% of items per module re-checked against primary sources.
+- [x] **M9**: §9 fact-check sample, 10% of items per module re-checked against primary sources. Done
+  2026-09-29 (content 0.34.0 → 0.36.0): 248 items, 239 correct, 9 fixed (about 3.6%), none newly flagged;
+  the same slip was then fixed on 2 sibling cards. Moved pages updated, NIST SP 800-88 r1 → r2 (withdrawn 2025).
 
 ## Release status
 

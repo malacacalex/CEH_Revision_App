@@ -604,7 +604,7 @@
       "Correct."
     ],
     "tags": ["persistence", "windows"],
-    "sources": ["https://attack.mitre.org/techniques/T1547/001/"],
+    "sources": ["https://attack.mitre.org/techniques/T1547/001/", "https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys"],
     "verify": false,
     "rev": 1
   },

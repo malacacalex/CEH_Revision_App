@@ -574,7 +574,8 @@
     "sources": [
       "https://www.kali.org/tools/ettercap/",
       "https://www.kali.org/tools/bettercap/",
-      "https://www.kali.org/tools/sslstrip/"
+      "https://www.kali.org/tools/sslstrip/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
     ],
     "verify": false,
     "rev": 1
@@ -643,7 +644,7 @@
     "domain": "D4",
     "kind": "countermeasure",
     "front": "HSTS",
-    "back": "`Strict-Transport-Security: max-age=…; includeSubDomains` (RFC 6797) makes the browser use HTTPS only, which defeats **SSL stripping**.\n- Honored only when received over HTTPS\n- First visit is exposed; the **preload list** fixes that (max-age ≥ 1 year + includeSubDomains)\n- `max-age=0` removes the policy",
+    "back": "`Strict-Transport-Security: max-age=…; includeSubDomains` (RFC 6797) makes the browser use HTTPS only, which defeats **SSL stripping**.\n- Honored only when received over HTTPS\n- First visit is exposed; the **preload list** fixes that (max-age ≥ 1 year + includeSubDomains + the `preload` directive)\n- `max-age=0` removes the policy",
     "tags": [
       "hsts",
       "tls"
@@ -651,10 +652,11 @@
     "sources": [
       "https://www.rfc-editor.org/rfc/rfc6797",
       "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security",
-      "https://hstspreload.org/"
+      "https://hstspreload.org/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
     ],
     "verify": false,
-    "rev": 1
+    "rev": 2
   },
   {
     "id": "m11-c-0035",
