@@ -4,6 +4,13 @@ App and content have separate versions. The app version is in `package.json`, th
 `content/content-version.json`. Content fixes reach installed apps through **Settings → Check for updates**,
 so they do not need a new app release.
 
+## [Unreleased]
+
+### Fixed
+
+- Printing from dark mode gave near-white text on white paper; print now always uses the light palette,
+  prints tables in full and keeps diagrams readable.
+
 ## [0.5.0] - 2026-09-29
 
 Ships with content 0.33.0: 16 of 21 modules fully built, 1794 questions, 802 flashcards, 15 of 18 reference

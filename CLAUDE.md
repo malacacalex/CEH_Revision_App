@@ -150,8 +150,9 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   review export, `.claude/commands`.
 - [x] **M3**: Tauri + Capacitor packaging, CI release (`release.yml`), INSTALL/CONTRIBUTING/CHANGELOG,
   in-app content-pack update. Released as v0.3.0.
-- [ ] **M4**: build M1–M20 (`/build-module N`), full volumes. As far as the blocks allow: 16/21 built,
-  the rest listed in research/deferred.md and on the Self-study page.
+- [x] **M4**: build M1–M20 (`/build-module N`), full volumes. Closed as far as the blocks allow: 16/21 built;
+  M4, M15, M16, the M12 evasion sections, M6 Gaining Access and sheet 2 stay in research/deferred.md and on
+  the Self-study page for good (owner, 2026-09-29).
 - [x] **M5**: analytics page, half/full mocks, Phase 3 and exam-ready gates on the dashboard.
   - Mocks (`domain/quiz/mock.ts`) draw fresh held-out mock items by blueprint quota. The pool has 460/500
     items (2026-09-28) and none for D6 (M16 blocked), so gaps fall back to unseen practice items of the domain, then fresh mock
@@ -170,6 +171,9 @@ Unsigned macOS .dmg from CI; iOS = PWA only.
   EC-Council page states; public infographics under eccouncil.org/wp-content/uploads count, courseware does not.
   Standards moved in 2026 and were aligned: ATT&CK (T1562 → T1685, ICS renames), BOD 26-04, OWASP Top 10:2025,
   DMARC RFC 9989, NVD enrichment priorities.
+- [x] **M8**: print (§6.3 feature 10). Reference sheets and notes print with the light palette in dark mode,
+  tables in full, dark Mermaid diagrams inverted; e2e covers the dark print.
+- [ ] **M9**: §9 fact-check sample, 10% of items per module re-checked against primary sources.
 
 ## Release status
 
@@ -180,30 +184,11 @@ Linux AppImage/deb, Android apk/aab signed with the release key. Nothing else is
 Android key: PKCS12 made with OpenSSL, kept by the owner outside the repo (`C:\Users\malac\ShieldUp-keys`),
 passed to CI through 4 repo secrets. Never regenerate it: a new key breaks in-place APK updates.
 
-## Session log
+## Lessons kept from the session log
 
-- 2026-09-23 — M1 MVP built and pushed; 35 unit tests + Playwright smoke (desktop + mobile) green.
-  Pages needs Settings → Pages → Source: GitHub Actions (once).
-- 2026-09-23 — M2: M0 built, diagnostic, Reference page (sheets + glossary), review export, commands.
-  Content 0.2.0. Sheet 2 deferred by the owner (`research/deferred.md`).
-- 2026-09-23 — M3: platform layer, content/app update checks, Tauri + Capacitor projects, release
-  pipeline, docs. App 0.3.0. CSP verified in Chrome against the built app.
-- 2026-09-23 — M4 started: M1 built (research/m01.md, content 0.3.0). Quiz stems are plain text:
-  keep command output on one line with backticks. Mermaid state labels need `state "Label" as X`.
-- 2026-09-23 — M2 partial: research/m02.md and notes pushed (content 0.3.1), module stays `stub`.
-  Cards and questions were blocked during generation and are listed in research/deferred.md.
-- 2026-09-24 — M4 wave 1 (agents in parallel, lead integrates): M5 and M10 built, M9 sample, M11 notes;
-  M3, M4, M6, M8 and parts of M9/M11 deferred. Content 0.4.0. Many parallel agents hit the session limit:
-  run 4 at a time.
-- 2026-09-24 — M4 wave 2: M7, M13, M17, M19, M20 built, M12 sample (content 0.5.0 → 0.10.0); Mermaid label
-  rendering fixed (DOMPurify foreignObject integration point + label CSS). M14, M15, M16, M18 blocked and
-  deferred. Every remaining M4 gap is a safety-layer block listed in research/deferred.md.
-- 2026-09-27 — M4 wave 3 (defensive, recognition-level retry): M9 and M11 built, M18 sample, M8 items,
-  M14 notes (content 0.11.0 → 0.14.0). M3, M4, M6, M12 evasion, M15, M16 blocked again; module meta
-  `resources` lists free official links shown on the module page meanwhile. App: planner puts built modules
-  first, quizzes resume their open session, glossary terms in quiz text open a definition (208 entries,
-  `aliases`), the "Why did you miss it?" prompt is gone. After a classifier stop, drop what was written
-  after it; don't keep reworded output.
-- 2026-09-27 — M5: mocks (exam-like runner, result debrief), analytics page (built by an agent), go/no-go
-  gates with external practice scores, Self-study page, M2 retry built (content 0.16.0). App changes wait
-  for the next release (owner: no tag yet).
+- Parallel agents hit the session limit: run 4 at a time, and make them log per item so a relaunch skips done work.
+- After a classifier stop, drop what was written after it; never keep reworded output. Blocked topics are
+  final (owner, 2026-09-29): they stay on the Self-study page and are not retried.
+- Quiz stems are plain text: keep command output on one line with backticks. Mermaid state labels need
+  `state "Label" as X`; labels render through DOMPurify's foreignObject integration point.
+- Print: the dark palette is screen-only (`@media screen`), so any new colour must be a palette variable.
